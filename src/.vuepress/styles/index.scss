@@ -8,8 +8,10 @@
 
 html[data-theme=dark] #app {
     --code-highlight-line-color: #0e5c49;
+    --border-color: #0e5c49;
 }
 
 html[data-theme=light] #app {
-    --code-highlight-line-color: #78d0ba;
+    --code-highlight-line-color: #8ef6dc;
+    --border-color: #55877a;
 }

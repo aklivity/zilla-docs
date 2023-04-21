@@ -1,8 +1,39 @@
 ---
+shortTitle: binding (kafka)
 description: Zilla runtime kafka binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (kafka)
+# kafka Binding
+
+Zilla runtime kafka binding.
+
+```yaml {2,10,17}
+kafka_cache_client0:
+  type: kafka
+  kind: cache_client
+  options:
+    merged:
+      - items-requests
+      - items-responses
+  exit: kafka_cache_server0
+kafka_cache_server0:
+  type: kafka
+  kind: cache_server
+  options:
+    bootstrap:
+      - items-responses
+  exit: kafka_client0
+kafka_client0:
+  type: kafka
+  kind: client
+  exit: tcp_client0
+```
+
+## Summary
 
 Defines a binding with `kafka` protocol support, with `cache_client`, `cache_server` or `client` behavior.
 
@@ -28,114 +59,162 @@ The `client` kind `kafka` binding receives inbound application streams and encod
 
 Conditional routes based on `kafka` `topic` names are used to route these network streams to an `exit` binding that ultimately reaches a `kafka` broker.
 
-## Example
-
-```
-"kafka_cache_client0":
-{
-    "type" : "kafka",
-    "kind": "cache_client",
-    "options":
-    {
-        "merged":
-        [
-            "items-requests",
-            "items-responses"
-        ]
-    },
-    "exit": "kafka_cache_server0"
-},
-
-"kafka_cache_server0":
-{
-    "type" : "kafka",
-    "kind": "cache_server",
-    "options":
-    {
-        "bootstrap":
-        [
-            "items-responses"
-        ]
-    },
-    "exit": "kafka_client0"
-},
-
-"kafka_client0":
-{
-    "type" : "kafka",
-    "kind": "client",
-    "exit": "tcp_client0"
-}
-```
-
 ## Configuration
 
-Binding with support for `kafka` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [options](#options)
+- [options.bootstrap](#options-bootstrap)
+- [options.topics](#options-topics)
+  - [topics\[\].name\*](#topics-name)
+  - [topics\[\].defaultOffset](#topics-defaultoffset)
+- [options.sasl](#options-sasl)
+  - [sasl.name](#sasl-name)
+  - [sasl.mechanism\*](#sasl-mechanism)
+  - [sasl.username](#sasl-username)
+  - [sasl.password](#sasl-password)
+- [exit](#exit)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].topic\*](#when-topic)
+- [routes\[\].exit\*](#routes-exit)
 
-| Name (\* = required)                  | Type                                                                                                                        | Description                                                    |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `type`\*                              | `const "kafka"`                                                                                                             | Support `kafka` protocol                                       |
-| `kind`\*                              | <p><code>enum [</code><br>  <code>"cache_client",</code><br>  <code>"cache_server",</code><br>  <code>"client" ]</code></p> | Behave as a `kafka` `cache_client`, `cache_server` or `client` |
-| [`options`](binding-kafka.md#options) | `object`                                                                                                                    | `kafka`-specific options                                       |
-| `routes`                              | `array` of [`route`](binding-kafka.md#route)                                                                                | Conditional `kafka`-specific routes                            |
-| `exit`                                | `string`                                                                                                                    | Default exit binding when no conditional routes are viable     |
+::: right
+\* required
+:::
+
+::::
+
+### kind\*
+
+> `enum` [ "cache_client", "cache_server", "client" ]
+
+Behave as a `kafka` `cache_client`, `cache_server` or `client`.
 
 ### options
 
-Options for `kafka` protocol.
+> `object`
 
-#### Properties
+`kafka`-specific options.
 
-| Name (\* = required)            | Type                                         | Description                                              |
-| ------------------------------- | -------------------------------------------- | -------------------------------------------------------- |
-| `bootstrap`                     | `array` of `string`                          | Topics to bootstrap in cache server even when no clients |
-| `topics`                        | `array` of [`topic`](binding-kafka.md#topic) | Topic configuration                                      |
-| [`sasl`](binding-kafka.md#sasl) | `object`                                     | SASL credentials                                         |
+```yaml
+options:
+  merged:
+    - items-requests
+    - items-responses
+```
 
-### topic
+### options.bootstrap
 
-Topic-specific configuration when supporting `kafka` protocol.
+> `array` of `string`
 
-#### Properties
+Topics to bootstrap in cache server even when no clients.
 
-| Name (\* = required) | Type                                                                                  | Description                                                                               |
-| -------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `name`\*             | `string`                                                                              | Topic name                                                                                |
-| `defaultOffset`      | <p><code>enum [</code><br>  <code>"live",</code><br>  <code>"historical" ]</code></p> | <p>Fetch offset to use for new consumers<br><br>Defaults to <code>"historical"</code></p> |
+### options.topics
 
-### sasl
+> `array` of `object`
+
+Topic configuration.
+
+#### topics[].name\*
+
+> `string`
+
+Topic name.
+
+#### topics[].defaultOffset
+
+> `enum` [ "live", "historical" ]
+
+Fetch offset to use for new consumers\
+Defaults to `"historical"`.
+
+### options.sasl
+
+> `object`
 
 SASL credentials to use when connecting to `kafka` brokers.
 
-#### Properties
+#### sasl.name
 
-| Name (\* = required) | Type                                                                                                                                                          | Description                                                                                |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `name`               | `string`                                                                                                                                                      | Mechanism name                                                                             |
-| `mechanism`\*        | <p><code>enum [</code><br>  <code>"plain",</code><br>  <code>"scram-sha-1",</code><br>  <code>"scram-sha-256",</code><br>  <code>"scram-sha-512" ]</code></p> | <p>SASL mechanism<br><br>Supports <code>plain</code> and <code>scram</code> mechanisms</p> |
-| `username`           | `string`                                                                                                                                                      | SASL username                                                                              |
-| `password`           | `string`                                                                                                                                                      | SASL password                                                                              |
+> `string`
 
-### route
+Mechanism name.
 
-Routes for `kafka` protocol.
+#### sasl.mechanism\*
 
-#### Properties
+> `enum` [ "plain", "scram-sha-1", "scram-sha-256", "scram-sha-512" ]
 
-| Name (\* = required) | Type                                                   | Description                                                        |
-| -------------------- | ------------------------------------------------------ | ------------------------------------------------------------------ |
-| `guarded`            | `object` as named map of `string` `array`              | List of roles required by each named guard to authorize this route |
-| `when`               | `array` of [`condition`](binding-kafka.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*             | `string`                                               | Next binding when following this route                             |
+SASL mechanism\
+Supports `plain` and `scram` mechanisms.
 
-### condition
+#### sasl.username
 
-Conditions to match routes for `kafka` protocol.
+> `string`
 
-#### Properties
+SASL username.
 
-| Name (\* = required) | Type     | Description        |
-| -------------------- | -------- | ------------------ |
-| `topic`\*            | `string` | Topic name pattern |
+#### sasl.password
+
+> `string`
+
+SASL password.
+
+### exit
+
+> `string`
+
+Default exit binding when no conditional routes are viable.
+
+```yaml
+exit: echo_server0
+```
+
+### routes
+
+> `array` of `object`
+
+Conditional `kafka`-specific routes.
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+```
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+#### when[].topic\*
+
+> `string`
+
+Topic name pattern.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
+
+```yaml
+exit: echo_server0
+```
+
+---
+
+::: right
+\* required
+:::

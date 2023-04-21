@@ -9,7 +9,7 @@ In this guide, you will learn how to connect to Confluent Cloud from Zilla. You 
 * Cluster Bootstrap server - see [Confluent Cloud Cluster Settings](https://docs.confluent.io/cloud/current/clusters/broker-config.html).
 * API Keys(Key, Secret) - see [API Keys to Control Access](https://docs.confluent.io/cloud/current/access-management/authenticate/api-keys/api-keys.html).
 
-## Confluent Cloud Parameters&#x20;
+## Confluent Cloud Parameters
 
 Confluent Cloud is exposed over `SASL_SSL` authentication protocols and the `Confluent Cloud` cluster is secured by a `TLS` server certificate that is provided by a public certificate authority.
 
@@ -24,7 +24,7 @@ For a better understanding of the `Zilla` config, please use a brief explanation
 
 Before we proceed further let's use the below command to verify connectivity to your Kafka.
 
-```
+```bash:no-line-numbers
 kcat -b BOOTSTRAP_SERVER_HOSTNAME:BOOTSTRAP_SERVER_PORT \
 -X security.protocol=sasl_ssl -X sasl.mechanisms=PLAIN \
 -X sasl.username=API_KEY_KEY  -X sasl.password=API_KEY_SECRET  \
@@ -92,7 +92,6 @@ Let's configure `zilla.json`.
     }
 }
 ```
-
 
 ::: info NOTE
 SNI adds the domain name to the TLS handshake process so that the Zilla process reaches the right domain name and receives the correct SSL certificate.

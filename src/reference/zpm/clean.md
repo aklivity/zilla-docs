@@ -10,12 +10,12 @@ The `zpm help` command shows help information about available commands, or more 
 
 ### Usage
 
-```
+```bash:no-line-numbers
 zpm help [command]
 ```
 
 ### Examples
 
-```
+```bash:no-line-numbers
 ./zpmw help install
-```
+```bash:no-line-numbers

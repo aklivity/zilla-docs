@@ -10,12 +10,12 @@ The `zilla help` command shows help information about available commands, or mor
 
 ### Usage
 
-```
+```bash:no-line-numbers
 zilla help [command]
 ```
 
 ### Examples
 
-```
+```bash:no-line-numbers
 ./zilla help start
-```
+```bash:no-line-numbers

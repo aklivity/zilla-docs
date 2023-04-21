@@ -1,8 +1,11 @@
 ---
+shortTitle: guard
 description: Zilla runtime guard type
+category:
+  - Guard
 ---
 
-# guard
+# Guard
 
 Each configured `guard` represents a security checkpoint for one or more bindings based on a specific implementation `type`.
 
@@ -12,18 +15,30 @@ Associated roles can be enforced during routing by only following routes `guarde
 
 See each of the specific `guard` types linked below for more detailed examples.
 
-### Configuration
+## Configuration
 
 Each runtime `guard` has a behavioral type supporting a specific implementation strategy.
 
-#### Properties (generic)
+### Properties (generic)
 
-| Name   | Type                                                                                            | Description     |
-| ------ | ----------------------------------------------------------------------------------------------- | --------------- |
-| `type` | <p><code>enum [</code><br>  <a href="guard-jwt.md"><code>"jwt"</code></a><br><code>]</code></p> | Behavioral type |
+### type
 
-#### Properties (type-specific)
+> `enum` \[\
+> ["jwt"](guard-jwt.md)\
+> \]
 
-| Name      | Type     | Description        |
-| --------- | -------- | ------------------ |
-| `options` | `object` | Behavioral options |
+Behavioral type.
+
+### Properties (type-specific)
+
+### options
+
+> `object`
+
+Behavioral options.
+
+---
+
+::: right
+\* required
+:::

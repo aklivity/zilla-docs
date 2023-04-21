@@ -1,8 +1,35 @@
 ---
+shortTitle: binding (tls)
 description: Zilla runtime tls binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (tls)
+# tls Binding
+
+Zilla runtime tls binding.
+
+```yaml {2}
+tls_server0:
+  type: tls
+  kind: server
+  vault: server
+  options:
+    keys:
+      - localhost
+    sni:
+      - localhost
+    alpn:
+      - echo
+  routes:
+    - when:
+        - alpn: echo
+    exit: echo_server0
+```
+
+## Summary
 
 Defines a binding with `tls` protocol support, with `server`, `client` or `proxy` behavior.
 
@@ -28,86 +55,184 @@ The `proxy` kind `tls` binding detects `ClientHello` `server_name` extension to 
 
 A `vault` is not required to proxy `TLS` protocol as the handshake is only observed read-only as it routes through the `tls` `proxy` binding.
 
-## Example
-
-```
-"tls_server0":
-{
-    "type" : "tls",
-    "kind": "server",
-    "vault": "server",
-    "options":
-    {
-        "keys": [ "localhost" ],
-        "sni": [ "localhost" ],
-        "alpn": [ "echo" ]
-    },
-    "routes":
-    [
-        {
-            "when":
-            [
-                {
-                    "alpn": "echo"
-                }
-            ],
-            "exit": "echo_server0"
-        }
-    ]
-}
-```
-
 ## Configuration
 
-Binding with support for `tls` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [vault](#vault)
+- [options](#options)
+- [options.version](#options-version)
+- [options.keys](#options-keys)
+- [options.trust](#options-trust)
+- [options.signers](#options-signers)
+- [options.trustcacerts](#options-trustcacerts)
+- [options.sni\*](#options-sni)
+- [options.alpn](#options-alpn)
+- [options.mutual](#options-mutual)
+- [exit](#exit)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].authority](#when-authority)
+  - [when\[\].alpn](#when-alpn)
+- [routes\[\].exit\*](#routes-exit)
 
-| Name (\* = required)                | Type                                                                                                           | Description                                                |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `type`\*                            | `const "tls"`                                                                                                  | Support `tls` protocol                                     |
-| `kind`\*                            | <p><code>enum [</code><br>  <code>"client",</code><br>  <code>"server",</code><br>  <code>"proxy" ]</code></p> | Behave as a `tls` `client`, `server` or `proxy`            |
-| `vault`                             | `string`                                                                                                       | Vault name                                                 |
-| [`options`](binding-tls.md#options) | `object`                                                                                                       | `tls`-specific options                                     |
-| `routes`                            | `array` of [`route`](binding-tls.md#route)                                                                     | Conditional `tls`-specific routes                          |
-| `exit`                              | `string`                                                                                                       | Default exit binding when no conditional routes are viable |
+::: right
+\* required
+:::
+
+::::
+
+### kind\*
+
+> `enum` [ "client", "server", "proxy" ]
+
+Behave as a `tls` `client`, `server` or `proxy`.
+
+### vault
+
+> `string`
+
+Vault name.
 
 ### options
 
-Options for `tls` protocol.
+> `object`
 
-#### Properties
+`tls`-specific options.
 
-| Name (\* = required) | Type                                                                                                                               | Description                                                       |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `version`            | `string`                                                                                                                           | Protocol version                                                  |
-| `keys`               | `array` of `string`                                                                                                                | Vault key refs                                                    |
-| `trust`              | `array` of `string`                                                                                                                | Vault certificate refs                                            |
-| `signers`            | `array` of `string`                                                                                                                | Vault signer certificate refs                                     |
-| `trustcacerts`       | `boolean`                                                                                                                          | Trust CA certificates                                             |
-| `sni`\*              | `array` of `string`                                                                                                                | Server names                                                      |
-| `alpn`               | `array` of `string`                                                                                                                | Application protocols                                             |
-| `mutual`             | <p><code>enum [</code><br>  <code>"required",</code><br>  <code>"requested",</code><br>  <code>"none"</code><br><code>]</code></p> | <p>Mutual authentication<br><br>Defaults to <code>none</code></p> |
+```yaml
+options:
+  keys:
+  - localhost
+  sni:
+  - localhost
+  alpn:
+  - echo
+```
 
-### route
+### options.version
 
-Routes for `tls` protocol.
+> `string`
 
-#### Properties
+Protocol version.
 
-| Name (\* = required) | Type                                                 | Description                                                        |
-| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
-| `guarded`            | `object` as named map of `string` `array`            | List of roles required by each named guard to authorize this route |
-| `when`               | `array` of [`condition`](binding-tls.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*             | `string`                                             | Next binding when following this route                             |
+### options.keys
 
-### condition
+> `array` of `string`
 
-Conditions to match routes for `tls` protocol.
+Vault key refs.
 
-#### Properties
+### options.trust
 
-| Name        | Type     | Description          |
-| ----------- | -------- | -------------------- |
-| `authority` | `string` | Associated authority |
-| `alpn`      | `string` | Application protocol |
+> `array` of `string`
+
+Vault certificate refs.
+
+### options.signers
+
+> `array` of `string`
+
+Vault signer certificate refs.
+
+### options.trustcacerts
+
+> `boolean`
+
+Trust CA certificates.
+
+### options.sni\*
+
+> `array` of `string`
+
+Server names.
+
+### options.alpn
+
+> `array` of `string`
+
+Application protocols.
+
+### options.mutual
+
+> `enum` [ "required", "requested", "none" ]
+
+Mutual authentication\
+Defaults to `"none"`.
+
+### exit
+
+> `string`
+
+Default exit binding when no conditional routes are viable.
+
+```yaml
+exit: echo_server0
+```
+
+### routes
+
+> `array` of `object`
+
+Conditional `tls`-specific routes.
+
+```yaml
+routes:
+  - when:
+      - alpn: echo
+  exit: echo_server0
+```
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+```
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+```yaml
+routes:
+  - when:
+      - alpn: echo
+```
+
+#### when[].authority
+
+> `string`
+
+Associated authority.
+
+#### when[].alpn
+
+> `string`
+
+Application protocol.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
+
+```yaml
+exit: echo_server0
+```
+
+---
+
+::: right
+\* required
+:::

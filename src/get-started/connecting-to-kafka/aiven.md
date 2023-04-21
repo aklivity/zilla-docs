@@ -20,7 +20,7 @@ A brief explanation of replaceable values from the config examples below:
 
 ## Aiven Parameters
 
-The Aiven Kafka requires clients to connect via `TLS mutual authentication` and provides the following files  `Client Key`, `Client Certificate`, and `CA Certificate` to achieve that. You can download them by going to `Aiven Console` -> `Kafka Cluster` -> `Overview Tab` as shown below.&#x20;
+The Aiven Kafka requires clients to connect via `TLS mutual authentication` and provides the following files  `Client Key`, `Client Certificate`, and `CA Certificate` to achieve that. You can download them by going to `Aiven Console` -> `Kafka Cluster` -> `Overview Tab` as shown below.
 
 ![Connection Info](./aivien-connection-information.png)
 
@@ -41,7 +41,7 @@ You can use the scripts shown below to generate `truststore.p12` and `keystore.p
 
 @tab truststore.p12
 
-```bash
+```bash:no-line-numbers
 keytool -import -file ca.pem \
     -alias YOUR_KAFKA_SIGNED_CLIENT_CERT_ALIAS \
     -keystore truststore.p12
@@ -49,7 +49,7 @@ keytool -import -file ca.pem \
 
 @tab keystore.p12
 
-```bash
+```bash:no-line-numbers
 openssl pkcs12 -export -in service.cert -inkey service.key \
     -out keystore.p12 -name YOUR_KAFKA_CA_CERT_ALIAS \
     -CAfile ca.pem
