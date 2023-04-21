@@ -1,8 +1,31 @@
 ---
+shortTitle: binding (proxy)
 description: Zilla runtime proxy binding
+category:
+  - Binding
+tag:
+  - Proxy
+  - Server
 ---
 
-# binding (proxy)
+# proxy Binding
+
+Zilla runtime proxy binding.
+
+```yaml {2}
+proxy_server0:
+  type: proxy
+  kind: server
+  routes:
+  - when:
+      - transport: stream
+        family: inet4
+        destination:
+          port: 443
+      exit: tls_server0
+```
+
+## Summary
 
 Defines a binding with `proxy` protocol support, with `server` or `client` behavior.
 
@@ -12,78 +35,142 @@ The `client` kind `proxy` binding receives inbound application streams and encod
 
 Conditional routes based on the network transport type or network addresses are used to route these streams to an `exit` binding.
 
-## Example
-
-```
-"proxy_server0":
-{
-    "type" : "proxy",
-    "kind": "server",
-    "routes":
-    [
-        {
-            "when":
-            [
-                {
-                    "transport": "stream",
-                    "family": "inet4",
-                    "destination":
-                    {
-                        "port": 443
-                    }
-                }
-            ],
-            "exit": "tls_server0"
-        }
-    ]
-}
-```
-
 ## Configuration
 
-Binding with support for `proxy` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [exit](#exit)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].transport](#when-transport)
+  - [when\[\].family](#when-family)
+  - [when\[\].source](#when-source)
+    - [source.host](#source-host)
+    - [source.port](#source-port)
+  - [when\[\].destination](#when-destination)
+    - [destination.host](#destination-host)
+    - [destination.port](#destination-port)
+- [routes\[\].exit\*](#routes-exit)
 
-| Name (\* = required) | Type                                                                                | Description                                                |
-| -------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `type`\*             | `const "proxy"`                                                                     | Support `proxy` protocol.                                  |
-| `kind`\*             | <p><code>enum [</code><br>  <code>"client",</code><br>  <code>"server" ]</code></p> | Behave as `proxy` `client` or `server`                     |
-| `routes`             | `array` of [`route`](binding-proxy.md#route)                                        | Conditional `proxy`-specific routes                        |
-| `exit`               | `string`                                                                            | Default exit binding when no conditional routes are viable |
+::: right
+\* required
+:::
 
-### route
+::::
 
-Routes for `proxy` protocol.
+### kind\*
 
-#### Properties
+> `enum` [ "client", "server" ]
 
-| Name      | Type                                                   | Description                                                        |
-| --------- | ------------------------------------------------------ | ------------------------------------------------------------------ |
-| `guarded` | `object` as named map of `string` `array`              | List of roles required by each named guard to authorize this route |
-| `when`    | `array` of [`condition`](binding-proxy.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*  | `string`                                               | Next binding when following this route                             |
+Behave as `proxy` `client` or `server`.
 
-### condition
+### exit
 
-Conditions to match routes for `proxy` protocol.
+> `string`
 
-#### Properties
+Default exit binding when no conditional routes are viable.
 
-| Name          | Type                                                                                                                                     | Description         |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| `transport`   | <p><code>enum [</code> <br>  <code>"stream",</code> <br>  <code>"datagram" ]</code></p>                                                  | Transport type      |
-| `family`      | <p><code>enum [</code> <br>  <code>"inet",</code> <br>  <code>"inet4",</code> <br>  <code>"inet6",</code><br>  <code>"unix" ]</code></p> | Address family      |
-| `source`      | [`address`](binding-proxy.md#address)                                                                                                    | Source address      |
-| `destination` | [`address`](binding-proxy.md#address)                                                                                                    | Destination address |
+```yaml
+exit: echo_server0
+```
 
-### address
+### routes
 
-Address for `proxy` protocol.
+> `array` of `object`
 
-#### Properties
+Conditional `proxy`-specific routes.
 
-| Name   | Type      | Description            |
-| ------ | --------- | ---------------------- |
-| `host` | `string`  | Hostname or IP address |
-| `port` | `integer` | Port number            |
+```yaml
+routes:
+  - when:
+      - transport: stream
+        family: inet4
+        destination:
+          port: 443
+  exit: tls_server0
+```
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+```
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+#### when[].transport
+
+> `enum` [ "stream", "datagram" ]
+
+Transport type.
+
+#### when[].family
+
+> `enum` [ "inet", "inet4", "inet6", "unix" ]
+
+Address family.
+
+#### when[].source
+
+> `object`
+
+Source address.
+
+##### source.host
+
+> `string`
+
+Hostname or IP address.
+
+##### source.port
+
+> `integer`
+
+Port number.
+
+#### when[].destination
+
+> `object`
+
+Destination address.
+
+##### destination.host
+
+> `string`
+
+Hostname or IP address.
+
+##### destination.port
+
+> `integer`
+
+Port number.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
+
+```yaml
+exit: echo_server0
+```
+
+---
+
+::: right
+\* required
+:::

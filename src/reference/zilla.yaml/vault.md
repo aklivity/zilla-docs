@@ -1,8 +1,11 @@
 ---
+shortTitle: vault
 description: Zilla runtime vault type
+category:
+  - Vault
 ---
 
-# vault
+# Vault
 
 Each configured `vault` represents a container for digital keys and certificates based on a specific implementation `type`.
 
@@ -10,18 +13,30 @@ Vaults can be used by specific protocol bindings, such as `tls`, to negotiate sh
 
 See each of the specific `vault` types linked below for more detailed examples.
 
-### Configuration
+## Configuration
 
 Each runtime `vault` has a behavioral type supporting a specific implementation strategy.
 
-#### Properties (generic)
+### Properties (generic)
 
-| Name   | Type                                                                                                          | Description     |
-| ------ | ------------------------------------------------------------------------------------------------------------- | --------------- |
-| `type` | <p><code>enum [</code><br>  <a href="vault-filesystem.md"><code>"filesystem"</code></a><br><code>]</code></p> | Behavioral type |
+### type
 
-#### Properties (type-specific)
+> `enum` \[\
+> ["filesystem"](vault-filesystem.md)\
+> \]
 
-| Name      | Type     | Description        |
-| --------- | -------- | ------------------ |
-| `options` | `object` | Behavioral options |
+Behavioral type.
+
+### Properties (type-specific)
+
+### options
+
+> `object`
+
+Behavioral options.
+
+---
+
+::: right
+\* required
+:::

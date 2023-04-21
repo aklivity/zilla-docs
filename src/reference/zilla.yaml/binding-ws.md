@@ -1,8 +1,27 @@
 ---
+shortTitle: binding (ws)
 description: Zilla runtime ws binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (ws)
+# ws Binding
+
+Zilla runtime ws binding.
+
+```yaml {2}
+ws_server0:
+  type: ws
+  kind: server
+  routes:
+    - when:
+        - protocol: echo
+    exit: echo_server0
+```
+
+## Summary
 
 Defines a binding with `WebSockets` protocol support, with `server` or `client` behavior.
 
@@ -18,86 +37,159 @@ The `client` kind `ws` binding converts inbound `ws` full duplex streams into `h
 
 Conditional routes based on `ws` scheme, authority, path or negotiated subprotocol are used to route these streams to an `exit` binding.
 
-## Example
-
-```
-"ws_server0":
-{
-    "type" : "ws",
-    "kind": "server",
-    "routes":
-    [
-        {
-            "when":
-            [
-                {
-                    "protocol": "echo"
-                }
-            ],
-            "exit": "echo_server0"
-        }
-    ]
-}
-```
-
 ## Configuration
 
-Binding with support for `ws` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [options](#options)
+- [options.defaults](#options-defaults)
+  - [defaults.protocol](#defaults-protocol)
+  - [defaults.scheme](#defaults-scheme)
+  - [defaults.authority](#defaults-authority)
+  - [defaults.path](#defaults-path)
+- [exit](#exit)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].protocol](#when-protocol)
+  - [when\[\].scheme](#when-scheme)
+  - [when\[\].authority](#when-authority)
+  - [when\[\].path](#when-path)
+- [routes\[\].exit\*](#routes-exit)
 
-| Name (\* = required)               | Type                                                                                | Description                                                |
-| ---------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `type`\*                           | `const "ws"`                                                                        | Support `ws` protocol                                      |
-| `kind`\*                           | <p><code>enum [</code><br>  <code>"client",</code><br>  <code>"server" ]</code></p> | Behave as a `ws` `client` or `server`                      |
-| [`options`](binding-ws.md#options) | `object`                                                                            | `ws`-specific options                                      |
-| `routes`                           | `array` of [`route`](binding-ws.md#route)                                           | Conditional `ws`-specific routes                           |
-| `exit`                             | `string`                                                                            | Default exit binding when no conditional routes are viable |
+::: right
+\* required
+:::
+
+::::
+
+### kind\*
+
+> `enum` [ "client", "server" ]
+
+Behave as a `ws` `client` or `server`.
 
 ### options
 
-Options for `ws` protocol.
+> `object`
 
-#### Properties
+`ws`-specific options.
 
-| Name (\* = required)                 | Type     | Description |
-| ------------------------------------ | -------- | ----------- |
-| [`defaults`](binding-ws.md#defaults) | `object` | Defaults    |
+### options.defaults
 
-### defaults
+> `object`
 
-Defaults option for `ws` protocol.
+Defaults.
 
-#### Properties
+#### defaults.protocol
 
-| Name (\* = required) | Type     | Description |
-| -------------------- | -------- | ----------- |
-| `protocol`           | `string` | Subprotocol |
-| `scheme`             | `string` | Scheme      |
-| `authority`          | `string` | Authority   |
-| `path`               | `string` | Path        |
+> `string`
 
-### route
+Subprotocol.
 
-Routes for `ws` protocol.
+#### defaults.scheme
 
-#### Properties
+> `string`
 
-| Name (\* = required) | Type                                              | Description                                                        |
-| -------------------- | ------------------------------------------------- | ------------------------------------------------------------------ |
-| `guarded`            | `object` as named map of `string` `array`         | List of roles required by each named guard to authorize this route |
-| `when`               | `array` of [`condition`](binding-ws.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*             | `string`                                          | Next binding when following this route                             |
+Scheme.
 
-### condition
+#### defaults.authority
 
-Conditions to match routes for `ws` protocol.
+> `string`
 
-#### Properties
+Authority.
 
-| Name (\* = required) | Type     | Description         |
-| -------------------- | -------- | ------------------- |
-| `protocol`           | `string` | Subprotocol pattern |
-| `scheme`             | `string` | Scheme pattern      |
-| `authority`          | `string` | Authority pattern   |
-| `path`               | `string` | Path pattern        |
+#### defaults.path
+
+> `string`
+
+Path.
+
+### exit
+
+> `string`
+
+Default exit binding when no conditional routes are viable.
+
+```yaml
+exit: echo_server0
+```
+
+### routes
+
+> `array` of `object`
+
+Conditional `ws`-specific routes.
+
+```yaml
+routes:
+  - when:
+      - protocol: echo
+  exit: echo_server0
+```
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+```
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+```yaml
+routes:
+  - when:
+      - protocol: echo
+```
+
+#### when[].protocol
+
+> `string`
+
+Subprotocol pattern.
+
+#### when[].scheme
+
+> `string`
+
+Scheme pattern.
+
+#### when[].authority
+
+> `string`
+
+Authority pattern.
+
+#### when[].path
+
+> `string`
+
+Path pattern.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
+
+```yaml
+exit: echo_server0
+```
+
+---
+
+::: right
+\* required
+:::

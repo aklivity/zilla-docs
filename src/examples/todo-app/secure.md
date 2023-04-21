@@ -24,7 +24,7 @@ In [Build a Todo Application](build.md#step-3-zilla), you defined a Tasks API to
 
 ::: details
 
-Creates a new Todo Task.&#x20;
+Creates a new Todo Task.
 
 Requires `content-type` `application/json` and request body matching `CreateTask` command domain model.
 
@@ -95,7 +95,6 @@ if-match\[String] - Task etag
 * **412 Precondition Failed** - **** Task delete failed, etag does not match
 
 :::
-
 
 ![](./get-tasks.png)
 
@@ -496,18 +495,18 @@ guards:
 
 Now run the command below to update the `zilla` service and force a restart.
 
-```bash
+```bash:no-line-numbers
 docker service update --force \
   $(docker stack services example -q -f name=example_zilla)
 ```
 
 Let's verify the Tasks API using `curl` as shown below.
 
-```bash
+```bash:no-line-numbers
 curl -v http://localhost:8080/tasks
 ```
 
-```bash
+```bash:no-line-numbers
 > GET /tasks HTTP/1.1
 > Host: localhost:8080
 > User-Agent: curl/7.79.1
@@ -522,7 +521,7 @@ curl -v http://localhost:8080/tasks
 
 As you can see, the `GET /tasks` API is now secured against unauthorized access, _without_ leaking any information about failed security checks.
 
-### Step 2: Test Drive!
+### Step 2: Test Drive
 
 Open the browser and enter [`http://localhost:8080/`](http://localhost:8080/) to see the secured Todo Application.
 

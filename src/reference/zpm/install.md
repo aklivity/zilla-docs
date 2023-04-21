@@ -10,7 +10,7 @@ The `zpm install` command resolves the [Zilla Manager Configuration](../zpm.json
 
 ### Usage
 
-```bash
+```bash:no-line-numbers
 zpm install
 ```
 
@@ -18,14 +18,14 @@ zpm install
 
 |                                 |                                                                                  |
 | ------------------------------- | -------------------------------------------------------------------------------- |
-| `--debug`                       | <p>Link <code>jdk.jdwp.agent</code> module<br>Defaults to <code>false</code></p> |
+| `--debug`                       | Link `jdk.jdwp.agent` module<br>Defaults to `false` |
 | `--exclude-local-repository`    | Exclude the local Maven repository when resolving dependencies                   |
 | `--exclude-remote-repositories` | Exclude remote Maven repositories when resolving dependencies                    |
 
 ### Examples
 
-```bash
+```bash:no-line-numbers
 ./zpmw install
 ```
 
-See [Zilla examples](https://github.com/aklivity/zilla/tree/develop/examples) on GitHub.
+See [Zilla examples](https://github.com/aklivity/zilla-examples) on GitHub.

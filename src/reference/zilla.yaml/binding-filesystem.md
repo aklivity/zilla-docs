@@ -1,48 +1,83 @@
 ---
+shortTitle: binding (filesystem)
 description: Zilla runtime filesystem binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (filesystem)
+# filesystem Binding
 
-Defines a binding with `filesystem`  support, with `server` behavior.
+Zilla runtime filesystem binding.
+
+```yaml {2}
+filesystem_server0:
+  type: filesystem
+  kind: server
+  options:
+    location: web/
+    simlinks: follow
+```
+
+## Summary
 
 The `server` kind `filesystem` binding provides access to files and directories on the local filesystem, optionally following symbolic links.
 
 Behaves as a web server when combined with `tcp,` `tls`, `http` and `http-filesystem` bindings.
 
-## Example
-
-```
-"filesystem_server0":
-{
-    "type" : "filesystem",
-    "kind": "server",
-    "options":
-    {
-        "location": "web/"
-    }
-}
-```
-
 ## Configuration
 
-Binding with support for `filesystem`.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [options](#options)
+  - [options.location](#options-location)
+  - [options.symlinks](#options-symlinks)
 
-| Name (\* = required)                       | Type                 | Description                                      |
-| ------------------------------------------ | -------------------- | ------------------------------------------------ |
-| `type`\*                                   | `const "filesystem"` | Support `filesystem` accessfiles and directories |
-| `kind`\*                                   | `enum [ "server" ]`  | Behave as a `filesystem` `server`                |
-| [`options`](binding-filesystem.md#options) | `object`             | `filesystem`-specifc options                     |
+::: right
+\* required
+:::
+
+::::
+
+### kind\*
+
+> `enum` [ "server" ]
+
+Behave as a `filesystem` `server`.
+
+```yaml
+kind: server
+```
 
 ### options
 
-Options for `filesystem` access.
+> `object`
 
-#### Properties
+`filesystem`-specifc options for `filesystem` access.
 
-| Name (\* = required) | Type                                                                                                       | Description                                                             |
-| -------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `location`           | `string`                                                                                                   | File system URI or directory name with trailing slash.                  |
-| `symlinks`           | <p><code>enum [</code><br>  <code>follow</code> <code>,</code><br>  <code>ignore</code> <code>]</code></p> | <p>How to treat symbolic links.<br>Defaults to <code>ignore</code>.</p> |
+```yaml
+options:
+  location: web/
+  simlinks: follow
+```
+
+#### options.location
+
+> `string`
+
+File system URI or directory name with trailing slash.
+
+#### options.symlinks
+
+> `enum` [ "follow", "ignore" ]
+
+How to treat symbolic links.\
+Defaults to `"ignore"`.
+
+---
+
+::: right
+\* required
+:::

@@ -10,7 +10,7 @@ description: Stores the remote repository credentials in ${user.home}/.zpm/setti
 
 | Name          | Type                                                     | Description                    |
 | ------------- | -------------------------------------------------------- | ------------------------------ |
-| `credentials` | `array` of [`credentials`](settings.json.md#credentials) | List of repository credentials |
+| `credentials` | `array` of [`credentials`](#credentials) | List of repository credentials |
 
 ### credentials
 

@@ -1,8 +1,28 @@
 ---
+shortTitle: binding (amqp) 🚧
 description: Zilla runtime amqp binding (incubator)
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (amqp) 🚧
+# amqp Binding 🚧
+
+Zilla runtime amqp binding (incubator).
+
+```yaml {2}
+amqp_server0:
+  type: amqp
+  kind: server
+  routes:
+    - when:
+        - address: echo
+          capabilities: send_and_receive
+    exit: echo_server0
+```
+
+## Summary
 
 Defines a binding with `amqp 1.0` protocol support, with `server` behavior.
 
@@ -10,56 +30,99 @@ The `server` kind `amqp` binding decodes `amqp 1.0` protocol on the inbound netw
 
 Conditional routes based on the `link` `address` are used to route these application streams to an `exit` binding.
 
-## Example
-
-```
-"amqp_server0":
-{
-    "type" : "amqp",
-    "kind": "server",
-    "routes":
-    [
-        {
-            "when":
-            [
-                {
-                    "address": "echo",
-                    "capabilities": "send_and_receive"
-                }
-            ],
-            "exit": "echo_server0"
-        }
-    ]
-}
-```
-
 ## Configuration
 
-Binding with support for `amqp 1.0` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].address](#when-address)
+  - [when\[\].capabilities](#when-capabilities)
+- [routes\[\].exit\*](#routes-exit)
 
-<table><thead><tr><th>Name (* = required)</th><th>Type</th><th>Description</th><th data-hidden data-type="checkbox">Required</th></tr></thead><tbody><tr><td><code>type</code>*</td><td><code>const "amqp"</code></td><td>Support <code>amqp 1.0</code> protocol</td><td>true</td></tr><tr><td><code>kind</code>*</td><td><code>enum [ "server" ]</code></td><td>Behave as an <code>amqp 1.0</code> <code>server</code></td><td>true</td></tr><tr><td><code>routes</code></td><td><code>array</code> of <a href="binding-amqp.md#route"><code>route</code></a></td><td>Conditional <code>amqp</code>-specific routes</td><td>false</td></tr><tr><td><code>exit</code></td><td><code>string</code></td><td>Default exit binding when no conditional routes are viable</td><td>false</td></tr></tbody></table>
+::: right
+\* required
+:::
 
-### route
+::::
 
-Routes for `amqp 1.0` protocol.
+### kind\*
 
-#### Properties
+> `enum` [ "server" ]
 
-| Name (\* = required) | Type                                                  | Description                                                        |
-| -------------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
-| `guarded`            | `object` as named map of `string` `array`             | List of roles required by each named guard to authorize this route |
-| `when`               | `array` of [`condition`](binding-amqp.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*             | `string`                                              | Next binding when following this route                             |
+Behave as an `amqp 1.0` `proxy`.
 
-### condition
+```yaml
+kind: proxy
+```
 
-Conditions to match routes for `amqp 1.0` protocol.
+### routes
 
-#### Properties
+> `array` of `object`
 
-| Name (\* = required) | Type                                                                                                                                  | Description                                                                    |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `address`            | `string`                                                                                                                              | Link address                                                                   |
-| `capabilities`       | <p><code>enum [</code> <br>  <code>"send_only",</code> <br>  <code>"receive_only",</code> <br>  <code>"send_and_receive" ]</code></p> | <p>Send or receive, or both.<br>Defaults to <code>send_and_receive</code>.</p> |
+Conditional `amqp`-specific routes for adapting `http` request-response streams to `kafka` topic streams.
+
+```yaml
+routes:
+  - when:
+      - address: echo
+        capabilities: send_and_receive
+    exit: echo_server0
+```
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+```
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+```yaml
+routes:
+  - when:
+      - address: echo
+        capabilities: send_and_receive
+```
+
+#### when[].address
+
+> `string`
+
+Link address.
+
+#### when[].capabilities
+
+> `enum` [ "send_only", "receive_only", "send_and_receive" ]
+
+Send or receive, or both.\
+Defaults to `"send_and_receive"`.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
+
+```yaml
+exit: echo_server0
+```
+
+---
+
+::: right
+\* required
+:::

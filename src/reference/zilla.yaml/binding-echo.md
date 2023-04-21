@@ -1,31 +1,50 @@
 ---
+shortTitle: binding (echo)
 description: Zilla runtime echo binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (echo)
+# echo binding
 
-Defines a binding with `echo` protocol support, with `server` behavior.
+Zilla runtime echo binding.
 
-The `server` kind `echo` binding reads inbound writes it back to the sender.
-
-## Example
-
+```yaml {2}
+echo_server0:
+    type: echo
+    kind: server
 ```
-"echo_server0":
-{
-    "type" : "echo",
-    "kind": "server"
-}
-```
+
+## Summary
+
+This binding supports the `echo` protocol and is run with the `server` behavior. It reads inbound messages and writes it back to the sender.
 
 ## Configuration
 
-Binding with support for `echo` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
 
-| Name (\* = required) | Type                | Description                  |
-| -------------------- | ------------------- | ---------------------------- |
-| `type`\*             | `const "echo"`      | Support `echo` protocol      |
-| `kind`\*             | `enum [ "server" ]` | Behave as an `echo` `server` |
+::: right
+\* required
+:::
 
+::::
+
+### kind\*
+
+> enum [ "server" ]
+
+Behaves as an `echo` `server`.
+
+```yaml
+kind: server
+```
+
+---
+
+::: right
+\* required
+:::

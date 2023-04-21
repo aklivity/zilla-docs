@@ -8,25 +8,25 @@ The `zilla stop` command signals the runtime engine to stop.
 
 ### Usage
 
-```bash
+```bash:no-line-numbers
 zilla stop
 ```
 
 ### Examples
 
-```bash
+```bash:no-line-numbers
 ./zilla start
 started
 ...
 ```
 
-```bash
+```bash:no-line-numbers
 ./zilla stop
 ```
 
-```bash
+```bash:no-line-numbers
 ...
 stopped
 ```
 
-See [Zilla examples](https://github.com/aklivity/zilla/tree/develop/examples) on GitHub.
+See [Zilla examples](https://github.com/aklivity/zilla-examples) on GitHub.

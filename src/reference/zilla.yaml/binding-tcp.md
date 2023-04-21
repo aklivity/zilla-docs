@@ -1,8 +1,27 @@
 ---
+shortTitle: binding (tcp)
 description: Zilla runtime tcp binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (tcp)
+# tcp Binding
+
+Zilla runtime tcp binding.
+
+```yaml {2}
+tcp_server0:
+  type: tcp
+  kind: server
+  options:
+    host: 0.0.0.0
+    port: 12345
+  exit: echo_server0
+```
+
+## Summary
 
 Defines a binding with `tcp` protocol support, with `server` or `client` behavior.
 
@@ -12,66 +31,106 @@ The `client` kind `tcp` binding receives inbound application streams and initiat
 
 Conditional routes based on the hostname authority and network address mask are used to route these streams to an `exit` binding.
 
-## Example
-
-```
-"tcp_server0":
-{
-    "type" : "tcp",
-    "kind": "server",
-    "options":
-    {
-        "host": "0.0.0.0",
-        "port": 12345
-    },
-    "exit": "echo_server0"
-}
-```
-
 ## Configuration
 
-Binding with support for `tcp` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [options](#options)
+- [options.host](#options-host)
+- [options.port](#options-port)
+- [exit](#exit)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].authority](#when-authority)
+  - [when\[\].cidr](#when-cidr)
+- [routes\[\].exit\*](#routes-exit)
 
-| Name (\* = required)                | Type                                                                                | Description                                                                        |
-| ----------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `type`\*                            | `const "tcp"`                                                                       | Support `tcp` protocol                                                             |
-| `kind`\*                            | <p><code>enum [</code><br>  <code>"client",</code><br>  <code>"server" ]</code></p> | Behave as a `tcp` `client` or `server`                                             |
-| [`options`](binding-tcp.md#options) | `object`                                                                            | `tcp`-specific options                                                             |
-| `routes`                            | `array` of [`route`](binding-tcp.md#route)                                          | Conditional `tcp`-specific routes                                                  |
-| `exit`                              | `string`                                                                            | Default exit binding when no conditional routes are viable, for kind `server` only |
+::: right
+\* required
+:::
+
+::::
+
+### kind\*
+
+> `enum` [ "client", "server" ]
+
+Behave as a `tcp` `client` or `server`.
 
 ### options
 
-Options for `tcp` protocol.
+> `object`
 
-#### Properties
+`tcp`-specific options.
 
-| Name (\* = required) | Type                                                                                                                                                   | Description                                   |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
-| `host`               | `string`                                                                                                                                               | Hostname or IP address                        |
-| `port`               | `integer` | `string` | `array` of  `integer` | `array` of `string` | Port number(s), including port number ranges. |
+```yaml
+options:
+  host: 0.0.0.0
+  port: 12345
+```
 
-### route
+### options.host
 
-Routes for `tcp` protocol.
+> `string`
 
-#### Properties
+Hostname or IP address.
 
-| Name (\* = required) | Type                                                 | Description                                                        |
-| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
-| `guarded`            | `object` as named map of `string` `array`            | List of roles required by each named guard to authorize this route |
-| `when`               | `array` of [`condition`](binding-tcp.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*             | `string`                                             | Next binding when following this route, for kind `server` only     |
+### options.port
 
-### condition
+> `integer`
 
-Conditions to match routes for `tcp` protocol.
+`string` | `array` of  `integer` | `array` of `string` | Port number(s), including port number ranges.
 
-#### Properties
+### exit
 
-| Name (\* = required) | Type     | Description          |
-| -------------------- | -------- | -------------------- |
-| `authority`          | `string` | Associated authority |
-| `cidr`               | `string` | CIDR mask            |
+> `string`
+
+Default exit binding when no conditional routes are viable, for kind `server` only.
+
+```yaml
+exit: echo_server0
+```
+
+### routes
+
+> `array` of `object`
+
+Conditional `tcp`-specific routes.
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+#### when[].authority
+
+> `string`
+
+Associated authority.
+
+#### when[].cidr
+
+> `string`
+
+CIDR mask.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route, for kind `server` only.
+
+---
+
+::: right
+\* required
+:::

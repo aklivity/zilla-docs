@@ -1,8 +1,37 @@
 ---
+shortTitle: binding (http)
 description: Zilla runtime http binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (http)
+# http Binding
+
+Zilla runtime http binding.
+
+```yaml {2}
+http_server0:
+  type: http
+  kind: server
+  options:
+    access-control:
+      policy: cross-origin
+    authorization:
+      jwt0:
+        credentials:
+          headers:
+            authorization: Bearer {credentials}
+  routes:
+    - when:
+        - headers:
+            ":scheme": https
+            ":authority": example.com:443
+    exit: echo_server0
+```
+
+## Summary
 
 Defines a binding with `http` protocol support, with `server` or `client` behavior.
 
@@ -22,165 +51,274 @@ The `client` kind `http` binding receives inbound application streams and encode
 
 Conditional routes based on `http` request headers are used to route these network streams to an `exit` binding.
 
-## Example
-
-```
-"http_server0":
-{
-    "type" : "http",
-    "kind": "server",
-    "options":
-    {
-        "access-control":
-        {
-            "policy": "cross-origin"
-        },
-        "authorization":
-        {
-            "jwt0":
-            {
-                "credentials":
-                {
-                    "headers":
-                    {
-                        "authorization": "Bearer {credentials}"
-                    }
-                }
-            }
-        }
-    },
-    "routes":
-    [
-        {
-            "when":
-            [
-                {
-                    "headers":
-                    {
-                        ":scheme": "https",
-                        ":authority": "example.com:443"
-                    }
-                }
-            ],
-            "exit": "echo_server0"
-        }
-    ]
-}
-```
-
 ## Configuration
 
-Binding with support for `http` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [options](#options)
+- [options.versions](#options-versions)
+- [options.access-control](#options-access-control)
+  - [access-control.policy\*](#access-control-policy)
+  - [access-control.policy (same-origin)](#access-control-policy-same-origin)
+  - [access-control.policy (cross-origin)](#access-control-policy-cross-origin)
+  - [access-control.allow](#access-control-allow)
+    - [allow.origins](#allow-origins)
+    - [allow.methods](#allow-methods)
+    - [allow.headers](#allow-headers)
+    - [allow.credentials](#allow-credentials)
+  - [access-control.max-age](#access-control-max-age)
+  - [access-control.expose](#access-control-expose)
+    - [expose.headers](#expose-headers)
+- [options.authorization](#options-authorization)
+  - [authorization.credentials](#authorization-credentials)
+    - [credentials.cookies](#credentials-cookies)
+    - [credentials.headers](#credentials-headers)
+    - [credentials.query](#credentials-query)
+- [options.overrides](#options-overrides)
+- [exit](#exit)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].headers](#when-headers)
+- [routes\[\].exit\*](#routes-exit)
 
-| Name (\* = required)                 | Type                                                                                      | Description                                                |
-| ------------------------------------ | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `type`\*                             | `const "http"`                                                                            | Support `http` protocol                                    |
-| `kind`\*                             | <p><code>enum [</code></p><p>  <code>"server",</code></p><p>  <code>"client" ]</code></p> | Behave as an `http` `server` or `client`                   |
-| [`options`](binding-http.md#options) | `object`                                                                                  | `http`-specifc options                                     |
-| `routes`                             | `array` of [`route`](binding-http.md#route)                                               | Conditional `http`-specific routes                         |
-| `exit`                               | `string`                                                                                  | Default exit binding when no conditional routes are viable |
+::: right
+\* required
+:::
+
+::::
+
+### kind\*
+
+> `enum` [ "server",  "client" ]
+
+Behave as an `http` `server` or `client`.
 
 ### options
 
-Options for `HTTP` protocol.
+> `object`
 
-#### Properties
+`http`-specifc options.
 
-| Name (\* = required)                               | Type                                                                                                    | Description                 |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------- |
-| `versions`                                         | <p><code>array</code> of <code>enum [</code><br>  <code>"http/1.1",</code><br>  <code>"h2" ]</code></p> | Supported protocol versions |
-| [`access-control`](binding-http.md#access-control) | `object`                                                                                                | Access control policy       |
-| `authorization`                                    | `object` as map of named [`authorization`](binding-http.md#authorization) properties                    | Authorization by guard      |
-| `overrides`                                        | `object` of name-value header overrides                                                                 | Request header overrides    |
+```yaml
+options:
+  access-control:
+    policy: cross-origin
+  authorization:
+    jwt0:
+      credentials:
+        headers:
+          authorization: Bearer {credentials}
+```
 
-### access-control
+### options.versions
 
-Access control for `HTTP` protocol.
+> `array` of `enum` [ "http/1.1", "h2" ]
 
-#### Properties
+Supported protocol versions.
 
-| Name (\* = required) | Type                                                                                                                                                                                                          | Description                       |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| `policy`\*           | <p><code>enum [</code><br><code></code>  <code>"same-origin"</code> <code>,</code><br><code></code>  <a href="binding-http.md#access-control-cross-origin"><code>"cross-origin"</code></a> <code>]</code></p> | Supported access control policies |
+### options.access-control
 
-### access-control (cross-origin)
+> **oneOf**: [same-origin](#access-control-policy-same-origin) | [cross-origin](#access-control-policy-cross-origin)
 
-Cross Origin Resource Sharing (CORS) access control for `HTTP` protocol.
+Access control policy for the `HTTP` protocol.
 
-#### Properties
+#### access-control.policy\*
 
-| Name (\* = required)                   | Type                   | Description                                                                                                                                              |
-| -------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `policy`\*                             | `const "cross-origin"` | Support cross-origin access control policy                                                                                                               |
-| ``[`allow`](binding-http.md#allow)   | `object`               | <p>Allowed cross-origin request origins, methods, headers and credentials.<br><br>Defaults to all origins, methods and headers, without credentials.</p> |
-| `max-age`                              | `number`               | Maximum cache age (in seconds) for allowed headers and methods.                                                                                          |
-| ``[`expose`](binding-http.md#expose) | `object`               | <p>Exposed cross-origin response headers.<br><br>Defaults to all response headers.</p>                                                                   |
+> `enum` [ "same-origin" , "cross-origin" ]
 
-### allow
+Supported access control policies.
 
-CORS allowed request origins, methods, headers and credentials for `HTTP` protocol.
+#### access-control.policy (same-origin)
 
-#### Properties
+> `string`
 
-| Name (\* = required) | Type              | Description                                 |
-| -------------------- | ----------------- | ------------------------------------------- |
-| `origins`            | `array of string` | Allowed request origins.                    |
-| `methods`            | `array of string` | Allowed request methods.                    |
-| `headers`            | `array of string` | Allowed request headers                     |
-| `credentials`        | `boolean`         | Support `fetch` credentials mode `include`. |
+Extra properties aren't needed when using Same Origin access control for the `HTTP` protocol.
 
-### expose
+```yaml
+options:
+  access-control:
+    policy: same-origin
+```
 
-CORS exposed response headers for `HTTP` protocol.
+#### access-control.policy (cross-origin)
 
-#### Properties
+> `object`
 
-| Name (\* = required) | Type              | Description              |
-| -------------------- | ----------------- | ------------------------ |
-| `headers`            | `array of string` | Exposed response headers |
+Additional properties that cover Cross Origin Resource Sharing (CORS) access control for the `HTTP` protocol.
 
-### authorization
+```yaml
+options:
+  access-control:
+    policy: cross-origin
+```
 
-Authorization for `HTTP/1.1` and `HTTP/2` protocols.
+#### access-control.allow
 
-#### Properties
+> `object`
 
-| Name (\* = required)                         | Type     | Description                                               |
-| -------------------------------------------- | -------- | --------------------------------------------------------- |
-| [`credentials`](binding-http.md#credentials) | `object` | Defines how to extract credentials from the HTTP request. |
+Allowed cross-origin request origins, methods, headers and credentials.\
+Defaults to all origins, methods and headers, without credentials.
+CORS allowed request origins, methods, headers and credentials for the `HTTP` protocol.
 
-### credentials
+##### allow.origins
 
-Credentials for `HTTP` protocol.
+> `array` of `string`
 
-#### Properties
+Allowed request origins.
 
-| Name (\* = required) | Type                        | Description                                                                      |
-| -------------------- | --------------------------- | -------------------------------------------------------------------------------- |
-| `cookies`            | `object` as map of `string` | Named cookie value pattern with `{credentials}`                                  |
-| `headers`            | `object` as map of `string` | Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"` |
-| `query`              | `object` as map of `string` | Named query parameter value pattern with `{credentials}`                         |
+##### allow.methods
 
-### route
+> `array` of `string`
 
-Routes for `HTTP` protocol.
+Allowed request methods.
 
-#### Properties
+##### allow.headers
 
-| Name (\* = required) | Type                                                  | Description                                                        |
-| -------------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
-| `guarded`            | `object` as named map of `string` `array`             | List of roles required by each named guard to authorize this route |
-| `when`               | `array` of [`condition`](binding-http.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*             | `string`                                              | Next binding when following this route                             |
+> `array` of `string`
 
-### condition
+Allowed request headers.
 
-Conditions to match routes for `HTTP` protocol.
+##### allow.credentials
 
-#### Properties
+> `boolean`
 
-| Name (\* = required) | Type                           | Description                                   |
-| -------------------- | ------------------------------ | --------------------------------------------- |
-| `headers`            | `object` of name-value headers | <p>Header name value pairs<br>(all match)</p> |
+Support `fetch` credentials mode `include`.
+
+#### access-control.max-age
+
+> `number`
+
+Maximum cache age (in seconds) for allowed headers and methods.
+
+#### access-control.expose
+
+> `object`
+
+Exposed cross-origin response headers.\
+Defaults to all response headers.
+
+##### expose.headers
+
+> `array` of `string`
+
+Exposed response headers.
+
+### options.authorization
+
+> `object` as map of named properties
+
+Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
+
+```yaml
+authorization:
+  jwt0:
+    credentials:
+      headers:
+        authorization: Bearer {credentials}
+```
+
+#### authorization.credentials
+
+> `object`
+
+Defines how to extract credentials from the HTTP request.
+
+##### credentials.cookies
+
+> `object` as map of `string`
+
+Named cookie value pattern with `{credentials}`.
+
+##### credentials.headers
+
+> `object` as map of `string`
+
+Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
+
+##### credentials.query
+
+> `object` as map of `string`
+
+Named query parameter value pattern with `{credentials}`.
+
+### options.overrides
+
+> `object` of name-value header overrides
+
+Request header overrides.
+
+### exit
+
+> `string`
+
+Default exit binding when no conditional routes are viable.
+
+```yaml
+exit: echo_server0
+```
+
+### routes
+
+> `array` of `object`
+
+Conditional `http`-specific routes.
+
+```yaml
+routes:
+  - when:
+      - headers:
+          ":scheme": https
+          ":authority": example.com:443
+    exit: echo_server0
+```
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+```
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+```yaml
+routes:
+  - when:
+      - headers:
+          ":scheme": https
+          ":authority": example.com:443
+```
+
+#### when[].headers
+
+> `object` of name-value headers
+
+Header name value pairs (all match).
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
+
+```yaml
+exit: echo_server0
+```
+
+---
+
+::: right
+\* required
+:::

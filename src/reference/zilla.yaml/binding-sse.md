@@ -1,8 +1,24 @@
 ---
+shortTitle: binding (sse)
 description: Zilla runtime sse binding
+category:
+  - Binding
+tag:
+  - Server
 ---
 
-# binding (sse)
+# sse Binding
+
+Zilla runtime sse binding.
+
+```yaml {2}
+sse_server0:
+  type: sse
+  kind: server
+  exit: sse_kafka_proxy0
+```
+
+## Summary
 
 Defines a binding with `Server Sent Events (sse)` protocol support, with `server` behavior.
 
@@ -10,59 +26,119 @@ The `server` kind `sse` binding converts inbound `http` request-response streams
 
 Messages received on the `sse` response stream are encoded using `Server Sent Events` protocol, including support for custom `event` types and last event `id`.
 
-## Example
-
-```
-"sse_server0":
-{
-    "type" : "sse",
-    "kind": "server",
-    "exit": "sse_kafka_proxy0"
-}
-```
-
 ## Configuration
 
-Binding with support for `sse` protocol.
+:::: note Properties
 
-#### Properties
+- [kind\*](#kind)
+- [options](#options)
+- [options.retry](#options-retry)
+- [exit](#exit)
+- [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
+- [routes\[\].when](#routes-when)
+  - [when\[\].path\*](#when-path)
+- [routes\[\].exit\*](#routes-exit)
 
-| Name (\* = required)                | Type                                                                                | Description                                                |
-| ----------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `type`\*                            | `const "sse"`                                                                       | Support `sse` protocol                                     |
-| `kind`\*                            | <p><code>enum [</code><br>  <code>"client",</code><br>  <code>"server" ]</code></p> | Behave as a `sse` `client` or `server`                     |
-| [`options`](binding-sse.md#options) | `object`                                                                            | `sse`-specific options                                     |
-| `routes`                            | `array` of [`route`](binding-sse.md#route)                                          | Conditional `sse`-specific routes                          |
-| `exit`                              | `string`                                                                            | Default exit binding when no conditional routes are viable |
+::: right
+\* required
+:::
+
+::::
+
+### kind\*
+
+> `enum` [ "client", "server" ]
+
+Behave as a `sse` `client` or `server`.
 
 ### options
 
-Options for `sse` protocol.
+> `object`
 
-#### Properties
+`sse`-specific options.
 
-| Name (\* = required) | Type      | Description                                                  |
-| -------------------- | --------- | ------------------------------------------------------------ |
-| `retry`              | `integer` | <p>Retry delay (ms)<br><br>Defaults to <code>2000</code></p> |
+```yaml
+options:
+  retry: 2000
+```
 
-### route
+### options.retry
 
-Routes for `sse` protocol.
+> `integer`
 
-#### Properties
+Retry delay (ms)\
+Defaults to `2000`.
 
-| Name (\* = required) | Type                                                 | Description                                                        |
-| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
-| `guarded`            | `object` as named map of `string` `array`            | List of roles required by each named guard to authorize this route |
-| `when`               | `array` of [`condition`](binding-sse.md#condition) | List of conditions (any match) to match this route                 |
-| `exit`\*             | `string`                                             | Next binding when following this route                             |
+### exit
 
-### condition
+> `string`
 
-Conditions to match routes for `sse` protocol.
+Default exit binding when no conditional routes are viable.
 
-#### Properties
+```yaml
+exit: sse_kafka_proxy0
+```
 
-| Name (\* = required) | Type     | Description  |
-| -------------------- | -------- | ------------ |
-| `path`\*             | `string` | Path pattern |
+### routes
+
+> `array` of `object`
+
+Conditional `sse`-specific routes.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+    when:
+      - path: "/items"
+    exit: sse_kafka_proxy0
+```
+
+### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      test0:
+        - read:items
+```
+
+### routes[].when
+
+> `array` of `object`
+
+List of conditions (any match) to match this route.
+
+```yaml
+routes:
+  - when:
+      - path: "/items"
+```
+
+#### when[].path\*
+
+> `string`
+
+Path pattern.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
+
+```yaml
+exit: sse_kafka_proxy0
+```
+
+---
+
+::: right
+\* required
+:::
