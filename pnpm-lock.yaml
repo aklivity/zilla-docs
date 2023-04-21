@@ -4,6 +4,9 @@ devDependencies:
   '@vuepress/client':
     specifier: 2.0.0-beta.61
     version: 2.0.0-beta.61
+  '@vuepress/plugin-google-analytics':
+    specifier: 2.0.0-beta.61
+    version: 2.0.0-beta.61
   vue:
     specifier: ^3.2.47
     version: 3.2.47
@@ -2092,6 +2095,16 @@ packages:
       - supports-color
     dev: true
 
+  /@vuepress/plugin-google-analytics@2.0.0-beta.61:
+    resolution: {integrity: sha512-UwjDVtNpqkfEz7S5TPl703Jwhg0V1Xfvz8y5c4y5nQLNRky0/3bOKx8u7e5J3AATtwz0XwI2cmhXtuHFs6IiDA==}
+    dependencies:
+      '@vuepress/client': 2.0.0-beta.61
+      '@vuepress/core': 2.0.0-beta.61
+      '@vuepress/utils': 2.0.0-beta.61
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@vuepress/plugin-medium-zoom@2.0.0-beta.61:
     resolution: {integrity: sha512-mFY2vHXeqC8dizFVlFO7HIzirb79Z8sudKWPVfZmq0Qmlttyhxlns8GjrsPQl1mnz2NlYUY1ztUasikPwsYjAw==}
     dependencies:
@@ -2343,6 +2356,7 @@ packages:
   /autoprefixer@10.4.14(postcss@8.4.21):
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
@@ -5020,6 +5034,7 @@ packages:
 
   /update-browserslist-db@1.0.10(browserslist@4.21.5):
     resolution: {integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==}
+    hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
     dependencies:
@@ -5049,6 +5064,7 @@ packages:
   /vite@4.1.4:
     resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
     peerDependencies:
       '@types/node': '>= 14'
       less: '*'
@@ -5081,6 +5097,7 @@ packages:
   /vue-demi@0.13.11(vue@3.2.47):
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
     engines: {node: '>=12'}
+    hasBin: true
     requiresBuild: true
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
@@ -5691,6 +5708,7 @@ packages:
 
   /vuepress-vite@2.0.0-beta.61(@vuepress/client@2.0.0-beta.61)(vue@3.2.47):
     resolution: {integrity: sha512-4mcR8XSY5b36CYkPqF80WvoeGAEjTw6Cr9bMPHrPVSjG4qqyfVpdSdyRtXD+/5aLJB7r/L60J7PI1pKTci1+3w==}
+    hasBin: true
     peerDependencies:
       '@vuepress/client': 2.0.0-beta.61
       vue: ^3.2.47

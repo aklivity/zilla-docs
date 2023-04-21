@@ -1,4 +1,5 @@
 import { defineUserConfig } from "vuepress";
+import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import theme from "./theme.js";
 import { base, dest } from "./env.js";
 
@@ -15,4 +16,10 @@ export default defineUserConfig({
   },
 
   theme,
+  
+  plugins: [
+    googleAnalyticsPlugin({
+      id: 'G-Q2XWKQS14L',
+    }),
+  ],
 });
