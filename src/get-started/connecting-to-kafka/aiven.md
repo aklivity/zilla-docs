@@ -1,3 +1,6 @@
+---
+description: Shows help information for commands
+---
 # Aiven
 
 ## Introduction

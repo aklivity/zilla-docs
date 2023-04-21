@@ -1,3 +1,6 @@
+---
+description: Unlike other hosted Kafka services, Amazon MSK is not readily reachable over the internet
+---
 # Amazon MSK
 
 ## Introduction
