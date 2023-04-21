@@ -1,3 +1,6 @@
+---
+description: In this guide, you will learn how to connect to Redpanda from Zilla
+---
 # Redpanda
 
 ## Introduction
