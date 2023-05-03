@@ -19,22 +19,22 @@ actions:
 features:
 
   - title: Get Started
-    icon: arrows-left-right-to-line
+    icon: play
     details: Install Zilla, connect it to your Kafka Cluster, and define your first API endpoints.
     link: /get-started/install/
 
   - title: Todo App Example
-    icon: vault
+    icon: browser
     details: Create a Todo application using a CQRS design pattern that's backed by Apache Kafka and Zilla.
     link: /examples/todo-app/build.html
 
   - title: Configure Kafka Proxies
-    icon: shield-halved
+    icon: arrows-left-right-to-line
     details: Define REST, Server Sent Events (SSE), gRPC and MQTT endpoints that map to Kafka topics streams.
     link: /guides/kafka-proxies/rest-proxy.html
 
   - title: Reference
-    icon: server
+    icon: gears
     details: Learn about Zilla command and configuration properties.
     link: /reference/
 
