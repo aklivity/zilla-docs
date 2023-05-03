@@ -25,12 +25,12 @@ features:
 
   - title: Todo App Example
     icon: vault
-    details: Create a Todo application using a CQRS design pattern that's backed by Apache Kafka and Zilla. 
+    details: Create a Todo application using a CQRS design pattern that's backed by Apache Kafka and Zilla.
     link: /examples/todo-app/build.html
 
   - title: Zilla Kafka Proxy: REST
     icon: shield-halved
-    details: Transform HTTP requests and responses to Kafka topic streams with control over the topic, message key, message headers, message value and reply-to topic. 
+    details: Transform HTTP requests and responses to Kafka topic streams with control over the topic, message key, message headers, message value and reply-to topic.
     link: /guides/kafka-proxies/rest-proxy.html
 
   - title: Zilla Kafka Proxy: SSE
