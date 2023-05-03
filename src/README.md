@@ -25,7 +25,7 @@ features:
 
   - title: Todo App Example
     icon: vault
-    details: Create a "Todo" application using a CQRS design pattern that's backed by Apache Kafka and Zilla. 
+    details: Create a Todo application using a CQRS design pattern that's backed by Apache Kafka and Zilla. 
     link: /examples/todo-app/build.html
 
   - title: Zilla Kafka Proxy: REST
