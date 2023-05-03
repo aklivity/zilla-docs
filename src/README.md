@@ -2,8 +2,8 @@
 home: true
 icon: home
 title: Home
-heroImage: /logo-dark.png
-heroImageDark: /logo.png
+heroImage: /zilla-rings.svg
+heroImageDark: /zilla-ring.svg
 heroText: Introduction
 tagline: Zilla is an API Gateway for event-driven architectures. It securely interfaces web apps, IoT clients, and microservices to Apache Kafka® via declaratively defined API endpoints.
 actions:
