@@ -24,13 +24,13 @@ features:
     link: /get-started/install/
 
   - title: Todo App Example
-    icon: browser
+    icon: list
     details: Create a Todo application using a CQRS design pattern that's backed by Apache Kafka and Zilla.
     link: /examples/todo-app/build.html
 
-  - title: Configure Kafka Proxies
+  - title: Kafka Proxies
     icon: arrows-left-right-to-line
-    details: Define REST, Server Sent Events (SSE), gRPC and MQTT endpoints that map to Kafka topics streams.
+    details: Define REST, Server Sent Events (SSE), gRPC and MQTT endpoints that map to Kafka topic streams.
     link: /guides/kafka-proxies/rest-proxy.html
 
   - title: Reference
