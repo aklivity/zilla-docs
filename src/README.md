@@ -28,12 +28,12 @@ features:
     details: Create a Todo application using a CQRS design pattern that's backed by Apache Kafka and Zilla.
     link: /examples/todo-app/build.html
 
-  - title: Zilla Kafka Proxy: REST
+  - title: Zilla Kafka Proxy——REST
     icon: shield-halved
     details: Transform HTTP requests and responses to Kafka topic streams with control over the topic, message key, message headers, message value and reply-to topic.
     link: /guides/kafka-proxies/rest-proxy.html
 
-  - title: Zilla Kafka Proxy: SSE
+  - title: Zilla Kafka Proxy——SSE
     icon: diagram-project
     details: Transform Kafka topic streams to Server Sent Event (SSE) streams for reliable data streaming/pushing down to web clients.
     link: /guides/kafka-proxies/sse-proxy.html
