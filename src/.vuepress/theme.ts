@@ -30,7 +30,7 @@ export default hopeTheme({
       navbar: enNavbar,
       sidebar: enSidebar,
 
-      displayFooter: false,
+      displayFooter: true,
 
       metaLocales: {
         editLink: "Edit this page on GitHub",
