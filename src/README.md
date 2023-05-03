@@ -23,7 +23,7 @@ features:
     details: Install Zilla, connect it to your Kafka Cluster, and define your first API endpoints.
     link: /get-started/install/
 
-  - title: "Todo" App Example
+  - title: Todo App Example
     icon: vault
     details: Create a "Todo" application using a CQRS design pattern that's backed by Apache Kafka and Zilla. 
     link: /examples/todo-app/build.html
