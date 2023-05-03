@@ -18,5 +18,5 @@ export const enNavbar = navbar([
     ],
   },
   { text: "version", icon: "list-ol", children: versionLinks },
-  { text: "Aklivity", icon: "home", link: "https://www.aklivity.io/", },
+  { text: "aklivity", icon: "home", link: "https://www.aklivity.io/", },
 ]);
