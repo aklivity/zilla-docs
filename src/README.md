@@ -38,5 +38,5 @@ features:
     details: Learn about Zilla command and configuration properties.
     link: /reference/
 
-footer: <a href="https://www.aklivity.io"> aklivity </a>
+footer: <a href="https://www.aklivity.io"><img src="/logo.png" alt="aklivity"></a>
 ---
