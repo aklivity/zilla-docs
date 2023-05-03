@@ -31,7 +31,7 @@ export default hopeTheme({
       sidebar: enSidebar,
 
       displayFooter: true,
-      footer: "aklivity",
+      footer: "aklivity | Stream Data Anywhere.",
       copyright: "© aklivity, Inc. 2023",
 
       metaLocales: {
