@@ -30,7 +30,7 @@ features:
 
   - title: Kafka Proxies
     icon: arrows-left-right-to-line
-    details: Define REST, Server Sent Events (SSE), gRPC and MQTT endpoints that map to Kafka topic streams.
+    details: Define REST, SSE, gRPC and MQTT endpoints that map to Kafka topic streams.
     link: /guides/kafka-proxies/rest-proxy.html
 
   - title: Reference
