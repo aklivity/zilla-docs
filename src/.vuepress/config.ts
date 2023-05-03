@@ -30,10 +30,6 @@ export default defineUserConfig({
       ],
   ],
 
-------
-Copyright by Mr.Hope
-https://theme-hope.vuejs.press/cookbook/customize/font.html#font-library
-
   theme,
   
   plugins: [
