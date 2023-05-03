@@ -38,5 +38,4 @@ features:
     details: Learn about Zilla command and configuration properties.
     link: /reference/
 
-copyright: false
 ---
