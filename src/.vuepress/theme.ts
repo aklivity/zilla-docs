@@ -31,8 +31,8 @@ export default hopeTheme({
       sidebar: enSidebar,
 
       displayFooter: true,
-      footer: "aklivity, Inc.",
-      copyright: "© 2023",
+      footer: <a href="https://www.aklivity.io"> aklivity </a>,
+      copyright: "© aklivity, Inc. 2023",
 
       metaLocales: {
         editLink: "Edit this page on GitHub",
