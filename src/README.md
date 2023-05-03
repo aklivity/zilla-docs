@@ -39,4 +39,6 @@ features:
     link: /reference/
 
 footer: <a href="https://www.aklivity.io"><img src="logo.svg" alt="aklivity"></a>
+medialnk:
+  Twitter: https://www.twitter.com
 ---
