@@ -1,7 +1,6 @@
 import { hopeTheme } from "vuepress-theme-hope";
 import { enSidebar } from "./sidebar/index.js";
 import { enNavbar } from "./navbar/index.js";
-import { enFooter } from "./footer/index.js";
 import { hostnameSEO, docsRepo, docsBranch } from "./env.js";
 
 
@@ -32,7 +31,8 @@ export default hopeTheme({
       sidebar: enSidebar,
 
       displayFooter: true,
-      footer: enFooter,
+      footer: "aklivity",
+      copyright: "© aklivity, Inc. 2023",
 
       metaLocales: {
         editLink: "Edit this page on GitHub",
