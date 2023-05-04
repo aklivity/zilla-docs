@@ -24,7 +24,9 @@ export default hopeTheme({
     center: [],
     end: ["Search", "Links", "Repo", "Outlook"],
   },
+
   pageInfo: ["ReadingTime", "Date", "Category", "Tag"],
+
   locales: {
     "/": {
       navbar: enNavbar,
@@ -32,7 +34,7 @@ export default hopeTheme({
 
       displayFooter: true,
       footer: "aklivity | Stream Data Anywhere.",
-      copyright: "© aklivity, Inc. 2023",
+      copyright: "© aklivity, inc. 2022-2023",
 
       metaLocales: {
         editLink: "Edit this page on GitHub",
