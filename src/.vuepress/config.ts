@@ -32,7 +32,7 @@ export default defineUserConfig({
 
   theme,
   
-plugins: [
+  plugins: [
     googleAnalyticsPlugin({
       id: 'G-Q2XWKQS14L',
     }),
