@@ -48,7 +48,6 @@ export const enSidebar = sidebar({
           icon: "plug",
           collapsible: true,
           prefix: "connecting-to-kafka/",
-          //link: "connecting-to-kafka/",
           children: [
             "generic.md",
             "aiven.md",
@@ -82,8 +81,6 @@ export const enSidebar = sidebar({
             },            
 
           ],
-
-          //"structure",
         },
       ],
     },
