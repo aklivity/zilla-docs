@@ -84,7 +84,7 @@ Requests including an `idempotency-key` `grpc` metadata header can be replayed a
 - [kind\*](#kind)
 - [options](#options)
   - [options.idempotency](#options-idempotency)
-    - [idempotency.header](#idempotency-header)
+    - [idempotency.metadata](#idempotency-metadata)
   - [options.correlation](#options-correlation)
     - [correlation.headers](#correlation-headers)
     - [headers.service](#headers-service)

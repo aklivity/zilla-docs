@@ -53,7 +53,7 @@ Note that `grpc` requests and responses can be `unary` or `streaming`.
 - [options](#options)
   - [options.acks](#options-acks)
   - [options.idempotency](#options-idempotency)
-    - [idempotency.header](#idempotency-header)
+    - [idempotency.metadata](#idempotency-metadata)
   - [options.correlation](#options-correlation)
     - [correlation.headers](#correlation-headers)
     - [headers.service](#headers-service)
@@ -65,10 +65,10 @@ Note that `grpc` requests and responses can be `unary` or `streaming`.
 - [routes\[\].when](#routes-when)
   - [when\[\].topic](#when-topic)
   - [when\[\].reply-to](#when-reply-to)
-  - [when\[\].service](#when-service)
+  - [when\[\].method](#when-method)
 - [routes\[\].exit\*](#routes-exit)
 - [routes\[\].with](#routes-with)
-- [with.capability (fetch)](#with-capability-fetch)
+- [with](#with)
   - [with.scheme](#with-scheme)
   - [with.authority](#with-authority)
 
@@ -96,8 +96,9 @@ kind: remote_server
 
 ```yaml
 options:
+  acks: leader_only
   idempotency:
-    header: idempotency-key
+    metadata: idempotency-key
   correlation:
     headers:
       service: zilla:service
@@ -106,13 +107,19 @@ options:
       reply-to: zilla:reply-to
 ```
 
+##### options.acks
+
+> `string`
+
+The `kafka` acknowledgement mode.
+
 #### options.idempotency
 
 > `object`
 
 Metadata header used to specify the idempotency key when adapting `kafka` topic streams to `grpc` request-response streams.
 
-##### idempotency.header
+##### idempotency.metadata
 
 > `string`
 
