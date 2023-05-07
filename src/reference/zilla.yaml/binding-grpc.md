@@ -1,5 +1,5 @@
 ---
-shortTitle: binding (grpc)
+shortTitle: binding (grpc) 🚧
 description: Zilla runtime grpc binding
 category:
   - Binding
@@ -8,7 +8,7 @@ tag:
   - Client
 ---
 
-# grpc Binding
+# grpc Binding 🚧
 
 Zilla runtime grpc binding.
 

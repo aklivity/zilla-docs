@@ -1,5 +1,5 @@
 ---
-shortTitle: binding (kafka-grpc)
+shortTitle: binding (kafka-grpc) 🚧
 description: Zilla runtime kafka-grpc binding
 category:
   - Binding
@@ -7,7 +7,7 @@ tag:
   - Remote Server
 ---
 
-# kafka-grpc Binding
+# kafka-grpc Binding 🚧
 
 Zilla runtime kafka-grpc binding.
 
