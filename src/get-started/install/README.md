@@ -2,7 +2,7 @@
 
 ## Running Zilla via Docker
 
-Run the latest Zilla release with default empty configuration via docker.
+Run the latest Zilla release with the default empty configuration via docker.
 
 ```bash:no-line-numbers
 docker run ghcr.io/aklivity/zilla:latest start -v
@@ -19,7 +19,7 @@ started
 
 ## Running Zilla via Helm
 
-Run the latest Zilla release with default empty configuration via Helm.
+Run the latest Zilla release with the default empty configuration via Helm.
 
 ```bash:no-line-numbers
 helm install zilla chart --namespace zilla --create-namespace --wait

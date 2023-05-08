@@ -113,7 +113,8 @@ export const enSidebar = sidebar({
           prefix: "quickstart/",
           children: [
             "simple.md",
-            "rest.md"
+            "rest.md",
+            "grpc.md",
           ]
         },
       ],
