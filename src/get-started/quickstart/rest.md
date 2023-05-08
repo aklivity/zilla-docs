@@ -6,9 +6,13 @@ description: Running this Zilla quickstart will create a simple API to create an
 
 Get started using Zilla by deploying our Docker container. Before proceeding, you need to run these quickstarts in an environment [with Docker Compose](https://docs.docker.com/compose/gettingstarted/).
 
-## REST on a Kafka event stream
+## CRUD on a Kafka event stream
 
 Running this Zilla quickstart will create a simple API to create and list items. All of the data will be stored on a Kafka topic.
+
+### Setup
+
+Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same directory.
 
 ::: code-tabs#yaml
 
@@ -123,7 +127,7 @@ networks:
 
 :::
 
-### Run Zilla and Kafka with the `docker-compose.yaml` and `zilla.yaml` file in the same directory
+### Run Zilla and Kafka
 
 ```bash:no-line-numbers
 docker-compose up -d
@@ -157,4 +161,4 @@ output:
 docker-compose down
 ```
 
-Go deeper into this concept with this [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud) example.
+Go deeper into this concept with the [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud) example.
