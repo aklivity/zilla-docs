@@ -117,14 +117,6 @@ export const enSidebar = sidebar({
             "grpc.md",
           ]
         },
-      ],
-    },
-    {
-      text: "Guides",
-      icon: "bars-staggered",
-      prefix: "guides/",
-      collapsible: true,
-      children: [
         {
           text: "Todo App",
           icon: "check",
@@ -132,25 +124,12 @@ export const enSidebar = sidebar({
           prefix: "todo-app/",
           children: "structure",
         },
-        {
-          text: "Connecting to Kafka",
-          icon: "plug",
-          collapsible: false,
-          prefix: "connecting-to-kafka/",
-          children: [
-            "generic.md",
-            "aiven.md",
-            "amazon-msk.md",
-            "confluent-cloud.md",
-            "redpanda.md",
-          ],
-        },
       ],
     },
     {
-      text: "Concepts",
-      icon: "diagram-project",
-      prefix: "concepts/",
+      text: "Guides",
+      icon: "bars-staggered",
+      prefix: "guides/",
       collapsible: true,
       children: [
         {
@@ -170,8 +149,28 @@ export const enSidebar = sidebar({
             },
           ],
         },
+        {
+          text: "Connecting to Kafka",
+          icon: "plug",
+          collapsible: false,
+          prefix: "connecting-to-kafka/",
+          children: [
+            "generic.md",
+            "aiven.md",
+            "amazon-msk.md",
+            "confluent-cloud.md",
+            "redpanda.md",
+          ],
+        },
       ],
     },
+    // {
+    //   text: "Concepts",
+    //   icon: "diagram-project",
+    //   prefix: "concepts/",
+    //   collapsible: true,
+    //   children: "structure"
+    // },
     {
       text: "Reference",
       icon: "book",
