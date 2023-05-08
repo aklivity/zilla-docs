@@ -154,7 +154,7 @@ gRPC service method name, such as `example.EchoService/EchoUnary`, or service me
 
 #### when[].metadata
 
->  `object` of name-value headers
+> `object` of name-value headers
 
 Metadata header name value pairs (all match).
 
