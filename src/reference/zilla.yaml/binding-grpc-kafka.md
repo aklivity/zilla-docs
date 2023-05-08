@@ -280,7 +280,7 @@ Pattern matching the fully qualified name of a `grpc` service method, in the for
 
 #### when[].metadata
 
->  `object` of name-value headers
+> `object` of name-value headers
 
 Metadata header name value pairs (all match).
 
