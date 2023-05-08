@@ -97,7 +97,7 @@ export const enSidebar = sidebar({
       text: "Get Started",
       icon: "play",
       collapsible: true,
-      prefix: "get-started/",     
+      prefix: "get-started/",
       children: [
         {
           text: "Install",
@@ -107,9 +107,34 @@ export const enSidebar = sidebar({
           link: "install/",
         },
         {
+          text: "Quickstart",
+          icon: "stopwatch",
+          collapsible: false,
+          prefix: "quickstart/",
+          children: [
+            "simple.md",
+            "rest.md"
+          ]
+        },
+      ],
+    },
+    {
+      text: "Guides",
+      icon: "bars-staggered",
+      prefix: "guides/",
+      collapsible: true,
+      children: [
+        {
+          text: "Todo App",
+          icon: "check",
+          collapsible: false,
+          prefix: "todo-app/",
+          children: "structure",
+        },
+        {
           text: "Connecting to Kafka",
           icon: "plug",
-          collapsible: true,
+          collapsible: false,
           prefix: "connecting-to-kafka/",
           children: [
             "generic.md",
@@ -122,9 +147,9 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Guides",
-      icon: "bars-staggered",
-      prefix: "guides/",
+      text: "Concepts",
+      icon: "diagram-project",
+      prefix: "concepts/",
       collapsible: true,
       children: [
         {
@@ -141,23 +166,8 @@ export const enSidebar = sidebar({
               text: "SSE Proxy",
               icon: "fa-brands fa-html5",
               link: "sse-proxy.md",
-            },            
-
+            },
           ],
-        },
-      ],
-    },
-    {
-      text: "Examples",
-      icon: "diagram-project",
-      collapsible: true,
-      prefix: "examples/",
-      children: [
-        {
-          text: "Todo App",
-          collapsible: false,
-          prefix: "todo-app/",
-          children: "structure",
         },
       ],
     },
