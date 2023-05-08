@@ -110,7 +110,7 @@ options:
 
 > `string`
 
-The `kafka` acknowledgement mode.
+The `kafka` acknowledgment mode.
 
 #### options.idempotency
 
