@@ -296,7 +296,7 @@ Base64 encoded value for binary metadata header.
 
 > `string`
 
-Routed exit binding when conditional route matches.
+Next binding when following this route.
 
 ```yaml
 exit: kafka_cache_client0
