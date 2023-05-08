@@ -69,7 +69,7 @@ Routes with `fetch` capability map `grpc` `Empty` requests to a `kafka` topic, s
 
 Filtering can be performed by `kafka` message key, message headers, or a combination of both message key and headers.
 
-Reliable message delivery is achieved by capturing value of the `reliability` `field` injected into each response stream message at the `grpc` client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new `grpc` request.
+Reliable message delivery is achieved by capturing the value of the `reliability` `field` injected into each response stream message at the `grpc` client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new `grpc` request.
 
 ## Produce capability
 
