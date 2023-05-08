@@ -68,7 +68,6 @@ Note that `grpc` requests and responses can be `unary` or `streaming`.
   - [when\[\].method](#when-method)
 - [routes\[\].exit\*](#routes-exit)
 - [routes\[\].with](#routes-with)
-- [with](#with)
   - [with.scheme](#with-scheme)
   - [with.authority](#with-authority)
 
