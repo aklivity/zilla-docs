@@ -106,7 +106,7 @@ options:
       reply-to: zilla:reply-to
 ```
 
-##### options.acks
+#### options.acks
 
 > `string`
 
