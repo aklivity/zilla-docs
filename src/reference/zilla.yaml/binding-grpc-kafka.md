@@ -276,7 +276,7 @@ routes:
 
 > `string`
 
-Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for method to indicate any method.
+Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for the method to indicate any method.
 
 #### when[].metadata
 
