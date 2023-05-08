@@ -387,7 +387,7 @@ The name of a Kafka topic for requests.
 
 > `enum` [ "none", "leader_only", "in_sync_replicas" ]
 
-Kafka acknowledgement mode\
+Kafka acknowledgment mode\
 Defaults to `"in_sync_replicas"`.
 
 #### with.key
