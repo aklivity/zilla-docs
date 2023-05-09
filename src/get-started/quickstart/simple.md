@@ -82,6 +82,8 @@ Running this Zilla quickstart will simply echo back any text sent to the server 
 ```yaml
 name: example
 bindings:
+
+# Gatway ingress config
   tcp_server:
     type: tcp
     kind: server
@@ -98,6 +100,8 @@ bindings:
               :scheme: http
               :authority: localhost:8080
         exit: echo_server
+
+# Service running in Zilla
   echo_server:
     type: echo
     kind: server

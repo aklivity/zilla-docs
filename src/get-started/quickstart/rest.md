@@ -18,9 +18,11 @@ Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same director
 
 @tab zilla.yaml
 
-```yaml
-name: example
+```yaml {9-10,18-19,28,32-33,35,39-40,66-67}
+name: REST-example
 bindings:
+
+# Gatway ingress config
   api_tcp_server:
     type: tcp
     kind: server
@@ -37,6 +39,8 @@ bindings:
               :scheme: http
               :authority: localhost:8080
         exit: http_api_kafka_proxy
+
+# Proxy config
   http_api_kafka_proxy:
     type: http-kafka
     kind: proxy
@@ -57,6 +61,8 @@ bindings:
           topic: items-snapshots
           merge:
             content-type: application/json
+
+# Kafka caching layer
   kafka_cache_client:
     type: kafka
     kind: cache_client
@@ -68,6 +74,8 @@ bindings:
     type: kafka
     kind: cache_server
     exit: kafka_client
+
+# Connect to local Kafka
   kafka_client:
     type: kafka
     kind: client
@@ -161,4 +169,21 @@ output:
 docker-compose down
 ```
 
+### Going Deeper
+
+::: tip See more of what Zilla can do
 Go deeper into this concept with the [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud) example.
+:::
+
+Try out the other HTTP examples:
+- [http.echo](https://github.com/aklivity/zilla-examples/tree/main/http.echo)
+- [http.echo.jwt](https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt)
+- [http.proxy](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)
+- [http.filesystem](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
+- [http.filesystem.config.server](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem.config.server)
+- [http.kafka.async](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
+- [http.kafka.cache](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.cache)
+- [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud)
+- [http.kafka.oneway](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.oneway)
+- [http.kafka.sasl.scram](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sasl.scram)
+- [http.kafka.sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)

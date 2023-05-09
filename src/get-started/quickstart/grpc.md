@@ -19,16 +19,18 @@ Create each of these files `zilla.yaml`, `docker-compose.yaml`, and `echo.proto`
 @tab zilla.yaml
 
 ```yaml
-name: example
+name: gRPC-example
 bindings:
-  api_tcp_server:
+
+# Gatway ingress config
+  tcp_server:
     type: tcp
     kind: server
     options:
       host: 0.0.0.0
       port: 8080
-    exit: http_api_server
-  http_api_server:
+    exit: http_server
+  http_server:
     type: http
     kind: server
     routes:
@@ -36,38 +38,48 @@ bindings:
           - headers:
               :scheme: http
               :authority: localhost:8080
-        exit: http_api_kafka_proxy
-  http_api_kafka_proxy:
-    type: http-kafka
+        exit: grpc_server
+
+# gRPC service definition
+  grpc_server:
+    type: grpc
+    kind: server
+    options:
+      services:
+        - proto/echo.proto
+    routes:
+      - when:
+          - method: example.EchoService/*
+        exit: grpc_kafka
+
+# Proxy config
+  grpc_kafka:
+    type: grpc-kafka
     kind: proxy
     routes:
       - when:
-          - method: POST
-            path: /items
+          - service: example.EchoService
         exit: kafka_cache_client
         with:
           capability: produce
-          topic: items-snapshots
-      - when:
-          - method: GET
-            path: /items
-        exit: kafka_cache_client
-        with:
-          capability: fetch
-          topic: items-snapshots
-          merge:
-            content-type: application/json
+          topic: echo-messages
+          acks: leader_only
+          reply-to: echo-messages
+
+# Kafka caching layer
   kafka_cache_client:
     type: kafka
     kind: cache_client
     options:
       bootstrap:
-        - items-snapshots
+        - echo-messages
     exit: kafka_cache_server
   kafka_cache_server:
     type: kafka
     kind: cache_server
     exit: kafka_client
+
+# Connect to local Kafka
   kafka_client:
     type: kafka
     kind: client
@@ -124,7 +136,6 @@ networks:
     name: zilla-network
     driver: bridge
 
-
 ```
 
 @tab echo.proto
@@ -176,4 +187,16 @@ if you get this response `curl: (52) Empty reply from server`, the likely cause 
 docker-compose down
 ```
 
+### Going Deeper
+
+::: tip See more of what Zilla can do
 Go deeper into this concept with the [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo) example.
+:::
+
+Try out the other gRPC examples:
+
+- [grpc.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.echo)
+- [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
+- [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
+- [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+- [grpc.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.proxy)
