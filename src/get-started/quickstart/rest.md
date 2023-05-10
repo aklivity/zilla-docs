@@ -18,7 +18,7 @@ Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same director
 
 @tab zilla.yaml
 
-```yaml {9-10,18-19,28,32-33,35,39-40,66-67}
+```yaml {28,32-33,35,39-40}
 name: REST-example
 bindings:
 
@@ -40,7 +40,7 @@ bindings:
               :authority: localhost:8080
         exit: http_api_kafka_proxy
 
-# Proxy config
+# Proxy REST endpoints to Kafka a topic
   http_api_kafka_proxy:
     type: http-kafka
     kind: proxy

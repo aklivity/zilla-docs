@@ -18,7 +18,7 @@ Create each of these files `zilla.yaml`, `docker-compose.yaml`, and `echo.proto`
 
 @tab zilla.yaml
 
-```yaml
+```yaml{40,44,46}
 name: gRPC-example
 bindings:
 
@@ -52,7 +52,7 @@ bindings:
           - method: example.EchoService/*
         exit: grpc_kafka
 
-# Proxy config
+# Proxy a gRPC service to a Kafka topic
   grpc_kafka:
     type: grpc-kafka
     kind: proxy

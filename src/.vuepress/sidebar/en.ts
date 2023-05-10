@@ -115,6 +115,7 @@ export const enSidebar = sidebar({
             "simple.md",
             "rest.md",
             "grpc.md",
+            "sse.md",
           ]
         },
         {
