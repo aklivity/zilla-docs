@@ -139,6 +139,11 @@ export const enSidebar = sidebar({
           prefix: "kafka-proxies/",
           children: [
             {
+              text: "gRPC Proxy",
+              icon: "circle-nodes",
+              link: "grpc-proxy.md",
+            },
+            {
               text: "REST Proxy",
               icon: "arrow-right-arrow-left",
               link: "rest-proxy.md",
