@@ -2,7 +2,7 @@
 description: Running this Zilla quickstart will create a gRPC service to echo any message sent through a Kafka topic.
 ---
 
-# gRPC Quickstarts
+# gRPC Quickstart
 
 Get started using Zilla by deploying our Docker container. Before proceeding, you need to run these quickstarts in an environment [with Docker Compose](https://docs.docker.com/compose/gettingstarted/).
 
@@ -58,7 +58,7 @@ bindings:
     kind: proxy
     routes:
       - when:
-          - service: example.EchoService
+          - method: example.EchoService/*
         exit: kafka_cache_client
         with:
           capability: produce
@@ -147,7 +147,7 @@ package example;
 
 service EchoService
 {
-  rpc EchoUnary(EchoMessage) returns (EchoMessage);
+  rpc EchoSimple(EchoMessage) returns (EchoMessage);
 
   rpc EchoClientStream(stream EchoMessage) returns (EchoMessage);
 
@@ -174,7 +174,7 @@ docker-compose up -d
 ### Use [grpcurl](https://github.com/fullstorydev/grpcurl) to send a greeting
 
 ```bash:no-line-numbers
-grpcurl -insecure -proto echo.proto  -d '{"message":"Hello World"}' localhost:8080 example.EchoService.EchoUnary
+grpcurl -plaintext -proto echo.proto  -d '{"message":"Hello World"}' localhost:8080 example.EchoService.EchoSimple
 ```
 
 ::: note Wait for the services to start

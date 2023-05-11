@@ -107,7 +107,7 @@ export const enSidebar = sidebar({
           link: "install/",
         },
         {
-          text: "Quickstart",
+          text: "Quickstarts",
           icon: "stopwatch",
           collapsible: false,
           prefix: "quickstart/",

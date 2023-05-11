@@ -2,7 +2,7 @@
 description: Running this Zilla quickstart will create a simple SSE server.
 ---
 
-# SSE Quickstarts
+# SSE Quickstart
 
 Get started using Zilla by deploying our Docker container. Before proceeding, you need to run these quickstarts in an environment [with Docker Compose](https://docs.docker.com/compose/gettingstarted/).
 
