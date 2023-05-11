@@ -11,6 +11,7 @@ export default hopeTheme({
   iconAssets: "fontawesome-with-brands",
   favicon: "favicon.ico",
 
+  repo: "aklivity/zilla",
   editLink: true,
   contributors: false,
   lastUpdated: true,
