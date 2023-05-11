@@ -1,5 +1,5 @@
 ---
-shortTitle: exporters
+shortTitle: Exporters
 description: Zilla runtime telemetry exporters
 category:
   - Telemetry
@@ -16,9 +16,6 @@ Description
 :::: note Properties
 
 - [type\*](#type)
-  - [prometheus](#prometheus)
-    - [prometheus.options](#prometheus-options)
-
 
 ::: right
 \* required
@@ -33,9 +30,8 @@ named objects
 ### type\*
 
 > `enum` \[\
-> ["prometheus"](#prometheus),\
+> ["prometheus"](exporter-prometheus.md),\
 > \]
-
 
 ---
 
