@@ -1,5 +1,5 @@
 ---
-description: Running this Zilla setup will simply echo back any text sent to the server over tcp at port 12345.
+description: Running these Zilla quickstarts will introduce some simple features.
 ---
 
 # Simple Quickstart
@@ -15,7 +15,7 @@ Running this Zilla setup will simply echo back any text sent to the server over 
 @tab zilla.yaml
 
 ```yaml
-name: example
+name: TCP-example
 bindings:
   tcp_server:
     type: tcp
@@ -80,7 +80,7 @@ Running this Zilla quickstart will simply echo back any text sent to the server 
 @tab zilla.yaml
 
 ```yaml
-name: example
+name: HTTP-example
 bindings:
 
 # Gatway ingress config
@@ -148,3 +148,7 @@ Remove the running container
 ```bash:no-line-numbers
 docker rm -f zilla-quickstart
 ```
+
+## Going Deeper
+
+Try out the other [Zilla examples](https://github.com/aklivity/zilla-examples).

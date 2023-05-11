@@ -1,5 +1,5 @@
 ---
-description: Running this Zilla quickstart will create a simple API to create and list items. All of the data will be stored on a Kafka topic.
+description: Running these Zilla quickstarts will introduce some REST features.
 ---
 
 # REST Quickstart
@@ -169,13 +169,14 @@ output:
 docker-compose down
 ```
 
-### Going Deeper
-
 ::: tip See more of what Zilla can do
 Go deeper into this concept with the [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud) example.
 :::
 
-Try out the other HTTP examples:
+## Going Deeper
+
+Try out more HTTP examples:
+
 - [http.echo](https://github.com/aklivity/zilla-examples/tree/main/http.echo)
 - [http.echo.jwt](https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt)
 - [http.proxy](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)

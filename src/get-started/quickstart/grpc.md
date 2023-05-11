@@ -1,5 +1,5 @@
 ---
-description: Running this Zilla quickstart will create a gRPC service to echo any message sent through a Kafka topic.
+description: Running these Zilla quickstarts will introduce some gRPC features.
 ---
 
 # gRPC Quickstart
@@ -187,13 +187,13 @@ if you get this response `curl: (52) Empty reply from server`, the likely cause 
 docker-compose down
 ```
 
-### Going Deeper
-
 ::: tip See more of what Zilla can do
 Go deeper into this concept with the [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo) example.
 :::
 
-Try out the other gRPC examples:
+## Going Deeper
+
+Try out more gRPC examples:
 
 - [grpc.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.echo)
 - [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
