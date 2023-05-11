@@ -135,6 +135,7 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Configuring Kafka Proxies",
+          icon: "gear",
           collapsible: false,
           prefix: "kafka-proxies/",
           children: [

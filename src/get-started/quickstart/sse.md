@@ -192,7 +192,7 @@ networks:
 
 :::
 
-### Run Zilla and Kafka
+### Run Zilla and the SSE server
 
 ```bash:no-line-numbers
 docker-compose up -d
@@ -203,7 +203,7 @@ docker-compose up -d
 Navigate to the browser [http://localhost:8080/index.html](http://localhost:8080/index.html).
 
 ::: note Wait for the services to start
-If the page won't load the likely cause is Zilla and Kafka are still starting up.
+If the page won't load the likely cause is Zilla and the SSE server are still starting up.
 :::
 
 ### Click `Go`
