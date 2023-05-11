@@ -22,7 +22,7 @@ Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same director
 name: REST-example
 bindings:
 
-# Gatway ingress config
+# Gateway ingress config
   api_tcp_server:
     type: tcp
     kind: server

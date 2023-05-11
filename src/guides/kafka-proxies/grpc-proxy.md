@@ -201,7 +201,7 @@ Other aspects of routing traffic through Zilla, Kafka, and gRPC services can be 
 
 ### Connecting a gRPC service to Zilla
 
-When a Zilla config refers to a `grpc` client the traffic will need to be routed through an `http` and `tcp` client down to the `<grpc_host>` `<grpc_port>`
+When a Zilla config refers to a `grpc` client the traffic will need to be routed through an `http` and `tcp` client down to the `<grpc_host>` `<grpc_port>`.
 
 ```yaml
 grpc_client:
@@ -225,7 +225,7 @@ tcp_client:
 
 ### Gateway Ingress
 
-Using a `tcp` and `tls` server we can route the gRPC traffic through an `http` server, `<ingress_host>`:`<ingress_port>`, to our desired gRPC server at the `<grpc_server_binding_name>`. This sets up the ingress section and by defining a [filesystem vault](../../reference/zilla.yaml/vault-filesystem.md) a tls certificate can be used to send the traffic over https. Alternatively, if tls is not needed The tcp server can exit directly to the http server. 
+Using a `tcp` and `tls` server we can route the gRPC traffic through an `http` server, `<ingress_host>`:`<ingress_port>`, to our desired gRPC server at the `<grpc_server_binding_name>`. This sets up the ingress section and by defining a [filesystem vault](../../reference/zilla.yaml/vault-filesystem.md) a tls certificate can be used to send the traffic over https. Alternatively, if tls is not needed The tcp server can exit directly to the http server.
 
 ```yaml
   tcp_server:

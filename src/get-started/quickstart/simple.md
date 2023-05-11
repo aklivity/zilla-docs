@@ -33,7 +33,7 @@ bindings:
 
 ### Run Zilla
 
-Run the Zilla docker image as a daemon with the `zilla.yaml` file volume mounted
+Run the Zilla docker image as a daemon with the `zilla.yaml` file volume mounted.
 
 ::: code-tabs#yaml
 
@@ -63,9 +63,7 @@ output:
 Hello, world
 ```
 
-### Clean up
-
-Remove the running container
+### Remove the running container
 
 ```bash:no-line-numbers
 docker rm -f zilla-quickstart
@@ -83,7 +81,7 @@ Running this Zilla quickstart will simply echo back any text sent to the server 
 name: HTTP-example
 bindings:
 
-# Gatway ingress config
+# Gateway ingress config
   tcp_server:
     type: tcp
     kind: server
@@ -111,7 +109,7 @@ bindings:
 
 ### Run Zilla
 
-Run the Zilla docker image as a daemon with the `zilla.yaml` file volume mounted
+Run the Zilla docker image as a daemon with the `zilla.yaml` file volume mounted.
 
 ::: code-tabs#yaml
 
@@ -141,9 +139,7 @@ output:
 Hello, world
 ```
 
-### Clean up
-
-Remove the running container
+### Remove the running container
 
 ```bash:no-line-numbers
 docker rm -f zilla-quickstart

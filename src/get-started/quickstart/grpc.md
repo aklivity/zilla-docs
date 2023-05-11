@@ -22,7 +22,7 @@ Create each of these files `zilla.yaml`, `docker-compose.yaml`, and `echo.proto`
 name: gRPC-example
 bindings:
 
-# Gatway ingress config
+# Gateway ingress config
   tcp_server:
     type: tcp
     kind: server

@@ -22,7 +22,7 @@ Create these files, `zilla.yaml`, `docker-compose.yaml` and `index.html`, in the
 name: SSE-example
 bindings:
 
-# Gatway ingress config
+# Gateway ingress config
   tcp_server:
     type: tcp
     kind: server
@@ -253,7 +253,7 @@ Create these files, `zilla.yaml`, `docker-compose.yaml` and `index.html`, in the
 name: SSE-example
 bindings:
 
-# Gatway ingress config
+# Gateway ingress config
   tcp_server:
     type: tcp
     kind: server
