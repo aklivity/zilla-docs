@@ -1,5 +1,5 @@
 ---
-shortTitle: telemetry (exporters)
+shortTitle: exporters
 description: Zilla runtime telemetry exporters
 category:
   - Telemetry
@@ -36,21 +36,6 @@ named objects
 > ["prometheus"](#prometheus),\
 > \]
 
-
-#### prometheus
-
-```yaml {3}
-exporters:
-  prometheus0:
-    type: prometheus
-    options:
-      endpoints:
-        - scheme: http
-          path: /metrics
-          port: 9090
-```
-
-##### prometheus.options
 
 ---
 

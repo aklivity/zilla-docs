@@ -1,5 +1,5 @@
 ---
-shortTitle: telemetry (metrics)
+shortTitle: metrics
 description: Zilla runtime telemetry type
 category:
   - Telemetry
