@@ -65,6 +65,13 @@ telemetry:
     - [stream.closes.received](#stream-closes-received)
     - [stream.closes.sent](#stream-closes-sent)
 
+
+::: right
+\* required
+:::
+
+::::
+
 ### metrics
 
 > `array` of `string`
