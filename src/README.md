@@ -13,7 +13,7 @@ actions:
     icon: stopwatch
 
   - text: " Install"
-    link: /get-started/index.html
+    link: /get-started/install.html
     icon: download
 
 features:
