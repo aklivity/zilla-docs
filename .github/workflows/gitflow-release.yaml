@@ -29,13 +29,13 @@ jobs:
       contents: write
     steps:
       - name: Check actor permission
-        uses: aklivity/check-actor-permission@v2.1
+        uses: skjnldsv/check-actor-permission@v2.1
         with:
           require: Maintainer
 
       - if: ${{ env.IS_CUSTOM_VERSION }}
         name: validate custom-version
-        uses: aklivity/action-regex-match@v2.0.2
+        uses: actions-ecosystem/action-regex-match@v2.0.2
         id: validate-custom-version
         with:
           text: ${{ github.event.inputs.custom-version }}
@@ -61,7 +61,7 @@ jobs:
           echo "tag=$tag" >> $GITHUB_OUTPUT;
 
       - name: merge and tag ${{ steps.new-version.outputs.tag }} with HDBandit/gitflow-release-action
-        uses: aklivity/gitflow-release-action@main
+        uses: vordimous/gitflow-release-action@main
         with:
           command: start
           tag: ${{ steps.new-version.outputs.tag }}
@@ -97,7 +97,7 @@ jobs:
           git commit -m "CI: update version to ${{ steps.new-version.outputs.version }}";
 
       - name: merge and tag ${{ steps.new-version.outputs.tag }} with HDBandit/gitflow-release-action
-        uses: aklivity/gitflow-release-action@main
+        uses: vordimous/gitflow-release-action@main
         with:
           command: finish
           tag: ${{ steps.new-version.outputs.tag }}
