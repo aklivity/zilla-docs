@@ -134,6 +134,8 @@ start -v;
 
 > Hello, world
 
+### View Metrics
+
 Go to [http://localhost:9090/metrtics](http://localhost:9090/metrtics) to see the collected data or run the below `curl` command.
 
 @[code{32-32} bash:no-line-numbers](./metrics_docker_run.sh)
@@ -143,21 +145,16 @@ Go to [http://localhost:9090/metrtics](http://localhost:9090/metrtics) to see th
 stream_opens_sent_total{namespace="Metrics-example",binding="tcp_server"} 2
 
 # HELP stream_closes_sent_total Number of closed sent streams
-# TYPE stream_closes_sent_total counter
-stream_closes_sent_total{namespace="Metrics-example",binding="tcp_server"} 0
+stream_closes_sent_total{namespace="Metrics-example",binding="tcp_server"} 2
 
 # HELP http_request_size_bytes HTTP request content length
-# TYPE http_request_size_bytes histogram
 ...
 http_request_size_bytes_sum{namespace="Metrics-example",binding="http_server"} 30
-http_request_size_bytes_count{namespace="Metrics-example",binding="http_server"} 2
 
 
 # HELP http_response_size_bytes HTTP response content length
-# TYPE http_response_size_bytes histogram
 ...
 http_response_size_bytes_sum{namespace="Metrics-example",binding="http_server"} 30
-http_response_size_bytes_count{namespace="Metrics-example",binding="http_server"} 2
 ```
 
 Remove the running container

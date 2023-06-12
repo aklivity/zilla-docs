@@ -21,14 +21,14 @@ start -v;
 result="";
 count=0;
 until [ "$result" == "$msg" ] || [ "$count" -eq "$timeout" ]; do
-    result=$(echo "$msg" | nc localhost 12345);
+    result=$(echo "$msg" | nc -w 1 localhost 12345);
     echo "try:$((++count)), $result";
     sleep 1; 
 done
 docker logs zilla-quickstart;
 
 # Test Zilla - Coppied to md file
-echo "Hello, world" | nc localhost 12345;
+echo "Hello, world" | nc -w 1 localhost 12345;
 
 # Cleanup
 docker rm -f zilla-quickstart;
