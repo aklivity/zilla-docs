@@ -86,7 +86,7 @@ export const enSidebar = sidebar({
           text: "Quickstart",
           icon: "stopwatch",
           collapsible: false,
-          link: "quickstart/README.md"
+          link: "quickstart/kafka-proxies.md"
         },
         {
           text: "Todo App",
