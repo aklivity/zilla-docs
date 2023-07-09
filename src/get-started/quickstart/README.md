@@ -4,16 +4,19 @@ description: Running this Zilla quickstart will introduce some of Zilla's main f
 
 # Zilla Quickstart
 
-Get started using Zilla by deploying our Docker Compose stack. Before proceeding, you need to run this quickstarts in an environment [with Docker Compose](https://docs.docker.com/compose/gettingstarted/).
+Get started with Zilla by deploying our Docker Compose stack. Before proceeding, you should have [Docker Compose](https://docs.docker.com/compose/gettingstarted/) installed.
 
 ## Fork Postman Collections
 
-This quickstart is designed to be used from our public [Postman Workspace](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview). These collections demonstrate some of Zilla's main features. If you want to try them for yourself fork both of these collections into your own workspace.
+This quickstart is designed to use Aklivity’s public [Postman Workspace](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) to give you fast and easy way to try out Zilla’s multi-protocol capabilities.
 
-- [Zilla Quickstart - HTTP](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/28401168-6941d1fa-698c-4da1-9789-2f806acf9fbb?action=share&creator=28401168)
-- [Zilla Quickstart - GRPC](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/64a85751808733dd197c599f?action=share&creator=28401168)
+There are two collections, one for HTTP proxying, which includes REST and SSE endpoints, and one for gRPC proxying. Fork each of these collections into your own workspace.
 
-![Create a Fork](./create-fork.png)
+- [Zilla - REST Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/28401168-6941d1fa-698c-4da1-9789-2f806acf9fbb?action=share&creator=28401168)
+- [Zilla - SSE Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/28401168-09c165b3-6e68-45c2-aedb-494f130bc354?action=share&creator=28401168)
+- [Zilla - GRPC Server & Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/64a85751808733dd197c599f?action=share&creator=28401168)
+
+![Collection header > View more actions > Create a Fork](./create-fork.png)
 
 ::: info App or Desktop Agent
 Once the collections are forked you can run them against the local stack if you have either the [Postman App](https://www.postman.com/downloads/) or [Postman Desktop Agent](https://www.postman.com/downloads/postman-agent/) installed.
@@ -50,9 +53,7 @@ This Zilla quickstart hosts a UI for the Kafka cluster. Go to the [topics page](
 - **route-guide-requests** - gRPC RouteGuide requests
 - **route-guide-responses** - gRPC RouteGuide responses
 
-## Zilla Quickstart - HTTP
-
-### CRUD Kafka Proxy
+## REST Kafka proxy
 
 Zilla can expose common entity CRUD endpoints with the entity data being stored on Kafka topics. Leveraging the `cleanup.policy=compact` feature of Kafka, Zilla enables a standard REST backend architecture with Kafka as the storage layer. Adding a `Idempotency-Key` header during creation will set the message `key` and acts as the `ID` for the record. A UUID is generated if no key is sent.
 
@@ -61,14 +62,31 @@ Zilla can expose common entity CRUD endpoints with the entity data being stored 
 - **PUT** - Update an item based on its key using `/:key`.
 - **DELETE** - Delete an item based on its key using `/:key`.
 
-### SSE Kafka Proxy
+::: note Going Deeper
+Zilla can be configured for request-response over Kafka topics both synchronously and asynchronously, and more that we aren't able to cover in this quickstart. Here are some other interesting examples you will want to check out.
+
+- [http.proxy](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)
+- [http.echo.jwt](https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt)
+- [http.kafka.async](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
+- [http.kafka.cache](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.cache)
+- [http.kafka.sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
+:::
+
+## SSE Kafka proxy
 
 Zilla can expose a Kafka topic as a Server-sent Events (SSE) stream, enabling a resilient event-driven architecture to be exposed over HTTP. This quickstart will demonstrate streaming data to one session while posting data from another using Zilla and Kafka as the backend.
 
 - **POST** - Push a new event.
-- **GET:SSE** - Stream all of the events published on the Kafka topic.
+- **GET:SSE** - Stream all of the events published on the `event-sse` Kafka topic.
 
-## Zilla Quickstart - GRPC
+::: note Going Deeper
+Zilla can be configured for more usecases that we aren't able to cover in this quickstart. Here are some other interesting examples you will want to check out.
+
+- [sse.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
+- [sse.proxy.jwt](https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt)
+:::
+
+## GRPC Server & Kafka proxy
 
 Zilla supports the gRPC protocol to proxy services and service methods using the Protobuf service definition. Zilla can act as a direct proxy and a proxy for message binaries onto and off of Kafka topics.
 
@@ -86,6 +104,14 @@ Zilla maps the service method's request and response messages directly to Kafka 
 - **RouteGuide** - Proxy messages through Kafka to a running gRPC server.
 - **EchoService** - Zilla implements a simple message echo service.
 
+
+::: note Going Deeper
+Zilla can be configured for more usecases that we aren't able to cover in this quickstart. Here are some other interesting examples you will want to check out.
+
+- [grpc.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.proxy)
+- [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
+- [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+:::
 
 ## Check out the Prometheus Metrics
 
