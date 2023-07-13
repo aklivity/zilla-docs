@@ -181,6 +181,27 @@ export const enSidebar = sidebar({
             },
           ],
         },
+        {
+          text: "Amazon MSK Pubic Proxy",
+          collapsible: true,
+          icon: "plus",
+          prefix: "how-tos/amazon-msk/",
+          link: "how-tos/amazon-msk/public-proxy.md",
+          children: [
+            {
+              text: "Overview",
+              link: "public-proxy.md",
+            },
+            "development.md",
+            "production.md",
+            "production-mutual-trust.md",
+          ],
+        },
+        {
+          text: "Amazon MSK Private Proxy",
+          icon: "plus",
+          link: "how-tos/amazon-msk/private-proxy.md",
+        },
       ],
     },
     {
@@ -193,6 +214,11 @@ export const enSidebar = sidebar({
         "config/guards/",
         "config/vaults/",
         "config/telemetry/",
+        {
+          text: "Amazon MSK",
+          link: "amazon-msk/",
+        },
+        "troubleshooting/",
       ],
     },
   ],
