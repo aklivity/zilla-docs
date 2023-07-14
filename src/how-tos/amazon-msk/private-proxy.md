@@ -43,7 +43,6 @@ Before setting up cross-VPC access to your MSK Cluster, you will need the follow
 
 * an MSK Cluster configured for TLS encrypted client access
 * an VPC security group for MSK Proxy instances
-* an IAM security role for MSK Proxy instances
 * subscription to Aklivity Private MSK Proxy via AWS Marketplace
 
 ### Create MSK Cluster
@@ -106,20 +105,6 @@ Source: `Custom Security groups`: `my-msk-proxy`
 This allows the MSK Proxy instances to access your MSK cluster.
 :::
 
-### Create the MSK Proxy IAM security role
-
-Follow the [Create IAM Role](../../reference/amazon-msk/create-iam-role.md) guide to create an IAM security role with the following parameters:
-
-Name: `aklivity-private-msk-proxy`
-
-### Managed Policy
-
-Name: `AWSMarketplaceMeteringFullAccess`
-
-::: tip
-This creates an IAM security role to enable the required AWS services for the MSK Proxy  instances.
-:::
-
 ### Subscribe via AWS Marketplace
 
 The Aklivity Private MSK Proxy is [available](https://aws.amazon.com/marketplace/pp/B09BY55VLH) through the AWS Marketplace. You can skip this step if you have already subscribed to Aklivity Private MSK Proxy via AWS Marketplace.
@@ -161,7 +146,6 @@ Port number: `9094`
 
 Instance count: `2`\
 Instance type [2]: `t3.small`\
-Role: `aklivity-private-msk-proxy`\
 Security Groups: `my-msk-proxy`\
 Key pair for SSH access: `<key pair>`
 
@@ -189,10 +173,6 @@ Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and
 
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Private MSK Proxy instances launched by the CloudFormation template to show the details.
 
-::: info
-They each have the IAM Role name `aklivity-private-msk-proxy`.
-:::
-
 Find the `Public IPv4 Address` and then SSH into the instance.
 
 ```shell:no-line-numbers
@@ -202,17 +182,17 @@ ssh -i ~/.ssh/<key-pair.cer> ec2-user@<instance-public-ip-address>
 After logging in via SSH, check the status of the `msk-proxy` system service.
 
 ```bash:no-line-numbers
-systemctl status msk-proxy.service
+systemctl status zilla-plus.service
 ```
 
 Verify that the `msk-proxy` service is active and logging output similar to that shown below.
 
 ```shell:no-line-numbers
-● msk-proxy.service - MSK Proxy
-   Loaded: loaded (/etc/systemd/system/msk-proxy.service; enabled; vendor preset: disabled)
+● zilla-plus.service - MSK Proxy
+   Loaded: loaded (/etc/systemd/system/zilla-plus.service; enabled; vendor preset: disabled)
    Active: active (running) since Tue 2021-08-24 20:56:51 UTC; 1 day 19h ago
  Main PID: 1803 (java)
-   CGroup: /system.slice/msk-proxy.service
+   CGroup: /system.slice/zilla-plus.service
            └─...
 
 Aug 26 06:56:54 ip-10-0-3-104.ec2.internal zilla[1803]: Recorded usage for record id ...

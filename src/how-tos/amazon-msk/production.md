@@ -248,17 +248,17 @@ ssh -i ~/.ssh/<key-pair.cer> ec2-user@<instance-public-ip-address>
 After logging in via SSH, check the status of the `msk-proxy` system service.
 
 ```bash:no-line-numbers
-systemctl status msk-proxy.service
+systemctl status zilla-plus.service
 ```
 
 Verify that the `msk-proxy` service is active and logging output similar to that shown below.
 
 ```shell:no-line-numbers
-● msk-proxy.service - MSK Proxy
-   Loaded: loaded (/etc/systemd/system/msk-proxy.service; enabled; vendor preset: disabled)
+● zilla-plus.service - MSK Proxy
+   Loaded: loaded (/etc/systemd/system/zilla-plus.service; enabled; vendor preset: disabled)
    Active: active (running) since Tue 2021-08-24 20:56:51 UTC; 1 day 19h ago
  Main PID: 1803 (java)
-   CGroup: /system.slice/msk-proxy.service
+   CGroup: /system.slice/zilla-plus.service
            └─...
 
 Aug 26 06:56:54 ip-10-0-3-104.ec2.internal zilla[1803]: Recorded usage for record id ...
