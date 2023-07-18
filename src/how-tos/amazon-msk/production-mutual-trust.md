@@ -294,7 +294,7 @@ systemctl status zilla-plus.service
 Verify that the `msk-proxy` service is active and logging output similar to that shown below.
 
 ```shell:no-line-numbers
-● zilla-plus.service - MSK Proxy
+● zilla-plus.service - Zilla Plus
    Loaded: loaded (/etc/systemd/system/zilla-plus.service; enabled; vendor preset: disabled)
    Active: active (running) since Tue 2021-08-24 20:56:51 UTC; 1 day 19h ago
  Main PID: 1803 (java)
