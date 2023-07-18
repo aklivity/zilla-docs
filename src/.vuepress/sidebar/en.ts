@@ -67,6 +67,16 @@ export const enSidebar = sidebar({
         },
       ],
     },
+    {
+      text: "Amazon MSK",
+      prefix: "amazon-msk/",
+      children: "structure",
+    },
+    {
+      text: "Troubleshooting",
+      prefix: "troubleshooting/",
+      children: "structure",
+    },
   ],
   "/": [
     {
