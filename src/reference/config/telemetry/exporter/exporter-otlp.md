@@ -41,7 +41,7 @@ exporters:
 
 ::::
 
-### options
+### options*
 
 > `object`
 
