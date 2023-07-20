@@ -30,7 +30,7 @@ exporters:
 
 - [options](#options) *
   - [options.interval](#options-interval)
-  - [options.signals[]](#options-signals)
+  - [options.signals](#options-signals)
   - [options.endpoint](#options-endpoint) *
     - [endpoint.protocol](#endpoint-protocol)
     - [endpoint.location](#endpoint-location) *
@@ -63,7 +63,7 @@ options:
 
 Interval in seconds to push data to the Open Telemetry collector. Default: 30 seconds.
 
-#### options.singals[]
+#### options.singals
 
 > `array` of `strings`
 
