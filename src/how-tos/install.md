@@ -57,7 +57,7 @@ Zilla specific configuration is in the `zilla.yaml` file which can be included i
 
 ## zilla.yaml Auto Reconfigure
 
-Zilla loads the configuration from the `zilla.yaml` file on startup and, by default, logs the configured settings. Zilla creates a file watcher to detect changes to the file and reloads the config if any change is detected.
+Zilla loads the configuration from the `zilla.yaml` file on startup and logs the configured settings. Restarting Zilla or its container may not be an option, so Zilla creates a file watcher to detect changes to the file and reloads the config if a change is detected.
 
 Errors and misconfigured parts of the `zilla.yaml` file are detected by zilla and reported via stdout. The original config remains in place and can only be replaced by a valid config.
 
