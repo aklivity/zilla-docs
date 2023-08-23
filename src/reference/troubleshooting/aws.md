@@ -128,3 +128,26 @@ kcat \
 ```
 
 The `kcat` output should show the list of brokers and topics accessible to the client.
+
+
+checking for MSK proxy connectivity
+
+1. verify tcp connectivity through NLB
+nc -v b-1.events.sandbox.castle-test.com 9096
+nc -v b-2.events.sandbox.castle-test.com 9096
+nc -v b-3.events.sandbox.castle-test.com 9096
+
+When this succeeds, and keeps the connection open, then the client -> MSK proxy tcp handshake is successful (via NLB).
+
+Note: this either requires DNS setup to CNAME *.events.sandbox.castle-test.com to the NLB public DNS name, or else local /etc/hosts override for each of the NLB public IP addresses names
+
+2. verify tls connectivity
+openssl s_client -connect b-1.events.sandbox.castle-test.com:9096 -servername b-1.events.sandbox.castle-test.com
+openssl s_client -connect b-2.events.sandbox.castle-test.com:9096 -servername b-2.events.sandbox.castle-test.com
+openssl s_client -connect b-3.events.sandbox.castle-test.com:9096 -servername b-3.events.sandbox.castle-test.com
+
+When these succeed, and keep the connection open, then the client -> MSK proxy tls handshakes are successful (via NLB) and the MSK proxy -> MSK broker tls handshakes are also successful.
+If these appear to succeed, but the connection is closed, then the client -> MSK proxy tls handshakes are successful (via NLB), but the MSK proxy -> MSK broker tls handshakes are not successful, likely due to either lack of server certificate trust or lack of network reachability.
+
+3. verify kafka connectivity
+(same as Kafka client connectivity testing)
