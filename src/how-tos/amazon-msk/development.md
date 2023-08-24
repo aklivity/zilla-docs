@@ -82,7 +82,8 @@ Description: Kafka clients and SSH access
 
 ### Inbound Rule
 
-Type: `TCP 9094`\
+Type: `Custom TCP`\
+Port: `9094`\
 Source: `<Any IPv4>`
 
 ### Inbound Rule
@@ -103,7 +104,8 @@ Security Group: `default` `(MSK security group)`
 
 ### Inbound Rule
 
-Type: `TCP 9094`\
+Type: `Custom TCP`\
+Port: `9094`\
 Source: `Custom` `Security groups:`    `my-msk-proxy`
 
 ::: tip
