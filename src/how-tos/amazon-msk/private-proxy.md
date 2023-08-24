@@ -15,13 +15,13 @@ description: Securely access an Amazon MSK cluster across VPCs via AWS PrivateLi
 
 ## Overview
 
-The [Aklivity Private MSK Proxy](https://aws.amazon.com/marketplace/pp/B09BY55VLH) enables cross-account connectivity between Kafka clients and Amazon MSK clusters.
+The [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) enables cross-account connectivity between Kafka clients and Amazon MSK clusters.
 
 Bundled CloudFormation templates provide automated configuration of a VPC Endpoint Service for your Amazon MSK cluster as well as corresponding VPC Endpoints. These VPC endpoints enable secure access to your MSK cluster via [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/endpoint-services-overview.html) from an outside VPC, even if that VPC is owned by a different AWS account. Authorized Kafka clients in each consuming VPC will be able to connect, publish messages and subscribe to topics in your Amazon MSK cluster.
 
-In this guide we will deploy the Aklivity Private MSK Proxy and showcase cross VPC connectivity between an MSK cluster and a Kafka client.
+In this guide we will deploy the Zilla Plus (Private MSK Proxy) and showcase cross VPC connectivity between an MSK cluster and a Kafka client.
 
-The following AWS services are used by [Aklivity Private MSK Proxy](https://aws.amazon.com/marketplace/pp/B09BY55VLH) for this deployment.
+The following AWS services are used by [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) for this deployment.
 
 | Service                     | Required                                                                               | Usage                | Quota                                                                                         |
 | --------------------------- | -------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
@@ -43,7 +43,7 @@ Before setting up cross-VPC access to your MSK Cluster, you will need the follow
 
 * an MSK Cluster configured for TLS encrypted client access
 * an VPC security group for MSK Proxy instances
-* subscription to Aklivity Private MSK Proxy via AWS Marketplace
+* subscription to Zilla Plus (Private MSK Proxy) via AWS Marketplace
 
 ### Create MSK Cluster
 
@@ -109,17 +109,17 @@ This allows the MSK Proxy instances to access your MSK cluster.
 
 ### Subscribe via AWS Marketplace
 
-The Aklivity Private MSK Proxy is [available](https://aws.amazon.com/marketplace/pp/B09BY55VLH) through the AWS Marketplace. You can skip this step if you have already subscribed to Aklivity Private MSK Proxy via AWS Marketplace.
+The Zilla Plus (Private MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/B09BY55VLH) and `Subscribe` to the offering.
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering.
 
 ::: info
-You should now see `Aklivity Private MSK Proxy` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
+You should now see `Zilla Plus (Private MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
 :::
 
 ## Create the VPC Endpoint Service
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Aklivity Private MSK Proxy` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
+Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Private MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
 
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, and then click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to complete the `Create stack` wizard with the following details:
 
@@ -162,7 +162,7 @@ Key pair for SSH access: `<key pair>`
 Click `Create Stack`.
 
 ::: tip
-This initiates creation of a VPC Endpoint Service using the Aklivity Private MSK Proxy stack via CloudFormation.
+This initiates creation of a VPC Endpoint Service using the Zilla Plus (Private MSK Proxy) stack via CloudFormation.
 :::
 
 ::: info
@@ -418,7 +418,7 @@ This is my second event
 ```
 
 ::: tip
-This verifies cross-VPC connectivity to your MSK cluster via [Aklivity Private MSK Proxy](https://aws.amazon.com/marketplace/pp/B09BY55VLH)!
+This verifies cross-VPC connectivity to your MSK cluster via [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)!
 :::
 
 ## Monitor the VPC Endpoint Service
@@ -436,11 +436,11 @@ You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a 
 
 ## Upgrade the VPC Endpoint Service
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Aklivity Private MSK Proxy` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
+Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Private MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
 
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, and then click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to show the URL of the CloudFormation template.
 
-Copy the CloudFormation template Amazon S3 URL and then select your existing CloudFormation Stack from a previous deployment of `Aklivity Private MSK Proxy`. Click `Update` and `Replace current template` with the copied Amazon S3 URL. Then complete the wizard to deploy the updated stack.
+Copy the CloudFormation template Amazon S3 URL and then select your existing CloudFormation Stack from a previous deployment of `Zilla Plus (Private MSK Proxy)`. Click `Update` and `Replace current template` with the copied Amazon S3 URL. Then complete the wizard to deploy the updated stack.
 
 CloudFormation will incrementally deploy the MSK Proxy instances for the new version behind the same Network Load Balancer, checking for successful deployment before terminating the MSK Proxy instances for the previous version.
 

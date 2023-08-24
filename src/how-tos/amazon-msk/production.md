@@ -15,11 +15,11 @@ description: Setup connectivity to your MSK cluster from anywhere on the interne
 
 ## Overview
 
-The [Aklivity Public MSK Proxy](http://aws.amazon.com/marketplace/pp/B09HKJ54CX) lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
+The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
 
-In this guide we will deploy the Aklivity Public MSK Proxy and showcase globally trusted public internet connectivity to an MSK cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`.
+In this guide we will deploy the Zilla Plus (Public MSK Proxy) and showcase globally trusted public internet connectivity to an MSK cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`.
 
-The following AWS services are used by [Aklivity Public MSK Proxy](http://aws.amazon.com/marketplace/pp/B09HKJ54CX) for this deployment.
+The following AWS services are used by [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) for this deployment.
 
 | Service                     | Required                                                                               | Usage                | Quota                                                                                         |
 | --------------------------- | -------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
@@ -42,7 +42,7 @@ Before setting up internet access to your MSK Cluster, you will need the followi
 * an MSK Cluster configured for TLS encrypted client access
 * an VPC security group for MSK Proxy instances
 * an IAM security role for MSK Proxy instances
-* subscription to Aklivity Public MSK Proxy via AWS Marketplace
+* subscription to Zilla Plus (Public MSK Proxy) via AWS Marketplace
 * permission to modify global DNS records for a custom domain
 
 ### Create MSK Cluster
@@ -149,12 +149,12 @@ This creates an IAM security role to enable the required AWS services for the MS
 
 ### Subscribe via AWS Marketplace
 
-The Aklivity Public MSK Proxy is [available](http://aws.amazon.com/marketplace/pp/B09HKJ54CX) through the AWS Marketplace. You can skip this step if you have already subscribed to Aklivity Private MSK Proxy via AWS Marketplace.
+The Zilla Plus (Public MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](http://aws.amazon.com/marketplace/pp/B09HKJ54CX) and `Subscribe` to the offering.
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) and `Subscribe` to the offering.
 
 ::: info
-You should now see `Aklivity Public MSK Proxy` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
+You should now see `Zilla Plus (Public MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
 :::
 
 ## Create the Server Certificate
@@ -171,7 +171,7 @@ Note the server certificate secret ARN as we will need to reference it from the 
 
 ## Deploy the Public MSK Proxy
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Aklivity Public MSK Proxy` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
+Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
 
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, then select the `Public MSK Proxy` fulfillment option and click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to complete the `Create stack` wizard with the following details:
 
@@ -224,7 +224,7 @@ Key pair for SSH access [5]: `<key pair>`
 Click `Create Stack`.
 
 ::: tip
-This initiates deployment of the Aklivity Public MSK Proxy stack via CloudFormation.
+This initiates deployment of the Zilla Plus (Public MSK Proxy) stack via CloudFormation.
 :::
 
 ::: info
@@ -369,8 +369,8 @@ A quick summary of what just happened:
 
 1. The Kafka client with access to the public internet issued a request to create a new topic
 2. This request was directed to the internet-facing Network Load Balancer
-3. The Network Load Balancer forwarded the request to the Aklivity Public MSK Proxy
-4. The Aklivity Public MSK Proxy routed the request to the appropriate MSK broker
+3. The Network Load Balancer forwarded the request to the Zilla Plus (Public MSK Proxy)
+4. The Zilla Plus (Public MSK Proxy) routed the request to the appropriate MSK broker
 5. The topic was created in the MSK broker
 6. Public access was verified
 
@@ -405,7 +405,7 @@ This is my second event
 ```
 
 ::: tip
-This verifies internet connectivity to your MSK cluster via [Aklivity Public MSK Proxy](http://aws.amazon.com/marketplace/pp/B09HKJ54CX)!
+This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao)!
 :::
 
 ## Monitor the Public MSK Proxy
@@ -423,11 +423,11 @@ You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a 
 
 ## Upgrade the Public MSK Proxy
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Aklivity Public MSK Proxy` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
+Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
 
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, then select the `Public MSK Proxy` fulfillment option and click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to show the URL of the CloudFormation template.
 
-Copy the CloudFormation template Amazon S3 URL and then select your existing CloudFormation Stack from a previous deployment of `Aklivity Public MSK Proxy`. Click `Update` and `Replace current template` with the copied Amazon S3 URL. Then complete the wizard to deploy the updated stack.
+Copy the CloudFormation template Amazon S3 URL and then select your existing CloudFormation Stack from a previous deployment of `Zilla Plus (Public MSK Proxy)`. Click `Update` and `Replace current template` with the copied Amazon S3 URL. Then complete the wizard to deploy the updated stack.
 
 CloudFormation will incrementally deploy the MSK Proxy instances for the new version behind the same Network Load Balancer, checking for successful deployment before terminating the MSK Proxy instances for the previous version.
 
