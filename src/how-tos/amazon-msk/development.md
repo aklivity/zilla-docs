@@ -248,7 +248,7 @@ They each have the IAM Role name `aklivity-public-msk-proxy`.
 
 Find the `Public IPv4 Address` and then SSH into the instance.
 
-```shell:no-line-numbers
+```bash:no-line-numbers
 ssh -i ~/.ssh/<key-pair.cer> ec2-user@<instance-public-ip-address>
 ```
 
@@ -260,7 +260,7 @@ systemctl status zilla-plus.service
 
 Verify that the `msk-proxy` service is active and logging output similar to that shown below.
 
-```shell:no-line-numbers
+```text:no-line-numbers
 ● zilla-plus.service - Zilla Plus
    Loaded: loaded (/etc/systemd/system/zilla-plus.service; enabled; vendor preset: disabled)
    Active: active (running) since Tue 2021-08-24 20:56:51 UTC; 1 day 19h ago
@@ -315,7 +315,7 @@ We use a generic Kafka client here, however the setup for any Kafka client, incl
 
 Import the private certificate authority certificate into your trust store.
 
-```shell:no-line-numbers
+```bash:no-line-numbers
 keytool -importcert -keystore /tmp/kafka.client.truststore.jks -storetype jks -storepass generated -alias pca -file Certificate.cer
 ```
 
@@ -333,7 +333,7 @@ The MSK Proxy relies on TLS so we need to create a file called `client.propertie
 
 @tab client.properties
 
-```bash:no-line-numbers
+```toml:no-line-numbers
 security.protocol=SSL
 ssl.truststore.location=/tmp/kafka.client.truststore.jks
 ```
@@ -386,7 +386,7 @@ Then add local DNS entries for the bootstrap proxy names needed by the Kafka cli
 
 This allows Kafka clients to use the following TLS bootstrap proxy names for privately signed TLS wildcard certificate:
 
-```shell:no-line-numbers
+```text:no-line-numbers
 b-1.aklivity.example.com:9094,b-2.aklivity.example.com:9094,b-3.aklivity.example.com:9094
 ```
 
@@ -402,7 +402,7 @@ We can now verify that the Kafka client can successfully communicate with your M
 
 Use the following as TLS bootstrap server names for the Kafka client:
 
-```shell:no-line-numbers
+```text:no-line-numbers
 b-1.aklivity.example.com:9094,b-2.aklivity.example.com:9094,b-3.aklivity.example.com:9094
 ```
 
@@ -410,7 +410,7 @@ b-1.aklivity.example.com:9094,b-2.aklivity.example.com:9094,b-3.aklivity.example
 
 Use the Kafka client to create a topic called `public-proxy-test`, replacing`<tls-bootstrap-server-names>` **** in the command below with the TLS proxy names of your Public MSK Proxy:
 
-```shell:no-line-numbers
+```bash:no-line-numbers
 bin/kafka-topics.sh --create --topic public-proxy-test --partitions 3 --replication-factor 3 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
 ```
 
@@ -427,13 +427,13 @@ A quick summary of what just happened:
 
 Publish two messages to the newly created topic via the following producer command:
 
-```shell:no-line-numbers
+```bash:no-line-numbers
 bin/kafka-console-producer.sh --topic public-proxy-test --producer.config client.properties --broker-list <tls-bootstrap-server-names>
 ```
 
 A prompt will appear for you to type in the messages:
 
-```shell:no-line-numbers
+```text:no-line-numbers
 >This is my first event
 >This is my second event
 ```
@@ -442,13 +442,13 @@ A prompt will appear for you to type in the messages:
 
 Read these messages back via the following consumer command:
 
-```shell:no-line-numbers
+```bash:no-line-numbers
 bin/kafka-console-consumer.sh --topic public-proxy-test --from-beginning --consumer.config client.properties --bootstrap-server <tls-bootstrap-server-names>
 ```
 
 You should see the `This is my first event` and `This is my second event` messages.
 
-```shell:no-line-numbers
+```text:no-line-numbers
 This is my first event
 This is my second event
 ```
