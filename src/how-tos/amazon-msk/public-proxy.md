@@ -15,7 +15,7 @@ description: Securely access your Amazon MSK cluster via the internet.
 
 ## Overview
 
-The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
+The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
 
 By automating the configuration of an internet-facing network load balancer and auto-scaling group of stateless proxies to access your MSK cluster via the public internet, Kafka clients can connect, publish messages and subscribe to topics in your Amazon MSK cluster from outside AWS.
 

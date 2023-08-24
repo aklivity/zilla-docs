@@ -15,11 +15,11 @@ description: Setup mutual authentication to your MSK cluster from anywhere on th
 
 ## Overview
 
-The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
+The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
 
 In this guide we will deploy the Zilla Plus (Public MSK Proxy) and showcase globally trusted public internet connectivity to an MSK cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`. Kafka clients will use TLS client certificates to verify trusted client identity.
 
-The following AWS services are used by [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) for this deployment.
+The following AWS services are used by [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) for this deployment.
 
 | Service                     | Required                                                                               | Usage                | Quota                                                                                         |
 | --------------------------- | -------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
@@ -185,9 +185,9 @@ This creates an IAM security role to enable the required AWS services for the MS
 
 ### Subscribe via AWS Marketplace
 
-The Zilla Plus (Public MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
+The Zilla Plus (Public MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) and `Subscribe` to the offering.
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering.
 
 ::: info
 You should now see `Zilla Plus (Public MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace)
@@ -462,7 +462,7 @@ This is my second event
 ```
 
 ::: tip
-This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-h6q5n36fr3vao) with mutual trust!
+This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) with mutual trust!
 :::
 
 ## Monitor the Public MSK Proxy

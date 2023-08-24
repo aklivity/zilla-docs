@@ -15,13 +15,13 @@ description: Securely access an Amazon MSK cluster across VPCs via AWS PrivateLi
 
 ## Overview
 
-The [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) enables cross-account connectivity between Kafka clients and Amazon MSK clusters.
+The [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) enables cross-account connectivity between Kafka clients and Amazon MSK clusters.
 
 Bundled CloudFormation templates provide automated configuration of a VPC Endpoint Service for your Amazon MSK cluster as well as corresponding VPC Endpoints. These VPC endpoints enable secure access to your MSK cluster via [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/endpoint-services-overview.html) from an outside VPC, even if that VPC is owned by a different AWS account. Authorized Kafka clients in each consuming VPC will be able to connect, publish messages and subscribe to topics in your Amazon MSK cluster.
 
 In this guide we will deploy the Zilla Plus (Private MSK Proxy) and showcase cross VPC connectivity between an MSK cluster and a Kafka client.
 
-The following AWS services are used by [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) for this deployment.
+The following AWS services are used by [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) for this deployment.
 
 | Service                     | Required                                                                               | Usage                | Quota                                                                                         |
 | --------------------------- | -------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
@@ -109,9 +109,9 @@ This allows the MSK Proxy instances to access your MSK cluster.
 
 ### Subscribe via AWS Marketplace
 
-The Zilla Plus (Private MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
+The Zilla Plus (Private MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering.
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) and `Subscribe` to the offering.
 
 ::: info
 You should now see `Zilla Plus (Private MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
@@ -418,7 +418,7 @@ This is my second event
 ```
 
 ::: tip
-This verifies cross-VPC connectivity to your MSK cluster via [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)!
+This verifies cross-VPC connectivity to your MSK cluster via [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek)!
 :::
 
 ## Monitor the VPC Endpoint Service
