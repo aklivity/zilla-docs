@@ -31,7 +31,7 @@ Fork each of these collections into your own workspace.
 
 ## Zilla Docker Compose Stack
 
-Download the [zilla.quickstart](https://github.com/aklivity/zilla-examples/tree/main/zilla.quickstart) folder from the zilla-examples repo. The docker compose file will create everything you need for this quickstart. The `setup.sh` script will start and restart the backend. The `teardown.sh` script stops and destroys all of the containers. 
+Download the [quickstart](https://github.com/aklivity/zilla-examples/tree/main/quickstart) folder from the zilla-examples repo. The docker compose file will create everything you need for this quickstart. The `setup.sh` script will start and restart the backend. The `teardown.sh` script stops and destroys all of the containers. 
 
 The key components this script will setup:
 
