@@ -63,11 +63,16 @@ Access control methods: `SASL/SCRAM authentication`
 
 Review and create the MSK Cluster.
 
-When the MSK cluster is created you will need to follow the [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) to associate your `AmazonMSK_*` secret to your cluster. For the remainder of this doc we will assume the following values for this secret:
+When the MSK cluster is created you will need to follow the [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) to associate your `AmazonMSK_*` secret to your cluster. There will be a prompt on the cluster summary page to create a new secret or associate an existing one. For the remainder of this doc we will assume the following values for this secret:
 
 Name: `AmazonMSK_alice`\
-Username: `alice`\
-Password: `alice-secret`
+Use `Plaintext` value:
+
+```json:no-line-numbers
+{"username":"alice","password":"alice-secret"}
+```
+
+Encryption key: `<Customer managed key>`
 
 ::: tip
 This creates your MSK cluster in preparation for secure access via the internet.
