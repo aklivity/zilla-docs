@@ -38,7 +38,7 @@ Check out the [Troubleshooting](../../reference/troubleshooting/amazon-msk.md) g
 
 Before setting up internet access to your MSK Cluster, you will need the following:
 
-* an MSK Cluster configured for TLS encrypted client access
+* an MSK Cluster configured for SASL/SCRAM authentication
 * an VPC security group for MSK Proxy instances
 * an IAM security role for MSK Proxy instances
 * subscription to Zilla Plus (Public MSK Proxy) via AWS Marketplace
@@ -59,6 +59,15 @@ Then follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-clust
 Name: `aklivity`\
 VPC: `my-msk-cluster`\
 Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
+Access control methods: `SASL/SCRAM authentication`
+
+Review and create the MSK Cluster.
+
+When the MSK cluster is created you will need to follow the [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) to associate your `AmazonMSK_*` secret to your cluster. For the remainder of this doc we will assume the following values for this secret:
+
+Name: `AmazonMSK_alice`\
+Username: `alice`\
+Password: `alice-secret`
 
 ::: tip
 This creates your MSK cluster in preparation for secure access via the internet.
@@ -77,7 +86,7 @@ Description: Kafka clients and SSH access
 ### Inbound Rule
 
 Type: `Custom TCP`\
-Port: `9094`\
+Port: `9096`\
 Source: `<Any IPv4>`
 
 ### Inbound Rule
@@ -99,7 +108,7 @@ Security Group: `default` `(MSK security group)`
 ### Inbound Rule
 
 Type: `Custom TCP`\
-Port: `9094`\
+Port: `9096`\
 Source: `Custom Security groups`: `my-msk-proxy`
 
 ::: tip
@@ -326,14 +335,18 @@ We use a generic Kafka client here, however the setup for any Kafka client, incl
 
 With the Kaka client now installed we are ready to configure it and point it at the Public MSK Proxy.
 
-The MSK Proxy relies on TLS so we need to create a file called `client.properties` that tells the Kafka client to use SSL as the security protocol.
+The MSK Proxy relies on encrypted SASL/SCRAM so we need to create a file called `client.properties` that tells the Kafka client to use SASL_SSL as the security protocol with SCRAM-SHA-512 encryption. 
+
+Notice we used the default username and password, but you will need to replace those with your own credentials from the `AmazonMSK_*` secret you created.
 
 ::: code-tabs#shell
 
 @tab client.properties
 
 ```toml:no-line-numbers
-security.protocol=SSL
+sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required username="alice" password="alice-secret";
+security.protocol=SASL_SSL
+sasl.mechanism=SCRAM-SHA-512
 ```
 
 :::
@@ -358,7 +371,7 @@ Replace these TLS bootstrap server names accordingly for your own custom wildcar
 
 #### Create a Topic
 
-Use the Kafka client to create a topic called `public-proxy-test`, replacing`<tls-bootstrap-server-names>` **** in the command below with the TLS proxy names of your Public MSK Proxy:
+Use the Kafka client to create a topic called `public-proxy-test`, replacing `<tls-bootstrap-server-names>` **** in the command below with the TLS proxy names of your Public MSK Proxy:
 
 ```bash:no-line-numbers
 bin/kafka-topics.sh --create --topic public-proxy-test --partitions 3 --replication-factor 3 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
