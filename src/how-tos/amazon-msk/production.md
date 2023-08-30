@@ -202,7 +202,7 @@ Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
 #### MSK Configuration
 
 Wildcard DNS pattern [1]: `*.aklivity.[...].amazonaws.com`\
-Port number: `9094`
+Port number: `9096`
 
 #### MSK Proxy Configuration
 
@@ -212,7 +212,7 @@ Role: `aklivity-public-msk-proxy`\
 Security Groups: `my-msk-proxy`\
 Secrets Manager Secret ARN [3]: [`<LetsEncrypt signed certificate's private key secret ARN>`](../../reference/amazon-msk/create-server-certificate-letsencrypt.md)
 Public Wildcard DNS [4]: `*.example.aklivity.io`\
-Public Port: `9094`\
+Public Port: `9096`\
 Key pair for SSH access [5]: `<key pair>`
 
 ### Step3. Configure stack options: `(defaults)`
@@ -362,7 +362,7 @@ We can now verify that the Kafka client can successfully communicate with your M
 If using the wildcard DNS pattern `*.example.aklivity.io`, then we use the following as TLS bootstrap server names for the Kafka client:
 
 ```text:no-line-numbers
-b-1.example.aklivity.io:9094,b-2.example.aklivity.io:9094,b-3.example.aklivity.io:9094
+b-1.example.aklivity.io:9096,b-2.example.aklivity.io:9096,b-3.example.aklivity.io:9096
 ```
 
 ::: warning
