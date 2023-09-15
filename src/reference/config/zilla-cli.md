@@ -143,10 +143,8 @@ stopped
 
 ### zilla tune
 
-::: info Feature Coming Soon
-
-This is currently in the incubator. Follow the [Zilla repo](https://github.com/aklivity/zilla/releases) to know when it will be released!
-
+::: info Feature Coming Soon <HopeIcon icon="circle-right"/>
+This is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
 :::
 
 The `zilla tune` command tunes the mapping from runtime engine workers to bindings.

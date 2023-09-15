@@ -1,6 +1,6 @@
 ---
-shortTitle: mqtt 🔜
-description: Zilla runtime mqtt binding (incubator)
+shortTitle: mqtt
+description: Zilla runtime mqtt binding
 category:
   - Binding
 tag:
@@ -10,12 +10,6 @@ tag:
 # mqtt Binding
 
 Zilla runtime mqtt binding.
-
-::: info Feature Coming Soon
-
-This is currently in the incubator. Follow the [Zilla repo](https://github.com/aklivity/zilla/releases) to know when it will be released!
-
-:::
 
 ```yaml {2}
 mqtt_server:

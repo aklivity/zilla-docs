@@ -1,6 +1,6 @@
 ---
-shortTitle: mqtt-kafka 🔜
-description: Zilla runtime mqtt-kafka binding (incubator)
+shortTitle: mqtt-kafka
+description: Zilla runtime mqtt-kafka binding
 category:
   - Binding
 tag:
@@ -10,12 +10,6 @@ tag:
 # mqtt-kafka Binding
 
 Zilla runtime mqtt-kafka binding.
-
-::: info Feature Coming Soon
-
-This is currently in the incubator. Follow the [Zilla repo](https://github.com/aklivity/zilla/releases) to know when it will be released!
-
-:::
 
 ```yaml {2}
 mqtt_kafka_proxy:
