@@ -23,8 +23,15 @@ mqtt_server:
   kind: server
   routes:
     - when:
-        - topic: messages
-          capabilities: publish_and_subscribe
+        - topic: sensor/one
+          capabilities: publish
+      exit: mqtt_kafka_proxy
+    - when:
+        - topic: sensor/two
+          capabilities: subscribe
+      exit: mqtt_kafka_proxy
+    - when:
+         - capabilities: session
       exit: mqtt_kafka_proxy
 ```
 
@@ -100,7 +107,7 @@ List of conditions (any match) to match this route.
 routes:
   - when:
       - topic: echo
-        capabilities: publish_and_subscribe
+        capabilities: publish
 ```
 
 #### when[].topic\*
@@ -111,10 +118,10 @@ Topic name.
 
 #### when[].capabilities
 
-> `enum` [ "session", "publish_only", "subscribe_only", "publish_and_subscribe" ]
+> `enum` [ "session", "publish_only", "subscribe_only" ]
 
-Session, publish, subscribe, or both publish and subscribe.\
-Defaults to `"publish_and_subscribe"`.
+Session, publish, subscribe.\
+Publish and subscribe if not specified.
 
 ### routes[].exit\*
 
