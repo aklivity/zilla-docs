@@ -16,6 +16,7 @@ mqtt_kafka_proxy:
   type: mqtt-kafka
   kind: proxy
   options:
+    server: mqtt-1.example.com:1883
     topics:
       sessions: mqtt-sessions
       messages: mqtt-messages
@@ -51,15 +52,23 @@ Behave as a `mqtt-kafka` `proxy`.
 
 > `object`
 
-`mqtt-kafka`-specific options for configuring the `kafka` topics that the proxy will use to route mqtt messages and session states
+`mqtt-kafka`-specific options for configuring the `kafka` topics that the proxy will use to route mqtt messages and session states; and define server reference of the MQTT server in Zilla
 
 ```yaml
 options:
+  server: mqtt-1.example.com:1883
   topics:
     sessions: mqtt-sessions
     messages: mqtt-messages
     retained: mqtt-retained
 ```
+
+#### options.server
+
+> `object`
+
+The server reference used by the MQTT server in Zilla. This config enables scaling of the MQTT server when running multiple Zilla instances as it uses server redirection.
+(TODO: how much should we explain here? Or a different section? https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901255)
 
 #### options.topics.sessions
 
