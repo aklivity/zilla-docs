@@ -17,16 +17,15 @@ mqtt_server:
   kind: server
   routes:
     - when:
-        - topic: sensor/one
-          capabilities: publish
-      exit: mqtt_kafka_proxy
-    - when:
-        - topic: sensor/two
-          capabilities: subscribe
-      exit: mqtt_kafka_proxy
-    - when:
-         - capabilities: session
-      exit: mqtt_kafka_proxy
+        - session:
+            - client-id: "*"
+        - publish:
+            - topic: command/one
+            - topic: command/two
+        - subscribe:
+            - topic: reply
+      exit: mqtt_kafka_proxy1
+  exit: mqtt_kafka_proxy0
 ```
 
 ## Summary
@@ -100,22 +99,34 @@ List of conditions (any match) to match this route.
 ```yaml
 routes:
   - when:
-      - topic: echo
-        capabilities: publish
+      - session:
+          - client-id: "*"
+      - publish:
+          - topic: command/one
+          - topic: command/two
+      - subscribe:
+          - topic: reply
+    exit: mqtt_kafka_proxy1
 ```
 
-#### when[].topic\*
+#### when[].session[]
 
-> `string`
+> `array`
 
-Topic name.
+Array of client identifiers, allowing the usage of wildcards.
 
-#### when[].capabilities
+#### when[].publish[]
 
-> `enum` [ "session", "publish_only", "subscribe_only" ]
+> `array`
 
-Session, publish, subscribe.\
-Publish and subscribe if not specified.
+Array of MQTT topic names for publish capability.
+
+#### when[].subscribe[]
+
+> `array`
+
+Array of MQTT topic names for subscribe capability.
+
 
 ### routes[].exit\*
 
