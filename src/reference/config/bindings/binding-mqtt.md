@@ -1,6 +1,6 @@
 ---
-shortTitle: mqtt 🔜
-description: Zilla runtime mqtt binding (incubator)
+shortTitle: mqtt
+description: Zilla runtime mqtt binding
 category:
   - Binding
 tag:
@@ -11,21 +11,21 @@ tag:
 
 Zilla runtime mqtt binding.
 
-::: info Feature Coming Soon
-
-This is currently in the incubator. Follow the [Zilla repo](https://github.com/aklivity/zilla/releases) to know when it will be released!
-
-:::
-
 ```yaml {2}
 mqtt_server:
   type: mqtt
   kind: server
   routes:
     - when:
-        - topic: messages
-          capabilities: publish_and_subscribe
-      exit: mqtt_kafka_proxy
+        - session:
+            - client-id: "*"
+        - publish:
+            - topic: command/one
+            - topic: command/two
+        - subscribe:
+            - topic: reply
+      exit: mqtt_kafka_proxy1
+  exit: mqtt_kafka_proxy0
 ```
 
 ## Summary
@@ -99,22 +99,34 @@ List of conditions (any match) to match this route.
 ```yaml
 routes:
   - when:
-      - topic: echo
-        capabilities: publish_and_subscribe
+      - session:
+          - client-id: "*"
+      - publish:
+          - topic: command/one
+          - topic: command/two
+      - subscribe:
+          - topic: reply
+    exit: mqtt_kafka_proxy1
 ```
 
-#### when[].topic\*
+#### when[].session[]
 
-> `string`
+> `array`
 
-Topic name.
+Array of client identifiers, allowing the usage of wildcards.
 
-#### when[].capabilities
+#### when[].publish[]
 
-> `enum` [ "session", "publish_only", "subscribe_only", "publish_and_subscribe" ]
+> `array`
 
-Session, publish, subscribe, or both publish and subscribe.\
-Defaults to `"publish_and_subscribe"`.
+Array of MQTT topic names for publish capability.
+
+#### when[].subscribe[]
+
+> `array`
+
+Array of MQTT topic names for subscribe capability.
+
 
 ### routes[].exit\*
 

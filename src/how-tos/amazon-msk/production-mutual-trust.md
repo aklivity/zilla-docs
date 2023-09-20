@@ -23,7 +23,6 @@ The following AWS services are used by [Zilla Plus (Public MSK Proxy)](https://a
 
 | Service                     | Required                                                                               | Usage                | Quota                                                                                         |
 | --------------------------- | -------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
-| Marketplace Metering        | Yes                                                                                    | Startup, then hourly | [None](https://docs.aws.amazon.com/general/latest/gr/aws-marketplace.html)                    |
 | Resource Groups and Tagging | Yes                                                                                    | Startup only         | [None](https://docs.aws.amazon.com/general/latest/gr/arg.html#arg-quotas)                     |
 | Secrets Manager             | Yes                                                                                    | Startup only         | [Not reached](https://docs.aws.amazon.com/general/latest/gr/asm.html#limits\_secrets-manager) |
 | Certificate Manager         | No<br><br>Private key and certificate can be inline in Secrets Manager instead | Startup only         | [Not reached](https://docs.aws.amazon.com/general/latest/gr/acm.html#limits\_acm)             |
@@ -67,7 +66,10 @@ Name: `aklivity`\
 VPC: `my-msk-cluster`\
 Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
 
-Private Certificate Authority: `Mutual Authentication CA`
+Access control methods: `TLS client certificates`\
+AWS Private CAs: `Mutual Authentication CA`
+
+Review and create the MSK Cluster.
 
 ::: tip
 This creates your MSK cluster in preparation for secure access via the internet.

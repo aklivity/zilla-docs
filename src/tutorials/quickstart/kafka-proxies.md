@@ -31,7 +31,7 @@ Fork each of these collections into your own workspace.
 
 ## Zilla Docker Compose Stack
 
-Download the [quickstart](https://github.com/aklivity/zilla-examples/tree/main/quickstart) folder from the zilla-examples repo. The docker compose file will create everything you need for this quickstart. The `setup.sh` script will start and restart the backend. The `teardown.sh` script stops and destroys all of the containers. 
+Download the Zilla [quickstart](https://github.com/aklivity/zilla-examples/tree/main/quickstart) folder from the zilla-examples repo. The docker compose file will create everything you need for this quickstart. The `setup.sh` script will start and restart the backend. The `teardown.sh` script stops and destroys all of the containers. 
 
 The key components this script will setup:
 
@@ -39,6 +39,7 @@ The key components this script will setup:
 - Kafka instance and topics
 - [Kafka UI](http://localhost/ui/clusters/local/all-topics) for browsing topics & messages
 - gRPC Route Guide server
+- MQTT message simulator
 
 ::: code-tabs#bash
 
@@ -65,6 +66,9 @@ This Zilla quickstart hosts a UI for the Kafka cluster. Go to the [topics page](
 - **echo-service-messages** - gRPC echo messages
 - **route-guide-requests** - gRPC RouteGuide requests
 - **route-guide-responses** - gRPC RouteGuide responses
+- **iot-messages** - MQTT messages responses
+- **iot-retained** - MQTT messages with the retained flag
+- **iot-sessions** - MQTT sessions
 
 ## REST Kafka proxy
 
@@ -80,7 +84,7 @@ Zilla can be configured for request-response over Kafka topics both synchronousl
 
 - [REST proxy guide](../../concepts/kafka-proxies/rest-proxy.md)
 - [HTTP proxy example](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)
-- [JWT example](https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt)
+- [JWT Auth example](https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt)
 - [Kafka cache example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.cache)
 - [Kafka sync example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
 - [Kafka async example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
@@ -98,7 +102,7 @@ Zilla can be configured for more use cases that we aren't able to cover in this 
 
 - [REST proxy guide](../../concepts/kafka-proxies/sse-proxy.md)
 - [Kafka fanout example](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
-- [JWT example](https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt)
+- [JWT Auth example](https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt)
 :::
 
 ## gRPC Kafka proxy
@@ -115,6 +119,35 @@ Zilla can be configured for more use cases that we aren't able to cover in this 
 - [gRPC proxy example](https://github.com/aklivity/zilla-examples/tree/main/grpc.proxy)
 - [Kafka fanout example](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
 - [Kafka proxy example](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+:::
+
+## MQTT Kafka proxy
+
+Zilla provides a MQTT broker by implementing the v5 protocol. Clients can connect and send MQTT messages where zilla will store them in one of three defined Kafka topics. This quickstart manages all messages, messages marked with the `retained` flag, and sessions on the defined topics.
+
+```yaml:no-line-numbers
+options:
+  topics:
+    sessions: iot-sessions
+    messages: iot-messages
+    retained: iot-retained
+```
+
+There is an `mqtt-simulator` included in the quickstart that will produce mock messages and sent to Zilla. The simulator uses the python `paho-mqtt` library and the MQTT v5 protocol.
+
+You can also connect at `localhost:1883` and send messages to zilla with [mosquitto](https://mosquitto.org/download/) or your own v5 client.
+
+```bash:no-line-numbers
+mosquitto_pub -V '5' -t 'zilla-quickstart' -m 'Hello, world' -d
+```
+
+The Postman collection exposes the `iot-messages` and `iot-retained` topics using the [http-kafka](../../reference/config/bindings/binding-http-kafka.md) binding and a stream of all messages using the [sse-kafka](../../reference/config/bindings/binding-sse-kafka.md) binding
+
+::: note Going Deeper
+Zilla can be configured for more use cases that we aren't able to cover in this quickstart. Here are some other interesting examples you will want to check out.
+
+- [MQTT Kafka example](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect)
+- [JWT Auth example](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect.jwt)
 :::
 
 ## Metrics

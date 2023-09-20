@@ -196,6 +196,21 @@ export const enSidebar = sidebar({
           ],
         },
         {
+          text: "MQTT-Kafka Proxy",
+          collapsible: true,
+          link: "concepts/kafka-proxies/mqtt-proxy.md",
+          children: [
+            {
+              text: "Overview",
+              link: "concepts/kafka-proxies/mqtt-proxy.md",
+            },
+            {
+              text: "Create a Simple REST API",
+              link: "tutorials/mqtt/mqtt-intro.md",
+            }
+          ],
+        },
+        {
           text: "Amazon MSK Pubic Proxy",
           collapsible: true,
           icon: "plus",
