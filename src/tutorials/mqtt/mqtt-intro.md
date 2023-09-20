@@ -19,7 +19,7 @@ Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same director
 @tab zilla.yaml
 
 ```yaml {10,23-25,37,38}
-name: MQTT-example
+name: MQTT-intro
 bindings:
 
 # Gateway ingress config
@@ -28,8 +28,11 @@ bindings:
     kind: server
     options:
       host: 0.0.0.0
-      port: 1883
+      port:
+        - 1883
     exit: mqtt_server
+
+# MQTT Broker With an exit to Kafka
   mqtt_server:
     type: mqtt
     kind: server
@@ -70,7 +73,7 @@ bindings:
     kind: client
     options:
       host: kafka
-      port: 9092
+      port: 29092
     routes:
       - when:
           - cidr: 0.0.0.0/0
@@ -81,36 +84,50 @@ bindings:
 ```yaml
 version: '3'
 services:
+
+  zilla:
+    image: ghcr.io/aklivity/zilla:latest
+    depends_on:
+      - kafka
+    ports:
+      - 1883:1883
+    volumes:
+      - ./zilla.yaml:/etc/zilla/zilla.yaml
+    command: start -v -e
+
   kafka:
     image: docker.io/bitnami/kafka:latest
     container_name: kafka
     ports:
-      - "9092:9092"
+      - 9092:9092
+      - 29092:9092
     environment:
       ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_CFG_NODE_ID: "1"
+      KAFKA_CFG_BROKER_ID: "1"
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: "1@127.0.0.1:9093"
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: "CLIENT:PLAINTEXT,INTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT"
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+      KAFKA_CFG_LOG_DIRS: "/tmp/logs"
+      KAFKA_CFG_PROCESS_ROLES: "broker,controller"
+      KAFKA_CFG_LISTENERS: "CLIENT://:9092,INTERNAL://:29092,CONTROLLER://:9093"
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: "INTERNAL"
+      KAFKA_CFG_ADVERTISED_LISTENERS: "CLIENT://localhost:9092,INTERNAL://kafka:29092"
+      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
 
   kafka-init:
-    image: docker.io/bitnami/kafka:latest
+    image: docker.io/bitnami/kafka:3.2
     command: 
       - "/bin/bash"
       - "-c"
-      - "/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic mqtt-sessions"
-      - "/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic mqtt-messages"
-      - "/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic mqtt-retained"
+      -  |
+        /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --create --if-not-exists --topic mqtt-messages
+        /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --create --if-not-exists --topic mqtt-sessions --config cleanup.policy=compact
+        /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --create --if-not-exists --topic mqtt-retained --config cleanup.policy=compact
     depends_on:
       - kafka
     init: true
 
-  zilla:
-    image: ghcr.io/aklivity/zilla:latest
-    container_name: zilla
-    depends_on:
-      - kafka
-    ports:
-      - "1883:1883"
-    volumes:
-      - ./zilla.yaml:/etc/zilla/zilla.yaml
-    command: start -v
 
 networks:
   default:
@@ -128,12 +145,22 @@ docker-compose up -d
 
 ### Use [mosquitto_pub](https://mosquitto.org/download/) to send a greeting
 
+Subscribe to the `zilla` topic
+
+```bash:no-line-numbers
+mosquitto_sub -V 'mqttv5' --topic 'zilla' --debug
+```
+
+In a separate session publish a message on the `zilla` topic
+
 ```bash:no-line-numbers
 mosquitto_pub -V 'mqttv5' --topic 'zilla' --message 'Hello, world' --debug --insecure
 ```
 
+Your subscribed session should receive the message
+
 ::: note Wait for the services to start
-if you get this response `curl: (52) Empty reply from server`, the likely cause is Zilla and Kafka are still starting up.
+if you are stuck on `Client null sending CONNECT`, the likely cause is Zilla and Kafka are still starting up.
 :::
 
 ### Remove the running containers

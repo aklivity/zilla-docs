@@ -1,7 +1,8 @@
 version: '3'
 services:
   kafka:
-    image: docker.io/bitnami/kafka:3.2
+    image: docker.io/bitnami/kafka:latest
+    container_name: kafka
     ports:
       - 9092:9092
       - 29092:9092
@@ -32,36 +33,15 @@ services:
       - kafka
     init: true
 
-  kafka-ui:
-    container_name: kafka-ui-zq
-    image: provectuslabs/kafka-ui:latest
-    ports:
-      - 80:8080
-    depends_on:
-      kafka-init:
-        condition: service_completed_successfully
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
-
   zilla:
     image: ghcr.io/aklivity/zilla:develop-SNAPSHOT
     depends_on:
       - kafka
     ports:
       - 1883:1883
-      - 8080:8080
-      - 9090:9090
     volumes:
       - ./zilla.yaml:/etc/zilla/zilla.yaml
     command: start -v -e
-
-  mqtt-simulator:
-    build: https://github.com/DamascenoRafael/mqtt-simulator.git
-    restart: on-failure
-    depends_on:
-      kafka-init:
-        condition: service_completed_successfully
 
 networks:
   default:
