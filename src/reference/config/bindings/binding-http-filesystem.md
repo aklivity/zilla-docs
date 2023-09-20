@@ -124,7 +124,10 @@ Path with optional embedded parameter names, such as `/{path}`.
 Next binding when following this route.
 
 ```yaml
-exit: filesystem_server
+routes:
+  - when:
+    ...
+    exit: filesystem_server
 ```
 
 ### routes[].with

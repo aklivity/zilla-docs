@@ -24,8 +24,7 @@ mqtt_server:
             - topic: command/two
         - subscribe:
             - topic: reply
-      exit: mqtt_kafka_proxy1
-  exit: mqtt_kafka_proxy0
+  exit: mqtt_kafka_proxy
 ```
 
 ## Summary
@@ -45,8 +44,12 @@ Conditional routes based on the `topic` `name` are used to route these applicati
 - [routes](#routes)
 - [routes\[\].guarded](#routes-guarded)
 - [routes\[\].when](#routes-when)
-  - [when\[\].topic\*](#when-topic)
-  - [when\[\].capabilities](#when-capabilities)
+  - [when\[\].session](#when-session)
+    - [session.client-id](#session-client-id)
+  - [when\[\].publish](#when-publish)
+    - [publish.topic](#publish-topic)
+  - [when\[\].subscribe](#when-subscribe)
+    - [subscribe.topic](#subscribe-topic)
 - [routes\[\].exit\*](#routes-exit)
 
 ::: right
@@ -99,33 +102,54 @@ List of conditions (any match) to match this route.
 ```yaml
 routes:
   - when:
+      # any required
       - session:
           - client-id: "*"
       - publish:
           - topic: command/one
-          - topic: command/two
       - subscribe:
           - topic: reply
-    exit: mqtt_kafka_proxy1
+  - when:
+      # all required
+      - session:
+          - client-id: "*"
+        publish:
+          - topic: command/two
+        subscribe:
+          - topic: reply
 ```
 
-#### when[].session[]
+#### when[].session
 
-> `array`
+> `array` of `object`
 
-Array of client identifiers, allowing the usage of wildcards.
+Array of mqtt session properties
 
-#### when[].publish[]
+##### session.client-id
 
-> `array`
+> `string`
+
+An MQTT client identifier, allowing the usage of wildcards.
+
+#### when[].publish
+
+> `array` of `object`
 
 Array of MQTT topic names for publish capability.
 
-#### when[].subscribe[]
+##### publish.topic
 
-> `array`
+> `string`
+
+#### when[].subscribe
+
+> `array` of `object`
 
 Array of MQTT topic names for subscribe capability.
+
+##### subscribe.topic
+
+> `string`
 
 
 ### routes[].exit\*
@@ -135,7 +159,10 @@ Array of MQTT topic names for subscribe capability.
 Next binding when following this route.
 
 ```yaml
-exit: mqtt_kafka_proxy
+routes:
+  - when:
+    ...
+    exit: mqtt_kafka_proxy
 ```
 
 ---

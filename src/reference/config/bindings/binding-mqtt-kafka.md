@@ -34,6 +34,11 @@ Defines a binding with `mqtt-kafka`  support, with `proxy` behavior.
 
 - [kind\*](#kind)
 - [options](#options)
+  - [options.server](#options-server)
+  - [options.topics](#options-topics)
+    - [topics.sessions\*](#topics-sessions)
+    - [topics.messages\*](#topics-messages)
+    - [topics.retained\*](#topics-retained)
 - [exit](#exit)
 
 ::: right
@@ -54,37 +59,46 @@ Behave as a `mqtt-kafka` `proxy`.
 
 `mqtt-kafka`-specific options for configuring the `kafka` topics that the proxy will use to route mqtt messages and session states; and define server reference of the MQTT server in Zilla
 
+#### options.server
+
+> `string`
+
+The server reference used by the MQTT server in Zilla. This config enables scaling of the MQTT server when running multiple Zilla instances as it uses [server redirection](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901255).
+
 ```yaml
 options:
   server: mqtt-1.example.com:1883
+```
+
+#### options.topics
+
+> `object`
+
+The `kafka` topics Zilla needs when routing MQTT messages
+
+```yaml
+options:
   topics:
     sessions: mqtt-sessions
     messages: mqtt-messages
     retained: mqtt-retained
 ```
 
-#### options.server
+##### topics.sessions\*
 
-> `object`
-
-The server reference used by the MQTT server in Zilla. This config enables scaling of the MQTT server when running multiple Zilla instances as it uses server redirection.
-(TODO: how much should we explain here? Or a different section? https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901255)
-
-#### options.topics.sessions
-
-> `object`
+> `string`
 
 Compacted Kafka topic for storing mqtt session states.
 
-#### options.topics.messages
+##### topics.messages\*
 
-> `object`
+> `string`
 
 Kafka topic used for routing mqtt messages.
 
-#### options.topics.retained
+##### topics.retained\*
 
-> `object`
+> `string`
 
 Compacted Kafka topic for storing mqtt retained messages.
 

@@ -136,7 +136,10 @@ Path with optional embedded parameter names, such as `/{topic}`.
 Next binding when following this route.
 
 ```yaml
-exit: kafka_cache_client
+routes:
+  - when:
+    ...
+    exit: kafka_cache_client
 ```
 
 ### routes[].with
