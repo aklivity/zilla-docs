@@ -1,4 +1,8 @@
-# REST Proxy
+---
+description: Zilla lets you configure application-centric REST API endpoints that unlock Kafka event-driven architectures.
+---
+
+# REST Kafka Proxy
 <!-- TODO enable -->
 <!-- markdownlint-disable -->
 
@@ -104,7 +108,7 @@ bindings:
 
 ### CORS
 
-Zilla supports Cross-Origin Resource Sharing (CORS)  and allows you to specify fine-grained access control including specific request origins, methods and headers allowed, and specific response headers exposed. Since it acts more like a guard and has no dependency on Apache Kafka configuration, you need to define it in the [http binding](../../reference/config/bindings/binding-http.md)
+Zilla supports Cross-Origin Resource Sharing (CORS) and allows you to specify fine-grained access control including specific request origins, methods and headers allowed, and specific response headers exposed. Since it acts more like a guard and has no dependency on Apache Kafka configuration, you need to define it in the [http binding](../../reference/config/bindings/binding-http.md)
 
 ### zilla.yaml
 
@@ -132,7 +136,7 @@ http_server:
 
 ### Authorization
 
-Since `Zilla` config is very much modular it has the concept of [`guard`](../../reference/config/overview.md#guards) where you define your `guard` configuration and reference that `guard` to authorize a specific endpoint. Currently, `Zilla`  supports [`JSON Web Token (JWT)`](../../reference/config/guards/guard-jwt.md)  mechanism to authorize the endpoint.
+Since `Zilla` config is very much modular it has the concept of [`guard`](../../reference/config/overview.md#guards) where you define your `guard` configuration and reference that `guard` to authorize a specific endpoint. Currently, `Zilla`  supports [`JSON Web Token (JWT)`](../../reference/config/guards/guard-jwt.md) mechanism to authorize the endpoint.
 
 The information about keys and other details such as issuer and audience you can get from `JWT` providers for example in the case of Auth0 you can use the command below.
 
