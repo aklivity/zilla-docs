@@ -119,11 +119,11 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Apache Kafka Proxying",
+      text: "Kafka Proxying",
       link: "concepts/kafka-proxies/rest-proxy.md",
       children: [
         {
-          text: "REST-Kafka Proxy",
+          text: "REST Kafka Proxy",
           collapsible: true,
           link: "concepts/kafka-proxies/rest-proxy.md",
           children: [
@@ -152,7 +152,7 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "SSE-Kafka Proxy",
+          text: "SSE Kafka Proxy",
           collapsible: true,
           link: "concepts/kafka-proxies/sse-proxy.md",
           children: [
@@ -181,7 +181,7 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "gRPC-Kafka Proxy",
+          text: "gRPC Kafka Proxy",
           collapsible: true,
           link: "concepts/kafka-proxies/grpc-proxy.md",
           children: [
@@ -196,7 +196,7 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "MQTT-Kafka Proxy",
+          text: "MQTT Kafka Proxy",
           collapsible: true,
           link: "concepts/kafka-proxies/mqtt-proxy.md",
           children: [
@@ -205,7 +205,7 @@ export const enSidebar = sidebar({
               link: "concepts/kafka-proxies/mqtt-proxy.md",
             },
             {
-              text: "Create a Simple REST API",
+              text: "Create a Simple MQTT Broker",
               link: "tutorials/mqtt/mqtt-intro.md",
             }
           ],

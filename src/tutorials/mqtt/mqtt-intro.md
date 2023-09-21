@@ -18,7 +18,7 @@ Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same director
 
 @tab zilla.yaml
 
-```yaml {10,23-25,37,38}
+```yaml {11,26-28,41-42}
 name: MQTT-intro
 bindings:
 
@@ -81,7 +81,7 @@ bindings:
 
 @tab docker-compose.yaml
 
-```yaml
+```yaml {9,40-42}
 version: '3'
 services:
 
@@ -175,7 +175,7 @@ Go deeper into this concept with the [mqtt.kafka.reflect](https://github.com/akl
 
 ## Going Deeper
 
-Try out more HTTP examples:
+Try out more MQTT examples:
 
 - [mqtt.kafka.reflect](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect)
 - [mqtt.kafka.reflect.jwt](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect.jwt)

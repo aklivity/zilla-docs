@@ -1,17 +1,14 @@
 ---
-description: This guide will walk through each unique way Zilla manages MQTT Pub/Sub connections and messages.
+description: This guide will walk through the way Zilla manages MQTT Pub/Sub connections and messages.
 ---
 
-# MQTT Proxy
+# MQTT Kafka Proxy
 
-This guide will walk through each unique way Zilla manages MQTT Pub/Sub connections and messages.
+This guide will walk through the way Zilla manages MQTT Pub/Sub connections and messages.
 
-An MQTT server typically acts as a broker between publishers and subscribers. This requires a complex protocol to manage the wide range of small IoT device use cases. By proxying these messages on and off of Kafka with the [mqtt-kafka](../../reference/config/bindings/binding-mqtt-kafka.md) binding, IoT devices can transmit data to a wider range of tech stacks and adapting to business needs.
+An MQTT server acts as a broker between publishers and subscribers. This requires a complex protocol to manage the wide range of IoT devices and use cases. By proxying these messages on and off of Kafka with the [mqtt-kafka](../../reference/config/bindings/binding-mqtt-kafka.md) binding, IoT devices can transmit data to a wider range of tech stacks, adapting to more business needs.
 
-Unlike other proxies, Zilla manages the different MQTT topics instead of passing them down to kafka. This allows more control over the Kafka architecture. Subscribers and publishers won't need to do any extra work since Zilla supports the native MQTT protocol.
-
-
-> MQTT reflect kinda like echo but the relay is from all clients and not a 1:1. Pub/Sub implies 1-many pub and 1-many sub.
+Unlike other proxies, Zilla manages the different MQTT topics instead of blindly passing them down to Kafka. This way the Kafka architecture can be optimized for MQTT Pub/Sub. MQTT client subscribers and publishers will communicate with Zilla the same as any broker.
 
 ## Step 1: Declaring the broker
 
@@ -26,65 +23,56 @@ mqtt_server:
 mqtt_kafka_proxy:
   type: mqtt-kafka
   kind: proxy
+  options:
+    topics:
+      sessions: mqtt-sessions
+      messages: mqtt-messages
+      retained: mqtt-retained
 ```
 
 ### Protocol version
 
-MQTT v5, no clean_session.
+The Zilla MQTT `server` supports the [MQTT v5.0 Specification].
 
 ::: info Feature Coming Soon <HopeIcon icon="circle-right"/>
-MQTT v3.1 and v3.1.1 support is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
+[MQTT v3.1.1 Specification] support is currently on the [Zilla roadmap]. Star and watch the [Zilla repo] for new releases!
 :::
+
+[MQTT v5.0 Specification]:https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html
+[MQTT v3.1.1 Specification]:http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html
+[Zilla roadmap]:https://github.com/orgs/aklivity/projects/4
+[Zilla repo]:https://github.com/aklivity/zilla/releases
 
 ### QOS
 
-At most once (QoS 0)
-At least once (QoS 1)
-Exactly once (QoS 2)
+The Zilla MQTT `server` supports the "At most once (QoS 0)" Quality of Service flag.
 
 ::: info Feature Coming Soon <HopeIcon icon="circle-right"/>
-At least once (QoS 1) and Exactly once (QoS 2) delivery will be support is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
+At least once (QoS 1) and Exactly once (QoS 2) delivery will be support is currently on the [Zilla roadmap]. Star and watch the [Zilla repo] for new releases!
 :::
 
 ## Step 2: Pub/Sub message reflect with Kafka
 
-Zilla manages MQTT pub/sub using three kafka topics. The specific topic names can be configured using the [options.topics](../../reference/config/bindings/binding-mqtt-kafka.md#options-topics) property
+Zilla manages MQTT pub/sub using three kafka topics. The specific topic names can be configured using the [options.topics](../../reference/config/bindings/binding-mqtt-kafka.md#options-topics) property.
 
-```yaml{7-8}
-mqtt_kafka_proxy:
-  type: mqtt-kafka
-  kind: proxy
-  options:
-    topics:
-      sessions: mqtt-sessions
-      messages: mqtt-messages
-      retained: mqtt-retained
+```yaml
+topics:
+  messages: mqtt-messages
+  retained: mqtt-retained
+  sessions: mqtt-sessions
 ```
 
-The message topic becomes the kafka key
+### Messages on Kafka
 
-all messages on the messages topic
+All MQTT messages brokered by Zilla are published on the `messages` Kafka topic. The MQTT message topic becomes the kafka key
 
-When the `retain` flag is set, a copy of the message is stored on the `retained` topic
+### Retaining Messages
 
+MQTT messages with the `retain` flag set will have a copy published on the `retained` Kafka topic.
 
-## Step 3: Client Session Management
+### Session Management
 
-Now that messages are in Kafka we need to send them to the gRPC services responsible for processing them. For this, we will be using the [mqtt-kafka](../../reference/config/bindings/binding-mqtt-kafka.md) binding.
-
-```yaml{6}
-mqtt_kafka_proxy:
-  type: mqtt-kafka
-  kind: proxy
-  options:
-    topics:
-      sessions: mqtt-sessions
-      messages: mqtt-messages
-      retained: mqtt-retained
-```
-
-### Sessions
-
+MQTT connect and disconnect messages are published on the `sessions` Kafka topic.
 
 ## Step 3: Authorizing clients
 

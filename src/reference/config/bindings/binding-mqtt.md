@@ -29,9 +29,9 @@ mqtt_server:
 
 ## Summary
 
-Defines a binding with `mqtt 5.0` protocol support, with `server` behavior.
+Defines a binding with [MQTT v5.0](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html) protocol support, with `server` behavior.
 
-The `server` kind `mqtt` binding decodes `mqtt 5.0` protocol on the inbound network stream, producing higher level application streams for each `publish` or `subscribe` `topic`. The `session` state is also described by a higher level application stream.
+The `server` kind `mqtt` binding decodes the MQTT protocol on the inbound network stream, producing higher level application streams for each `publish` or `subscribe` `topic`. The `session` state is also described by a higher level application stream.
 
 Conditional routes based on the `topic` `name` are used to route these application streams to an `exit` binding.
 

@@ -1,4 +1,8 @@
-# REST Proxy
+---
+description: Zilla lets you configure application-centric REST API endpoints that unlock Kafka event-driven architectures.
+---
+
+# REST Kafka Proxy
 <!-- TODO enable -->
 <!-- markdownlint-disable -->
 
