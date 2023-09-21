@@ -25,6 +25,7 @@ Fork each of these collections into your own workspace.
 - [Zilla - REST Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/28401168-6941d1fa-698c-4da1-9789-2f806acf9fbb?action=share&creator=28401168)
 - [Zilla - SSE Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/28401168-09c165b3-6e68-45c2-aedb-494f130bc354?action=share&creator=28401168)
 - [Zilla - gRPC Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/64a85751808733dd197c599f?action=share&creator=28401168)
+- [Zilla - MQTT Kafka proxy - TODO:update url](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/collection/64a85751808733dd197c599f?action=share&creator=28401168)
 
 ![Collection header > View more actions > Create a Fork](./create-fork.png)
 
@@ -45,13 +46,13 @@ The key components this script will setup:
 
 @tab Start and Restart
 
-```bash
+```bash:no-line-numbers
 ./setup.sh
 ```
 
 @tab Shutdown
 
-```bash
+```bash:no-line-numbers
 ./teardown.sh
 ```
 
@@ -61,14 +62,14 @@ The key components this script will setup:
 
 This Zilla quickstart hosts a UI for the Kafka cluster. Go to the [topics page](http://localhost/ui/clusters/local/all-topics) to browse the data.
 
-- **items-crud** - REST CRUD messages
-- **events-sse** - SSE event messages
-- **echo-service-messages** - gRPC echo messages
-- **route-guide-requests** - gRPC RouteGuide requests
-- **route-guide-responses** - gRPC RouteGuide responses
-- **iot-messages** - MQTT messages responses
-- **iot-retained** - MQTT messages with the retained flag
-- **iot-sessions** - MQTT sessions
+- [items-crud](http://localhost/ui/clusters/local/all-topics/items-crud/messages) - REST CRUD messages
+- [events-sse](http://localhost/ui/clusters/local/all-topics/events-sse/messages) - SSE event messages
+- [echo-service-messages](http://localhost/ui/clusters/local/all-topics/echo-service-messages/messages) - gRPC echo messages
+- [route-guide-requests](http://localhost/ui/clusters/local/all-topics/route-guide-requests/messages) - gRPC RouteGuide requests
+- [route-guide-responses](http://localhost/ui/clusters/local/all-topics/route-guide-responses/messages) - gRPC RouteGuide responses
+- [iot-messages](http://localhost/ui/clusters/local/all-topics/iot-messages/messages) - MQTT messages responses
+- [iot-retained](http://localhost/ui/clusters/local/all-topics/iot-retained/messages) - MQTT messages with the retained flag
+- [iot-sessions](http://localhost/ui/clusters/local/all-topics/iot-sessions/messages) - MQTT sessions
 
 ## REST Kafka proxy
 
@@ -123,25 +124,17 @@ Zilla can be configured for more use cases that we aren't able to cover in this 
 
 ## MQTT Kafka proxy
 
-Zilla provides a MQTT broker by implementing the v5 protocol. Clients can connect and send MQTT messages where zilla will store them in one of three defined Kafka topics. This quickstart manages all messages, messages marked with the `retained` flag, and sessions on the defined topics.
+Zilla provides a MQTT broker by implementing the v5 Specification. Clients can connect and send MQTT messages where zilla will store them in one of three defined Kafka topics. This quickstart manages all messages, messages marked with the `retained` flag, and sessions on the defined topics.
 
-```yaml:no-line-numbers
-options:
-  topics:
-    sessions: iot-sessions
-    messages: iot-messages
-    retained: iot-retained
-```
+### Subscribe to simulated traffic
 
-There is an `mqtt-simulator` included in the quickstart that will produce mock messages and sent to Zilla. The simulator uses the python `paho-mqtt` library and the MQTT v5 protocol.
+There is an `mqtt-simulator` included in the quickstart that will produce mock messages and sent to Zilla. The simulator uses the python `paho-mqtt` library and the MQTT v5 specification.
 
-You can also connect at `localhost:1883` and send messages to zilla with [mosquitto](https://mosquitto.org/download/) or your own v5 client.
+### Publish your own messages
 
-```bash:no-line-numbers
-mosquitto_pub -V '5' -t 'zilla-quickstart' -m 'Hello, world' -d
-```
+Using your own topic name you can subscribe and publish an MQTT message.
 
-The Postman collection exposes the `iot-messages` and `iot-retained` topics using the [http-kafka](../../reference/config/bindings/binding-http-kafka.md) binding and a stream of all messages using the [sse-kafka](../../reference/config/bindings/binding-sse-kafka.md) binding
+Setting the `retain` flag to true on to your topic will send that message to the `retained` Kafka topic. After those messages are published a new subscription will get the last message sent for that topic.
 
 ::: note Going Deeper
 Zilla can be configured for more use cases that we aren't able to cover in this quickstart. Here are some other interesting examples you will want to check out.
@@ -152,4 +145,4 @@ Zilla can be configured for more use cases that we aren't able to cover in this 
 
 ## Metrics
 
-This Zilla quickstart collects basic metrics for the [streaming](../../reference/config/telemetry/metrics/metric-stream.md), [HTTP](../../reference/config/telemetry/metrics/metric-http.md), and [gRPC](../../reference/config/telemetry/metrics/metric-grpc.md) services. Go to [http://localhost:9090/metrics](http://localhost:9090/metrics) to see the the [Prometheus](../../reference/config/telemetry/exporter/exporter-prometheus.md) exported data.
+This Zilla quickstart collects basic metrics for the [streaming](../../reference/config/telemetry/metrics/metric-stream.md), [HTTP](../../reference/config/telemetry/metrics/metric-http.md), and [gRPC](../../reference/config/telemetry/metrics/metric-grpc.md) services. Go to [http://localhost:7190/metrics](http://localhost:7190/metrics) to see the the [Prometheus](../../reference/config/telemetry/exporter/exporter-prometheus.md) exported data.
