@@ -6,7 +6,7 @@ description: This guide will walk through each unique way Zilla manages MQTT Pub
 
 This guide will walk through each unique way Zilla manages MQTT Pub/Sub connections and messages.
 
-An MQTT server typically acts as a broker between publishers and subscribers. This requires a complex protocol to manage the wide range of small IoT device use cases. By proxying these messages on and off of Kafka with the [mqtt-kafka](../../reference/config/bindings/binding-mqtt-kakfa.md) binding, IoT devices can transmit data to a wider range of tech stacks and adapting to business needs.
+An MQTT server typically acts as a broker between publishers and subscribers. This requires a complex protocol to manage the wide range of small IoT device use cases. By proxying these messages on and off of Kafka with the [mqtt-kafka](../../reference/config/bindings/binding-mqtt-kafka.md) binding, IoT devices can transmit data to a wider range of tech stacks and adapting to business needs.
 
 Unlike other proxies, Zilla manages the different MQTT topics instead of passing them down to kafka. This allows more control over the Kafka architecture. Subscribers and publishers won't need to do any extra work since Zilla supports the native MQTT protocol.
 
@@ -70,7 +70,7 @@ When the `retain` flag is set, a copy of the message is stored on the `retained`
 
 ## Step 3: Client Session Management
 
-Now that messages are in Kafka we need to send them to the gRPC services responsible for processing them. For this, we will be using the [mqtt-kafka](../../reference/config/bindings/binding-mqtt-kakfa.md) binding.
+Now that messages are in Kafka we need to send them to the gRPC services responsible for processing them. For this, we will be using the [mqtt-kafka](../../reference/config/bindings/binding-mqtt-kafka.md) binding.
 
 ```yaml{6}
 mqtt_kafka_proxy:
@@ -123,4 +123,4 @@ bindings:
 
 ## Try it out
 
-Go check out the [mqtt.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.proxy) example for a full implementation of an EchoService.
+Go check out the [mqtt.kafka.reflect](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect) example for a full implementation of an EchoService.
