@@ -111,4 +111,4 @@ bindings:
 
 ## Try it out
 
-Go check out the [mqtt.kafka.reflect](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect) example for a full implementation of an EchoService.
+Go check out the [MQTT Kafka Reflect example](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect) or the [JWT Auth example](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.reflect.jwt) example for a full implementation of an MQTT proxy.
