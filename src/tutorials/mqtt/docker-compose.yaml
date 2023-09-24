@@ -34,7 +34,7 @@ services:
     init: true
 
   zilla:
-    image: ghcr.io/aklivity/zilla:develop-SNAPSHOT
+    image: ghcr.io/aklivity/zilla:latest
     depends_on:
       - kafka
     ports:
