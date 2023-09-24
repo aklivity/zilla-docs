@@ -205,6 +205,10 @@ export const enSidebar = sidebar({
               link: "concepts/kafka-proxies/mqtt-proxy.md",
             },
             {
+              text: "Run the Taxi Demo",
+              link: "https://github.com/aklivity/zilla-demos/tree/main/taxi",
+            },
+            {
               text: "Create a Simple MQTT Broker",
               link: "tutorials/mqtt/mqtt-intro.md",
             }
