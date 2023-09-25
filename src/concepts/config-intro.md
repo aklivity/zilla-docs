@@ -44,7 +44,7 @@ A route exists to direct messages on the stream to a desired exit point.
 
 ### When a Route matches
 
-Each route can list conditions (any match) to match entry data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct exit for a message.
+Each route can list conditions (any match) to match entry data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct `exit` for a message.
 
 #### Path and Method matches
 
@@ -64,13 +64,13 @@ After the route logic matches, additional parameters are applied `with` the inbo
 
 #### The Fetch capability
 
-Routes with the `fetch` capability map retrieval requests from a Kafka topic, supporting filtered or unfiltered retrieval of messages from the topic merged into a unified response. Filtering can apply to the Kafka message key, message headers, or a combination of both message key and headers.
+Routes with the `fetch` capability map retrieval requests from a Kafka topic, supporting filtered or unfiltered retrieval of messages from the topic partitions, merged into a unified response. Filtering can apply to the Kafka message key, message headers, or a combination of both message key and headers.
 
-The [http-kafka binding](../reference/config/bindings/binding-http-kafka.md) provides additional support for extracting parameter values from the inbound HTTP request path. Successful `200 OK` HTTP responses include an `etag` header that can be used with `if-none-match` for subsequent conditional `GET` requests to check for updates. Rather than polling, HTTP requests can also include the `prefer wait=N` header to wait a maximum of `N` seconds before responding with `304 Not Modified` if not modified. When a new message arrives on the topic that would modify the response, all `prefer: wait=N` clients receive the response immediately.
+The [http-kafka binding](../reference/config/bindings/binding-http-kafka.md) provides additional support for extracting parameter values from the inbound HTTP request path. Successful `200 OK` HTTP responses include an `etag` header that can be used with `if-none-match` for subsequent conditional `GET` requests to check for updates. Rather than polling, HTTP requests can also include the `prefer wait=N` header to wait a maximum of `N` seconds before responding with `304 Not Modified` if not modified. When a new message arrives on the topic that would modify the response, all `prefer: wait=N` clients receive the response immediately with a corresponding new `etag`.
 
 #### Reliable message delivery
 
-With the [grpc-kafka binding](../reference/config/bindings/binding-grpc-kafka.md), using the fetch capability, reliable message delivery is achieved by capturing the value of the `reliability` `field` injected into each response stream message at the gRPC client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new gRPC request.
+With the [grpc-kafka binding](../reference/config/bindings/binding-grpc-kafka.md), using the fetch capability, reliable message delivery is achieved by capturing the value of the `reliability` `field` injected into each response stream message at the gRPC client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new gRPC request. This allows interrupted streams to pick up where they left off without missing messages in the response stream.
 
 #### The Produce capability
 
