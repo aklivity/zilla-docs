@@ -8,21 +8,21 @@ description: Create a new IAM security role with managed or inline policies.
 
 The following parameters are needed when following these steps to create a new security role with policies.
 
-* Name
-* Managed Policies
-  * Name
-* Inline Policies
-  * Name
-  * Summary
+- Name
+- Managed Policies
+  - Name
+- Inline Policies
+  - Name
+  - Summary
 
 Throughout this guide we use the following example IAM Role parameters.
 
-* Name `my-role`
-* Managed Policies
-  * Name `AWSMarketplaceMeteringFullAccess`
-* Inline Policies
-  * Name `MySecretsManagerRead`
-  * Summary
+- Name `my-role`
+- Managed Policies
+  - Name `AWSMarketplaceMeteringFullAccess`
+- Inline Policies
+  - Name `MySecretsManagerRead`
+  - Summary
 
       ```json:no-line-numbers
       {

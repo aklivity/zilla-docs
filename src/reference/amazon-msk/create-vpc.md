@@ -6,27 +6,29 @@ description: >-
 
 # Create VPC
 
+replaced by [Create a VPC plus other VPC resources](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html#create-vpc-and-other-resources)
+
 ## Resource Parameters
 
 The following parameters are needed when following these steps to create a new VPC.
 
-* Name
-* CIDR
-* Region
+- Name
+- CIDR
+- Region
 
 Throughout this guide we use the following example VPC parameters.
 
-* VPC
-  * Name `my-vpc` and CIDR `10.0.0.0/16` in region `us-east-1`
+- VPC
+  - Name `my-vpc` and CIDR `10.0.0.0/16` in region `us-east-1`
 
 The remaining resources derive their attributes from the VPC parameters.
 
-* Subnets
-  * Name `my-vpc-1a` and CIDR `10.0.1.0/24` in zone `us-east-1a`
-  * Name `my-vpc-1b` and CIDR `10.0.2.0/24` in zone `us-east-1b`
-  * Name `my-vpc-1c` and CIDR `10.0.3.0/24` in zone `us-east-1c`
-* Internet Gateway
-  * Name `my-vpc-igw`
+- Subnets
+  - Name `my-vpc-1a` and CIDR `10.0.1.0/24` in zone `us-east-1a`
+  - Name `my-vpc-1b` and CIDR `10.0.2.0/24` in zone `us-east-1b`
+  - Name `my-vpc-1c` and CIDR `10.0.3.0/24` in zone `us-east-1c`
+- Internet Gateway
+  - Name `my-vpc-igw`
 
 When following this guide to create a specific VPC, replace the VPC name, CIDR and region as needed then derive the remaining resource attributes following the same pattern.
 

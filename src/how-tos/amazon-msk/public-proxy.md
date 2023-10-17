@@ -4,8 +4,6 @@ description: Securely access your Amazon MSK cluster via the internet.
 ---
 
 # Public MSK Proxy
-<!-- TODO enable -->
-<!-- markdownlint-disable -->
 
 [Zilla Plus](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}

@@ -5,7 +5,7 @@ html[data-theme=dark] #app {
     --border-color: #0e5c49;
     --tab-nav-bg-color: var(--code-tabs-nav-bg-color);
     --tab-nav-hover-color: var(--code-tabs-nav-hover-color);
-    --tab-bg-color: var(--code-bg-color);
+    --tab-bg-color: #161b25;
     --tab-nav-text-color: var(--code-tabs-nav-text-color);
     .vp-footer img.logo {
         content: url("/assets/footer-logo-white.png");
@@ -19,7 +19,7 @@ html[data-theme=light] #app {
     --code-bg-color: #f6f8fa;
     --tab-nav-bg-color: var(--code-tabs-nav-bg-color);
     --tab-nav-hover-color: var(--code-tabs-nav-hover-color);
-    --tab-bg-color: var(--code-bg-color);
+    --tab-bg-color: #e6f0f9;
     --tab-nav-text-color: var(--code-tabs-nav-text-color);
     .vp-footer img.logo {
         content: url("/assets/footer-logo.png");

@@ -8,16 +8,16 @@ description: Launch an EC2 instance with remote SSH access.
 
 The following parameters are needed when following these steps to launch a new EC2 instance.
 
-* VPC Name and Region
-* Instance AMI and Type
+- VPC Name and Region
+- Instance AMI and Type
 
 Throughout this guide we use the following example EC2 Instance parameters.
 
-* VPC
-  * Name `my-vpc` in region `us-east-1`
-* Instance
-  * Name `Amazon Linux 2 AMI (HVM), SSD Volume Type, 64-bit (x86)`
-  * Type `t3.small`
+- VPC
+  - Name `my-vpc` in region `us-east-1`
+- Instance
+  - Name `Amazon Linux 2 AMI (HVM), SSD Volume Type, 64-bit (x86)`
+  - Type `t3.small`
 
 ## Launch the EC2 instance
 

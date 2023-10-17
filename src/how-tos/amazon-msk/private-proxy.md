@@ -4,8 +4,6 @@ description: Securely access an Amazon MSK cluster across VPCs via AWS PrivateLi
 ---
 
 # Private MSK Proxy
-<!-- TODO enable -->
-<!-- markdownlint-disable -->
 
 [Zilla Plus](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
@@ -29,9 +27,9 @@ Check out the [Troubleshooting](../../reference/troubleshooting/amazon-msk.md) g
 
 Before setting up cross-VPC access to your MSK Cluster, you will need the following:
 
-* an MSK Cluster configured for TLS encrypted client access
-* an VPC security group for MSK Proxy instances
-* subscription to Zilla Plus (Private MSK Proxy) via AWS Marketplace
+- an MSK Cluster configured for TLS encrypted client access
+- an VPC security group for MSK Proxy instances
+- subscription to Zilla Plus (Private MSK Proxy) via AWS Marketplace
 
 ### Create MSK Cluster
 
@@ -252,9 +250,9 @@ Subnets: `my-msk-client-1a` `my-msk-client-1b` `my-msk-client-1c`
 Endpoint Service Name [1]: `com.amazonaws.vpce.[...]`\
 Wildcard DNS pattern [2]: **`*`**`.aklivity.[...].amazonaws.com`\
 
-### Step3. Configure stack options: `(defaults)`\
+### Step 3. Configure stack options: `(defaults)`\
 
-### Step4. Review: `(review)`
+### Step 4. Review: `(review)`
 
 **[1]** Locate the `Endpoint Service Name` from the `Outputs` tab of the `my-msk-endpoint-service` stack previously created in the same VPC as your MSK Cluster.
 
@@ -371,7 +369,7 @@ A quick summary of what just happened:
 3. The request was then relayed across PrivateLink to the MSK VPC Endpoint Service in the **my-msk-cluster** VPC
 4. The Endpoint Service forwarded the request to the Network Load Balancer
 5. The Network Load Balancer forwarded the request to the Aklivity MSK Private Proxy
-6. The Aklivity MSK Private Proxy look at the info in the request and relayed it through to the appropriate MSK broker
+6. The Aklivity MSK Private Proxy looked at the info in the request and relayed it through to the appropriate MSK broker
 7. The topic was created in the MSK broker
 8. Cross VPC connectivity was verified
 

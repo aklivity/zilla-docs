@@ -8,12 +8,12 @@ description: Create a new private certificate authority using AWS Certificate Ma
 
 The following parameters are needed when following these steps to create a new VPC.
 
-* Distinguished Name
+- Distinguished Name
 
 Throughout this guide we use the following example certificate authority parameters.
 
-* Distinguished Name
-  * Common Name (CN) `Test CA`
+- Distinguished Name
+  - Common Name (CN) `Test CA`
 
 ## Create the CA
 
@@ -21,19 +21,19 @@ Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-
 
 Click `Create CA` to complete the `Create certificate authority` wizard with the following details:
 
-### Step1: Select CA type: `Root CA`
+### Step 1: Select CA type: `Root CA`
 
 ### Step 2: Configure CA subject name
 
 Common Name (CN): `Test CA`
 
-### Step3: Configure CA key algorithm: `RSA 2048`
+### Step 3: Configure CA key algorithm: `RSA 2048`
 
-### Step4: Configure revocation: `(defaults)`
+### Step 4: Configure revocation: `(defaults)`
 
-### Step5: Add Tags: `(defaults)`
+### Step 5: Add Tags: `(defaults)`
 
-### Step6: Configure CA permissions: `(defaults)`
+### Step 6: Configure CA permissions: `(defaults)`
 
 ### Step 7: Review and create
 

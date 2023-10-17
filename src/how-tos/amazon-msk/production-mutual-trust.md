@@ -38,12 +38,12 @@ Check out the [Troubleshooting](../../reference/troubleshooting/amazon-msk.md) g
 
 Before setting up internet access to your MSK Cluster, you will need the following:
 
-* an MSK Cluster configured for TLS encrypted client access and TLS client authentication
-* an VPC security group for MSK Proxy instances
-* an IAM security role for MSK Proxy instances
-* subscription to Zilla Plus (Public MSK Proxy) via AWS Marketplace
-* permission to modify global DNS records for a custom domain
-* permission to generate client certificates signed by a private certificate authority
+- an MSK Cluster configured for TLS encrypted client access and TLS client authentication
+- an VPC security group for MSK Proxy instances
+- an IAM security role for MSK Proxy instances
+- subscription to Zilla Plus (Public MSK Proxy) via AWS Marketplace
+- permission to modify global DNS records for a custom domain
+- permission to generate client certificates signed by a private certificate authority
 
 ### Create MSK Cluster
 

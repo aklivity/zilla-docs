@@ -10,23 +10,23 @@ description: >-
 
 The following parameters are needed when following these steps to create a new MSK cluster.
 
-* Name
-* VPC
-* Subnets
-* Private Certificate Authority (ACM)
+- Name
+- VPC
+- Subnets
+- Private Certificate Authority (ACM)
 
 Throughout this guide we use the following example MSK cluster parameters.
 
-* MSK Cluster
-  * Name `aklivity`
-* VPC
-  * Name `my-msk-cluster` in region `us-east-1`
-* Subnets
-  * Name `my-msk-cluster-1a` in zone `us-east-1a`
-  * Name `my-msk-cluster-1b` in zone `us-east-1b`
-  * Name `my-msk-cluster-1c` in zone `us-east-1c`
-* Private Certificate Authority
-  * Name `Mutual Authentication CA`
+- MSK Cluster
+  - Name `aklivity`
+- VPC
+  - Name `my-msk-cluster` in region `us-east-1`
+- Subnets
+  - Name `my-msk-cluster-1a` in zone `us-east-1a`
+  - Name `my-msk-cluster-1b` in zone `us-east-1b`
+  - Name `my-msk-cluster-1c` in zone `us-east-1c`
+- Private Certificate Authority
+  - Name `Mutual Authentication CA`
 
 ## Create the MSK Cluster
 

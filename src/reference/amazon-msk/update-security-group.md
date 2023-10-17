@@ -8,20 +8,20 @@ description: Add a new inbound rule to a VPC security group.
 
 The following parameters are needed when following these steps to add a new security group inbound rule.
 
-* VPC
-* Security Group
-* Inbound Rule
-  * Type
-  * Source
+- VPC
+- Security Group
+- Inbound Rule
+  - Type
+  - Source
 
 Throughout this guide we use the following example Security Group parameters.
 
-* VPC
-  * ID `vpc-xxx` with name `my-vpc` in region `us-east-1`
-* Security Group
-  * Name `default`
-* Inbound Rule
-  * Type `SSH` from source `0.0.0.0/0`
+- VPC
+  - ID `vpc-xxx` with name `my-vpc` in region `us-east-1`
+- Security Group
+  - Name `default`
+- Inbound Rule
+  - Type `SSH` from source `0.0.0.0/0`
 
 ## Update the Security Group
 

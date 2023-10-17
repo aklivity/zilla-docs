@@ -4,26 +4,28 @@ description: Create a new VPC security group.
 
 # Create Security Group
 
+not needed because of [`Create Security Group` wizard and specify Custom create](https://console.aws.amazon.com/vpc/home#CreateSecurityGroup:)
+
 ## Resource Parameters
 
 The following parameters are needed when following these steps to create a new security group with inbound rules.
 
-* VPC
-* Name
-* Description
-* Inbound Rules
-  * Type
-  * Source
+- VPC
+- Name
+- Description
+- Inbound Rules
+  - Type
+  - Source
 
 Throughout this guide we use the following example Security Group parameters.
 
-* VPC
-  * ID `vpc-xxx` with name `my-vpc` in region `us-east-1`
-* Name `my-security-group`
-* Description `Allow Kafka clients and SSH access`
-* Inbound Rules
-  * Type `TCP 9094` from source `0.0.0.0/0`
-  * Type `SSH` from source `<My IP>`
+- VPC
+  - ID `vpc-xxx` with name `my-vpc` in region `us-east-1`
+- Name `my-security-group`
+- Description `Allow Kafka clients and SSH access`
+- Inbound Rules
+  - Type `TCP 9094` from source `0.0.0.0/0`
+  - Type `SSH` from source `<My IP>`
 
 ## Create the Security Group
 
