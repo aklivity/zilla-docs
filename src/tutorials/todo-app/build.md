@@ -49,7 +49,7 @@ networks:
 services:
 
   kafka:
-    image: "bitnami/kafka:3.1.0"
+    image: "bitnami/kafka:3.2"
     hostname: "kafka.internal.net"
     networks:
       - net0
@@ -72,7 +72,7 @@ services:
     ports:
       - "9092:9092"
   init-topics:
-    image: "bitnami/kafka:3"
+    image: "bitnami/kafka:3.2"
     networks:
       - net0
     deploy:

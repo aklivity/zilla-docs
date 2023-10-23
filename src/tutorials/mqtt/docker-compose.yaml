@@ -1,7 +1,19 @@
 version: '3'
 services:
+
+  zilla:
+    image: ghcr.io/aklivity/zilla
+    container_name: zilla
+    depends_on:
+      - kafka
+    ports:
+      - 7183:7183
+    volumes:
+      - ./zilla.yaml:/etc/zilla/zilla.yaml
+    command: start -v -e
+
   kafka:
-    image: docker.io/bitnami/kafka:latest
+    image: docker.io/bitnami/kafka
     container_name: kafka
     ports:
       - 9092:9092
@@ -21,7 +33,7 @@ services:
       KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
 
   kafka-init:
-    image: docker.io/bitnami/kafka:3.2
+    image: docker.io/bitnami/kafka
     command: 
       - "/bin/bash"
       - "-c"
@@ -33,17 +45,6 @@ services:
       - kafka
     init: true
 
-  zilla:
-    image: ghcr.io/aklivity/zilla:latest
-    depends_on:
-      - kafka
-    ports:
-      - 1883:1883
-    volumes:
-      - ./zilla.yaml:/etc/zilla/zilla.yaml
-    command: start -v -e
-
 networks:
   default:
-    name: zilla-network
     driver: bridge
