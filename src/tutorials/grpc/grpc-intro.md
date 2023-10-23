@@ -102,7 +102,7 @@ bindings:
 version: '3'
 services:
   kafka:
-    image: docker.io/bitnami/kafka:latest
+    image: bitnami/kafka:3.2
     container_name: kafka
     ports:
       - "9092:9092"
@@ -110,7 +110,7 @@ services:
       ALLOW_PLAINTEXT_LISTENER: "yes"
 
   kafka-init:
-    image: docker.io/bitnami/kafka:latest
+    image: bitnami/kafka:3.2
     command: 
       - "/bin/bash"
       - "-c"

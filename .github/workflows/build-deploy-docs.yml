@@ -2,7 +2,7 @@ name: Site versioned build & deploy
 
 on:
   push:
-    branches: [develop, feature/vuepress-rewrite]
+    branches: [develop]
   workflow_dispatch:
 
 permissions:
