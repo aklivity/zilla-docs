@@ -105,6 +105,7 @@ export KAFKA_PORT=29092
 Create these topics in the Kafka environment.
 
 ```bash:no-line-numbers
+\
 /bin/kafka-topics.sh --bootstrap-server $KAFKA_HOST:$KAFKA_PORT --create --if-not-exists --topic mqtt-sessions
 /bin/kafka-topics.sh --bootstrap-server $KAFKA_HOST:$KAFKA_PORT --create --if-not-exists --topic mqtt-messages --config cleanup.policy=compact
 /bin/kafka-topics.sh --bootstrap-server $KAFKA_HOST:$KAFKA_PORT --create --if-not-exists --topic mqtt-retained --config cleanup.policy=compact
@@ -184,17 +185,22 @@ With your `zilla.yaml` config, follow the [Zilla install instructions](../instal
 --env KAFKA_HOST="$KAFKA_HOST" --env KAFKA_PORT="$KAFKA_PORT"
 ```
 
-@tab Helm
+@tab Helm values.yaml
 
-```bash:no-line-numbers
---set extraEnv[1].value="$KAFKA_HOST",extraEnv [2].value="$KAFKA_PORT" \
+```yaml:no-line-numbers
+# use the values from $KAFKA_HOST $KAFKA_PORT variables
+extraEnv:
+  - name: KAFKA_HOST
+    value: "host.docker.internal"
+  - name: KAFKA_PORT
+    value: "29092"
 ```
 
 :::
 
 ### Adding TLS
 
-You can add TLS to to this broker by adding a vault and tls binding described in the [Server Encryption](../../concepts/config-intro.html#server-encryption-tls-ssl) section. The main difference other than the port numbers is the [mqtt server](../../reference/config/bindings/binding-mqtt.md) binding doesn't require and [alpn](../reference/config/bindings/binding-tls.md#options-alpn) option.
+You can add TLS to this broker by adding a vault and tls binding as described in the [Server Encryption](../../concepts/config-intro.md#server-encryption-tls-ssl) section. Besides the port numbers, the difference regarding an MQTT broker is that you don't need to add the [alpn](../reference/config/bindings/binding-tls.md#options-alpn) option to the [tls](../reference/config/bindings/binding-tls.md) binding.
 
 ## Remove the running containers
 

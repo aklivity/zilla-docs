@@ -108,11 +108,11 @@ Using a [filesystem](../reference/config/vaults/vault-filesystem.md) vault, you 
 
 ```yaml{6}
 vaults:
-  your_server_certificate:
+  your_servers:
     type: filesystem
     options:
       keys:
-        store: your_server.p12
+        store: your_servers.p12
         type: pkcs12
         password: ${{env.KEYSTORE_PASSWORD}}
 ```
@@ -139,7 +139,7 @@ bindings:
   tls_server:
     type: tls
     kind: server
-    vault: your_server_certificate
+    vault: your_servers
     options:
       keys:
         - your_server.com
