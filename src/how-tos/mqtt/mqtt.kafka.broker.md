@@ -189,11 +189,11 @@ With your `zilla.yaml` config, follow the [Zilla install instructions](../instal
 
 ```yaml:no-line-numbers
 # use the values from $KAFKA_HOST $KAFKA_PORT variables
-extraEnv:
+env:
   - name: KAFKA_HOST
-    value: "host.docker.internal"
+    value: "\"host.docker.internal\""
   - name: KAFKA_PORT
-    value: "29092"
+    value: "\"29092\""
 ```
 
 :::
