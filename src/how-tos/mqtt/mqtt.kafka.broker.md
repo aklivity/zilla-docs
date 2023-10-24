@@ -200,7 +200,7 @@ extraEnv:
 
 ### Adding TLS
 
-You can add TLS to this broker by adding a vault and tls binding as described in the [Server Encryption](../../concepts/config-intro.md#server-encryption-tls-ssl) section. Besides the port numbers, the difference regarding an MQTT broker is that you don't need to add the [alpn](../reference/config/bindings/binding-tls.md#options-alpn) option to the [tls](../reference/config/bindings/binding-tls.md) binding.
+You can add TLS to this broker by adding a vault and tls binding as described in the [Server Encryption](../../concepts/config-intro.md#server-encryption-tls-ssl) section.
 
 ## Remove the running containers
 
