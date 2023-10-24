@@ -192,6 +192,10 @@ With your `zilla.yaml` config, follow the [Zilla install instructions](../instal
 
 :::
 
+### Adding TLS
+
+You can add TLS to to this broker by adding a vault and tls binding described in the [Server Encryption](../../concepts/config-intro.html#server-encryption-tls-ssl) section. The main difference other than the port numbers is the [mqtt server](../../reference/config/bindings/binding-mqtt.md) binding doesn't require and [alpn](../reference/config/bindings/binding-tls.md#options-alpn) option.
+
 ## Remove the running containers
 
 Find the path to the `teardown.sh` script(s) in the `use the teardown script(s) to clean up` section of the example output and run it. If you didn't provide an external Kafka endpoint, there will be scripts for both Zilla and the local Kafka installs.

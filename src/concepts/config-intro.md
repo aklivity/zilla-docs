@@ -117,7 +117,7 @@ vaults:
         password: ${{env.KEYSTORE_PASSWORD}}
 ```
 
-The [tcp](../reference/config/bindings/binding-tcp.md) binding can be configured for both encrypted and unencrypted traffic on separate ports. Take the SSL example with ports `80` and `443`. The [tls](../reference/config/bindings/binding-tls.md) binding will use the `keys` as the certificate aliases and the Server Name Indication (`sni`) as the SSL server names. These will likely be the same. Since this example is over [http](../reference/config/bindings/binding-http.md) the Application-Layer Protocol Negotiation (ALPN) will need to handle both HTTP/1.1 and HTTP/2, but the [tls](../reference/config/bindings/binding-tls.md) binding can be configured for any of the ALPN protocols supported by Zilla.
+The [tcp](../reference/config/bindings/binding-tcp.md) binding can be configured for both encrypted and unencrypted traffic on separate ports. Take the SSL example with ports `80` and `443`. The [tls](../reference/config/bindings/binding-tls.md) binding will use the `keys` as the certificate aliases and the Server Name Indication (`sni`) as the SSL server names. These will likely be the same. Since this example is over [http](../reference/config/bindings/binding-http.md) the Application-Layer Protocol Negotiation (ALPN) will need to handle both HTTP/1.1 and HTTP/2, but the [tls](../reference/config/bindings/binding-tls.md) binding can be configured for any of the [alpn](../reference/config/bindings/binding-tls.md#options-alpn) protocols supported by Zilla.
 
 ```yaml{20,29}
 bindings:
