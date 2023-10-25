@@ -38,7 +38,7 @@ docker run -v $(pwd)/zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:lat
 
 ## Running Zilla via Helm
 
-Go to the [Zilla artifacthub](https://artifacthub.io/) page to find out more on how to install Zilla using Helm
+Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) page to find out more on how to install Zilla using Helm
 
 ### TL;DR
 
