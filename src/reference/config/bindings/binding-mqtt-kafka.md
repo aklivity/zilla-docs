@@ -59,13 +59,14 @@ Defines a binding with `mqtt-kafka` support, with `proxy` behavior.
     - [topics.retained\*](#topics-retained)
   - [options.clients](#options-clients)
 - [routes](#routes)
+- [routes\[\].guarded](#routes-guarded)
 - [routes\[\].when](#routes-when)
-  - [when\[\].publish[]](#when-publish)
-    - [when\[\].publish[].topic](#when-publish-topic)
-  - [when\[\].subscribe[]](#when-subscribe)
-    - [when\[\].subscribe[].topic](#when-subscribe-topic)
-- [with.messages](#with-messages)
-- [routes\[\].exit\*](#routes-exit)
+  - [when\[\].publish\[\]](#when-publish)
+    - [publish\[\].topic](#publish-topic)
+  - [when\[\].subscribe\[\]](#when-subscribe)
+    - [subscribe\[\].topic](#subscribe-topic)
+- [routes\[\].with](#routes-with)
+  - [with.messages](#with-messages)
 - [exit](#exit)
 
 ::: right
@@ -206,7 +207,7 @@ Array of MQTT topics.
     - topic: /clients/#
 ```
 
-##### when[].publish[].topic
+##### publish[].topic
 
 > `string`
 
@@ -223,22 +224,28 @@ Array of MQTT topics.
     - topic: /clients/#
 ```
 
-##### when[].subscribe[].topic
+##### subscribe[].topic
 
 > `string`
 
 Mqtt topic filter.
 
-### routes[].with.messages
+### routes[].with
 
-> `string`
+> `object`
 
-Kafka topic to use for the route.
+Kafka parameters for matched route when adapting `mqtt` topic streams to `kafka` topic streams.
 
 ```yaml
 with:
   messages: mqtt-devices
 ```
+
+#### with.messages
+
+> `string`
+
+Kafka topic to use for the route.
 
 ### exit
 
