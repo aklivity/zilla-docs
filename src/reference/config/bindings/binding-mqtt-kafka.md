@@ -135,7 +135,6 @@ Compacted Kafka topic for storing mqtt retained messages.
 
 Pattern defining how to extract client identity from the topic. Using this we can ensure that all messages for the same client identity are produced to Kafka on the same topic partition.
 
-
 ```yaml
 options:
   clients:
@@ -147,6 +146,7 @@ options:
 > `array` of `object`
 
 Conditional `mqtt-kafka`-specific routes when adapting `mqtt` topic streams to `kafka` topic streams.
+
 ```yaml
 routes:
   - when:
@@ -195,7 +195,6 @@ routes:
           - topic: /clients/#
 ```
 
-
 #### when[].publish[]
 
 > `array`
@@ -212,7 +211,6 @@ Array of MQTT topics.
 > `string`
 
 Mqtt topic name.
-
 
 #### when[].subscribe[]
 

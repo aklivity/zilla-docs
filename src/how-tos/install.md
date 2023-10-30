@@ -52,7 +52,6 @@ helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --creat
 
 Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.
 
-
 ## zilla.yaml Auto Reconfigure
 
 Zilla loads the configuration from the `zilla.yaml` file on startup and logs the configured settings. Restarting Zilla or its container may not be an option, so Zilla creates a file watcher to detect changes to the file and reloads the config if a change is detected.
