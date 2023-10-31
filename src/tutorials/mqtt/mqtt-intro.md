@@ -18,13 +18,13 @@ Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same director
 
 @tab zilla.yaml
 
-```yaml {11,26-28,41-42}
+```yaml {10,25-27,40-41}
 <!-- @include: ./zilla.yaml -->
 ```
 
 @tab docker-compose.yaml
 
-```yaml {10,41-43}
+```yaml {10,44-46}
 <!-- @include: ./docker-compose.yaml -->
 ```
 

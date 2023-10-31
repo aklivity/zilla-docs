@@ -14,7 +14,7 @@ Running this Zilla sample will collect basic metrics for an http service.
 
 @tab zilla.yaml
 
-```yaml {7-10,20,30-32,43-45}
+```yaml {6-9,19,29-31,42-44}
 <!-- @include: ./metrics_zilla.yaml -->
 ```
 
