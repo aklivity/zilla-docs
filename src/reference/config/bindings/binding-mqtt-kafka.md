@@ -132,7 +132,7 @@ Compacted Kafka topic for storing mqtt retained messages.
 
 #### options.clients
 
-> `string`
+> `array` of `string`
 
 Pattern defining how to extract client identity from the topic. Using this we can ensure that all messages for the same client identity are produced to Kafka on the same topic partition.
 
@@ -172,7 +172,7 @@ routes:
 
 > `object` as named map of `string:string` `array`
 
-Roles required by named guard.
+List of roles required by each named guard to authorize this route.
 
 ```yaml
 routes:
@@ -200,7 +200,7 @@ routes:
 
 > `array`
 
-Array of MQTT topics.
+Array of `mqtt` topic filters matching topic names for publish.
 
 ```yaml
 - publish:
@@ -211,13 +211,13 @@ Array of MQTT topics.
 
 > `string`
 
-Mqtt topic name.
+`mqtt` topic filter pattern.
 
 #### when[].subscribe[]
 
 > `array`
 
-Array of MQTT topics.
+Array of `mqtt` topic filters matching topic names for subscribe.
 
 ```yaml
 - subscribe:
@@ -228,7 +228,7 @@ Array of MQTT topics.
 
 > `string`
 
-Mqtt topic filter.
+`mqtt` topic filter pattern.
 
 ### routes[].with
 
