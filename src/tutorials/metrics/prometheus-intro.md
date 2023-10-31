@@ -24,22 +24,7 @@ Running this Zilla sample will collect basic metrics for an http service.
 
 Run the Zilla docker image as a daemon with the `zilla.yaml` file volume mounted.
 
-::: code-tabs#yaml
-
-@tab Docker 23
-
-@[code{14-18} bash:no-line-numbers](./metrics_docker_run.sh)
-
-@tab Docker 20
-
-```bash:no-line-numbers
-docker run -d --pull=always -v $(pwd)/zilla.yaml:/etc/zilla/zilla.yaml \
---name zilla-sample -p 7114:7114 -p 7190:7190 \
-ghcr.io/aklivity/zilla:latest \
-start -v;
-```
-
-:::
+@[code{14-17} bash:no-line-numbers](./metrics_docker_run.sh)
 
 ### Send an HTTP POST
 
