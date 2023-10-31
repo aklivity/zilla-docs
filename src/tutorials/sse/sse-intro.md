@@ -102,7 +102,7 @@ Create these files, `zilla.yaml`, `docker-compose.yaml` and `index.html`, in the
 @tab docker-compose.yaml
 
 ```yaml
-<!-- @include: ./docker-kafka.fanout/compose.yaml -->
+<!-- @include: ./kafka.fanout/docker-compose.yaml -->
 ```
 
 @tab index.html
