@@ -45,7 +45,9 @@ start -v;
 
 @[code{30-30} bash:no-line-numbers](./metrics_docker_run.sh)
 
-> Hello, world
+```output:no-line-numbers
+Hello, world
+```
 
 ### View Metrics
 
@@ -53,7 +55,7 @@ Go to [http://localhost:7190/metrtics](http://localhost:7190/metrtics) to see th
 
 @[code{31-31} bash:no-line-numbers](./metrics_docker_run.sh)
 
-```text
+```output:no-line-numbers
 # TYPE stream_opens_sent_total counter
 stream_opens_sent_total{namespace="Metrics-example",binding="tcp_server"} 2
 

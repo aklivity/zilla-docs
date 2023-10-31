@@ -48,7 +48,9 @@ curl -X POST http://localhost:7114/items -H 'Content-Type: application/json' -d 
 curl http://localhost:7114/items
 ```
 
-> [{"greeting":"Hello, world"}]
+```output:no-line-numbers
+[{"greeting":"Hello, world"}]
+```
 
 ### Remove the running containers
 
