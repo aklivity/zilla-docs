@@ -162,7 +162,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 You should now see `Zilla Plus (Public MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
 :::
 
-## Create the Certificate
+## Create the Server Certificate
 
 We need a TLS Server Certificate for your custom DNS wildcard domain that can be trusted by a Kafka Client from anywhere.
 
