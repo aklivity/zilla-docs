@@ -24,7 +24,9 @@ The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodvi
 
 In this guide we will deploy the Zilla Plus (Public MSK Proxy) and verify locally trusted public internet connectivity to your MSK cluster from a Kafka client in your development environment, using the wildcard domain `*.aklivity.example.com`.
 
-The following AWS services are used by [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) for this deployment.
+## AWS services used
+
+The following AWS services are used by [Aklivity Public MSK Proxy](http://aws.amazon.com/marketplace/pp/B09HKJ54CX) for this deployment.
 
 | Service                     | Required                                                                               | Usage                | Quota                                                                                         |
 | --------------------------- | -------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
@@ -115,13 +117,31 @@ This allows the MSK Proxy instances to access your MSK cluster.
 
 Follow the [Create IAM Role](../../reference/amazon-msk/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
-Name: `aklivity-public-msk-proxy`\
-Managed Policies: `AWSMarketplaceMeteringFullAccess` `AWSCertificateManagerReadOnly`\
-`AWSCertificateManagerPrivateCAReadOnly` `ResourceGroupsandTagEditorReadOnlyAccess`
+Name:
 
-### Inline Policies
+```text:no-line-numbers
+zilla-plus-public-msk-proxy
+```
 
-Name: `MSKProxySecretsManagerRead`\
+Policies:
+
+```text:no-line-numbers
+AWSMarketplaceMeteringFullAccess
+AWSCertificateManagerReadOnly
+AWSCertificateManagerPrivateCAReadOnly
+ResourceGroupsandTagEditorReadOnlyAccess
+```
+
+#### IAM role Inline Policies
+
+This creates an IAM security role to enable the required AWS services for the MSK Proxy instances.
+
+Name:
+
+```text:no-line-numbers
+MSKProxySecretsManagerRead
+```
+
 Summary:
 
 ```json:no-line-numbers
@@ -143,12 +163,14 @@ Summary:
 }
 ```
 
-::: info
-Replace `wildcard.aklivity.example.com` in the resource regular expression for `MSKProxySecretsManagerRead` inline policy if you used a different secret name for your wildcard certificate key.
-:::
+::: info If you used a different secret name for your certificate key.
 
-::: tip
-This creates an IAM security role to enable the required AWS services for the MSK Proxy  instances.
+Replace `wildcard.example.aklivity.io` in the resource regular expression for:
+
+```text:no-line-numbers
+MSKProxySecretsManagerRead
+```
+
 :::
 
 ### Subscribe via AWS Marketplace
@@ -206,7 +228,7 @@ Port number: `9094`
 
 Instance count: `2`\
 Instance type [2]: `t3.small`\
-Role: `aklivity-public-msk-proxy`\
+Role: `zilla-plus-public-msk-proxy`\
 Security Groups: `msk-proxy`\
 Secrets Manager Secret ARN [3]: [`<signed TLS certificate's private key secret ARN>`](../../reference/amazon-msk/create-server-certificate-acm.md#store-the-encrypted-secret)
 Public Wildcard DNS: `*.aklivity.example.com`\
@@ -242,7 +264,7 @@ Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Public MSK Proxy instances launched by the CloudFormation template to show the details.
 
 ::: info
-They each have the IAM Role name `aklivity-public-msk-proxy`.
+They each have an IAM Role name starting with `zilla-plus-public-msk-proxy`.
 :::
 
 Find the `Public IPv4 Address` and then SSH into the instance.
