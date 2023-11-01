@@ -45,9 +45,7 @@ Throughout this guide we use the following example IAM Role parameters.
 
 ## Create the IAM Security Role
 
-Navigate to the [IAM Management Console](https://console.aws.amazon.com/iam) and note the `Global` region.
-
-Under the `Access management` section, select the `Roles` menu item to show your `Roles`.
+Navigate to the [IAM Management Console Roles Table](https://console.aws.amazon.com/iamv2/home#/roles) and note the `Global` region.
 
 Click `Create role` and fill out the `Create role` form with the following details:
 

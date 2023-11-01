@@ -25,13 +25,16 @@ Throughout this guide we use the following example Security Group parameters.
 
 ## Update the Security Group
 
-Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
 
-Under the `Resources by Region` section, select the `Security Groups` resource box to show your `Security Groups`. Select `Security Group` named `default` for VPC `my-vpc` and select `Edit inbound rules` from the `Actions` menu.
+Filter the security groups by selecting a `VPC`.
+
+## Adding a Rule
 
 Click `Add rule` and fill in the new inbound rule with the following details.
 
-Type: `SSH`\
-Source: `0.0.0.0/0`
+- Example: Any connection access over `SSH`
+  - Type: `SSH`
+  - Source: `0.0.0.0/0`
 
 Click `Save rules`
