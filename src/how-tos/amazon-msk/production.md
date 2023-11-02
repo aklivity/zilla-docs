@@ -4,6 +4,7 @@ description: Setup connectivity to your MSK cluster from anywhere on the interne
 ---
 
 # Production
+
 <!-- TODO enable -->
 <!-- markdownlint-disable -->
 
@@ -21,12 +22,12 @@ In this guide we will deploy the Zilla Plus (Public MSK Proxy) and showcase glob
 
 ### AWS services used
 
-| Service                     | Required                                                                               | Usage                | Quota                                                                                         |
-| --------------------------- | -------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------- |
-| Resource Groups and Tagging | Yes                                                                                    | Startup only         | [None](https://docs.aws.amazon.com/general/latest/gr/arg.html#arg-quotas)                     |
-| Secrets Manager             | Yes                                                                                    | Startup only         | [Not reached](https://docs.aws.amazon.com/general/latest/gr/asm.html#limits\_secrets-manager) |
-| Certificate Manager         | No<br><br>Private key and certificate can be inline in Secrets Manager instead | Startup only         | [Not reached](https://docs.aws.amazon.com/general/latest/gr/acm.html#limits\_acm)             |
-| Private Certificate Manager | No<br><br>Private key and certificate can be inline in Secrets Manager instead | Startup only         | [Not reached](https://docs.aws.amazon.com/general/latest/gr/acm-pca.html#limits\_acm-pca)     |
+| Service                     | Required                                                                       | Usage        | Quota                                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------ | ------------ | -------------------------------------------------------------------------------------------- |
+| Resource Groups and Tagging | Yes                                                                            | Startup only | [None](https://docs.aws.amazon.com/general/latest/gr/arg.html#arg-quotas)                    |
+| Secrets Manager             | Yes                                                                            | Startup only | [Not reached](https://docs.aws.amazon.com/general/latest/gr/asm.html#limits_secrets-manager) |
+| Certificate Manager         | No<br><br>Private key and certificate can be inline in Secrets Manager instead | Startup only | [Not reached](https://docs.aws.amazon.com/general/latest/gr/acm.html#limits_acm)             |
+| Private Certificate Manager | No<br><br>Private key and certificate can be inline in Secrets Manager instead | Startup only | [Not reached](https://docs.aws.amazon.com/general/latest/gr/acm-pca.html#limits_acm-pca)     |
 
 Default [AWS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) are recommended.
 
@@ -168,7 +169,7 @@ We need a TLS Server Certificate for your custom DNS wildcard domain that can be
 
 Follow the [Create Server Certificate (LetsEncrypt)](../../reference/amazon-msk/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate for the your own custom wildcard DNS domain.
 
-Here we use the wildcard domain `*.example.aklivty.io`  to illustrate the steps.
+Here we use the wildcard domain `*.example.aklivty.io` to illustrate the steps.
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the Public MSK Proxy CloudFormation template.
@@ -199,7 +200,7 @@ Subnets: `my-msk-cluster-vpc-1a` `my-msk-cluster-vpc-1b` `my-msk-cluster-vpc-1c`
 #### MSK Configuration
 
 Wildcard DNS pattern [1]: `*.aklivity.[...].amazonaws.com`\
-Port number: `9096`
+Port number: `9094`
 
 #### MSK Proxy Configuration
 
@@ -209,7 +210,7 @@ Role: `zilla-plus-public-msk-proxy`\
 Security Groups: `my-msk-proxy`\
 Secrets Manager Secret ARN [3]: [`<LetsEncrypt signed certificate's private key secret ARN>`](../../reference/amazon-msk/create-server-certificate-letsencrypt.md)
 Public Wildcard DNS [4]: `*.example.aklivity.io`\
-Public Port: `9096`\
+Public Port: `9094`\
 Key pair for SSH access [5]: `<key pair>`
 
 ### Step 3. Configure stack options: `(defaults)`
@@ -333,7 +334,7 @@ We use a generic Kafka client here, however the setup for any Kafka client, incl
 
 With the Kaka client now installed we are ready to configure it and point it at the Public MSK Proxy.
 
-The MSK Proxy relies on encrypted SASL/SCRAM so we need to create a file called `client.properties` that tells the Kafka client to use SASL_SSL as the security protocol with SCRAM-SHA-512 encryption. 
+The MSK Proxy relies on encrypted SASL/SCRAM so we need to create a file called `client.properties` that tells the Kafka client to use SASL_SSL as the security protocol with SCRAM-SHA-512 encryption.
 
 Notice we used the default username and password, but you will need to replace those with your own credentials from the `AmazonMSK_*` secret you created.
 
@@ -360,7 +361,7 @@ We can now verify that the Kafka client can successfully communicate with your M
 If using the wildcard DNS pattern `*.example.aklivity.io`, then we use the following as TLS bootstrap server names for the Kafka client:
 
 ```text:no-line-numbers
-b-1.example.aklivity.io:9096,b-2.example.aklivity.io:9096,b-3.example.aklivity.io:9096
+b-1.example.aklivity.io:9094,b-2.example.aklivity.io:9094,b-3.example.aklivity.io:9094
 ```
 
 ::: warning
@@ -369,7 +370,7 @@ Replace these TLS bootstrap server names accordingly for your own custom wildcar
 
 #### Create a Topic
 
-Use the Kafka client to create a topic called `public-proxy-test`, replacing `<tls-bootstrap-server-names>` **** in the command below with the TLS proxy names of your Public MSK Proxy:
+Use the Kafka client to create a topic called `public-proxy-test`, replacing `<tls-bootstrap-server-names>` \*\*\*\* in the command below with the TLS proxy names of your Public MSK Proxy:
 
 ```bash:no-line-numbers
 bin/kafka-topics.sh --create --topic public-proxy-test --partitions 3 --replication-factor 3 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
@@ -424,10 +425,10 @@ The CloudFormation template used to deploy the Public MSK Proxy includes a Netwo
 
 Network Load Balancers have [many available metrics](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-cloudwatch-metrics.html), including the following.
 
-| Metric                   | Description              |
-| ------------------------ | ------------------------ |
+| Metric                   | Description                                                                                                                                          |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `TCP_Target_Reset_Count` | The total number of reset (RST) packets sent from a target to a client. These resets are generated by the target and forwarded by the load balancer. |
-| `UnHealthyHostCount`     | The number of targets that are considered unhealthy. |
+| `UnHealthyHostCount`     | The number of targets that are considered unhealthy.                                                                                                 |
 
 You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a dashboard to monitor these metrics and set alarms to alert you when specific metric thresholds are reached.
 
