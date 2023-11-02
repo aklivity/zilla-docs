@@ -10,7 +10,7 @@ Get started with Zilla by deploying our Docker Compose stack. Before proceeding,
 
 Running this Zilla sample will create a simple SSE server that sends a `Hello, World` message.
 
-### Setup SSE echo server
+### Setup SSE proxy server
 
 Create these files, `zilla.yaml`, `docker-compose.yaml` and `index.html`, in the same directory.
 
@@ -19,19 +19,19 @@ Create these files, `zilla.yaml`, `docker-compose.yaml` and `index.html`, in the
 @tab zilla.yaml
 
 ```yaml{19-24}
- <!-- @include: ./echo/zilla.yaml -->
+ <!-- @include: ./proxy/zilla.yaml -->
 ```
 
 @tab docker-compose.yaml
 
 ```yaml
- <!-- @include: ./echo/docker-compose.yaml -->
+ <!-- @include: ./proxy/docker-compose.yaml -->
 ```
 
 @tab index.html
 
 ```html
- <!-- @include: ./echo/index.html -->
+ <!-- @include: ./proxy/index.html -->
 ```
 
 :::
@@ -41,7 +41,7 @@ Create these files, `zilla.yaml`, `docker-compose.yaml` and `index.html`, in the
 Fist build the local `sse-server`.
 
 ```bash:no-line-numbers
-docker build -t zilla-examples/sse-server:local https://github.com/aklivity/zilla-examples.git#main:sse.proxy.jwt
+docker build -t zilla-examples/sse-server:local https://github.com/aklivity/zilla-examples.git#v2:sse.proxy.jwt
 ```
 
 Start the example.
