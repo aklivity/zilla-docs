@@ -23,7 +23,7 @@ services:
       - "7001:7001"
     command: -v -p 8001 -i 7001
 
-  sse_messenger:
+  sse_publisher:
     image: busybox:latest
     depends_on:
       - sse-server
