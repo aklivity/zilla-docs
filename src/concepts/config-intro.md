@@ -142,9 +142,9 @@ bindings:
     vault: my_servers
     options:
       keys:
-        - your_server.com
+        - my_server.com
       sni:
-        - your_server.com
+        - my_server.com
       alpn:
         - http/1.1
         - h2
