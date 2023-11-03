@@ -7,7 +7,7 @@ services:
     depends_on:
       - kafka
     ports:
-      - "7183:7183"
+      - 7183:7183
     environment:
       KAFKA_HOST: kafka
       KAFKA_PORT: 29092
@@ -19,8 +19,8 @@ services:
     image: bitnami/kafka:3.2
     hostname: kafka
     ports:
-      - "9092:9092"
-      - "29092:9092"
+      - 9092:9092
+      - 29092:9092
     environment:
       ALLOW_PLAINTEXT_LISTENER: "yes"
       KAFKA_CFG_NODE_ID: "1"
