@@ -38,9 +38,9 @@ The `zilla generate` command generates a zilla configuration file from an OpenAP
 
 The command currently has templates for the following common scenarios:
 
-- `openapi.http.proxy` - Create a http proxy config based on an OpenAPI service definition.
-- `asyncapi.http.proxy` - Create a http proxy config based on an AsyncAPI service definition.
-- `asyncapi.mqtt.proxy` - Create a mqtt proxy config based on an AsyncAPI service definition.
+- `openapi.http.proxy` - create an http proxy config based on an OpenAPI service definition
+- `asyncapi.http.proxy` - create an http proxy config based on an AsyncAPI service definition
+- `asyncapi.mqtt.proxy` - create an mqtt proxy config based on an AsyncAPI service definition
 
 You have to specify which template to use, the OpenAPI/AsyncAPI service definition as the input file and the output file name you want the generated zilla config to be saved.
 
