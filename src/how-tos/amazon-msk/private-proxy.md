@@ -19,9 +19,6 @@ Bundled CloudFormation templates provide automated configuration of a VPC Endpoi
 
 In this guide we will deploy the Zilla Plus (Private MSK Proxy) and showcase cross VPC connectivity between an MSK cluster and a Kafka client.
 
-::: info
-Check out the [Troubleshooting](../../reference/troubleshooting/amazon-msk.md) guide if you run into any issues.
-:::
 
 ## Prerequisites
 
@@ -31,67 +28,65 @@ Before setting up cross-VPC access to your MSK Cluster, you will need the follow
 - an VPC security group for MSK Proxy instances
 - subscription to Zilla Plus (Private MSK Proxy) via AWS Marketplace
 
-### Create MSK Cluster
+::: tip
+Check out the [Troubleshooting](../../reference/troubleshooting/amazon-msk.md) guide if you run into any issues.
+:::
+
+### Create the MSK Cluster
+
+> This creates your MSK cluster in preparation for secure access outside the VPC.
 
 We need to create an MSK cluster in preparation for secure remote access outside the VPC. You can skip this step if you have already created an MSK cluster with equivalent configuration.
 
-Follow the [Create VPC](../../reference/amazon-msk/create-vpc.md) guide to create a VPC for your MSK cluster with the following parameters.
+Follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the bellow resource names to reference the AWS resources needed in this guide.
 
-Name tag: `my-msk-cluster`\
-IPv4 CIDR block: `10.0.0.0/16`\
-Region: `us-east-1`
-
-Then follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md) guide to create your MSK cluster with the following parameters.
-
-Name: `aklivity`\
-VPC: `my-msk-cluster`\
-Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
-
-::: tip
-This creates your MSK cluster in preparation for secure access outside the VPC.
-:::
+- Cluster Name: `my-msk-cluster`
+- VPC: `my-msk-cluster-vpc`
+- Subnet: `my-msk-cluster-subnet-*`
+- Route tables: `my-msk-cluster-rtb-*`
+- Internet gateway: `my-msk-cluster-igw`
 
 ### Create the MSK Proxy security group
 
-We need to create a VPC security group that will be used by the Private MSK Proxy instances when they are launched.
+> This creates your Private MSK proxy security group to allow Kafka clients and SSH access.
 
-Follow the [Create Security Group](../../reference/amazon-msk/create-security-group.md) guide with the following parameters to create a security group in the same VPC as your MSK cluster.
+A VPC security group is needed for the Public MSK Proxy instances when they are launched.
 
-VPC: `my-msk-cluster`\
-Name: `my-msk-proxy`\
-Description: Kafka clients and SSH access
+Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/security-groups.html#creating-security-groups) docs with the following parameters and defaults. This creates your MSK proxy security group to allow Kafka clients and SSH access.
 
-### Inbound Rule
+- VPC: `my-msk-cluster-vpc`
+- Name: `my-msk-proxy-sg`
+- Description: `Kafka clients and SSH access`
+- Add Inbound Rule
+  - Type: `CUSTOM TCP`
+  - Port Range: `9094`
+  - Source type: `Anywhere-IPv4`
+- Add Inbound Rule
+  - Type: `SSH`
+  - Source type: `My IP`
 
-Type: `Custom TCP`\
-Port: `9094`\
-Source: `<Any IPv4>`
+### Update the default security group rules
 
-### Inbound Rule
+> This allows the MSK Proxy instances to communicate with your MSK cluster.
 
-Type: `SSH`\
-Source: `<My IP>`
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
 
-::: tip
-This creates your Private MSK proxy security group to allow Kafka clients and SSH access.
-:::
+Filter the security groups by selecting a `VPC` and select the `default` security group.
 
-### Update your MSK Cluster security group rules
+- VPC: `my-msk-cluster-vpc`
+- Security Group: `default`
 
-Follow the [Update Security Group](../../reference/amazon-msk/update-security-group.md) guide with the following parameters to allow the MSK Proxy instances to communicate with the MSK cluster.
+#### Add a Custom TCP Rule
 
-VPC: `vpc-xxx (my-msk-cluster)`\
-Security Group: `default` `(MSK security group)`
+Add this Inbound Rule to allow the MSK Proxy instances to communicate with the MSK cluster.
 
-### Inbound Rule
+- Type: `Custom TCP`
+- Port Range: `9094`
+- Source type: `Custom`
+- Source: `my-msk-proxy-sg`
 
-Type: `Custom TCP`\
-Port: `9094`\
-Source: `Custom Security groups`: `my-msk-proxy`
 
-::: tip
-This allows the MSK Proxy instances to access your MSK cluster.
-:::
+
 
 ### Subscribe via AWS Marketplace
 

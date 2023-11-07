@@ -44,6 +44,8 @@ Check out the [Troubleshooting](../../reference/troubleshooting/amazon-msk.md) g
 
 ### Create the MSK Cluster
 
+> This creates your MSK cluster in preparation for secure access via the internet.
+
 An MSK cluster is needed for secure remote access via the internet. You can skip this step if you have already created an MSK cluster with equivalent configuration.
 
 Follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the bellow resource names to reference the AWS resources needed in this guide.
@@ -56,6 +58,8 @@ Follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md
 - Internet gateway: `my-msk-cluster-igw`
 
 ### Create the MSK Proxy security group
+
+> This creates your Private MSK proxy security group to allow Kafka clients and SSH access.
 
 A VPC security group is needed for the Public MSK Proxy instances when they are launched.
 
@@ -74,7 +78,9 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 
 ### Update the default security group rules
 
-This allows the MSK Proxy instances to communicate with your MSK cluster. Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+> This allows the MSK Proxy instances to communicate with your MSK cluster.
+
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
 
 Filter the security groups by selecting a `VPC` and select the `default` security group.
 
@@ -91,6 +97,8 @@ Add this Inbound Rule to allow the MSK Proxy instances to communicate with the M
 - Source: `my-msk-proxy-sg`
 
 ### Create the MSK Proxy IAM security role
+
+> This creates an IAM security role to enable the required AWS services for the MSK Proxy instances.
 
 Follow the [Create IAM Role](../../reference/amazon-msk/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
