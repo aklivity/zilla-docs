@@ -5,9 +5,6 @@ description: Setup connectivity to your MSK cluster from anywhere on the interne
 
 # Production
 
-<!-- TODO enable -->
-<!-- markdownlint-disable -->
-
 [Zilla Plus](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
@@ -157,19 +154,13 @@ MSKProxySecretsManagerRead
 
 The Zilla Plus (Public MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering.
-
-::: info
-You should now see `Zilla Plus (Public MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
-:::
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering. You should now see `Zilla Plus (Public MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
 
 ## Create the Server Certificate
 
 We need a TLS Server Certificate for your custom DNS wildcard domain that can be trusted by a Kafka Client from anywhere.
 
-Follow the [Create Server Certificate (LetsEncrypt)](../../reference/amazon-msk/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate for the your own custom wildcard DNS domain.
-
-Here we use the wildcard domain `*.example.aklivty.io` to illustrate the steps.
+Follow the [Create Server Certificate (LetsEncrypt)](../../reference/amazon-msk/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the Public MSK Proxy CloudFormation template.
@@ -177,57 +168,59 @@ Note the server certificate secret ARN as we will need to reference it from the 
 
 ## Deploy the Public MSK Proxy
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
+Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
 
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, then select the `Public MSK Proxy` fulfillment option and click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to complete the `Create stack` wizard with the following details:
+- From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
+- Select the `Public MSK Proxy` fulfillment option
+- Make sure you have selected the desired region selected, such as `us-east-1`
+- Click `Continue to Launch`
+  - Choose the action `Launch CloudFormation`
 
-### Step 1. Specify template
+Click `Launch` to complete the `Create stack` wizard with the following details:
 
-Prepare template: `Template is ready`\
-Specify template: `(auto-filled)`
+### Step 1. Create Stack
+
+- Prepare template: `Template is ready`
+- Specify template: `Amazon S3 URL`
+  - Amazon S3 URL: `(auto-filled)`
 
 ### Step 2. Specify stack details
 
-Stack name: `my-public-msk-proxy`
+Stack name:
 
-#### Parameters
+```text:no-line-numbers
+my-public-msk-proxy
+```
 
-#### Network Configuration
+Parameters:
 
-VPC: `my-msk-cluster-vpc`\
-Subnets: `my-msk-cluster-vpc-1a` `my-msk-cluster-vpc-1b` `my-msk-cluster-vpc-1c`
+- Network Configuration
+  - VPC: `my-msk-cluster-vpc`
+  - Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
+- MSK Configuration
+  - Wildcard DNS pattern: `*.aklivity.[...].amazonaws.com` *1
+  - Port number: `9094`
+- MSK Proxy Configuration
+  - Instance count: `2`
+  - Instance type: `t3.small` *2
+  - Role: `zilla-plus-public-msk-proxy`
+  - Security Groups: `my-msk-proxy`
+  - Secrets Manager Secret ARN: `<TLS certificate private key secret ARN>` *3
+  - Public Wildcard DNS: `*.example.aklivity.io` *4
+  - Public Port: `9094`
+  - Key pair for SSH access: `my-key-pair` *5
+- *Configuration Reference
+  1. Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
+  2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
+  3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](../../reference/amazon-msk/create-server-certificate-letsencrypt.md) guide.
+  4. Replace with your own custom wildcard DNS pattern.
+  5. Follow the [Create Key Pair](../../reference/amazon-msk/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
-#### MSK Configuration
+### Step 3. Configure stack options: `(use defaults)`
 
-Wildcard DNS pattern [1]: `*.aklivity.[...].amazonaws.com`\
-Port number: `9094`
+### Step 4. Review
 
-#### MSK Proxy Configuration
-
-Instance count: `2`\
-Instance type [2]: `t3.small`\
-Role: `zilla-plus-public-msk-proxy`\
-Security Groups: `my-msk-proxy`\
-Secrets Manager Secret ARN [3]: [`<LetsEncrypt signed certificate's private key secret ARN>`](../../reference/amazon-msk/create-server-certificate-letsencrypt.md)
-Public Wildcard DNS [4]: `*.example.aklivity.io`\
-Public Port: `9094`\
-Key pair for SSH access [5]: `<key pair>`
-
-### Step 3. Configure stack options: `(defaults)`
-
-### Step 4. Review: `(review)`
-
-**[1]** Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
-
-**[2]** Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
-
-**[3]** This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](../../reference/amazon-msk/create-server-certificate-letsencrypt.md) guide.
-
-**[4]** Replace with your own custom wildcard DNS pattern.
-
-**[5]** Follow the [Create Key Pair](../../reference/amazon-msk/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
-
-Click `Create Stack`.
+Confirm the stack details are correct and `Submit` to start the CloudFormation deploy.
 
 ::: tip
 This initiates deployment of the Zilla Plus (Public MSK Proxy) stack via CloudFormation.
@@ -272,23 +265,19 @@ Verify that the `msk-proxy` service is active and logging output similar to that
 Aug 26 06:56:54 ip-10-0-3-104.ec2.internal zilla[1803]: Recorded usage for record id ...
 ```
 
-::: info
 Repeat these steps for each of the other Public MSK Proxy instances launched by the CloudFormation template.
-:::
 
 ### Configure Global DNS
 
-When using a wildcard DNS name for your own domain, such as `*.example.akivity.io` then the DNS entries are setup in your DNS provider.
+> This ensures that any new Kafka brokers added to the MSK cluster can still be reached via the Public MSK Proxy.
+
+When using a wildcard DNS name for your own domain, such as `*.example.aklivity.io` then the DNS entries are setup in your DNS provider.
 
 Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`. Then select the `my-public-msk-proxy` stack to show the details.
 
 In the stack `Outputs` tab, find the public DNS name of the `NetworkLoadBalancer.`
 
 You need to create a `CNAME` record mapping your public DNS wildcard pattern to the public DNS name of the Network Load Balancer.
-
-::: tip
-This ensures that any new Kafka brokers added to the MSK cluster can still be reached via the Public MSK Proxy.
-:::
 
 ::: info
 You might prefer to use an Elastic IP address for each NLB public subnet, providing DNS targets for your `CNAME` record that can remain stable even after restarting the stack.
@@ -370,13 +359,13 @@ Replace these TLS bootstrap server names accordingly for your own custom wildcar
 
 #### Create a Topic
 
-Use the Kafka client to create a topic called `public-proxy-test`, replacing `<tls-bootstrap-server-names>` \*\*\*\* in the command below with the TLS proxy names of your Public MSK Proxy:
+Use the Kafka client to create a topic called `public-proxy-test`, replacing `<tls-bootstrap-server-names>` in the command below with the TLS proxy names of your Public MSK Proxy:
 
 ```bash:no-line-numbers
 bin/kafka-topics.sh --create --topic public-proxy-test --partitions 3 --replication-factor 3 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
 ```
 
-A quick summary of what just happened:
+::: tip A quick summary of what just happened
 
 1. The Kafka client with access to the public internet issued a request to create a new topic
 2. This request was directed to the internet-facing Network Load Balancer
@@ -384,6 +373,8 @@ A quick summary of what just happened:
 4. The Zilla Plus (Public MSK Proxy) routed the request to the appropriate MSK broker
 5. The topic was created in the MSK broker
 6. Public access was verified
+
+:::
 
 #### Publish messages
 
@@ -416,30 +407,17 @@ This is my second event
 ```
 
 ::: tip
-This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)!
+This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy).](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)
 :::
 
-## Monitor the Public MSK Proxy
+::: info Monitor the Public MSK Proxy
 
-The CloudFormation template used to deploy the Public MSK Proxy includes a Network Load Balancer that can be monitored via [CloudWatch](https://console.aws.amazon.com/cloudwatch) to verify continuous health.
+Follow the [Monitoring the Public MSK Proxy](./public-proxy.md#monitoring-the-public-msk-proxy) instructions
 
-Network Load Balancers have [many available metrics](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-cloudwatch-metrics.html), including the following.
+:::
 
-| Metric                   | Description                                                                                                                                          |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `TCP_Target_Reset_Count` | The total number of reset (RST) packets sent from a target to a client. These resets are generated by the target and forwarded by the load balancer. |
-| `UnHealthyHostCount`     | The number of targets that are considered unhealthy.                                                                                                 |
+::: info Upgrade the Public MSK Proxy
 
-You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a dashboard to monitor these metrics and set alarms to alert you when specific metric thresholds are reached.
+Follow the [Upgrading the Public MSK Proxy](./public-proxy.md#upgrading-the-public-msk-proxy) instructions
 
-## Upgrade the Public MSK Proxy
-
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
-
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, then select the `Public MSK Proxy` fulfillment option and click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to show the URL of the CloudFormation template.
-
-Copy the CloudFormation template Amazon S3 URL and then select your existing CloudFormation Stack from a previous deployment of `Zilla Plus (Public MSK Proxy)`. Click `Update` and `Replace current template` with the copied Amazon S3 URL. Then complete the wizard to deploy the updated stack.
-
-CloudFormation will incrementally deploy the MSK Proxy instances for the new version behind the same Network Load Balancer, checking for successful deployment before terminating the MSK Proxy instances for the previous version.
-
-Connected clients will see their connections drop, and when they reconnect automatically, the Network Load Balancer will direct them to the new MSK Proxy instances. If the stack update is unsuccessful, then CloudFormation will rollback to use the previous stack deployment.
+:::
