@@ -37,12 +37,12 @@ Defines a binding with `kafka-proxy`  support, with `proxy` behavior.
 - [kind\*](#kind)
 - [options](#options)
 - [options.external](#options-external)
-  - [external\[\].host](#external-host)
-  - [external\[\].port](#external-port)
+  - [external.host](#external-host)
+  - [external.port](#external-port)
 - [options.internal](#options-internal)
-  - [internal\[\].host](#internal-host)
-  - [internal\[\].port](#internal-port)
-- [exit\*](#exit)
+  - [internal.host](#internal-host)
+  - [internal.port](#internal-port)
+- [exit](#exit)
 
 ::: right
 \* required
@@ -84,13 +84,13 @@ external:
   port: 9093
 ```
 
-### external.host
+#### external.host
 
 > `string`
 
 Hostname pattern for external Kafka broker names, where `#` is an integer.
 
-### external.port
+#### external.port
 
 > `integer`
 
@@ -108,13 +108,13 @@ internal:
   port: 9094
 ```
 
-### internal.host
+#### internal.host
 
 > `string`
 
 Hostname pattern for internal Kafka broker names, where `#` is an integer.
 
-### internal.port
+#### internal.port
 
 > `integer`
 
@@ -129,6 +129,7 @@ Default exit binding when no conditional routes are viable.
 ```yaml
 exit: tls_client0
 ```
+
 ---
 
 ::: right
