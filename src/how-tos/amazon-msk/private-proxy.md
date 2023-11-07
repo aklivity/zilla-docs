@@ -191,7 +191,7 @@ We can now create a VPC Endpoint to access your MSK cluster from Kafka clients i
 
 ### Create the VPC
 
-Follow the [Create VPC]((https://console.aws.amazon.com/vpcconsole/home#CreateVpc:createMode=vpcWithResources)) page to create a `VPC and more` for your MSK cluster with the following parameters.
+Follow the [Create VPC](https://console.aws.amazon.com/vpcconsole/home#CreateVpc:createMode=vpcWithResources) page to create a `VPC and more` for your MSK cluster with the following parameters.
 
 - Name tag auto-generation: `my-msk-client`
 - IPv4 CIDR block: `10.1.0.0/16`

@@ -56,15 +56,16 @@ Click `Launch Instances`.
 This launches an EC2 instance in VPC `my-vpc`, not yet accessible via `SSH`.
 :::
 
-Follow the [Update Security Group](./update-security-group.md) guide with these parameters to enable SSH access to your EC2 instance.
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
 
-VPC: `vpc-xxx (my-vpc)`\
-Security Group: `default`
+Filter the security groups by selecting a `VPC` and select the `default` security group.
 
-### Inbound Rule
-
-Type: `SSH`\
-Source: `0.0.0.0/0`
+- VPC: `vpc-xxx (my-vpc)`
+- Security Group: `default`
+- Edit Inbound Rules
+- Add Inbound Rule
+  - Type: `SSH`
+  - Source type: `My IP`
 
 ::: tip
 This makes the launched EC2 instance accessible via `SSH`.

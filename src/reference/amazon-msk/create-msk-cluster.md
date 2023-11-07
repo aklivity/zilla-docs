@@ -12,7 +12,7 @@ The following parameters are needed when following these steps to create a new M
 
 ## Create a VPC
 
-If you haven't already created a VPC, go to the [Create VPC]((https://console.aws.amazon.com/vpcconsole/home#CreateVpc:createMode=vpcWithResources)) page to create a `VPC and more` for your MSK cluster with the following parameters.
+If you haven't already created a VPC, go to the [Create VPC](https://console.aws.amazon.com/vpcconsole/home#CreateVpc:createMode=vpcWithResources) page to create a `VPC and more` for your MSK cluster with the following parameters.
 
 - Name tag auto-generation: `my-msk-cluster`
 - IPv4 CIDR block: `10.0.0.0/16`
