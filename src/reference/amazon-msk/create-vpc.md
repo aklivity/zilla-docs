@@ -1,7 +1,5 @@
 ---
-description: >-
-  Create a new VPC with subnets in different multiple availability zones and
-  internet connectivity.
+description: Create a new VPC with subnets in different multiple availability zones and internet connectivity.
 ---
 
 # Create VPC
@@ -34,7 +32,7 @@ When following this guide to create a specific VPC, replace the VPC name, CIDR a
 
 ## Create the VPC
 
-Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpcconsole/home#CreateVpc:createMode=vpcOnly) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
 
 Under the `Resources by Region` section, select the `VPCs` resource box to show `Your VPCs`. Click the `Create a VPC` button in the top right and fill out the `Create VPC` form with the following details:
 

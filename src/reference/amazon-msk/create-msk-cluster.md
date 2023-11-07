@@ -1,10 +1,10 @@
 ---
-description: Create a new MSK cluster with 3 brokers, each in a different availability zone with mTLS.
+description: Create a new MSK cluster with 3 brokers, each in a different availability zone.
 ---
 
 # Create a MSK Cluster
 
-The following parameters are needed when following these steps to create a new MSK cluster.
+The following parameters are needed when following these steps to create a new MSK cluster. Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 
 - Name
 - VPC
@@ -12,20 +12,15 @@ The following parameters are needed when following these steps to create a new M
 
 ## Create a VPC
 
-- MSK Cluster
-  - Name `aklivity`
-- VPC
-  - Name `my-msk-cluster` in region `us-east-1`
-- Subnets
-  - Name `my-msk-cluster-1a` in zone `us-east-1a`
-  - Name `my-msk-cluster-1b` in zone `us-east-1b`
-  - Name `my-msk-cluster-1c` in zone `us-east-1c`
+If you haven't already created a VPC, go to the [Create VPC]((https://console.aws.amazon.com/vpcconsole/home#CreateVpc:createMode=vpcWithResources)) page to create a `VPC and more` for your MSK cluster with the following parameters.
+
+- Name tag auto-generation: `my-msk-cluster`
+- IPv4 CIDR block: `10.0.0.0/16`
+- Number of Availability Zones: `3`
 
 ## Create the MSK Cluster
 
-From the MSK Management Console make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
-
-Start the [`Create cluster` wizard and specify Custom create](https://console.aws.amazon.com/msk/home#/cluster/create?isCustomCreate=true)
+Start the [`Create cluster` wizard and specify Custom create](https://console.aws.amazon.com/msk/home#/cluster/create?isCustomCreate=true&isProvisionedCreate=true)
 
 ### Step 1: Cluster Settings
 
@@ -42,12 +37,19 @@ Storage: `10 GiB`
 ### Step 2: Networking
 
 - VPC: `my-msk-cluster-vpc`
-- For each of the 3 Zones 
+- For each of the 3 Zones
   - Subnet: `my-msk-cluster-subnet-public*`
 
 ### Step 3: Security Settings
 
-- Access control methods: `Unauthenticated access`
+- Access control methods:
+  > `Unauthenticated access`
+  > -- or --
+  > `SASL/SCRAM authentication`
+  - For Mutual Trust
+  > `TLS client authentication (ACM)`
+  > ACM Private CAs: `Mutual Authentication CA`
+
 
 - Encryption
   - Between clients and brokers: `TLS Encryption`

@@ -1,7 +1,5 @@
 ---
-description: >-
-  Create a server certificate signed by a private certificate authority using
-  AWS Certificate Manager.
+description: Create a server certificate signed by a private certificate authority using AWS Certificate Manager.
 ---
 
 # Create Server Certificate (ACM)

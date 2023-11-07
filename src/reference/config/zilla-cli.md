@@ -7,7 +7,7 @@ description: The command line interface to control the Zilla runtime.
 
 # Zilla Runtime CLI
 
-The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](./) to control and observe the Zilla runtime.
+The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](./overview.md) to control and observe the Zilla runtime.
 
 :::: note Commands
 
@@ -118,7 +118,7 @@ example      echo_server    stream.errors.sent            0
 
 ### zilla start
 
-The `zilla start` command resolves the [Zilla Runtime Configuration](./) in `zilla.yaml` to start the runtime engine.
+The `zilla start` command resolves the [Zilla Runtime Configuration](./overview.md) in `zilla.yaml` to start the runtime engine.
 
 ```bash:no-line-numbers
 zilla start
