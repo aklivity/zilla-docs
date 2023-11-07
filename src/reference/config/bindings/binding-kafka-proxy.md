@@ -13,7 +13,7 @@ tag:
 Zilla runtime kafka-proxy binding.
 
 ```yaml {2}
-kafka_proxy0:
+kafka_proxy:
   type: kafka-proxy
   kind: proxy
   options:
@@ -23,7 +23,7 @@ kafka_proxy0:
     internal:
       host: b-#.kafka.internal.net
       port: 9094
-  exit: tls_client0
+  exit: tls_client
 ```
 
 ## Summary
@@ -127,7 +127,7 @@ Port number for internal Kafka broker.
 Default exit binding when no conditional routes are viable.
 
 ```yaml
-exit: tls_client0
+exit: tls_client
 ```
 
 ---
