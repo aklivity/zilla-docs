@@ -85,69 +85,69 @@ Add this Inbound Rule to allow the MSK Proxy instances to communicate with the M
 - Source type: `Custom`
 - Source: `my-msk-proxy-sg`
 
-
-
-
-### Subscribe via AWS Marketplace
+## Subscribe via AWS Marketplace
 
 The Zilla Plus (Private MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) and `Subscribe` to the offering.
-
-::: info
-You should now see `Zilla Plus (Private MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
-:::
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) and `Subscribe` to the offering. You should now see `Zilla Plus (Private MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
 
 ## Create the VPC Endpoint Service
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Private MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
+Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
 
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, and then click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to complete the `Create stack` wizard with the following details:
+- From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
+- Select the `Public MSK Proxy` fulfillment option
+- Make sure you have selected the desired region selected, such as `us-east-1`
+- Click `Continue to Launch`
+  - Choose the action `Launch CloudFormation`
 
-### Step 1. Specify template
+Click `Launch` to complete the `Create stack` wizard with the following details:
 
-Prepare template: `Template is ready`\
-Specify template: `(auto-filled)`
+
+### Step 1. Create Stack
+
+- Prepare template: `Template is ready`
+- Specify template: `Amazon S3 URL`
+  - Amazon S3 URL: `(auto-filled)`
 
 ### Step 2. Specify stack details
 
-Stack name: `my-msk-endpoint-service`
+Stack name:
 
-#### Parameters
+```text:no-line-numbers
+my-msk-endpoint-service
+```
 
-#### Network Configuration
+Parameters:
 
-VPC: `my-msk-cluster`\
-Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
+- Network Configuration
+  - VPC: `my-msk-cluster-vpc`
+  - Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
+- MSK Configuration
+  - Wildcard DNS pattern: `*.aklivity.[...].amazonaws.com` *1
+  - Port number: `9094`
+- MSK Proxy Configuration
+  - Instance count: `2`
+  - Instance type: `t3.small` *2
+  - Security Groups: `my-msk-proxy`
+  - Key pair for SSH access: `my-key-pair` *3
+- *Configuration Reference
+  1. Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
+  2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
+  3. Follow the [Create Key Pair](../../reference/amazon-msk/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
-#### MSK Configuration
+### Step 3. Configure stack options: `(use defaults)`
 
-Wildcard DNS pattern [1]: **`*`**`.aklivity.[...].amazonaws.com`\
-Port number: `9094`
+### Step 4. Review
 
-#### MSK Proxy Configuration
-
-Instance count: `2`\
-Instance type [2]: `t3.small`\
-Security Groups: `my-msk-proxy`\
-Key pair for SSH access: `<key pair>`
-
-### Step3. Configure stack options: `(defaults)`
-
-### Step4. Review: `(review)`
-
-**[1]** Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
-
-**[2]** Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
-
-Click `Create Stack`.
+Confirm the stack details are correct and `Submit` to start the CloudFormation deploy.
 
 ::: tip
 This initiates creation of a VPC Endpoint Service using the Zilla Plus (Private MSK Proxy) stack via CloudFormation.
 :::
 
 ::: info
-When your VPC Endpoint Service is ready, the [CloudFormation console](https://console.aws.amazon.com/cloudformation) will show **`CREATE_COMPLETE`** for the newly created stack.
+When your VPC Endpoint Service is ready, the [CloudFormation console](https://console.aws.amazon.com/cloudformation) will show `CREATE_COMPLETE` for the newly created stack.
 :::
 
 ### Verify Private MSK Proxy Service
@@ -181,25 +181,22 @@ Verify that the `msk-proxy` service is active and logging output similar to that
 Aug 26 06:56:54 ip-10-0-3-104.ec2.internal zilla[1803]: Recorded usage for record id ...
 ```
 
-::: info
 Repeat these steps for each of the other Private MSK Proxy instances launched by the CloudFormation template.
-:::
 
 ## Create the MSK VPC Endpoint
+
+> This creates your client VPC in preparation for secure cross-VPC access to your MSK cluster.
 
 We can now create a VPC Endpoint to access your MSK cluster from Kafka clients in a different VPC via the newly created VPC Endpoint Service.
 
 ### Create the VPC
 
-Follow the [Create VPC](../../reference/amazon-msk/create-vpc.md) guide to create a VPC for your Kafka clients with the following parameters.
+Follow the [Create VPC]((https://console.aws.amazon.com/vpcconsole/home#CreateVpc:createMode=vpcWithResources)) page to create a `VPC and more` for your MSK cluster with the following parameters.
 
-Name tag: `my-msk-client`\
-IPv4 CIDR block: `10.1.0.0/16`\
-Region: `us-east-1`
-
-::: tip
-This creates your client VPC in preparation for secure cross-VPC access to your MSK cluster.
-:::
+- Name tag auto-generation: `my-msk-client`
+- IPv4 CIDR block: `10.1.0.0/16`
+- Number of Availability Zones: `3`
+- Region: `us-east-1`
 
 #### Enable DNS Hostnames
 
@@ -222,45 +219,49 @@ Navigate to the [CloudFormation Management Console](https://console.aws.amazon.c
 
 ### Step 1. Specify template
 
-Prepare template: `Template is ready`
+- Prepare template: `Template is ready`
 
 #### Specify template
 
-Template source: `Amazon S3 URL`\
-Amazon S3 URL: [https://s3.amazonaws.com/marketplace.aklivity.io/private-msk-proxy/PrivateMskEndpoint.template](https://s3.amazonaws.com/marketplace.aklivity.io/private-msk-proxy/PrivateMskEndpoint.template)
+- Template source: `Amazon S3 URL`
+- Amazon S3 URL:
+
+```text:no-line-numbers
+https://s3.amazonaws.com/marketplace.aklivity.io/private-msk-proxy/PrivateMskEndpoint.template
+```
 
 ### Step 2. Specify stack details
 
-Stack name: `my-msk-endpoint`
+Stack name:
 
-#### Parameters
+```text:no-line-numbers
+my-msk-endpoint
+```
 
-#### Network Configuration
+Parameters:
 
-VPC: `my-msk-client`\
-Subnets: `my-msk-client-1a` `my-msk-client-1b` `my-msk-client-1c`
+- Network Configuration
+  - VPC: `my-msk-client`
+  - Subnets: `my-msk-client-1a` `my-msk-client-1b` `my-msk-client-1c`
+- Endpoint Configuration
+  - Endpoint Service Name: `com.amazonaws.vpce.[...]` *1
+  - Wildcard DNS pattern: `*.aklivity.[...].amazonaws.com` *2
+- *Configuration Reference
+  1. Locate the `Endpoint Service Name` from the `Outputs` tab of the `my-msk-endpoint-service` stack previously created in the same VPC as your MSK Cluster.
+  2. Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
 
-#### Endpoint Configuration
+### Step 3. Configure stack options: `(use defaults)`
 
-Endpoint Service Name [1]: `com.amazonaws.vpce.[...]`\
-Wildcard DNS pattern [2]: **`*`**`.aklivity.[...].amazonaws.com`\
+### Step 4. Review
 
-### Step 3. Configure stack options: `(defaults)`\
-
-### Step 4. Review: `(review)`
-
-**[1]** Locate the `Endpoint Service Name` from the `Outputs` tab of the `my-msk-endpoint-service` stack previously created in the same VPC as your MSK Cluster.
-
-**[2]** Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
-
-Click `Create Stack`.
+Confirm the stack details are correct and `Submit` to start the CloudFormation deploy.
 
 ::: tip
 This initiates creation of a VPC Endpoint using the CloudFormation stack.
 :::
 
 ::: info
-When your VPC Endpoint is ready, the [CloudFormation console](https://console.aws.amazon.com/cloudformation) will show **`CREATE_COMPLETE`** for the newly created stack.
+When your VPC Endpoint is ready, the [CloudFormation console](https://console.aws.amazon.com/cloudformation) will show `CREATE_COMPLETE` for the newly created stack.
 :::
 
 ## Verify Kafka Client Connectivity
@@ -269,20 +270,15 @@ Now we must prepare a Kafka client running in the client VPC to verify connectiv
 
 ### Launch the EC2 Instance
 
+> This launches an EC2 instance that you can access remotely via SSH.
+
 Follow the [`Launch EC2 Instance`](../../reference/amazon-msk/launch-ec2-instance.md) guide with the following parameters to launch an EC2 instance with remote SSH access and login to the instance via SSH.
 
-VPC: `my-msk-client`\
-Region: `us-east-1`
-
-### Instance
-
-AMI: `Amazon Linux 2 AMI (HVM),` `SSD Volume Type,` `64-bit (x86)`
-
-Type: `t3.small`
-
-::: tip
-This launches an EC2 instance that you can access remotely via SSH.
-:::
+- VPC: `my-msk-client`
+- Region: `us-east-1`
+- Instance
+  - AMI: `Amazon Linux 2 AMI (HVM), SSD Volume Type, 64-bit (x86)`
+  - Type: `t3.small`
 
 ### Install the Kafka Client
 
@@ -351,13 +347,13 @@ Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-serve
 
 #### Create a Topic
 
-Use the Kafka client to create a topic called `vpce-test`, replacing`<tls-bootstrap-server-names>` **** in the command below with the TLS bootstrap server names of your MSK cluster:
+Use the Kafka client to create a topic called `vpce-test`, replacing`<tls-bootstrap-server-names>` in the command below with the TLS bootstrap server names of your MSK cluster:
 
 ```bash:no-line-numbers
 bin/kafka-topics.sh --create --topic vpce-test --partitions 3 --replication-factor 3 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
 ```
 
-A quick summary of what just happened:
+::: tip A quick summary of what just happened
 
 1. The Kafka client in the **my-msk-client** VPC issued a request to create a new topic
 2. This request was directed to the MSK VPC Endpoint
@@ -367,6 +363,8 @@ A quick summary of what just happened:
 6. The Aklivity MSK Private Proxy looked at the info in the request and relayed it through to the appropriate MSK broker
 7. The topic was created in the MSK broker
 8. Cross VPC connectivity was verified
+
+:::
 
 #### Publish messages
 
@@ -379,8 +377,8 @@ bin/kafka-console-producer.sh --topic vpce-test --producer.config client.propert
 A prompt will appear for you to type in the messages:
 
 ```output:no-line-numbers
-This is my first event
-This is my second event
+>This is my first event
+>This is my second event
 ```
 
 #### Receive messages
@@ -417,12 +415,19 @@ You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a 
 
 ## Upgrade the VPC Endpoint Service
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Private MSK Proxy)` to show the details page. Then select `Launch CloudFormation stack` from the `Actions` menu in the `Agreement` section.
+Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Private MSK Proxy)` to show the manage subscription page.
 
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`, and then click `Continue to Launch`. Choose the action `Launch CloudFormation`, then click `Launch` to show the URL of the CloudFormation template.
-
-Copy the CloudFormation template Amazon S3 URL and then select your existing CloudFormation Stack from a previous deployment of `Zilla Plus (Private MSK Proxy)`. Click `Update` and `Replace current template` with the copied Amazon S3 URL. Then complete the wizard to deploy the updated stack.
+- From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
+- Select the `Private MSK Proxy` fulfillment option
+- Make sure you have selected the desired region selected, such as `us-east-1`
+- Click `Continue to Launch`
+  - Choose the action `Launch CloudFormation`
+- Click `Launch` to show the URL of the CloudFormation template
+  - Copy the CloudFormation template Amazon S3 URL
+- Select your existing CloudFormation Stack from a previous deployment of `Zilla Plus (Private MSK Proxy)`
+- Click `Update` and `Replace current template` with the copied Amazon S3 URL
+- Complete the wizard to deploy the updated stack.
 
 CloudFormation will incrementally deploy the MSK Proxy instances for the new version behind the same Network Load Balancer, checking for successful deployment before terminating the MSK Proxy instances for the previous version.
 
-Connected clients will see their connections drop, and when they reconnect automatically, the Network Load Balancer will direct them to the new MSK Proxy instances. If the update is unsuccessful, then CloudFormation will rollback to use the previous stack deployment.
+Connected clients will see their connections drop, and when they reconnect automatically, the Network Load Balancer will direct them to the new MSK Proxy instances. If the stack update is unsuccessful, then CloudFormation will rollback to use the previous stack deployment.
