@@ -34,12 +34,23 @@ The command currently has templates for the following common scenarios:
 - `asyncapi.http.proxy` - Create a http proxy config based on an AsyncAPI service definition.
 - `asyncapi.mqtt.proxy` - Create a mqtt proxy config based on an AsyncAPI service definition.
 
-You have to specify which template to use, the OpenAPI/AsyncAPI service definition as the input file and the output
-file name you want the generated zilla config to be saved.
+You have to specify which template to use, the OpenAPI/AsyncAPI service definition as the input file and the output file name you want the generated zilla config to be saved.
 
 ```bash:no-line-numbers
-zilla generate -t template -i input-file -o output-file
+zilla generate -t <template> -i <input-file> -o <output-file>
 ```
+
+#### -t --template
+
+The template to use for the config generation.
+
+####  -i --input
+
+The OpenAPI/AsyncAPI service definition.
+
+####  -o --output
+
+The file name you want the generated zilla config to be saved.
 
 Example:
 
