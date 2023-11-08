@@ -123,13 +123,15 @@ Add this Inbound Rule to allow the MSK Proxy instances to communicate with the M
 
 Follow the [Create IAM Role](../../reference/amazon-msk/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
-Name:
+::: code-tabs
+
+@tab Name
 
 ```text:no-line-numbers
 zilla-plus-public-msk-proxy
 ```
 
-Policies:
+@tab Policies
 
 ```text:no-line-numbers
 AWSMarketplaceMeteringFullAccess
@@ -138,15 +140,19 @@ AWSCertificateManagerPrivateCAReadOnly
 ResourceGroupsandTagEditorReadOnlyAccess
 ```
 
+:::
+
 #### IAM role Inline Policies
 
-Name:
+::: code-tabs
+
+@tab Name
 
 ```text:no-line-numbers
 MSKProxySecretsManagerRead
 ```
 
-Summary:
+@tab JSON Summary
 
 ```json:no-line-numbers
 {
@@ -167,6 +173,8 @@ Summary:
   ]
 }
 ```
+
+:::
 
 ::: note
 This example pattern requires all trusted client certificate key secrets to be named `client-*`.
@@ -218,11 +226,15 @@ Click `Launch` to complete the `Create stack` wizard with the following details:
 
 ### Step 2. Specify stack details
 
-Stack name:
+::: code-tabs
+
+@tab Stack name
 
 ```text:no-line-numbers
 my-public-msk-proxy
 ```
+
+:::
 
 Parameters:
 
@@ -325,29 +337,17 @@ To verify that we have successfully enabled public internet connectivity to our 
 
 First, we must install a Java runtime that can be used by the Kafka client.
 
-::: code-tabs#shell
-
-@tab OSX and Linux
-
 ```bash:no-line-numbers
 sudo yum install java-1.8.0
 ```
 
-:::
-
 Now we are ready to install the Kafka client:
-
-::: code-tabs#shell
-
-@tab OSX and Linux
 
 ```bash:no-line-numbers
 wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.13-2.8.0.tgz
 tar -xzf kafka_2.13-2.8.0.tgz
 cd kafka_2.13-2.8.0
 ```
-
-:::
 
 ::: info
 We use a generic Kafka client here, however the setup for any Kafka client, including [KaDeck](https://www.xeotek.com/apache-kafka-monitoring-management/), [`Conduktor`](https://www.conduktor.io/download/), and [akhq.io](https://akhq.io/) will be largely similar. With the Public MSK Proxy you can use these GUI Kafka clients to configure and monitor your MSK applications, clusters and streams.
@@ -370,7 +370,7 @@ Then the key store is converted to `/tmp/kafka.client.keystore.jks` in `JKS` for
 
 The MSK Proxy relies on TLS so we need to create a file called `client.properties` that tells the Kafka client to use SSL as the security protocol and to specify the key store containing authorized client certificates.
 
-::: code-tabs#shell
+::: code-tabs
 
 @tab client.properties
 

@@ -105,13 +105,15 @@ Add this Inbound Rule to allow the MSK Proxy instances to communicate with the M
 
 Follow the [Create IAM Role](../../reference/amazon-msk/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
-Name:
+::: code-tabs
+
+@tab Name
 
 ```text:no-line-numbers
 zilla-plus-public-msk-proxy
 ```
 
-Policies:
+@tab Policies
 
 ```text:no-line-numbers
 AWSMarketplaceMeteringFullAccess
@@ -120,15 +122,19 @@ AWSCertificateManagerPrivateCAReadOnly
 ResourceGroupsandTagEditorReadOnlyAccess
 ```
 
+:::
+
 #### IAM role Inline Policies
 
-Name:
+::: code-tabs
+
+@tab Name
 
 ```text:no-line-numbers
 MSKProxySecretsManagerRead
 ```
 
-Summary:
+@tab JSON Summary
 
 ```json:no-line-numbers
 {
@@ -148,6 +154,8 @@ Summary:
   ]
 }
 ```
+
+:::
 
 ::: info If you used a different secret name for your certificate key.
 
@@ -199,11 +207,15 @@ Click `Launch` to complete the `Create stack` wizard with the following details:
 
 ### Step 2. Specify stack details
 
-Stack name:
+::: code-tabs
+
+@tab Stack name
 
 ```text:no-line-numbers
 my-public-msk-proxy
 ```
+
+:::
 
 Parameters:
 
@@ -287,29 +299,17 @@ To verify that we have successfully enabled public internet connectivity to our 
 
 First, we must install a Java runtime that can be used by the Kafka client.
 
-::: code-tabs#shell
-
-@tab OSX and Linux
-
 ```bash:no-line-numbers
 sudo yum install java-1.8.0
 ```
 
-:::
-
 Now we are ready to install the Kafka client:
-
-::: code-tabs#shell
-
-@tab OSX and Linux
 
 ```bash:no-line-numbers
 wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.13-2.8.0.tgz
 tar -xzf kafka_2.13-2.8.0.tgz
 cd kafka_2.13-2.8.0
 ```
-
-:::
 
 ::: info
 We use a generic Kafka client here, however the setup for any Kafka client, including [KaDeck](https://www.xeotek.com/apache-kafka-monitoring-management/), [`Conduktor`](https://www.conduktor.io/download/), and [akhq.io](https://akhq.io/) will be largely similar. With the Public MSK Proxy you can use these GUI Kafka clients to configure and monitor your MSK applications, clusters and streams.
@@ -335,7 +335,7 @@ The MSK Proxy relies on encrypted SASL/SCRAM so we need to create a file called 
 
 Notice we used the default username and password, but you will need to replace those with your own credentials from the `AmazonMSK_*` secret you created.
 
-::: code-tabs#shell
+::: code-tabs
 
 @tab client.properties
 
@@ -354,13 +354,11 @@ Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudfor
 
 In the stack `Outputs` tab, find the public DNS name of the `NetworkLoadBalancer`, and lookup the public IP addresses, as shown in the following example.
 
-::: code-tabs#shell
-
-@tab OSX and Linux
-
 ```bash:no-line-numbers
 nslookup my-pu-Netwo-xxxxxxxxxxxx-yyyyyyyyyyyyyyyy.elb.us-east-1.amazonaws.com
+```
 
+```output:no-line-numbers
 Server:  10.5.1.21
 Address: 10.5.1.21#53
 
@@ -373,16 +371,13 @@ Name: my-pu-Netwo-xxxxxxxxxxxx-yyyyyyyyyyyyyyyy.elb.us-east-1.amazonaws.com
 Address: 3.226.64.246
 ```
 
-:::
+Then add local DNS entries for the bootstrap proxy names needed by the Kafka client to `/etc/hosts`.
 
-Then add local DNS entries for the bootstrap proxy names needed by the Kafka client.
+::: code-tabs
 
-::: code-tabs#shell
+@tab /etc/hosts
 
-@tab OSX and Linux
-/etc/hosts
-
-```bash:no-line-numbers
+```text:no-line-numbers
 107.21.117.233  b-1.aklivity.example.com b-2.aklivity.example.com b-3.aklivity.example.com
 54.235.158.55   b-1.aklivity.example.com b-2.aklivity.example.com b-3.aklivity.example.com
 3.226.64.246    b-1.aklivity.example.com b-2.aklivity.example.com b-3.aklivity.example.com
@@ -476,4 +471,3 @@ Follow the [Monitoring the Public MSK Proxy](./public-proxy.md#monitoring-the-pu
 Follow the [Upgrading the Public MSK Proxy](./public-proxy.md#upgrading-the-public-msk-proxy) instructions
 
 :::
-

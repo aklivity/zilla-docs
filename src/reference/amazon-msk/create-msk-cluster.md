@@ -50,7 +50,6 @@ Storage: `10 GiB`
   > `TLS client authentication (ACM)`
   > ACM Private CAs: `Mutual Authentication CA`
 
-
 - Encryption
   - Between clients and brokers: `TLS Encryption`
 

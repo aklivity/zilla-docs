@@ -19,7 +19,6 @@ Bundled CloudFormation templates provide automated configuration of a VPC Endpoi
 
 In this guide we will deploy the Zilla Plus (Private MSK Proxy) and showcase cross VPC connectivity between an MSK cluster and a Kafka client.
 
-
 ## Prerequisites
 
 Before setting up cross-VPC access to your MSK Cluster, you will need the following:
@@ -103,7 +102,6 @@ Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/
 
 Click `Launch` to complete the `Create stack` wizard with the following details:
 
-
 ### Step 1. Create Stack
 
 - Prepare template: `Template is ready`
@@ -112,11 +110,15 @@ Click `Launch` to complete the `Create stack` wizard with the following details:
 
 ### Step 2. Specify stack details
 
-Stack name:
+::: code-tabs
+
+@tab Stack name
 
 ```text:no-line-numbers
 my-msk-endpoint-service
 ```
+
+:::
 
 Parameters:
 
@@ -232,11 +234,15 @@ https://s3.amazonaws.com/marketplace.aklivity.io/private-msk-proxy/PrivateMskEnd
 
 ### Step 2. Specify stack details
 
-Stack name:
+::: code-tabs
+
+@tab Stack name
 
 ```text:no-line-numbers
 my-msk-endpoint
 ```
+
+:::
 
 Parameters:
 
@@ -324,7 +330,7 @@ With the Kaka client now installed we are ready to configure it and point it at 
 
 The MSK Proxy relies on TLS so we need to create a file called `client.properties` that tells the Kafka client to use SSL and were the truststore is:
 
-::: code-tabs#shell
+::: code-tabs
 
 @tab client.properties
 
