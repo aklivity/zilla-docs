@@ -55,7 +55,7 @@ A challenge password []:
 An optional company name []:
 ```
 
-::: tip
+::: info
 This creates the signing request in `wildcard.aklivity.example.com.csr`.
 :::
 

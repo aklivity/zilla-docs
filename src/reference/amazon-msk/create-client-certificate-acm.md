@@ -143,7 +143,7 @@ A challenge password []:
 An optional company name []:
 ```
 
-::: tip
+::: info
 This creates the signing request in `client-1.csr`.
 :::
 

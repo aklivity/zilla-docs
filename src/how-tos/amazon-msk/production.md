@@ -122,7 +122,7 @@ Follow the [Create IAM Role](../../reference/amazon-msk/create-iam-role.md) guid
 @tab Name
 
 ```text:no-line-numbers
-zilla-plus-public-msk-proxy
+aklivity-public-msk-proxy
 ```
 
 @tab Policies
@@ -199,6 +199,8 @@ Note the server certificate secret ARN as we will need to reference it from the 
 
 ## Deploy the Public MSK Proxy
 
+> This initiates deployment of the Zilla Plus (Public MSK Proxy) stack via CloudFormation.
+
 Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
@@ -238,7 +240,7 @@ Parameters:
 - MSK Proxy Configuration
   - Instance count: `2`
   - Instance type: `t3.small` *2
-  - Role: `zilla-plus-public-msk-proxy`
+  - Role: `aklivity-public-msk-proxy`
   - Security Groups: `my-msk-proxy`
   - Secrets Manager Secret ARN: `<TLS certificate private key secret ARN>` *3
   - Public Wildcard DNS: `*.example.aklivity.io` *4
@@ -257,10 +259,6 @@ Parameters:
 
 Confirm the stack details are correct and `Submit` to start the CloudFormation deploy.
 
-::: tip
-This initiates deployment of the Zilla Plus (Public MSK Proxy) stack via CloudFormation.
-:::
-
 ::: info
 When your Public MSK Proxy is ready, the [CloudFormation console](https://console.aws.amazon.com/cloudformation) will show `CREATE_COMPLETE` for the newly created stack.
 :::
@@ -276,7 +274,7 @@ Make sure you have selected the desired region, such as `US East (N. Virginia) u
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Public MSK Proxy instances launched by the CloudFormation template to show the details.
 
 ::: info
-They each have an IAM Role name starting with `zilla-plus-public-msk-proxy`.
+They each have an IAM Role name starting with `aklivity-public-msk-proxy`.
 :::
 
 Find the `Public IPv4 Address` and then SSH into the instance.
@@ -376,6 +374,8 @@ As the TLS certificate is signed by a globally trusted certificate authority, th
 
 ### Test the Kafka Client
 
+> This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy).](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)
+
 We can now verify that the Kafka client can successfully communicate with your MSK cluster via the internet from your local development environment to create a topic, then publish and subscribe to the same topic.
 
 If using the wildcard DNS pattern `*.example.aklivity.io`, then we use the following as TLS bootstrap server names for the Kafka client:
@@ -436,10 +436,6 @@ You should see the `This is my first event` and `This is my second event` messag
 This is my first event
 This is my second event
 ```
-
-::: tip
-This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy).](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)
-:::
 
 ::: info Monitor the Public MSK Proxy
 

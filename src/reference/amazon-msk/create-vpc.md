@@ -8,6 +8,8 @@ If you need help creating a VPC follow the [Create a VPC plus other VPC resource
 
 ## Attach the Internet Gateway
 
+> This attaches Internet Gateway `my-vpc-igw` to VPC `my-vpc`.
+
 An Internet Gateway must be attached to a VPC before any resources can become reachable from the internet.
 
 When showing the details for your newly created `my-vpc-igw` Internet Gateway, select the `Attach to VPC` action from the `Actions` menu and fill out the `Attach to VPC` form with the following details:
@@ -20,11 +22,9 @@ You can replace the VPC Name example value with your desired value.
 
 Click `Attach internet gateway`.
 
-::: tip
-This attaches Internet Gateway `my-vpc-igw` to VPC `my-vpc`.
-:::
-
 ## Route to the Internet Gateway
+
+> This allows network traffic to be routed between the internet and resources with public IP addresses on Subnets in the VPC.
 
 Although traffic can be routed from the internet to resources in your VPC via an attached Internet Gateway, traffic cannot leave the VPC by default, so the Route Table must be updated.
 
@@ -46,7 +46,3 @@ You can replace the target Internet Gateway Name example value with your desired
 :::
 
 Click `Save changes`.
-
-::: tip
-This allows network traffic to be routed between the internet and resources with public IP addresses on Subnets in the VPC.
-:::

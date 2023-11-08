@@ -96,6 +96,8 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 ## Create the VPC Endpoint Service
 
+> This initiates creation of a VPC Endpoint Service using the Zilla Plus (Private MSK Proxy) stack via CloudFormation.
+
 Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
@@ -148,10 +150,6 @@ Parameters:
 
 Confirm the stack details are correct and `Submit` to start the CloudFormation deploy.
 
-::: tip
-This initiates creation of a VPC Endpoint Service using the Zilla Plus (Private MSK Proxy) stack via CloudFormation.
-:::
-
 ::: info
 When your VPC Endpoint Service is ready, the [CloudFormation console](https://console.aws.amazon.com/cloudformation) will show `CREATE_COMPLETE` for the newly created stack.
 :::
@@ -195,7 +193,7 @@ Repeat these steps for each of the other Private MSK Proxy instances launched by
 
 ## Create the MSK VPC Endpoint
 
-> This creates your client VPC in preparation for secure cross-VPC access to your MSK cluster.
+> This creates your client VPC in preparation for secure cross-VPC access to your MSK cluster using the CloudFormation stack.
 
 We can now create a VPC Endpoint to access your MSK cluster from Kafka clients in a different VPC via the newly created VPC Endpoint Service.
 
@@ -273,10 +271,6 @@ Parameters:
 ### Step 4. Review
 
 Confirm the stack details are correct and `Submit` to start the CloudFormation deploy.
-
-::: tip
-This initiates creation of a VPC Endpoint using the CloudFormation stack.
-:::
 
 ::: info
 When your VPC Endpoint is ready, the [CloudFormation console](https://console.aws.amazon.com/cloudformation) will show `CREATE_COMPLETE` for the newly created stack.
@@ -359,6 +353,8 @@ Use the Vim to create `client.properties.`Type `vi client.properties` in the SSH
 
 ### Test the Kafka Client
 
+> This verifies cross-VPC connectivity to your MSK cluster via [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek)!
+
 We can now verify that the Kafka client can successfully communicate with your MSK cluster via the VPC Endpoint in a different VPC to create a topic, then publish and subscribe to the same topic.
 
 Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to find the TLS bootstrap server names for your MSK cluster.
@@ -413,10 +409,6 @@ You should see the `This is my first event` and `This is my second event` messag
 This is my first event
 This is my second event
 ```
-
-::: tip
-This verifies cross-VPC connectivity to your MSK cluster via [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek)!
-:::
 
 ## Monitor the VPC Endpoint Service
 

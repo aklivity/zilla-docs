@@ -19,7 +19,7 @@ Throughout this guide we use the following example certificate authority paramet
 
 > This creates a new private certificate authority in ACM.
 
-Navigate to the [Create private certificate authority (CA)](/acm-pca/home?/wizard?from=firstrunscreen) wizard.
+Navigate to the [Create private certificate authority (CA)](https://console.aws.amazon.com/acm-pca/home#/wizard) wizard.
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.

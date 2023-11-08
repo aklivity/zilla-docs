@@ -4,6 +4,8 @@ description: Launch an EC2 instance with remote SSH access.
 
 # Launch EC2 Instance
 
+> This launches an EC2 instance in VPC `my-vpc`, not yet accessible via `SSH`.
+
 ## Resource Parameters
 
 The following parameters are needed when following these steps to launch a new EC2 instance.
@@ -56,10 +58,6 @@ Click `Launch` and create a new key pair called `msk-proxy`, or select the exist
 
 Click `Launch Instances`.
 
-::: tip
-This launches an EC2 instance in VPC `my-vpc`, not yet accessible via `SSH`.
-:::
-
 Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
 
 ::: note Check your selected region
@@ -75,11 +73,13 @@ Filter the security groups by selecting a `VPC` and select the `default` securit
   - Type: `SSH`
   - Source type: `My IP`
 
-::: tip
+::: info
 This makes the launched EC2 instance accessible via `SSH`.
 :::
 
 ## Access the EC2 Instance via SSH
+
+> This accesses your EC2 instance via `SSH`.
 
 Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
 
@@ -94,7 +94,3 @@ Execute the following `ssh` command to access your EC2 instance.
 ```bash:no-line-numbers
 ssh -i ~/.ssh/<instance-key-pair-name>.pem ec2-user@<instance-public-ipv4-address>
 ```
-
-::: tip
-This accesses your EC2 instance via `SSH`.
-:::
