@@ -17,36 +17,24 @@ Throughout this guide we use the following example certificate authority paramet
 
 ## Create the CA
 
-Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-pca).
+> This creates a new private certificate authority in ACM.
+
+Navigate to the [Create private certificate authority (CA)](/acm-pca/home?/wizard?from=firstrunscreen) wizard.
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
-Click `Create CA` to complete the `Create certificate authority` wizard with the following details:
+- Mode options: `General-purpose`
+- CA type options: `Root`
+- Subject distinguished name options
+  - Common Name (CN): `Test CA`
+- Key algorithm options: `RSA 2048`
+- Certificate revocation options: `(defaults)`
+- Add Tags: `(defaults)`
+- Configure CA permissions: `(defaults)`
 
-### Step 1: Select CA type: `Root CA`
-
-### Step 2: Configure CA subject name
-
-Common Name (CN): `Test CA`
-
-### Step 3: Configure CA key algorithm: `RSA 2048`
-
-### Step 4: Configure revocation: `(defaults)`
-
-### Step 5: Add Tags: `(defaults)`
-
-### Step 6: Configure CA permissions: `(defaults)`
-
-### Step 7: Review and create
-
-Pricing: `Click to confirm`\
 Click `Confirm and create`.
-
-::: tip
-This creates a new private certificate authority in ACM.
-:::
 
 ::: info
 Note the ARN of the newly created certificate authority.
