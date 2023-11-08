@@ -45,11 +45,12 @@ Check out the [Troubleshooting](../../reference/troubleshooting/amazon-msk.md) g
 
 ### Create Certificate Authority (ACM) for mTLS
 
+> This creates a new private certificate authority in ACM.
+
 Follow the [Create Certificate Authority (ACM)](../../reference/amazon-msk/create-certificate-authority-acm.md) to create a private certificate authority to verify TLS client authentication.
 
-Distinguished Name
-
-- Common Name (CN): `Mutual Authentication CA`
+- Distinguished Name
+  - Common Name (CN): `Mutual Authentication CA`
 
 ### Create the MSK Cluster
 
