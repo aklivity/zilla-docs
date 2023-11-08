@@ -38,7 +38,7 @@ Defines a binding with `kafka-proxy`  support, with `proxy` behavior.
 :::: note Properties
 
 - [kind\*](#kind)
-- [options](#options\*)
+- [options\*](#options)
 - [options.external\*](#options-external)
   - [external.host\*](#external-host)
   - [external.port\*](#external-port)
