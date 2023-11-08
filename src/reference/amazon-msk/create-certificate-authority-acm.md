@@ -17,7 +17,11 @@ Throughout this guide we use the following example certificate authority paramet
 
 ## Create the CA
 
-Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-pca) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-pca).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Click `Create CA` to complete the `Create certificate authority` wizard with the following details:
 
@@ -50,7 +54,11 @@ Note the ARN of the newly created certificate authority.
 
 ## Export the CA Certificate
 
-Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-pca) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-pca).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Select the `Test CA` certificate authority and choose `Get Certificate` from the `Actions` menu, then click `Export to a file` to download the certificate authority certificate.
 

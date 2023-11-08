@@ -28,7 +28,11 @@ This attaches Internet Gateway `my-vpc-igw` to VPC `my-vpc`.
 
 Although traffic can be routed from the internet to resources in your VPC via an attached Internet Gateway, traffic cannot leave the VPC by default, so the Route Table must be updated.
 
-Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `Route Tables` resource box to show your `Route tables`. Click on the Route table associated with the VPC named `my-vpc` to show the `Details` page.
 

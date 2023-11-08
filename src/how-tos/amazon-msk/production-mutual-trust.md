@@ -101,7 +101,11 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 
 > This allows the MSK Proxy instances to communicate with your MSK cluster.
 
-Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Filter the security groups by selecting a `VPC` and select the `default` security group.
 
@@ -278,7 +282,11 @@ When your Public MSK Proxy is ready, the [CloudFormation console](https://consol
 
 ## Verify Public MSK Proxy Service
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Public MSK Proxy instances launched by the CloudFormation template to show the details.
 
@@ -319,7 +327,11 @@ Repeat these steps for each of the other Public MSK Proxy instances launched by 
 
 When using a wildcard DNS name for your own domain, such as `*.example.aklivity.io` then the DNS entries are setup in your DNS provider.
 
-Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`. Then select the `my-public-msk-proxy` stack to show the details.
+Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation). Then select the `my-public-msk-proxy` stack to show the details.
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 In the stack `Outputs` tab, find the public DNS name of the `NetworkLoadBalancer.`
 

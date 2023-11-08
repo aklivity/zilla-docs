@@ -54,7 +54,7 @@ An MSK cluster is needed for secure remote access via the internet. You can skip
 Follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the bellow resource names to reference the AWS resources needed in this guide.
 
 - Cluster Name: `my-msk-cluster`
-- Access control methods: `SASL/SCRAM authentication`
+- Access control methods: `Unauthenticated access`
 - VPC: `my-msk-cluster-vpc`
 - Subnet: `my-msk-cluster-subnet-*`
 - Route tables: `my-msk-cluster-rtb-*`
@@ -83,7 +83,11 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 
 > This allows the MSK Proxy instances to communicate with your MSK cluster.
 
-Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Filter the security groups by selecting a `VPC` and select the `default` security group.
 
@@ -256,7 +260,11 @@ When your Public MSK Proxy is ready, the [CloudFormation console](https://consol
 
 ## Verify Public MSK Proxy Service
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Public MSK Proxy instances launched by the CloudFormation template to show the details.
 
@@ -331,9 +339,7 @@ When you followed the [Create Certificate Authority (ACM)](../../reference/amazo
 
 With the Kaka client now installed we are ready to configure it and point it at the Public MSK Proxy.
 
-The MSK Proxy relies on encrypted SASL/SCRAM so we need to create a file called `client.properties` that tells the Kafka client to use SASL_SSL as the security protocol with SCRAM-SHA-512 encryption.
-
-Notice we used the default username and password, but you will need to replace those with your own credentials from the `AmazonMSK_*` secret you created.
+The MSK Proxy relies on TLS so we need to create a file called `client.properties` that tells the Kafka client to use SSL as the security protocol and to trust your private certificate authority as the signer of the `*.aklivity.example.com` certificate.
 
 ::: code-tabs
 
@@ -350,7 +356,11 @@ ssl.truststore.location=/tmp/kafka.client.truststore.jks
 
 When using an example wildcard DNS such as `*.aklivity.example.com` then the DNS entries are setup locally.
 
-Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`. Then select the `my-public-msk-proxy` stack to show the details.
+Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation). Then select the `my-public-msk-proxy` stack to show the details.
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 In the stack `Outputs` tab, find the public DNS name of the `NetworkLoadBalancer`, and lookup the public IP addresses, as shown in the following example.
 

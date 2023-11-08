@@ -68,7 +68,11 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 
 > This allows the MSK Proxy instances to communicate with your MSK cluster.
 
-Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Filter the security groups by selecting a `VPC` and select the `default` security group.
 
@@ -154,7 +158,11 @@ When your VPC Endpoint Service is ready, the [CloudFormation console](https://co
 
 ### Verify Private MSK Proxy Service
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Private MSK Proxy instances launched by the CloudFormation template to show the details.
 
@@ -202,7 +210,11 @@ Follow the [Create VPC](https://console.aws.amazon.com/vpcconsole/home#CreateVpc
 
 #### Enable DNS Hostnames
 
-Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `VPCs` resource box to show `Your VPCs`. Then select the VPC named `my-msk-client` to show the details.
 

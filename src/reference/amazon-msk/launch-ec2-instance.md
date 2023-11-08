@@ -21,7 +21,11 @@ Throughout this guide we use the following example EC2 Instance parameters.
 
 ## Launch the EC2 instance
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Click the `Launch instances` button and complete the wizard with the following details:
 
@@ -56,7 +60,11 @@ Click `Launch Instances`.
 This launches an EC2 instance in VPC `my-vpc`, not yet accessible via `SSH`.
 :::
 
-Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Filter the security groups by selecting a `VPC` and select the `default` security group.
 
@@ -73,7 +81,11 @@ This makes the launched EC2 instance accessible via `SSH`.
 
 ## Access the EC2 Instance via SSH
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select your recently launched EC2 instance to see the instance details. Copy the `Public IPv4 address` to the clipboard and note the `Key pair name`.
 

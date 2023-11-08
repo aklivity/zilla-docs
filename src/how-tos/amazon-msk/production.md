@@ -15,7 +15,7 @@ description: Setup connectivity to your MSK cluster from anywhere on the interne
 
 The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
 
-In this guide we will deploy the Zilla Plus (Public MSK Proxy) and showcase globally trusted public internet connectivity to an MSK cluster from a Kafka client, using the custom wildcard domain `*.aklivity.example.com`.
+In this guide we will deploy the Zilla Plus (Public MSK Proxy) and showcase globally trusted public internet connectivity to an MSK cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`.
 
 ### AWS services used
 
@@ -57,6 +57,17 @@ Follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md
 - Route tables: `my-msk-cluster-rtb-*`
 - Internet gateway: `my-msk-cluster-igw`
 
+When the MSK cluster is created you will need to follow the [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) to associate your `AmazonMSK_*` secret to your cluster. There will be a prompt on the cluster summary page to create a new secret or associate an existing one. For the remainder of this doc we will assume the following values for this secret:
+
+- Use `Plaintext` value:
+
+  ```json:no-line-numbers
+  {"username":"alice","password":"alice-secret"}
+  ```
+
+- Encryption key: `<Customer managed key>`
+- Name: `AmazonMSK_alice`
+
 ### Create the MSK Proxy security group
 
 > This creates your Private MSK proxy security group to allow Kafka clients and SSH access.
@@ -70,7 +81,7 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 - Description: `Kafka clients and SSH access`
 - Add Inbound Rule
   - Type: `CUSTOM TCP`
-  - Port Range: `9094`
+  - Port Range: `9096`
   - Source type: `Anywhere-IPv4`
 - Add Inbound Rule
   - Type: `SSH`
@@ -80,7 +91,11 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 
 > This allows the MSK Proxy instances to communicate with your MSK cluster.
 
-Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Filter the security groups by selecting a `VPC` and select the `default` security group.
 
@@ -92,7 +107,7 @@ Filter the security groups by selecting a `VPC` and select the `default` securit
 Add this Inbound Rule to allow the MSK Proxy instances to communicate with the MSK cluster.
 
 - Type: `Custom TCP`
-- Port Range: `9094`
+- Port Range: `9096`
 - Source type: `Custom`
 - Source: `my-msk-proxy-sg`
 
@@ -219,7 +234,7 @@ Parameters:
   - Subnets: `my-msk-cluster-1a` `my-msk-cluster-1b` `my-msk-cluster-1c`
 - MSK Configuration
   - Wildcard DNS pattern: `*.aklivity.[...].amazonaws.com` *1
-  - Port number: `9094`
+  - Port number: `9096`
 - MSK Proxy Configuration
   - Instance count: `2`
   - Instance type: `t3.small` *2
@@ -227,7 +242,7 @@ Parameters:
   - Security Groups: `my-msk-proxy`
   - Secrets Manager Secret ARN: `<TLS certificate private key secret ARN>` *3
   - Public Wildcard DNS: `*.example.aklivity.io` *4
-  - Public Port: `9094`
+  - Public Port: `9096`
   - Key pair for SSH access: `my-key-pair` *5
 - *Configuration Reference
   1. Follow the [Lookup MSK Server Names](../../reference/amazon-msk/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
@@ -252,7 +267,11 @@ When your Public MSK Proxy is ready, the [CloudFormation console](https://consol
 
 ## Verify Public MSK Proxy Service
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`.
+Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Public MSK Proxy instances launched by the CloudFormation template to show the details.
 
@@ -293,7 +312,11 @@ Repeat these steps for each of the other Public MSK Proxy instances launched by 
 
 When using a wildcard DNS name for your own domain, such as `*.example.aklivity.io` then the DNS entries are setup in your DNS provider.
 
-Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation) and make sure you have selected the desired region in the upper right corner, such as `US East (N. Virginia) us-east-1`. Then select the `my-public-msk-proxy` stack to show the details.
+Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation). Then select the `my-public-msk-proxy` stack to show the details.
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 In the stack `Outputs` tab, find the public DNS name of the `NetworkLoadBalancer.`
 
@@ -358,7 +381,7 @@ We can now verify that the Kafka client can successfully communicate with your M
 If using the wildcard DNS pattern `*.example.aklivity.io`, then we use the following as TLS bootstrap server names for the Kafka client:
 
 ```text:no-line-numbers
-b-1.example.aklivity.io:9094,b-2.example.aklivity.io:9094,b-3.example.aklivity.io:9094
+b-1.example.aklivity.io:9096,b-2.example.aklivity.io:9096,b-3.example.aklivity.io:9096
 ```
 
 ::: warning

@@ -47,6 +47,10 @@ table.no-head {
     }
 }
 
+// remove extra list margins
+ul li p {
+    margin: 0px;
+}
 
 // Header
 // full width search
