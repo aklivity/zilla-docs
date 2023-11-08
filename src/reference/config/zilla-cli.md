@@ -11,6 +11,10 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
 
 :::: note Commands
 
+- [zilla generate](#zilla-generate)
+  - [-t --template `<template>`](#t-template-template)
+  - [-i --input `<input-file>`](#i-input-input-file)
+  - [-o --output `<output-file>`](#o-output-output-file)
 - [zilla help](#zilla-help)
 - [zilla metrics](#zilla-metrics)
   - [--namespace `<namespace>`](#namespace-namespace)
@@ -23,6 +27,44 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
 ::::
 
 ## Commands
+
+### zilla generate
+
+::: info Feature Coming Soon <HopeIcon icon="circle-right"/>
+This is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
+:::
+
+The `zilla generate` command generates a zilla configuration file from an OpenAPI or AsyncAPI service definition.
+
+The command currently has templates for the following common scenarios:
+
+- `openapi.http.proxy` - create an http proxy config based on an OpenAPI service definition
+- `asyncapi.http.proxy` - create an http proxy config based on an AsyncAPI service definition
+- `asyncapi.mqtt.proxy` - create an mqtt proxy config based on an AsyncAPI service definition
+
+You have to specify which template to use, the OpenAPI/AsyncAPI service definition as the input file and the output file name you want the generated zilla config to be saved.
+
+```bash:no-line-numbers
+zilla generate -t <template> -i <input-file> -o <output-file>
+```
+
+#### -t --template `<template>`
+
+The template to use for the config generation.
+
+#### -i --input `<input-file>`
+
+The OpenAPI/AsyncAPI service definition.
+
+#### -o --output `<output-file>`
+
+The file name you want the generated zilla config to be saved.
+
+Example:
+
+```bash:no-line-numbers
+./zilla generate -t asyncapi.http.proxy -i my-asyncapi-service.yaml -o zilla.yaml
+```
 
 ### zilla help
 
