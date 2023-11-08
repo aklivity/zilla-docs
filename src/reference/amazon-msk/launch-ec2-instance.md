@@ -18,45 +18,34 @@ Throughout this guide we use the following example EC2 Instance parameters.
 - VPC
   - Name `my-vpc` in region `us-east-1`
 - Instance
-  - Name `Amazon Linux 2 AMI (HVM), SSD Volume Type, 64-bit (x86)`
-  - Type `t3.small`
+  - Name `Amazon Linux AMI (HVM) 64-bit (x86)`
+  - Type `t2.micro`
 
 ## Launch the EC2 instance
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+Navigate to the [EC2 Launch an instance](https://console.aws.amazon.com/ec2/home#LaunchInstances:) form.
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
-Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Click the `Launch instances` button and complete the wizard with the following details:
+Complete the wizard with the following details:
 
-### Step1: Choose AMI: `Amazon Linux 2 AMI (HVM),` `SSD Volume Type,` `64-bit (x86)`
-
-### Step2: Choose an Instance Type: `t3.micro`
-
-### Step 3:Configure Instance Details
-
-Network: `vpc-xxx (my-vpc)`\
-Auto-assign Public IP: `enable`
-
-### Step4: Add Storage: `(defaults)`
-
-### Step5: Add Tags: `(defaults)`
-
-### Step 6: Configure Security Group
-
-Select an existing security group: `default VPC security group`
-
-### Step7: Review Instance Launch: `(review)`
+- AMI: `Amazon Linux AMI (HVM) 64-bit (x86)`
+- Instance Type: `t2.micro`
+- Create a new key pair called `msk-proxy` or select the existing one
+- Network settings
+  - Network: `vpc-xxx (my-vpc)`
+  - Auto-assign Public IP: `enable`
+  - Firewall (security groups)
+    - Select an existing security group: `default VPC security group`
+- Configure storage: `(defaults)`
 
 ::: info
 You can replace these AMI, Instance Type and Network VPC Name example values with your desired values.
 :::
 
-Click `Launch` and create a new key pair called `msk-proxy`, or select the existing one if you have already created a key pair called `msk-proxy`.
-
-Click `Launch Instances`.
+Click `Launch`
 
 Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
 
@@ -81,13 +70,13 @@ This makes the launched EC2 instance accessible via `SSH`.
 
 > This accesses your EC2 instance via `SSH`.
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+Navigate to the [EC2 running instances dashboard](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running).
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
-Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select your recently launched EC2 instance to see the instance details. Copy the `Public IPv4 address` to the clipboard and note the `Key pair name`.
+Select your recently launched EC2 instance to see the instance details. Copy the `Public IPv4 address` to the clipboard and note the `Key pair name`.
 
 Execute the following `ssh` command to access your EC2 instance.
 

@@ -156,13 +156,13 @@ When your VPC Endpoint Service is ready, the [CloudFormation console](https://co
 
 ### Verify Private MSK Proxy Service
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+Navigate to the [EC2 running instances dashboard](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running).
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
-Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Private MSK Proxy instances launched by the CloudFormation template to show the details.
+Select either of the Private MSK Proxy instances launched by the CloudFormation template to show the details.
 
 Find the `Public IPv4 Address` and then SSH into the instance.
 
@@ -296,8 +296,8 @@ Follow the [`Launch EC2 Instance`](../../reference/amazon-msk/launch-ec2-instanc
 - VPC: `my-msk-client`
 - Region: `us-east-1`
 - Instance
-  - AMI: `Amazon Linux 2 AMI (HVM), SSD Volume Type, 64-bit (x86)`
-  - Type: `t3.small`
+  - AMI: `Amazon Linux AMI (HVM) 64-bit (x86)`
+  - Type: `t2.micro`
 
 ### Install the Kafka Client
 

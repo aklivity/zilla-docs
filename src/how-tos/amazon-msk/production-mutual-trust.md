@@ -281,13 +281,13 @@ When your Public MSK Proxy is ready, the [CloudFormation console](https://consol
 
 ## Verify Public MSK Proxy Service
 
-Navigate to the [EC2 Management Console](https://console.aws.amazon.com/ec2).
+Navigate to the [EC2 running instances dashboard](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running).
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
-Under the `Resources by Region` section, select the `Instances` resource box to show your `Instances`. Select either of the Public MSK Proxy instances launched by the CloudFormation template to show the details.
+Select either of the Public MSK Proxy instances launched by the CloudFormation template to show the details.
 
 ::: info
 They each have an IAM Role name starting with `aklivity-public-msk-proxy`.
@@ -360,7 +360,7 @@ tar -xzf kafka_2.13-2.8.0.tgz
 cd kafka_2.13-2.8.0
 ```
 
-::: info
+::: tip
 We use a generic Kafka client here, however the setup for any Kafka client, including [KaDeck](https://www.xeotek.com/apache-kafka-monitoring-management/), [`Conduktor`](https://www.conduktor.io/download/), and [akhq.io](https://akhq.io/) will be largely similar. With the Public MSK Proxy you can use these GUI Kafka clients to configure and monitor your MSK applications, clusters and streams.
 :::
 
