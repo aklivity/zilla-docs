@@ -50,7 +50,7 @@ Check the policies attached to your MSK Proxy instance IAM Role based on the dep
 - Public MSK Proxy
   - [Development](../../how-tos/amazon-msk/development.md#create-the-msk-proxy-iam-security-role)
   - [Production](../../how-tos/amazon-msk/production.md#create-the-msk-proxy-iam-security-role)
-  - [Production (Mutual Trust)](../../how-tos/amazon-msk/production-mutual-trust.md#create-the-msk-proxy-iam-security-role)
+  - [Production (Mutual TLS)](../../how-tos/amazon-msk/production-mutual-tls.md#create-the-msk-proxy-iam-security-role)
 
 ## Why does my Kafka Client fail to connect via Public MSK Proxy?
 

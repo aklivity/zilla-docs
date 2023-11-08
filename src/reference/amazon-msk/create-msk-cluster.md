@@ -46,7 +46,7 @@ Storage: `10 GiB`
   > `Unauthenticated access`
   > -- or --
   > `SASL/SCRAM authentication`
-  - For Mutual Trust
+  - For Mutual TLS
   > `TLS client authentication (ACM)`
   > ACM Private CAs: `Mutual Authentication CA`
 

@@ -27,7 +27,7 @@ Follow the [Development](./development.md) guide to setup connectivity to your M
 
 Follow the [Production](./production.md) guide to setup connectivity to your MSK cluster from anywhere on the internet using a globally trusted TLS server certificate for a wildcard DNS pattern under your control. We use `*.example.aklivity.io` to illustrate the steps.
 
-Follow the [Production (Mutual Trust)](./production-mutual-trust.md) guide instead if your MSK cluster is configured for TLS client authorization.
+Follow the [Production (Mutual TLS)](./production-mutual-tls.md) guide instead if your MSK cluster is configured for TLS client authorization.
 
 ## Monitoring the Public MSK Proxy
 

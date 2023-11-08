@@ -3,7 +3,7 @@ icon: aky-zilla-plus
 description: Setup mutual authentication to your MSK cluster from anywhere on the internet.
 ---
 
-# Production (Mutual Trust)
+# Production (Mutual TLS)
 
 [Available in Zilla Plus<sup>+</sup>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
@@ -213,12 +213,12 @@ Note the server certificate secret ARN as we will need to reference it from the 
 
 ## Deploy the Public MSK Proxy
 
-> This initiates deployment of the Zilla Plus (Public MSK Proxy) (Mutual Trust) stack via CloudFormation.
+> This initiates deployment of the Zilla Plus (Public MSK Proxy) (Mutual TLS) stack via CloudFormation.
 
 Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
-- Select the `Public MSK Proxy (Mutual Trust)` fulfillment option
+- Select the `Public MSK Proxy (Mutual TLS)` fulfillment option
 - Make sure you have selected the desired region selected, such as `us-east-1`
 - Click `Continue to Launch`
   - Choose the action `Launch CloudFormation`

@@ -232,7 +232,7 @@ export const enSidebar = sidebar({
             },
             "development.md",
             "production.md",
-            "production-mutual-trust.md",
+            "production-mutual-tls.md",
           ],
         },
         {
