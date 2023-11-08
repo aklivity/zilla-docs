@@ -188,7 +188,7 @@ Note the server certificate secret ARN as we will need to reference it from the 
 :::
 
 ::: warning
-Store the private certificate authority certificate in a file called `pca.pem` as we will need it to configure trust when testing the Kafka client.
+Store the private CA certificate in a file called `pca.pem` as we will need it to configure trust when testing the Kafka client.
 :::
 
 ## Deploy the Public MSK Proxy
@@ -323,14 +323,14 @@ We use a generic Kafka client here, however the setup for any Kafka client, incl
 
 #### Trust the Private Certificate Authority
 
-Import the private certificate authority certificate into your trust store.
+Import the private CA certificate into your trust store.
 
 ```bash:no-line-numbers
 keytool -importcert -keystore /tmp/kafka.client.truststore.jks -storetype jks -storepass generated -alias pca -file Certificate.cer
 ```
 
 ::: info
-When you followed the [Create Certificate Authority (ACM)](../../reference/amazon-msk/create-certificate-authority-acm.md) guide, you exported the private certificate authority certificate to a file called `Certificate.cer`.
+When you followed the [Create Certificate Authority (ACM)](../../reference/amazon-msk/create-certificate-authority-acm.md) guide, you exported the private CA certificate to a file called `Certificate.cer`.
 :::
 
 ### Configure the Kafka Client

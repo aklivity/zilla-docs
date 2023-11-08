@@ -42,13 +42,15 @@ Note the ARN of the newly created certificate authority.
 
 ## Export the CA Certificate
 
-Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-pca).
+Navigate to the [ACM PCA Management Console](https://console.aws.amazon.com/acm-pca/home#/certificateAuthorities).
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
-Select the `Test CA` certificate authority and choose `Get Certificate` from the `Actions` menu, then click `Export to a file` to download the certificate authority certificate.
+Select the `Test CA` certificate authority.
+
+From the `Actions` menu > select `Get CA Certificate` then click `Export certificate body to a file` to download the CA certificate.
 
 ::: info
 Note the `Certificate.cer` filename location where you download the CA certificate.

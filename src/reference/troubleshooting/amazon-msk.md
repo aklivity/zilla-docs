@@ -82,7 +82,7 @@ openssl s_client \
   -key client.key.pem
 ```
 
-Note: if you followed [Create Server Certificate (ACM)](../amazon-msk/create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](../amazon-msk/create-server-certificate-letsencrypt.md), then you will need to [Export the Certificate Authority certificate](../amazon-msk/create-certificate-authority-acm.md#export-the-ca-certificate) and have `openssl` trust the exported CA certificate.
+Note: if you followed [Create Server Certificate (ACM)](../amazon-msk/create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](../amazon-msk/create-server-certificate-letsencrypt.md), then you will need to [Export the CA Certificate](../amazon-msk/create-certificate-authority-acm.md#export-the-ca-certificate) and have `openssl` trust the exported CA certificate.
 
 ```bash:no-line-numbers
 openssl s_client \
@@ -116,7 +116,7 @@ kcat \
   -X ssl.key.location=client.key.pem
 ```
 
-Note: if you followed [Create Server Certificate (ACM)](../amazon-msk/create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](../amazon-msk/create-server-certificate-letsencrypt.md), then you will need to [Export the Certificate Authority certificate](../amazon-msk/create-certificate-authority-acm.md#export-the-ca-certificate) and have `kcat` trust the exported CA certificate.
+Note: if you followed [Create Server Certificate (ACM)](../amazon-msk/create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](../amazon-msk/create-server-certificate-letsencrypt.md), then you will need to [Export the CA Certificate](../amazon-msk/create-certificate-authority-acm.md#export-the-ca-certificate) and have `kcat` trust the exported CA certificate.
 
 ```bash:no-line-numbers
 kcat \

@@ -208,21 +208,23 @@ Follow the [Create VPC](https://console.aws.amazon.com/vpcconsole/home#CreateVpc
 
 #### Enable DNS Hostnames
 
-Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc).
+> This is required to let the Kafka clients properly resolve your MSK cluster bootstrap server names.
+
+Navigate to the [Your VPCs dashboard](https://console.aws.amazon.com/vpcconsole/home#vpcs:).
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
-Under the `Resources by Region` section, select the `VPCs` resource box to show `Your VPCs`. Then select the VPC named `my-msk-client` to show the details.
+Select the VPC named `my-msk-client` to show the details.
 
-Choose `Edit DNS hostnames` from the `Actions` menu and fill out the `Edit DNS hostnames` form as follows:
+From the `Actions` menu > select `Edit VPC settings`
 
-DNS hostnames: `Enable`\
-This is required to let the Kafka clients properly resolve your MSK cluster bootstrap server names.
+- DNS settings
+  - Check `Enable DNS hostnames`
 
-::: danger
-Make sure to enable DNS Hostnames for this VPC.
+::: warning
+Make sure to DNS Hostnames are enabled for this VPC.
 :::
 
 ### Create the VPC Endpoint
@@ -236,11 +238,16 @@ Navigate to the [CloudFormation Management Console](https://console.aws.amazon.c
 #### Specify template
 
 - Template source: `Amazon S3 URL`
-- Amazon S3 URL:
+
+::: code-tabs
+
+@tab Amazon S3 URL
 
 ```text:no-line-numbers
 https://s3.amazonaws.com/marketplace.aklivity.io/private-msk-proxy/PrivateMskEndpoint.template
 ```
+
+:::
 
 ### Step 2. Specify stack details
 
@@ -353,7 +360,7 @@ Use the Vim to create `client.properties.`Type `vi client.properties` in the SSH
 
 ### Test the Kafka Client
 
-> This verifies cross-VPC connectivity to your MSK cluster via [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek)!
+> This verifies cross-VPC connectivity to your MSK cluster via [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek)
 
 We can now verify that the Kafka client can successfully communicate with your MSK cluster via the VPC Endpoint in a different VPC to create a topic, then publish and subscribe to the same topic.
 
