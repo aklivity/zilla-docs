@@ -30,7 +30,7 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
 
 ### zilla generate
 
-::: info Feature Coming Soon <HopeIcon icon="circle-right"/>
+::: info Feature Coming Soon <HopeIcon icon="fas fa-circle-right"/>
 This is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
 :::
 
@@ -170,7 +170,7 @@ zilla stop
 
 ### zilla tune
 
-::: info Feature Coming Soon <HopeIcon icon="circle-right"/>
+::: info Feature Coming Soon <HopeIcon icon="fas fa-circle-right"/>
 This is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
 :::
 

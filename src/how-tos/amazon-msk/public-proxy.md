@@ -1,11 +1,11 @@
 ---
-icon: plus
+icon: aky-zilla-plus
 description: Securely access your Amazon MSK cluster via the internet.
 ---
 
 # Public MSK Proxy
 
-[Zilla Plus](https://www.aklivity.io/products/zilla-plus)
+[Available in Zilla Plus<sup>+</sup>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
 ::: tip Estimated time to complete 20-30 minutes.
