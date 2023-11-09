@@ -9,7 +9,7 @@ description: Common errors and how to handle them
 - [Why does CloudFormation stack creation timeout and rollback?](#why-does-cloudformation-stack-creation-timeout-and-rollback)
 - [Why does my SSH client reject access to the MSK Proxy instances?](#why-does-my-ssh-client-reject-access-to-the-msk-proxy-instances)
 - [Why does my SSH client timeout when attempting to access the MSK Proxy instances?](#why-does-my-ssh-client-timeout-when-attempting-to-access-the-msk-proxy-instances)
-- [Why does the `msk-proxy` service keep restarting on the MSK Proxy instances?](#why-does-the-msk-proxy-service-keep-restarting-on-the-msk-proxy-instances)
+- [Why does the `zilla-plus` service keep restarting on the MSK Proxy instances?](#why-does-the-zilla-plus-service-keep-restarting-on-the-msk-proxy-instances)
 - [Why does my Kafka Client fail to connect via Public MSK Proxy?](#why-does-my-kafka-client-fail-to-connect-via-public-msk-proxy)
 
 :::
@@ -40,7 +40,7 @@ This can occur if the target VPC has no attached Internet Gateway, or if the mai
 
 Make sure to [attach the Internet Gateway](../amazon-msk/create-vpc.md#attach-the-internet-gateway) and [route to the Internet Gateway](../amazon-msk/create-vpc.md#route-to-the-internet-gateway), then try again.
 
-## Why does the `msk-proxy` service keep restarting on the MSK Proxy instances?
+## Why does the `zilla-plus` service keep restarting on the MSK Proxy instances?
 
 This can occur if the IAM Role associated with your MSK Proxy instances has insufficient privileges to use the AWS Services needed by MSK Proxy.
 

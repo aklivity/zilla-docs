@@ -33,7 +33,7 @@ Complete the wizard with the following details:
 
 - AMI: `Amazon Linux AMI (HVM) 64-bit (x86)`
 - Instance Type: `t2.micro`
-- Create a new key pair called `msk-proxy` or select the existing one
+- Create a new key pair called `my-key-pair` or select the existing one
 - Network settings
   - Network: `vpc-xxx (my-vpc)`
   - Auto-assign Public IP: `enable`

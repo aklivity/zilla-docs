@@ -283,13 +283,13 @@ Find the `Public IPv4 Address` and then SSH into the instance.
 ssh -i ~/.ssh/<key-pair.cer> ec2-user@<instance-public-ip-address>
 ```
 
-After logging in via SSH, check the status of the `msk-proxy` system service.
+After logging in via SSH, check the status of the `zilla-plus` system service.
 
 ```bash:no-line-numbers
 systemctl status zilla-plus.service
 ```
 
-Verify that the `msk-proxy` service is active and logging output similar to that shown below.
+Verify that the `zilla-plus` service is active and logging output similar to that shown below.
 
 ```output:no-line-numbers
 ● zilla-plus.service - Zilla Plus
