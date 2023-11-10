@@ -49,7 +49,7 @@ Follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md
 
 > This creates your Private MSK proxy security group to allow Kafka clients and SSH access.
 
-A VPC security group is needed for the Public MSK Proxy instances when they are launched.
+A VPC security group is needed for the Private MSK Proxy instances when they are launched.
 
 Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/security-groups.html#creating-security-groups) docs with the following parameters and defaults. This creates your MSK proxy security group to allow Kafka clients and SSH access.
 
@@ -90,18 +90,18 @@ Add this Inbound Rule to allow the MSK Proxy instances to communicate with the M
 
 ## Subscribe via AWS Marketplace
 
-The Zilla Plus (Private MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
+The [Zilla Plus (Private MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) is available through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) and `Subscribe` to the offering. You should now see `Zilla Plus (Private MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-asox2tvjdn5ek) and `Subscribe` to the offering. You should now see `Zilla Plus (Private MSK Proxy)` listed in your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions.
 
 ## Create the VPC Endpoint Service
 
 > This initiates creation of a VPC Endpoint Service using the Zilla Plus (Private MSK Proxy) stack via CloudFormation.
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
+Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus (Private MSK Proxy)` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
-- Select the `Public MSK Proxy` fulfillment option
+- Select the `Private MSK Proxy` fulfillment option
 - Make sure you have selected the desired region selected, such as `us-east-1`
 - Click `Continue to Launch`
   - Choose the action `Launch CloudFormation`
@@ -156,7 +156,7 @@ When your VPC Endpoint Service is ready, the [CloudFormation console](https://co
 
 ### Verify Private MSK Proxy Service
 
-Navigate to the [EC2 running instances dashboard](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running).
+Navigate to the [EC2 running instances dashboard.](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running)
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
@@ -291,7 +291,7 @@ Now we must prepare a Kafka client running in the client VPC to verify connectiv
 
 > This launches an EC2 instance that you can access remotely via SSH.
 
-Follow the [`Launch EC2 Instance`](../../reference/amazon-msk/launch-ec2-instance.md) guide with the following parameters to launch an EC2 instance with remote SSH access and login to the instance via SSH.
+Follow the [Launch EC2 Instance](../../reference/amazon-msk/launch-ec2-instance.md) guide with the following parameters to launch an EC2 instance with remote SSH access and login to the instance via SSH.
 
 - VPC: `my-msk-client`
 - Region: `us-east-1`
@@ -323,7 +323,7 @@ After changing the directory to `kafka_2.13-2.8.0` we must copy the Kafka client
 cp /usr/lib/jvm/<JDKFolder>/lib/security/cacerts /tmp/kafka.client.truststore.jks
 ```
 
-You can get the value for **** `<JDKFolder>`**** by typing
+You can get the value for  `<JDKFolder>` by typing
 
 ```bash:no-line-numbers
 cp /usr/lib/jvm/j **double tap TAB**
@@ -432,7 +432,7 @@ You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a 
 
 ## Upgrade the VPC Endpoint Service
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Private MSK Proxy)` to show the manage subscription page.
+Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus (Private MSK Proxy)` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
 - Select the `Private MSK Proxy` fulfillment option

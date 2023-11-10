@@ -135,7 +135,7 @@ When routing at each binding, Zilla can guard a route to require that specific r
 
 Zilla trusts JWT tokens based on the token `issuer`, `audience` and public `key` of the token provider.
 
-In this example, tokens are issued by [`Auth0`](https://auth0.com/) at `https://aklivity.us.auth0.com/` and the intended token usage, or audience, is this local Todo app Tasks API at `http://localhost:8080/tasks`.
+In this example, tokens are issued by [Auth0](https://auth0.com/) at `https://aklivity.us.auth0.com/` and the intended token usage, or audience, is this local Todo app Tasks API at `http://localhost:8080/tasks`.
 
 Using [Zilla Studio](https://zilla-studio.aklivity.io/), select the `Secure the Todo App` template from the `Load Template` dropdown and then press `Generate Config` to download the corresponding `zilla.yaml` configuration file.
 

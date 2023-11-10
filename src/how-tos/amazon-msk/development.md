@@ -62,7 +62,7 @@ Follow the [Create MSK Cluster](../../reference/amazon-msk/create-msk-cluster.md
 
 ### Create the MSK Proxy security group
 
-> This creates your Private MSK proxy security group to allow Kafka clients and SSH access.
+> This creates your Public MSK proxy security group to allow Kafka clients and SSH access.
 
 A VPC security group is needed for the Public MSK Proxy instances when they are launched.
 
@@ -83,7 +83,7 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 
 > This allows the MSK Proxy instances to communicate with your MSK cluster.
 
-Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
+Navigate to the VPC Management Console [Security Groups](https://console.aws.amazon.com/vpc/home#securityGroups:) table.
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
@@ -173,9 +173,9 @@ MSKProxySecretsManagerRead
 
 ## Subscribe via AWS Marketplace
 
-The Zilla Plus (Public MSK Proxy) is [available](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Private MSK Proxy) via AWS Marketplace.
+The [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) is available through the AWS Marketplace. You can skip this step if you have already subscribed to Zilla Plus (Public MSK Proxy) via AWS Marketplace.
 
-To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering. You should now see `Zilla Plus (Public MSK Proxy)` listed in your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace).
+To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering. You should now see `Zilla Plus (Public MSK Proxy)` listed in your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions.
 
 ## Create the Server Certificate
 
@@ -195,7 +195,7 @@ Store the private CA certificate in a file called `pca.pem` as we will need it t
 
 > This initiates deployment of the Zilla Plus (Public MSK Proxy) stack via CloudFormation.
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
+Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
 - Select the `Public MSK Proxy` fulfillment option
@@ -258,7 +258,7 @@ When your Public MSK Proxy is ready, the [CloudFormation console](https://consol
 
 ## Verify Public MSK Proxy Service
 
-Navigate to the [EC2 running instances dashboard](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running).
+Navigate to the [EC2 running instances dashboard.](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running)
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
@@ -318,7 +318,7 @@ cd kafka_2.13-2.8.0
 ```
 
 ::: tip
-We use a generic Kafka client here, however the setup for any Kafka client, including [KaDeck](https://www.xeotek.com/apache-kafka-monitoring-management/), [`Conduktor`](https://www.conduktor.io/download/), and [akhq.io](https://akhq.io/) will be largely similar. With the Public MSK Proxy you can use these GUI Kafka clients to configure and monitor your MSK applications, clusters and streams.
+We use a generic Kafka client here, however the setup for any Kafka client, including [KaDeck](https://www.xeotek.com/apache-kafka-monitoring-management/), [Conduktor](https://www.conduktor.io/download/), and [akhq.io](https://akhq.io/) will be largely similar. With the Public MSK Proxy you can use these GUI Kafka clients to configure and monitor your MSK applications, clusters and streams.
 :::
 
 #### Trust the Private Certificate Authority
@@ -354,7 +354,7 @@ ssl.truststore.location=/tmp/kafka.client.truststore.jks
 
 When using an example wildcard DNS such as `*.aklivity.example.com` then the DNS entries are setup locally.
 
-Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation). Then select the `my-public-msk-proxy` stack to show the details.
+Navigate to the [CloudFormation console.](https://console.aws.amazon.com/cloudformation) Then select the `my-public-msk-proxy` stack to show the details.
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
@@ -402,12 +402,12 @@ b-1.aklivity.example.com:9094,b-2.aklivity.example.com:9094,b-3.aklivity.example
 You can use these bootstrap server names when connecting to your MSK cluster from your local development environment.
 
 ::: warning
-If you add another broker to your MSK cluster, then you will need to add another local DNS entry to your development environment, such as `b-4.aklivity.example.com`. This is required only for [`Development`](./development.md) deployments, not [`Production`](./production.md) deployments.
+If you add another broker to your MSK cluster, then you will need to add another local DNS entry to your development environment, such as `b-4.aklivity.example.com`. This is required only for [Development](./development.md) deployments, not [Production](./production.md) deployments.
 :::
 
 ### Test the Kafka Client
 
-> This verifies internet connectivity to your MSK cluster via [Zilla Plus (Public MSK Proxy)](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)
+> This verifies internet connectivity to your MSK cluster via Zilla Plus (Public MSK Proxy).
 
 We can now verify that the Kafka client can successfully communicate with your MSK cluster via the internet from your local development environment to create a topic, then publish and subscribe to the same topic.
 

@@ -47,7 +47,7 @@ You can replace these AMI, Instance Type and Network VPC Name example values wit
 
 Click `Launch`
 
-Navigate to the VPC Management Console [Security Groups table](https://console.aws.amazon.com/vpc/home#securityGroups:).
+Navigate to the VPC Management Console [Security Groups](https://console.aws.amazon.com/vpc/home#securityGroups:) table.
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
@@ -70,7 +70,7 @@ This makes the launched EC2 instance accessible via `SSH`.
 
 > This accesses your EC2 instance via `SSH`.
 
-Navigate to the [EC2 running instances dashboard](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running).
+Navigate to the [EC2 running instances dashboard.](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running)
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.

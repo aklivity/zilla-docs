@@ -44,7 +44,7 @@ You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a 
 
 ## Upgrading the Public MSK Proxy
 
-Navigate to your [AWS Marketplace Subscriptions](https://console.aws.amazon.com/marketplace) and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
+Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus (Public MSK Proxy)` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
 - Select the `Public MSK Proxy` fulfillment option

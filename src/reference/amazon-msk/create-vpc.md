@@ -28,7 +28,7 @@ Click `Attach internet gateway`.
 
 Although traffic can be routed from the internet to resources in your VPC via an attached Internet Gateway, traffic cannot leave the VPC by default, so the Route Table must be updated.
 
-Navigate to the [VPC Management Console](https://console.aws.amazon.com/vpc).
+Navigate to the [VPC Management console.](https://console.aws.amazon.com/vpc)
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
