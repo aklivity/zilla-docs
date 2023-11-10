@@ -17,7 +17,7 @@ MSK's “Public Access” feature directly exposes your brokers to the internet,
 
 ## Set up mTLS Authentication between MSK and Zilla
 
-Once your MSK cluster is reachable over the internet, it will rely on Mutual TLS to authenticate external clients. Setting up `mTLS` between MSK and Zilla is done in three steps:
+Once your MSK cluster is reachable over the internet, it will rely on `mTLS` to authenticate external clients. Setting up `mTLS` between MSK and Zilla is done in three steps:
 
 1. Create a trusted Client Certificate in Amazon Certificate Manager (ACM).
 2. Export the Client Certificate as well as the Certificate Authority (CA) Certificate.

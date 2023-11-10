@@ -7,6 +7,11 @@ html[data-theme=dark] #app {
     --tab-nav-hover-color: var(--code-tabs-nav-hover-color);
     --tab-bg-color: #161b25;
     --tab-nav-text-color: var(--code-tabs-nav-text-color);
+    --note-bg-color: var(--bg-color);
+    --info-bg-color: var(--bg-color);
+    --tip-bg-color: #001c00;
+    --warning-bg-color: #1d1500;
+    --danger-bg-color: #340c0d;
     .vp-footer img.logo {
         content: url("/assets/footer-logo-white.png");
     }

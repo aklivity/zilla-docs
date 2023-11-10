@@ -4,7 +4,11 @@ description: Create a new MSK cluster with 3 brokers, each in a different availa
 
 # Create an MSK Cluster
 
-The following parameters are needed when following these steps to create a new MSK cluster. Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+The following parameters are needed when following these steps to create a new MSK cluster.
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 - Name
 - VPC
@@ -20,7 +24,7 @@ If you haven't already created a VPC, go to the [Create VPC](https://console.aws
 
 ## Create the MSK Cluster
 
-Start the [`Create cluster` wizard and specify Custom create](https://console.aws.amazon.com/msk/home#/cluster/create?isCustomCreate=true&isProvisionedCreate=true)
+Start the [Create MSK cluster](https://console.aws.amazon.com/msk/home#/cluster/create?isCustomCreate=true&isProvisionedCreate=true) wizard.
 
 ### Step 1: Cluster Settings
 
@@ -29,7 +33,7 @@ Start the [`Create cluster` wizard and specify Custom create](https://console.aw
 - Cluster type: `Provisioned`
 - Specify your desired settings
 
-::: note For a small evaluation MSK use these settings
+::: info For a small evaluation MSK use these settings
 Broker: `kafka.t3.small`\
 Storage: `10 GiB`
 :::
@@ -43,12 +47,13 @@ Storage: `10 GiB`
 ### Step 3: Security Settings
 
 - Access control methods:
-  > `Unauthenticated access`
+  - `SASL/SCRAM authentication`
   > -- or --
-  > `SASL/SCRAM authentication`
-  - For Mutual TLS
-  > `TLS client authentication (ACM)`
-  > ACM Private CAs: `Mutual Authentication CA`
+  - For mTLS
+    - `TLS client authentication (ACM)`
+    - ACM Private CAs: `Mutual Authentication CA`
+  > -- or --
+  - `Unauthenticated access`
 
 - Encryption
   - Between clients and brokers: `TLS Encryption`

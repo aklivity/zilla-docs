@@ -34,7 +34,7 @@ Make sure you have selected the desired region, such as `US East (N. Virginia) u
 - Add Tags: `(defaults)`
 - Configure CA permissions: `(defaults)`
 
-Click `Confirm and create`.
+Click `Create CA`.
 
 ::: info
 Note the ARN of the newly created certificate authority.
@@ -53,5 +53,5 @@ Select the `Test CA` certificate authority.
 From the `Actions` menu > select `Get CA Certificate` then click `Export certificate body to a file` to download the CA certificate.
 
 ::: info
-Note the `Certificate.cer` filename location where you download the CA certificate.
+Note the `Certificate.pem` filename location where you download the CA certificate.
 :::

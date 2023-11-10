@@ -326,11 +326,11 @@ We use a generic Kafka client here, however the setup for any Kafka client, incl
 Import the private CA certificate into your trust store.
 
 ```bash:no-line-numbers
-keytool -importcert -keystore /tmp/kafka.client.truststore.jks -storetype jks -storepass generated -alias pca -file Certificate.cer
+keytool -importcert -keystore /tmp/kafka.client.truststore.jks -storetype jks -storepass generated -alias pca -file Certificate.pem
 ```
 
 ::: info
-When you followed the [Create Certificate Authority (ACM)](../../reference/amazon-msk/create-certificate-authority-acm.md) guide, you exported the private CA certificate to a file called `Certificate.cer`.
+When you followed the [Create Certificate Authority (ACM)](../../reference/amazon-msk/create-certificate-authority-acm.md) guide, you exported the private CA certificate to a file called `Certificate.pem`.
 :::
 
 ### Configure the Kafka Client

@@ -90,7 +90,7 @@ openssl s_client \
   -servername <b-1-broker-dns-name> \
   -cert client.cert \
   -key client.key.pem
-  -CAfile Certificate.cer
+  -CAfile Certificate.pem
 ```
 
 The `openssl` output should be as shown below:
@@ -125,7 +125,7 @@ kcat \
   -X security.protocol=ssl \
   -X ssl.certificate.location=client.cert \
   -X ssl.key.location=client.key.pem \
-  -X ssl.ca.location=Certificate.cer
+  -X ssl.ca.location=Certificate.pem
 ```
 
 The `kcat` output should show the list of brokers and topics accessible to the client.
