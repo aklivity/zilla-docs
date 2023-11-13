@@ -48,15 +48,29 @@ Each route can list conditions (any match) to match entry data streams. Attribut
 
 #### Path and Method matches
 
-Patterns for `path` and `method` routing require an exact match.
+Patterns for routing require an exact match.
 
-- `/api/items`
-- `routeguide.RouteGuide/GetFeature`
+- path
+  - `/api/items`
+- method
+  - `routeguide.RouteGuide/GetFeature`
+- topic
+  - `message-topic`
+  - `command/one`
+- client-id
+  - `client-123`
 
-Wildcards in paths and method signatures `/*` will match multiple patterns.
+Wildcards in patters will match multiple patterns with a solo wildcard matching all.
 
-- `/api/*`
-- `routeguide.RouteGuide/*`
+- path
+  - `/api/*`
+- method
+  - `routeguide.RouteGuide/*`
+- topic
+  - `message-topic`
+  - `command/one`
+- client-id
+  - `client-123`
 
 ### Routing With extra params
 

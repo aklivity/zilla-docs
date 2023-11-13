@@ -186,6 +186,7 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route when adapting `mqtt` topic streams to `kafka` topic streams.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
@@ -223,6 +224,12 @@ Array of `mqtt` topic filters matching topic names for subscribe.
 - subscribe:
     - topic: /clients/#
 ```
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
 
 ##### subscribe[].topic
 
