@@ -22,23 +22,21 @@ mqtt_kafka_proxy:
       messages: mqtt-messages
       retained: mqtt-retained
     clients:
-      - /clients/{identity}/#
+      - clients/{identity}/#
   routes:
     - when:
         - publish:
-            - topic: /clients/#
-        - subscribe:
-            - topic: /clients/#
-      with:
-        messages: mqtt-clients
-      exit: kafka_cache_client
-    - when:
-        - subscribe:
-            - topic: /sensor-clients/#
-        - subscribe:
-            - topic: /device-clients/#
+            - topic: clients/+/device/#
+            - topic: device/#
       with:
         messages: mqtt-devices
+    - when:
+        - publish:
+            - topic: clients/#
+        - subscribe:
+            - topic: clients/#
+      with:
+        messages: mqtt-clients
       exit: kafka_cache_client
 ```
 
@@ -139,7 +137,7 @@ Pattern defining how to extract client identity from the topic. Using this we ca
 ```yaml
 options:
   clients:
-    - /clients/{identity}/#
+    - clients/{identity}/#
 ```
 
 ### routes
@@ -152,9 +150,9 @@ Conditional `mqtt-kafka`-specific routes when adapting `mqtt` topic streams to `
 routes:
   - when:
       - publish:
-          - topic: /clients/#
+          - topic: clients/#
       - subscribe:
-          - topic: /clients/#
+          - topic: clients/#
     with:
       messages: mqtt-clients
     exit: kafka_cache_client
@@ -192,9 +190,9 @@ Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route
 routes:
   - when:
       - publish:
-          - topic: /clients/#
+          - topic: clients/#
       - subscribe:
-          - topic: /clients/#
+          - topic: clients/#
 ```
 
 #### when[].publish[]
@@ -205,7 +203,8 @@ Array of `mqtt` topic filters matching topic names for publish.
 
 ```yaml
 - publish:
-    - topic: /clients/#
+    - topic: clients/#
+    - topic: subs/#
 ```
 
 ##### publish[].topic
@@ -216,26 +215,26 @@ Array of `mqtt` topic filters matching topic names for publish.
 
 #### when[].subscribe[]
 
-> `array`
+> `array` of `object`
 
 Array of `mqtt` topic filters matching topic names for subscribe.
 
 ```yaml
 - subscribe:
-    - topic: /clients/#
+    - topic: clients/#
 ```
-
-### routes[].exit\*
-
-> `string`
-
-Next binding when following this route.
 
 ##### subscribe[].topic
 
 > `string`
 
 `mqtt` topic filter pattern.
+
+### routes[].exit\*
+
+> `string`
+
+Next binding when following this route.
 
 ### routes[].with
 
