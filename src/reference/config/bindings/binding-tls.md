@@ -1,5 +1,5 @@
 ---
-shortTitle: tls 
+shortTitle: tls
 description: Zilla runtime tls binding
 category:
   - Binding

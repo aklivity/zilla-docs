@@ -1,5 +1,5 @@
 ---
-shortTitle: kafka 
+shortTitle: kafka
 description: Zilla runtime kafka binding
 category:
   - Binding

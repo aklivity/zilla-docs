@@ -1,5 +1,5 @@
 ---
-shortTitle: http 
+shortTitle: http
 description: Zilla runtime http binding
 category:
   - Binding

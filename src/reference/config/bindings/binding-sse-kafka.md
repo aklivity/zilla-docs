@@ -1,5 +1,5 @@
 ---
-shortTitle: sse-kafka 
+shortTitle: sse-kafka
 description: Zilla runtime sse-kafka binding
 category:
   - Binding
