@@ -126,10 +126,9 @@ Topic name.
 
 #### topics[].defaultOffset
 
-> `enum` [ "live", "historical" ]
-
-Fetch offset to use for new consumers\
-Defaults to `"historical"`.
+> `enum` [ "live", "historical" ] | Default: `"historical"`
+ 
+Fetch offset to use for new consumers
 
 ### options.sasl
 
