@@ -78,7 +78,7 @@ bindings:
       bootstrap:
         - mqtt-messages
         - mqtt-retained
-        - mqtt-places
+        - mqtt-devices
     exit: south_kafka_client
 
   # Connect to Kafka
