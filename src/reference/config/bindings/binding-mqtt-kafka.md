@@ -185,7 +185,7 @@ routes:
 
 #### when[].publish
 
-> `array`
+> `array` of `object`
 
 Array of `mqtt` topic filters matching topic names for publish.
 
