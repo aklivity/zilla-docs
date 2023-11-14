@@ -44,33 +44,47 @@ A route exists to direct messages on the stream to a desired exit point.
 
 ### When a Route matches
 
-Each route can list conditions (any match) to match entry data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct `exit` for a message.
+Each route can list conditions to match entry data streams. Route conditions will match if any of the conditions defined match the data stream (any match). Some conditions, like headers and metadata, will match only of all conditions are met (all match). Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct `exit` for a message.
 
-#### Path and Method matches
+#### Pattern matching
 
-Patterns for routing require an exact match.
+Patterns for routing require an exact match. Routes with multiple patterns will match any defined pattern. Wildcards in patters will match multiple patterns with a solo wildcard `*` matching all.
 
-- path
+Pattern matches and wildcards.
+
+- path: [http-kafka], [sse-kafka]
   - `/api/items`
-- method
-  - `routeguide.RouteGuide/GetFeature`
-- topic
-  - `message-topic`
-  - `command/one`
-- client-id
-  - `client-123`
-
-Wildcards in patters will match multiple patterns with a solo wildcard matching all.
-
-- path
   - `/api/*`
-- method
+- method: [grpc-kafka]
+  - `routeguide.RouteGuide/GetFeature`
   - `routeguide.RouteGuide/*`
-- topic
-  - `message-topic`
+- topic: [mqtt-kafka]
   - `command/one`
-- client-id
+  - `command/#`
+  - `command/+/test`
+- client-id: [mqtt-kafka]
   - `client-123`
+  - `client-*`
+
+Exact matches.
+
+- topic: [kafka], [http-kafka], [sse-kafka], [grpc-kafka], [kafka-grpc]
+  - `message-topic`
+- metadata: [grpc], [grpc-kafka]
+  - `custom-text: custom value`
+- headers: [http]
+  - `":scheme": https`
+
+[http-kafka]:../reference/config/bindings/binding-http-kafka.md#routes
+[sse-kafka]:../reference/config/bindings/binding-sse-kafka.md#routes
+[grpc-kafka]:../reference/config/bindings/binding-grpc-kafka.md#routes
+[kafka-grpc]:../reference/config/bindings/binding-kafka-grpc.md#routes
+[mqtt-kafka]:../reference/config/bindings/binding-mqtt-kafka.md#routes
+[kafka]:../reference/config/bindings/binding-kafka.md#routes
+[grpc]:../reference/config/bindings/binding-grpc.md#routes
+[http]:../reference/config/bindings/binding-kafka.md#routes
+
+#### Meta data matching
 
 ### Routing With extra params
 
