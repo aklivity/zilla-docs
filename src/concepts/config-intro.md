@@ -113,7 +113,7 @@ A route exists to direct messages on the stream to a desired exit point. This is
 
 ### Guarded Routes
 
-A route is considered guarded if a [guard](#guards) is specified. Any guard can be configured, enabling different use cases when protecting data sent over a stream.
+A route is considered guarded if a [guard](#guards) is specified. Any guard can be configured, enabling different use cases when protecting data sent over a stream. The guard condition supersedes any other conditions and is evaluated first.
 
 ## Guards
 
