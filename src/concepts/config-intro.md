@@ -32,19 +32,17 @@ Bindings have a `kind`, indicating how it should behave, such as:
 
 ### Routes
 
-A Route's matching conditions are defined in terms specific to each `binding` type with some common design principles. As each incoming data stream arrives, the binding follows its configured `routes` to reach an `exit` binding or rejects the stream if no routes are viable.
+A Route's matching conditions are defined in terms specific to each `binding` type with some common design principles. As each incoming data stream arrives, the binding follows its configured `routes` to reach an `exit` binding or rejects the stream if no routes are viable. Bindings can define a default `exit` for streams that do not match any route.
 
 ::: info Order Matters
-Messages on a data stream will use the first route with a matching `when` clause in the list. Put the more specific routes first and generic routes last. Often, that looks like a wildcard route last to catch any messages that don't have a previous matching route.
+Messages on a data stream will use the first route with a matching `when` condition in the list. Order the more specific routes first and generic routes last. Often, that looks like a wildcard route last to catch any messages that don't have a previous matching route.
 :::
-
-### Route Exit
-
-A route exists to direct messages on the stream to a desired exit point.
 
 ### When a Route matches
 
-Each route can list conditions to match entry data streams. Route conditions will match if any of the conditions defined match the data stream (any match). Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct `exit` for a message.
+Each route can list one or many conditions to match data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct `exit` for a message.
+
+A route matches if any of its `when` conditions match the data stream (any match). An individual condition in a route is matched if all parts of the condition match. Meaning if multiple `when` headers are supplied for HTTP routing, then all of those headers must match the specific when condition to match.
 
 ::: info Kafka topics
 Kafka topics can be defined `when` routing and `with` the route, as the destination or `reply-to` topic. In all cases, Kafka topics match exactly as defined.
@@ -108,6 +106,10 @@ Requests with an `idempotency-key` header can be replayed and receive the same r
 In the [http-kafka binding](../reference/config/bindings/binding-http-kafka.md), specifying `async` allows clients to include a `prefer: respond-async` header in the HTTP request to receive `202 Accepted` response with `location` response header.
 
 A corresponding `routes[].when` object with a matching `GET` method and `location` path is also required for follow-up `GET` requests to return the same response as would have been returned if the `prefer: respond-async` request header had been omitted.
+
+### Route Exit
+
+A route exists to direct messages on the stream to a desired exit point. This is the next binding needed to parse the the stream data. Bindings like [tcp](../reference/config/bindings/binding-tcp.md) are frequently used to route incoming streams to different exit points.
 
 ### Guarded Routes
 
