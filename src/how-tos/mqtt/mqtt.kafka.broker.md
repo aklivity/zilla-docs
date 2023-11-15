@@ -149,8 +149,8 @@ This will configure Zilla for accepting all of the `mqtt` traffic. The [tcp](../
 
 A [ws](../../reference/config/bindings/binding-tcp.md) binding is added to handle any MQTT over websocket using the `mqtt` protocol. The [mqtt](../../reference/config/bindings/binding-mqtt.md) binding then handles all of the MQTT message traffic that needs to go to Kafka.
 
-```yaml{16,21}
-<!-- @include: ./mqtt_kafka_broker_zilla.yaml{21-43} -->
+```yaml{17,22}
+<!-- @include: ./mqtt_kafka_broker_zilla.yaml{21-44} -->
 ```
 
 ::: right
@@ -163,7 +163,7 @@ A [ws](../../reference/config/bindings/binding-tcp.md) binding is added to handl
 The service definition defines how the clients using this service will interact with Kafka through Zilla. The required set of Kafka topics are defined in the [options.topics](../../reference/config/bindings/binding-mqtt-kafka.md#options-topics) where Zilla manages any MQTT required features. A client identity can be determined by pulling the identifier out of the topic using th [options.clients](../../reference/config/bindings/binding-mqtt-kafka.md#options-clients) property.
 
 ```yaml{7-9,21}
-<!-- @include: ./mqtt_kafka_broker_zilla.yaml{45-67} -->
+<!-- @include: ./mqtt_kafka_broker_zilla.yaml{46-68} -->
 ```
 
 ::: right
@@ -174,7 +174,7 @@ The service definition defines how the clients using this service will interact 
 Additionally, a route is defined to capture any "device" messages and route them to a specific topic called `mqtt-devices`. Here Zilla enables routing different topic patterns into one Kafka topic using MQTT supported wildcards. All other messages will use the default `exit` and end up in the `mqtt-messages` topic.
 
 ```yaml{4,5,7,8,10}
-<!-- @include: ./mqtt_kafka_broker_zilla.yaml{56-66} -->
+<!-- @include: ./mqtt_kafka_broker_zilla.yaml{57-67} -->
 ```
 
 ::: right
@@ -187,7 +187,7 @@ Additionally, a route is defined to capture any "device" messages and route them
 The Zilla [cache_client and cache_server](../../reference/config/bindings/binding-kafka.md#kind) helps manage the smooth data transfer between the service definition and Kafka. It is important to bootstrap the topics that will be brokering MQTT messages.
 
 ```yaml{11-13}
-<!-- @include: ./mqtt_kafka_broker_zilla.yaml{69-82} -->
+<!-- @include: ./mqtt_kafka_broker_zilla.yaml{70-83} -->
 ```
 
 ::: right
@@ -199,7 +199,7 @@ The Zilla [cache_client and cache_server](../../reference/config/bindings/bindin
 This will define the location and connection for Zilla to communicate with Kafka.
 
 ```yaml{10-11}
-<!-- @include: ./mqtt_kafka_broker_zilla.yaml{84-} -->
+<!-- @include: ./mqtt_kafka_broker_zilla.yaml{85-} -->
 ```
 
 ::: details Full zilla.yaml
