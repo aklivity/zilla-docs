@@ -40,7 +40,7 @@ Messages on a data stream will use the first route with a matching `when` condit
 
 ### When a Route matches
 
-Each route can list one or many conditions to match data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct `exit` for a message.
+Each route can list one or many conditions to match data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct [exit](#route-exit) for the stream.
 
 A route matches if any of its `when` conditions match the data stream (any match). An individual condition in a route is matched if all parts of the condition match. Meaning if multiple `when` headers are supplied for HTTP routing, then all of those headers must match the specific when condition to match.
 
@@ -109,11 +109,11 @@ A corresponding `routes[].when` object with a matching `GET` method and `locatio
 
 ### Route Exit
 
-A route exists to direct messages on the stream to a desired exit point. This is the next binding needed to parse the the stream data. Bindings like [tcp](../reference/config/bindings/binding-tcp.md) are frequently used to route incoming streams to different exit points.
+A route exists to direct a data stream to a desired exit point. This is the next binding needed to parse the the stream data. Bindings like [tcp](../reference/config/bindings/binding-tcp.md) are frequently used to route incoming streams to different exit points. Once a valid exit point is determined messages can flow to the correct `exit` destination.
 
 ### Guarded Routes
 
-A route is considered guarded if a [guard](#guards) is specified. Any guard can be configured, enabling different use cases when protecting data sent over a stream. The guard condition supersedes any other conditions and is evaluated first.
+A route is considered `guarded` if a [guard](#guards) is specified. The guard condition short circuits any other route conditions and is used evaluate if a stream is allowed to use the route. If the `guarded` check fails the other route conditions aren't considered allowing route evaluation to fall through to the next defined route. Any guard can be configured, enabling different use cases when protecting data sent over a stream.
 
 ## Guards
 
