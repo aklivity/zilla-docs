@@ -22,7 +22,7 @@ telemetry:
 
 Each configured `binding` represents a step in the pipeline as data streams are decoded, translated or encoded according to a specific protocol `type`. Bindings are organized by behavioral type, supporting either encoding and decoding for a specific protocol or translation between protocols.
 
-Bindings have a `kind`, indicating how it should behave, such as:
+Bindings have a `kind`, indicating how they should behave, such as:
 
 - `proxy` - Handles the translate or encode behaviors between components.
 - `server` - Exists to decode a protocol on the inbound network stream, producing higher-level application streams for each request.
@@ -40,17 +40,13 @@ Messages on a data stream will use the first route with a matching `when` condit
 
 ### When a Route matches
 
-Each route can list one or many conditions to match data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the correct [exit](#route-exit) for the stream.
+Each route can list one or many conditions to match data streams. Attributes like headers, metadata, source, destination, etc., are used `when` determining the stream's correct [exit](#route-exit) for the stream.
 
-A route matches if any of its `when` conditions match the data stream (any match). An individual condition in a route is matched if all parts of the condition match. Meaning if multiple `when` headers are supplied for HTTP routing, then all of those headers must match the specific when condition to match.
-
-::: info Kafka topics
-Kafka topics can be defined `when` routing and `with` the route, as the destination or `reply-to` topic. In all cases, Kafka topics match exactly as defined.
-:::
+A route matches if any of its `when` conditions match the data stream (any match). An individual condition in a route is matched if all parts of the condition match (all match). This means that if multiple `when` headers are supplied for HTTP routing, then all of those headers must match the specific when condition.
 
 #### Pattern matching
 
-Patterns for routing require an exact match. Routes with multiple patterns will match any defined pattern. Wildcards in patterns will match multiple patterns with a solo wildcard `*` matching all.
+A condition will attempt to match the target stream exactly against the configured pattern. Routes with multiple patterns listed will match any defined pattern. Some route properties allow for wildcards in patterns and will match multiple values. A solo wildcard will match all incoming streams. MQTT topics allow naming per the [wildcard spec.](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901241)
 
 - path: [http-kafka], [sse-kafka]
   - `/api/items`
@@ -66,22 +62,11 @@ Patterns for routing require an exact match. Routes with multiple patterns will 
   - `client-123`
   - `client-*`
 
-#### Exact matching
-
-Some conditions, like headers and metadata, will match only of all conditions are met (all match).
-
-- metadata: [grpc], [grpc-kafka]
-  - `custom-text: custom value`
-- headers: [http]
-  - `":scheme": https`
-
 [http-kafka]:../reference/config/bindings/binding-http-kafka.md#routes
 [sse-kafka]:../reference/config/bindings/binding-sse-kafka.md#routes
 [grpc-kafka]:../reference/config/bindings/binding-grpc-kafka.md#routes
 [kafka-grpc]:../reference/config/bindings/binding-kafka-grpc.md#routes
 [mqtt-kafka]:../reference/config/bindings/binding-mqtt-kafka.md#routes
-[grpc]:../reference/config/bindings/binding-grpc.md#routes
-[http]:../reference/config/bindings/binding-kafka.md#routes
 
 ### Routing With extra params
 
