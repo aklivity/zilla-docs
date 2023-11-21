@@ -1,10 +1,11 @@
 # Intro to zilla.yaml
 
-The Zilla runtime configuration defines the [`bindings`](../reference/config/overview.md#bindings), [`guards`](../reference/config/overview.md#guards), [`vaults`](../reference/config/overview.md#vaults), and [`telemetry`](../reference/config/overview.md#telemetry) used by the Zilla runtime engine. The values of properties in the configuration can be literals or expressions of the form `${{env.VARIABLE}}` to resolve a local environment variable value instead.
+The Zilla runtime configuration defines the [`bindings`](../reference/config/overview.md#bindings), [`guards`](../reference/config/overview.md#guards), [`vaults`](../reference/config/overview.md#vaults), [`catalogs`](../reference/config/overview.md#catalogs), and [`telemetry`](../reference/config/overview.md#telemetry) used by the Zilla runtime engine. The values of properties in the configuration can be literals or expressions of the form `${{env.VARIABLE}}` to resolve a local environment variable value instead.
 
 ```yaml {2}
 ---
 name: zilla-namespace
+
 bindings:
   ...
 
@@ -12,6 +13,9 @@ guards:
   ...
 
 vaults:
+  ...
+
+catalogs:
   ...
 
 telemetry:
@@ -164,6 +168,8 @@ bindings:
         - h2
     exit: http_server
 ```
+
+## Catalogs
 
 ## Telemetry
 
