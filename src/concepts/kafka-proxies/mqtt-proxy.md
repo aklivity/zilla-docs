@@ -78,4 +78,4 @@ MQTT connect, disconnect, and other session messages are maintained on the `sess
 
 ## Authorizing clients
 
-Any connection Zilla handles can be secured using the [tls](../reference/config/bindings/binding-tls.md) binding. This means both MQTT and MQTT over WebSocket can be encrypted. Additionally, A client connection to the MQTT server can be guarded by the [jwt](../../reference/config/guards/guard-jwt.md) guard supporting JWT access tokens, with fine-grained privileges enforced on publish or subscribe to MQTT topics.
+Any connection Zilla handles can be secured using the [tls](../../reference/config/bindings/binding-tls.md) binding. This means both MQTT and MQTT over WebSocket can be encrypted. Additionally, A client connection to the MQTT server can be guarded by the [jwt](../../reference/config/guards/guard-jwt.md) guard supporting JWT access tokens, with fine-grained privileges enforced on publish or subscribe to MQTT topics.
