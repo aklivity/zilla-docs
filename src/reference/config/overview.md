@@ -123,7 +123,7 @@ Default attributes to optionally include when exporting metrics.
 
 #### exporters
 
-> `object` as map of named [`exporter`](./telemetry/exporter/) properties
+> `object` as map of named [`exporter`](./telemetry/exporters) properties
 
 Map of named exporters.
 
