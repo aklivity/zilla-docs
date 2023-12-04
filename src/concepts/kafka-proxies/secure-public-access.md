@@ -5,12 +5,12 @@ description: Securely access your Kafka cluster via the internet.
 
 # Zilla Plus Secure Public Access
 
-[Available in Zilla Plus<sup>+</sup>](https://www.aklivity.io/products/zilla-plus)
+[Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
 By automating the configuration of an internet-facing network load balancer and auto-scaling group of stateless Zilla Plus Secure Public Access proxies to expose your Kafka cluster via the public internet, Kafka clients can connect, publish messages and subscribe to topics in your Kafka cluster from outside the host network.
 
-You will need to choose a wildcard DNS pattern to use for public internet access to the brokers in your Kafka cluster. These wildcard DNS names must resolve to the public IP address(es) where the Zilla proxy is deployed. The Zilla proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
+You will need to choose a wildcard DNS pattern to use for public internet access to the brokers in your Kafka cluster. These wildcard DNS names must resolve to the public IP address(es) where the <ZillaPlus/> proxy is deployed. The <ZillaPlus/> proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
 
 ## Amazon MSK
 

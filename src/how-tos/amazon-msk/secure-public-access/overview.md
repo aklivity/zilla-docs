@@ -5,7 +5,7 @@ description: Securely access your Amazon MSK cluster via the internet.
 
 # Amazon MSK Secure Public Access Proxy
 
-[Available in Zilla Plus<sup>+</sup>](https://www.aklivity.io/products/zilla-plus)
+[Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
 ::: tip Estimated time to complete 20-30 minutes.
@@ -15,7 +15,7 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 
 By automating the configuration of an internet-facing network load balancer and auto-scaling group of stateless Secure Public Access proxies to expose your MSK cluster via the public internet, Kafka clients can connect, publish messages and subscribe to topics in your Amazon MSK cluster from outside AWS.
 
-You will need to choose a wildcard DNS pattern to use for public internet access to the brokers in your MSK cluster. These wildcard DNS names must resolve to the public IP address(es) where the Zilla proxy is deployed. The Zilla proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
+You will need to choose a wildcard DNS pattern to use for public internet access to the brokers in your MSK cluster. These wildcard DNS names must resolve to the public IP address(es) where the <ZillaPlus/> proxy is deployed. The <ZillaPlus/> proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
 
 Both `Development` and `Production` deployment options are available.
 
@@ -29,9 +29,9 @@ Follow the [Production](./production.md) guide to setup connectivity to your MSK
 
 Follow the [Production (Mutual TLS)](./production-mutual-tls.md) guide instead if your MSK cluster is configured for TLS client authorization.
 
-## Monitoring the Zilla proxy
+## Monitoring the <ZillaPlus/> proxy
 
-The CloudFormation template used to deploy the Zilla proxy includes a Network Load Balancer that can be monitored via [CloudWatch](https://console.aws.amazon.com/cloudwatch) to verify continuous health.
+The CloudFormation template used to deploy the <ZillaPlus/> proxy includes a Network Load Balancer that can be monitored via [CloudWatch](https://console.aws.amazon.com/cloudwatch) to verify continuous health.
 
 Network Load Balancers have [many available metrics](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-cloudwatch-metrics.html), including the following.
 
@@ -42,7 +42,7 @@ Network Load Balancers have [many available metrics](https://docs.aws.amazon.com
 
 You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a dashboard to monitor these metrics and set alarms to alert you when specific metric thresholds are reached.
 
-## Upgrading the Zilla proxy
+## Upgrading the <ZillaPlus/> proxy
 
 Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus for Amazon MSK` to show the manage subscription page.
 
@@ -57,6 +57,6 @@ Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) s
 - Click `Update` and `Replace current template` with the copied Amazon S3 URL
 - Complete the wizard to deploy the updated stack.
 
-CloudFormation will incrementally deploy the Zilla proxies for the new version behind the same Network Load Balancer, checking for successful deployment before terminating the Zilla proxies for the previous version.
+CloudFormation will incrementally deploy the <ZillaPlus/> proxies for the new version behind the same Network Load Balancer, checking for successful deployment before terminating the <ZillaPlus/> proxies for the previous version.
 
-Connected clients will see their connections drop, and when they reconnect automatically, the Network Load Balancer will direct them to the new Zilla proxies. If the stack update is unsuccessful, then CloudFormation will rollback to use the previous stack deployment.
+Connected clients will see their connections drop, and when they reconnect automatically, the Network Load Balancer will direct them to the new <ZillaPlus/> proxies. If the stack update is unsuccessful, then CloudFormation will rollback to use the previous stack deployment.
