@@ -15,7 +15,7 @@ description: Setup a public to your Confluent Cloud private cluster from anywher
 
 The [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodview-eblxkinsqbaks) Secure Public Access proxy lets authorized Kafka clients connect, publish messages and subscribe to topics in your Confluent Cloud cluster via the internet.
 
-In this guide we will deploy the Zilla Plus for Confluent Cloud as a Secure Public Access proxy and showcase globally trusted public internet connectivity to a Confluent Cloud cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`.
+In this guide we will deploy the Zilla Plus for Confluent Cloud Secure Public Access proxy and showcase globally trusted public internet connectivity to a Confluent Cloud cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`.
 
 ### AWS services used
 
@@ -41,19 +41,37 @@ Before setting up internet access to your Confluent Cloud Cluster, you will need
 Check out the [Troubleshooting](../../reference/troubleshooting/aws.md) guide if you run into any issues.
 :::
 
-### Create the Confluent Cloud Cluster in AWS
+### Create the Confluent Cloud Cluster in AWS with PrivateLink
 
-> This creates your Confluent Cloud cluster in preparation for secure access via the internet.
+> This creates your Confluent Cloud cluster with AWS PrivateLink in preparation for secure access via the internet.
 
-An Confluent Cloud cluster deployed in AWS is needed for secure remote access via the internet. The [Confluent Cloud Quickstart](https://docs.confluent.io/cloud/current/get-started/index.html) will walk you through creating one. You can skip this step if you have already created an Confluent Cloud cluster with equivalent configuration.
-
-Follow the [Use Confluent Cloud with Private Networking](https://docs.confluent.io/cloud/current/networking/ccloud-console-access.html) guide to setup the a new Confluent Cloud cluster. We will use the bellow resource names to reference the AWS resources needed in this guide.
+An Confluent Cloud cluster deployed in AWS is needed for secure remote access via the internet. The [Confluent Cloud Quickstart](https://docs.confluent.io/cloud/current/get-started/index.html) will walk you through creating one. You can skip this step if you have already created an Confluent Cloud cluster with equivalent configuration. We will use the bellow resource names to reference the AWS resources needed in this guide.
 
 - Cluster Name: `my-cc-cluster`
-- VPC: `my-cc-cluster-vpc`
-- Subnet: `my-cc-cluster-subnet-*`
-- Route tables: `my-cc-cluster-rtb-*`
-- Internet gateway: `my-cc-cluster-igw`
+- Cluster Type: `Enterprise`
+
+Your Confluent Cloud Enterprise cluster will need a network connection. You will need to create a new [PrivateLink Attachment](https://docs.confluent.io/cloud/current/networking/aws-platt.html) in network management tab. You will start configuring a new network connection to get a `PrivateLink Service Id`
+
+- Name: `zilla_plus_secure_public_access`
+- Add Connection
+  - Name: `zilla_plus_privatelink_service`
+  - Save the `PrivateLink Service Id`
+
+Confluent Cloud Enterprise needs an AWS PrivateLink connection, for this we will [Create a VPC plus other VPC resources](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html#create-vpc-and-other-resources) with the bellow resource names.
+
+- Name tag auto-generation: `my-cce-privatelink`
+- VPC endpoints: `none`
+- Create the VPC
+
+Now you will need to [Setup AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html) with the bellow resource names.
+
+- Endpoint Name: `my-cce-privatelink-vpce`
+- Service Name: the `PrivateLink Service Id` value you saved earlier
+- VPC: `my-cce-privatelink-vpc`
+- Subnets: Select `public` subnets for each availability zone
+- Create the Endpoint
+
+Finish the `zilla_plus_privatelink_service` connection wizard with the `PrivateLink Endpoint ID` found in your `my-cce-privatelink-vpce` from the [Endpoints table](https://console.aws.amazon.com/vpcconsole/home#Endpoints:)
 
 ### Create the Zilla proxy security group
 
@@ -63,8 +81,8 @@ A VPC security group is needed for the Zilla proxies when they are launched.
 
 Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/security-groups.html#creating-security-groups) docs with the following parameters and defaults. This creates your Zilla proxy security group to allow Kafka clients and SSH access.
 
-- VPC: `my-cc-cluster-vpc`
 - Name: `my-zilla-proxy-sg`
+- VPC: `my-cce-privatelink-vpc`
 - Description: `Kafka clients and SSH access`
 - Add Inbound Rule
   - Type: `CUSTOM TCP`
@@ -86,7 +104,7 @@ Make sure you have selected the desired region, such as `US East (N. Virginia) u
 
 Filter the security groups by selecting a `VPC` and select the `default` security group.
 
-- VPC: `my-cc-cluster-vpc`
+- VPC: `my-cce-privatelink-vpc`
 - Security Group: `default`
 
 #### Add a Custom TCP Rule
@@ -216,7 +234,7 @@ my-zilla-proxy
 Parameters:
 
 - Network Configuration
-  - VPC: `my-cc-cluster-vpc`
+  - VPC: `my-cce-privatelink-vpc`
   - Subnets: `my-cc-cluster-public-1a` `my-cc-cluster-public-1b`
 - Confluent Cloud Configuration
   - Bootstrap server: `<Cluster ID>.us-east-1.aws.private.confluent.cloud:9092` \*1

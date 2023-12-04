@@ -60,6 +60,7 @@ MySecretsManagerRead
 Navigate to the [Create role](https://console.aws.amazon.com/iamv2/home#/roles/create) form and fill out the form with the following details:
 
 - Region: `Global`
+- Trusted Entity Type: `AWS Service`
 - Choose a use case: `EC2`
 - Add Permissions
   - Policy name: `AWSMarketplaceMeteringFullAccess`
@@ -72,9 +73,8 @@ Click `Create role`
 
 Now click the newly created role `my-role` to show the details so we can add inline policies.
 
-In the Permissions policies section in the `Add Permissions` dropdown click on `Create inline policy`.
-
-In the `Policy editor` specify `JSON` and add the below policy.
+- From the `Permissions policies` section > `Add permissions` menu > select `Create inline policy`
+- In the `Policy editor` specify `JSON` and add the below policy.
 
 ::: code-tabs
 
@@ -101,7 +101,7 @@ In the `Policy editor` specify `JSON` and add the below policy.
 
 :::
 
-### Review policy
+### Review
 
 - Policy name: `MySecretsManagerRead`
 

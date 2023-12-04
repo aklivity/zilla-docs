@@ -15,7 +15,7 @@ description: Setup mutual authentication to your MSK cluster from anywhere on th
 
 The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access proxy lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
 
-In this guide we will deploy the Zilla Plus for Amazon MSK as a Secure Public Access proxy  and showcase globally trusted public internet connectivity to an MSK cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`. Kafka clients will use TLS client certificates to verify trusted client identity.
+In this guide we will deploy the Zilla Plus for Amazon MSK Secure Public Access proxy  and showcase globally trusted public internet connectivity to an MSK cluster from a Kafka client, using the custom wildcard domain `*.example.aklivity.io`. Kafka clients will use TLS client certificates to verify trusted client identity.
 
 ### AWS services used
 
@@ -156,6 +156,8 @@ ResourceGroupsandTagEditorReadOnlyAccess
 :::
 
 #### IAM role Inline Policies
+
+This creates an IAM security role to enable the required AWS services for the Zilla proxies.
 
 ::: code-tabs
 
