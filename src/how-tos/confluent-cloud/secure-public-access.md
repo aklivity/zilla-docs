@@ -394,8 +394,8 @@ bin/kafka-topics.sh \
 
 1. The Kafka client with access to the public internet issued a request to create a new topic
 1. This request was directed to the internet-facing Network Load Balancer
-1. The Network Load Balancer forwarded the request to the Zilla Plus for Confluent Cloud
-1. The Zilla Plus for Confluent Cloud routed the request to the appropriate Confluent Cloud broker
+1. The Network Load Balancer forwarded the request to the Zilla proxy
+1. The Zilla proxy routed the request to the appropriate Confluent Cloud broker
 1. The topic was created in the Confluent Cloud broker
 1. Public access was verified
 

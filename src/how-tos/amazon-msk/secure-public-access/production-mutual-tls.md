@@ -435,10 +435,10 @@ bin/kafka-topics.sh --create --topic zilla-proxy-test --partitions 3 --replicati
 
 1. The Kafka client with access to the public internet issued a request to create a new topic
 2. This request was directed to the internet-facing Network Load Balancer
-3. The Network Load Balancer forwarded the request to the Zilla Plus for Amazon MSK
-4. The Zilla Plus for Amazon MSK verified the client identity of the Kafka client
-5. The Zilla Plus for Amazon MSK selected a matching client certificate to propagate client identity
-6. The Zilla Plus for Amazon MSK routed the request to the appropriate MSK broker
+3. The Network Load Balancer forwarded the request to the Zilla proxy
+4. The Zilla proxy verified the client identity of the Kafka client
+5. The Zilla proxy selected a matching client certificate to propagate client identity
+6. The Zilla proxy routed the request to the appropriate MSK broker
 7. The topic was created in the MSK broker
 8. Public access was verified, authorized by trusted client certificate
 
