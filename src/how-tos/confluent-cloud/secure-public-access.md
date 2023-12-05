@@ -73,6 +73,30 @@ Now you will need to [Setup AWS PrivateLink](https://docs.aws.amazon.com/vpc/lat
 
 Finish the `zilla_plus_privatelink_service` connection wizard with the `PrivateLink Endpoint ID` found in your `my-cce-privatelink-vpce` from the [Endpoints table](https://console.aws.amazon.com/vpcconsole/home#Endpoints:)
 
+### Create the Route53 Hosted zone
+
+> This creates a Route53 Hosted zone to for a a generic DNS record can point to the Confluent Cloud with AWS PrivateLink used by the <ZillaPlus/> proxy.
+
+Follow the [Create Hosted Zone](https://console.aws.amazon.com/route53/v2/hostedzones#CreateHostedZone) with the following parameters and defaults.
+
+- Domain name: `<Region>.aws.private.confluent.cloud`
+- Type: `Private`
+- Region: `<CC Cluster Region>`
+- VPC: `my-cce-privatelink-vpc`
+- Create the hosted zone
+
+You will need to add an A Record for the wildcard to your `zilla_plus_privatelink_service` `my-cce-privatelink-vpce` VPC Endpoint has a DNS.
+
+- Record Name: `*`
+- Record Type: `A`
+- Alias: `True`
+- Route Traffic: `Alias to VPC Endpoint`
+  - Region: `<CC Cluster Region>`
+  - Select the `*.vpce-svc-*` DNS address
+- Routing policy: `Simple Routing`
+- Evaluate Target Heath: `Yes`
+- Create the record
+
 ### Create the <ZillaPlus/> proxy security group
 
 > This creates your <ZillaPlus/> proxy security group to allow Kafka clients and SSH access.
