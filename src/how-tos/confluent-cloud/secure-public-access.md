@@ -220,7 +220,8 @@ We need a TLS Server Certificate for your custom DNS wildcard domain that can be
 Follow the [Create Server Certificate (LetsEncrypt)](../../reference/aws/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
 
 ::: info
-Note the server certificate secret ARN as we will need to reference it from the Secure Public Access CloudFormation template.
+Note the server certificate secret ARN as we will need to reference it from the Secure Public Access CloudFormation template. 
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
 :::
 
 ## Deploy the Zilla Plus Secure Public Access Proxy
@@ -259,14 +260,14 @@ Parameters:
 
 - Network Configuration
   - VPC: `my-cce-privatelink-vpc`
-  - Subnets: `my-cc-cluster-public-1a` `my-cc-cluster-public-1b`
+  - Subnets: `my-cce-privatelink-subnet-public-1a` `my-cce-privatelink-subnet-public-1b`
 - Confluent Cloud Configuration
-  - Bootstrap server: `<Cluster ID>.us-east-1.aws.private.confluent.cloud:9092` \*1
+  - Bootstrap server: `<Cluster ID>.<Region>.aws.private.confluent.cloud:9092` \*1
 - Zilla Plus Configuration
   - Instance count: `2`
   - Instance type: `t3.small` \*2
   - Role: `aklivity-zilla-proxy`
-  - Security Groups: `my-zilla-proxy`
+  - Security Groups: `my-zilla-proxy-sg`
   - Secrets Manager Secret ARN: `<TLS certificate private key secret ARN>` \*3
   - Public Wildcard DNS: `*.example.aklivity.io` \*4
   - Public Port: `9092`
@@ -274,7 +275,7 @@ Parameters:
 - \*Configuration Reference
   1. Follow the steps in the [Test Connectivity to Confluent Cloud](https://docs.confluent.io/cloud/current/networking/testing.html#test-connectivity-to-ccloud) docs to get your clusters Bootstrap server URL.
   2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
-  3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](../../reference/aws/create-server-certificate-letsencrypt.md) guide.
+  3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](../../reference/aws/create-server-certificate-letsencrypt.md) guide. Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
   4. Replace with your own custom wildcard DNS pattern.
   5. Follow the [Create Key Pair](../../reference/aws/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
@@ -310,22 +311,48 @@ ssh -i ~/.ssh/<key-pair.cer> ec2-user@<instance-public-ip-address>
 
 After logging in via SSH, check the status of the `zilla-plus` system service.
 
+::: tabs
+
+@tab Service is running
+
+Verify that the `zilla-plus` service is active and logging output similar to that shown below.
+
 ```bash:no-line-numbers
 systemctl status zilla-plus.service
 ```
 
-Verify that the `zilla-plus` service is active and logging output similar to that shown below.
-
 ```output:no-line-numbers
 zilla-plus.service - Zilla Plus
    Loaded: loaded (/etc/systemd/system/zilla-plus.service; enabled; vendor preset: disabled)
-   Active: active (running) since Tue 2021-08-24 20:56:51 UTC; 1 day 19h ago
- Main PID: 1803 (java)
-   CGroup: /system.slice/zilla-plus.service
-           └─...
-
-Aug 26 06:56:54 ip-10-0-3-104.ec2.internal zilla[1803]: Recorded usage for record id ...
+   Active: active (running) since...
 ```
+
+@tab Check Ports
+
+Check for the active ports with `netstat`.
+
+```bash:no-line-numbers
+netstat -ntlp
+```
+
+```output:no-line-numbers
+tcp6    0    0 :::9092    :::*    LISTEN    1726/.zpm/image/bin 
+```
+
+@tab Check Logs
+
+You can get an stdout dump of the `zilla-plus.service` using `journalctl`.
+
+```bash:no-line-numbers
+journalctl -e -u zilla-plus.service | tee -a /tmp/zilla.log
+```
+
+```output:no-line-numbers
+systemd[1]: Started zilla-plus.service - Zilla Plus.
+...
+```
+
+:::
 
 Repeat these steps for each of the other <ZillaPlus/> proxies launched by the CloudFormation template.
 
@@ -411,7 +438,7 @@ We can now verify that the Kafka client can successfully communicate with your C
 If using the wildcard DNS pattern `*.example.aklivity.io`, then we use the following as TLS bootstrap server names for the Kafka client:
 
 ```text:no-line-numbers
-b-1.example.aklivity.io:9096,b-2.example.aklivity.io:9096,b-3.example.aklivity.io:9096
+b-1.example.aklivity.io:9092,b-2.example.aklivity.io:9092,b-3.example.aklivity.io:9092
 ```
 
 ::: warning
@@ -498,7 +525,7 @@ You can use [CloudWatch](https://console.aws.amazon.com/cloudwatch) to create a 
 Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus for Amazon MSK` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
-- Select the `Secure Public Access` fulfillment option
+- Select the `CloudFormation Template` fulfillment option with the `Secure Public Access` template.
 - Make sure you have selected the desired region selected, such as `us-east-1`
 - Click `Continue to Launch`
   - Choose the action `Launch CloudFormation`
