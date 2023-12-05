@@ -147,7 +147,6 @@ aklivity-zilla-proxy
 @tab Policies
 
 ```text:no-line-numbers
-AWSMarketplaceMeteringFullAccess
 AWSCertificateManagerReadOnly
 AWSCertificateManagerPrivateCAReadOnly
 ResourceGroupsandTagEditorReadOnlyAccess

@@ -10,18 +10,6 @@ Throughout this guide we use the following example IAM Role parameters.
 
 - Role Name: `my-role`
 
-- Managed Policies:
-
-::: code-tabs
-
-@tab Name
-
-```text:no-line-numbers
-AWSMarketplaceMeteringFullAccess
-```
-
-:::
-
 - Inline Policies:
 
 ::: code-tabs
@@ -62,9 +50,6 @@ Navigate to the [Create role](https://console.aws.amazon.com/iamv2/home#/roles/c
 - Region: `Global`
 - Trusted Entity Type: `AWS Service`
 - Choose a use case: `EC2`
-- Add Permissions
-  - Policy name: `AWSMarketplaceMeteringFullAccess`
-  - Type: `AWS managed`
 - Role name: `my-role`
 
 Click `Create role`
