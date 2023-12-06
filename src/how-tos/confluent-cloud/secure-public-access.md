@@ -77,7 +77,7 @@ Finish the `zilla_plus_privatelink_service` connection wizard with the `PrivateL
 
 > This creates a Route53 Hosted zone to for a a generic DNS record can point to the Confluent Cloud with AWS PrivateLink used by the <ZillaPlus/> proxy.
 
-Follow the [Create Hosted Zone](https://console.aws.amazon.com/route53/v2/hostedzones#CreateHostedZone) with the following parameters and defaults.
+Follow the [Create Hosted Zone](https://console.aws.amazon.com/route53/v2/hostedzones#CreateHostedZone) wizard with the following parameters and defaults.
 
 - Domain name: `<Region>.aws.private.confluent.cloud`
 - Type: `Private`
@@ -103,7 +103,11 @@ You will need to add an A Record for the wildcard to your `zilla_plus_privatelin
 
 A VPC security group is needed for the <ZillaPlus/> proxies when they are launched.
 
-Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/security-groups.html#creating-security-groups) docs with the following parameters and defaults. This creates your <ZillaPlus/> proxy security group to allow Kafka clients and SSH access.
+Follow the [Create Security Group](https://console.aws.amazon.com/vpcconsole/home#CreateSecurityGroup:) wizard with the following parameters and defaults. This creates your <ZillaPlus/> proxy security group to allow Kafka clients and SSH access.
+
+::: note Check your selected region
+Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+:::
 
 - Name: `my-zilla-proxy-sg`
 - VPC: `my-cce-privatelink-vpc`
@@ -115,30 +119,14 @@ Follow the [Create Security Group](https://docs.aws.amazon.com/vpc/latest/usergu
 - Add Inbound Rule
   - Type: `SSH`
   - Source type: `My IP`
+- Create the Security Group
 
-### Update the default security group rules
+Navigate to the VPC Management Console [Security Groups](https://console.aws.amazon.com/vpc/home#securityGroups:) table. Select the `my-zilla-proxy-sg` security group you just created. You will create an inbound rule to allow all traffic inside itself.
 
-> This allows the <ZillaPlus/> proxies to communicate with your Confluent Cloud cluster.
-
-Navigate to the VPC Management Console [Security Groups](https://console.aws.amazon.com/vpc/home#securityGroups:) table.
-
-::: note Check your selected region
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
-:::
-
-Filter the security groups by selecting a `VPC` and select the `default` security group.
-
-- VPC: `my-cce-privatelink-vpc`
-- Security Group: `default`
-
-#### Add a Custom TCP Rule
-
-Add this Inbound Rule to allow the <ZillaPlus/> proxies to communicate with the Confluent Cloud cluster.
-
-- Type: `Custom TCP`
-- Port Range: `9092`
-- Source type: `Custom`
-- Source: `my-zilla-proxy-sg`
+- Add Inbound Rule
+  - Type: `All Traffic`
+  - Source type: `Custom`
+  - Source: `my-zilla-proxy-sg`
 
 ### Create the <ZillaPlus/> proxy IAM security role
 
