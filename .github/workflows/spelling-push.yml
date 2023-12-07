@@ -6,16 +6,10 @@ on:
 jobs:
   grammarChecker:
     runs-on: ubuntu-latest
+    container: jdkato/vale:v2.29.7
     steps:
       - uses: actions/checkout@v3
       - name: Grammar Checker
-        uses: errata-ai/vale-action@reviewdog
-        with:
-          version: 2.27.0
-          files: src
+        run: vale src
       - name: Spell Check sidebar
-        uses: errata-ai/vale-action@reviewdog
-        with:
-          version: 2.27.0
-          files: src/.vuepress/sidebar/en.ts
-          vale_flags: "--ignore-syntax"
+        run: vale --ignore-syntax src/.vuepress/sidebar/en.ts
