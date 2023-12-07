@@ -9,12 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Grammar Checker
-        uses: errata-ai/vale-action@v2.0.1
+        uses: errata-ai/vale-action@reviewdog
         with:
           version: 2.27.0
           files: src
       - name: Spell Check sidebar
-        uses: errata-ai/vale-action@v2.0.1
+        uses: errata-ai/vale-action@reviewdog
         with:
           version: 2.27.0
           files: src/.vuepress/sidebar/en.ts
