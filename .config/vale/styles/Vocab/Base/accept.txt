@@ -9,9 +9,9 @@
 (?i)pkcs12
 (?i)prometheus
 (?i)proxying
+(?i)quickstart(s)?
 (?i)realtime
 (?i)subnet(s)?
-(?i)quickstart(s)?
 (?i)todo
 (?i)truststore
 (?i)yaml
@@ -79,6 +79,7 @@ repo(s)?
 repos?
 routeguide
 sasl
+sharding
 shortTitle
 simlinks
 sse
