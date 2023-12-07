@@ -51,9 +51,12 @@ CA(s)?
 CLI(s)?
 Conduktor
 config
+const
 CQRS
 cspell
 datagram
+enSidebar
+enum
 etag
 fas
 gitea
@@ -69,14 +72,12 @@ jq
 jwt
 Kafka
 kcat
-enum
 leader_only
 lycheeverse
 MQTT
 mvnw
 netcat
 npm
-WebSocket
 OAUTHBEARER
 oneOf
 oneway
@@ -101,6 +102,7 @@ unix
 UUID(s)
 VPC(s)?
 VSCode
+WebSocket
 ws
 yaml
 Zilla

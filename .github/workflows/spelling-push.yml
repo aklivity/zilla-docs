@@ -8,11 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-     
       - name: Grammar Checker
         uses: errata-ai/vale-action@v2.0.1
         with:
           version: 2.27.0
           files: src
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Spell Check sidebar
+        uses: errata-ai/vale-action@v2.0.1
+        with:
+          version: 2.27.0
+          files: src/.vuepress/sidebar/en.ts
+          vale_flags: "--ignore-syntax"
