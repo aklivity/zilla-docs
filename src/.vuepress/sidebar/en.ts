@@ -119,7 +119,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Secure Pubic Access",
+      text: "Secure Public Access",
       icon: "aky-zilla-plus",
       link: "concepts/kafka-proxies/secure-public-access.md",
       children: [

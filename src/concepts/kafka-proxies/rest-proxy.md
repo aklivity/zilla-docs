@@ -10,7 +10,7 @@ next: /tutorials/rest/rest-intro.md
 
 Zilla lets you configure application-centric REST API endpoints that unlock `Apache Kafka` event-driven architectures. An application-centric REST API for Kafka gives the developer freedom to define their own HTTP mapping to Kafka, with control over the topic, message key, message headers, message value, and reply-to topic. This guide will explain all the aspects of configuring Zilla with REST API endpoints.
 
-A brief explanation of replaceable values from the config asof a aa aa a a examples below:
+A brief explanation of replaceable values from the config examples below:
 
 - `ENDPOINT_PATH`: HTTP path for example `/tasks`
 - `KAFKA_TOPIC`: The Kafka topic that you want to produce to or fetch from.
