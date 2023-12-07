@@ -294,7 +294,7 @@ They each have an IAM Role name starting with `aklivity-zilla-proxy`.
 Find the `Public IPv4 Address` and then SSH into the instance.
 
 ```bash:no-line-numbers
-ssh -i ~/.ssh/<key-pair.pem> ec2-user@<instance-public-ip-address>
+ssh -i ~/.ssh/<key-pair.cer> ec2-user@<instance-public-ip-address>
 ```
 
 After logging in via SSH, check the status of the `zilla-plus` system service.
