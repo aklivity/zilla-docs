@@ -49,7 +49,7 @@ Check the policies attached to your Zilla proxy instance IAM Role based on the d
 - Zilla proxy
   - [Development](../../how-tos/amazon-msk/secure-public-access/development.md#create-the-zilla-proxy-iam-security-role)
   - [Production](../../how-tos/amazon-msk/secure-public-access/production.md#create-the-zilla-proxy-iam-security-role)
-  - [Production (Mutual TLS)](../../how-tos/amazon-msk/secure-public-access/production-mutual-tls.md#create-the-zilla-proxy-iam-security-role)
+  - [Production (mTLS)](../../how-tos/amazon-msk/secure-public-access/production-mutual-tls.md#create-the-zilla-proxy-iam-security-role)
 
 ## Why does my Kafka Client fail to connect via Zilla proxy?
 

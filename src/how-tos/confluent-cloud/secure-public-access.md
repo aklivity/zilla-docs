@@ -219,7 +219,7 @@ Make sure you have selected the desired region, such as `US East (N. Virginia) u
 Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus for Confluent Cloud` to show the manage subscription page.
 
 - From the `Agreement` section > `Actions` menu > select `Launch CloudFormation stack`
-- Select the `Secure Public Access` fulfillment option
+- Select the `CloudFormation Template` > `Secure Public Access` fulfillment option
 - Make sure you have selected the desired region selected, such as `us-east-1`
 - Click `Continue to Launch`
   - Choose the action `Launch CloudFormation`
