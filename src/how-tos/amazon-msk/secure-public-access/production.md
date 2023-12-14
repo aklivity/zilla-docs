@@ -1,9 +1,9 @@
 ---
 icon: aky-zilla-plus
-description: Setup connectivity to your MSK cluster from anywhere on the internet.
+description: Setup connectivity to your SASL/SCRAM Amazon MSK cluster from anywhere on the internet.
 ---
 
-# Production
+# Amazon MSK SASL/SCRAM authentication
 
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
@@ -438,12 +438,12 @@ This is my second event
 
 ::: info Monitor the <ZillaPlus/> proxy
 
-Follow the [Monitoring the <ZillaPlus/> proxy](./overview.md#monitoring-the-zilla-proxy) instructions
+Follow the [Monitoring the <ZillaPlus/> proxy](../../../concepts/kafka-proxies/secure-public-access.md#monitoring) instructions
 
 :::
 
 ::: info Upgrade the <ZillaPlus/> proxy
 
-Follow the [Upgrading the <ZillaPlus/> proxy](./overview.md#upgrading-the-zilla-proxy) instructions
+Follow the [Upgrading the <ZillaPlus/> proxy](../../../concepts/kafka-proxies/secure-public-access.md#upgrading) instructions
 
 :::
