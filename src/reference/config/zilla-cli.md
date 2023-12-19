@@ -11,6 +11,12 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
 
 :::: note Commands
 
+- [zilla dump](#zilla-dump)
+  - [-a --affinity `<affinity>`](#a-affinity-affinity)
+  - [-b --bindings `<bindings>`](#b-bindings-bindings)
+  - [-i --install `<plugin-directory>`](#i-install-plugin-directory)
+  - [-v --verbose](#v-verbose)
+  - [-w --write `<output>`](#w-write-output)
 - [zilla generate](#zilla-generate)
   - [-t --template `<template>`](#t-template-template)
   - [-i --input `<input-file>`](#i-input-input-file)
@@ -48,9 +54,19 @@ Only dump the frames for the specified bindings.
 
 Install the dissector plugin `zilla.lua` to the plugin directory of Wireshark. This is only necessary if you run the `dump` command for the first time or if you want to update the plugin to the current version.
 
-To find the Wireshark plugin directory check here: About Wireshark -> Folders -> Personal Lua Plugins; or use this command: `tshark -G folders | grep "Personal Lua Plugins"`.
+To find the Wireshark plugin directory navigate the menu: About Wireshark -> Folders -> Personal Lua Plugins; or use this command:
 
-To find out the plugin version check here: About Wireshark -> Plugins -> search: zilla; or use this command: `tshark -G plugins | grep zilla`.
+```bash:no-line-numbers
+tshark -G folders | grep "Personal Lua Plugins"
+```
+
+To find out the plugin version navigate the menu: About Wireshark -> Plugins -> search: zilla; or use this command:
+
+```bash:no-line-numbers
+tshark -G plugins | grep zilla
+```
+
+You may need to reload Lua plugins from the menu: Analyze -> Reload Lua Plugins or with the keyboard shortcut (Command+Shift+L or Ctrl+Shift+L).
 
 Example:
 ```bash:no-line-numbers
@@ -61,7 +77,7 @@ Example:
 
 Show verbose output
 
-#### -w --write
+#### -w --write `<output>`
 
 Write the `pcap` output to this file. 
 
