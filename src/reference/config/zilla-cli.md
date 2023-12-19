@@ -28,6 +28,48 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
 
 ## Commands
 
+### zilla dump
+
+::: info Feature Coming Soon <HopeIcon icon="fas fa-circle-right"/>
+This is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
+:::
+
+The `zilla dump` command creates a `pcap` file that can be opened in Wireshark. Using the Zilla dissector plugin, Wireshark shows detailed information about the internal state of the current Zilla instance.
+
+#### -a --affinity `<affinity>`
+
+Only dump the frames that match the specified affinity mask.
+
+#### -b --bindings `<bindings>`
+
+Only dump the frames for the specified bindings.
+
+#### -i --install `<plugin-directory>`
+
+Install the dissector plugin `zilla.lua` to the plugin directory of Wireshark. This is only necessary if you run the `dump` command for the first time or if you want to update the plugin to the current version.
+
+To find the Wireshark plugin directory check here: About Wireshark -> Folders -> Personal Lua Plugins; or use this command: `tshark -G folders | grep "Personal Lua Plugins"`.
+
+To find out the plugin version check here: About Wireshark -> Plugins -> search: zilla; or use this command: `tshark -G plugins | grep zilla`.
+
+Example:
+```bash:no-line-numbers
+./zilla dump -v -w zilla.pcap -i ~/.local/lib/wireshark/plugins
+```
+
+#### -v --verbose
+
+Show verbose output
+
+#### -w --write
+
+Write the `pcap` output to this file. 
+
+Example:
+```bash:no-line-numbers
+./zilla dump -v -w zilla.pcap
+```
+
 ### zilla generate
 
 ::: info Feature Coming Soon <HopeIcon icon="fas fa-circle-right"/>
