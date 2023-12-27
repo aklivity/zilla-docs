@@ -10,29 +10,29 @@ Zilla lets you configure application-centric REST APIs and SSE streams that unlo
 
 ## Configure Endpoints
 
-Zilla can map REST APIs to Kafka using the [http-kafka](../../reference/config/bindings/binding-http-kafka.md) binding in `zilla.yaml`. Zilla routes REST urls using [wildcard pattern matching](../../concepts/config-intro.md#pattern-matching) and [dynamic path params](../../concepts/config-intro.md#dynamic-path-parameters). Dynamic path matching and custom message routing from endpoints to Kafka topics help prevent API lock-in. 
+Zilla can map REST APIs to Kafka using the [http-kafka](../../reference/config/bindings/binding-http-kafka.md) binding in `zilla.yaml`. Zilla routes REST urls using [wildcard pattern matching](../../concepts/config-intro.md#pattern-matching) and [dynamic path params](../../concepts/config-intro.md#dynamic-path-parameters). Dynamic path matching and custom message routing from endpoints to Kafka topics help prevent API lock-in.
 
 ### HTTP request methods
 
-Zilla separates the HTTP request methods into two groups called capabilities: produce and fetch. The [produce](../../concepts/config-intro.md#the-fetch-capability) capability handles method types `POST`, `PUT`, `DELETE`, and `PATCH` that produces messages onto Kafka topics. The [fetch](../../reference/config/bindings/binding-http-kafka.md#with-capability-fetch) capability handles the `GET` method that fetches messages from Kafka topics. One exception is for a route managing async correlation. The `produce` route will have two when clauses: a `PUT` clause for submission and a `GET` clause matching the `async.location` path returned to the caller.
+Zilla separates the HTTP request methods into two groups called capabilities: produce and fetch. The [produce](../../concepts/config-intro.md#the-fetch-capability) capability handles method types `POST`, `PUT`, `DELETE`, and `PATCH` that produce messages onto Kafka topics. The [fetch](../../reference/config/bindings/binding-http-kafka.md#with-capability-fetch) capability handles the `GET` method that fetches messages from Kafka topics. One exception is for a route managing async correlation. The `produce` route will have two when clauses: a `PUT` clause for submission and a `GET` clause matching the `async.location` path returned to the caller.
 
 ## Correlated Request-Response
 
-Zilla manages the HTTP lifecycle with the request and response payload on the event stream over a pair of Kafka topics. Each request message is correlated to the corresponding response message with a `zilla:correlation-id` header, providing an identifier for both Zilla and Kafka workflows to act on.
+Zilla manages the HTTP lifecycle with the request and response payloads over a pair of Kafka topics. Each request message is correlated to the corresponding response message with a `zilla:correlation-id` header, providing an identifier for both Zilla and Kafka workflows to act on.
 
 ### sync
 
-A synchronous interaction from the client will open a connection, producing a request message. The connection will remain open, waiting for the correlated response message to be fetched and returned to the caller.
+A synchronous interaction starts when a client calls an HTTP endpoint, producing a request message. The server will not respond immediately, waiting for the correlated response message. Once a message with the correct `zilla:correlation-id` header is delivered on the response topic it is fetched, responding to the initial request and returning the payload to the caller.
 
 ### async
 
-An asynchronous interaction includes a `prefer: respond-async` header. After producing a request message, the connection will immediately return with `202 Accepted` plus the location path to retrieve a correlated response. The client then sends a request to the returned location path with the `prefer: wait=N` header to retrieve the correlated response as soon as it becomes available, removing the need for client polling.
+An asynchronous interaction includes a `prefer: respond-async` header when calling an HTTP endpoint. After producing a request message, the connection will immediately return with `202 Accepted` plus the location path to retrieve a correlated response. The client then sends a `GET` request to the returned location path with the `prefer: wait=N` header to retrieve the correlated response. The request will wait for up to `N` seconds and return once a message with the correct `zilla:correlation-id` header is delivered on the response topic, removing the need for client polling.
 
 ## SSE Streaming
 
 The Zilla Server-sent Events (SSE) Kafka Proxy exposes an SSE stream of Kafka messages using the [sse-kafka](../../reference/config/bindings/binding-sse-kafka.md) binding.
 
-An [SSE](https://html.spec.whatwg.org/multipage/server-sent-events.html) server allows a web browser using the `EventSource` interface to open a connection and receive a stream of text from the server, interpreted as individual messages. Zilla relays text messages on a Kafka topic into the event stream.
+An [SSE](https://html.spec.whatwg.org/multipage/server-sent-events.html) server allows a web browser using the `EventSource` interface to send a request to an SSE endpoint and receive a stream of text from the server, interpreted as individual messages. Zilla relays text messages on a Kafka topic into the event stream.
 
 ### Message Filtering
 
@@ -40,7 +40,7 @@ The message source topic is defined in a route, and the route is matched by the 
 
 ### Reliable Delivery
 
-Zilla sends the event id and last-event-id header to recover from an interrupted stream without message loss and without needing the client to acknowledge message receipt explicitly. An interrupted SSE stream is recovered by connecting to any Zilla instance in the same auto-scaling group because each Zilla instance is stateless.
+Zilla sends an event `id` with every message. A client can send a `last-event-id` header to recover from an interrupted stream without message loss. The client doesn't need to acknowledge message receipt explicitly. An interrupted SSE stream can be recovered by connecting to any Zilla instance in the same auto-scaling group because each Zilla instance is stateless.
 
 ## Oneway
 
@@ -50,7 +50,7 @@ Clients can produce fire and forget HTTP request payload to a Kafka topic. The K
 
 Bindings can retrieve messages from a Kafka topic, filtered by message key and headers, with the key and header values extracted from the [path params](../../concepts/config-intro.md#dynamic-path-parameters).
 
-An HTTP response returns with an `etag` header. This fetch supports a conditional `GET if-none-match request` returning `304` if not modified or `200` if modified (with a new `etag` header).
+An HTTP response returns with an [ETag](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) header. This fetch supports a conditional [if-none-match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match) request, returning `304` if not modified or `200` if modified (with a new ETag header). A client can wait for a modified response by including `prefer:wait=N` and `cache-control: no-cache` headers. The request will wait for up to `N` seconds and return once a message with a new ETag header is delivered on the response topic.
 
 ## CORS
 
