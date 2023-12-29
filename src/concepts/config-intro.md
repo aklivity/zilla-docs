@@ -90,7 +90,7 @@ With the [grpc-kafka](../reference/config/bindings/binding-grpc-kafka.md) bindin
 
 Routes with the `produce` capability map any request-response network call to a correlated stream of Kafka messages. The request message(s) are sent to a `requests` topic with a `zilla:correlation-id` header. When the request message(s) are received and processed by the Kafka `requests` topic consumer, it produces response message(s) to the `responses` topic, with the same `zilla:correlation-id` header to correlate the response.
 
-Requests with an `idempotency-key` header can be replayed and receive the same response. A Kafka consumer can detect and ignore any potential duplicate requests because they will have the same `idempotency-key` and `zilla:correlation-id`. If the `idempotency-key` is used as the Kafka message key, a log compacted topic will remove records where a more recent update exists.
+Requests with an `idempotency-key` header can be replayed and receive the same response. A Kafka consumer can detect and ignore any potential duplicate requests because they will have the same `idempotency-key` and `zilla:correlation-id`.
 
 In the [http-kafka](../reference/config/bindings/binding-http-kafka.md) binding, specifying `async` allows clients to include a `prefer: respond-async` header in the HTTP request to receive `202 Accepted` response with `location` response header.
 
