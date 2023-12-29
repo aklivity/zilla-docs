@@ -46,6 +46,10 @@ Zilla sends an event `id` with every message. A client can send a `last-event-id
 
 Clients can produce fire and forget HTTP request payload to a Kafka topic. The Kafka message key and headers are set using [path params](../../concepts/config-intro.md#dynamic-path-parameters).
 
+## Idempotency
+
+Requests can be idempotent (to make multiple identical requests and receive the same response every time) by including an `idempotency-key` header. Zilla will use the `idempotency-key` and `zilla:correlation-id` headers to identify and return the same message fetched from the response topic without producing a second message to the request topic. Each new `idempotency-key` used will produce a message with "at least once" delivery. A second message will be produced if the same request is made in the short window before a correlated response is added to the response topic. A Kafka consumer can detect and ignore any potential duplicate requests because they will have the same `idempotency-key` and `zilla:correlation-id`. If the `idempotency-key` is used as the Kafka message key, a log compacted topic will remove records where a more recent update exists.
+
 ## Caching
 
 Bindings can retrieve messages from a Kafka topic, filtered by message key and headers, with the key and header values extracted from the [path params](../../concepts/config-intro.md#dynamic-path-parameters).
