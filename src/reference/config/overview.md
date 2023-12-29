@@ -28,6 +28,7 @@ catalogs:
 telemetry:
   ...
 ```
+
 ## Configuration
 
 :::: note Properties
@@ -123,7 +124,7 @@ Default attributes to optionally include when exporting metrics.
 
 #### exporters
 
-> `object` as map of named [`exporter`](./telemetry/exporters) properties
+> `object` as map of named [`exporter`](./telemetry/exporters/) properties
 
 Map of named exporters.
 
