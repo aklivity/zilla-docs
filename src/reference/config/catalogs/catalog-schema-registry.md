@@ -16,9 +16,14 @@ Zilla runtime schema-registry catalog
 ```yaml {2}
 catalog:
   type: schema-registry
+  options:
+    url: http://reg.example.com:8081
+    context: default
 ```
 
 ## Summary
+
+Defines a catalog with Schema Registry support to enforce validation.
 
 ## Configuration
 
@@ -42,9 +47,11 @@ catalog:
 options:
 ```
 
-#### options.url
+#### options.url\*
 
 > `string`
+
+Schema Registry URL
 
 #### options.context
 
