@@ -16,38 +16,19 @@ Zilla runtime inline catalog
 ```yaml {2}
 catalog:
   type: inline
-  options:
-    subjects: 
-      items-snapshots:
-        schema: |
-          {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "status": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "status"
-            ]
-          }
 ```
 
 ## Summary
 
-Defines a catalog with inline schema to enforce validation.
+Defines a catalog with schemas to enforce validation. The schemas are defined inline with the other properties.
 
 ## Configuration
 
 :::: note Properties
 
 - [options](#options)
-  - [options.subjects](#options-subjects)
-    - [subjects.schema\*](#subjects-schema)
+  - [options.subjects](#options-subjects)\*
+    - [subjects.schema\*](#subjects-schema)\*
     - [subjects.version](#subjects-version)
 
 ::: right
@@ -64,20 +45,20 @@ Defines a catalog with inline schema to enforce validation.
 options:
 ```
 
-#### options.subjects\*
+#### options.subjects
 
 > `object` as map of named properties
 
-Schema subject
+Unique identifier for schema categorization in the registry.
 
-##### subjects.schema\*
+##### subjects.schema
 
 > `string`
 
-Schema string
+Definition specifying data structure and format in detail.
 
 ##### subjects.version
 
 > `string` | Default: `"latest"`
 
-Schema version
+Specific iteration or version of a registered schema.
