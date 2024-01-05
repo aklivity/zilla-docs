@@ -27,7 +27,7 @@ Defines a catalog with a schema pulled from a remote registry to enforce validat
 :::: note Properties
 
 - [options](#options)
-  - [options.url](#options-url)\*
+  - [options.url\*](#options-url)
   - [options.context](#options-context)
 
 ::: right
@@ -44,7 +44,7 @@ Defines a catalog with a schema pulled from a remote registry to enforce validat
 options:
 ```
 
-#### options.url
+#### options.url\*
 
 > `string`
 

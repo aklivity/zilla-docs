@@ -27,8 +27,8 @@ Defines a catalog with schemas to enforce validation. The schemas are defined in
 :::: note Properties
 
 - [options](#options)
-  - [options.subjects](#options-subjects)\*
-    - [subjects.schema\*](#subjects-schema)\*
+  - [options.subjects\*](#options-subjects)
+    - [subjects.schema\*](#subjects-schema)
     - [subjects.version](#subjects-version)
 
 ::: right
@@ -45,13 +45,13 @@ Defines a catalog with schemas to enforce validation. The schemas are defined in
 options:
 ```
 
-#### options.subjects
+#### options.subjects\*
 
 > `object` as map of named properties
 
 Unique identifier for schema categorization in the registry.
 
-##### subjects.schema
+##### subjects.schema\*
 
 > `string`
 
