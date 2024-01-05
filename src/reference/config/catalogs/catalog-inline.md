@@ -16,6 +16,25 @@ Zilla runtime inline catalog
 ```yaml {2}
 catalog:
   type: inline
+  options:
+    subjects: 
+      items-snapshots:
+        schema: |
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "status"
+            ]
+          }
 ```
 
 ## Summary
@@ -40,10 +59,6 @@ Defines a catalog with schemas to enforce validation. The schemas are defined in
 ### options
 
 > `object`
-
-```yaml
-options:
-```
 
 #### options.subjects\*
 

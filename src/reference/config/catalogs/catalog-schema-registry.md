@@ -16,6 +16,9 @@ Zilla runtime schema-registry catalog
 ```yaml {2}
 catalog:
   type: schema-registry
+  options:
+    url: http://reg.example.com:8081
+    context: default
 ```
 
 ## Summary
@@ -39,10 +42,6 @@ Defines a catalog with a schema pulled from a remote registry to enforce validat
 ### options
 
 > `object`
-
-```yaml
-options:
-```
 
 #### options.url\*
 
