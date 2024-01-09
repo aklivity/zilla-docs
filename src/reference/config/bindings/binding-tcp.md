@@ -15,9 +15,6 @@ Zilla runtime tcp binding.
 tcp_server:
   type: tcp
   kind: server
-  options:
-    host: 0.0.0.0
-    port: 12345
   exit: echo_server
 ```
 

@@ -74,6 +74,7 @@ Conditional routes based on `kafka` `topic` names are used to route these networ
   - [sasl.mechanism\*](#sasl-mechanism)
   - [sasl.username](#sasl-username)
   - [sasl.password](#sasl-password)
+- [options.servers](#options-servers)
 - [exit](#exit)
 - [routes](#routes)
 - [routes\[\].guarded](#routes-guarded)
@@ -129,6 +130,10 @@ Topic name.
 > `enum` [ "live", "historical" ] | Default: `"historical"`
 
 Fetch offset to use for new consumers
+
+### options.servers
+
+> `array` of `string`
 
 ### options.sasl
 
