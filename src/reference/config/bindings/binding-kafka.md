@@ -135,6 +135,8 @@ Fetch offset to use for new consumers
 
 > `array` of `string`
 
+Bootstrap servers to use when connecting to `kafka` cluster.
+
 ### options.sasl
 
 > `object`
