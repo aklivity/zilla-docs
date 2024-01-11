@@ -1,12 +1,14 @@
 ---
-description: Zilla lets you configure application-centric REST API and SSE stream endpoints that unlock Kafka event-driven architectures.
+description: The Zilla HTTP Kafka Proxy lets you configure application-centric REST APIs and SSE streams that unlock Kafka event-driven architectures.
 prev: false
 next: /tutorials/rest/rest-intro.md
 ---
 
 # HTTP Kafka Proxy
 
-Zilla lets you configure application-centric REST APIs and SSE streams that unlock Kafka event-driven architectures. A developer has the freedom to define their own HTTP mapping to Kafka, with control over the topics, message key, message headers, and payload. Any HTTP client can interact with Kafka without navigating Kafka-specific paradigms.
+The Zilla HTTP Kafka Proxy lets you configure application-centric REST APIs and SSE streams that unlock Kafka event-driven architectures.
+
+A developer has the freedom to define their own HTTP mapping to Kafka, with control over the topics, message key, message headers, and payload. Any HTTP client can interact with Kafka without navigating Kafka-specific paradigms.
 
 ## Configure Endpoints
 
