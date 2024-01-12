@@ -1,14 +1,14 @@
 ---
-description: The Zilla gRPC Kafka Proxy Zilla lets you define and expose gRPC services from protobuf files.
+description: The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from protobuf files to consume and produce messages from Kafka topics.
 prev: false
 next: /tutorials/grpc/grpc-intro.md
 ---
 
 # gRPC Kafka Proxy
 
-The Zilla gRPC Kafka Proxy Zilla lets you define and expose gRPC services from protobuf files.
+The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from protobuf files to consume and produce messages from Kafka topics.
 
-A service methods request and response messages are routed on and off of Kafka. Both the gRPC client and server can communicate as if they are talking to each other with Zilla taking care of the rest.
+A service methods request and response messages are routed on and off of Kafka. Zilla can act as the server delivering messages to a Kafka topic or fanout messages from a topic to running gRPC services. Additionally, Zilla can sit on the critical path between a gRPC client and server. They can communicate as if they are talking to each other with Zilla proxying the messages through Kafka.
 
 ## Correlated Request-Response
 
@@ -16,15 +16,15 @@ Zilla manages the synchronous request and response messages of a gRPC service on
 
 ## RPC Service Definitions
 
-Zilla supports all four of the [gRPC service methods](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition). The request messages are routed to a Kafka topic. The return message(s) can be delivered to the same or a different topic.
+Zilla supports all four of the [gRPC service methods](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition). The request messages are routed to a Kafka topic. The return message(s) can be delivered to the same or a different topic. Zilla can also handle the stream upgrade when a client is sending a single request and the service is expecting a stream.
 
-- **Simple/Unary RPC** - A single message is produced and will wait for the correlated response message to return back to the caller.
+- **Simple/Unary RPC** - A single message is sent and will wait for the correlated response message to return back to the caller.
 
   ```protobuf:no-line-numbers
   rpc SayHello(HelloRequest) returns (HelloResponse);
   ```
 
-- **Server-side streaming RPC** - A single message is produced with a returned stream back to the caller. Every correlated message produced will be sent for the client to read from until there are no more messages and the stream will close.
+- **Server-side streaming RPC** - A single message is sent with a returned stream back to the caller. Every correlated message produced on the reply-to topic will be sent for the client to read from until there are no more messages and the stream will close.
 
   ```protobuf:no-line-numbers
   rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
@@ -44,14 +44,8 @@ Zilla supports all four of the [gRPC service methods](https://grpc.io/docs/what-
 
 ## gRPC Metadata
 
-Client metadata can be used for request routing and idempotency.
+Custom metadata fields can be used for request routing and idempotency. Metadata is preserved through Kafka for both the request and response messages. Zilla can augment the metadata that it sends based on the configured route matched by the request.
 
 ## Reliable Delivery
 
-Zilla sends the event id and last-event-id header to recover from an interrupted stream without message loss and without needing the client to acknowledge message receipt explicitly.
-
-- Deadlines/Timeouts
-
-- RPC termination
-
-- Cancelling an RPC
+Zilla sends an event ID with every protobuf message that is serialized and delivered as an unknown field in the message payload. This means every message and any protobuf schema can be identified without field collision and the client doesn't need to acknowledge message receipt explicitly. A client consuming a stream of messages can remember the event ID if the event the stream gets interrupted. When the client reconnects it will send that save ID in a `last-event-id` header to recover without message loss and without needing to start over from the beginning.
