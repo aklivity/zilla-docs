@@ -10,37 +10,39 @@ The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from prot
 
 Zilla can be the gRPC server, routing a service method's request and response messages to and from Kafka topics, or Zilla can fanout messages from a Kafka topic to multiple gRPC clients. Additionally, Zilla can sit on the critical path between a gRPC client and server. They can communicate as if they are talking directly to each other, while Zilla actually proxies the messages through Kafka.
 
-## Correlated Request-Response
-
-Zilla manages the synchronous request and response messages of a gRPC service on the event stream. Each message is correlated to each other with a `zilla:correlation-id` header, providing an identifier for both Zilla and Kafka workflows to act on. Correlated messages can be on the same or different Kafka topics.
-
 ## RPC Service Definitions
 
-Zilla supports all four [gRPC service method definitions](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition). The request messages are routed to a Kafka topic. The return message(s) can be delivered to the same or a different topic. Zilla can also handle the stream upgrade when a client sends a single request, but the service expects a stream.
+Zilla supports all four [gRPC service method definitions](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition). The request and return message(s) are managed through two different Kafka topics respectively. These are defined through [dynamic method routing](../../concepts/config-intro.md#routes).
 
-- **Simple/Unary RPC** - A single message is sent and will wait for the correlated response message and return it back to the caller.
+Zilla can also handle the stream upgrade when a client sends a single request, but the service expects a stream. Zilla does this by treating all gRPC request and response messages as stream of messages on Kafka topics with at least one data message and a null end-of-stream message representing the end of the request or response streams.
+
+- **Simple/Unary RPC** - A single message is sent and will wait for the correlated response message and return it back to the caller. The request and response topics both have one message with the method payloads and one end-of-stream message.
 
   ```protobuf:no-line-numbers
   rpc SayHello(HelloRequest) returns (HelloResponse);
   ```
 
-- **Server-side streaming RPC** - A single message is sent with a returned stream back to the caller. The correlated messages produced on the reply-to topic will be sent for the client to read until there are no more messages, and the stream will close.
+- **Server-side streaming RPC** - A single message is sent with a returned stream back to the caller. The correlated messages produced on the reply-to topic will be sent for the client to read until there are no more messages, and the stream will close. The request topic has one message with the method payloads and one end-of-stream message. The response topic has one or many messages with the method payloads and one end-of-stream message.
 
   ```protobuf:no-line-numbers
   rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
   ```
 
-- **Client-side streaming RPC** - The client sends a stream, producing all the messages on a topic. When the client finishes writing to the stream, it will wait for the correlated response message and return it back to the caller.
+- **Client-side streaming RPC** - The client sends a stream, producing all the messages on a topic. When the client finishes writing to the stream, it will wait for the correlated response message and return it back to the caller. The request topic has one or many messages with the method payloads and one end-of-stream message. The response topic has one message with the method payloads and one end-of-stream message.
 
   ```protobuf:no-line-numbers
   rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);
   ```
 
-- **Bidirectional streaming RPC** - Both the client and server use a read-write stream to produce and consume correlated messages.
+- **Bidirectional streaming RPC** - Both the client and server use a read-write stream to produce and consume correlated messages. The request and response topics both have one or many message with the method payloads and one end-of-stream message.
 
   ```protobuf:no-line-numbers
   rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
   ```
+
+## Correlated Request-Response
+
+Zilla manages the synchronous request and response messages of a gRPC service. Request and responses messages are correlated by a `zilla:correlation-id` header, providing an identifier for both Zilla and Kafka workflows to act on.
 
 ## gRPC Metadata
 
