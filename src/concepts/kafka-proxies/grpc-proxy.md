@@ -8,13 +8,13 @@ next: /tutorials/grpc/grpc-intro.md
 
 The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from protobuf files to produce and consume messages via Kafka topics.
 
-Zilla can be the gRPC server, routing a service method's request and response messages to and from Kafka topics, or Zilla can fanout messages from a Kafka topic to multiple gRPC clients. Additionally, Zilla can sit on the critical path between a gRPC client and server. They can communicate as if they are talking directly to each other, while Zilla actually proxies the messages through Kafka.
+Zilla can be the gRPC server, routing a service method's request and response messages to and from Kafka topics, or Zilla can fanout messages from a Kafka topic to multiple gRPC clients using the [grpc-kafka](../../reference/config/bindings/binding-grpc-kafka.md) and [kafka-grpc](../../reference/config/bindings/binding-kafka-grpc.md) bindings in a `zilla.yaml`. Additionally, Zilla can sit on the critical path between a gRPC client and server. They can communicate as if they are talking directly to each other, while Zilla actually proxies the messages through Kafka.
 
 ## RPC Service Definitions
 
-Zilla supports all four [gRPC service method definitions](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition). The request and return message(s) are managed through two different Kafka topics respectively. These are defined through [dynamic method routing](../../concepts/config-intro.md#routes).
+Zilla supports all four [gRPC service method definitions](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition). The request and return message(s) are managed through two different Kafka topics, respectively. These topics are defined through [dynamic method routing](../../concepts/config-intro.md#routes).
 
-Zilla can also handle the stream upgrade when a client sends a single request, but the service expects a stream. Zilla does this by treating all gRPC request and response messages as stream of messages on Kafka topics with at least one data message and a null end-of-stream message representing the end of the request or response streams.
+Zilla can also handle the stream upgrade when a client sends a single request, but the service expects a stream. Zilla does this by treating all gRPC request and response messages as a stream of messages on Kafka topics with at least one data message and a null end-of-stream message representing the end of the request or response streams.
 
 - **Simple/Unary RPC** - A single message is sent and will wait for the correlated response message and return it back to the caller. The request and response topics both have one message with the method payloads and one end-of-stream message.
 
@@ -34,7 +34,7 @@ Zilla can also handle the stream upgrade when a client sends a single request, b
   rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);
   ```
 
-- **Bidirectional streaming RPC** - Both the client and server use a read-write stream to produce and consume correlated messages. The request and response topics both have one or many message with the method payloads and one end-of-stream message.
+- **Bidirectional streaming RPC** - Both the client and server use a read-write stream to produce and consume correlated messages. The request and response topics have one or many messages with the method payloads and one end-of-stream message.
 
   ```protobuf:no-line-numbers
   rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
@@ -42,11 +42,11 @@ Zilla can also handle the stream upgrade when a client sends a single request, b
 
 ## Correlated Request-Response
 
-Zilla manages the synchronous request and response messages of a gRPC service. Request and responses messages are correlated by a `zilla:correlation-id` header, providing an identifier for both Zilla and Kafka workflows to act on.
+Zilla manages the synchronous request and response messages of a gRPC service. Request and response messages are correlated by a `zilla:correlation-id` header, providing an identifier for both Zilla and Kafka workflows to act on.
 
 ## gRPC Metadata
 
-Custom metadata fields can be used for request routing and idempotency. Zilla can augment the metadata it sends based on the configured route the request matches.
+Method routes can use [custom metadata fields](../../reference/config/bindings/binding-grpc-kafka.md#when-metadata) for request routing and idempotency. Zilla can also augment the metadata it sends based on the configured route the request matches.
 
 ## Reliable Delivery
 
