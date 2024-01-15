@@ -8,7 +8,7 @@ next: /tutorials/grpc/grpc-intro.md
 
 The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from protobuf files to produce and consume messages via Kafka topics.
 
-Zilla can be the gRPC server, routing a service method's request and response messages to and from Kafka topics, or Zilla can fanout messages from a Kafka topic to multiple gRPC clients using the [grpc-kafka](../../reference/config/bindings/binding-grpc-kafka.md) and [kafka-grpc](../../reference/config/bindings/binding-kafka-grpc.md) bindings in a `zilla.yaml`. Additionally, Zilla can sit on the critical path between a gRPC client and server. They can communicate as if they are talking directly to each other, while Zilla actually proxies the messages through Kafka.
+Zilla can be the gRPC server, routing a service method's request and response messages to and from Kafka topics, or Zilla can fanout messages from a Kafka topic to multiple gRPC clients using the [grpc-kafka](../../reference/config/bindings/binding-grpc-kafka.md) and [kafka-grpc](../../reference/config/bindings/binding-kafka-grpc.md) bindings in a [zilla.yaml](../../reference/config/overview.md) config. Additionally, Zilla can sit on the critical path between a gRPC client and server. They can communicate as if they are talking directly to each other, while Zilla actually proxies the messages through Kafka.
 
 ## RPC Service Definitions
 
