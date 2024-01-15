@@ -46,7 +46,7 @@ Zilla manages the synchronous request and response messages of a gRPC service. R
 
 ## gRPC Metadata
 
-Custom metadata fields can be used for request routing and idempotency. Metadata is preserved through Kafka for both the request and response messages. Zilla can augment the metadata it sends based on the configured route the request matches.
+Custom metadata fields can be used for request routing and idempotency. Zilla can augment the metadata it sends based on the configured route the request matches.
 
 ## Reliable Delivery
 
