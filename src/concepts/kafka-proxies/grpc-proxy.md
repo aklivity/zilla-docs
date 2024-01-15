@@ -30,7 +30,7 @@ A single message is sent and will wait for the correlated response message and r
 rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
 ```
 
-A single message is sent with a returned stream back to the caller. The correlated messages produced on the reply-to topic will be sent for the client to read until there are no more messages, and the stream will close. The request topic has one message with the method payloads and one end-of-stream message. The response topic has one or many messages with the method payloads and one end-of-stream message.
+A single message is sent with a returned stream back to the caller. The correlated messages produced on the reply-to topic will be sent for the client to read until there are no more messages, and the stream will close. The request topic has one message with the method payload and one end-of-stream message. The response topic has one or many messages with the method payloads and one end-of-stream message.
 
 ### Client-side streaming RPC
 
