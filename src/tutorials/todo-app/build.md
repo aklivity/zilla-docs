@@ -13,17 +13,17 @@ In this getting started exercise, you will create a simple Todo application usin
 
 This Todo Application tutorial has the following goals:
 
-* Provide a list of Todo tasks that is shared by all clients
-* Support optimistic locking with conflict detection when attempting to update a Todo task
-* Deliver updates in near real-time when a Todo task is created, modified, or deleted
-* Demonstrate a user interface driving the Tasks API
-* Support scaling Todo task reads and writes
+- Provide a list of Todo tasks that is shared by all clients
+- Support optimistic locking with conflict detection when attempting to update a Todo task
+- Deliver updates in near real-time when a Todo task is created, modified, or deleted
+- Demonstrate a user interface driving the Tasks API
+- Support scaling Todo task reads and writes
 
 ### Prerequisites
 
-* Docker `20.10.14`
-* Git `2.32.0`
-* npm `8.3.1`  and above
+- Docker `20.10.14`
+- Git `2.32.0`
+- npm `8.3.1` and above
 
 ### Step 1: Kafka (or Redpanda)
 
@@ -70,7 +70,7 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
       - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://localhost:9092,INTERNAL://kafka.internal.net:29092
     ports:
-      - "9092:9092"
+      - 9092:9092
   init-topics:
     image: "bitnami/kafka:3"
     networks:
@@ -188,7 +188,7 @@ Make sure you see this output at the end of the `example_init-topics` service lo
 
 @tab Apache Kafka
 
-```text:no-line-numbers
+```output:no-line-numbers
 ## Creating the Kafka topics
 Created topic task-commands.
 Created topic task-replies.
@@ -202,7 +202,7 @@ task-snapshots
 
 @tab Redpanda
 
-```text:no-line-numbers
+```output:no-line-numbers
 CLUSTER
 =======
 redpanda.initializing
@@ -231,7 +231,7 @@ task-snapshots  1           1
 
 ### Step 2: Todo Service
 
-Next, you will need to build a todo service that is implemented using `Spring boot + Kafka Streams` to process commands and generate relevant output.  This `Todo` service can deliver near real-time updates when a `Task` is created, renamed, or deleted, and produces a message to the Kafka `task-snapshots` topic with the updated value.
+Next, you will need to build a todo service that is implemented using `Spring boot + Kafka Streams` to process commands and generate relevant output. This `Todo` service can deliver near real-time updates when a `Task` is created, renamed, or deleted, and produces a message to the Kafka `task-snapshots` topic with the updated value.
 
 Combining this with `cleanup-policy: compact` for the `task-snapshots` topic causes the topic to behave more like a table, where only the most recent message for each distinct message key is retained.
 
@@ -285,20 +285,18 @@ Run the command below to deploy the `todo-service` to your existing stack.
 docker stack deploy -c stack.yml example --resolve-image never
 ```
 
-output:
-
 ::: code-tabs#text
 
 @tab Apache Kafka
 
-```text:no-line-numbers
+```output:no-line-numbers
 Creating service example_todo-service
 Updating service example_kafka (id: st4hq1bwjsom5r0jxnc6i9rgr)
 ```
 
 @tab Redpanda
 
-```text:no-line-numbers
+```output:no-line-numbers
 Creating service example_todo-service
 Updating service example_redpanda (id: ilmfqpwf35b7ftd6cvzdis8au)
 ```
@@ -359,8 +357,8 @@ if-match\[String] - Task etag
 
 **Responses:**
 
-* **204 No Content** - Task renamed successfully
-* **412 Precondition Failed** - Task rename failed, etag does not match
+- **204 No Content** - Task renamed successfully
+- **412 Precondition Failed** - Task rename failed, etag does not match
 
 :::
 
@@ -388,8 +386,8 @@ if-match\[String] - Task etag
 
 **Responses:**
 
-* **204 No Content** - **** Task deleted successfully
-* **412 Precondition Failed** - **** Task delete failed, etag does not match
+- **204 No Content** - **** Task deleted successfully
+- **412 Precondition Failed** - **** Task delete failed, etag does not match
 
 :::
 
@@ -409,8 +407,8 @@ if-none-match\[String] - Tasks collection etag
 
 **Responses:**
 
-* **200 OK** - Returns an array of Tasks
-* **304 Not Modified** - **** If Tasks collection etag matches
+- **200 OK** - Returns an array of Tasks
+- **304 Not Modified** - **** If Tasks collection etag matches
 
 :::
 
@@ -418,7 +416,7 @@ if-none-match\[String] - Tasks collection etag
 
 The Zilla engine configuration defines a flow of named `bindings` representing each step in the pipeline as inbound network traffic is decoded and transformed then encoded into outbound network traffic as needed.
 
-Let's configure `Zilla` for the Tasks API to interact with the `Todo` Kafka Streams service via Kafka topics.
+Let's configure Zilla for the Tasks API to interact with the `Todo` Kafka Streams service via Kafka topics.
 
 You will add the following bindings to support the Tasks API as shown `zilla.yaml` below. To understand each binding type in more detail please visit [Zilla Runtime Configuration](../../reference/config/overview.md).
 
@@ -644,11 +642,12 @@ Each new update arrives automatically, even when changes are made by other clien
 
 ### Step 4: Web App
 
-Next, you will build the `Todo` app that's implemented using [VueJs](https://vuejs.org/) framework.  Run the commands below in the root directory.
+Next, you will build the `Todo` app that's implemented using [VueJs](https://vuejs.org/) framework. Run the commands below in the root directory.
 
 ```bash:no-line-numbers
 git clone https://github.com/aklivity/todo-app && \
 cd todo-app && \
+nvm install && nvm use \
 npm install && \
 npm run build && \
 cd ..
@@ -796,7 +795,7 @@ guards: {}
 
 :::
 
-The last step is to mount the `dist` folder into the `Zilla` container.
+The last step is to mount the `dist` folder into the Zilla container.
 
 Open `stack.yml` file and add `- ./todo-app/dist:/app/dist:ro` to the `zilla` service `volumes`.
 
@@ -821,7 +820,7 @@ Finally, run
 docker stack deploy -c stack.yml example --resolve-image never
 ```
 
-Make sure that `zilla.yaml`  config changes got applied after restarting the `Zilla` service. Check the `example_zilla` service log.
+Make sure that `zilla.yaml` config changes got applied after restarting the Zilla service. Check the `example_zilla` service log.
 
 ### Step 5: Test Drive
 

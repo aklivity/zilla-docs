@@ -38,6 +38,12 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "Catalogs",
+          prefix: "catalogs/",
+          link: "catalogs/",
+          children: "structure",
+        },
+        {
           text: "Telemetry",
           prefix: "telemetry/",
           link: "telemetry/",
@@ -70,6 +76,16 @@ export const enSidebar = sidebar({
           link: "overview.md",
         },
       ],
+    },
+    {
+      text: "Amazon MSK",
+      prefix: "amazon-msk/",
+      children: "structure",
+    },
+    {
+      text: "Troubleshooting",
+      prefix: "troubleshooting/",
+      children: "structure",
     },
   ],
   "/": [
@@ -109,21 +125,71 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Apache Kafka Proxying",
-      link: "concepts/kafka-proxies/rest-proxy.md",
+      text: "Secure Public Access",
+      icon: "aky-zilla-plus",
+      link: "concepts/kafka-proxies/secure-public-access.md",
       children: [
         {
-          text: "REST-Kafka Proxy",
+          text: "Overview",
+          icon: "aky-zilla-plus",
+          link: "concepts/kafka-proxies/secure-public-access.md",
+        },
+        {
+          text: "Amazon MSK",
           collapsible: true,
-          link: "concepts/kafka-proxies/rest-proxy.md",
+          icon: "aky-zilla-plus",
+          prefix: "how-tos/amazon-msk/secure-public-access/",
+          link: "how-tos/amazon-msk/secure-public-access/overview.md",
           children: [
             {
               text: "Overview",
-              link: "concepts/kafka-proxies/rest-proxy.md",
+              icon: "aky-zilla-plus",
+              link: "overview.md",
             },
             {
-              text: "Create a Simple REST API",
+              text: "via SASL/SCRAM",
+              icon: "aky-zilla-plus",
+              link: "production.md",
+            },
+            {
+              text: "via mTLS",
+              icon: "aky-zilla-plus",
+              link: "production-mutual-tls.md",
+            },
+            {
+              text: "via Unauthorized access",
+              icon: "aky-zilla-plus",
+              link: "development.md",
+            },
+          ],
+        },
+        {
+          text: "Confluent Cloud",
+          icon: "aky-zilla-plus",
+          link: "how-tos/confluent-cloud/secure-public-access.md",
+        },
+      ],
+    },
+    {
+      text: "Kafka Proxying",
+      link: "concepts/kafka-proxies/http-proxy.md",
+      children: [
+        {
+          text: "HTTP Kafka Proxy",
+          collapsible: true,
+          link: "concepts/kafka-proxies/http-proxy.md",
+          children: [
+            {
+              text: "Overview",
+              link: "concepts/kafka-proxies/http-proxy.md",
+            },
+            {
+              text: "Create a Simple CRUD API",
               link: "tutorials/rest/rest-intro.md",
+            },
+            {
+              text: "Create a Simple SSE Stream",
+              link: "tutorials/sse/sse-intro.md",
             },
             {
               text: "Build a CQRS Todo App",
@@ -142,36 +208,7 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "SSE-Kafka Proxy",
-          collapsible: true,
-          link: "concepts/kafka-proxies/sse-proxy.md",
-          children: [
-            {
-              text: "Overview",
-              link: "concepts/kafka-proxies/sse-proxy.md",
-            },
-            {
-              text: "Create a Simple SSE Stream",
-              link: "tutorials/sse/sse-intro.md",
-            },
-            {
-              text: "Build a CQRS Todo App",
-              link: "tutorials/sse/sse-todo-build.md",
-              children: [
-                {
-                  text: "Application Setup",
-                  link: "tutorials/sse/sse-todo-build.md",
-                },
-                {
-                  text: "Adding Auth",
-                  link: "tutorials/sse/sse-todo-secure.md",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          text: "gRPC-Kafka Proxy",
+          text: "gRPC Kafka Proxy",
           collapsible: true,
           link: "concepts/kafka-proxies/grpc-proxy.md",
           children: [
@@ -185,7 +222,30 @@ export const enSidebar = sidebar({
             },
           ],
         },
-      ],
+        {
+          text: "MQTT Kafka Proxy",
+          collapsible: true,
+          link: "concepts/kafka-proxies/mqtt-proxy.md",
+          children: [
+            {
+              text: "Overview",
+              link: "concepts/kafka-proxies/mqtt-proxy.md",
+            },
+            {
+              text: "Create a Simple MQTT Broker",
+              link: "tutorials/mqtt/mqtt-intro.md",
+            },
+            {
+              text: "Running an MQTT Kafka broker",
+              link: "how-tos/mqtt/mqtt.kafka.broker.md",
+            },
+            {
+              text: "Run the Taxi Demo",
+              link: "https://github.com/aklivity/zilla-demos/tree/main/taxi",
+            },
+          ],
+        },
+      ]
     },
     {
       text: "Reference",
@@ -197,6 +257,7 @@ export const enSidebar = sidebar({
         "config/guards/",
         "config/vaults/",
         "config/telemetry/",
+        "troubleshooting/aws.md",
       ],
     },
   ],

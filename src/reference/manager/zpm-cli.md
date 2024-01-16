@@ -2,9 +2,7 @@
 order: 3
 category:
   - CLI
-description: >-
-  The command line interface to manage Zilla dependencies and package the Zilla
-  runtime.
+description: The command line interface to manage Zilla dependencies and package the Zilla runtime.
 ---
 
 # Zilla Manager CLI
@@ -22,7 +20,7 @@ The Zilla Manager command line interface uses the [Zilla Manager Configuration](
   - [--exclude-local-repository](#exclude-local-repository)
   - [--exclude-remote-repositories](#exclude-remote-repositories)
 - [zpm wrap](#zpm-wrap)
-  - [--local-repository `<locaRepolDir>`](#local-repository-locarepoldir)
+  - [--local-repository `<localRepoDir>`](#local-repository-locarepoldir)
   - [--remote-repository `<repoURL>`](#remote-repository-repourl)
   - [--version `<version>`](#version-version)
 
@@ -34,7 +32,7 @@ The Zilla Manager command line interface uses the [Zilla Manager Configuration](
 
 The `zpm help` command shows help information about available commands, or more information for a specific command.
 
-```shell:no-line-numbers
+```bash:no-line-numbers
 zpm help [command]
 ```
 
@@ -126,19 +124,19 @@ zpm wrap
 
 #### --local-repository `<locaRepolDir>`
 
-> Defaults to `${user.home}/.m2/repository`
+> Default: `${user.home}/.m2/repository`
 
 Local Maven repository directory
 
 #### --remote-repository `<repoURL>`
 
-> Defaults to `https://maven.packages.aklivity.io`
+> Default: `https://maven.packages.aklivity.io`
 
 Remote Maven repository URL
 
 #### --version `<version>`
 
-Require `zpm`  wrapper to use `<version>`
+Require `zpm` wrapper to use `<version>`
 
 Example:
 

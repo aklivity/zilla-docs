@@ -1,5 +1,5 @@
 ---
-shortTitle: sse 
+shortTitle: sse
 description: Zilla runtime sse binding
 category:
   - Binding
@@ -65,10 +65,9 @@ options:
 
 ### options.retry
 
-> `integer`
+> `integer` | Default: `2000`
 
-Retry delay (ms)\
-Defaults to `2000`.
+Retry delay (ms)
 
 ### exit
 
@@ -92,7 +91,7 @@ routes:
       test:
         - read:items
     when:
-      - path: "/items"
+      - path: /items
     exit: sse_kafka_proxy
 ```
 
@@ -114,11 +113,12 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
   - when:
-      - path: "/items"
+      - path: /items
 ```
 
 #### when[].path\*
@@ -134,7 +134,10 @@ Path pattern.
 Next binding when following this route.
 
 ```yaml
-exit: sse_kafka_proxy
+routes:
+  - when:
+    ...
+    exit: sse_kafka_proxy
 ```
 
 ---

@@ -1,5 +1,5 @@
 ---
-shortTitle: tcp 
+shortTitle: tcp
 description: Zilla runtime tcp binding
 category:
   - Binding
@@ -111,6 +111,7 @@ List of roles required by each named guard to authorize this route.
 > `array` of `object`
 
 List of conditions (any match) to match this route.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 #### when[].authority
 
@@ -135,6 +136,13 @@ Port number(s), including port number ranges.
 > `string`
 
 Next binding when following this route, for kind `server` only.
+
+```yaml
+routes:
+  - when:
+    ...
+    exit: echo_server
+```
 
 ---
 

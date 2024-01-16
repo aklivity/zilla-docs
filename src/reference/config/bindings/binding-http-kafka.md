@@ -1,5 +1,5 @@
 ---
-shortTitle: http-kafka 
+shortTitle: http-kafka
 description: Zilla runtime http-kafka binding
 category:
   - Binding
@@ -8,6 +8,7 @@ tag:
 ---
 
 # http-kafka Binding
+
 <!-- markdownlint-disable MD024 -->
 
 Zilla runtime http-kafka binding.
@@ -19,7 +20,7 @@ http_kafka_proxy:
   routes:
     - when:
         - method: GET
-          path: "/items"
+          path: /items
       exit: kafka_cache_client
       with:
         capability: fetch
@@ -28,26 +29,27 @@ http_kafka_proxy:
           content-type: application/json
     - when:
         - method: GET
-          path: "/items/{id}"
+          path: /items/{id}
       exit: kafka_cache_client
       with:
         capability: fetch
         topic: items-snapshots
         filters:
-          - key: "${params.id}"
+          - key: ${params.id}
     - when:
-        - path: "/items/{id}"
+        - method: PUT
+          path: /items/{id}
         - method: GET
-          path: "/items/{id};{correlationId}"
+          path: /items/{id};cid={correlationId}
       exit: kafka_cache_client
       with:
         capability: produce
         topic: items-requests
         acks: leader_only
-        key: "${params.id}"
+        key: ${params.id}
         reply-to: items-responses
         async:
-          location: "/items/${params.id};${correlationId}"
+          location: /items/${params.id};cid=${correlationId}
 ```
 
 ## Summary
@@ -149,10 +151,9 @@ HTTP request header used to specify the idempotency key when adapting `http` req
 
 ##### idempotency.header
 
-> `string`
+> `string` | Default: `"idempotency-key"`
 
-HTTP request header name for idempotency key.\
-Defaults to `"idempotency-key"`.
+HTTP request header name for idempotency key.
 
 #### options.correlation
 
@@ -168,17 +169,15 @@ Kafka request message reply to and correlation id header names injected when ada
 
 ##### headers.reply-to
 
-> `string`
+> `string` | Default: `"zilla:reply-to"`
 
-Kafka header name for reply-to topic.\
-Defaults to `"zilla:reply-to"`.
+Kafka header name for reply-to topic.
 
 ##### headers.correlation-id
 
-> `string`
+> `string` | Default: `"zilla:correlation-id"`
 
-Kafka header name for request-response correlation identifier.\
-Defaults to `"zilla:correlation-id"`.
+Kafka header name for request-response correlation identifier.
 
 ### routes
 
@@ -186,11 +185,41 @@ Defaults to `"zilla:correlation-id"`.
 
 Conditional `http-kafka`-specific routes for adapting `http` request-response streams to `kafka` topic streams.
 
+Correlated Request-Response route:
+
 ```yaml
 routes:
   - when:
+      - method: PUT
+        path: /items/{id}
       - method: GET
-        path: "/items"
+        path: /items/{id};cid={correlationId}
+    exit: kafka_cache_client
+    with:
+      capability: produce
+      topic: items-requests
+      acks: leader_only
+      key: ${params.id}
+      reply-to: items-responses
+      async:
+        location: /items/${params.id};cid=${correlationId}
+```
+
+Single topic CRUD routes:
+
+```yaml
+routes:
+  - when:
+      - method: POST
+        path: /items
+    exit: kafka_cache_client
+    with:
+      capability: produce
+      topic: items-crud
+      key: ${idempotencyKey}
+  - when:
+      - method: GET
+        path: /items
     exit: kafka_cache_client
     with:
       capability: fetch
@@ -199,24 +228,20 @@ routes:
         content-type: application/json
   - when:
       - method: GET
-        path: "/items/{id}"
+        path: /items/{id}
     exit: kafka_cache_client
     with:
       capability: fetch
       topic: items-snapshots
       filters:
-        - key: "${params.id}"
+        - key: ${params.id}
   - when:
-      - path: "/items/{id}"
-      - method: GET
-        path: "/items/{id};{correlationId}"
+      - path: /items/{id}
     exit: kafka_cache_client
     with:
       capability: produce
-      topic: items-requests
-      acks: leader_only
-      key: "${params.id}"
-      reply-to: items-responses
+      topic: items-crud
+      key: ${params.id}
 ```
 
 ### routes[].guarded
@@ -237,12 +262,13 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route when adapting `http` request-response streams to `kafka` topic streams.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
   - when:
       - method: GET
-        path: "/items/{id};{correlationId}"
+        path: /items/{id};cid={correlationId}
 ```
 
 #### when[].method
@@ -264,7 +290,10 @@ Path with optional embedded parameter names, such as `/{topic}`.
 Default exit binding when no conditional routes are viable.
 
 ```yaml
-exit: kafka_cache_client
+routes:
+  - when:
+    ...
+    exit: kafka_cache_client
 ```
 
 ### routes[].with
@@ -296,7 +325,7 @@ with:
   capability: fetch
   topic: items-snapshots
   filters:
-    - key: "${params.id}"
+    - key: ${params.id}
   merge:
     content-type: application/json
     patch:
@@ -373,10 +402,10 @@ with:
   capability: produce
   topic: items-requests
   acks: leader_only
-  key: "${params.id}"
+  key: ${params.id}
   reply-to: items-responses
   async:
-    location: "/items/${params.id};${correlationId}"
+    location: /items/${params.id};cid=${correlationId}
 ```
 
 #### with.topic
@@ -387,10 +416,9 @@ Kafka topic name, optionally referencing path parameter such as `${params.topic}
 
 #### with.acks
 
-> `enum` [ "none", "leader_only", "in_sync_replicas" ]
+> `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
 
-Kafka acknowledgement mode\
-Defaults to `"in_sync_replicas"`.
+Kafka acknowledgement mode
 
 #### with.key
 
@@ -414,7 +442,13 @@ Kafka reply-to topic name.
 
 > `object`
 
-HTTP response headers, with values optionally referencing path parameter or `${correlationId}`.
+Allows an HTTP response to be retrieved asynchronously
+
+##### async.location
+
+> `string`
+
+Path where the async result can be fetched, with values optionally referencing path parameter or `${correlationId}`.
 
 ---
 

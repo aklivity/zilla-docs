@@ -1,5 +1,5 @@
 ---
-shortTitle: sse-kafka 
+shortTitle: sse-kafka
 description: Zilla runtime sse-kafka binding
 category:
   - Binding
@@ -17,7 +17,7 @@ sse_kafka_proxy:
   kind: proxy
   routes:
     - when:
-        - path: "/items"
+        - path: /items
       exit: kafka_cache_client
       with:
         topic: items-snapshots
@@ -27,7 +27,7 @@ sse_kafka_proxy:
 
 ## Summary
 
-Defines a binding with `sse-kafka`  support, with `proxy` behavior.
+Defines a binding with `sse-kafka` support, with `proxy` behavior.
 
 The `proxy` kind `sse-kafka` binding adapts `sse` data streams into `kafka` data streams, so that `kafka` messages can be delivered to `sse` clients.
 
@@ -90,7 +90,7 @@ Conditional `sse-kafka`-specific routes for adapting `sse` data streams to `kafk
 ```yaml
 routes:
   - when:
-      - path: "/items"
+      - path: /items
     exit: kafka_cache_client
     with:
       topic: items-snapshots
@@ -116,11 +116,12 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
   - when:
-      - path: "/items"
+      - path: /items
 ```
 
 #### when[].path\*
@@ -136,7 +137,10 @@ Path with optional embedded parameter names, such as `/{topic}`.
 Next binding when following this route.
 
 ```yaml
-exit: kafka_cache_client
+routes:
+  - when:
+    ...
+    exit: kafka_cache_client
 ```
 
 ### routes[].with
@@ -183,10 +187,9 @@ Defines the SSE event syntax used when delivering Kafka messages to SSE clients.
 
 ##### event.id\*
 
-> `enum` [ `"${etag}"`, `"["${base64(key)}","${etag}"]"` ]
+> `enum` [ `"${etag}"`, `"["${base64(key)}","${etag}"]"` ] | Default: `"${etag}"`
 
-Format of `id` field in `sse` `event`\
-Defaults to `"${etag}"`.
+Format of `id` field in `sse` `event`
 
 ---
 

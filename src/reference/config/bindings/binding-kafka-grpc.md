@@ -34,7 +34,7 @@ kafka_grpc_proxy:
       exit: grpc
       with:
         scheme: http
-        authority: localhost:8080
+        authority: localhost:7151
 ```
 
 ## Summary
@@ -120,10 +120,9 @@ Metadata header used to specify the idempotency key when adapting `kafka` topic 
 
 ##### idempotency.metadata
 
-> `string`
+> `string` | Default: `"idempotency-key"`.
 
-The `grpc` metadata header name for idempotency key.\
-Defaults to `"idempotency-key"`.
+The `grpc` metadata header name for idempotency key.
 
 #### options.correlation
 
@@ -139,31 +138,27 @@ Kafka request message correlation header names used when adapting `kafka` topic 
 
 ##### headers.service
 
-> `string`
+> `string` | Default: `"zilla:service"`
 
-Kafka header name for `grpc` service.\
-Defaults to `"zilla:service"`.
+Kafka header name for `grpc` service.
 
 ##### headers.method
 
-> `string`
+> `string` | Default: `"zilla:method"`
 
-Kafka header name for `grpc` method.\
-Defaults to `"zilla:method"`.
+Kafka header name for `grpc` method.
 
 ##### headers.correlation-id
 
-> `string`
+> `string` | Default: `"zilla:correlation-id"`
 
-Kafka header name for request-response correlation identifier.\
-Defaults to `"zilla:correlation-id"`.
+Kafka header name for request-response correlation identifier.
 
 ##### headers.reply-to
 
-> `string`
+> `string` | Default: `"zilla:reply-to"`
 
-Kafka header name for reply-to topic.\
-Defaults to `"zilla:reply-to"`.
+Kafka header name for reply-to topic.
 
 ### routes
 
@@ -183,7 +178,7 @@ routes:
     exit: grpc
     with:
       scheme: http
-      authority: localhost:8080
+      authority: localhost:7151
 ```
 
 ### routes[].guarded
@@ -204,6 +199,7 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route when adapting `kafka` topic streams to `grpc` request-response streams.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
@@ -238,7 +234,10 @@ Pattern matching the fully qualified name of a `grpc` service method, in the for
 Default exit binding when no conditional routes are viable.
 
 ```yaml
-exit: kafka_cache_client
+routes:
+  - when:
+    ...
+    exit: kafka_cache_client
 ```
 
 ### routes[].with
@@ -250,7 +249,7 @@ Kafka parameters for matched route when adapting `grpc` request-response streams
 ```yaml
 with:
   scheme: http
-  authority: localhost:8080
+  authority: localhost:7151
 ```
 
 #### with.scheme

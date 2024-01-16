@@ -1,5 +1,5 @@
 ---
-shortTitle: proxy 
+shortTitle: proxy
 description: Zilla runtime proxy binding
 category:
   - Binding
@@ -110,6 +110,7 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 #### when[].transport
 
@@ -166,7 +167,10 @@ Port number.
 Next binding when following this route.
 
 ```yaml
-exit: echo_server
+routes:
+  - when:
+    ...
+    exit: echo_server
 ```
 
 ---

@@ -1,8 +1,10 @@
 ---
 description: This guide will walk through each unique gRPC message request and response design and how Zilla is configured to manage the connection for each.
+prev: false
+next: /tutorials/grpc/grpc-intro.md
 ---
 
-# gRPC Proxy
+# gRPC Kafka Proxy
 
 This guide will walk through each unique gRPC message request and response design and how Zilla is configured to manage the connection for each.
 
@@ -73,7 +75,7 @@ This maps the proto service method's request and response messages directly to K
 
 ### Message routing for RPC request and response types
 
-Let's look at some of the common service definitions and how Zilla can route their messages.
+Let's look at some common service definitions and how Zilla can route their messages.
 
 #### Simple RPC
 
@@ -181,7 +183,7 @@ remote_server:
       exit: grpc_client
       with:
         scheme: http
-        authority: localhost:9090
+        authority: <entrypoint_host>:<entrypoint_port>
 grpc_client:
   type: grpc
   kind: client
@@ -222,9 +224,9 @@ tcp_client:
     port: <grpc_port>
 ```
 
-### Gateway Ingress
+### Proxy service entrypoint
 
-Using a `tcp` and `tls` server we can route the gRPC traffic through an `http` server, `<ingress_host>`:`<ingress_port>`, to our desired gRPC server at the `<grpc_server_binding_name>`. This sets up the ingress section and by defining a [filesystem vault](../../reference/config/vaults/vault-filesystem.md) a tls certificate can be used to send the traffic over https. Alternatively, if tls is not needed The tcp server can exit directly to the http server.
+Using a [tcp](../../reference/config/bindings/binding-tcp.md) server binding we can route the gRPC traffic through an `http` server, `<entrypoint_host>`:`<entrypoint_port>`, to our desired gRPC server at the `<grpc_server_binding_name>`. The [tls](../../reference/config/bindings/binding-tls.md) server binding secures the entrypoint by defining a tls certificate from the [filesystem](../../reference/config/vaults/vault-filesystem.md) vault, which is used to send the traffic over https. Alternatively, if tls is not needed The tcp server can exit directly to the http server and the tls binding and filesystem vault can be removed.
 
 ```yaml
   tcp_server:
@@ -232,7 +234,7 @@ Using a `tcp` and `tls` server we can route the gRPC traffic through an `http` s
     kind: server
     options:
       host: 0.0.0.0
-      port: <ingress_port>
+      port: <entrypoint_port>
     exit: tls_server
   tls_server:
     type: tls
@@ -240,9 +242,9 @@ Using a `tcp` and `tls` server we can route the gRPC traffic through an `http` s
     vault: server
     options:
       keys:
-        - <ingress_host>
+        - <entrypoint_host>
       sni:
-        - <ingress_host>
+        - <entrypoint_host>
       alpn:
         - h2
     exit: http_server
@@ -258,7 +260,7 @@ Using a `tcp` and `tls` server we can route the gRPC traffic through an `http` s
       - when:
           - headers:
               :scheme: https
-              :authority: <ingress_host>:<ingress_port>
+              :authority: <entrypoint_host>:<entrypoint_port>
         exit: <grpc_server_binding_name>
 ```
 

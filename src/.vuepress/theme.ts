@@ -5,9 +5,9 @@ import { hostnameSEO, docsRepo, docsBranch } from "./env.js";
 
 export default hopeTheme({
   hostname: hostnameSEO,
-  logo: "/logo-dark.png",
-  logoDark: "/logo.png",
-  iconAssets: "fontawesome-with-brands",
+  logo: "/logo.png",
+  logoDark: "/logo-dark.png",
+  iconAssets: ["fontawesome-with-brands"],
   favicon: "favicon.ico",
 
   repo: "aklivity/zilla",
@@ -52,7 +52,8 @@ export default hopeTheme({
       attrs: true,
       chart: false,
       codetabs: true,
-      container: true,
+      component: false,
+      hint: true,
       figure: true,
       imgLazyload: true,
       imgSize: true,
@@ -60,6 +61,7 @@ export default hopeTheme({
       mark: true,
       tabs: true,
       gfm: true,
+      linkify: false,
     },
   },
 });

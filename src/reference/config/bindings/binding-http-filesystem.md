@@ -1,5 +1,5 @@
 ---
-shortTitle: http-filesystem 
+shortTitle: http-filesystem
 description: Zilla runtime http-filesystem binding
 category:
   - Binding
@@ -17,15 +17,15 @@ http_filesystem_proxy:
   kind: proxy
   routes:
     - when:
-        - path: "/{path}"
+        - path: /{path}
       exit: filesystem_server
       with:
-        path: "${params.path}"
+        path: ${params.path}
 ```
 
 ## Summary
 
-Defines a binding with `http-filesystem`  support, with `proxy` behavior.
+Defines a binding with `http-filesystem` support, with `proxy` behavior.
 
 The `proxy` kind `http-filesystem` binding adapts `http` data streams into `filesystem` data streams by mapping the path from an inbound `http` `GET` request into a filesystem relative path.
 
@@ -80,10 +80,10 @@ Conditional `http-kafka`-specific routes for adapting `http` data streams into `
 ```yaml
 routes:
   - when:
-      - path: "/{path}"
+      - path: /{path}
     exit: filesystem_server
     with:
-      path: "${params.path}"
+      path: ${params.path}
 ```
 
 ### routes[].guarded
@@ -104,11 +104,12 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route when adapting `http` data streams into `filesystem` data streams.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
   - when:
-      - path: "/{path}"
+      - path: /{path}
 ```
 
 #### when[].path\*
@@ -124,7 +125,10 @@ Path with optional embedded parameter names, such as `/{path}`.
 Next binding when following this route.
 
 ```yaml
-exit: filesystem_server
+routes:
+  - when:
+    ...
+    exit: filesystem_server
 ```
 
 ### routes[].with

@@ -1,21 +1,19 @@
 ---
-shortTitle: amqp 🔜
-description: Zilla runtime amqp binding (incubator)
+shortTitle: amqp
+description: Zilla runtime amqp binding
 category:
   - Binding
 tag:
   - Server
 ---
 
-# amqp Binding 
+# amqp Binding
+
+::: info Feature Coming Soon <HopeIcon icon="fas fa-circle-right"/>
+This is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projects/4). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
+:::
 
 Zilla runtime amqp binding.
-
-::: info Feature Coming Soon
-
-This is currently in the incubator. Follow the [Zilla repo](https://github.com/aklivity/zilla/releases) to know when it will be released!
-
-:::
 
 ```yaml {2}
 amqp_server:
@@ -96,6 +94,7 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
@@ -112,10 +111,9 @@ Link address.
 
 #### when[].capabilities
 
-> `enum` [ "send_only", "receive_only", "send_and_receive" ]
+> `enum` [ "send_only", "receive_only", "send_and_receive" ] | Default: `"send_and_receive"`
 
-Send or receive, or both.\
-Defaults to `"send_and_receive"`.
+Send or receive, or both.
 
 ### routes[].exit\*
 
@@ -124,7 +122,10 @@ Defaults to `"send_and_receive"`.
 Next binding when following this route.
 
 ```yaml
-exit: echo_server
+routes:
+  - when:
+    ...
+    exit: echo_server
 ```
 
 ---

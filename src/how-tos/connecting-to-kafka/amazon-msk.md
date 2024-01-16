@@ -12,28 +12,28 @@ Unlike other hosted Kafka services, Amazon MSK is not readily reachable over the
 "Public Access" can be turned on for MSK clusters running Apache Kafka 2.6.0 or later. Follow the MSK [Public Access Guide](https://docs.aws.amazon.com/msk/latest/developerguide/public-access.html)to do so.
 
 ::: warning
-MSK's “Public Access” feature directly exposes your brokers to the internet, which may present additional security concerns. An alternative and more flexible solution is the [Aklivity Public MSK Proxy](https://docs.aklivity.io/aws/get-started/public-proxy). The Proxy is deployed via a CloudFormation template, and acts as intermediary that securely routes connectivity between external clients and MSK brokers without having to modify the brokers.
+MSK's “Public Access” feature directly exposes your brokers to the internet, which may present additional security concerns. An alternative and more flexible solution is the [Secure Public Access](../amazon-msk/secure-public-access/overview.md) solution using [Zilla Plus for Amazon MSK](../amazon-msk/secure-public-access/overview.md). The solution is deployed via a CloudFormation template, and acts as intermediary that securely routes connectivity between external clients and MSK brokers without having to modify the brokers.
 :::
 
 ## Set up mTLS Authentication between MSK and Zilla
 
-Once your MSK cluster is reachable over the internet, it will rely on Mutual TLS to authenticate external clients. Setting up `mTLS` between MSK and Zilla is done in three steps:
+Once your MSK cluster is reachable over the internet, it will rely on `mTLS` to authenticate external clients. Setting up `mTLS` between MSK and Zilla is done in three steps:
 
 1. Create a trusted Client Certificate in Amazon Certificate Manager (ACM).
 2. Export the Client Certificate as well as the Certificate Authority (CA) Certificate.
 3. Create a PKCS12 KeyStore containing the exported certificates that will be referenced by Zilla to complete the `mTLS` handshake with your MSK cluster.
 
 ::: info NOTE
-If you deployed the Aklivity Public MSK Proxy, then you should already have a Client Certificate that Zilla can use and you can go straight to the second step.
+If you deployed the Zilla Plus for Amazon MSK, then you should already have a Client Certificate that Zilla can use and you can go straight to the second step.
 :::
 
 ### Create a Client Certificate
 
-Follow the [Create Client Certificate (ACM) guide](https://docs.aklivity.io/aws/resources/create-client-certificate-acm#issue-the-signed-certificate). Upon completion you will have created a client certificate inside ACM and should have a local `client-1.key.pem` file containing the client certificate's RSA key as well as the `ARN` of the certificate.
+Follow the [Create Client Certificate (ACM) guide](../../reference/aws/create-client-certificate-acm.md#issue-the-signed-certificate). Upon completion you will have created a client certificate inside ACM and should have a local `client-1.key.pem` file containing the client certificate's RSA key as well as the `ARN` of the certificate.
 
 ### Export Client and CA Certificates
 
-First, you will export the Client Certificate to a local file called `client.cert`. To do this you will need the `ARN` of the client certificate as well as of the [certificate authority](https://docs.aklivity.io/aws/resources/create-certificate-authority-acm) used to issue the certificate, and run the following command:
+First, you will export the Client Certificate to a local file called `client.cert`. To do this you will need the `ARN` of the client certificate as well as of the [certificate authority](../../reference/aws/create-certificate-authority-acm.md) used to issue the certificate, and run the following command:
 
 ```bash:no-line-numbers
 aws acm-pca get-certificate --certificate-authority-arn CERTIFICATE_AUTHORITY_ARN \
@@ -42,7 +42,7 @@ aws acm-pca get-certificate --certificate-authority-arn CERTIFICATE_AUTHORITY_AR
 
 #### output
 
-```text:no-line-numbers
+```output:no-line-numbers
 ----BEGIN CERTIFICATE-----
 MIIEdzCCA1+gAwIBAgIQDLtFK9uDUb6VpObjhusyhTANBgkqhkiG9w0BAQsFADAS
 ......
@@ -58,7 +58,7 @@ Copy first certificate and save it as `client.cert`
 
 #### client.cert
 
-```text:no-line-numbers
+```output:no-line-numbers
 ----BEGIN CERTIFICATE-----
 MIIEdzCCA1+gAwIBAgIQDLtFK9uDUb6VpObjhusyhTANBgkqhkiG9w0BAQsFADAS
 ......
@@ -100,7 +100,7 @@ To configure Zilla you will be replacing the following values in the `zilla.yaml
 | `BOOTSTRAP_SERVER_HOSTNAME` | Target MSK hostname. For example: `b-2-public.myTestCluster.v4ni96.c2.kafka.us-east-1.amazonaws.com`                             |
 | `BOOTSTRAP_SERVER_PORT`     | Target MSK port number. For example `9094`                                                                                       |
 
-Inside `zilla.yaml` create a `client_vault` that references your newly created `keystore`. After this, reference the the vault in the `tls_client` binding. Your `zilla.yaml` should appear as follows:
+Inside `zilla.yaml` create a `client_vault` that references your newly created `keystore`. After this, reference the vault in the `tls_client` binding. Your `zilla.yaml` should appear as follows:
 
 ### zilla.yaml
 

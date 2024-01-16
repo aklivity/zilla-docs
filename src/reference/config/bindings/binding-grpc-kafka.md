@@ -8,6 +8,7 @@ tag:
 ---
 
 # grpc-kafka Binding
+
 <!-- markdownlint-disable MD024 -->
 
 Zilla runtime grpc-kafka binding.
@@ -154,10 +155,9 @@ Metadata header used to specify the idempotency key when adapting `grpc` request
 
 ##### idempotency.metadata
 
-> `string`
+> `string` | Default: `"idempotency-key"`
 
-The `grpc` metadata header name for idempotency key.\
-Defaults to `"idempotency-key"`.
+The `grpc` metadata header name for idempotency key.
 
 #### options.correlation
 
@@ -173,31 +173,27 @@ Kafka request message reply to and correlation id header names injected when ada
 
 ##### headers.service
 
-> `string`
+> `string` | Default: `"zilla:service"`
 
-Kafka header name for `grpc` service.\
-Defaults to `"zilla:service"`.
+Kafka header name for `grpc` service.
 
 ##### headers.method
 
-> `string`
+> `string` | Default: `"zilla:method"`
 
-Kafka header name for `grpc` method.\
-Defaults to `"zilla:method"`.
+Kafka header name for `grpc` method.
 
 ##### headers.correlation-id
 
-> `string`
+> `string` | Default: `"zilla:correlation-id"`
 
-Kafka header name for request-response correlation identifier.\
-Defaults to `"zilla:correlation-id"`.
+Kafka header name for request-response correlation identifier.
 
 ##### headers.reply-to
 
-> `string`
+> `string` | Default: `"zilla:reply-to"`
 
-Kafka header name for reply-to topic.\
-Defaults to `"zilla:reply-to"`.
+Kafka header name for reply-to topic.
 
 ### routes
 
@@ -262,6 +258,7 @@ routes:
 > `array` of `object`
 
 List of conditions (any match) to match this route when adapting `grpc` request-response streams to `kafka` topic streams.
+Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 ```yaml
 routes:
@@ -300,7 +297,10 @@ Base64 encoded value for binary metadata header.
 Next binding when following this route.
 
 ```yaml
-exit: kafka_cache_client
+routes:
+  - when:
+    ...
+    exit: kafka_cache_client
 ```
 
 ### routes[].with\*
@@ -386,10 +386,9 @@ The name of a Kafka topic for requests.
 
 #### with.acks
 
-> `enum` [ "none", "leader_only", "in_sync_replicas" ]
+> `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
 
-Kafka acknowledgment mode\
-Defaults to `"in_sync_replicas"`.
+Kafka acknowledgment mode
 
 #### with.key
 

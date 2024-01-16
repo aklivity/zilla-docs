@@ -1,1 +1,3 @@
+(?i)pubic
+bellow
 zilla[^\.\-]
