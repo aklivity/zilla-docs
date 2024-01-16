@@ -38,7 +38,7 @@ A single message is sent with a returned stream back to the caller. The correlat
 rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);
 ```
 
-The client sends a stream, producing all the messages on a topic. When the client finishes writing to the stream, it will wait for the correlated response message and return it back to the caller. The request topic has one or many messages with the method payloads and one end-of-stream message. The response topic has one message with the method payloads and one end-of-stream message.
+The client sends a stream, producing all the messages on a topic. When the client finishes writing to the stream, it will return the correlated response message to the caller. The correlated response message can arrive on the response topic at any time during or after the request stream. The request topic has one or many messages with the method payloads and one end-of-stream message. The response topic has one message with the method payloads and one end-of-stream message.
 
 ### Bidirectional streaming RPC
 
@@ -58,4 +58,4 @@ Method routes can use [custom metadata fields](../../reference/config/bindings/b
 
 ## Reliable Delivery
 
-Zilla sends an event ID with every message serialized as an unknown field in the payload. Any message can be identified without field collision, and the client doesn't need to acknowledge the message receipt explicitly. A client consuming a stream of messages can remember the event ID. If the event the stream gets interrupted. The client reconnects with a `last-event-id` header to recover without message loss or needing to start over from the beginning.
+Clients can fetch some or all messages from a single Kafka topic using a route with the [fetch capability](../../reference/config/bindings/binding-grpc-kafka.md#fetch-capability) by creating a service definition with an `Empty` request type and the topic message as the response type. Zilla sends an event ID with every message serialized as an unknown field in the payload. Messages can be identified without field collision, and the client doesn't need to acknowledge the message receipt explicitly. A client consuming the stream of messages can remember the event ID. In the event, the stream gets interrupted. The client can reconnect with a `last-event-id` header to recover without message loss or needing to start over from the beginning.
