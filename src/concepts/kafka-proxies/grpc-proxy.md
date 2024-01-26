@@ -59,3 +59,8 @@ Method routes can use [custom metadata fields](../../reference/config/bindings/b
 ## Reliable Delivery
 
 Clients can fetch some or all messages from a single Kafka topic using a route with the [fetch capability](../../reference/config/bindings/binding-grpc-kafka.md#fetch-capability) by creating a service definition with an `Empty` request type and the topic message as the response type. Zilla sends an event ID with every message serialized as an unknown field in the payload. Messages can be identified without field collision, and the client doesn't need to acknowledge the message receipt explicitly. A client consuming the stream of messages can remember the event ID. In the event, the stream gets interrupted. The client can reconnect with a `last-event-id` header to recover without message loss or needing to start over from the beginning.
+
+## gRPC Metadata
+
+Method routes can use [custom metadata fields](../../reference/config/bindings/binding-grpc-kafka.md#when-metadata) for request routing and idempotency. Zilla can also augment the metadata it sends based on the configured route the request matches.
+
