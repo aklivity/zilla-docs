@@ -38,6 +38,7 @@ telemetry:
   - [routes.exit](#routes-exit)
 - [guards](#guards)
 - [vaults](#vaults)
+- [catalogs](#catalogs)
 - [telemetry](#telemetry)
   - [attributes](#attributes)
   - [exporters](#exporters)

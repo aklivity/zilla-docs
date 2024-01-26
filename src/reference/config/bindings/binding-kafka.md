@@ -131,6 +131,18 @@ Topic name.
 
 Fetch offset to use for new consumers
 
+#### topics[].key
+
+> `string` of a named [`model`](./models/)
+
+Description
+
+#### topics[].value
+
+> `string` of a named [`model`](./models/)
+
+Description
+
 ### options.servers
 
 > `array` of `string`
