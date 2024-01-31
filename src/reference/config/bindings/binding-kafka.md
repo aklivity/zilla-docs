@@ -135,15 +135,15 @@ Fetch offset to use for new consumers
 
 #### topics[].key
 
-> `string` of a named [`model`](../models/)
+> `object` of a named [`model`](../models/)
 
-Description
+Enforce validation for key
 
 #### topics[].value
 
-> `string` of a named [`model`](../models/)
+> `object` of a named [`model`](../models/)
 
-Description
+Enforce validation for value
 
 ### options.servers
 

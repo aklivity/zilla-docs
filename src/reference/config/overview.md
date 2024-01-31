@@ -103,6 +103,12 @@ See each of the specific `vault` types linked below for more detailed examples.
 
 > `object` as map of named [`catalog`](./catalogs/) properties
 
+Each configured `catalog` represent a catalog of schemas of various format based on a specific implementation `type`.
+
+Catalogs can be used by specific protocol bindings to enforce validation.
+
+See each of the specific `catalog` types linked below for more detailed examples.
+
 ### telemetry
 
 > `object` of [`telemetry`](./telemetry/) properties
