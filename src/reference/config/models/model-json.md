@@ -15,17 +15,28 @@ Zilla runtime json model
 
 ```yaml {1}
 model: json
+catalog:
+  items-catalog:
+    - strategy: topic
+      version: latest
+    - subject: items-snapshots
+      version: latest
+    - id: 1
 ```
 
 ## Summary
 
-Defines a model
+Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
 
 ## Configuration
 
 :::: note Properties
 
-- [options](#options)
+- [catalog\*](#catalog)
+  - [catalog.strategy](#catalog-strategy)
+  - [catalog.subject](#catalog-subject)
+  - [catalog.version](#catalog-version)
+  - [catalog.id](#catalog-id)
 
 ::: right
 \* required
@@ -33,6 +44,30 @@ Defines a model
 
 ::::
 
-### options
+### catalog\*
 
 > `object`
+
+#### catalog.strategy
+
+> `string`
+
+To determine the subject based on the specified strategy
+
+#### catalog.subject
+
+> `string`
+
+Unique identifier for schema categorization in the catalog.
+
+#### catalog.version
+
+> `string` | Default: `"latest"`
+
+Specific iteration or version of a registered schema in the defined catalog.
+
+#### catalog.id
+
+> `integer`
+
+Define specific schema id to refer from catalog.

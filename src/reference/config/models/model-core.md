@@ -14,18 +14,19 @@ This is currently on the [Zilla roadmap](https://github.com/orgs/aklivity/projec
 Zilla runtime core model
 
 ```yaml {1}
-model: core
+model: string
+encoding: utf_8
 ```
 
 ## Summary
 
-Defines a model
+Defines a model to enforce validation for string data.
 
 ## Configuration
 
 :::: note Properties
 
-- [options](#options)
+- [encoding\*](#encoding)
 
 ::: right
 \* required
@@ -33,6 +34,8 @@ Defines a model
 
 ::::
 
-### options
+### encoding\*
 
-> `object`
+> `string`
+
+Define character encoding for unicode.
