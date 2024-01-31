@@ -54,7 +54,7 @@ Defines a model to utilize schema from catalog to enforce validation, ensuring a
 
 > `enum` [ "json" ]
 
-Transforms the model from this data type to the Avro schema on produce and to this data type from the Avro schema on consume.
+Transforms the model from this data type to the Protobuf schema on produce and to this data type from the Protobuf schema on consume.
 
 ### catalog\*
 
