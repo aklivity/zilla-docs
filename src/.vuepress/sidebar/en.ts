@@ -44,7 +44,7 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
-          text: "models",
+          text: "Models",
           prefix: "models/",
           link: "models/",
           children: "structure",

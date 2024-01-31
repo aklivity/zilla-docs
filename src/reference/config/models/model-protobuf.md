@@ -52,17 +52,30 @@ Defines a model to utilize schema from catalog to enforce validation, ensuring a
 
 ### view
 
-> `string`
+> `enum` [ "json" ]
 
-Facilitates the model to effortlessly handle JSON data, ensuring adherence to Protobuf schema
+Transforms the model from this data type to the Avro schema on produce and to this data type from the Avro schema on consume.
 
 ### catalog\*
 
 > `object`
 
+To map defined catalog for schema retrieval based on catalog specific parameters. Any of the possible combination can be configured.
+
+> `id`
+> `record`
+-----
+> `strategy`
+> `version`
+> `record`
+-----
+> `subject`
+> `version`
+> `record`
+
 #### catalog.strategy
 
-> `string`
+> `enum` [ "topic" ]
 
 To determine the subject based on the specified strategy
 
