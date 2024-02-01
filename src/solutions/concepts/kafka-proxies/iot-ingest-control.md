@@ -1,6 +1,6 @@
 ---
 icon: aky-zilla-plus
-description: MQTT clients can  directly publish and subscribe to topics through MQTT entry points into your Kafka cluster.
+description: MQTT clients can directly publish and subscribe to topics through MQTT entry points into your Kafka cluster.
 ---
 
 # Zilla Plus IoT Ingest and Control
