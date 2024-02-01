@@ -20,12 +20,12 @@ catalog:
   items-catalog:
     - strategy: topic
       version: latest
-      record: example
+      record: EchoMessage
     - subject: items-snapshots
       version: latest
-      record: example
+      record: EchoMessage
     - id: 1
-      record: example
+      record: EchoMessage
 ```
 
 ## Summary
