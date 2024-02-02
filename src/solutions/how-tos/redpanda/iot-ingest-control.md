@@ -1,6 +1,6 @@
 ---
 icon: aky-zilla-plus
-description: Setup a public to your Redpanda private cluster from anywhere on the internet.
+description: Setup an IoT Ingest and Control MQTT Broker that lets clients publish messages and subscribe to topics that are proxied to Kafka topics in your Redpanda cluster.
 tags:
   - Zilla Plus
 ---
@@ -15,9 +15,9 @@ tags:
 
 ## Overview
 
-The [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control Broker lets MQTT clients connect.
+The [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control MQTT Broker lets clients publish messages and subscribe to topics that are proxied to Kafka topics in your Redpanda cluster.
 
-In this guide we will deploy the Zilla Plus for Redpanda IoT Ingest and Control Broker, using the custom wildcard domain `*.example.aklivity.io`.
+In this guide we will deploy the Zilla Plus for Redpanda IoT Ingest and Control, using the custom wildcard domain `*.example.aklivity.io`.
 
 ### AWS services used
 
@@ -83,7 +83,7 @@ You can find your `<rp-bootstrap-server>` in your Redpanda [cluster settings](ht
 
 ### Create the <ZillaPlus/> proxy VPC
 
-> This creates your <ZillaPlus/> proxy VPC in preparation for access via the internet.
+> This creates your <ZillaPlus/> proxy VPC in preparation for access from an MQTT client.
 
 [Create a VPC plus other VPC resources](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html#create-vpc-and-other-resources) with the below resource names.
 
@@ -93,11 +93,11 @@ You can find your `<rp-bootstrap-server>` in your Redpanda [cluster settings](ht
 
 ### Create the <ZillaPlus/> proxy security group
 
-> This creates your <ZillaPlus/> proxy security group to allow Kafka clients and SSH access.
+> This creates your <ZillaPlus/> proxy security group to allow MQTT clients and SSH access.
 
 A VPC security group is needed for the <ZillaPlus/> proxies when they are launched.
 
-Follow the [Create Security Group](https://console.aws.amazon.com/vpcconsole/home#CreateSecurityGroup:) wizard with the following parameters and defaults. This creates your <ZillaPlus/> proxy security group to allow Kafka clients and SSH access.
+Follow the [Create Security Group](https://console.aws.amazon.com/vpcconsole/home#CreateSecurityGroup:) wizard with the following parameters and defaults. This creates your <ZillaPlus/> proxy security group to allow MQTT clients and SSH access.
 
 ::: note Check your selected region
 Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
@@ -149,7 +149,7 @@ Follow the [Create IAM Role](./../aws-services/create-iam-role.md) guide to crea
 @tab Name
 
 ```text:no-line-numbers
-aklivity-zilla-proxy
+my-zilla-iot-role
 ```
 
 @tab Policies
@@ -214,7 +214,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 ## Create the Server Certificate
 
-We need a TLS Server Certificate for your custom DNS wildcard domain that can be trusted by a Kafka Client from anywhere.
+We need a TLS Server Certificate for your custom DNS wildcard domain that can be trusted by a MQTT client from anywhere.
 
 Follow the [Create Server Certificate (LetsEncrypt)](./../aws-services/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
 
@@ -269,7 +269,7 @@ Parameters:
 - Zilla Plus Configuration
   - Instance count: `2`
   - Instance type: `t3.small` \*2
-  - Role: `aklivity-zilla-proxy`
+  - Role: `my-zilla-iot-role`
   - Security Groups: `my-zilla-iot-proxy-sg`
   - Public Port: `8883`
   - Public TLS Certificate Key: `<TLS certificate private key secret ARN>` \*3
@@ -305,7 +305,7 @@ Make sure you have selected the desired region, such as `US East (N. Virginia) u
 Select either of the <ZillaPlus/> proxies launched by the CloudFormation template to show the details.
 
 ::: info
-They each have an IAM Role name starting with `aklivity-zilla-proxy`.
+They each have an IAM Role name starting with `my-zilla-iot-role`.
 :::
 
 Find the `Public IPv4 Address` and then SSH into the instance.
@@ -393,54 +393,39 @@ You might prefer to use an Elastic IP address for each NLB public subnet, provid
 
 ## Verify MQTT Client Connectivity
 
-To verify that we have successfully enabled public internet connectivity to our Redpanda cluster from the local development environment, we will use a generic Kafka client to create a topic, publish messages and then subscribe to receive these messages from our Redpanda cluster via the public internet.
+To verify that we have successfully enabled public internet connectivity to our Redpanda cluster from the local development environment, we will use a generic MQTT client to create a topic, publish messages and then subscribe to receive these messages from our Redpanda cluster via the public internet.
 
 ### Connect with an MQTT Client
 
-> This verifies internet connectivity to your Redpanda cluster via Zilla Plus for Redpanda.
+> This verifies MQTT client connectivity to your Redpanda cluster via Zilla Plus for Redpanda IoT Ingest and Control.
 
-We can now verify that the Kafka client can successfully communicate with your Redpanda cluster via the internet from your local development environment to create a topic, then publish and subscribe to the same topic.
+We can now verify that the MQTT client can successfully communicate with your Redpanda cluster.
 
 ::: warning
-Replace these TLS bootstrap server names accordingly for your own custom wildcard DNS pattern.
+Replace these TLS server names accordingly for your own custom wildcard DNS pattern.
 :::
 
 ### Subscribe to a topic
 
-Publish two messages to the newly created topic via the following producer command:
+Using [eclipse-mosquitto](https://hub.docker.com/_/eclipse-mosquitto) subscribe to the `zilla` topic.
 
 ```bash:no-line-numbers
-bin/kafka-console-producer.sh \
-  --topic zilla-plus-test \
-  --producer.config confluent.properties \
-  --broker-list <tls-bootstrap-server-names>
-```
-
-A prompt will appear for you to type in the messages:
-
-```output:no-line-numbers
->This is my first event
->This is my second event
+docker run -it --rm eclipse-mosquitto \
+mosquitto_sub -V 'mqttv5' --topic 'zilla' \
+--host 'mqtt.example.aklivity.io' --port 8883 --debug
 ```
 
 ### Publish to a topic
 
-Read these messages back via the following consumer command:
+In a separate session, publish a message on the `zilla` topic.
 
 ```bash:no-line-numbers
-bin/kafka-console-consumer.sh \
-  --topic zilla-plus-test \
-  --from-beginning \
-  --consumer.config confluent.properties \
-  --bootstrap-server <tls-bootstrap-server-names>
+docker run -it --rm eclipse-mosquitto \
+mosquitto_pub -V 'mqttv5' --topic 'zilla' --message 'Hello, world' \
+--host 'mqtt.example.aklivity.io' --port 8883 --debug
 ```
 
-You should see the `This is my first event` and `This is my second event` messages.
-
-```output:no-line-numbers
-This is my first event
-This is my second event
-```
+You should see the `Hello, world` message printed by the subscriber.
 
 ::: info Monitor the <ZillaPlus/> proxy
 
