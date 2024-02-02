@@ -75,13 +75,13 @@ Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) s
 
 <!-- @include: ../../_partials/iot-ingest-control/launch-cf-stack.md  -->
 
-## Verify the Zilla proxy Service
-
-<!-- @include: ../../_partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
-
 ## Verify MQTT Client Connectivity
 
 <!-- @include: ../../_partials/iot-ingest-control/verify-mqtt-client-connectivity.md  -->
+
+## Verify the Zilla proxy Service
+
+<!-- @include: ../../_partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
 
 ## Conclusion
 

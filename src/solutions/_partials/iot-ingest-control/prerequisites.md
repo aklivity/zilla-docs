@@ -6,7 +6,8 @@ Before creating an IoT Ingest and Control MQTT Broker to your Kafka cluster, you
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the IoT Ingest and Control CloudFormation template.
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+
+Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
 
 If you need help creating a TLS Server Certificate you can follow the [Create Server Certificate with LetsEncrypt](./../aws-services/create-server-certificate-letsencrypt.md) guide. Use your own custom DNS wildcard domain in place of the example domain `*.example.aklivity.io`.
 :::

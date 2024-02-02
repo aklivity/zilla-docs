@@ -19,7 +19,7 @@ A VPC security group is needed for the <ZillaPlus/> proxies when they are launch
 Follow the [Create Security Group](https://console.aws.amazon.com/vpcconsole/home#CreateSecurityGroup:) wizard with the following parameters and defaults. This creates your <ZillaPlus/> proxy security group to allow MQTT clients and SSH access.
 
 ::: note Check your selected region
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
 :::
 
 - Name: `my-zilla-iot-proxy-sg`
@@ -48,73 +48,62 @@ Navigate to the VPC Management Console [Security Groups](https://console.aws.ama
   - Source type: `Custom`
   - Source: `my-zilla-iot-proxy-sg`
 
-Add the `my-zilla-iot-proxy-sg` security group to your VPC Endpoint by finding your `my-zilla-iot-proxy-vpce` from the [Endpoints table](https://console.aws.amazon.com/vpcconsole/home#Endpoints:).
-
-- Select your VPC endpoint
-- `Actions` menu > select `Manage Security Groups`
-- Select both security groups:
-  - `default`
-  - `my-zilla-iot-proxy-sg`
-- Save the changes
-
 ### Create the IAM security role
 
 > This creates an IAM security role to enable the required AWS services for the <ZillaPlus/> proxies.
 
-Follow the [Create IAM Role](./../aws-services/create-iam-role.md) guide to create an IAM security role with the following parameters:
+Navigate to the [Create role](https://console.aws.amazon.com/iamv2/home#/roles/create) form and fill out the form with the following details:
 
-::: code-tabs
+- Region: `Global`
+- Trusted Entity Type: `AWS Service`
+- Choose a use case: `EC2`
+- Add Permissions policies
 
-@tab Name
+  ```text:no-line-numbers
+  AWSCertificateManagerReadOnly
+  ```
 
-```text:no-line-numbers
-my-zilla-iot-role
-```
+- Role Name:
 
-@tab Policies
+  ```text:no-line-numbers
+  my-zilla-iot-role
+  ```
 
-```text:no-line-numbers
-AWSCertificateManagerReadOnly
-```
+Click `Create role`
 
-:::
+Open the newly created role
 
-- IAM role Inline Policies:
+- Use the `Add permissions` > `Create Inline Policy` action from the dropdown
+- JSON Summary
 
-::: code-tabs
-
-@tab Name
-
-```text:no-line-numbers
-MyZillaIotProxySecretsManagerRead
-```
-
-@tab JSON Summary
-
-```json:no-line-numbers
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "VisualEditor0",
-      "Effect": "Allow",
-      "Action": [
-        "secretsmanager:GetSecretValue",
-        "secretsmanager:DescribeSecret"
-      ],
-      "Resource": [
-        "arn:aws:secretsmanager:*:*:secret:<TLS certificate private key secret name>-*",
-        "arn:aws:secretsmanager:*:*:secret:my-zilla-iot-access-secret-*"
-      ]
-    }
-  ]
-}
-```
-
-:::
+  ```json:no-line-numbers
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "VisualEditor0",
+        "Effect": "Allow",
+        "Action": [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret"
+        ],
+        "Resource": [
+          "arn:aws:secretsmanager:*:*:secret:<TLS certificate private key secret name>*",
+          "arn:aws:secretsmanager:*:*:secret:my-zilla-iot-access-secret*"
+        ]
+      }
+    ]
+  }
+  ```
 
 ::: info If you used a different secret name.
 
-The IAM role Inline policy uses the Secrets Manager ARN regex pattern `arn:aws:secretsmanager:*:*:secret:<Secret Name>-*`. Make sure you replace the resources listed with the appropriate patterns.
+The IAM role Inline policy uses the Secrets Manager ARN regex pattern `arn:aws:secretsmanager:*:*:secret:<Secret Name>*`. Make sure you replace the resources listed with the appropriate patterns.
 
 :::
+
+- Name
+
+  ```text:no-line-numbers
+  MyZillaIotProxySecretsManagerRead
+  ```

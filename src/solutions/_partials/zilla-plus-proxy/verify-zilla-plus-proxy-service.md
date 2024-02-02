@@ -1,9 +1,9 @@
-> This checks that the services and networking were properly configured.
+> This checks that the services and networking were properly configured. These checks aren't necessary if the service is running as expected.
 
 Navigate to the [EC2 running instances dashboard.](https://console.aws.amazon.com/ec2/home#Instances:instanceState=running)
 
 ::: note Check your selected region
-Make sure you have selected the desired region, such as `US East (N. Virginia) us-east-1`.
+Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
 :::
 
 Select either of the <ZillaPlus/> proxies launched by the CloudFormation template to show the details.
