@@ -49,7 +49,7 @@ Parameters:
   2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
   3. Replace with your own custom wildcard DNS pattern mentioned in the [Prerequisites](#prerequisites) of this guide.
   4. This is the ARN of the created secret for the signed certificate's private key mentioned in the [Prerequisites](#prerequisites) of this guide.
-  5. Follow the [Create Key Pair](../aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
+  5. Follow the [Create Key Pair](../../how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
 ### Step 3. Configure stack options: `(use defaults)`
 

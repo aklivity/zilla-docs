@@ -9,7 +9,7 @@ Note the server certificate secret ARN as we will need to reference it from the 
 
 Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
 
-If you need help creating a TLS Server Certificate you can follow the [Create Server Certificate with LetsEncrypt](./../aws-services/create-server-certificate-letsencrypt.md) guide. Use your own custom DNS wildcard domain in place of the example domain `*.example.aklivity.io`.
+If you need help creating a TLS Server Certificate you can follow the [Create Server Certificate with LetsEncrypt](../../how-tos/aws-services/create-server-certificate-letsencrypt.md) guide. Use your own custom DNS wildcard domain in place of the example domain `*.example.aklivity.io`.
 :::
 
 ### AWS services used
@@ -23,5 +23,5 @@ If you need help creating a TLS Server Certificate you can follow the [Create Se
 Default [AWS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) are recommended.
 
 ::: tip
-Check out the [Troubleshooting](./../aws-services/troubleshooting.md) guide if you run into any issues.
+Check out the [Troubleshooting](../../how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
 :::
