@@ -1,7 +1,10 @@
+import { getDirname, path } from "@vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
 import { enSidebar } from "./sidebar/index.js";
 import { enNavbar } from "./navbar/index.js";
 import { base, siteBase, versionKey, hostnameSEO, docsRepo, docsBranch } from "./env.js";
+
+const __dirname = getDirname(import.meta.url);
 
 export default hopeTheme({
   hostname: hostnameSEO,
@@ -66,7 +69,14 @@ export default hopeTheme({
       figure: true,
       imgLazyload: true,
       imgSize: true,
-      include: true,
+      include:  {
+        resolvePath: (file) => {
+          path.resolve(file);
+          if (file.startsWith("@partials"))
+            return file.replace("@partials", path.resolve(__dirname, "../solutions/_partials"));
+          return file;
+        }
+      },
       mark: true,
       tabs: true,
       gfm: true,

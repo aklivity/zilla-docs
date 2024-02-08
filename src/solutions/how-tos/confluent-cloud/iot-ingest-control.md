@@ -17,7 +17,7 @@ The [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodv
 
 ## Prerequisites
 
-<!-- @include: ../../_partials/iot-ingest-control/prerequisites.md  -->
+<!-- @include: @partials/iot-ingest-control/prerequisites.md  -->
 
 ## Create the Confluent Cloud Cluster
 
@@ -51,7 +51,7 @@ You can find your `<cc-bootstrap-server>` in your Confluent Cloud [cluster setti
 
   - Plaintext JSON object:
 
-    ```json
+    ```json:no-line-numbers
     {
       "api_key": "<cc-api-key>",
       "api_secret": "<cc-api-secret>",
@@ -64,7 +64,7 @@ You can find your `<cc-bootstrap-server>` in your Confluent Cloud [cluster setti
 
 ## Zilla proxy AWS resources
 
-<!-- @include: ../../_partials/iot-ingest-control/aws-resources.md  -->
+<!-- @include: @partials/iot-ingest-control/aws-resources.md  -->
 
 ## Subscribe via AWS Marketplace
 
@@ -78,7 +78,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus for Confluent Cloud` to show the manage subscription page.
 
-<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s1-launch.md  -->
+<!-- @include: @partials/iot-ingest-control/cf-stack/s1-launch.md  -->
 
 ### Step 2. Specify stack details
 
@@ -119,20 +119,20 @@ Parameters:
   4. This is the ARN of the created secret for the signed certificate's private key mentioned in the [Prerequisites](#prerequisites) of this guide.
   5. Follow the [Create Key Pair](../../how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
-<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s3-create.md  -->
+<!-- @include: @partials/iot-ingest-control/cf-stack/s3-create.md  -->
 
 ### Configure Global DNS
 
-<!-- @include: ../../_partials/zilla-plus-proxy/configure-global-dns.md  -->
+<!-- @include: @partials/iot-ingest-control/configure-global-dns.md  -->
 
 ## Verify MQTT client connectivity
 
-<!-- @include: ../../_partials/iot-ingest-control/verify-mqtt-client-connectivity.md  -->
+<!-- @include: @partials/iot-ingest-control/verify-mqtt-client-connectivity.md  -->
 
 ## Verify the Zilla proxy service
 
-<!-- @include: ../../_partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
+<!-- @include: @partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodview-eblxkinsqbaks) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](./../aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodview-eblxkinsqbaks) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](../aws-services/manage-cloudformation-stack.md) section.

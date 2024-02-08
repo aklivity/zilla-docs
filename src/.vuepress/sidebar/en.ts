@@ -65,7 +65,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Exporters",
-              prefix: "exporter/",
+              prefix: "exporters/",
               children: "structure",
             },
           ],
@@ -155,10 +155,10 @@ export const enSidebar = sidebar({
           text: "Confluent Cloud",
           link: "how-tos/confluent-cloud/iot-ingest-control.md",
         },
-        // {
-        //   text: "Redpanda",
-        //   link: "how-tos/redpanda/iot-ingest-control.md",
-        // },
+        {
+          text: "Redpanda",
+          link: "how-tos/redpanda/iot-ingest-control.md",
+        },
       ],
     },
     {

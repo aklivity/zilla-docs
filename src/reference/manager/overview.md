@@ -36,7 +36,7 @@ The Zilla Manager config files should be in the `${user.home}/.zpm/` directory.
 
 Configures dependencies to be resolved when packaging the Zilla runtime.
 
-```json
+```json:no-line-numbers
 {
   "repositories": [
     "https://maven.packages.aklivity.io/",
@@ -81,7 +81,7 @@ List of Maven dependencies
 
 Stores the remote repository credentials.
 
-```json
+```json:no-line-numbers
 {
   "credentials": [
     {
@@ -121,7 +121,7 @@ Repository credentials password (encrypted, base64)
 
 Stores the encoded master secret.
 
-```json
+```json:no-line-numbers
 {
   "secret": "..."
 }

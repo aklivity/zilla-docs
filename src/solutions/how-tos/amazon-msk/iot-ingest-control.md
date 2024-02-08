@@ -17,7 +17,7 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 
 ## Prerequisites
 
-<!-- @include: ../../_partials/iot-ingest-control/prerequisites.md  -->
+<!-- @include: @partials/iot-ingest-control/prerequisites.md  -->
 
 ## Create the Amazon MSK cluster
 
@@ -25,7 +25,7 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 
 An MSK cluster is needed for secure remote access via the internet. You can skip this step if you have already created an MSK cluster with equivalent configuration.
 
-Follow the [Create MSK Cluster](./../aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
+Follow the [Create MSK Cluster](../aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
 
 - Cluster Name: `my-msk-cluster`
 - Access control methods: `SASL/SCRAM authentication`
@@ -34,21 +34,13 @@ Follow the [Create MSK Cluster](./../aws-services/create-msk-cluster.md) guide t
 - Route tables: `my-msk-cluster-rtb-*`
 - Internet gateway: `my-msk-cluster-igw`
 
-When the MSK cluster is created you will need to follow the [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) to associate your `AmazonMSK_*` secret to your cluster. There will be a prompt on the cluster summary page to create a new secret or associate an existing one. For the remainder of this doc we will assume the following values for this secret:
+### Create a Secret with SASL/SCRAM authentication params
 
-- Use `Plaintext` value:
-
-  ```json:no-line-numbers
-  {"username":"alice","password":"alice-secret"}
-  ```
-
-- Encryption key: `<Customer managed key>`
-- Secret Name: `my-zilla-iot-access-secret`
-- Review and store the secret
+<!-- @include: @partials/zilla-plus-proxy/msk-access-secret.md  -->
 
 ## Zilla proxy AWS resources
 
-<!-- @include: ../../_partials/iot-ingest-control/aws-resources.md  -->
+<!-- @include: @partials/iot-ingest-control/aws-resources.md  -->
 
 ## Subscribe via AWS Marketplace
 
@@ -62,7 +54,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus for Amazon MSK` to show the manage subscription page.
 
-<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s1-launch.md  -->
+<!-- @include: @partials/iot-ingest-control/cf-stack/s1-launch.md  -->
 
 ### Step 2. Specify stack details
 
@@ -103,20 +95,20 @@ Parameters:
   4. This is the ARN of the created secret for the signed certificate's private key mentioned in the [Prerequisites](#prerequisites) of this guide.
   5. Follow the [Create Key Pair](../../how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
-<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s3-create.md  -->
+<!-- @include: @partials/iot-ingest-control/cf-stack/s3-create.md  -->
 
 ### Configure Global DNS
 
-<!-- @include: ../../_partials/zilla-plus-proxy/configure-global-dns.md  -->
+<!-- @include: @partials/iot-ingest-control/configure-global-dns.md  -->
 
 ## Verify MQTT Client Connectivity
 
-<!-- @include: ../../_partials/iot-ingest-control/verify-mqtt-client-connectivity.md  -->
+<!-- @include: @partials/iot-ingest-control/verify-mqtt-client-connectivity.md  -->
 
 ## Verify the Zilla proxy Service
 
-<!-- @include: ../../_partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
+<!-- @include: @partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](./aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](../aws-services/manage-cloudformation-stack.md) section.

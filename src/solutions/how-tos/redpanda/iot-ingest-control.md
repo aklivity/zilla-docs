@@ -17,7 +17,7 @@ The [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4
 
 ## Prerequisites
 
-<!-- @include: ../../_partials/iot-ingest-control/prerequisites.md  -->
+<!-- @include: @partials/iot-ingest-control/prerequisites.md  -->
 
 ## Create the Redpanda cluster
 
@@ -47,7 +47,7 @@ Follow the [Store a new secret](https://console.aws.amazon.com/secretsmanager/ne
 
   - Plaintext JSON object:
 
-    ```json
+    ```json:no-line-numbers
     {
       "sasl_username": "<rp-username>",
       "sasl_password": "<rp-password>",
@@ -60,7 +60,7 @@ Follow the [Store a new secret](https://console.aws.amazon.com/secretsmanager/ne
 
 ## Zilla proxy AWS resources
 
-<!-- @include: ../../_partials/iot-ingest-control/aws-resources.md  -->
+<!-- @include: @partials/iot-ingest-control/aws-resources.md  -->
 
 ## Subscribe via AWS Marketplace
 
@@ -74,7 +74,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus for Redpanda` to show the manage subscription page.
 
-<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s1-launch.md  -->
+<!-- @include: @partials/iot-ingest-control/cf-stack/s1-launch.md  -->
 
 ### Step 2. Specify stack details
 
@@ -115,20 +115,20 @@ Parameters:
   4. This is the ARN of the created secret for the signed certificate's private key mentioned in the [Prerequisites](#prerequisites) of this guide.
   5. Follow the [Create Key Pair](../../how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
-<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s3-create.md  -->
+<!-- @include: @partials/iot-ingest-control/cf-stack/s3-create.md  -->
 
 ### Configure Global DNS
 
-<!-- @include: ../../_partials/zilla-plus-proxy/configure-global-dns.md  -->
+<!-- @include: @partials/iot-ingest-control/configure-global-dns.md  -->
 
 ## Verify MQTT Client Connectivity
 
-<!-- @include: ../../_partials/iot-ingest-control/verify-mqtt-client-connectivity.md  -->
+<!-- @include: @partials/iot-ingest-control/verify-mqtt-client-connectivity.md  -->
 
 ## Verify the Zilla proxy Service
 
-<!-- @include: ../../_partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
+<!-- @include: @partials/zilla-plus-proxy/verify-zilla-plus-proxy-service.md  -->
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](./../aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](../aws-services/manage-cloudformation-stack.md) section.
