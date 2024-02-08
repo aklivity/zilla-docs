@@ -1,7 +1,4 @@
 ---
-order: 1
-category:
-  - config
 description: Defines the Zilla runtime engine configuration in a zilla.yaml
 ---
 

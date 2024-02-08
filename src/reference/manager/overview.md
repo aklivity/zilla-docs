@@ -1,6 +1,4 @@
 ---
-category:
-  - config
 description: Defines the Zilla manager engine configuration in ${user.home}/.zpm/
 ---
 
