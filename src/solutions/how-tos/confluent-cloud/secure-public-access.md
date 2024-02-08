@@ -342,7 +342,7 @@ netstat -ntlp
 ```
 
 ```output:no-line-numbers
-tcp6    0    0 :::9092    :::*    LISTEN    1726/.zpm/image/bin 
+tcp6    0    0 :::9092    :::*    LISTEN    1726/.zpm/image/bin
 ```
 
 @tab Check Zilla Logs
@@ -363,7 +363,7 @@ systemd[1]: Started zilla-plus.service - Zilla Plus.
 All output from cloud-init is captured by default to `/var/log/cloud-init-output.log`. There shouldn't be any errors in this log.
 
 ```bash:no-line-numbers
-cat /var/log/cloud-init-output.log 
+cat /var/log/cloud-init-output.log
 ```
 
 ```output:no-line-numbers
@@ -411,47 +411,11 @@ Repeat these steps for each of the other <ZillaPlus/> proxies launched by the Cl
 
 ### Configure Global DNS
 
-> This ensures that any new Kafka brokers added to the Confluent Cloud cluster can still be reached via the <ZillaPlus/> proxy.
-
-When using a wildcard DNS name for your own domain, such as `*.example.aklivity.io` then the DNS entries are setup in your DNS provider.
-
-Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation). Then select the `my-zilla-proxy` stack to show the details.
-
-::: note Check your selected region
-Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
-:::
-
-In the stack `Outputs` tab, find the public DNS name of the `NetworkLoadBalancer.`
-
-You need to create a `CNAME` record mapping your public DNS wildcard pattern to the public DNS name of the Network Load Balancer.
-
-::: info
-You might prefer to use an Elastic IP address for each NLB public subnet, providing DNS targets for your `CNAME` record that can remain stable even after restarting the stack.
-:::
+<!-- @include: ../../_partials/secure-public-access/configure-global-dns.md  -->
 
 ## Verify Kafka Client Connectivity
 
-To verify that we have successfully enabled public internet connectivity to our Confluent Cloud cluster from the local development environment, we will use a generic Kafka client to create a topic, publish messages and then subscribe to receive these messages from our Confluent Cloud cluster via the public internet.
-
-### Install the Kafka Client
-
-First, we must install a Java runtime that can be used by the Kafka client.
-
-```bash:no-line-numbers
-sudo yum install java-1.8.0
-```
-
-Now we are ready to install the Kafka client:
-
-```bash:no-line-numbers
-wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.13-2.8.0.tgz
-tar -xzf kafka_2.13-2.8.0.tgz
-cd kafka_2.13-2.8.0
-```
-
-::: tip
-We use a generic Kafka client here, however the setup for any Kafka client, including [KaDeck](https://www.xeotek.com/apache-kafka-monitoring-management/), [Conduktor](https://www.conduktor.io/download/), and [akhq.io](https://akhq.io/) will be largely similar. With the <ZillaPlus/> proxy you can use these GUI Kafka clients to configure and monitor your Confluent Cloud applications, clusters and streams.
-:::
+<!-- @include: ../../_partials/secure-public-access/verify-kafka-connect.md  -->
 
 ### Configure the Kafka Client
 

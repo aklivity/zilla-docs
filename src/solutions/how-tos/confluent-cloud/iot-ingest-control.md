@@ -48,13 +48,14 @@ You can find your `<cc-bootstrap-server>` in your Confluent Cloud [cluster setti
 
 - Secret Type: `Other type of secret`
 - Value:
+
   - Plaintext JSON object:
 
     ```json
     {
-      "api_key":"<cc-api-key>",
-      "api_secret":"<cc-api-secret>",
-      "bootstrap_server":"<cc-bootstrap-server>",
+      "api_key": "<cc-api-key>",
+      "api_secret": "<cc-api-secret>",
+      "bootstrap_server": "<cc-bootstrap-server>"
     }
     ```
 
@@ -77,7 +78,52 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 Navigate to your [AWS Marketplace](https://console.aws.amazon.com/marketplace) subscriptions and select `Zilla Plus for Confluent Cloud` to show the manage subscription page.
 
-<!-- @include: ../../_partials/iot-ingest-control/launch-cf-stack.md  -->
+<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s1-launch.md  -->
+
+### Step 2. Specify stack details
+
+::: code-tabs
+
+@tab Stack name
+
+```text:no-line-numbers
+my-zilla-iot-proxy
+```
+
+:::
+
+Parameters:
+
+- Network Configuration
+  - VPC: `my-zilla-iot-proxy-vpc`
+  - Subnets: `my-zilla-iot-proxy-subnet-public-1a` `my-zilla-iot-proxy-subnet-public-1b`
+- Confluent Cloud Configuration
+  - Access Credentials and Bootstrap Server Secret ARN: `<my-zilla-iot-access-secret secret ARN>` \*1
+  - Kafka Topics:
+    - messages: `mqtt-messages`
+    - retained: `mqtt-retained`
+    - sessions: `mqtt-sessions`
+- Zilla Plus Configuration
+  - Instance count: `2`
+  - Instance type: `t3.small` \*2
+  - Role: `my-zilla-iot-role`
+  - Security Groups: `my-zilla-iot-proxy-sg`
+  - Public Port: `8883`
+  - Public Wildcard DNS: `*.example.aklivity.io` \*3
+  - Public TLS Certificate Key: `<TLS certificate private key secret ARN>` \*4
+  - Key pair for SSH access: `my-key-pair` \*5
+- \*Configuration Reference
+  1. This is the ARN for the secret created in the the [Create a Secret with SASL/SCRAM authentication params](#create-a-secret-with-sasl-scram-authentication-params) step of this guide.
+  2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
+  3. Replace with your own custom wildcard DNS pattern mentioned in the [Prerequisites](#prerequisites) of this guide.
+  4. This is the ARN of the created secret for the signed certificate's private key mentioned in the [Prerequisites](#prerequisites) of this guide.
+  5. Follow the [Create Key Pair](../../how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
+
+<!-- @include: ../../_partials/iot-ingest-control/cf-stack/s3-create.md  -->
+
+### Configure Global DNS
+
+<!-- @include: ../../_partials/zilla-plus-proxy/configure-global-dns.md  -->
 
 ## Verify MQTT client connectivity
 

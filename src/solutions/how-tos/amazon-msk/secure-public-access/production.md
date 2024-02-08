@@ -389,47 +389,11 @@ Repeat these steps for each of the other <ZillaPlus/> proxies launched by the Cl
 
 ### Configure Global DNS
 
-> This ensures that any new Kafka brokers added to the MSK cluster can still be reached via the <ZillaPlus/> proxy.
-
-When using a wildcard DNS name for your own domain, such as `*.example.aklivity.io` then the DNS entries are setup in your DNS provider.
-
-Navigate to the [CloudFormation console](https://console.aws.amazon.com/cloudformation). Then select the `my-zilla-proxy` stack to show the details.
-
-::: note Check your selected region
-Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
-:::
-
-In the stack `Outputs` tab, find the public DNS name of the `NetworkLoadBalancer.`
-
-You need to create a `CNAME` record mapping your public DNS wildcard pattern to the public DNS name of the Network Load Balancer.
-
-::: info
-You might prefer to use an Elastic IP address for each NLB public subnet, providing DNS targets for your `CNAME` record that can remain stable even after restarting the stack.
-:::
+<!-- @include: ../../../_partials/secure-public-access/configure-global-dns.md  -->
 
 ## Verify Kafka Client Connectivity
 
-To verify that we have successfully enabled public internet connectivity to our MSK cluster from the local development environment, we will use a generic Kafka client to create a topic, publish messages and then subscribe to receive these messages from our MSK cluster via the public internet.
-
-### Install the Kafka Client
-
-First, we must install a Java runtime that can be used by the Kafka client.
-
-```bash:no-line-numbers
-sudo yum install java-1.8.0
-```
-
-Now we are ready to install the Kafka client:
-
-```bash:no-line-numbers
-wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.13-2.8.0.tgz
-tar -xzf kafka_2.13-2.8.0.tgz
-cd kafka_2.13-2.8.0
-```
-
-::: tip
-We use a generic Kafka client here, however the setup for any Kafka client, including [KaDeck](https://www.xeotek.com/apache-kafka-monitoring-management/), [Conduktor](https://www.conduktor.io/download/), and [akhq.io](https://akhq.io/) will be largely similar. With the <ZillaPlus/> proxy you can use these GUI Kafka clients to configure and monitor your MSK applications, clusters and streams.
-:::
+<!-- @include: ../../../_partials/secure-public-access/verify-kafka-connect.md  -->
 
 ### Configure the Kafka Client
 
@@ -473,11 +437,7 @@ Replace these TLS bootstrap server names accordingly for your own custom wildcar
 
 #### Create a Topic
 
-Use the Kafka client to create a topic called `zilla-proxy-test`, replacing `<tls-bootstrap-server-names>` in the command below with the TLS proxy names of your <ZillaPlus/> proxy:
-
-```bash:no-line-numbers
-bin/kafka-topics.sh --create --topic zilla-proxy-test --partitions 3 --replication-factor 3 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
-```
+<!-- @include: ../../../_partials/secure-public-access/create-topic.md  -->
 
 ::: tip A quick summary of what just happened
 
@@ -490,35 +450,7 @@ bin/kafka-topics.sh --create --topic zilla-proxy-test --partitions 3 --replicati
 
 :::
 
-#### Publish messages
-
-Publish two messages to the newly created topic via the following producer command:
-
-```bash:no-line-numbers
-bin/kafka-console-producer.sh --topic zilla-proxy-test --producer.config client.properties --broker-list <tls-bootstrap-server-names>
-```
-
-A prompt will appear for you to type in the messages:
-
-```output:no-line-numbers
->This is my first event
->This is my second event
-```
-
-#### Receive messages
-
-Read these messages back via the following consumer command:
-
-```bash:no-line-numbers
-bin/kafka-console-consumer.sh --topic zilla-proxy-test --from-beginning --consumer.config client.properties --bootstrap-server <tls-bootstrap-server-names>
-```
-
-You should see the `This is my first event` and `This is my second event` messages.
-
-```output:no-line-numbers
-This is my first event
-This is my second event
-```
+<!-- @include: ../../../_partials/secure-public-access/send-message.md  -->
 
 ::: info Monitor the <ZillaPlus/> proxy
 

@@ -148,6 +148,10 @@ export const enSidebar = sidebar({
           link: "concepts/kafka-proxies/iot-ingest-control.md",
         },
         {
+          text: "Amazon MSK",
+          link: "how-tos/amazon-msk/iot-ingest-control.md",
+        },
+        {
           text: "Confluent Cloud",
           link: "how-tos/confluent-cloud/iot-ingest-control.md",
         },
