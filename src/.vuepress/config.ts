@@ -1,8 +1,7 @@
-import { viteBundler } from '@vuepress/bundler-vite'
+import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { getDirname, path } from "vuepress/utils";
-import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
-import { autoCatalogPlugin } from "vuepress-plugin-auto-catalog";
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { googleAnalyticsPlugin } from "@vuepress/plugin-google-analytics";
 import theme from "./theme.js";
 import { base, siteBase, dest, versionKey } from "./env.js";
@@ -14,7 +13,7 @@ export default defineUserConfig({
     viteOptions: {},
     vuePluginOptions: {},
   }),
-  pagePatterns: ['**/*.md', '!.vuepress', '!node_modules', '!**/_partials'],
+  pagePatterns: ["**/*.md", "!.vuepress", "!node_modules", "!**/_partials"],
   base: `/${base}/`,
   dest,
 
@@ -60,9 +59,6 @@ export default defineUserConfig({
       components: {
         ZillaPlus: path.resolve(__dirname, "./components/ZillaPlus.vue"),
       },
-    }),
-    autoCatalogPlugin({
-      level: 1
     }),
   ],
   markdown: {

@@ -310,7 +310,6 @@ export const enSidebar = sidebar({
         "config/telemetry/",
         "config/catalogs/",
         "config/models/",
-        "troubleshooting/aws.md",
       ],
     },
   ],

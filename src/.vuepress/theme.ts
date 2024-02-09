@@ -2,7 +2,14 @@ import { getDirname, path } from "vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
 import { enSidebar } from "./sidebar/index.js";
 import { enNavbar } from "./navbar/index.js";
-import { base, siteBase, versionKey, hostnameSEO, docsRepo, docsBranch } from "./env.js";
+import {
+  base,
+  siteBase,
+  versionKey,
+  hostnameSEO,
+  docsRepo,
+  docsBranch,
+} from "./env.js";
 
 const __dirname = getDirname(import.meta.url);
 
@@ -47,6 +54,9 @@ export default hopeTheme({
   },
 
   plugins: {
+    catalog: {
+      level: 1,
+    },
     docsearch: {
       appId: "H6RNUBSB6E",
       indexName: "aklivity",
@@ -65,13 +75,16 @@ export default hopeTheme({
       hint: true,
       figure: true,
       imgLazyload: true,
-      include:  {
+      include: {
         resolvePath: (file) => {
           path.resolve(file);
           if (file.startsWith("@partials"))
-            return file.replace("@partials", path.resolve(__dirname, "../solutions/_partials"));
+            return file.replace(
+              "@partials",
+              path.resolve(__dirname, "../solutions/_partials")
+            );
           return file;
-        }
+        },
       },
       mark: true,
       tabs: true,
