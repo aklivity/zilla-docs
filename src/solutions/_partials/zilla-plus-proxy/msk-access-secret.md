@@ -15,3 +15,7 @@ When the MSK cluster is created you will need to follow the [Sign-in credentials
 - Encryption key: `<Customer managed key>`
 - Secret Name: `AmazonMSK_access`
 - Review and store the secret
+
+::: danger Important
+A secret created with the default AWS KMS key cannot be used with an Amazon MSK cluster.
+:::

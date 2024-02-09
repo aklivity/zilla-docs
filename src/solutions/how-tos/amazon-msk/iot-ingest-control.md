@@ -27,16 +27,51 @@ An MSK cluster is needed for secure remote access via the internet. You can skip
 
 Follow the [Create MSK Cluster](../aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
 
-- Cluster Name: `my-msk-cluster`
+- Cluster Name: `my-zilla-iot-msk-cluster`
 - Access control methods: `SASL/SCRAM authentication`
-- VPC: `my-msk-cluster-vpc`
-- Subnet: `my-msk-cluster-subnet-*`
-- Route tables: `my-msk-cluster-rtb-*`
-- Internet gateway: `my-msk-cluster-igw`
+
+With a running MSK Cluster you will need to create these topics. You can reference this AWS developer guide for help [creating topics](https://docs.aws.amazon.com/msk/latest/developerguide/create-topic.html).
+
+- Topics:
+
+  - With cleanup policy "delete" to store MQTT messages:
+
+  ```text:no-line-numbers
+  mqtt-messages
+  ```
+
+  - With cleanup policy "compact" to store MQTT retained messages:
+
+  ```text:no-line-numbers
+  mqtt-retained
+  ```
+
+  - With cleanup policy "compact" to store MQTT sessions:
+
+  ```text:no-line-numbers
+  mqtt-sessions
+  ```
 
 ### Create a Secret with SASL/SCRAM authentication params
 
 <!-- @include: @partials/zilla-plus-proxy/msk-access-secret.md  -->
+
+Go to the newly created secret and under `Resource permissions` > select `Edit Permissions`. Add the below `AWSKafkaResourcePolicy` and replace the resource secret name with your SASL/SCRAM auth secret name.
+
+```json:no-line-numbers
+{
+  "Version" : "2012-10-17",
+  "Statement" : [ {
+    "Sid" : "AWSKafkaResourcePolicy",
+    "Effect" : "Allow",
+    "Principal" : {
+      "Service" : "kafka.amazonaws.com"
+    },
+    "Action" : "secretsmanager:getSecretValue",
+    "Resource" : "arn:aws:secretsmanager:*:*:secret:<SASL/SCRAM auth secret name>*"
+  } ]
+}
+```
 
 ## Zilla proxy AWS resources
 

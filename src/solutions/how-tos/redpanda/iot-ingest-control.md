@@ -28,9 +28,24 @@ The [Redpanda Cloud Quickstart](https://docs.redpanda.com/current/get-started/qu
 - Cluster Name: `my-zilla-iot-rp-cluster`
 - Cluster Type: any
 - Create Topics:
-  - With cleanup policy "delete" to store MQTT messages: `mqtt-messages`
-  - With cleanup policy "compact" to store MQTT retained messages: `mqtt-retained`
-  - With cleanup policy "compact" to store MQTT sessions: `mqtt-sessions`
+
+  - With cleanup policy "delete" to store MQTT messages:
+
+  ```text:no-line-numbers
+  mqtt-messages
+  ```
+
+  - With cleanup policy "compact" to store MQTT retained messages:
+
+  ```text:no-line-numbers
+  mqtt-retained
+  ```
+
+  - With cleanup policy "compact" to store MQTT sessions:
+
+  ```text:no-line-numbers
+  mqtt-sessions
+  ```
 
 ### Create an API key
 
