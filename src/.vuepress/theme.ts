@@ -1,4 +1,4 @@
-import { getDirname, path } from "@vuepress/utils";
+import { getDirname, path } from "vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
 import { enSidebar } from "./sidebar/index.js";
 import { enNavbar } from "./navbar/index.js";
@@ -56,9 +56,6 @@ export default hopeTheme({
         facetFilters: [`version:${versionKey}`, `product:${siteBase}`],
       },
     },
-    autoCatalog: {
-      level: 1
-    },
     mdEnhance: {
       align: true,
       attrs: true,
@@ -68,7 +65,6 @@ export default hopeTheme({
       hint: true,
       figure: true,
       imgLazyload: true,
-      imgSize: true,
       include:  {
         resolvePath: (file) => {
           path.resolve(file);
