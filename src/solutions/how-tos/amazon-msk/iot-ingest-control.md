@@ -109,7 +109,8 @@ Parameters:
   - VPC: `my-zilla-iot-proxy-vpc`
   - Subnets: `my-zilla-iot-proxy-subnet-public-1a` `my-zilla-iot-proxy-subnet-public-1b`
 - Amazon MSK Configuration
-  - Access Credentials and Bootstrap Server Secret ARN: `<my-zilla-iot-access-secret secret ARN>` \*1
+  - Access Credentials Secret ARN: `<my-zilla-iot-access-secret secret ARN>` \*1
+  - Bootstrap Servers: `<my-zilla-iot-msk-cluster bootstrap servers>`
   - Kafka Topics:
     - messages: `mqtt-messages`
     - retained: `mqtt-retained`
