@@ -45,7 +45,7 @@ function getObjProps(attr, obj, reqKeys) {
                 obj[k].patternProperties[Object.keys(obj[k].patternProperties)[0]];
             if (ppObj.properties)
                 props.push(...getObjProps(`${k}`, ppObj.properties, ppObj.properties));
-        }        
+        }
         if (obj[k].additionalProperties && obj[k].additionalProperties.oneOf) {
             obj[k].additionalProperties.oneOf
                 .filter(({ properties }) => !!properties)
@@ -76,28 +76,29 @@ function getObjProps(attr, obj, reqKeys) {
         var req = !!reqKeys?.includes(k);
         var path = [attr, k].filter((s) => !!s).join(".");
         if (obj[k].properties) {
-            props.push([path, "object", req]);
+            props.push([path, "object", req, obj[k].const]);
         } else if (obj[k].additionalProperties) {
             if (obj[k].additionalProperties.oneOf) {
                 props.push([
                     path,
                     obj[k].additionalProperties.oneOf.map(({ type }) => type).join(","),
                     req,
+                    obj[k].const,
                 ]);
             } else {
-                props.push([path, obj[k].additionalProperties.type, req]);
+                props.push([path, obj[k].additionalProperties.type, req, obj[k].const]);
             }
         } else if (obj[k].items) {
-            props.push([path, "array", req]);
+            props.push([path, "array", req, obj[k].const]);
         } else if (obj[k].type) {
-            if (obj[k].const) path = `${path} (${obj[k].const})`;
-            props.push([path, obj[k].type, req]);
+            // if (obj[k].const) path = `${path} (${obj[k].const})`;
+            props.push([path, obj[k].type, req, obj[k].const]);
         } else if (obj[k].const) {
-            props.push([`${path} (${obj[k].const})`, "string", req]);
+            props.push([`${path}`, "string", req, obj[k].const]);
         } else if (obj[k].enum) {
-            props.push([path, obj[k].enum.join(","), req]);
+            props.push([path, obj[k].enum.join(","), req, obj[k].const]);
         } else if (obj[k].const) {
-            props.push([path, obj[k].const, req]);
+            props.push([path, obj[k].const, req, obj[k].const]);
         } else if (obj[k].oneOf) {
             props.push([
                 path,
@@ -106,6 +107,7 @@ function getObjProps(attr, obj, reqKeys) {
                     .map(({ type }) => type)
                     .join(","),
                 req,
+                obj[k].const,
             ]);
         }
     });
@@ -116,6 +118,7 @@ var sections = ["binding", "guard", "vault", "catalog"]
     .map((type) =>
         schema.$defs[type]?.allOf.map(({ if: fi, then }) => ({
             type,
+            folder: `${type}s`,
             name: fi.properties.type.const,
             props: { ...(schema.$defs[type].properties || {}), ...then.properties },
         }))
@@ -124,53 +127,42 @@ var sections = ["binding", "guard", "vault", "catalog"]
 
 sections.push(
     ...schema.$defs.telemetry.exporter?.allOf.map(({ if: fi, then }) => ({
-        type: "telemetry.exporter",
+        type: "exporter",
+        folder: "telemetry.exporters",
         name: fi.properties.type.const,
         props: then.properties,
     }))
 );
 
-sections.forEach(({ type, name, props }) => {
+sections.forEach(({ type, folder, name, props }) => {
     delete props.type;
     var attrs = getObjProps(null, props, []);
-    var filename = `src/reference/config/${type.replaceAll(".", "/")}s/${type
+    var filename = `src/reference/config/${folder.replaceAll(".", "/")}/${type
         .split(".")
         .findLast((n) => !!n)}-${name}.md`;
-    console.log('parsing', filename)
+    // console.log('parsing', filename)
     if (
         fs.existsSync(filename)
     ) {
         var headers = getPageProps(
             marked.lexer(
-                fs
-                    .readFileSync(
-                        `src/reference/config/${type.replaceAll(
-                            ".",
-                            "/"
-                        )}s/${type}-${name}.md`,
-                        "utf8"
-                    )
+                fs.readFileSync(filename, "utf8")
                     .toString()
             )
         ).sort();
         var sorted = attrs.map((a) => a[0]).sort();
-        console.log(type, name, sorted, headers);
-        console.log(
-            type,
-            name,
-            "add",
-            sorted.filter(
-                (x) =>
-                    !headers.includes(x) &&
-                    !["telemetry", "telemetry.metrics", "type"].includes(x)
-            ),
-            "remove",
-            headers.filter(
-                (x) =>
-                    !sorted.includes(x) &&
-                    !["routes[].exit", "routes[].guarded"].includes(x)
-            )
+        // console.log(type, name, sorted, headers);
+        var addList = sorted.filter((x) =>
+            !headers.includes(x) &&
+            !["telemetry", "telemetry.metrics", "type", "catalog"].includes(x)
         );
+        var removeList = headers.filter((x) =>
+            !sorted.includes(x) &&
+            !["routes[].exit", "routes[].guarded"].includes(x)
+        );
+        if(addList.length) console.log(type,name,"add",addList);
+        if(removeList.length) console.log(type,name,"remove",removeList);
+        // if (name == "mqtt" ) console.log(sorted, headers)
     } else {
         errors.push(`missing ${name}`);
     }
