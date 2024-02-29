@@ -163,7 +163,7 @@ Kafka request message headers injected when adapting `http` request-response str
 
 ##### correlation.headers
 
-> `object`
+> `map` of `name: value` properties
 
 Kafka request message reply to and correlation id header names injected when adapting `http` request-response streams to `kafka` topic streams.
 
@@ -353,7 +353,7 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 ##### filters[].headers
 
-> `object`
+> `map` of `name: value` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
@@ -428,7 +428,7 @@ Kafka message key, optionally referencing path parameter such as `${params.id}`.
 
 #### with.overrides
 
-> `object`
+> `map` of `name: value` properties
 
 Kafka message headers, with values optionally referencing path parameter.
 
@@ -440,15 +440,11 @@ Kafka reply-to topic name.
 
 #### with.async
 
-> `object`
+> `map` of `name: value` properties
 
-Allows an HTTP response to be retrieved asynchronously
+Allows an HTTP response to be retrieved asynchronously.
 
-##### async.location
-
-> `string`
-
-Path where the async result can be fetched, with values optionally referencing path parameter or `${correlationId}`.
+A `location: <path>` property can be used to define the path where an async result can be fetched, with the `<path>` value optionally referencing route path parameters or the `${correlationId}`.
 
 ---
 

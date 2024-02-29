@@ -205,7 +205,7 @@ Exposed response headers.
 
 ### options.authorization
 
-> `object` as map of named properties
+> `object` as map of named objects
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -231,7 +231,7 @@ Named cookie value pattern with `{credentials}`.
 
 ##### credentials.headers
 
-> `object` as map of `string`
+> `map` of `name: value` properties
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
@@ -302,7 +302,7 @@ routes:
 
 #### when[].headers
 
-> `object` of name-value headers
+> `map` of `name: value` properties
 
 Header name value pairs (all match).
 

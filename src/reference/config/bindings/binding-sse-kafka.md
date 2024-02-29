@@ -171,13 +171,9 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 ##### filters[].headers
 
-> `object`
+> `map` of `name: value` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
-
-##### filters[].event
-
-> `object`
 
 #### with.event
 

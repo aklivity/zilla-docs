@@ -192,7 +192,7 @@ Kafka request message headers injected when adapting `grpc` request-response str
 
 ##### correlation.headers
 
-> `object`
+> `map` of `name: value` properties
 
 Kafka request message reply to and correlation id header names injected when adapting `grpc` request-response streams to `kafka` topic streams.
 
@@ -303,7 +303,7 @@ Pattern matching the fully qualified name of a `grpc` service method, in the for
 
 #### when[].metadata
 
-> `object` of name-value headers
+> `map` of `name: value` properties
 
 Metadata header name value pairs (all match).
 
@@ -382,7 +382,7 @@ The filter criteria for the Kafka message key.
 
 ##### filters[].headers
 
-> `object`
+> `map` of `name: value` properties
 
 The filter criteria for the Kafka message headers.
 
