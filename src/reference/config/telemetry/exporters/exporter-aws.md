@@ -20,7 +20,7 @@ exporters:
     type: aws
     options:
       metrics:
-        namespace: zilla
+        namespace: zilla-metrics
         interval: 20
       logs:
         group: zilla-log-group
@@ -58,7 +58,7 @@ Specifies an exporter for transmitting Custom Metrics and Log Events to AWS Clou
 ```yaml
 options:
   metrics:
-    namespace: zilla
+    namespace: zilla-metrics
     interval: 20
   logs:
     group: zilla-log-group
