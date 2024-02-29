@@ -60,8 +60,8 @@ Conditional routes based on `http` request headers are used to route these netwo
 - [options.versions](#options-versions)
 - [options.access-control](#options-access-control)
   - [access-control.policy\*](#access-control-policy)
-  - [access-control.policy (same-origin)](#access-control-policy-same-origin)
-  - [access-control.policy (cross-origin)](#access-control-policy-cross-origin)
+  - [access-control.policy: same-origin](#access-control-policy-same-origin)
+  - [access-control.policy: cross-origin](#access-control-policy-cross-origin)
   - [access-control.allow](#access-control-allow)
     - [allow.origins](#allow-origins)
     - [allow.methods](#allow-methods)
@@ -130,7 +130,7 @@ Access control policy for the `HTTP` protocol.
 
 Supported access control policies.
 
-#### access-control.policy (same-origin)
+#### access-control.policy: same-origin
 
 > `string`
 
@@ -142,7 +142,7 @@ options:
     policy: same-origin
 ```
 
-#### access-control.policy (cross-origin)
+#### access-control.policy: cross-origin
 
 > `object`
 

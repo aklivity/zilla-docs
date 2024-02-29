@@ -93,17 +93,17 @@ A corresponding `routes[].when` object with matching `GET` method and `location`
   - [when\[\].path](#when-path)
 - [routes\[\].exit\*](#routes-exit)
 - [routes\[\].with](#routes-with)
-- [with.capability (fetch)](#with-capability-fetch)
+- [with.capability: fetch](#with-capability-fetch)
   - [with.topic](#with-topic)
   - [with.filters](#with-filters)
     - [filters\[\].key](#filters-key)
     - [filters\[\].headers](#filters-headers)
   - [with.merge](#with-merge)
-    - [merge.content-type](#merge-content-type)
+    - [merge.content-type: application/json](#merge-content-type-application-json)
     - [merge.patch](#merge-patch)
-    - [patch.initial](#patch-initial)
-    - [patch.path](#patch-path)
-- [with.capability (produce)](#with-capability-produce)
+    - [patch.initial: \[\]](#patch-initial)
+    - [patch.path: /-](#patch-path)
+- [with.capability: produce](#with-capability-produce)
   - [with.topic](#with-topic-1)
   - [with.acks](#with-acks)
   - [with.key](#with-key)
@@ -314,7 +314,7 @@ with:
   capability: produce
 ```
 
-### with.capability (fetch)
+### with.capability: fetch
 
 > `object`
 
@@ -363,9 +363,9 @@ Message headers, with value optionally referencing path parameter such as `${par
 
 Merge multiple Kafka messages into a unified HTTP response. Kafka merge configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### merge.content-type
+##### merge.content-type: application/json
 
-> `const` "application/json"
+> `const` | no other value is valid
 
 Content type of merged HTTP response.
 
@@ -379,19 +379,19 @@ Describes how to patch initial HTTP response to include one or more Kafka messag
 
   Kafka merge patch configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### patch.initial
+##### patch.initial: []
 
-> `string`
+> `const` | no other value is valid
 
 Initial JSON value.
 
-##### patch.path
+##### patch.path: /-
 
-> `const` "/-"
+> `const` | no other value is valid
 
 JSON Patch path to include each Kafka message in unified HTTP response.
 
-### with.capability (produce)
+### with.capability: produce
 
 > `object`
 

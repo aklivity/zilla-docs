@@ -91,10 +91,10 @@ function getObjProps(attr, obj, reqKeys) {
         } else if (obj[k].items) {
             props.push([path, "array", req, obj[k].const]);
         } else if (obj[k].type) {
-            // if (obj[k].const) path = `${path} (${obj[k].const})`;
+            if (obj[k].const) path = `${path}: ${obj[k].const}`;
             props.push([path, obj[k].type, req, obj[k].const]);
         } else if (obj[k].const) {
-            props.push([`${path}`, "string", req, obj[k].const]);
+            props.push([`${path}: ${obj[k].const}`, "string", req, obj[k].const]);
         } else if (obj[k].enum) {
             props.push([path, obj[k].enum.join(","), req, obj[k].const]);
         } else if (obj[k].const) {

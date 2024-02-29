@@ -104,12 +104,12 @@ Requests including an `idempotency-key` `grpc` metadata header can be replayed a
     - [metadata.base64](#metadata-base64)
 - [routes\[\].exit\*](#routes-exit)
 - [routes\[\].with\*](#routes-with)
-- [with.capability (fetch)](#with-capability-fetch)
+- [with.capability: fetch](#with-capability-fetch)
   - [with.topic](#with-topic)
   - [with.filters](#with-filters)
     - [filters\[\].key](#filters-key)
     - [filters\[\].headers](#filters-headers)
-- [with.capability (produce)](#with-capability-produce)
+- [with.capability: produce](#with-capability-produce)
   - [with.topic](#with-topic-1)
   - [with.acks](#with-acks)
   - [with.key](#with-key)
@@ -346,7 +346,7 @@ with:
   capability: produce
 ```
 
-### with.capability (fetch)
+### with.capability: fetch
 
 > `object`
 
@@ -386,7 +386,7 @@ The filter criteria for the Kafka message key.
 
 The filter criteria for the Kafka message headers.
 
-### with.capability (produce)
+### with.capability: produce
 
 > `object`
 
