@@ -9,7 +9,7 @@ tag:
 
 # openapi-asyncapi Binding
 
-Zilla runtime openapi-asyncapi binding.
+Zilla runtime `openapi-asyncapi` binding.
 
 ```yaml {2}
 openapi_asyncapi_proxy:
@@ -18,20 +18,20 @@ openapi_asyncapi_proxy:
   options:
     specs:
       openapi:
-        openapi-id: spec/openapi.yaml
+        my-openapi-spec: spec/openapi.yaml
       asyncapi:
-        asyncapi-id: spec/asyncapi.yaml
+        my-asyncapi-spec: spec/asyncapi.yaml
   routes:
     - when:
-        - api-id: openapi-id
+        - api-id: my-openapi-spec
       exit: asyncapi_client
       with:
-        api-id: asyncapi-id
+        api-id: my-asyncapi-spec
 ```
 
 ## Summary
 
-The `proxy` kind `openapi-asyncapi` binding adapts `opanapi` request-response streams to `asyncapi` streams.
+The `proxy` kind `openapi-asyncapi` binding adapts OpenAPI request-response streams to AsyncAPI streams.
 
 ## Configuration
 
@@ -39,17 +39,16 @@ The `proxy` kind `openapi-asyncapi` binding adapts `opanapi` request-response st
 
 - [kind\*](#kind)
 - [options](#options)
-  - [options.specs](#options-specs)
-    - [specs.openapi](#specs-openapi)
-    - [specs.asyncapi](#specs-asyncapi)
-- [routes](#routes)
-  - [routes\[\].when](#routes-when)
-    - [when\[\].api-id](#when-api-id)
-    - [when\[\].operation-id](#when-operation-id)
-  - [routes\[\].exit\*](#routes-exit)
-  - [routes\[\].with](#routes-with)
-    - [with.api-id](#with-api-id)
-    - [with.operation-id](#with-operation-id)
+  - [options.spec](#options-spec)
+- [specs.openapi](#specs-openapi)
+- [specs.asyncapi](#specs-asyncapi)
+- [routes\[\].when](#routes-when)
+  - [when\[\].api-id](#when-api-id)
+  - [when\[\].operation-id](#when-operation-id)
+- [routes\[\].exit\*](#routes-exit)
+- [routes\[\].with](#routes-with)
+- [with.api-id](#with-api-id)
+- [with.operation-id](#with-operation-id)
 
 ::: right
 \* required
@@ -77,9 +76,9 @@ kind: proxy
 options:
   specs:
     openapi:
-      openapi-id: spec/openapi.yaml
+      my-openapi-spec: spec/openapi.yaml
     asyncapi:
-      asyncapi-id: spec/asyncapi.yaml
+      my-asyncapi-spec: spec/asyncapi.yaml
 ```
 
 #### options.spec
@@ -90,13 +89,13 @@ OpenAPI and AsyncAPI specs definition filenames.
 
 ### specs.openapi
 
-> `object`
+> `map` of `name: value` properties
 
 OpenAPI spec definition filenames mapped with unique id.
 
 ### specs.asyncapi
 
-> `object`
+> `map` of `name: value` properties
 
 AsyncAPI spec definition filenames mapped with unique id.
 
@@ -104,20 +103,20 @@ AsyncAPI spec definition filenames mapped with unique id.
 
 > `array` of `object`
 
-List of conditions (any match) to match this route when adapting `openapi` request-response streams to `asyncapi` streams.
+List of conditions to match this route when adapting `openapi` request-response streams to `asyncapi` streams.
 Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route-matches)
 
 #### when[].api-id
 
 > `object`
 
-OpenAPI ApiId that matches from options
+OpenAPI ApiId that matches from `openapi` binding request stream.
 
 #### when[].operation-id
 
 > `object`
 
-OpenAPI operation-id that can be mapped between openapi and AsyncAPI spec
+OpenAPI operation-id that can be mapped between OpenAPI and AsyncAPI spec
 
 ### routes[].exit\*
 
@@ -136,7 +135,7 @@ routes:
 
 > `object`
 
-Defines the route with the Asyncapi Apid and OperationId.
+Defines the route with the AsyncAPI Apid and OperationId.
 
 ```yaml
 with:
@@ -147,13 +146,13 @@ with:
 
 > `object`
 
-Asyncapi ApiId that route exits with to the next binding
+AsyncAPI ApiId that route exits with to the next binding
 
 ### with.operation-id
 
 > `object`
 
-Asyncapi OperationID that route exits with to the next binding
+AsyncAPI OperationID that route exits with to the next binding
 
 ---
 ::: right
