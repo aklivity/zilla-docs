@@ -71,7 +71,7 @@ kind: proxy
 
 > `object`
 
-`openapi-asyncapi` - specific options.
+`openapi-asyncapi`-specific options.
 
 ```yaml
 options:
@@ -86,19 +86,19 @@ options:
 
 > `object`
 
-OpenAPI and AsyncAPI spec definition filenames and its unique ids.
+OpenAPI and AsyncAPI specs definition filenames.
 
 ### specs.openapi
 
 > `object`
 
-OpenAPI spec definition filenames and its unique id.
+OpenAPI spec definition filenames mapped with unique id.
 
 ### specs.asyncapi
 
 > `object`
 
-OpenAPI spec definition filenames and its unique id.
+AsyncAPI spec definition filenames mapped with unique id.
 
 ### routes[].when
 
