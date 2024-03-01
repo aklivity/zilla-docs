@@ -36,35 +36,35 @@ openapi_client:
 
 Defines a binding with `openapi` spec, with `server` or `client` behavior.
 
-The `server` kind `openapi` binding creates composite of `tcp`, `tls`, and `http` bindings with server kind and adapts `http` request-response streams to `openapi` request-response streams.
+The `server` kind `openapi` binding creates composite of `tcp`, `tls`, and `http` bindings with server kind and adapts HTTP request-response streams to OpenAPI request-response streams.
 
-The `client` kind `openapi` binding creates composite of `tcp`, `tls`, and `http` bindings with server kind and adapts `openapi` request-response streams to `http` request-response streams.
+The `client` kind `openapi` binding creates composite of `http`, `tls`, and `tcp` bindings with client kind and adapts OpenAPI request-response streams to HTTP request-response streams.
 
 ## Configuration
 
 :::: note Properties
-
+π
 - [kind\*](#kind)
 - [options](#options)
-  - [options.tcp](#options-tcp)
-    - [tcp.host](#tcp-host)
-    - [tcp.port](#tcp-port)
-  - [options.tls](#options-tls)
-    - [tls.version](#tls-version)
-    - [tls.keys](#tls-keys)
-    - [tls.trust](#tls-trust)
-    - [tls.signers](#tls-signers)
-    - [tls.trustcacerts](#tls-trustcacerts)
-    - [tls.sni\*](#tls-sni)
-    - [tls.alpn](#tls-alpn)
-    - [tls.mutual](#tls-mutual)
-  - [options.http](#options-http)
-    - [options.authorization](#http-authorization)
-      - [authorization.credentials](#authorization-credentials)
-        - [credentials.cookies](#credentials-cookies)
-        - [credentials.headers](#credentials-headers)
-        - [credentials.query](#credentials-query)
-  - [options.specs](#options-specs)
+- [options.tcp](#options-tcp)
+- [tpc.host](#tpc-host)
+- [tcp.port](#tcp-port)
+- [options.tls](#options-tls)
+- [tls.version](#tls-version)
+- [tls.keys](#tls-keys)
+- [tls.trust](#tls-trust)
+- [tls.signers](#tls-signers)
+- [tls.trustcacerts](#tls-trustcacerts)
+- [tls.sni\*](#tls-sni)
+- [tls.alpn](#tls-alpn)
+- [tls.mutual](#tls-mutual)
+- [options.http](#options-http)
+- [http.authorization](#http-authorization)
+  - [authorization.credentials](#authorization-credentials)
+    - [credentials.cookies](#credentials-cookies)
+    - [credentials.headers](#credentials-headers)
+    - [credentials.query](#credentials-query)
+  - [options.spec](#options-spec)
 - [exit](#exit)
 
 ::: right
@@ -87,7 +87,7 @@ kind: server
 
 > `object`
 
-`openapi` - specific options.
+`openapi`-specific options.
 
 ```yaml
 options:
@@ -165,7 +165,7 @@ Application protocols.
 
 > `enum` [ "required", "requested", "none" ] | Default: `"none"`
 
-Mutual authentication
+Mutual authentication.
 
 ### options.http
 
@@ -195,19 +195,19 @@ Defines how to extract credentials from the HTTP request.
 
 ##### credentials.cookies
 
-> `object` as map of `string`
+> `map` of `name: value` properties
 
 Named cookie value pattern with `{credentials}`.
 
 ##### credentials.headers
 
-> `object` as map of `string`
+> `map` of `name: value` properties
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
 ##### credentials.query
 
-> `object` as map of `string`
+> `map` of `name: value` properties
 
 Named query parameter value pattern with `{credentials}`.
 
@@ -227,7 +227,7 @@ Default exit binding.
 exit: echo_server
 ```
 
----
+  ---
 ::: right
 \* required
 :::
