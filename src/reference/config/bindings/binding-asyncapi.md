@@ -68,7 +68,7 @@ Defines a binding with `asyncapi` spec, with `server` or `proxy` or `client` beh
 
 The `server` kind `asyncapi` binding creates composite of `tcp`, `tls`, and `mqtt` or `http` bindings with server kind and adapts MQTT/HTTP streams to AsyncAPI streams.
 
-The `proxy` kind `asyncapi` binding creates composite of `mqtt_kafka` binding with proxy kind mapping MQTT streams to Kafka streams.
+The `proxy` kind `asyncapi` binding creates composite of `mqtt-kafka` binding with proxy kind mapping MQTT streams to Kafka streams.
 
 The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `http`, and `tls`, `tcp` bindings with client kind and adapts AsyncAPI streams to Kafka/MQTT/HTTP streams.
 
