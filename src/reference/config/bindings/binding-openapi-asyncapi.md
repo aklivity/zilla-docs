@@ -108,13 +108,13 @@ Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route
 
 #### when[].api-id
 
-> `object`
+> `string`
 
 OpenAPI spec identifier that matches from the `openapi` binding request stream.
 
 #### when[].operation-id
 
-> `object`
+> `string`
 
 OpenAPI OperationId that can be mapped between OpenAPI and AsyncAPI spec
 
@@ -144,13 +144,13 @@ with:
 
 #### with.api-id
 
-> `object`
+> `string`
 
 AsyncAPI spec identifier that the route exits with to the next binding
 
 #### with.operation-id
 
-> `object`
+> `string`
 
 AsyncAPI OperationId that the route exits with to the next binding
 

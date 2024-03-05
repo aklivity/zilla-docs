@@ -269,7 +269,7 @@ Mutual authentication.
 
 #### mqtt_kafka.channels
 
-> `object` as map of named properties
+> `object`
 
 AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping.
 
@@ -356,13 +356,13 @@ with:
 
 #### with.api-id
 
-> `object`
+> `string`
 
 AsyncAPI spec identifier that the route exits with to the next binding
 
 #### with.operation-id
 
-> `object`
+> `string`
 
 AsyncAPI OperationId that the route exits with to the next binding
 
