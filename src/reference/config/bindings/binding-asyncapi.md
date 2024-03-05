@@ -2,16 +2,16 @@
 shortTitle: asyncapi
 description: Zilla runtime asyncapi binding
 category:
-- Binding
-  tag:
-- Server
-- Proxy
-- Client
+  - Binding
+tag:
+  - Server
+  - Proxy
+  - Client
 ---
 
 # asyncapi Binding
 
-Zilla runtime asyncapi binding.
+Zilla runtime `asyncapi` binding.
 
 ```yaml {2}
 name: zilla-mqtt-kafka-broker
@@ -21,15 +21,15 @@ bindings:
     kind: server
     options:
       specs:
-        mqtt_api: mqtt/asyncapi.yaml
+        my-mqtt-api-spec: mqtt/asyncapi.yaml
     exit: asyncapi_proxy
   asyncapi_proxy:
     type: asyncapi
     kind: proxy
     options:
       specs:
-        mqtt_api: mqtt/asyncapi.yaml
-        kafka_api: kafka/asyncapi.yaml
+        my-mqtt-api-spec: mqtt/asyncapi.yaml
+        my-kafka-api-spec: kafka/asyncapi.yaml
       mqtt_kafka:
         channels:
           sessions: mqttSessions
@@ -37,30 +37,29 @@ bindings:
           messages: mqttMessages
     routes:
       - when:
-          - api-id: mqtt_api
+          - api-id: my-mqtt-api-spec
             operation-id: sendEvents
         exit: asyncapi_client
         with:
-          api-id: kafka_api
+          api-id: my-kafka-api-spec
           operation-id: toSensorData
       - when:
-          - api-id: mqtt_api
+          - api-id: my-mqtt-api-spec
             operation-id: receiveEvents
         exit: asyncapi_client
         with:
-          api-id: kafka_api
+          api-id: my-kafka-api-spec
           operation-id: onSensorData
   asyncapi_client:
     type: asyncapi
     kind: client
     options:
       specs:
-        kafka_api: kafka/asyncapi.yaml
+        my-kafka-api-spec: kafka/asyncapi.yaml
       tcp:
         host: localhost
         port:
           - 9092
-
 ```
 
 ## Summary
@@ -76,40 +75,40 @@ The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `
 ## Configuration
 
 :::: note Properties
-π
+
 - [kind\*](#kind)
 - [options](#options)
-- [options.tcp](#options-tcp)
-- [tpc.host](#tpc-host)
-- [tcp.port](#tcp-port)
-- [options.tls](#options-tls)
-- [tls.version](#tls-version)
-- [tls.keys](#tls-keys)
-- [tls.trust](#tls-trust)
-- [tls.signers](#tls-signers)
-- [tls.trustcacerts](#tls-trustcacerts)
-- [tls.sni\*](#tls-sni)
-- [tls.alpn](#tls-alpn)
-- [tls.mutual](#tls-mutual)
-- [mqtt_kafka](#mqtt_kafka)
-  - [channels](#mqtt_kafka.channels)
-    - [sessions](#channels-sessions)
-    - [retained](#channels-retained)
-    - [messages](#channels-messages)
-- [options.http](#options-http)
-- [http.authorization](#http-authorization)
-  - [authorization.credentials](#authorization-credentials)
+  - [options.spec](#options-spec)
+  - [options.tcp](#options-tcp)
+    - [tpc.host](#tpc-host)
+    - [tcp.port](#tcp-port)
+  - [options.http](#options-http)
+    - [http.authorization](#http-authorization)
+    - [authorization.credentials](#authorization-credentials)
     - [credentials.cookies](#credentials-cookies)
     - [credentials.headers](#credentials-headers)
     - [credentials.query](#credentials-query)
-  - [options.spec](#options-spec)
+  - [options.tls](#options-tls)
+    - [tls.version](#tls-version)
+    - [tls.keys](#tls-keys)
+    - [tls.trust](#tls-trust)
+    - [tls.signers](#tls-signers)
+    - [tls.trustcacerts](#tls-trustcacerts)
+    - [tls.sni\*](#tls-sni)
+    - [tls.alpn](#tls-alpn)
+    - [tls.mutual](#tls-mutual)
+- [mqtt\_kafka](#mqtt-kafka)
+  - [mqtt\_kafka.channels](#mqtt-kafka-channels)
+    - [channels.sessions](#channels-sessions)
+    - [channels.retained](#channels-retained)
+    - [channels.messages](#channels-messages)
 - [routes\[\].when](#routes-when)
   - [when\[\].api-id](#when-api-id)
   - [when\[\].operation-id](#when-operation-id)
 - [routes\[\].exit\*](#routes-exit)
 - [routes\[\].with](#routes-with)
-- [with.api-id](#with-api-id)
-- [with.operation-id](#with-operation-id)
+  - [with.api-id](#with-api-id)
+  - [with.operation-id](#with-operation-id)
 - [exit](#exit)
 
 ::: right
@@ -137,139 +136,40 @@ kind: server
 ```yaml
 options:
   spec:
-    asyncapi-id: spec/asyncapi.yaml
+    my-asyncapi-spec: spec/asyncapi.yaml
 ```
 
-### options.tcp
+#### options.spec
+
+> `map` of `name: value` properties
+
+AsyncAPI spec definition filename mapped by a unique API spec identifier.
+
+#### options.tcp
 
 > `object`
 
 `client` specific `tcp` options.
 
-### tpc.host
+##### tpc.host
 
 > `string`
 
 Hostname or IP address.
 
-### tcp.port
+##### tcp.port
 
-> `integer` | `string` | `array` of  `integer` | `array` of `string`
+> `integer` | `string` | `array` of `integer` | `array` of `string`
 
 Port number(s), including port number ranges.
 
-### options.tls
-
-> `object`
-
-`tls` specific options.
-
-### tls.version
-
-> `string`
-
-Protocol version.
-
-### tls.keys
-
-> `array` of `string`
-
-A list of reference names for the Vault key.
-
-### tls.trust
-
-> `array` of `string`
-
-A list of reference names for the Vault certificate.
-
-### tls.signers
-
-> `array` of `string`
-
-A list of reference names for the Vault signer certificate.
-
-### tls.trustcacerts
-
-> `boolean` | Default: `true` when trust is `null`
-
-Trust CA certificates.
-
-### tls.sni\*
-
-> `array` of `string`
-
-A list of the Server Name Indications.
-
-### tls.alpn
-
-> `array` of `string`
-
-Application protocols.
-
-### tls.mutual
-
-> `enum` [ "required", "requested", "none" ] | Default: `"none"`
-
-Mutual authentication.
-
-### mqtt_kafka
-
-> `object`
-
-`mqtt_kafka` specific options.
-
-### mqtt_kafka.channels
-
-> `object` as map of named properties
-
-AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping.
-
-```yaml
-mqtt_kafka:
-  channels:
-    sessions: mqttSessions
-    retained: mqttRetained
-    messages: mqttMessages
-```
-
-### channels-sessions
-
-> `string`
-
-AsyncAPI Kafka sessions channel.
-
-```yaml
-sessions: mqttSessions
-```
-
-### channels-retained
-
-> `string`
-
-AsyncAPI Kafka retained channel.
-
-```yaml
-retained: mqttRetained
-```
-
-### channels-messages
-
-> `string`
-
-AsyncAPI Kafka messages channel.
-
-```yaml
-messages: mqttMessages
-```
-
-
-### options.http
+#### options.http
 
 > `object`
 
 `http` specific options.
 
-### http.authorization
+##### http.authorization
 
 > `object` as map of named properties
 
@@ -283,7 +183,7 @@ authorization:
         authorization: Bearer {credentials}
 ```
 
-#### authorization.credentials
+##### authorization.credentials
 
 > `object`
 
@@ -307,11 +207,109 @@ Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`
 
 Named query parameter value pattern with `{credentials}`.
 
-#### options.spec
+#### options.tls
 
 > `object`
 
-AsyncAPI spec definition filenames and its unique id.
+`tls` specific options.
+
+##### tls.version
+
+> `string`
+
+Protocol version.
+
+##### tls.keys
+
+> `array` of `string`
+
+A list of reference names for the Vault key.
+
+##### tls.trust
+
+> `array` of `string`
+
+A list of reference names for the Vault certificate.
+
+##### tls.signers
+
+> `array` of `string`
+
+A list of reference names for the Vault signer certificate.
+
+##### tls.trustcacerts
+
+> `boolean` | Default: `true` when trust is `null`
+
+Trust CA certificates.
+
+##### tls.sni\*
+
+> `array` of `string`
+
+A list of the Server Name Indications.
+
+##### tls.alpn
+
+> `array` of `string`
+
+Application protocols.
+
+##### tls.mutual
+
+> `enum` [ "required", "requested", "none" ] | Default: `"none"`
+
+Mutual authentication.
+
+### mqtt_kafka
+
+> `object`
+
+`mqtt_kafka` specific options.
+
+#### mqtt_kafka.channels
+
+> `object` as map of named properties
+
+AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping.
+
+```yaml
+mqtt_kafka:
+  channels:
+    sessions: mqttSessions
+    retained: mqttRetained
+    messages: mqttMessages
+```
+
+##### channels.sessions
+
+> `string`
+
+AsyncAPI Kafka sessions channel.
+
+```yaml
+sessions: mqttSessions
+```
+
+##### channels.retained
+
+> `string`
+
+AsyncAPI Kafka retained channel.
+
+```yaml
+retained: mqttRetained
+```
+
+##### channels.messages
+
+> `string`
+
+AsyncAPI Kafka messages channel.
+
+```yaml
+messages: mqttMessages
+```
 
 ### routes[].when
 
@@ -322,15 +320,15 @@ Read more: [When a route matches](../../../concepts/config-intro.md#when-a-route
 
 #### when[].api-id
 
-> `object`
+> `string`
 
-AsyncAPI ApiId that matches from `asyncapi` binding MQTT stream.
+AsyncAPI spec identifier that matches from `asyncapi` binding MQTT stream.
 
 #### when[].operation-id
 
-> `object`
+> `string`
 
-AsyncAPI operation-id that can be mapped between AsyncAPI MQTT and AsyncAPI Kafka spec
+AsyncAPI OperationId that can be mapped between AsyncAPI MQTT and AsyncAPI Kafka spec
 
 ### routes[].exit\*
 
@@ -349,24 +347,24 @@ routes:
 
 > `object`
 
-Defines the route with the AsyncAPI Apid and OperationId.
+Defines the route with the AsyncAPI spec identifier and OperationId.
 
 ```yaml
 with:
-  api-id: asyncapi-id
+  api-id: my-asyncapi-spec
 ```
 
-### with.api-id
+#### with.api-id
 
 > `object`
 
-AsyncAPI ApiId that route exits with to the next binding
+AsyncAPI spec identifier that the route exits with to the next binding
 
-### with.operation-id
+#### with.operation-id
 
 > `object`
 
-AsyncAPI OperationID that route exits with to the next binding
+AsyncAPI OperationId that the route exits with to the next binding
 
 ### exit
 
@@ -378,7 +376,8 @@ Default exit binding.
 exit: echo_server
 ```
 
-  ---
+---
+
 ::: right
 \* required
 :::
