@@ -363,9 +363,9 @@ Message headers, with value optionally referencing path parameter such as `${par
 
 Merge multiple Kafka messages into a unified HTTP response. Kafka merge configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### merge.content-type: application/json
+##### merge.content-type
 
-> `const` | no other value is valid
+> `const` | Value: application/json
 
 Content type of merged HTTP response.
 
@@ -379,15 +379,15 @@ Describes how to patch initial HTTP response to include one or more Kafka messag
 
   Kafka merge patch configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### patch.initial: []
+##### patch.initial
 
-> `const` | no other value is valid
+> `const` | Value: "[]"
 
 Initial JSON value.
 
-##### patch.path: /-
+##### patch.path
 
-> `const` | no other value is valid
+> `const` | Value: /-
 
 JSON Patch path to include each Kafka message in unified HTTP response.
 
