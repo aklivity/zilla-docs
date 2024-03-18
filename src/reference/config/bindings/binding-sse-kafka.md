@@ -55,7 +55,6 @@ When a `kafka` tombstone (`null` value) message is received by the `sse-kafka` b
   - [with.filters](#with-filters)
     - [filters\[\].key](#filters-key)
     - [filters\[\].headers](#filters-headers)
-    - [filters\[\].event](#filters-event)
   - [with.event](#with-event)
     - [event.id\*](#event-id)
 

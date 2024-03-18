@@ -69,7 +69,6 @@ Conditional routes based on `kafka` `topic` names are used to route these networ
   - [topics\[\].value](#topics-value)
 - [options.servers](#options-servers)
 - [options.sasl](#options-sasl)
-  - [sasl.name](#sasl-name)
   - [sasl.mechanism\*](#sasl-mechanism)
   - [sasl.username](#sasl-username)
   - [sasl.password](#sasl-password)
