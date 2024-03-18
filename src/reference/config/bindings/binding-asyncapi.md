@@ -261,7 +261,7 @@ Application protocols.
 
 Mutual authentication.
 
-### mqtt_kafka
+### mqtt-kafka
 
 > `object`
 
