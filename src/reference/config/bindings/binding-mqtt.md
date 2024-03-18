@@ -57,6 +57,9 @@ Conditional routes based on the `topic` `name` are used to route these applicati
     - [connect.username](#connect-username)
     - [connect.password](#connect-password)
 - [options.versions](#options-versions)
+- [options.topics](#options-topics)
+  - [topics\[\].name\*](#topics-name)
+  - [topics\[\].content](#topics-content)
 - [routes](#routes)
 - [routes\[\].guarded](#routes-guarded)
 - [routes\[\].when](#routes-when)
@@ -151,6 +154,24 @@ Extract credentials from the MQTT connect packet password property with `{creden
 > `array` of `enum` [ "v5", "v3.1.1" ]
 
 Supported protocol versions.
+
+### options.topics
+
+> `array` of `object`
+
+Topic configuration.
+
+#### topics[].name\*
+
+> `string`
+
+Topic name.
+
+#### topics[].content
+
+> `object` of a named [`model`](../models/)
+
+Enforce validation for content
 
 ### routes
 
