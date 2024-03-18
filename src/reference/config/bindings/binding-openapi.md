@@ -114,7 +114,7 @@ Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
 ```yaml
 authorization:
-  jwt:
+  my_jwt_guard:
     credentials:
       headers:
         authorization: Bearer {credentials}

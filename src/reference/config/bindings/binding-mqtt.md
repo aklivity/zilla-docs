@@ -17,7 +17,7 @@ mqtt_server:
   kind: server
   options:
     authorization:
-      jwt:
+      my_jwt_guard:
         credentials:
           connect:
             username: Bearer {credentials}
@@ -52,20 +52,20 @@ Conditional routes based on the `topic` `name` are used to route these applicati
 - [exit](#exit)
 - [options](#options)
 - [options.authorization](#options-authorization)
-  - [authorization.connect](#authorization-connect)
-    - [credentials.username](#credentials-username)
-    - [credentials.password](#credentials-password)
-- [options.topics](#options-topics)
+  - [authorization.credentials](#authorization-credentials)
+    - [credentials.connect](#credentials-connect)
+    - [connect.username](#connect-username)
+    - [connect.password](#connect-password)
 - [options.versions](#options-versions)
 - [routes](#routes)
 - [routes\[\].guarded](#routes-guarded)
 - [routes\[\].when](#routes-when)
   - [when\[\].session](#when-session)
-    - [session.client-id](#session-client-id)
+    - [session\[\].client-id](#session-client-id)
   - [when\[\].publish](#when-publish)
-    - [publish.topic](#publish-topic)
+    - [publish\[\].topic](#publish-topic)
   - [when\[\].subscribe](#when-subscribe)
-    - [subscribe.topic](#subscribe-topic)
+    - [subscribe\[\].topic](#subscribe-topic)
 - [routes\[\].exit\*](#routes-exit)
 
 ::: right
@@ -99,7 +99,7 @@ exit: echo_server
 ```yaml
 options:
   authorization:
-    jwt:
+    my_jwt_guard:
       credentials:
         connect:
           username: Bearer {credentials}
@@ -112,11 +112,11 @@ options:
 
 > `object` as map of named objects
 
-Authorization by guard.
+Authorization by a named guard.
 
 ```yaml
 authorization:
-  jwt:
+  my_jwt_guard:
     credentials:
       connect:
         username: Bearer {credentials}
@@ -128,25 +128,29 @@ authorization:
 
 Defines how to extract credentials from the MQTT connect packet.
 
-##### credentials.connect.username
+##### credentials.connect
 
-> `map` of `name: value` properties
+> `object`
+
+MQTT connect packet properties
+
+##### connect.username
+
+> `string`
 
 Extract credentials from the MQTT connect packet username property with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
-##### credentials.connect.password
+##### connect.password
 
-> `map` of `name: value` properties
+> `string`
 
 Extract credentials from the MQTT connect packet password property with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
-
 
 ### options.versions
 
 > `array` of `enum` [ "v5", "v3.1.1" ]
 
 Supported protocol versions.
-
 
 ### routes
 

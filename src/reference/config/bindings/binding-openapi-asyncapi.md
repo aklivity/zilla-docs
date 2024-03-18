@@ -81,7 +81,7 @@ options:
       my-asyncapi-spec: spec/asyncapi.yaml
 ```
 
-#### options.spec
+#### options.specs
 
 > `object`
 
@@ -98,6 +98,12 @@ OpenAPI spec definition filename mapped by a unique API spec identifier.
 > `map` of `name: value` properties
 
 AsyncAPI spec definition filename mapped by a unique API spec identifier.
+
+### routes
+
+> `array` of `object`
+
+Conditional `openapi-asyncapi`-specific routes for adapting `openapi` operations to `asyncapi` operations.
 
 ### routes[].when
 
