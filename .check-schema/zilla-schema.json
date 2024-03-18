@@ -523,6 +523,16 @@
                                                                     "$ref": "#/$defs/expression"
                                                                 }
                                                             ]
+                                                        },
+                                                        "logs": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "$ref": "#/$defs/expression"
+                                                                }
+                                                            ]
                                                         }
                                                     }
                                                 }
@@ -643,6 +653,7 @@
                         {
                             "type": "string",
                             "enum": [
+                                "apicurio",
                                 "inline",
                                 "schema-registry"
                             ]
@@ -662,6 +673,91 @@
                 "type"
             ],
             "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "apicurio"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "apicurio"
+                            },
+                            "options": {
+                                "properties": {
+                                    "url": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "$ref": "#/$defs/expression"
+                                            }
+                                        ]
+                                    },
+                                    "group-id": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string",
+                                                "default": "default"
+                                            },
+                                            {
+                                                "$ref": "#/$defs/expression"
+                                            }
+                                        ]
+                                    },
+                                    "use-id": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string",
+                                                "enum": [
+                                                    "globalId",
+                                                    "contentId"
+                                                ],
+                                                "default": "globalId"
+                                            },
+                                            {
+                                                "$ref": "#/$defs/expression"
+                                            }
+                                        ]
+                                    },
+                                    "id-encoding": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string",
+                                                "enum": [
+                                                    "default",
+                                                    "legacy"
+                                                ],
+                                                "default": "default"
+                                            },
+                                            {
+                                                "$ref": "#/$defs/expression"
+                                            }
+                                        ]
+                                    },
+                                    "max-age": {
+                                        "title": "Max Age",
+                                        "anyOf": [
+                                            {
+                                                "type": "number",
+                                                "default": 300
+                                            },
+                                            {
+                                                "$ref": "#/$defs/expression"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
                 {
                     "if": {
                         "properties": {

@@ -151,7 +151,7 @@ sections.forEach(({ type, folder, name, props }) => {
             )
         ).sort();
         var sorted = attrs.map((a) => a[0]).sort();
-        console.log("findings", type, name, sorted, headers);
+        // console.log("findings", type, name, sorted, headers);
         var addList = sorted.filter((x) =>
             !headers.includes(x) &&
             !["telemetry", "telemetry.metrics", "type", "catalog"].includes(x)
