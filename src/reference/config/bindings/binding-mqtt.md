@@ -15,6 +15,15 @@ Zilla runtime mqtt binding.
 mqtt_server:
   type: mqtt
   kind: server
+  options:
+    authorization:
+      jwt:
+        credentials:
+          connect:
+            username: Bearer {credentials}
+    versions:
+      - v5
+      - v3.1.1
   routes:
     - when:
         - session:
@@ -41,6 +50,13 @@ Conditional routes based on the `topic` `name` are used to route these applicati
 
 - [kind\*](#kind)
 - [exit](#exit)
+- [options](#options)
+- [options.authorization](#options-authorization)
+  - [authorization.connect](#authorization-connect)
+    - [credentials.username](#credentials-username)
+    - [credentials.password](#credentials-password)
+- [options.topics](#options-topics)
+- [options.versions](#options-versions)
 - [routes](#routes)
 - [routes\[\].guarded](#routes-guarded)
 - [routes\[\].when](#routes-when)
@@ -73,6 +89,64 @@ Default exit binding when no conditional routes are viable.
 ```yaml
 exit: echo_server
 ```
+
+### options
+
+> `object`
+
+`mqtt`-specific options.
+
+```yaml
+options:
+  authorization:
+    jwt:
+      credentials:
+        connect:
+          username: Bearer {credentials}
+  versions:
+    - v5
+    - v3.1.1
+```
+
+### options.authorization
+
+> `object` as map of named objects
+
+Authorization by guard.
+
+```yaml
+authorization:
+  jwt:
+    credentials:
+      connect:
+        username: Bearer {credentials}
+```
+
+#### authorization.credentials
+
+> `object`
+
+Defines how to extract credentials from the MQTT connect packet.
+
+##### credentials.connect.username
+
+> `map` of `name: value` properties
+
+Extract credentials from the MQTT connect packet username property with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
+
+##### credentials.connect.password
+
+> `map` of `name: value` properties
+
+Extract credentials from the MQTT connect packet password property with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
+
+
+### options.versions
+
+> `array` of `enum` [ "v5", "v3.1.1" ]
+
+Supported protocol versions.
+
 
 ### routes
 
