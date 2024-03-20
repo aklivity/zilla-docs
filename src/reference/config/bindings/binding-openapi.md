@@ -45,7 +45,7 @@ The `client` kind `openapi` binding creates composite of `http`, `tls`, and `tcp
 
 - [kind\*](#kind)
 - [options](#options)
-  - [options.spec](#options-spec)
+  - [options.specs](#options-specs)
   - [options.http](#options-http)
     - [http.authorization](#http-authorization)
     - [authorization.credentials](#authorization-credentials)
@@ -94,7 +94,7 @@ options:
     my-openapi-spec: spec/openapi.yaml
 ```
 
-#### options.spec
+#### options.specs
 
 > `map` of `name: value` properties
 

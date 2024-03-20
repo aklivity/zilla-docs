@@ -39,9 +39,10 @@ The `proxy` kind `openapi-asyncapi` binding adapts OpenAPI request-response stre
 
 - [kind\*](#kind)
 - [options](#options)
-  - [options.spec](#options-spec)
+  - [options.specs](#options-specs)
     - [specs.openapi](#specs-openapi)
     - [specs.asyncapi](#specs-asyncapi)
+- [routes](#routes)
 - [routes\[\].when](#routes-when)
   - [when\[\].api-id](#when-api-id)
   - [when\[\].operation-id](#when-operation-id)
