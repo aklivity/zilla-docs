@@ -1,6 +1,6 @@
 # Zilla Composite Bindings
 
-Composite bindings provide the ability to configure multiple bindings at once. A composite binding is used when multiple zilla bindings are needed to define a common interface. Composite bindings will use sensible defaults and are designed to reduce the configuration complexity.
+Composite bindings provide the ability to configure multiple bindings at once. A composite binding is used when multiple Zilla bindings are needed to define a common interface. Composite bindings will use sensible defaults and are designed to reduce the configuration complexity.
 
 ## OpenAPI and AsyncAPI
 
