@@ -190,13 +190,13 @@ The server name.
 
 > `string`
 
-The server url to match in asyncapi spec
+The server url to match in asyncapi 2.x spec only
 
 #### servers.host
 
 > `string`
 
-The server host to match in asyncapi spec
+The server host to match in asyncapi 3.x spec only
 
 #### servers.pathname
 

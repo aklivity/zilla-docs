@@ -18,7 +18,13 @@ openapi_server:
   kind: server
   options:
     specs:
-      my-openapi-spec: spec/openapi.yaml
+      petstore:
+        servers:
+          - url: http://localhost:9090
+        catalog:
+          catalog0:
+            subject: petstore
+            version: latest
   exit: openapi_client
 openapi_client:
   type: openapi
@@ -28,7 +34,13 @@ openapi_client:
       host: localhost
       port: 8080
     specs:
-      my-openapi-spec: spec/petstore.yaml
+      petstore:
+        servers:
+          - url: http://localhost:9090
+        catalog:
+          catalog0:
+            subject: petstore
+            version: latest
 ```
 
 ## Summary
