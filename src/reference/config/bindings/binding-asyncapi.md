@@ -28,8 +28,18 @@ bindings:
     kind: proxy
     options:
       specs:
-        my-mqtt-api-spec: mqtt/asyncapi.yaml
-        my-kafka-api-spec: kafka/asyncapi.yaml
+        my-mqtt-api-spec:
+          my-kafka-api-spec:
+            catalog:
+              my_catalog:
+                subject: petstore
+                version: latest
+        my-kafka-api-spec:
+          my-kafka-api-spec:
+            catalog:
+              my_catalog:
+                subject: petstore
+                version: latest
       mqtt-kafka:
         channels:
           sessions: mqttSessions
@@ -55,7 +65,11 @@ bindings:
     kind: client
     options:
       specs:
-        my-kafka-api-spec: kafka/asyncapi.yaml
+        my-kafka-api-spec:
+          catalog:
+            my_catalog:
+              subject: petstore
+              version: latest
       tcp:
         host: localhost
         port:
@@ -162,19 +176,19 @@ specs:
 
 > `object` as map of named properties
 
-`catalog` catalog specific options.
+catalog specific options.
 
 #### catalog.subject
 
 > `string`
 
-`catalog` subject name.
+Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
 > `string`
 
-`catalog` version.
+Catalog artifact version to use.
 
 #### specs.servers
 

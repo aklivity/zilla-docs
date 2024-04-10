@@ -22,7 +22,7 @@ openapi_server:
         servers:
           - url: http://localhost:9090
         catalog:
-          catalog0:
+          my_catalog:
             subject: petstore
             version: latest
   exit: openapi_client
@@ -38,7 +38,7 @@ openapi_client:
         servers:
           - url: http://localhost:9090
         catalog:
-          catalog0:
+          my_catalog:
             subject: petstore
             version: latest
 ```
@@ -127,19 +127,19 @@ options:
 
 > `object` as map of named properties
 
-`catalog` catalog specific options.
+catalog specific options.
 
 #### catalog.subject
 
 > `string`
 
-`catalog` subject name.
+Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
 > `string`
 
-`catalog` version.
+Catalog artifact version to use.
 
 #### specs.servers
 

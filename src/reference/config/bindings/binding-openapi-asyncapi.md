@@ -20,13 +20,13 @@ openapi_asyncapi_proxy:
       openapi:
         my-openapi-spec:
           catalog:
-            catalog0:
+            my_catalog:
               subject: petstore
               version: latest
       asyncapi:
         my-asyncapi-spec:
           catalog:
-              catalog0:
+              my_catalog:
                 subject: petstore
                 version: latest
   routes:
@@ -110,19 +110,19 @@ OpenAPI and AsyncAPI specs definition.
 
 > `object` as map of named properties
 
-`catalog` catalog specific options.
+catalog specific options.
 
 #### catalog.subject
 
 > `string`
 
-`catalog` subject name.
+Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
 > `string`
 
-`catalog` version.
+Catalog artifact version to use.
 
 ##### specs.asyncapi
 
