@@ -79,6 +79,14 @@ The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `
 - [kind\*](#kind)
 - [options](#options)
   - [options.specs](#options-specs)
+    - [specs.catalog](#specs-catalog)
+        - [catalog.subject](#catalog-subject)
+        - [catalog.version](#catalog-version)
+    - [specs.servers](#specs-servers)
+      - [servers.name](#servers-name)
+      - [servers.url](#servers-url)
+      - [servers.host](#servers-host)
+      - [servers.pathname](#servers-pathname)
   - [options.tcp](#options-tcp)
     - [tpc.host](#tpc-host)
     - [tcp.port](#tcp-port)
@@ -134,16 +142,68 @@ kind: server
 `asyncapi`-specific options.
 
 ```yaml
-options:
-  spec:
-    my-asyncapi-spec: spec/asyncapi.yaml
+specs:
+  http_api:
+    servers:
+      - name: plain
+    catalog:
+      catalog0:
+        subject: petstore
+        version: latest
 ```
 
 #### options.specs
 
-> `map` of `name: value` properties
+> `object` as map of named properties
 
-AsyncAPI spec definition filename mapped by a unique API spec identifier.
+`specs` specific options
+
+#### specs.catalog
+
+> `object` as map of named properties
+
+`catalog` catalog specific options.
+
+#### catalog.subject
+
+> `string`
+
+`catalog` subject name.
+
+#### catalog.version
+
+> `string`
+
+`catalog` version.
+
+#### specs.servers
+
+> `object`
+
+#### servers.name
+
+> `string`
+
+The server name.
+
+#### servers.url
+
+> `string`
+
+The server url to match in asyncapi spec
+
+#### servers.host
+
+> `string`
+
+The server host to match in asyncapi spec
+
+#### servers.pathname
+
+> `string`
+
+The server pathname to match in asyncapi spec
+
 
 #### options.tcp
 

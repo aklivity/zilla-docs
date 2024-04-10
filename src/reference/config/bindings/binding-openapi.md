@@ -46,6 +46,11 @@ The `client` kind `openapi` binding creates composite of `http`, `tls`, and `tcp
 - [kind\*](#kind)
 - [options](#options)
   - [options.specs](#options-specs)
+    - [specs.catalog](#specs-catalog)
+        - [catalog.subject](#catalog-subject)
+        - [catalog.version](#catalog-version)
+    - [specs.servers](#specs-servers)
+      - [servers.url](#servers-url)
   - [options.http](#options-http)
     - [http.authorization](#http-authorization)
     - [authorization.credentials](#authorization-credentials)
@@ -90,15 +95,49 @@ kind: server
 
 ```yaml
 options:
-  spec:
-    my-openapi-spec: spec/openapi.yaml
+    specs:
+      petstore:
+        servers:
+          - url: http://localhost:9090
+        catalog:
+          catalog0:
+            subject: petstore
+            version: latest
 ```
 
 #### options.specs
 
-> `map` of `name: value` properties
+> `object` as map of named properties
 
-OpenAPI spec definition filename mapped by a unique API spec identifier.
+`specs` specific options
+
+#### specs.catalog
+
+> `object` as map of named properties
+
+`catalog` catalog specific options.
+
+#### catalog.subject
+
+> `string`
+
+`catalog` subject name.
+
+#### catalog.version
+
+> `string`
+
+`catalog` version.
+
+#### specs.servers
+
+> `object`
+
+#### servers.url
+
+> `string`
+
+The server url to match in openapi spec
 
 #### options.http
 
