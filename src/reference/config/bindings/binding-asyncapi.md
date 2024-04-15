@@ -161,7 +161,7 @@ specs:
     servers:
       - name: plain
     catalog:
-      catalog0:
+      my_catalog:
         subject: petstore
         version: latest
 ```
@@ -170,7 +170,7 @@ specs:
 
 > `object` as map of named properties
 
-`specs` specific options
+specs specific options
 
 #### specs.catalog
 
@@ -194,30 +194,23 @@ Catalog artifact version to use.
 
 > `object`
 
-#### servers.name
-
-> `string`
-
-The server name.
-
 #### servers.url
 
 > `string`
 
-The server url to match in asyncapi 2.x spec only
+The server to match based on the server's `url` in an asyncapi `2.x` spec only.
 
 #### servers.host
 
 > `string`
 
-The server host to match in asyncapi 3.x spec only
+The server to match based on the server's `host` in an asyncapi `3.x` spec only.
 
 #### servers.pathname
 
 > `string`
 
-The server pathname to match in asyncapi spec
-
+The server pathname to match based on the server's `pathname` in an asyncapi `3.x` spec only.
 
 #### options.tcp
 
@@ -241,7 +234,7 @@ Port number(s), including port number ranges.
 
 > `object`
 
-`http` specific options.
+http specific options.
 
 ##### http.authorization
 

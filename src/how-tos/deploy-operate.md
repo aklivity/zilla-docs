@@ -1,4 +1,4 @@
-# Installing Zilla
+# Deploy and Operating Zilla
 
 ## Running Zilla via Docker
 
@@ -20,21 +20,9 @@ started
 
 Specify your own `zilla.yaml` file.
 
-::: code-tabs#yaml
-
-@tab Docker 23
-
 ```bash:no-line-numbers
 docker run -v ./zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest start -v
 ```
-
-@tab Docker 20
-
-```bash:no-line-numbers
-docker run -v $(pwd)/zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest start -v
-```
-
-:::
 
 ## Running Zilla via Helm
 
