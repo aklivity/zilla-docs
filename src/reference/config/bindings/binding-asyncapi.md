@@ -94,10 +94,9 @@ The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `
 - [options](#options)
   - [options.specs](#options-specs)
     - [specs.catalog](#specs-catalog)
-        - [catalog.subject](#catalog-subject)
-        - [catalog.version](#catalog-version)
+      - [catalog.subject](#catalog-subject)
+      - [catalog.version](#catalog-version)
     - [specs.servers](#specs-servers)
-      - [servers.name](#servers-name)
       - [servers.url](#servers-url)
       - [servers.host](#servers-host)
       - [servers.pathname](#servers-pathname)
@@ -172,41 +171,41 @@ specs:
 
 specs specific options
 
-#### specs.catalog
+##### specs.catalog
 
 > `object` as map of named properties
 
 catalog specific options.
 
-#### catalog.subject
+###### catalog.subject
 
 > `string`
 
 Subject name used when storing the catalog artifact.
 
-#### catalog.version
+###### catalog.version
 
 > `string`
 
 Catalog artifact version to use.
 
-#### specs.servers
+##### specs.servers
 
 > `object`
 
-#### servers.url
+###### servers.url
 
 > `string`
 
 The server to match based on the server's `url` in an asyncapi `2.x` spec only.
 
-#### servers.host
+###### servers.host
 
 > `string`
 
 The server to match based on the server's `host` in an asyncapi `3.x` spec only.
 
-#### servers.pathname
+###### servers.pathname
 
 > `string`
 

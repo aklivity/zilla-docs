@@ -24,8 +24,8 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
 - [zilla metrics](#zilla-metrics)
   - [--namespace `<namespace>`](#namespace-namespace)
 - [zilla start](#zilla-start)
-  - [-v --verbose](#v-verbose)
-  - [--workers](#workers)
+  - [-v --verbose](#v-verbose-1)
+  - [-w --workers](#w-workers)
 - [zilla stop](#zilla-stop)
 - [zilla tune](#zilla-tune)
 
@@ -68,6 +68,7 @@ tshark -G plugins | grep zilla
 You may need to reload Lua plugins from the menu: Analyze -> Reload Lua Plugins or with the keyboard shortcut (Command+Shift+L or Ctrl+Shift+L).
 
 Example:
+
 ```bash:no-line-numbers
 ./zilla dump -v -w zilla.pcap -i ~/.local/lib/wireshark/plugins
 ```
@@ -78,9 +79,10 @@ Show verbose output
 
 #### -w --write `<output>`
 
-Write the `pcap` output to this file. 
+Write the `pcap` output to this file.
 
 Example:
+
 ```bash:no-line-numbers
 ./zilla dump -v -w zilla.pcap
 ```
