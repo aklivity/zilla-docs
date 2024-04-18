@@ -43,7 +43,7 @@ The `client` kind `grpc` binding adapts `grpc` request-response streams to `http
 
 - [kind\*](#kind)
 - [options](#options)
-  - [options.services](#options-services)
+  - [options.services](#options-services) (deprecated)
 - [exit](#exit)
 - [routes](#routes)
 - [routes\[\].guarded](#routes-guarded)
@@ -81,12 +81,13 @@ options:
     - proto/echo.proto
 ```
 
-#### options.services
+#### options.services (deprecated)
 
 > `array` of `string`
 
 Protobuf service definition filenames, typically with `.proto` filename extension.
 
+Note: this option is deprecated. Use filesystem catalog instead for accessing `.proto` files from the filesystem.
 ### exit
 
 > `string`
