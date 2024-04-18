@@ -11,7 +11,7 @@ category:
 Read how to [enable incubator features](../../../how-tos/install.md#enable-incubator-features). Star and watch the [Zilla repo](https://github.com/aklivity/zilla/releases) for new releases!
 :::
 
-Zilla runtime inline catalog
+Zilla runtime filesystem catalog
 
 ```yaml {2}
 catalogs:
@@ -33,7 +33,7 @@ Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pull
 
 - [options](#options)
   - [options.subjects\*](#options-subjects)
-    - [subjects.url\*](#subjects-schema)
+    - [subjects.url\*](#subjects-url)
     - [subjects.version](#subjects-version)
 
 ::: right
@@ -62,4 +62,4 @@ URL to access artifact from the filesystem. The URLs are relative to `zilla.yaml
 
 > `string` | Default: `"latest"`
 
-Specific iteration or version of a registered schema.
+Specific iteration or version of a registered artifact.
