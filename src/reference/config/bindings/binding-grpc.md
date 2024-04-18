@@ -88,6 +88,7 @@ options:
 Protobuf service definition filenames, typically with `.proto` filename extension.
 
 Note: this option is deprecated. Use filesystem catalog instead for accessing `.proto` files from the filesystem.
+
 ### exit
 
 > `string`
