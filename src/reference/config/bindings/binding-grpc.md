@@ -81,7 +81,11 @@ options:
     - proto/echo.proto
 ```
 
-#### options.services (deprecated)
+#### options.services
+
+::: warning Deprecated
+This property will be removed in a future release.
+:::
 
 > `array` of `string`
 
