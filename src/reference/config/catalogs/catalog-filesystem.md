@@ -15,12 +15,12 @@ Zilla runtime filesystem catalog
 
 ```yaml {2}
 catalogs:
-  catalog0:
+  my_catalog:
     type: filesystem
     options:
       subjects:
-        petstore:
-          url: schema.yaml
+        my_local_file:
+          url: path/to/local_file.txt
 ```
 
 ## Summary
