@@ -34,7 +34,6 @@ Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pull
 - [options](#options)
   - [options.subjects\*](#options-subjects)
     - [subjects.url\*](#subjects-url)
-    - [subjects.version](#subjects-version)
 
 ::: right
 \* required
@@ -58,8 +57,3 @@ Unique identifier for artifact categorization in the catalog.
 
 URL to access artifact from the filesystem. The URLs are relative to `zilla.yaml`.
 
-##### subjects.version
-
-> `string` | Default: `"latest"`
-
-Specific iteration or version of a registered artifact.
