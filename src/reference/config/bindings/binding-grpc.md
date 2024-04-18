@@ -43,7 +43,7 @@ The `client` kind `grpc` binding adapts `grpc` request-response streams to `http
 
 - [kind\*](#kind)
 - [options](#options)
-  - [options.services](#options-services) (deprecated)
+  - [options.services](#options-services)
 - [exit](#exit)
 - [routes](#routes)
 - [routes\[\].guarded](#routes-guarded)
