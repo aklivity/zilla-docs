@@ -84,7 +84,7 @@ options:
 #### options.services
 
 ::: warning Deprecated
-This property will be removed in a future release.
+This property will be removed in a future release. To access '.proto' files from the filesystem, use the [filesystem](../catalogs/catalog-filesystem.md) catalog instead.
 :::
 
 > `array` of `string`
