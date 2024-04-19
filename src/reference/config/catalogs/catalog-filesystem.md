@@ -20,7 +20,7 @@ catalogs:
     options:
       subjects:
         my_local_file:
-          url: path/to/local_file.txt
+          path: path/to/local_file.txt
 ```
 
 ## Summary
@@ -33,7 +33,7 @@ Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pull
 
 - [options](#options)
   - [options.subjects\*](#options-subjects)
-    - [subjects.url\*](#subjects-url)
+    - [subjects.path\*](#subjects-path)
 
 ::: right
 \* required
@@ -51,9 +51,9 @@ Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pull
 
 Unique identifier for artifact categorization in the catalog.
 
-##### subjects.url\*
+##### subjects.path\*
 
 > `string`
 
-URL to access artifact from the filesystem. The URLs are relative to `zilla.yaml`.
+Path to access artifact from the filesystem. The paths are relative to `zilla.yaml`.
 
