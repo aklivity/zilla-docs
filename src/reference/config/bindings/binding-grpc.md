@@ -91,7 +91,6 @@ This property will be removed in a future release. To access '.proto' files from
 
 Protobuf service definition filenames, typically with `.proto` filename extension.
 
-Note: this option is deprecated. Use filesystem catalog instead for accessing `.proto` files from the filesystem.
 
 ### exit
 
