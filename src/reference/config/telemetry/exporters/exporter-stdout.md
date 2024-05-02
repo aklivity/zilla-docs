@@ -16,5 +16,3 @@ exporters:
   stdout:
     type: stdout
 ```
-
-Prints events to stdout.
