@@ -205,8 +205,13 @@ export const enSidebar = sidebar({
         },
         {
           text: "Telemetry Logs & Metrics",
+          collapsible: true,
           link: "concepts/telemetry.md",
           children: [
+            {
+              text: "Overview",
+              link: "concepts/telemetry.md",
+            },
             {
               text: "Simple Prometheus Example",
               link: "tutorials/metrics/prometheus-intro.md",
@@ -219,6 +224,11 @@ export const enSidebar = sidebar({
       text: "Kafka Proxying",
       link: "concepts/kafka-proxies/http-proxy.md",
       children: [
+        {
+          text: "Kafka Proxy Quickstart",
+          collapsible: true,
+          link: "tutorials/quickstart/kafka-proxies.md",
+        },
         {
           text: "HTTP Kafka Proxy",
           collapsible: true,
