@@ -51,6 +51,7 @@ exporters:
 options:
   interval: 30
   signals:
+    - logs
     - metrics
   endpoint:
     protocol: http
@@ -65,10 +66,9 @@ Interval in seconds to push data to the Open Telemetry collector. Default: 30 se
 
 #### options.signals
 
-> `array` of `strings`
+> `array` of of `enum` [ "logs", "metrics" ]
 
-Specifies what signals should be exported. Currently only `metrics` is supported. The default
-behaviour is to export all supported signals.
+Specifies what signals should be exported. The default behavior is to export all supported signals.
 
 #### options.endpoint
 
