@@ -1,15 +1,15 @@
 ---
-shortTitle: events
-description: Zilla runtime telemetry event
+shortTitle: Logs
+description: Zilla runtime telemetry logs
 category:
   - Telemetry
 tag:
-  - Events
+  - Logs
 ---
 
-# Telemetry Events
+# Telemetry Logs
 
-Named events happening in Zilla.
+Named events logged by Zilla.
 
 :::: note Properties
 
@@ -24,7 +24,7 @@ Named events happening in Zilla.
 
 ::::
 
-## Event Logs
+## Logging Event Types
 
 ### Catalog Errors
 
