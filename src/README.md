@@ -44,8 +44,8 @@ Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) 
 
 ```bash:no-line-numbers
 helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --create-namespace --wait \
-    --values values.yaml \
-    --set-file zilla\\.yaml=zilla.yaml
+--values values.yaml \
+--set-file zilla\\.yaml=zilla.yaml
 ```
 
 Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.
@@ -88,7 +88,7 @@ Everything in OSS plus commercial integrations and enterprise support. Partner-c
 
   This allows Confluent and Kafka clients from outside the private network access to the full functionality of your Confluent Cloud cluster.
 
-- [Amazon MSK  IoT Access and Control](./solutions/how-tos/confluent-cloud/iot-ingest-control.md)
+- [Amazon MSK IoT Access and Control](./solutions/how-tos/confluent-cloud/iot-ingest-control.md)
 
   Your Amazon cluster is turned into a fully-fledged MQTT broker.
 

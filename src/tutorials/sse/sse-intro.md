@@ -6,7 +6,6 @@ description: Running these Zilla samples will introduce some SSE features.
 
 Get started with Zilla by deploying our Docker Compose stack. Before proceeding, you should have [Docker Compose](https://docs.docker.com/compose/gettingstarted/) installed.
 
-
 Running this Zilla sample will fanout `Hello, World` from a Kafka topic acting as a SSE server
 
 ## Setup SSE Kafka Proxy

@@ -30,8 +30,8 @@ Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) 
 
 ```bash:no-line-numbers
 helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --create-namespace --wait \
-    --values values.yaml \
-    --set-file zilla\\.yaml=zilla.yaml
+--values values.yaml \
+--set-file zilla\\.yaml=zilla.yaml
 ```
 
 Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.

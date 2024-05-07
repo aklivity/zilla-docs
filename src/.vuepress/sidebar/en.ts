@@ -213,8 +213,12 @@ export const enSidebar = sidebar({
               link: "concepts/telemetry.md",
             },
             {
-              text: "Simple Prometheus Example",
-              link: "tutorials/metrics/prometheus-intro.md",
+              text: "Open Example",
+              link: "tutorials/metrics/prometheus/prometheus-intro.md",
+            },
+            {
+              text: "Open Example",
+              link: "tutorials/metrics/prometheus/prometheus-intro.md",
             },
           ]
         },
