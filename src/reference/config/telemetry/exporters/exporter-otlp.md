@@ -1,5 +1,5 @@
 ---
-shortTitle: open telemetry
+shortTitle: otlp
 description: Zilla runtime otlp exporter
 category:
   - Telemetry
@@ -7,9 +7,9 @@ tag:
   - Exporters
 ---
 
-# Open Telemetry Exporter
+# OpenTelemetry Protocol Exporter
 
-Zilla runtime Open Telemetry exporter
+The Zilla runtime [OpenTelemetry Protocol](https://github.com/open-telemetry/oteps/blob/main/text/0035-opentelemetry-protocol.md) exporter publishes data to a [Collector](https://opentelemetry.io/docs/collector/).
 
 ```yaml {3}
 exporters:
@@ -46,7 +46,6 @@ exporters:
 > `object`
 
 `otlp`-specific options.
-
 ```yaml
 options:
   interval: 30
@@ -60,9 +59,9 @@ options:
 
 #### options.interval
 
-> `integer`
+> `integer` | Default: `30`
 
-Interval in seconds to push data to the Open Telemetry collector. Default: 30 seconds.
+Interval in seconds to push data to the collector.
 
 #### options.signals
 
@@ -74,7 +73,7 @@ Specifies what signals should be exported. The default behavior is to export all
 
 > `object`
 
-Contains details for the Open Telemetry collector endpoint.
+Contains details for the OpenTelemetry Protocol collector endpoint.
 
 ##### endpoint.protocol
 
@@ -86,7 +85,7 @@ Specifies the protocol to use for exporting data. Currently only `http` is suppo
 
 > `string`
 
-The URL of the Open Telemetry collector.
+The URL of the collector.
 
 ---
 

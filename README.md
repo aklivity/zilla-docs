@@ -33,12 +33,10 @@ Before submitting your contribution, please read through the following guide. We
 ### Repo Setup
 
 To develop locally, fork this repository and clone it in your local machine. Then run these commands from the root directory:
-
-```sh
+```bash
 pnpm i
 ```
-
-```sh
+```bash
 pnpm dev
 ```
 
@@ -48,7 +46,7 @@ pnpm dev
 
   run:
 
-  ```sh
+  ```bash
   pnpm lint
   ```
 
@@ -56,11 +54,11 @@ pnpm dev
 
   Install [Vale](https://github.com/errata-ai/vale) then run:
 
-  ```sh
+  ```bash
   vale src
   ```
 
-  ```sh
+  ```bash
   vale --ignore-syntax src/.vuepress/sidebar/en.ts
   ```
 
@@ -68,13 +66,13 @@ pnpm dev
 
   Install [Lychee](https://github.com/lycheeverse/lychee) then run:
 
-  ```sh
+  ```bash
   lychee --exclude-mail src
   ```
 
   Running compiled site link checking:
 
-  ```sh
+  ```bash
   pnpm link-checker && lychee --exclude-mail --base="src/.vuepress/dist" src/.vuepress/dist
   ```
 
@@ -99,12 +97,10 @@ Table of Contents (ToC) anchor links are generated using the [Markdown All in On
 - Required props have an escaped splat `\*` at the end of the header and ToC link
   - `### topLevelProp\*`
   - `- [topLevelProp\*](#toplevelprop)`
-
 ````markdown
 # Title
 
 Description.
-
 ```yaml
 topLevelProp:
   child: example
@@ -137,7 +133,6 @@ parentArray:
 > `object`
 
 Description.
-
 ```yaml
 topLevelProp:
   child: example
@@ -154,7 +149,6 @@ Description.
 > `array` of `primitive`
 
 Description.
-
 ```yaml
 array:
   - one
@@ -166,7 +160,6 @@ array:
 > `array` of `object`
 
 Description.
-
 ```yaml
 parentArray:
   - child: one
@@ -178,7 +171,6 @@ parentArray:
 > `type`
 
 Description.
-
 ````
 
 ## Provide feedback
