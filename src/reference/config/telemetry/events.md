@@ -1,20 +1,19 @@
 ---
-shortTitle: Logs
-description: Zilla runtime telemetry logs
+shortTitle: Events
+description: Zilla runtime telemetry events
 category:
   - Telemetry
 tag:
-  - Logs
+  - Events
 ---
 
-# Telemetry Logs
+# Telemetry Events
 
-Named events logged by Zilla.
+Named events from Zilla that can be exported and logged.
 
 :::: note Properties
 
 - [Catalog Errors](#catalog-errors)
-- [Filesystem Errors](#filesystem-errors)
 - [Guard Errors](#guard-errors)
 - [HTTP Access](#http-access)
 - [Kafka Errors](#kafka-errors)
@@ -28,15 +27,13 @@ Named events logged by Zilla.
 
 ### Catalog Errors
 
-> REMOTE_ACCESS_REJECTED :method :url :status
-
-A remote access error happened in the schema registry catalog.
-
-### Filesystem Errors
-
 > FILE_NOT_FOUND :location
 
 No file was found at the specified location.
+
+> REMOTE_ACCESS_REJECTED :method :url :status
+
+A remote access error happened in the schema registry catalog.
 
 ### Guard Errors
 
