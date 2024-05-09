@@ -217,12 +217,12 @@ export const enSidebar = sidebar({
               link: "concepts/telemetry.md",
             },
             {
-              text: "Open Example",
-              link: "tutorials/metrics/prometheus/prometheus-intro.md",
+              text: "Add logs & metrics",
+              link: "tutorials/telemetry/telemetry-intro.md",
             },
             {
-              text: "Open Example",
-              link: "tutorials/metrics/prometheus/prometheus-intro.md",
+              text: "Push to an OTLP Collector",
+              link: "how-tos/telemetry/opentelemetry-protocol.md",
             },
           ]
         },

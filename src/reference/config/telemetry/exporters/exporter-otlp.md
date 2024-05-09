@@ -46,6 +46,7 @@ exporters:
 > `object`
 
 `otlp`-specific options.
+
 ```yaml
 options:
   interval: 30
