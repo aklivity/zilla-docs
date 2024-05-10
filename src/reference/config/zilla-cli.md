@@ -185,6 +185,16 @@ zilla start
 
 > started
 
+#### -c --config
+
+> `URI` | ex: `file://Users/username/path/to/zilla.yaml`
+
+Set the `zilla.yaml` config location. The URI can be a local or remote location.
+
+#### -e --exception-traces
+
+Enable logging of exception stack traces
+
 #### -v --verbose
 
 Show verbose output

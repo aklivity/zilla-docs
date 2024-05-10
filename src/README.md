@@ -14,43 +14,47 @@ You can see a working [Petstore Demo](https://github.com/aklivity/zilla-demos/tr
 
 You can explicitly define your APIs in a Zilla configuration by carefully orchestrating all of the different [Bindings](./concepts/config-intro.md#Bindings) Zilla has to offer. You can see many of them on display by using the [Kafka Proxy Quickstart](./tutorials/quickstart/kafka-proxies.md) or checking out the [Zilla Examples](https://github.com/aklivity/zilla-examples) repo.
 
-## Running Zilla via Docker
+## Running Zilla
 
-Run the latest Zilla release with the default empty configuration via docker.
+Run the latest Zilla release with Homebrew and Docker. You can find help with more deployment options your Zilla anywhere with in the [Deploy and Operate](./how-tos/deploy-operate.md) section.
+
+::: tabs
+
+@tab Mac Homebrew
+
+Install:
 
 ```bash:no-line-numbers
-docker run ghcr.io/aklivity/zilla:latest start -v
+brew tap aklivity/tap
+brew install zilla
 ```
+
+Run:
+
+```bash:no-line-numbers
+zilla start -v -c file://path/to/zilla.yaml
+```
+
+@tab Docker Run
+
+Run in a container:
+
+```bash:no-line-numbers
+docker run -v /path/to/zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest start -v
+```
+
+:::
 
 The output should display the Zilla config and `started` to know Zilla is ready for traffic.
 
 ```output:no-line-numbers
-// default Zilla config
-name: default
+// Printed config Zilla config
+name: config_name
+...
 
 // Zilla status
 started
 ```
-
-Specify your own `zilla.yaml` file.
-
-```bash:no-line-numbers
-docker run -v ./zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest start -v
-```
-
-## Running Zilla via Helm
-
-Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) page to find out more on how to install Zilla using Helm.
-
-```bash:no-line-numbers
-helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --create-namespace --wait \
-    --values values.yaml \
-    --set-file zilla\\.yaml=zilla.yaml
-```
-
-Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.
-
-[Find out more](./how-tos/deploy-operate.md)
 
 ## The zilla.yaml Config
 
