@@ -1,6 +1,6 @@
 # Telemetry
 
-Zilla captures telemetry data in [metrics](#metrics) and [events](#events). The data can then be accessed outside of Zilla by configuring [exporters](#exporters) to chose how and where to see the telemetry data.
+Zilla captures telemetry data in [metrics](#metrics) and [events](#events). The data can then be accessed outside of Zilla by configuring [exporters](#exporters) to chose how and where to see the telemetry data. You can see logs and metrics with the [Telemetry Intro](../tutorials/telemetry/telemetry-intro.md) example.
 
 In the `zilla.yaml` telemetry is configured at the top level to apply to the entire zilla namespace.
 
@@ -14,7 +14,7 @@ telemetry:
 
 ## Metrics
 
-[Metrics](../reference/config/overview.md#metrics) are separated by protocol where the `stream` metrics relate to Zilla's internal message handler. The other protocols have common metrics you would expect to find. You can try out the different metrics with the [Prometheus Intro](../tutorials/metrics/prometheus-intro.md) example. The [zilla metrics](../reference/config/zilla-cli.md#zilla-metrics) command can be used to see the raw metrics that Zilla has collected.
+[Metrics](../reference/config/overview.md#metrics) are separated by protocol where the `stream` metrics relate to Zilla's internal message handler. The other protocols have common metrics you would expect to find. The [zilla metrics](../reference/config/zilla-cli.md#zilla-metrics) command can be used to see the raw metrics that Zilla has collected.
 
 ## Events
 
