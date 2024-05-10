@@ -33,9 +33,11 @@ Before submitting your contribution, please read through the following guide. We
 ### Repo Setup
 
 To develop locally, fork this repository and clone it in your local machine. Then run these commands from the root directory:
+
 ```bash
 pnpm i
 ```
+
 ```bash
 pnpm dev
 ```
@@ -97,10 +99,12 @@ Table of Contents (ToC) anchor links are generated using the [Markdown All in On
 - Required props have an escaped splat `\*` at the end of the header and ToC link
   - `### topLevelProp\*`
   - `- [topLevelProp\*](#toplevelprop)`
+
 ````markdown
 # Title
 
 Description.
+
 ```yaml
 topLevelProp:
   child: example
@@ -133,6 +137,7 @@ parentArray:
 > `object`
 
 Description.
+
 ```yaml
 topLevelProp:
   child: example
@@ -149,6 +154,7 @@ Description.
 > `array` of `primitive`
 
 Description.
+
 ```yaml
 array:
   - one
@@ -160,6 +166,7 @@ array:
 > `array` of `object`
 
 Description.
+
 ```yaml
 parentArray:
   - child: one
