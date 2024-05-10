@@ -59,8 +59,8 @@ export const enSidebar = sidebar({
           link: "telemetry/",
           children: [
             {
-              text: "Logs",
-              link: "logs.md",
+              text: "Events",
+              link: "events.md",
             },
             {
               text: "Metrics",

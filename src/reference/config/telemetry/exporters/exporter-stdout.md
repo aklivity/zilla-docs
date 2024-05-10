@@ -9,7 +9,7 @@ tag:
 
 # Stdout Exporter
 
-The Zilla runtime stdout exporter publishes telemetry [logs](../logs.md) to the application standard out. 
+The Zilla runtime stdout exporter logs telemetry [events](../events.md) to the application standard out.
 
 ```yaml
 exporters:
