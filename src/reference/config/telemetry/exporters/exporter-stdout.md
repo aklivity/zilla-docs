@@ -19,7 +19,7 @@ exporters:
 
 ## Log Format
 
-> <zilla namespace>:<component name> [dd/MMM/yyyy:HH:mm:ss Z] <event name> - <event body>
+> {zilla namespace}:{component name} [dd/MMM/yyyy:HH:mm:ss Z] {event name} - {event body}
 
 ```output
 zilla-example:north_http_server [08/May/2024:11:28:41 +0000] REQUEST_ACCEPTED - http GET example.io:80 /items

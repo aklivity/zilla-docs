@@ -42,11 +42,11 @@ docker-compose up --detach
 
 - Open the browser
 
-Navigate to the browser [http://localhost:7114/index.html](http://localhost:7114/index.html).
+Navigate to the browser <http://localhost:7114/index.html>.
 
 - Click `Go`
 
-With the location input set to `http://localhost:7114/events` you can click the `Go` button to connect to the SSE server. Messages will stream in as long as you have the `messenger` service running in docker.The stream of messages will render on the page.
+With the location input set to <http://localhost:7114/events> you can click the `Go` button to connect to the SSE server. Messages will stream in as long as you have the `messenger` service running in docker.The stream of messages will render on the page.
 
 ```output:no-line-numbers
 ...

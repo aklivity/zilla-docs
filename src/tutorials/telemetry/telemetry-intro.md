@@ -52,7 +52,7 @@ Metrics-example.north_http_server [08/May/2024:18:46:14 +0000] REQUEST_ACCEPTED 
 
 ### Viewing Prometheus Metrics
 
-Go to [http://localhost:7190/metrtics](http://localhost:7190/metrtics) to see the collected data or run the below `curl` command.
+Go to <http://localhost:7190/metrtics> to see the collected data or run the below `curl` command.
 
 ```bash:no-line-numbers
 <!-- @include: ./telemetry_docker_run.sh#see_metrics -->

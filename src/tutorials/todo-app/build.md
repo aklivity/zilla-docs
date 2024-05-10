@@ -823,7 +823,7 @@ Make sure that `zilla.yaml` config changes got applied after restarting the Zill
 
 ### Step 5: Test Drive
 
-Open the browser and enter `http://localhost:8080/` to see the Todo Application.
+Open the browser and enter <http://localhost:8080/> to see the Todo Application.
 
 ![](./TodoAppNotLoggedIn.png)
 
