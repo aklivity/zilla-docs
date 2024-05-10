@@ -37,7 +37,7 @@ Create these files, `zilla.yaml`, `docker-compose.yaml` and `index.html`, in the
 ## Run Zilla and Kafka
 
 ```bash:no-line-numbers
-docker-compose up -d
+docker-compose up --detach
 ```
 
 - Open the browser
