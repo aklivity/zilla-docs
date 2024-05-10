@@ -1,21 +1,18 @@
 ---
-shortTitle: schema-registry
-description: Zilla runtime schema-registry catalog
-icon: aky-zilla-plus
+shortTitle: karapace
+description: Zilla runtime karapace catalog
 category:
   - Catalog
 ---
 
-# schema-registry Catalog
+# karapace Catalog
 
-[Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
-{.zilla-plus-badge .hint-container .info}
 
-Zilla runtime schema-registry catalog
+Zilla runtime karapace catalog
 
 ```yaml {2}
 catalog:
-  type: schema-registry
+  type: karapace
   options:
     url: http://reg.example.com:8081
     context: default
