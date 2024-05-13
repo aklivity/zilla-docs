@@ -23,7 +23,7 @@ catalog:
 
 ## Summary
 
-Defines a catalog with a schema pulled from a remote registry to enforce validation.
+Defines a catalog with a schema pulled from a remote schema registry to enforce validation.
 
 ## Configuration
 

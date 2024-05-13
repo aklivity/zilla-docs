@@ -7,7 +7,6 @@ category:
 
 # karapace Catalog
 
-
 Zilla runtime karapace catalog
 
 ```yaml {2}
@@ -20,7 +19,7 @@ catalog:
 
 ## Summary
 
-Defines a catalog with a schema pulled from a remote registry to enforce validation.
+Defines a catalog with a schema pulled from a remote schema registry to enforce validation.
 
 ## Configuration
 
@@ -44,7 +43,7 @@ Defines a catalog with a schema pulled from a remote registry to enforce validat
 
 > `string`
 
-Schema Registry URL to access schemas via API calls.
+Karapace Schema Registry URL to access schemas via API calls.
 
 #### options.context
 
