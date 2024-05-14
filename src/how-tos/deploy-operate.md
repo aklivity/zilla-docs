@@ -59,3 +59,7 @@ The `ZILLA_INCUBATOR_ENABLED` environment variable will set the incubator java o
 ```text
 ZILLA_INCUBATOR_ENABLED=true
 ```
+
+## Export TACE level Log Dump
+
+https://docs.aklivity.io/zilla/latest/reference/config/zilla-cli.html#zilla-dump
