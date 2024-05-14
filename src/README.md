@@ -19,7 +19,7 @@ Jump to the [quick start](./how-tos/quickstart.md) guide.
 
 Some of the hardest operational challenges inside distributed architectures relate to networking and observability. As a result, edge and service proxies are required to achieve resilient, transparent, and properly routed connectivity among distributed services.
 
-While solutions such as Envoy, HAProxy, NGINX, etc. can help unify a distributed data plane, they are designed for “mesh” deployments in which services are directly interconnected and communicate almost exclusively over HTTP. Inside event-driven architectures (EDAs) though, services are separated by an event/message broker, and multiple network and application protocols are present. This decoupled and multi-protocol nature of EDAs presents a new class of networking, observability, and security challenges that the Zilla proxy is designed to address.
+While solutions such as Envoy, HAProxy, NGINX, etc. can help unify a distributed data plane, they are designed for “mesh” deployments in which services are directly interconnected and communicate almost exclusively over HTTP. Inside event-driven architectures (EDAs) though, services are separated by an event/message broker, and multiple protocols are present. This decoupled and multi-protocol nature of EDAs presents a new class of networking, observability, and security challenges that the Zilla proxy is designed to address.
 
 ## Zilla Features
 
@@ -29,15 +29,15 @@ Zilla has no external dependencies, is stateless, and is highly memory efficient
 
 ### HTTP/2, gRPC, SSE, MQTT, and Kafka Support + Protocol Mediation
 
-Inside Zilla, every protocol, whether it is TCP, TLS, HTTP, Kafka, gRPC, etc., is treated as a stream, so mediating between protocols is as simple assimplifies to mapping protocol-specific metadata.
+Inside Zilla, every protocol, whether it is TCP, TLS, HTTP, Kafka, gRPC, etc., is treated as a stream, so mediating between protocols simplifies to mapping protocol-specific metadata.
 
 ### Protobuf, Avro, OpenAPI, and AsyncAPI Support
 
-Zilla supports different API and schema specifications for message validation.
+Zilla supports different API and schema specifications for message validation and API creation.
 
 ### API Registry and Schema Registry Integrations
 
-Zilla integrates with schema registries and API registries including Apicurio, Confluent Schema Registry (<ZillaPlus/>), and Karapace.
+Zilla integrates with schema registries and API registries including Apicurio, Confluent Schema Registry (Zilla Plus), and Karapace.
 
 ### Security
 
@@ -45,7 +45,7 @@ Zilla can terminate TLS and supports JWT-based authorization for REST, SSE, and 
 
 ### Observability
 
-Zilla supports OpenTelemetry for metrics and logging and can expose aexport to Prometheus metrics endpoint. Syslog for logging is supported in <ZillaPlus/>.
+Zilla supports OpenTelemetry for metrics and logging and can expose a Prometheus metrics endpoint. Syslog for logging is supported in Zilla Plus.
 
 ## Zilla Use Cases
 
@@ -64,7 +64,7 @@ When deployed in front of an existing HTTP, SSE (Server Sent Events), MQTT, Kafk
 #### For SSE Services
 
 - Gather metrics and telemetry data on traffic flowing out of an SSE service.
-- Add JWT-based client authentication with “Cotinous Authorization.” Zilla supports “Contious Authorization” which gracefully re-authorizes a client on an SSE server’s behalf, without abruptly terminating message streams.
+- Add JWT-based client authentication with [Continuous Authorization](https://www.aklivity.io/post/a-primer-on-server-sent-events-sse#:~:text=Securing%20SSE%20with%20aklivity%20Zilla). Zilla supports Continuous Authorization which gracefully re-authorizes a client on an SSE server’s behalf, without abruptly terminating message streams.
 
 #### For MQTT Services
 
@@ -84,13 +84,13 @@ When deployed in front of an existing HTTP, SSE (Server Sent Events), MQTT, Kafk
 
 ### AsyncAPI Kafka Gateway
 
-Zilla can abstract Apache Kafka® for web applications, IoT clients, and non-Kafka microservices. With Zilla, OpenAPI and AsyncAPI definitions can be mapped to Kafka, enabling Kafka topics to be exposed over user-defined REST, SSEServer-Sent Events (SSE), MQTT, and gRPC APIs.
+Zilla can abstract Apache Kafka for web applications, IoT clients, and non-Kafka microservices. With Zilla, OpenAPI and AsyncAPI definitions can be mapped to Kafka, enabling Kafka topics to be exposed over user-defined REST, SSE, MQTT, and gRPC APIs.
 
 Zilla has no external dependencies and does not rely on the Kafka Consumer/Producer API or Kafka Connect. Instead, it natively supports the Kafka wire protocol and uses novel protocol mediation techniques to establish stateless API entry points into Kafka. As a gateway, Zilla also addresses security enforcement, observability, and connection offloading on the data path.
 
 #### Kafka Fan-Out to Web and IoT (Data Broadcasting)
 
-Broadcast data from Kafka to millions of clients over SSE, MQTT, and gRPC. With Kafka and Zilla real-time updates such as stock tickers, sports scores, logistics trackers, push notifications, and more, and push notifications can be reliably delivered to end users and systems at scale. Kafka is not designed to support a large number of connected clients, so besides protocol mediation, Zilla also handles connection offloading, by pushing data out of a real-time cache. This local cache is synchronized with Kafka for specific topics through a small number of connections, independent of the number of connected clients. The cache also indexes message keys and headers upon retrieval from Kafka, supporting efficiently filtered reads from cached topics.
+Broadcast data from Kafka to millions of clients over SSE, MQTT, and gRPC. With Kafka and Zilla real-time updates such as stock tickers, sports scores, logistics trackers, and push notifications can be reliably delivered to end users and systems at scale. Kafka is not designed to support a large number of connected clients, so besides protocol mediation, Zilla also handles connection offloading, by pushing data out of a real-time cache. This local cache is synchronized with Kafka for specific topics through a small number of connections, independent of the number of connected clients. The cache also indexes message keys and headers upon retrieval from Kafka, supporting efficiently filtered reads from cached topics.
 
 #### Kafka Fan-In from Web and IoT (Clickstream and Telemetry Ingestion)
 
@@ -102,9 +102,9 @@ Remove an MQTT broker from a Kafka-based EDA to streamline an IoT deployment. Zi
 
 #### Event Mesh
 
-Interface a REST or gRPC service meshes to an event-driven architecture for an event mesh deployment. Achieve CQRS, request-response over messaging, and event-sourcing design patterns.
+Interface REST or gRPC service meshes to an event-driven architecture for an event mesh deployment. Achieve CQRS, request-response over messaging, and event-sourcing design patterns.
 
-#### Secure Public Access
+#### Secure Public Access (Zilla Plus)
 
 Route connectivity between Kafka clients and privately networked Kafka brokers. With <ZillaPlus/>, external and third-party Kafka clients can securely connect, publish messages, and subscribe to topics in a remote, private cluster.
 
@@ -114,9 +114,9 @@ Zilla helps streamline, secure, and manage event-driven architectures. As an Ans
 
 ### Who Zilla is for?
 
-- **Data platform/Kafka integration engineers** who are tasked with reliably, securely, and accessiblyapproachably exposing a Kafka cluster to internal and/or external teams.
+- **Data platform/Kafka integration engineers** who are tasked with reliably, securely, and accessibly exposing a Kafka cluster to internal and/or external teams.
 - **Application developers** who do not have Kafka expertise but want/need to build applications on top of real-time data streams.
-- **API architects** who want to easily create business functionality from their AsyncAPI schemastake advantage of AsyncAPIs.
+- **API architects** who want to drive business functionality via their AsyncAPI schemas.
 
 ![With and Without Zilla](/before-after-zilla.svg)
 
