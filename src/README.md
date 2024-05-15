@@ -12,7 +12,7 @@ Zilla is stateless, cloud-native, and supports various network and application p
 ![](/zilla-overview.png)
 
 ::: info Just want to build?
-Jump to the [quick start](./how-tos/quickstart.md) guide.
+Jump to the [quickstart](./how-tos/quickstart.md) guide.
 :::
 
 ## Why Zilla?
