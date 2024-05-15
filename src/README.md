@@ -31,9 +31,13 @@ Zilla has no external dependencies, is stateless, and is highly memory efficient
 
 Inside Zilla, every protocol, whether it is TCP, TLS, HTTP, Kafka, gRPC, etc., is treated as a stream, so mediating between protocols simplifies to mapping protocol-specific metadata.
 
-### Protobuf, Avro, OpenAPI, and AsyncAPI Support
+### Protobuf, Avro, and JSON Schema payloads
 
-Zilla supports different API and schema specifications for message validation and API creation.
+Zilla supports payload schema specifications for message validation and translation.
+
+### OpenAPI and AsyncAPI Support
+
+Zilla supports different API schema specifications for message validation and API creation.
 
 ### API Registry and Schema Registry Integrations
 
