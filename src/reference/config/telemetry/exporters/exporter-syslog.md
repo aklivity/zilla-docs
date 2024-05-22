@@ -27,7 +27,7 @@ exporters:
 with vault:
 ```yaml {11}
 vaults:
-  vault:
+  my_syslog_trust:
     type: filesystem
     options:
       trust:
@@ -37,7 +37,7 @@ vaults:
 exporters:
   syslog:
     type: syslog
-    vault: vault
+    vault: my_syslog_trust
     options:
       host: syslog-server
       port: 6514
