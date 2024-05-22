@@ -105,7 +105,7 @@ options:
 
 The hostname of the syslog server.
 
-#### options.port
+#### options.port*
 
 > `integer`
 
