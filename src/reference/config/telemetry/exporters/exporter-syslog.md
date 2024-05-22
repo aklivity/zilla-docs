@@ -70,7 +70,7 @@ exporters:
 
 Vault name. Only applicable if the protocol is `tls`.
 
-### options
+### options*
 
 > `object`
 
