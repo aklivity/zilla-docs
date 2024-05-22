@@ -111,7 +111,7 @@ The hostname of the syslog server.
 
 The port of the syslog server.
 
-#### options.protocol
+#### options.protocol*
 
 > `enum` [ "tcp", "udp", "tls" ] | Default: `"tcp"`
 
