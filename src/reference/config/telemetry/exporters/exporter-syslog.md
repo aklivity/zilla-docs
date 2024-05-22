@@ -50,6 +50,7 @@ exporters:
 
 :::: note Properties
 
+- [vault](#vault)
 - [options\*](#options)
   - [options.host\*](#options-host)
   - [options.port\*](#options-port)
@@ -62,6 +63,12 @@ exporters:
 :::
 
 ::::
+
+### vault
+
+> `string`
+
+Vault name. Only applicable if the protocol is `tls`.
 
 ### options
 
