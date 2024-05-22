@@ -99,7 +99,7 @@ options:
     - syslog
 ```
 
-#### options.host
+#### options.host*
 
 > `string`
 
