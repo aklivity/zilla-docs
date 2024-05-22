@@ -16,12 +16,34 @@ Zilla runtime Syslog exporter
 
 ```yaml {3}
 exporters:
-  syslog0:
+  syslog:
     type: syslog
     options:
       host: syslog-server
       port: 514
       protocol: tcp
+```
+
+with vault:
+```yaml {11}
+vaults:
+  vault:
+    type: filesystem
+    options:
+      trust:
+        store: truststore.p12
+        type: pkcs12
+        password: generated
+exporters:
+  syslog:
+    type: syslog
+    vault: vault
+    options:
+      host: syslog-server
+      port: 6514
+      protocol: tls
+      trust:
+        - syslog
 ```
 
 ## Configuration
@@ -74,25 +96,26 @@ options:
 
 > `string`
 
-Host is the hostname of the syslog server.
+The hostname of the syslog server.
 
 #### options.port
 
 > `integer`
 
-Port is the port of the syslog server.
+The port of the syslog server.
 
 #### options.protocol
 
-> `string`
+> `enum` [ "tcp", "udp", "tls" ] | Default: `"tcp"`
 
-Protocol is the protocol to use to communicate with the syslog server. Valid values are: `tcp`, `udp`, `tls`.
+The protocol to use to communicate with the syslog server. Valid values are: `tcp`, `udp`, `tls`.
 
 #### options.trust
 
-> `array` of `strings`
+> `array` of `string`
 
-The trust files to use when connecting to the syslog server. Only valid if the protocol is `tls`.
+Keys in the vault referenced on the binding (e.g. a filesystem vault for a local pkcs12 keystore
+or an AWS vault for remote pem format certificates stored in AWS secrets manager). Only valid if the protocol is `tls`.
 
 #### options.trustcacerts
 
