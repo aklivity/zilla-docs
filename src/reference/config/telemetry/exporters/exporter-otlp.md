@@ -24,10 +24,6 @@ exporters:
         location: http://otlp-collector:4318/v1/metrics
 ```
 
-## Log Format
-
-> {zilla namespace}:{component name} [dd/MMM/yyyy:HH:mm:ss Z] {event name} - {event body}
-
 ## Configuration
 
 :::: note Properties
