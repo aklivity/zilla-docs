@@ -87,6 +87,16 @@ USD����*
 USD�����]
 ```
 
+Create lots of request with a `while` loop:
+
+```bash:no-line-numbers
+while true; do; curl http://localhost:7114/orders; done
+```
+
 ## Browse the Observability data
 
+![Zilla logs and metrics Grafana dashboard](./dashboard.png)
+
 You can see the `zillaproxy` service logs and metrics in the OpenTelemetry Demo's [Grafana dashboard](http://localhost:8080/grafana/d/W2gX2zHVk/demo-dashboard?orgId=1&var-service=zillaproxy).
+
+

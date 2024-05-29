@@ -1,5 +1,17 @@
 # Deploy and Operating Zilla
 
+## Deploying Zilla via Helm
+
+Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) page to find out more on how to install Zilla using Helm.
+
+```bash:no-line-numbers
+helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --create-namespace --wait \
+--values values.yaml \
+--set-file zilla\\.yaml=zilla.yaml
+```
+
+Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.
+
 ## Running Zilla via Docker
 
 Run the latest Zilla release with the default empty configuration via docker.
@@ -23,18 +35,6 @@ Specify your own `zilla.yaml` file.
 ```bash:no-line-numbers
 docker run -v ./zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest start -v
 ```
-
-## Running Zilla via Helm
-
-Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) page to find out more on how to install Zilla using Helm.
-
-```bash:no-line-numbers
-helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --create-namespace --wait \
---values values.yaml \
---set-file zilla\\.yaml=zilla.yaml
-```
-
-Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.
 
 ## Auto Reconfigure
 
@@ -60,6 +60,7 @@ The `ZILLA_INCUBATOR_ENABLED` environment variable will set the incubator java o
 ZILLA_INCUBATOR_ENABLED=true
 ```
 
-## Export TACE level Log Dump
+## Export `TACE` level Log Dump
 
-https://docs.aklivity.io/zilla/latest/reference/config/zilla-cli.html#zilla-dump
+The [zilla dump](../reference/config/zilla-cli.md#zilla-dump) command will capture all of the internal events at the stream level for a detailed analysis of what zilla was doing. These logs are capture down to the nanosecond and are exported as a `.pcap` file to be used with [Wireshark](https://wiki.wireshark.org/SampleCaptures). You can find instructions on how to view the capture in wireshark in the zilla dump [plugin install section](../reference/config/zilla-cli.md#i-install-plugin-directory).
+
