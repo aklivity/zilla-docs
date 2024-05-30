@@ -49,4 +49,4 @@ Karapace Schema Registry URL to access schemas via API calls.
 
 > `string` | Default: `"default"`
 
-Schema context represents an independent scope in Schema Registry.
+Schema context represents an independent scope in the Karapace schema registry.
