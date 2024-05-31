@@ -16,7 +16,7 @@ Zilla runtime aws cloudwatch exporter.
 
 ```yaml {3}
 exporters:
-  cloudwatch0:
+  aws_cloudwatch:
     type: aws-cloudwatch
     options:
       metrics:
