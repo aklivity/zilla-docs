@@ -1,23 +1,23 @@
 ---
-shortTitle: aws
-description: Zilla runtime aws exporter
+shortTitle: aws cloudwatch
+description: Zilla runtime aws cloudwatch exporter
 icon: aky-zilla-plus
   - Telemetry
 tag:
   - Exporters
 ---
 
-# aws Exporter
+# aws cloudwatch Exporter
 
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-Zilla runtime aws exporter.
+Zilla runtime aws cloudwatch exporter.
 
 ```yaml {3}
 exporters:
-  aws0:
-    type: aws
+  cloudwatch0:
+    type: aws-cloudwatch
     options:
       metrics:
         namespace: zilla-metrics
