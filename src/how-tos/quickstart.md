@@ -6,7 +6,7 @@ You can see a working [Petstore Demo](https://github.com/aklivity/zilla-demos/tr
 
 > [Petstore Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore) | [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi) | [TodoMVC CQRS Demo](https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs)
 
-You can explicitly define your APIs in a Zilla configuration by carefully orchestrating all of the different [Bindings](../concepts/config-intro.md#Bindings) Zilla has to offer. You can see many of them on display by using the [Kafka Proxy Quickstart](../tutorials/quickstart/kafka-proxies.md) or checking out the [Zilla Examples](https://github.com/aklivity/zilla-examples) repo.
+You can explicitly define your APIs in a Zilla configuration by carefully orchestrating all of the different [Bindings](../concepts/bindings.md#Bindings) Zilla has to offer. You can see many of them on display by using the [Kafka Proxy Quickstart](../tutorials/quickstart/kafka-proxies.md) or checking out the [Zilla Examples](https://github.com/aklivity/zilla-examples) repo.
 
 > [Kafka Proxy Quickstart](../tutorials/quickstart/kafka-proxies.md) | [Zilla Examples](https://github.com/aklivity/zilla-examples)
 
@@ -37,7 +37,7 @@ docker run -v ./zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest s
 
 The `zilla.yaml` config is declaratively configured to clearly define API mappings and endpoints that Zilla implements. This makes creating and managing your Zilla services easy.
 
-> [Zilla config intro](../concepts/config-intro.md) | [bindings](../reference/config/overview.md#bindings) | [guards](../reference/config/overview.md#guards) | [vaults](../reference/config/overview.md#vaults) | [catalogs](../reference/config/overview.md#catalogs) | [telemetry](../reference/config/overview.md#telemetry)
+> [Zilla config intro](../concepts/bindings.md) | [bindings](../reference/config/overview.md#bindings) | [guards](../reference/config/overview.md#guards) | [vaults](../reference/config/overview.md#vaults) | [catalogs](../reference/config/overview.md#catalogs) | [telemetry](../reference/config/overview.md#telemetry)
 
 ## Zilla HTTP Proxy
 
