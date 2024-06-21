@@ -99,7 +99,7 @@ Broadcast data from Kafka to millions of clients over SSE, MQTT, and gRPC. With 
 
 #### Kafka Fan-In from Web and IoT (Clickstream and Telemetry Ingestion)
 
-Ingest data into Kafka from millions of clients over HTTP, MQTT, and gRPC. With Kafka and Zilla, clickstream and telemetry data can be processed and responded to in real time. Kafka is not designed to support a large number of connected clients, so besides protocol mediation, Zilla also pools connections, ensuring the number of inbound streams is independent of the number of connected clients.
+Ingest data into Kafka from millions of clients over HTTP, MQTT, and gRPC. With Kafka and Zilla, clickstream and telemetry data can be processed and responded to in real time. Kafka is not designed to support a large number of connected clients, so besides protocol mediation, Zilla also pools connections, ensuring the number of inbound connections is independent of the number of connected clients.
 
 #### IoT Ingestion and Control
 
