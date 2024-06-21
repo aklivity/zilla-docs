@@ -50,7 +50,7 @@ Zilla can terminate TLS and supports JWT-based authorization for REST, SSE, and 
 
 ### Observability
 
-Zilla supports OpenTelemetry for metrics and logging and can expose a Prometheus metrics endpoint. Syslog for logging is supported in Zilla Plus.
+Zilla can expose a Prometheus metrics endpoint and logs events to stdout. Additionally Zilla supports OpenTelemetry for both metrics and logging and. Syslog and AWS Cloudwatch are supported in Zilla Plus.
 
 ## Zilla Use Cases
 
