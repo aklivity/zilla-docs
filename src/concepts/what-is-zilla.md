@@ -42,7 +42,7 @@ Zilla supports different API schema specifications for message validation and AP
 
 ### API Registry and Schema Registry Integrations
 
-Zilla integrates with schema registries and API registries including Apicurio, Confluent Schema Registry (Zilla Plus), and Karapace.
+Zilla integrates with schema registries and API registries including Apicurio, Confluent Schema Registry in <ZillaPlus/>, and Karapace.
 
 ### Security
 
@@ -50,7 +50,7 @@ Zilla can terminate TLS and supports JWT-based authorization for REST, SSE, and 
 
 ### Observability
 
-Zilla can expose a Prometheus metrics endpoint and logs events to stdout. Additionally Zilla supports OpenTelemetry for both metrics and logging and. Syslog and AWS Cloudwatch are supported in Zilla Plus.
+Zilla can expose a Prometheus metrics endpoint and logs events to stdout. Additionally Zilla supports OpenTelemetry for both metrics and logging and. Syslog and AWS Cloudwatch are supported in <ZillaPlus/>.
 
 ## Zilla Use Cases
 
@@ -64,12 +64,13 @@ When deployed in front of an existing HTTP, SSE (Server Sent Events), MQTT, Kafk
 
 - Gather metrics and telemetry data on traffic flowing in and out of an HTTP service.
 - Add JWT-based client authentication.
-- Enforce OpenAPI schema definitions and reject invalid requests.
+- Enforce OpenAPI and AsyncAPI schema definitions and reject invalid requests.
 
 #### For SSE Services
 
 - Gather metrics and telemetry data on traffic flowing out of an SSE service.
 - Add JWT-based client authentication with [Continuous Authorization](https://www.aklivity.io/post/a-primer-on-server-sent-events-sse#:~:text=Securing%20SSE%20with%20aklivity%20Zilla). Zilla supports Continuous Authorization which gracefully re-authorizes a client on an SSE server’s behalf, without abruptly terminating message streams.
+- Enforce AsyncAPI schema definitions and reject invalid outbound messages.
 
 #### For MQTT Services
 
@@ -79,8 +80,7 @@ When deployed in front of an existing HTTP, SSE (Server Sent Events), MQTT, Kafk
 
 #### For Kafka Services
 
-- Gather metrics and telemetry data on traffic flowing in and out of a Kafka service.
-- Enforce AsyncAPI schema definitions and reject invalid inbound messages.
+- Gather metrics and telemetry data on traffic flowing in and out of a Kafka service in <ZillaPlus/>.
 
 #### For gRPC Services
 
