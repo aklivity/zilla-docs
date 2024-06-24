@@ -3,86 +3,92 @@ import { sidebar } from "vuepress-theme-hope";
 export const enSidebar = sidebar({
   "/reference/": [
     {
-      text: "VS Code extension",
-      link: "vscode/README.md",
-    },
-    {
       text: "Zilla Runtime",
       prefix: "config/",
-      link: "config/zilla-cli.md",
       children: [
         {
           text: "CLI (zilla)",
           link: "zilla-cli.md",
+          children: [],
         },
         {
-          text: "Config Overview",
+          text: "Zilla Config Overview",
           link: "overview.md",
+          children: [],
         },
         {
           text: "Resolvers",
           link: "resolvers.md",
+          children: [],
+        },
+      ],
+    },
+    {
+      text: "Bindings",
+      prefix: "config/bindings/",
+      children: "structure",
+    },
+    {
+      text: "Catalogs",
+      prefix: "config/catalogs/",
+      children: "structure",
+    },
+    {
+      text: "Guards",
+      prefix: "config/guards/",
+      children: "structure",
+    },
+    {
+      text: "Models",
+      prefix: "config/models/",
+      children: "structure",
+    },
+    {
+      text: "Telemetry",
+      prefix: "config/telemetry/",
+      children: [
+        {
+          text: "Events",
+          link: "events.md",
+          children: [],
         },
         {
-          text: "Bindings",
-          prefix: "bindings/",
-          link: "bindings/",
+          text: "Metrics",
+          prefix: "metrics/",
           children: "structure",
         },
         {
-          text: "Guards",
-          prefix: "guards/",
-          link: "guards/",
+          text: "Exporters",
+          prefix: "exporters/",
           children: "structure",
         },
+      ],
+    },
+    {
+      text: "Vaults",
+      prefix: "config/vaults/",
+      children: "structure",
+    },
+    {
+      text: "Plugins",
+      children: [
         {
-          text: "Vaults",
-          prefix: "vaults/",
-          link: "vaults/",
-          children: "structure",
-        },
-        {
-          text: "Catalogs",
-          prefix: "catalogs/",
-          link: "catalogs/",
-          children: "structure",
-        },
-        {
-          text: "Models",
-          prefix: "models/",
-          link: "models/",
-          children: "structure",
-        },
-        {
-          text: "Telemetry",
-          prefix: "telemetry/",
-          link: "telemetry/",
-          children: [
-            {
-              text: "Metrics",
-              prefix: "metrics/",
-              children: "structure",
-            },
-            {
-              text: "Exporters",
-              prefix: "exporters/",
-              children: "structure",
-            },
-          ],
+          text: "VS Code extension",
+          link: "vscode/README.md",
+          children: [],
         },
       ],
     },
     {
       text: "Zilla Manager",
       prefix: "manager/",
-      link: "manager/zpm-cli.md",
       children: [
         {
           text: "CLI (zpm)",
           link: "zpm-cli.md",
         },
         {
-          text: "Config Overview",
+          text: "zpm Config Overview",
           link: "overview.md",
         },
       ],
@@ -158,27 +164,44 @@ export const enSidebar = sidebar({
           text: "AWS",
           prefix: "how-tos/aws-services/",
           link: "how-tos/aws-services/",
-          children: "structure"
+          children: "structure",
         },
-      ]
+      ],
     },
   ],
   "/": [
     {
-      text: "What is Zilla?",
-      link: "/",
-    },
-    {
-      text: "Quickstart",
-      link: "how-tos/quickstart.md",
-    },
-    {
-      text: "Configuration",
-      link: "concepts/config-intro.md",
+      text: "Getting Started",
       children: [
         {
-          text: "Intro to zilla.yaml",
-          link: "concepts/config-intro.md",
+          text: "What is Zilla?",
+          link: "concepts/what-is-zilla.md",
+          children: [],
+        },
+        {
+          text: "Quickstart",
+          link: "how-tos/quickstart.md",
+          children: [],
+        },
+        {
+          text: "Bindings",
+          link: "concepts/bindings.md",
+          children: [],
+        },
+        {
+          text: "Bring Your Own Spec",
+          link: "concepts/spec-generation.md",
+          children: [],
+        },
+      ],
+    },
+    {
+      text: "Integration",
+      children: [
+        {
+          text: "Catalogs",
+          link: "concepts/catalogs.md",
+          children: [],
         },
         {
           text: "Connecting to Kafka",
@@ -196,42 +219,12 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Deploy & Operate",
-      link: "how-tos/deploy-operate.md",
-      children: [
-        {
-          text: "Installing Zilla",
-          link: "how-tos/deploy-operate.md",
-        },
-        {
-          text: "Telemetry Logs & Metrics",
-          collapsible: true,
-          link: "concepts/telemetry.md",
-          children: [
-            {
-              text: "Overview",
-              link: "concepts/telemetry.md",
-            },
-            {
-              text: "Add logs & metrics",
-              link: "tutorials/telemetry/telemetry-intro.md",
-            },
-            {
-              text: "Push to an OTLP Collector",
-              link: "how-tos/telemetry/opentelemetry-protocol.md",
-            },
-          ]
-        },
-      ],
-    },
-    {
       text: "Kafka Proxying",
-      link: "concepts/kafka-proxies/http-proxy.md",
       children: [
         {
           text: "Kafka Proxy Quickstart",
-          collapsible: true,
           link: "tutorials/quickstart/kafka-proxies.md",
+          children: [],
         },
         {
           text: "HTTP Kafka Proxy",
@@ -298,28 +291,136 @@ export const enSidebar = sidebar({
             },
           ],
         },
-      ]
+      ],
     },
     {
-      text: "Solutions",
-      prefix: "solutions/",
+      text: "Deploy & Operate",
       children: [
-        "concepts/kafka-proxies/secure-public-access.md",
-        "concepts/kafka-proxies/iot-ingest-control.md",
+        {
+          text: "Installing Zilla",
+          link: "how-tos/deploy-operate.md",
+          children: [],
+        },
+        {
+          text: "Telemetry Logs & Metrics",
+          collapsible: true,
+          link: "concepts/telemetry.md",
+          children: [
+            {
+              text: "Overview",
+              link: "concepts/telemetry.md",
+            },
+            {
+              text: "Add logs & metrics",
+              link: "tutorials/telemetry/telemetry-intro.md",
+            },
+            {
+              text: "Push to an OTLP Collector",
+              link: "how-tos/telemetry/opentelemetry-protocol.md",
+            },
+          ],
+        },
+        {
+          text: "Secure Public Access on AWS",
+          icon: "aky-zilla-plus",
+          link: "solutions/concepts/kafka-proxies/secure-public-access.md",
+          children: [],
+        },
+        {
+          text: "IoT Ingest and Control on AWS",
+          icon: "aky-zilla-plus",
+          link: "solutions/concepts/kafka-proxies/iot-ingest-control.md",
+          children: [],
+        },
+      ],
+    },
+    {
+      text: "Security",
+      children: [
+        {
+          text: "Guards",
+          collapsible: true,
+          link: "concepts/guards.md",
+          children: [
+            {
+              text: "Overview",
+              link: "concepts/guards.md",
+            },
+            {
+              text: "Add JWT auth to MQTT",
+              link: "https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt",
+            },
+            {
+              text: "Add JWT auth to REST",
+              link: "https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt",
+            },
+            {
+              text: "Add JWT auth to SSE",
+              link: "https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt",
+            },
+          ],
+        },
+        {
+          text: "Vaults",
+          collapsible: true,
+          link: "concepts/vaults.md",
+          children: [
+            {
+              text: "Overview",
+              link: "concepts/vaults.md",
+            },
+            {
+              text: "Server Encryption, TLS & SSL",
+              link: "concepts/ssl.md",
+            },
+          ],
+        },
       ],
     },
     {
       text: "Reference",
       prefix: "reference/",
-      link: "reference/config/overview.md",
       children: [
-        "vscode/",
-        "config/bindings/",
-        "config/guards/",
-        "config/vaults/",
-        "config/telemetry/",
-        "config/catalogs/",
-        "config/models/",
+        {
+          text: "Vscode",
+          link: "vscode/",
+          children: [],
+        },
+        {
+          text: "Config Overview",
+          link: "config/overview.md",
+          children: [],
+        },
+        {
+          text: "Bindings",
+          link: "config/bindings/",
+          children: [],
+        },
+        {
+          text: "Catalogs",
+          link: "config/catalogs/",
+          children: [],
+        },
+        {
+          text: "Models",
+          link: "config/models/",
+          children: [],
+        },
+        {
+          text: "Guards",
+          link: "config/guards/",
+          children: [],
+        },
+        {
+          text: "Vaults",
+          link: "config/vaults/",
+          children: [],
+        },
+        {
+          text: "Telemetry",
+          link: "config/telemetry/",
+          children: [],
+        },
       ],
     },
   ],
