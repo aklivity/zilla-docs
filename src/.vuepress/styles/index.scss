@@ -221,6 +221,19 @@ sup {
   }
 }
 
+.vp-code-tabs {
+  div[class*=language-].line-numbers-mode::after {
+    border-radius: 0;
+    border-bottom-left-radius: 6px;
+  }
+  div[class*=language-] {
+    .language-yaml {
+      border-radius: 0;
+      border-bottom-right-radius: 6px;
+    }
+  }
+}
+
 // === ICONS ===
 .aky-zilla-plus {
   &::after {

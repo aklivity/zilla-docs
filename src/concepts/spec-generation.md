@@ -12,6 +12,8 @@ The Zilla config uses many of the same parameters as the public and open-source 
 
 Zilla leverages the interface definitions in these specs to generate the necessary `zilla.yaml` config to implement the defined services. Zilla doesn't generate code that needs to be maintained. Instead, it generates the underlying configuration necessary to implement a functioning interface. Both standard and complex use cases are implemented easily with Zilla.
 
+You can see a working [Petstore Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore) using OpenAPI/AsyncAPI schemas. Zilla can also define and proxy MQTT endpoints utilizing a pair of AsyncAPI schemas. Check out the [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi) to see a Zilla MQTT proxy defined using AsyncAPI, which is deployed [Live](https://taxi.aklivity.io/) using Kubernetes.
+
 ### OpenAPI
 
 Zilla implements the RESTful APIs defined in the [openapi](../reference/config/bindings/binding-openapi.md) binding. A REST Kafka proxy is defined using the [openapi-asyncapi](../reference/config/bindings/binding-openapi-asyncapi.md) binding. The Kafka configuration is defined with an [asyncapi](../reference/config/bindings/binding-asyncapi.md) `client` binding.
