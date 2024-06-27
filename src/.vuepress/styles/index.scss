@@ -221,14 +221,16 @@ sup {
   }
 }
 
+// Fix code tabs border radius, remove with https://github.com/vuepress-theme-hope/vuepress-theme-hope/issues/4235
 .vp-code-tabs {
   div[class*=language-].line-numbers-mode::after {
     border-radius: 0;
     border-bottom-left-radius: 6px;
   }
   div[class*=language-] {
-    .language-yaml {
+    pre {
       border-radius: 0;
+      border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
     }
   }
