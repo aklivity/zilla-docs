@@ -9,22 +9,32 @@ tag:
   - MQTT
 ---
 
-# Zilla Quickstart
+# Quickstart
 
-Get started with Zilla by trying out some of the key features for yourself.
+Get started with Zilla by trying out some of the key features for yourself. You can explicitly define your APIs in a Zilla configuration by carefully orchestrating all of the different [Bindings](../concepts/bindings.md#Bindings) Zilla has to offer. You can see many of them on display by using the [Kafka Proxy Quickstart](../tutorials/quickstart/index.md) or checking out the [Zilla Examples](https://github.com/aklivity/zilla-examples) repo. We added an event-driven backend to the popular TodoMVC UI frontend in the [TodoMVC CQRS Demo](https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs) where all of the new tasks will sync live to any open browsers.
 
-## HTTP Kafka proxy
+## Zilla HTTP Proxy
 
-Open the [Zilla - HTTP Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection to see the [Zilla REST Kafka proxy](../../concepts/kafka-proxies/http-proxy.md) expose common entity CRUD endpoints with the entity data being stored on Kafka topics. Leveraging Kafka's `cleanup.policy=compact` feature, Zilla enables a standard REST backend architecture with Kafka as the storage layer. Adding an `Idempotency-Key` header during creation will set the message `key` and act as the `ID` for the record. A UUID is generated if no key is sent.
+The Zilla HTTP Kafka Proxy lets you configure application-centric REST APIs and SSE streams that unlock Kafka event-driven architectures.
 
-- **GET** - Fetches all items on the topic or Fetch one item by its key using `/:key`.
-- **POST** - Create a new item with the `Idempotency-Key` header setting the key.
-- **PUT** - Update an item based on its key using `/:key`.
-- **DELETE** - Delete an item based on its key using `/:key`.
+> [Overview and Features](../concepts/kafka-proxies/http-proxy.md) | [Simple CRUD API](../tutorials/rest/rest-intro.md) | [Simple SSE Stream](../tutorials/sse/sse-intro.md) | [Petstore Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore)
+
+
+Open the [Zilla - HTTP Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection to see the [REST Kafka proxy](../../concepts/kafka-proxies/http-proxy.md) expose common entity CRUD endpoints with the entity data being stored on a Kafka topic and the [SSE Kafka proxy](../../concepts/kafka-proxies/http-proxy.md#sse-streaming) expose th Kafka topic as a Server-sent Events (SSE) stream, enabling a resilient event-driven architecture to be exposed over HTTP.
 
 The [items-crud](https://quickstart.aklivity.io/kafka/ui/clusters/local/all-topics/items-crud/messages) Kafka topic will have all the objects you posted, updated, and deleted.
 
-You can check out the yaml config that zilla is using to create these HTTP endpoints that map to Kafka topics.
+Leveraging Kafka's `cleanup.policy=compact` feature, Zilla enables a standard REST backend architecture with Kafka as the storage layer. Adding an `Idempotency-Key` header during creation will set the message `key` and act as the `ID` for the record. A UUID is generated if no key is sent.
+
+- **Create** - Create a new item with the `Idempotency-Key` header setting the key
+- **Read:all** - Fetches all items on the topic
+- **Read:key** - Fetch one item by its key using `/:key`
+- **Update** - Update an item based on its key using `/:key
+- **Delete** - Delete an item based on its key using `/:key`
+- **Stream:all** - Stream all of the messages published on the `items-crud` Kafka topic
+- **Stream:key** - Stream items by its key using `/:key` published on the `items-crud` Kafka topic
+
+The declarative config has simple and clear syntax for defining each of the endpoints.
 
 ::: code-tabs#yaml
 
@@ -78,22 +88,6 @@ You can check out the yaml config that zilla is using to create these HTTP endpo
       <!-- @include: ./http-zilla.yaml#rest_delete -->
 ```
 
-:::
-
-::: note Try it yourself
-:::
-
-### SSE stream
-
-Open the [Zilla - HTTP Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection to see the [Zilla SSE Kafka proxy](../../concepts/kafka-proxies/http-proxy.md#sse-streaming) expose a Kafka topic as a Server-sent Events (SSE) stream, enabling a resilient event-driven architecture to be exposed over HTTP. This quickstart will demonstrate streaming data to one session while posting data from another using Zilla and Kafka as the backend.
-
-- **POST** - Push a new event.
-- **GET:SSE** - Stream all of the events published on the `event-sse` Kafka topic.
-
-The [events-sse](https://quickstart.aklivity.io/kafka/ui/clusters/local/all-topics/events-sse/messages) Kafka topic will have a record of each new event sent over HTTP to the SSE stream.
-
-::: code-tabs#yaml
-
 @tab Stream:all
 
 ```yaml{6,7,10,11}
@@ -114,16 +108,6 @@ The [events-sse](https://quickstart.aklivity.io/kafka/ui/clusters/local/all-topi
       <!-- @include: ./http-zilla.yaml#sse_retrieve_id -->
 ```
 
-@tab Create
-
-```yaml{6,7,10,11}
-  north_sse_api_http_kafka_mapping:
-    type: http-kafka
-    kind: proxy
-    routes:
-      <!-- @include: ./http-zilla.yaml#sse_create -->
-```
-
 :::
 
 ::: details Full HTTP Proxy zilla.yaml Config
@@ -139,6 +123,12 @@ The [events-sse](https://quickstart.aklivity.io/kafka/ui/clusters/local/all-topi
 :::
 
 ## gRPC Kafka proxy
+
+## Zilla gRPC Proxy
+
+The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from protobuf files to produce and consume messages via Kafka topics.
+
+> [Overview and Features](../concepts/kafka-proxies/http-proxy.md) | [Simple gRPC Server](../tutorials/grpc/grpc-intro.md) | [Route Guide example](../how-tos/grpc/grpc.route-guide.service.md)
 
 Open the [Zilla - gRPC Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection to see the [Zilla gRPC Kafka proxy](../../concepts/kafka-proxies/grpc-proxy.md) map the service method's request and response messages directly to Kafka topics. This can include simple RPC request-response messages, but this quickstart demonstrates `Simple-RPC`, `Server-side`, `Client-side`, and `Bidirectional` streaming RPC to a running gRPC server through the `GetFeature`, `ListFeature`, `RecordRoute`, and `RouteChat`, respectively. Zilla is routing all of the messages from the client to the server through Kafka. You can match the individual service calls on the [topics](#kafka-topics) by the matching `key` UUIDs which come from the `zilla:correlation-id` header.
 
@@ -164,6 +154,14 @@ The [route-guide-requests](https://quickstart.aklivity.io/kafka/ui/clusters/loca
 :::
 
 ## MQTT Kafka proxy
+
+## Zilla MQTT Proxy
+
+The Zilla MQTT Kafka Proxy manages MQTT Pub/Sub connections and messages on and off of Kafka.
+
+> [Overview and Features](../concepts/kafka-proxies/http-proxy.md) | [Simple MQTT Broker](../tutorials/mqtt/mqtt-intro.md) | [MQTT Kafka broker](../how-tos/mqtt/mqtt.kafka.broker.md) | [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi)
+
+
 
 Open the [Zilla - MQTT Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection to see the [Zilla MQTT Kafka proxy](../../concepts/kafka-proxies/mqtt-proxy.md) provide an MQTT broker for devices and client libraries to natively interact with Kafka. Clients can connect and send MQTT messages where Zilla will store them in one of three defined Kafka topics. This quickstart manages all messages, messages marked with the `retained` flag, and sessions on any topic.
 
@@ -205,3 +203,6 @@ Zilla is configured to export metrics via [Prometheus](../../reference/config/te
 ```
 
 :::
+
+
+

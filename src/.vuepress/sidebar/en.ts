@@ -180,7 +180,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Quickstart",
-          link: "how-tos/quickstart.md",
+          link: "tutorials/quickstart/index.md",
           children: [],
         },
         {
@@ -221,11 +221,6 @@ export const enSidebar = sidebar({
     {
       text: "Kafka Proxying",
       children: [
-        {
-          text: "Kafka Proxy Quickstart",
-          link: "tutorials/quickstart/kafka-proxies.md",
-          children: [],
-        },
         {
           text: "HTTP Kafka Proxy",
           collapsible: true,

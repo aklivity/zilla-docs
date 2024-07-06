@@ -115,6 +115,7 @@ vaults:
         type: ${{env.TRUSTORE_TYPE}}
         password: ${{env.TRUSTORE_PASSWORD}}
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client

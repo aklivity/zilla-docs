@@ -2,6 +2,10 @@
 
 Each configured [`binding`](../reference/config/overview.md#bindings) represents a step in the pipeline as data streams are decoded, translated or encoded according to a specific protocol `type`. Bindings are organized by behavioral type, supporting either encoding and decoding for a specific protocol or translation between protocols.
 
+## The zilla.yaml Config
+
+The `zilla.yaml` config is declaratively configured to clearly define API mappings and endpoints that Zilla implements.
+
 ```yaml
 ---
 name: zilla-namespace
@@ -13,32 +17,49 @@ bindings:
     options:
       host: 0.0.0.0
       port:
-        - 7114
+ - 7114
     routes:
-        - when:
-            - port: 7114
+ - when:
+ - port: 7114
           exit: north_http_server
   north_http_server:
     type: http
     kind: server
     routes:
-      - when:
-          - headers:
+ - when:
+ - headers:
               :scheme: http
               :authority: localhost:7114
-        exit: north_echo_server
-  north_echo_server:
+        exit: south_echo_server
+  south_echo_server:
     type: echo
     kind: server
 ```
+![Binding Pipeline](bindings-simple.png)
 
-Bindings have a `kind`, indicating how they should behave, such as:
+### Kinds of Bindings
 
-- `proxy` - Handles the translate or encode behaviors between components.
-- `server` - Exists to decode a protocol on the inbound network stream, producing higher-level application streams for each request.
-- `client` - Receives inbound application streams and encodes each as a network stream.
-- `remote_server` - Exists to adapt `kafka` topic streams to higher-level application streams. Read more in the [kafka-grpc](../reference/config/bindings/binding-kafka-grpc.md#summary) binding.
-- `cache_client` & `cache_server` - Combined provide a persistent cache of `kafka` messages per `topic` `partition` honoring the `kafka` `topic` configuration for message expiration and compaction. Read more in the [kafka](../reference/config/bindings/binding-kafka.md#cache-behavior) binding.
+Bindings have a `kind`, indicating how they should behave.
+
+#### Server Bindings
+
+A `server` exists to decode a protocol on the inbound network stream, producing higher-level application streams for each request.
+
+#### Proxy Bindings
+
+A `proxy` handles the translate or encode behaviors between components.
+
+#### Client Bindings
+
+A `client` receives inbound application streams and encodes each as a network stream.
+
+#### Cache Client & Server Bindings
+
+A `cache_client` & `cache_server` combined provide a persistent cache of Kafka messages per topic partition, honoring the Kafka topic configuration for message expiration and compaction. Read more in the [kafka](../reference/config/bindings/binding-kafka.md#cache-behavior) binding.
+
+#### Remote Server Bindings
+
+A `remote_server` exists to adapt a Kafka topic stream to a higher-level application stream. Read more in the [kafka-grpc](../reference/config/bindings/binding-kafka-grpc.md#summary) binding.
 
 ## Routes
 

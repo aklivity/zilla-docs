@@ -32,6 +32,7 @@ To connect to any Kafka using the `PLAINTEXT` protocol is as simple as defining 
 
 ```yaml
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client
@@ -64,6 +65,7 @@ The `exit` from `south_kafka_client` binding now changes to `south_tls_client`.
 
 ```yaml
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client
@@ -98,6 +100,7 @@ vaults:
         type: ${{env.STORE_TYPE}}
         password: ${{env.TRUSTORE_PASSWORD}}
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client
@@ -175,6 +178,7 @@ vaults:
         type: ${{env.KEYSTORE_TYPE}}
         password: ${{env.KEYSTORE_PASSWORD}}
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client
@@ -229,6 +233,7 @@ Please add your feedback to the [SASL enhancement request](https://github.com/ak
 
 ```yaml
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client

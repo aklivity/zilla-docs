@@ -1,8 +1,31 @@
-# Deploy and Operating Zilla
+# Deploy and Operate Zilla
+
+## Install on MacOS via Homebrew
+
+You can install Zilla using our [homebrew tap](https://github.com/aklivity/homebrew-tap).
+
+```bash:no-line-numbers
+brew tap aklivity/tap
+brew install zilla
+```
+
+Now you can run any `zilla.yaml` config.
+
+```bash:no-line-numbers
+zilla start -ve -c ./zilla.yaml
+```
+
+## Running Zilla via Docker
+
+You can run your `zilla.yaml` config inside a container. If you want to deploy on Kubernetes, use our [helm chart](./deploy-operate.md).
+
+```bash:no-line-numbers
+docker run -v ./zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest start -ve
+```
 
 ## Deploying Zilla via Helm
 
-Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) page to find out more on how to install Zilla using Helm.
+Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) page to learn more about installing Zilla using Helm.
 
 ```bash:no-line-numbers
 helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --create-namespace --wait \
@@ -10,31 +33,67 @@ helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --creat
 --set-file zilla\\.yaml=zilla.yaml
 ```
 
-Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.
+The Zilla configuration is in the `zilla.yaml` file, which is added to the Helm install using the `--set-file zilla\\.yaml=zilla.yaml` argument.
 
-## Running Zilla via Docker
+### Mapping TCP ports through the official `ingress-nginx` ingress controller
 
-Run the latest Zilla release with the default empty configuration via docker.
+You will define your TCP port to service mapping in a ConfigMap:
 
-```bash:no-line-numbers
-docker run ghcr.io/aklivity/zilla:latest start -v
+```bash
+# Create ingress controller tcp-services configmap
+kubectl create configmap tcp-services \
+ --from-literal=7183="$NAMESPACE/$SERVICE_NAME:7183" \
+    --from-literal=7151="$NAMESPACE/$SERVICE_NAME:7151" \
+ -n ingress-nginx -o yaml --dry-run=client | kubectl apply -f -
 ```
 
-The output should display the Zilla config and `started` to know Zilla is ready for traffic.
+You will need to download the YAML manifest for the ingress controller. You can find an example on the [Ingress Nginx Quickstart guide](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 
-```output:no-line-numbers
-// default Zilla config
-name: default
-
-// Zilla status
-started
+```bash
+curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml > ingress-deploy.yaml
 ```
 
-Specify your own `zilla.yaml` file.
+Once you have the Ingress Nginx YAML manifest, you must add the TCP port proxies for the ingress controller to allow your ports to pass through.
 
-```bash:no-line-numbers
-docker run -v ./zilla.yaml:/etc/zilla/zilla.yaml ghcr.io/aklivity/zilla:latest start -v
+Here is how to add ports `7183` and `7151` to the `service/ingress-nginx-controller`.
+
+```yaml
+
+kind: Service
+metadata:
+...
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+spec:
+...
+  ports:
+...
+ - name: proxied-tcp-7183
+    port: 7183
+    targetPort: 7183
+    protocol: TCP
+ - name: proxied-tcp-7151
+    port: 7151
+    targetPort: 7151
+    protocol: TCP
+...
 ```
+
+Finally, we need to configure the Ingress Nginx controller to look for port mappings in the `tcp-services` by adding the `--tcp-services-configmap=$(POD_NAMESPACE)/tcp-services` argument to the Deployment container args.
+
+```yaml
+kind: Deployment
+spec:
+  template:
+    spec:
+      containers:
+ - args:
+ - /nginx-ingress-controller
+---
+- --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+```
+
+The ingress controller will allow your ports to pass through, and you can configure which services should receive the requests made at those ports.
 
 ## Auto Reconfigure
 
@@ -63,4 +122,3 @@ ZILLA_INCUBATOR_ENABLED=true
 ## Export `TACE` level Log Dump
 
 The [zilla dump](../reference/config/zilla-cli.md#zilla-dump) command will capture all of the internal events at the stream level for a detailed analysis of what zilla was doing. These logs are capture down to the nanosecond and are exported as a `.pcap` file to be used with [Wireshark](https://wiki.wireshark.org/SampleCaptures). You can find instructions on how to view the capture in wireshark in the zilla dump [plugin install section](../reference/config/zilla-cli.md#i-install-plugin-directory).
-

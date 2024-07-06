@@ -31,6 +31,7 @@ With working credentials you can connect with Zilla by adding these bindings.
 
 ```yaml
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client

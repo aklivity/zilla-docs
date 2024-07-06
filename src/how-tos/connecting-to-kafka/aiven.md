@@ -80,6 +80,7 @@ vaults:
         type: ${{env.KEYSTORE_TYPE}}
         password: ${{env.KEYSTORE_PASSWORD}}
 bindings:
+...
   south_kafka_client:
     type: kafka
     kind: client

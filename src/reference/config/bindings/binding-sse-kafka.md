@@ -158,9 +158,9 @@ Topic name, optionally referencing path parameter such as `${params.topic}`.
 
 > `array` of `object`
 
-List of criteria (any match)Kafka filters for matched route when adapting `sse` data streams to `kafka` data streams.
+Kafka filters for matched route when adapting `sse` data streams to `kafka` data streams.
 
-All specified headers and key must match for the combined criteria to match.
+List of criteria (any match). All specified headers and key must match for the combined criteria to match.
 
 ##### filters[].key
 
