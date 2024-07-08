@@ -36,7 +36,6 @@ bindings:
     kind: server
     options:
       services:
-        - /proto/echo.proto
         - /proto/route_guide.proto
     exit: north_grpc_kafka_mapping
     telemetry:
@@ -47,25 +46,15 @@ bindings:
     type: grpc-kafka
     kind: proxy
     routes:
-    #region echo_service_mapping
-      - when:
-          - method: example.EchoService/Echo
-        exit: north_kafka_cache_client
-        with:
-          capability: produce
-          topic: echo-service-messages
-          acks: leader_only
-          reply-to: echo-service-messages
-    #endregion echo_service_mapping
     #region route_guide_service_mapping
       - when:
           - method: routeguide.RouteGuide/*
         exit: north_kafka_cache_client
         with:
           capability: produce
-          topic: route-guide-requests
+          topic: grpc-request-response
           acks: leader_only
-          reply-to: route-guide-responses
+          reply-to: grpc-request-response
     #endregion route_guide_service_mapping
 
 # Kafka sync layer
@@ -102,13 +91,15 @@ bindings:
     options:
       acks: leader_only
     routes:
+      #region route_guide_server
       - when:
-          - topic: route-guide-requests
-            reply-to: route-guide-responses
+          - topic: grpc-request-response
+            reply-to: grpc-request-response
             method: routeguide.RouteGuide/*
         with:
           scheme: http
           authority: ${{env.ROUTE_GUIDE_SERVER_HOST}}:${{env.ROUTE_GUIDE_SERVER_PORT}}
+      #endregion route_guide_server
         exit: west_route_guide_grpc_client
 
 # gRPC RoutGuide server config

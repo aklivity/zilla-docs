@@ -7,7 +7,6 @@ Each configured [`binding`](../reference/config/overview.md#bindings) represents
 The `zilla.yaml` config is declaratively configured to clearly define API mappings and endpoints that Zilla implements.
 
 ```yaml
----
 name: zilla-namespace
 
 bindings:
@@ -17,17 +16,17 @@ bindings:
     options:
       host: 0.0.0.0
       port:
- - 7114
+        - 7114
     routes:
- - when:
- - port: 7114
-          exit: north_http_server
+      - when:
+          - port: 7114
+        exit: north_http_server
   north_http_server:
     type: http
     kind: server
     routes:
- - when:
- - headers:
+      - when:
+          - headers:
               :scheme: http
               :authority: localhost:7114
         exit: south_echo_server
@@ -35,6 +34,7 @@ bindings:
     type: echo
     kind: server
 ```
+
 ![Binding Pipeline](bindings-simple.png)
 
 ### Kinds of Bindings
