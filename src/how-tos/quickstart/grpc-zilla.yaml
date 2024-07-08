@@ -31,20 +31,14 @@ bindings:
         - http.*
 
 # gRPC service definition to Kafka topics
-  north_grpc_server:
+  north_echo_grpc_server:
     type: grpc
     kind: server
     options:
       services:
-        - proto/echo.proto
-        - proto/route_guide.proto
-    routes:
-      - when:
-          - method: example.EchoService/*
-        exit: north_grpc_kafka_mapping
-      - when:
-          - method: routeguide.RouteGuide/*
-        exit: north_grpc_kafka_mapping
+        - /proto/echo.proto
+        - /proto/route_guide.proto
+    exit: north_grpc_kafka_mapping
     telemetry:
       metrics:
         - stream.*
@@ -53,14 +47,17 @@ bindings:
     type: grpc-kafka
     kind: proxy
     routes:
+    #region echo_service_mapping
       - when:
-          - method: example.EchoService/*
+          - method: example.EchoService/Echo
         exit: north_kafka_cache_client
         with:
           capability: produce
           topic: echo-service-messages
           acks: leader_only
           reply-to: echo-service-messages
+    #endregion echo_service_mapping
+    #region route_guide_service_mapping
       - when:
           - method: routeguide.RouteGuide/*
         exit: north_kafka_cache_client
@@ -69,6 +66,7 @@ bindings:
           topic: route-guide-requests
           acks: leader_only
           reply-to: route-guide-responses
+    #endregion route_guide_service_mapping
 
 # Kafka sync layer
   north_kafka_cache_client:

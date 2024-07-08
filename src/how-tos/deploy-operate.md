@@ -37,19 +37,18 @@ The Zilla configuration is in the `zilla.yaml` file, which is added to the Helm 
 
 ### Mapping TCP ports through the official `ingress-nginx` ingress controller
 
-You will define your TCP port to service mapping in a ConfigMap:
+You can define your TCP ports to services mapping in a `tcp-services` ConfigMap. Official documentation on this method can be found in the [Exposing TCP and UDP services](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/) guide.
 
-```bash
-# Create ingress controller tcp-services configmap
+```bash:no-line-numbers
 kubectl create configmap tcp-services \
- --from-literal=7183="$NAMESPACE/$SERVICE_NAME:7183" \
-    --from-literal=7151="$NAMESPACE/$SERVICE_NAME:7151" \
- -n ingress-nginx -o yaml --dry-run=client | kubectl apply -f -
+  --from-literal=7183="$NAMESPACE/$SERVICE_NAME:7183" \
+  --from-literal=7151="$NAMESPACE/$SERVICE_NAME:7151" \
+  -n ingress-nginx -o yaml --dry-run=client | kubectl apply -f -
 ```
 
 You will need to download the YAML manifest for the ingress controller. You can find an example on the [Ingress Nginx Quickstart guide](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 
-```bash
+```bash:no-line-numbers
 curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml > ingress-deploy.yaml
 ```
 
@@ -57,8 +56,7 @@ Once you have the Ingress Nginx YAML manifest, you must add the TCP port proxies
 
 Here is how to add ports `7183` and `7151` to the `service/ingress-nginx-controller`.
 
-```yaml
-
+```yaml{10-17}
 kind: Service
 metadata:
 ...
@@ -81,16 +79,22 @@ spec:
 
 Finally, we need to configure the Ingress Nginx controller to look for port mappings in the `tcp-services` by adding the `--tcp-services-configmap=$(POD_NAMESPACE)/tcp-services` argument to the Deployment container args.
 
-```yaml
+```yaml{9}
 kind: Deployment
 spec:
   template:
     spec:
       containers:
  - args:
- - /nginx-ingress-controller
----
-- --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+  - /nginx-ingress-controller
+...
+  - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+```
+
+Create the ingress controller:
+
+```bash:no-line-numbers
+kubectl apply -f ingress-deploy.yaml
 ```
 
 The ingress controller will allow your ports to pass through, and you can configure which services should receive the requests made at those ports.

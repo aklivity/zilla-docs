@@ -27,11 +27,13 @@ bindings:
   north_mqtt_kafka_mapping:
     type: mqtt-kafka
     kind: proxy
+  #region mqtt_broker_mapping
     options:
       topics:
         sessions: iot-sessions
         messages: iot-messages
         retained: iot-retained
+  #endregion mqtt_broker_mapping
     exit: north_kafka_cache_client
 
   # Kafka sync layer

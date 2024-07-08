@@ -180,7 +180,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Quickstart",
-          link: "tutorials/quickstart/index.md",
+          link: "how-tos/quickstart/index.md",
           children: [],
         },
         {
