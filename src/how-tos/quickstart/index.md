@@ -18,7 +18,7 @@ Get started with Zilla by trying out some of the key features for yourself. You 
 
 The Zilla HTTP Kafka Proxy lets you configure application-centric REST APIs and SSE streams that unlock Kafka event-driven architectures.
 
-1. Open the [Zilla - HTTP Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection.
+1. Open the [Zilla - HTTP Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection.
 1. Open the [http-messages](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-cc-kafka/all-topics/items-crud/messages) Kafka topic, which will have all the objects you posted, updated, and deleted.
 1. Use the `Stream all messages` request to view messages produced to the Kafka topic as a Server-sent Events (SSE) stream.
 1. Use the `Create a new message` to POST a JSON object. The new object will appear in the SSE stream and the Kafka topic.
@@ -131,8 +131,8 @@ Stream messages for a specific key published on a Kafka.
 
 The Zilla MQTT Kafka Proxy manages MQTT client connections and messages through Kafka topics.
 
-1. Open the [Zilla - MQTT Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection in the Postman Desktop client.
-1. Open the [iot-messages](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-cc-kafka/all-topics/iot-messages) Kafka topic, which will have all of the MQTT messages sent to the broker.
+1. Open the [Zilla - MQTT Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection in the Postman Desktop client.
+1. Open the [mqtt-messages](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-cc-kafka/all-topics/iot-messages) Kafka topic, which will have all of the MQTT messages sent to the broker.
 1. Connect to the broker with the `Pub/Sub` request. Send one of the saved messages, or you can send any message on any MQTT topic. Subscribe to topics in the **Topics** tab.
 1. Observe the MQTT Broker messages on the Kafka topics with your message in the `body` and the MQTT topic as the `key`.
 1. Connect to the broker with the `Simulator Topics` request to subscribe to the simulated messages being published to the broker.
@@ -165,7 +165,7 @@ A Zilla MQTT broker is defined using three specific Kafka topics. The [messages]
 
 The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from protobuf files to produce and consume messages via Kafka topics.
 
-1. Open the [Zilla - gRPC Kafka proxy](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview) Postman collection in the Postman Desktop client.
+1. Open the [Zilla - gRPC Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection in the Postman Desktop client.
 1. Open the [grpc-request-response](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-cc-kafka/all-topics/route-guide-requests/messages?mode=LATEST&valueSerde=ProtobufDecodeRaw&r=r) Kafka topic, which will have all of the service methods request and response messages.
 1. Invoke the `GetFeature` service method with the default message.
 1. Observe the requested message payload on the Kafka topic followed by the returned message with the same UUID. The gRPC method routing information is captured in the Kafka messages `header` values.
