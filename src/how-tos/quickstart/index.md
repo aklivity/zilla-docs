@@ -16,7 +16,7 @@ Get started with Zilla by trying some of its Kafka proxying and API gateway feat
 
 ## Prerequisites
 
-This Quickstart is hosted at <http://quickstart.aklivity.io/> meaning you can interact with it using any clients you prefer. The best way to experience the Zilla features in this Quickstart is by using the [Zilla Quickstart Postman Workspace](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview).
+This Quickstart is hosted at `quickstart.aklivity.io` meaning you can interact with it using any clients you prefer. The best way to experience the Zilla features in this Quickstart is by using the [Zilla Quickstart Postman Workspace](https://www.postman.com/aklivity-zilla/workspace/aklivity-zilla-quickstart/overview).
 
 - A Postman [account](https://www.postman.com/postman-account/).
 - The Postman [desktop client](https://www.postman.com/downloads/) to make MQTT and gRPC requests.
