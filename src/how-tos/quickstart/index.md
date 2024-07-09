@@ -12,20 +12,28 @@ tag:
 
 # Quickstart
 
-Get started with Zilla by trying out some of the key features for yourself. You can see how Zilla can operate as an [HTTP Kafka Proxy](#http-kafka-proxy) to expose Kafka topics via REST and SSE endpoints. You can interact with Zilla as an [MQTT Kafka Proxy](#mqtt-kafka-proxy) to turn Kafka into an MQTT broker. You can leverage the Zilla [gRPC Kafka Proxy](#grpc-kafka-proxy) to deliver protobuf messages from gRPC clients to gRPC servers through Kafka.
+Get started with Zilla by trying some of its Kafka proxying and API gateway features. You will see how Zilla can operate as an [HTTP Kafka Proxy](#http-kafka-proxy) to expose Kafka topics via REST and SSE endpoints. You can interact with Zilla as an [MQTT Kafka Proxy](#mqtt-kafka-proxy) to turn Kafka into an MQTT broker. You can leverage the Zilla [gRPC Kafka Proxy](#grpc-kafka-proxy) to deliver protobuf messages from gRPC clients to gRPC servers through Kafka.
+
+## Prerequisites
+
+This Quickstart is hosted at <http://quickstart.aklivity.io/> meaning you can interact with it using any clients you prefer. The best way to experience the Zilla features in this Quickstart is by using the [Zilla Quickstart Postman Workspace](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af).
+
+- A Postman [account](https://www.postman.com/postman-account/).
+- The Postman [desktop client](https://www.postman.com/downloads/) to make MQTT and gRPC requests.
+- Fork the Postman collections from the [Zilla Quickstart Workspace](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af)
 
 ## HTTP Kafka Proxy
 
 The Zilla HTTP Kafka Proxy lets you configure application-centric REST APIs and SSE streams that unlock Kafka event-driven architectures.
 
-1. Open the [Zilla - HTTP Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection.
+1. Open the [HTTP Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection.
 1. Open the [http-messages](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-kafka/all-topics/http-messages/messages) Kafka topic, which will have all the JSON messages you create.
-1. Use the `Stream all messages` request to view messages fetched from a Kafka topic as a Server-sent Events (SSE) stream.
-1. Use the `Create a new message` to POST a JSON object. The new object will appear in the SSE stream and the Kafka topic.
+1. Use the `Stream all messages` request to view messages fetched from a Kafka topic as a Server-sent Events (SSE) stream. SSE is a text stream over HTTP, meaning you can also open [the stream](http://quickstart.aklivity.io/api/stream) directly in a browser tab to see the raw output.
+1. Use the `Create a new message` request to update and submit the JSON in the `Body` tab. The new object will appear in the SSE stream and the Kafka topic.
 1. Get your Kafka message key from the [http-messages](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-kafka/all-topics/http-messages/messages) topic and use the `Get message by key` request to fetch only your message using your key in the `<key-from-kafka-topic>` path variable.
 1. To interact more with Zilla, use the `Additional features` in the Postman collection or copy the code samples.
 
-Leveraging Kafka's `cleanup.policy=compact` feature, Zilla enables a standard REST backend architecture with Kafka as the storage layer. You can easily configure many common Restful actions with the added benefit of built-in streaming with an SSE endpoint. The `zilla.yaml` config has simple and clear syntax for defining each HTTP endpoint.
+You can easily configure many common Restful actions with the added benefit of built-in streaming with an SSE endpoint. The `zilla.yaml` config has simple and clear syntax for defining each HTTP endpoint.
 
 ::: tabs#yaml
 
@@ -131,7 +139,7 @@ Stream messages for a specific key published on a Kafka.
 
 The Zilla MQTT Kafka Proxy manages MQTT client connections and messages through Kafka topics.
 
-1. Open the [Zilla - MQTT Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection in the Postman Desktop client.
+1. Open the [MQTT Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection in the Postman Desktop client.
 1. Open the [mqtt-messages](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-kafka/all-topics/mqtt-messages) Kafka topic, which will have all of the MQTT messages sent to the broker.
 1. Connect to the broker with the `Pub/Sub` request. Send one of the saved messages, or you can send any message on any MQTT topic. Subscribe to topics in the **Topics** tab.
 1. Observe the MQTT Broker messages on the Kafka topics with your message in the `body` and the MQTT topic as the `key`.
@@ -149,7 +157,7 @@ A Zilla MQTT broker is defined using three specific Kafka topics. The [messages]
 
 :::
 
-::: details Full zilla.yaml Config
+::: details Full MQTT proxy zilla.yaml Config
 
 ```yaml
 <!-- @include: ./mqtt-zilla.yaml -->
@@ -158,17 +166,17 @@ A Zilla MQTT broker is defined using three specific Kafka topics. The [messages]
 :::
 
 ::: note Where to learn more
-[Overview and Features](../../concepts/kafka-proxies/http-proxy.md) | [Simple MQTT Broker](../../tutorials/mqtt/mqtt-intro.md) | [MQTT Kafka broker](../../how-tos/mqtt/mqtt.kafka.broker.md) | [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi)
+[Overview and Features](../../concepts/kafka-proxies/http-proxy.md) | [Setup an MQTT Kafka broker](../../how-tos/mqtt/mqtt.kafka.broker.md) | [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi)
 :::
 
 ## gRPC Kafka proxy
 
 The Zilla gRPC Kafka Proxy lets you implement gRPC service definitions from protobuf files to produce and consume messages via Kafka topics.
 
-1. Open the [Zilla - gRPC Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection in the Postman Desktop client.
-1. Open the [grpc-request-response](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-kafka/all-topics/grpc-request-response/messages?mode=LATEST&valueSerde=ProtobufDecodeRaw&r=r) Kafka topic, which will have all of the service methods request and response messages.
+1. Open the [gRPC Kafka proxy](https://aklivity-zilla.postman.co/workspace/2597b841-0ff7-4abe-878c-8a43b99e49af) Postman collection in the Postman Desktop client.
+1. Open the [grpc-request](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-kafka/all-topics/grpc-request/messages?limit=100&mode=LATEST&valueSerde=ProtobufDecodeRaw) and [grpc-response](http://34.48.98.66/kafka/ui/clusters/zilla-quickstart-kafka/all-topics/grpc-response/messages?mode=LATEST&valueSerde=ProtobufDecodeRaw&r=r) Kafka topics, which will have all of the service methods request and response messages respectively.
 1. Invoke the `GetFeature` service method with the default message.
-1. Observe the requested message payload on the Kafka topic followed by the response message with the same UUID. The gRPC method routing information is captured in the Kafka messages `header` values.
+1. Observe the requested message payload on the Kafka topic followed by the response message with the `keys` having the same UUID. The gRPC method routing information is captured in the Kafka messages `header` values.
 1. Try out the additional RPC method types in the Postman collection.
 
 Zilla is routing all RouteGuide protobuf messages from any gRPC client to a gRPC server through Kafka. The `zilla.yaml` config implements all of the RPC methods from the RouteGuide service protobuf definition.
@@ -182,7 +190,9 @@ Zilla is routing all RouteGuide protobuf messages from any gRPC client to a gRPC
 
 @tab RouteGuide Server
 
-```yaml{6,14,17-18}
+```yaml{7,15,23,26-27}
+<!-- @include: ./grpc-zilla.yaml#route_guide_proto -->
+...
 <!-- @include: ./grpc-zilla.yaml#route_guide_service_definition -->
 ...
 <!-- @include: ./grpc-zilla.yaml#route_guide_service_mapping -->
@@ -204,7 +214,7 @@ Zilla is routing all RouteGuide protobuf messages from any gRPC client to a gRPC
 
 :::
 
-::: details Full zilla.yaml Config
+::: details Full gRPC proxy zilla.yaml Config
 
 ```yaml
 <!-- @include: ./grpc-zilla.yaml -->
@@ -218,7 +228,7 @@ Zilla is routing all RouteGuide protobuf messages from any gRPC client to a gRPC
 
 ## Run the Quickstart locally
 
-Download and run the Zilla [quickstart](https://github.com/aklivity/zilla-examples/tree/main/quickstart). This [startup.sh](https://github.com/aklivity/zilla-examples/releases/latest/download/startup.sh) script will start Zilla and everything you need for this quickstart.
+You can see all of the features in the hosted Quickstart running locally. Download and run the Zilla [Quickstart](https://github.com/aklivity/zilla-examples/tree/main/quickstart). This [startup.sh](https://github.com/aklivity/zilla-examples/releases/latest/download/startup.sh) script will start Zilla and everything you need.
 
 ```bash:no-line-numbers
 wget -qO- https://raw.githubusercontent.com/aklivity/zilla-examples/main/startup.sh | sh -

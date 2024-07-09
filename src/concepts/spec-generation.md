@@ -24,7 +24,7 @@ Zilla implements the RESTful APIs defined in the [openapi](../reference/config/b
 
 Zilla implements Event-Driven APIs defined in the [asyncapi](../reference/config/bindings/binding-asyncapi.md) binding. A Kafka proxy is defined using the [asyncapi](../reference/config/bindings/binding-asyncapi.md) `proxy` binding. The Kafka configuration is defined with an [asyncapi](../reference/config/bindings/binding-asyncapi.md) `client` binding.
 
-> [Taxi Hailing demo](https://github.com/aklivity/zilla-demos/tree/main/taxi) | [asyncapi.mqtt.kafka.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.mqtt.kafka.proxy) | [asyncapi.mqtt.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.mqtt.proxy)
+> [Taxi Hailing demo](https://github.com/aklivity/zilla-demos/tree/main/taxi) | [asyncapi.http.kafka.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.http.kafka.proxy) | [asyncapi.mqtt.kafka.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.mqtt.kafka.proxy) | [asyncapi.sse.kafka.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.sse.kafka.proxy)
 
 ## Protobuf
 

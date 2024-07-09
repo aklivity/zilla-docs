@@ -1,5 +1,15 @@
 name: grpc-quickstart
 
+#region route_guide_proto
+catalogs:
+  host_filesystem:
+    type: filesystem
+    options:
+      subjects:
+        route_guide:
+          path: /proto/route_guide.proto
+#endregion route_guide_proto
+
 bindings:
   # Proxy service entrypoint
   north_tcp_server:
@@ -35,9 +45,9 @@ bindings:
   north_grpc_server:
     type: grpc
     kind: server
-    options:
-      services:
-        - /proto/route_guide.proto
+    catalog:
+      host_filesystem:
+        - subject: route_guide
     #endregion route_guide_service_definition
     exit: north_grpc_kafka_mapping
     telemetry:
