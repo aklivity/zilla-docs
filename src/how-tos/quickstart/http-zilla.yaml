@@ -24,20 +24,14 @@ bindings:
     routes:
       - when:
           - headers:
-              :scheme: http
-              :authority: localhost:7114
-              :path: /sse/stream
+              :path: /api/stream
         exit: north_sse_server
       - when:
           - headers:
-              :scheme: http
-              :authority: localhost:7114
-              :path: /sse/*
-        exit: north_sse_api_http_kafka_mapping
+              :path: /api/stream/*
+        exit: north_sse_server
       - when:
           - headers:
-              :scheme: http
-              :authority: localhost:7114
               :path: /api/*
         exit: north_rest_api_http_kafka_mapping
     telemetry:
@@ -50,7 +44,7 @@ bindings:
     type: http-kafka
     kind: proxy
     routes:
-    #region rest_create
+      #region rest_create
       - when:
           - method: POST
             path: /api/items
@@ -59,8 +53,8 @@ bindings:
           capability: produce
           topic: http-messages
           key: ${idempotencyKey}
-    #endregion rest_create
-    #region rest_update
+      #endregion rest_create
+      #region rest_update
       - when:
           - method: PUT
             path: /api/items/{id}
@@ -69,8 +63,8 @@ bindings:
           capability: produce
           topic: http-messages
           key: ${params.id}
-    #endregion rest_update
-    #region rest_delete
+      #endregion rest_update
+      #region rest_delete
       - when:
           - method: DELETE
             path: /api/items/{id}
@@ -79,8 +73,8 @@ bindings:
           capability: produce
           topic: http-messages
           key: ${params.id}
-    #endregion rest_delete
-    #region rest_retrieve_all
+      #endregion rest_delete
+      #region rest_retrieve_all
       - when:
           - method: GET
             path: /api/items
@@ -90,8 +84,8 @@ bindings:
           topic: http-messages
           merge:
             content-type: application/json
-    #endregion rest_retrieve_all
-    #region rest_retrieve_id
+      #endregion rest_retrieve_all
+      #region rest_retrieve_id
       - when:
           - method: GET
             path: /api/items/{id}
@@ -113,10 +107,17 @@ bindings:
     kind: proxy
     routes:
       - when:
-          - path: /sse/stream
+          - path: /api/stream
         exit: north_kafka_cache_client
         with:
           topic: http-messages
+      - when:
+          - path: /api/stream/{id}
+        exit: north_kafka_cache_client
+        with:
+          topic: http-messages
+          filters:
+            - key: ${params.id}
 
   # Kafka sync layer
   north_kafka_cache_client:
@@ -138,11 +139,10 @@ bindings:
     options:
       servers:
         - ${{env.KAFKA_BOOTSTRAP_SERVER}}
-    exit: south_kafka_tcp_client
-  south_kafka_tcp_client:
+    exit: south_tcp_client
+  south_tcp_client:
     type: tcp
     kind: client
-
 telemetry:
   # Desired metrics to track
   metrics:
