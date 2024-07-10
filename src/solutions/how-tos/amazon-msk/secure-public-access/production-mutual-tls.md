@@ -269,7 +269,7 @@ Parameters:
 - MSK Configuration
   - Wildcard DNS pattern: `*.aklivity.[...].amazonaws.com` *1
   - Port number: `9094`
-  - Private Certificate Authority: `<private certificate authority ARN>` *2a
+  - Private Certificate Authority: `<private certificate authority ARN>` *2
 - Secure Public Access Configuration
   - Instance count: `2`
   - Instance type: `t3.small` *3
@@ -278,7 +278,7 @@ Parameters:
   - Secrets Manager Secret ARN: `<TLS certificate private key secret ARN>` *3
   - Public Wildcard DNS: `*.example.aklivity.io` *4
   - Public Port: `9094`
-  - Private Certificate Authority: `<private certificate authority ARN>` *2
+  - Public Certificate Authority: `<private certificate authority ARN>` *2
   - Key pair for SSH access: `my-key-pair` *5
 - *Configuration Reference
   1. Follow the [Lookup MSK Server Names](../../aws-services/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
