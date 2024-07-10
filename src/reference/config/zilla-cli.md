@@ -110,6 +110,10 @@ The `zilla version` command prints the version information of Zilla.
 zilla version
 ```
 
+```output:no-line-numbers
+zilla version 0.9.85
+```
+
 ### zilla metrics
 
 The `zilla metrics` command provides metrics for each binding in the configuration.
