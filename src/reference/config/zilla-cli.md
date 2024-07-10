@@ -17,6 +17,7 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
   - [-v --verbose](#v-verbose)
   - [-w --write `<output>`](#w-write-output)
 - [zilla help](#zilla-help)
+- [zilla version](#zilla-version)
 - [zilla metrics](#zilla-metrics)
   - [--namespace `<namespace>`](#namespace-namespace)
 - [zilla start](#zilla-start)
