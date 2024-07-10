@@ -428,7 +428,7 @@ With the Kaka client now installed we are ready to configure it and point it at 
 We need to import the trusted client certificate and corresponding private key into the local key store used by the Kafka client when connecting to the <ZillaPlus/> proxy.
 
 ```bash:no-line-numbers
-openssl pkcs12 -export -in client-1.cert.pem -inkey client-1.pkcs8.key.pem -out client-1.p12 -name client-1
+openssl pkcs12 -export -in client-1.cert -inkey client-1.pkcs8.key.pem -out client-1.p12 -name client-1
 keytool -importkeystore -destkeystore /tmp/kafka.client.keystore.jks -deststorepass generated -srckeystore client-1.p12 -srcstoretype PKCS12 -srcstorepass generated -alias client-1
 ```
 
