@@ -101,6 +101,14 @@ Examples:
 ./zilla help start
 ```
 
+### zilla version
+
+The `zilla version` command prints the version information of Zilla.
+
+```bash:no-line-numbers
+zilla version
+```
+
 ### zilla metrics
 
 The `zilla metrics` command provides metrics for each binding in the configuration.
