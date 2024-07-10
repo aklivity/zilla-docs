@@ -98,7 +98,6 @@ export const enSidebar = sidebar({
     {
       text: "Secure Public Access",
       icon: "aky-zilla-plus",
-      link: "concepts/kafka-proxies/secure-public-access.md",
       children: [
         {
           text: "Overview",
@@ -137,7 +136,6 @@ export const enSidebar = sidebar({
     {
       text: "IoT Ingest and Control",
       icon: "aky-zilla-plus",
-      link: "concepts/kafka-proxies/iot-ingest-control.md",
       children: [
         {
           text: "Overview",
