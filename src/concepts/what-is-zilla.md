@@ -10,7 +10,7 @@ Zilla is a multi-protocol edge and service proxy that helps streamline, secure, 
 
 Zilla is stateless, cloud-native, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way).
 
-![](/zilla-overview.png)
+![Zilla Overview](/zilla-overview.png)
 
 ::: info Just want to build?
 Jump to the [quickstart](../how-tos/quickstart/index.md) guide.

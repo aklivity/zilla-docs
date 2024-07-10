@@ -21,7 +21,7 @@ Create these files, `zilla.yaml` and `docker-compose.yaml`, in the same director
 
 @tab zilla.yaml
 
-```yaml {28,32-33,35,39-40}
+```yaml {27,31-33,35,39-40}
 <!-- @include: ./zilla.yaml -->
 ```
 

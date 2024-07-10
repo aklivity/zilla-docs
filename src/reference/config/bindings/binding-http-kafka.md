@@ -6,6 +6,7 @@ category:
 tag:
   - Proxy
 ---
+<!-- markdownlint-disable MD024 -->
 
 # http-kafka Binding
 

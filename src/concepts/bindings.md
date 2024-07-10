@@ -6,7 +6,7 @@ Each configured [`binding`](../reference/config/overview.md#bindings) represents
 
 The `zilla.yaml` config is declaratively configured to clearly define API mappings and endpoints that Zilla implements.
 
-```yaml
+```yaml{5-6,16-17,25-26}
 name: zilla-namespace
 
 bindings:

@@ -6,6 +6,7 @@ category:
 tag:
   - Proxy
 ---
+<!-- markdownlint-disable MD024 -->
 
 # openapi-asyncapi Binding
 
