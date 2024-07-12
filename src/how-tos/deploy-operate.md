@@ -101,7 +101,7 @@ The ingress controller will allow your ports to pass through, and you can config
 
 ### Get diagnostics from zilla pods
 
-For every running zilla pod you will need to first copy the `/var/run/zilla` dir to make sure no additional files are written while it is compressed then compress the full directory to make it easier to copy.
+For every running zilla pod you will need to first copy the `/var/run/zilla` directory to make sure no additional files are written while it is compressed then compress the full directory to make it easier to copy.
 
 ```bash:no-line-numbers
 kubectl get pod \
@@ -112,7 +112,7 @@ kubectl get pod \
 | xargs -I{} kubectl exec {} -n $NAMESPACE -c zilla -- sh -c "cp -r /var/run/zilla /tmp/zilla && tar czf /tmp/zilla.tar.gz /tmp/zilla && rm -rf /tmp/zilla"
 ```
 
-Copy the compressed `/var/run/zilla` dir off of the pod into your local directory using the pod name. 
+Copy the compressed `/var/run/zilla` directory off of the pod into your local directory using the pod name. 
 
 ```bash:no-line-numbers
 kubectl get pod \
