@@ -99,6 +99,32 @@ kubectl apply -f ingress-deploy.yaml
 
 The ingress controller will allow your ports to pass through, and you can configure which services should receive the requests made at those ports.
 
+### Get diagnostics from zilla pods
+
+For every running zilla pod you will need to first copy the `/var/run/zilla` dir to make sure no additional files are written while it is compressed then compress the full directory to make it easier to copy.
+
+```bash:no-line-numbers
+kubectl get pod \
+    -l "app.kubernetes.io/name=zilla" \
+    -n $NAMESPACE \
+    --field-selector=status.phase=Running \
+    -o custom-columns=name:metadata.name --no-headers \
+    | xargs -I{} kubectl exec {} -n $NAMESPACE -c zilla -- sh -c "cp -r /var/run/zilla /tmp/zilla && tar czf /tmp/zilla.tar.gz /tmp/zilla && rm -rf /tmp/zilla"
+```
+
+Copy the compressed `/var/run/zilla` dir off of the pod into your local directory using the pod name. 
+
+```bash:no-line-numbers
+kubectl get pod \
+    -l "app.kubernetes.io/name=zilla" \
+    -n $NAMESPACE \
+    --field-selector=status.phase=Running \
+    -o custom-columns=name:metadata.name --no-headers \
+    | xargs -I{} kubectl cp  -n $NAMESPACE {}:/tmp/zilla.tar.gz ./{}.tar.gz
+```
+
+Now you have a copy of the Zilla runtime directory for each running pod. This information can be used to diagnose all of the traffic zilla has managed.
+
 ## Auto Reconfigure
 
 Zilla loads the configuration from the `zilla.yaml` file on startup and logs the configured settings. Restarting Zilla or its container may not be an option, so Zilla creates a file watcher to detect changes to the file and reloads the config if a change is detected.

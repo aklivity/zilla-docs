@@ -185,12 +185,17 @@ MSKProxySecretsManagerRead
       "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": [
+        "acm-pca:GetCertificate",
+        "acm-pca:GetCertificateAuthorityCertificate",
+        "acm-pca:DescribeCertificateAuthority",
+        "tag:GetResources",
         "secretsmanager:GetSecretValue",
         "secretsmanager:DescribeSecret"
       ],
       "Resource": [
-        "arn:aws:secretsmanager:*:*:secret:wildcard.example.aklivity.io-*",
-        "arn:aws:secretsmanager:*:*:secret:client-*"
+        "arn:aws:secretsmanager:*:*:secret:wildcard.example.aklivity.io*",
+        "arn:aws:secretsmanager:*:*:secret:client-*",
+        "arn:aws:acm-pca:*:*:certificate-authority*"
       ]
     }
   ]
@@ -199,16 +204,15 @@ MSKProxySecretsManagerRead
 
 :::
 
-::: note
-This example pattern requires all trusted client certificate key secrets to be named `client-*`.
-:::
+::: info If you used a different names for your certificate resources.
 
-::: info If you used a different secret name for your certificate key.
-
-Replace `wildcard.example.aklivity.io` in the resource regular expression for:
+This example pattern uses resources with names including `wildcard.example.aklivity.io`, `client-`, `certificate-authority` etc. Replace them with the names you used or use wildcard resource selectors.
 
 ```text:no-line-numbers
-MSKProxySecretsManagerRead
+      "Resource": [
+        "arn:aws:secretsmanager:*:*:secret:*",
+        "arn:aws:acm-pca:*:*:*"
+      ]
 ```
 
 :::
