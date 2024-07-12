@@ -105,22 +105,22 @@ For every running zilla pod you will need to first copy the `/var/run/zilla` dir
 
 ```bash:no-line-numbers
 kubectl get pod \
-    -l "app.kubernetes.io/name=zilla" \
-    -n $NAMESPACE \
-    --field-selector=status.phase=Running \
-    -o custom-columns=name:metadata.name --no-headers \
-    | xargs -I{} kubectl exec {} -n $NAMESPACE -c zilla -- sh -c "cp -r /var/run/zilla /tmp/zilla && tar czf /tmp/zilla.tar.gz /tmp/zilla && rm -rf /tmp/zilla"
+-l "app.kubernetes.io/name=zilla" \
+-n $NAMESPACE \
+--field-selector=status.phase=Running \
+-o custom-columns=name:metadata.name --no-headers \
+| xargs -I{} kubectl exec {} -n $NAMESPACE -c zilla -- sh -c "cp -r /var/run/zilla /tmp/zilla && tar czf /tmp/zilla.tar.gz /tmp/zilla && rm -rf /tmp/zilla"
 ```
 
 Copy the compressed `/var/run/zilla` dir off of the pod into your local directory using the pod name. 
 
 ```bash:no-line-numbers
 kubectl get pod \
-    -l "app.kubernetes.io/name=zilla" \
-    -n $NAMESPACE \
-    --field-selector=status.phase=Running \
-    -o custom-columns=name:metadata.name --no-headers \
-    | xargs -I{} kubectl cp  -n $NAMESPACE {}:/tmp/zilla.tar.gz ./{}.tar.gz
+-l "app.kubernetes.io/name=zilla" \
+-n $NAMESPACE \
+--field-selector=status.phase=Running \
+-o custom-columns=name:metadata.name --no-headers \
+| xargs -I{} kubectl cp  -n $NAMESPACE {}:/tmp/zilla.tar.gz ./{}.tar.gz
 ```
 
 Now you have a copy of the Zilla runtime directory for each running pod. This information can be used to diagnose all of the traffic zilla has managed.
