@@ -48,8 +48,8 @@ bindings:
     catalog:
       host_filesystem:
         - subject: route_guide
-    #endregion route_guide_service_definition
     exit: north_grpc_kafka_mapping
+    #endregion route_guide_service_definition
     telemetry:
       metrics:
         - stream.*
@@ -64,9 +64,9 @@ bindings:
         exit: north_kafka_cache_client
         with:
           capability: produce
-          topic: grpc-request-response
+          topic: grpc-request
           acks: leader_only
-          reply-to: grpc-request-response
+          reply-to: grpc-response
   #endregion route_guide_service_mapping
 
   # Kafka sync layer
@@ -79,7 +79,8 @@ bindings:
     kind: cache_server
     options:
       bootstrap:
-        - grpc-request-response
+        - grpc-request
+        - grpc-response
     exit: south_kafka_client
 
   # Connect to local Kafka
@@ -104,8 +105,8 @@ bindings:
       acks: leader_only
     routes:
       - when:
-          - topic: grpc-request-response
-            reply-to: grpc-request-response
+          - topic: grpc-request
+            reply-to: grpc-response
             method: routeguide.RouteGuide/*
         with:
           scheme: http
