@@ -1,10 +1,10 @@
 ---
-description: In this guide, you create Kafka topics and use Zilla to mediate MQTT broker messages onto those topics.
+description: In this guide, you create Kafka topics and use Zilla to map MQTT broker messages onto those topics.
 ---
 
 # Running an MQTT Kafka broker
 
-In this guide, you create Kafka topics and use Zilla to mediate MQTT broker messages onto those topics.
+In this guide, you create Kafka topics and use Zilla to map MQTT broker messages onto those topics.
 
 Specifically, you will:
 

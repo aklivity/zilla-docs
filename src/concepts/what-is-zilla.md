@@ -28,9 +28,9 @@ While solutions such as Envoy, HAProxy, NGINX, etc. can help unify a distributed
 
 Zilla has no external dependencies, is stateless, and is highly memory efficient. When deployed as an edge proxy, it scales horizontally to support millions of concurrently connected clients.
 
-### HTTP/2, gRPC, SSE, MQTT, and Kafka Support + Protocol Mediation
+### HTTP/2, gRPC, SSE, MQTT, and Kafka Support + Protocol Mapping
 
-Inside Zilla, every protocol, whether it is TCP, TLS, HTTP, Kafka, gRPC, etc., is treated as a stream, so mediating between protocols simplifies to mapping protocol-specific metadata.
+Inside Zilla, every protocol, whether it is TCP, TLS, HTTP, Kafka, gRPC, etc., is treated as a stream, so mapping between protocols simplifies to mapping protocol-specific metadata.
 
 ### Protobuf, Avro, and JSON Schema payloads
 
@@ -91,15 +91,15 @@ When deployed in front of an existing HTTP, SSE (Server Sent Events), MQTT, Kafk
 
 Zilla can abstract Apache Kafka for web applications, IoT clients, and non-Kafka microservices. With Zilla, [OpenAPI](https://www.openapis.org/) and [AsyncAPI](https://www.asyncapi.com/) definitions can be mapped to Kafka, enabling Kafka topics to be exposed over user-defined REST, SSE, MQTT, and gRPC APIs.
 
-Zilla has no external dependencies and does not rely on the Kafka Consumer/Producer API or Kafka Connect. Instead, it natively supports the Kafka wire protocol and uses novel protocol mediation techniques to establish stateless API entry points into Kafka. As a gateway, Zilla also addresses security enforcement, observability, and connection offloading on the data path.
+Zilla has no external dependencies and does not rely on the Kafka Consumer/Producer API or Kafka Connect. Instead, it natively supports the Kafka wire protocol and uses novel protocol mapping techniques to establish stateless API entry points into Kafka. As a gateway, Zilla also addresses security enforcement, observability, and connection offloading on the data path.
 
 #### Kafka Fan-Out to Web and IoT (Data Broadcasting)
 
-Broadcast data from Kafka to millions of clients over SSE, MQTT, and gRPC. With Kafka and Zilla real-time updates such as stock tickers, sports scores, logistics trackers, and push notifications can be reliably delivered to end users and systems at scale. Kafka is not designed to support a large number of connected clients, so besides protocol mediation, Zilla also handles connection offloading, by pushing data out of a real-time cache. This local cache is synchronized with Kafka for specific topics through a small number of connections, independent of the number of connected clients. The cache also indexes message keys and headers upon retrieval from Kafka, supporting efficiently filtered reads from cached topics.
+Broadcast data from Kafka to millions of clients over SSE, MQTT, and gRPC. With Kafka and Zilla real-time updates such as stock tickers, sports scores, logistics trackers, and push notifications can be reliably delivered to end users and systems at scale. Kafka is not designed to support a large number of connected clients, so besides protocol mapping, Zilla also handles connection offloading, by pushing data out of a real-time cache. This local cache is synchronized with Kafka for specific topics through a small number of connections, independent of the number of connected clients. The cache also indexes message keys and headers upon retrieval from Kafka, supporting efficiently filtered reads from cached topics.
 
 #### Kafka Fan-In from Web and IoT (Clickstream and Telemetry Ingestion)
 
-Ingest data into Kafka from millions of clients over HTTP, MQTT, and gRPC. With Kafka and Zilla, clickstream and telemetry data can be processed and responded to in real time. Kafka is not designed to support a large number of connected clients, so besides protocol mediation, Zilla also pools connections, ensuring the number of inbound connections is independent of the number of connected clients.
+Ingest data into Kafka from millions of clients over HTTP, MQTT, and gRPC. With Kafka and Zilla, clickstream and telemetry data can be processed and responded to in real time. Kafka is not designed to support a large number of connected clients, so besides protocol mapping, Zilla also pools connections, ensuring the number of inbound connections is independent of the number of connected clients.
 
 #### IoT Ingestion and Control
 
