@@ -1,6 +1,6 @@
 # Bindings
 
-Each configured [`binding`](../reference/config/overview.md#bindings) represents a step in the pipeline as data streams are decoded, translated or encoded according to a specific protocol `type`. Bindings are organized by behavioral type, supporting either encoding and decoding for a specific protocol or translation between protocols.
+Each configured [`binding`](../reference/config/overview.md#bindings) represents a step in the pipeline as data streams are decoded, translated or encoded according to a specific protocol `type`. Bindings are organized by behavioral type, supporting either encoding and decoding for a specific protocol or mapping between protocols.
 
 ## The zilla.yaml Config
 
