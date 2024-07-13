@@ -208,13 +208,6 @@ MSKProxySecretsManagerRead
 
 This example pattern uses resources with names including `wildcard.example.aklivity.io`, `client-`, `certificate-authority` etc. Replace them with the names you used or use wildcard resource selectors.
 
-```text:no-line-numbers
-      "Resource": [
-        "arn:aws:secretsmanager:*:*:secret:*",
-        "arn:aws:acm-pca:*:*:*"
-      ]
-```
-
 :::
 
 ## Subscribe via AWS Marketplace

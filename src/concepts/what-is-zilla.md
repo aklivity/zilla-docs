@@ -54,7 +54,7 @@ Zilla can expose a Prometheus metrics endpoint and logs events to stdout. Additi
 
 ## Zilla Use Cases
 
-Zilla can be used as a service proxy (sidecar) or as an AsyncAPI Kafka gateway.
+Zilla can be used as a service proxy (sidecar) or as an [AsyncAPI](https://www.asyncapi.com/) Kafka gateway.
 
 ### Service Proxy
 
@@ -89,7 +89,7 @@ When deployed in front of an existing HTTP, SSE (Server Sent Events), MQTT, Kafk
 
 ### AsyncAPI Kafka Gateway
 
-Zilla can abstract Apache Kafka for web applications, IoT clients, and non-Kafka microservices. With Zilla, OpenAPI and AsyncAPI definitions can be mapped to Kafka, enabling Kafka topics to be exposed over user-defined REST, SSE, MQTT, and gRPC APIs.
+Zilla can abstract Apache Kafka for web applications, IoT clients, and non-Kafka microservices. With Zilla, [OpenAPI](https://www.openapis.org/) and [AsyncAPI](https://www.asyncapi.com/) definitions can be mapped to Kafka, enabling Kafka topics to be exposed over user-defined REST, SSE, MQTT, and gRPC APIs.
 
 Zilla has no external dependencies and does not rely on the Kafka Consumer/Producer API or Kafka Connect. Instead, it natively supports the Kafka wire protocol and uses novel protocol mediation techniques to establish stateless API entry points into Kafka. As a gateway, Zilla also addresses security enforcement, observability, and connection offloading on the data path.
 

@@ -287,9 +287,6 @@ A gRPC server can connect to Kafka the same as any other binding in Zilla. [See 
   tcp_client:
     type: tcp
     kind: client
-    routes:
-      - when:
-          - cidr: 0.0.0.0/0
 ```
 
 ## Try it out
