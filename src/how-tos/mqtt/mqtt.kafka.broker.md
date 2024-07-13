@@ -231,7 +231,7 @@ env:
 
 ### Adding TLS
 
-You can add TLS to this broker by adding a vault and tls binding as described in the [Server Encryption](../../concepts/bindings.md#server-encryption-tls-ssl) section.
+You can add TLS to this MQTT broker by adding a vault and tls binding as described in the [Server Encryption](../../concepts/bindings.md#server-encryption-tls-ssl) section.
 
 ## Remove the running containers
 
