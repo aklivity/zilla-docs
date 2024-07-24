@@ -114,17 +114,29 @@ export const enSidebar = sidebar({
               link: "overview.md",
             },
             {
-              text: "via SASL/SCRAM",
+              text: "Terraform Deploy",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
+            },
+            {
+              text: "CloudFormation Deploy",
+              collapsible: false,
               link: "production.md",
+              children: [
+                {
+                  text: "with SASL/SCRAM",
+                  link: "production.md",
+                },
+                {
+                  text: "with Mutual TLS (mTLS)",
+                  link: "production-mutual-tls.md",
+                },
+                {
+                  text: "with Unauthorized access",
+                  link: "development.md",
+                },
+              ]
             },
-            {
-              text: "via mTLS",
-              link: "production-mutual-tls.md",
-            },
-            {
-              text: "via Unauthorized access",
-              link: "development.md",
-            },
+
           ],
         },
         {

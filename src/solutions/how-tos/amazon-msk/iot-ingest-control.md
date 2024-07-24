@@ -1,6 +1,6 @@
 ---
 icon: aky-zilla-plus
-description: Set up an IoT Ingest and Control MQTT Broker that lets clients publish messages and subscribe to topics proxied to Kafka topics in your Amazon MSK cluster.
+description: The IoT Ingest and Control MQTT Broker that lets clients publish messages and subscribe to topics proxied to Kafka topics in your Amazon MSK cluster.
 ---
 
 # Amazon MSK IoT Ingest and Control
