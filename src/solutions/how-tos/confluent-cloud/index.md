@@ -17,4 +17,4 @@ The IoT Ingest and Control MQTT Broker that lets clients publish messages and su
 
 The Secure Public Access Proxy lets authorized Kafka clients connect, publish messages and subscribe to topics in your Confluent Cloud cluster via the internet.
 
-> [Confluent Cloud Secure Public Access Proxy Guide](./secure-public-access/overview.md)
+> [Confluent Cloud Secure Public Access Proxy Guide](./secure-public-access.md)
