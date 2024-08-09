@@ -122,7 +122,6 @@ export const enSidebar = sidebar({
             {
               text: "CloudFormation Deploy",
               collapsible: false,
-              link: "production.md",
               children: [
                 {
                   text: "with SASL/SCRAM",
@@ -240,7 +239,7 @@ export const enSidebar = sidebar({
         {
           text: "-hidden-",
           ariaLabel: "-hidden-",
-          link: "/hidden",
+          link: "/",
           children: [],
         },
         {
@@ -353,7 +352,7 @@ export const enSidebar = sidebar({
         {
           text: "-hidden-",
           ariaLabel: "-hidden-",
-          link: "/hidden",
+          link: "/",
           children: [],
         },
         {

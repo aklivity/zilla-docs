@@ -20,14 +20,14 @@ The <ZillaPlus/> proxy can securely expose any MSK cluster with these access opt
 
 Follow the [Secure Public Access with Terraform](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access) guide to generated or deploy a custom Terraform template using [CDKTF](https://developer.hashicorp.com/terraform/cdktf). This Terraform script can be configured to deploy `SASL/SCRAM authentication`, `Mutual TLS (mTLS) authentication` or `Unauthorized access` to setup connectivity to your MSK cluster with a wildcard DNS pattern.
 
-## SASL/SCRAM authentication deployment with CloudFormation
+## SASL/SCRAM authentication with CloudFormation
 
 Follow the [Secure Public Access via SASL/SCRAM authentication](./production.md) guide to setup connectivity to your MSK cluster using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
 
-## Mutual TLS (mTLS) authentication deployment with CloudFormation
+## Mutual TLS (mTLS) authentication with CloudFormation
 
 Follow the [Secure Public Access via mTLS](./production-mutual-tls.md)  guide to setup connectivity to your MSK cluster using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
 
-## Unauthorized access deployment with CloudFormation
+## Unauthorized access with CloudFormation
 
 Follow the [Secure Public Access via Unauthorized access](./development.md) guide to setup connectivity to your MSK cluster using a locally trusted TLS server certificate with the example wildcard DNS pattern `*.aklivity.example.com`.
