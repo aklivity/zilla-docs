@@ -112,16 +112,17 @@ export const enSidebar = sidebar({
           link: "how-tos/amazon-msk/secure-public-access/overview.md",
           children: [
             {
-              text: "Overview",
+              text: "Deployment Options",
               link: "overview.md",
             },
             {
-              text: "Terraform Deploy",
+              text: "Terraform",
               link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
             },
             {
-              text: "CloudFormation Deploy",
-              collapsible: false,
+              text: "CloudFormation",
+              collapsible: true,
+              link: "production.md",
               children: [
                 {
                   text: "with SASL/SCRAM",
@@ -135,9 +136,8 @@ export const enSidebar = sidebar({
                   text: "with Unauthorized access",
                   link: "development.md",
                 },
-              ]
+              ],
             },
-
           ],
         },
         {
