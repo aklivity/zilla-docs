@@ -50,7 +50,6 @@ export const enSidebar = sidebar({
         {
           text: "Events",
           link: "events.md",
-          children: [],
         },
         {
           text: "Metrics",
@@ -86,10 +85,12 @@ export const enSidebar = sidebar({
         {
           text: "CLI (zpm)",
           link: "zpm-cli.md",
+          children: [],
         },
         {
           text: "zpm Config Overview",
           link: "overview.md",
+          children: [],
         },
       ],
     },
@@ -102,6 +103,7 @@ export const enSidebar = sidebar({
         {
           text: "Overview",
           link: "concepts/kafka-proxies/secure-public-access.md",
+          children: [],
         },
         {
           text: "Amazon MSK",
@@ -142,6 +144,7 @@ export const enSidebar = sidebar({
         {
           text: "Confluent Cloud",
           link: "how-tos/confluent-cloud/secure-public-access.md",
+          children: [],
         },
       ],
     },
@@ -152,18 +155,22 @@ export const enSidebar = sidebar({
         {
           text: "Overview",
           link: "concepts/kafka-proxies/iot-ingest-control.md",
+          children: [],
         },
         {
           text: "Amazon MSK",
           link: "how-tos/amazon-msk/iot-ingest-control.md",
+          children: [],
         },
         {
           text: "Confluent Cloud",
           link: "how-tos/confluent-cloud/iot-ingest-control.md",
+          children: [],
         },
         {
           text: "Redpanda",
           link: "how-tos/redpanda/iot-ingest-control.md",
+          children: [],
         },
       ],
     },
@@ -173,7 +180,6 @@ export const enSidebar = sidebar({
         {
           text: "AWS",
           prefix: "how-tos/aws-services/",
-          link: "how-tos/aws-services/",
           children: "structure",
         },
       ],
@@ -231,6 +237,12 @@ export const enSidebar = sidebar({
     {
       text: "Kafka Proxying",
       children: [
+        {
+          text: "-hidden-",
+          ariaLabel: "-hidden-",
+          link: "/hidden",
+          children: [],
+        },
         {
           text: "HTTP Kafka Proxy",
           collapsible: true,
@@ -338,6 +350,12 @@ export const enSidebar = sidebar({
     {
       text: "Security",
       children: [
+        {
+          text: "-hidden-",
+          ariaLabel: "-hidden-",
+          link: "/hidden",
+          children: [],
+        },
         {
           text: "Guards",
           collapsible: true,
