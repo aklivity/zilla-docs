@@ -57,31 +57,31 @@ Conditional routes based on `http` request headers are used to route these netwo
 
 - [kind\*](#kind)
 - [options](#options)
-- [options.versions](#options-versions)
-- [options.access-control](#options-access-control)
-  - [access-control.policy\*](#access-control-policy)
-  - [access-control.policy: same-origin](#access-control-policy-same-origin)
-  - [access-control.policy: cross-origin](#access-control-policy-cross-origin)
-  - [access-control.allow](#access-control-allow)
-    - [allow.origins](#allow-origins)
-    - [allow.methods](#allow-methods)
-    - [allow.headers](#allow-headers)
-    - [allow.credentials](#allow-credentials)
-  - [access-control.max-age](#access-control-max-age)
-  - [access-control.expose](#access-control-expose)
-    - [expose.headers](#expose-headers)
-- [options.authorization](#options-authorization)
-  - [authorization.credentials](#authorization-credentials)
-    - [credentials.cookies](#credentials-cookies)
-    - [credentials.headers](#credentials-headers)
-    - [credentials.query](#credentials-query)
-- [options.overrides](#options-overrides)
+  - [options.versions](#options-versions)
+  - [options.access-control](#options-access-control)
+    - [access-control.policy\*](#access-control-policy)
+    - [access-control.policy: same-origin](#access-control-policy-same-origin)
+    - [access-control.policy: cross-origin](#access-control-policy-cross-origin)
+    - [access-control.allow](#access-control-allow)
+      - [allow.origins](#allow-origins)
+      - [allow.methods](#allow-methods)
+      - [allow.headers](#allow-headers)
+      - [allow.credentials](#allow-credentials)
+    - [access-control.max-age](#access-control-max-age)
+    - [access-control.expose](#access-control-expose)
+      - [expose.headers](#expose-headers)
+  - [options.authorization](#options-authorization)
+    - [authorization.credentials](#authorization-credentials)
+      - [credentials.cookies](#credentials-cookies)
+      - [credentials.headers](#credentials-headers)
+      - [credentials.query](#credentials-query)
+  - [options.overrides](#options-overrides)
 - [exit](#exit)
 - [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].headers](#when-headers)
-- [routes\[\].exit\*](#routes-exit)
+  - [routes\[\].guarded](#routes-guarded)
+  - [routes\[\].when](#routes-when)
+    - [when\[\].headers](#when-headers)
+  - [routes\[\].exit\*](#routes-exit)
 
 ::: right
 \* required
@@ -114,25 +114,25 @@ options:
     custom-text: custom-value
 ```
 
-### options.versions
+#### options.versions
 
 > `array` of `enum` [ "http/1.1", "h2" ]
 
 Supported protocol versions.
 
-### options.access-control
+#### options.access-control
 
 > **oneOf**: [same-origin](#access-control-policy-same-origin) | [cross-origin](#access-control-policy-cross-origin)
 
 Access control policy for the `HTTP` protocol.
 
-#### access-control.policy\*
+##### access-control.policy\*
 
 > `enum` [ "same-origin" , "cross-origin" ]
 
 Supported access control policies.
 
-#### access-control.policy: same-origin
+##### access-control.policy: same-origin
 
 > `string`
 
@@ -144,7 +144,7 @@ options:
     policy: same-origin
 ```
 
-#### access-control.policy: cross-origin
+##### access-control.policy: cross-origin
 
 > `object`
 
@@ -156,56 +156,56 @@ options:
     policy: cross-origin
 ```
 
-#### access-control.allow
+##### access-control.allow
 
 > `object` | Default: all origins, methods and headers, without credentials
 
 Allowed cross-origin request origins, methods, headers and credentials.
 CORS allowed request origins, methods, headers and credentials for the `HTTP` protocol.
 
-##### allow.origins
+###### allow.origins
 
 > `array` of `string`
 
 Allowed request origins.
 
-##### allow.methods
+###### allow.methods
 
 > `array` of `string`
 
 Allowed request methods.
 
-##### allow.headers
+###### allow.headers
 
 > `array` of `string`
 
 Allowed request headers.
 
-##### allow.credentials
+###### allow.credentials
 
 > `boolean`
 
 Support `fetch` credentials mode `include`.
 
-#### access-control.max-age
+##### access-control.max-age
 
 > `integer`
 
 Maximum cache age (in seconds) for allowed headers and methods.
 
-#### access-control.expose
+##### access-control.expose
 
 > `object` | Default: all response headers
 
 Exposed cross-origin response headers.
 
-##### expose.headers
+###### expose.headers
 
 > `array` of `string`
 
 Exposed response headers.
 
-### options.authorization
+#### options.authorization
 
 > `object` as map of named objects
 
@@ -219,31 +219,31 @@ authorization:
         authorization: Bearer {credentials}
 ```
 
-#### authorization.credentials
+##### authorization.credentials
 
 > `object`
 
 Defines how to extract credentials from the HTTP request.
 
-##### credentials.cookies
+###### credentials.cookies
 
 > `object` as map of `string`
 
 Named cookie value pattern with `{credentials}`.
 
-##### credentials.headers
+###### credentials.headers
 
 > `map` of `name: value` properties
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
-##### credentials.query
+###### credentials.query
 
 > `object` as map of `string`
 
 Named query parameter value pattern with `{credentials}`.
 
-### options.overrides
+#### options.overrides
 
 > `map` of `name: value` properties
 
@@ -274,7 +274,7 @@ routes:
     exit: echo_server
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -287,7 +287,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -302,13 +302,13 @@ routes:
           ":authority": example.com:443
 ```
 
-#### when[].headers
+##### when[].headers
 
 > `map` of `name: value` properties
 
 Header name value pairs (all match).
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { marked } = require("marked");
 const { $RefParser } = require("@apidevtools/json-schema-ref-parser");
-const schema = require("./parsed-zilla-schema.json");
+const schema = require("./zilla-schema.json");
 
 const main = async () => {
     await $RefParser.dereference(schema);
