@@ -20,7 +20,7 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 
 ### Deploy with CloudFormation
 
-Follow the [Amazon MSK IoT Ingest and Control](../../how-tos/confluent-cloud/iot-ingest-control.md) guide to setup an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
+Follow the [Amazon MSK IoT Ingest and Control](../../how-tos/confluent-cloud/iot-ingest-and-control.md) guide to setup an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
 
 ## Confluent Cloud
 
@@ -28,7 +28,7 @@ The [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodv
 
 ### Deploy with CloudFormation
 
-Follow the [Confluent Cloud IoT Ingest and Control](../../how-tos/confluent-cloud/iot-ingest-control.md) guide to setup an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
+Follow the [Confluent Cloud IoT Ingest and Control](../../how-tos/confluent-cloud/iot-ingest-and-control.md) guide to setup an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
 
 ## Redpanda
 
@@ -36,4 +36,4 @@ The [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4
 
 ### Deploy with CloudFormation
 
-Follow the [Redpanda IoT Ingest and Control](../../how-tos/redpanda/iot-ingest-control.md) guide to setup an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
+Follow the [Redpanda IoT Ingest and Control](../../how-tos/redpanda/iot-ingest-and-control.md) guide to setup an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
