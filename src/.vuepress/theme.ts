@@ -3,6 +3,7 @@ import { hopeTheme } from "vuepress-theme-hope";
 import { enSidebar } from "./sidebar/index.js";
 import { enNavbar } from "./navbar/index.js";
 import {
+  base,
   siteBase,
   versionKey,
   hostnameSEO,
@@ -66,17 +67,13 @@ export default hopeTheme({
       appId: "H6RNUBSB6E",
       indexName: "aklivity",
       apiKey: "bae72797404a23ba5466230146919cae",
+      indexBase: `/${base}/`,
       searchParameters: {
         facetFilters: [`version:${versionKey}`, `product:${siteBase}`],
       },
     },
-    shiki: {
-      themes: {
-        light: "light-plus",
-        dark: "dark-plus",
-      },
-      lineNumbers: 3
-    },
+    shiki: false,
+    prismjs: true,
     redirect: true,
     mdEnhance: {
       align: true,
