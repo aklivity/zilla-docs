@@ -13,6 +13,8 @@ Zilla runtime integer model
 model: integer
 ```
 
-## Summary
+## Configuration (\* required)
+
+### model: integer\*
 
 Defines a model to enforce validation for integer data.

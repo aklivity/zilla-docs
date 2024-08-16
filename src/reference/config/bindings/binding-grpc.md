@@ -12,13 +12,23 @@ tag:
 
 Zilla runtime grpc binding.
 
+## Configuration (\* required)
+
+### type: grpc\*
+
+Defines a binding with `grpc` protocol support, with `server` or `client` behavior.
+
+### kind: server
+
+The `server` kind `grpc` binding adapts `http` request-response streams to `grpc` request-response streams, with support for both `application/grpc+proto` and `application/grpc-web+proto` content types.
+
 ```yaml {2}
 grpc_server:
   type: grpc
   kind: server
-  options:
-    services:
-      - proto/echo.proto
+  catalog:
+    host_filesystem:
+      - subject: echo
   routes:
     - when:
         - method: example.EchoService/*
@@ -29,56 +39,21 @@ grpc_server:
       exit: echo_server
 ```
 
-## Summary
-
-Defines a binding with `grpc` protocol support, with `server` or `client` behavior.
-
-The `server` kind `grpc` binding adapts `http` request-response streams to `grpc` request-response streams, with support for both `application/grpc+proto` and `application/grpc-web+proto` content types.
+### kind: client
 
 The `client` kind `grpc` binding adapts `grpc` request-response streams to `http` request-response streams.
 
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.services](#options-services)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].method](#when-method)
-  - [when\[\].metadata](#when-metadata)
-    - [metadata.base64](#metadata-base64)
-- [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "client", "server" ]
-
-Behave as a `grpc` `client` or `server`.
-
-```yaml
-kind: server
-```
 
 ### options
 
 > `object`
 
 `grpc`-specific options.
-
-```yaml
-options:
-  services:
-    - proto/echo.proto
+```yaml {2}
+grpc_client:
+  type: grpc
+  kind: client
+  exit: http_client
 ```
 
 #### options.services
@@ -90,7 +65,6 @@ This property will be removed in a future release. To access '.proto' files from
 > `array` of `string`
 
 Protobuf service definition filenames, typically with `.proto` filename extension.
-
 ### exit
 
 > `string`
@@ -121,7 +95,7 @@ routes:
     exit: echo_server
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -134,7 +108,7 @@ routes:
         - echo:messages
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -151,13 +125,13 @@ routes:
             base64: Y3VzdG9tIHZhbHVl
 ```
 
-#### when[].method
+##### when[].method
 
 > `string`
 
 gRPC service method name, such as `example.EchoService/EchoUnary`, or service method pattern such as `example.EchoService/*`.
 
-#### when[].metadata
+##### when[].metadata
 
 > `map` of `name: value` properties
 
@@ -171,7 +145,7 @@ Each metadata header value can be `string` or `object` with `base64` property.
 
 Base64 encoded value for binary metadata header.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -182,6 +156,25 @@ routes:
   - when:
     ...
     exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "grpc" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - grpc.*
 ```
 
 ---

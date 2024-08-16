@@ -13,9 +13,7 @@ tag:
 
 Zilla runtime `asyncapi` binding.
 
-```yaml {2}
-name: zilla-mqtt-kafka-broker
-bindings:
+```yaml {2,9,46}
   asyncapi_server:
     type: asyncapi
     kind: server
@@ -76,77 +74,25 @@ bindings:
           - 9092
 ```
 
-## Summary
+## Configuration (\* required)
+
+
+### type: asyncapi\*
 
 Defines a binding with `asyncapi` spec, with `server` or `proxy` or `client` behavior.
 
-The `server` kind `asyncapi` binding creates composite of `tcp`, `tls`, and `mqtt` or `http` bindings with server kind and adapts MQTT/HTTP streams to AsyncAPI streams.
+### kind: client
+
+The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `http`, and `tls`, `tcp` bindings with client kind and adapts
+AsyncAPI streams to Kafka/MQTT/HTTP streams.
+
+### kind: proxy
 
 The `proxy` kind `asyncapi` binding creates composite of `mqtt-kafka` binding with proxy kind mapping MQTT streams to Kafka streams.
 
-The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `http`, and `tls`, `tcp` bindings with client kind and adapts AsyncAPI streams to Kafka/MQTT/HTTP streams.
+### kind: server
 
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.specs](#options-specs)
-    - [specs.catalog](#specs-catalog)
-      - [catalog.subject](#catalog-subject)
-      - [catalog.version](#catalog-version)
-    - [specs.servers](#specs-servers)
-      - [servers.url](#servers-url)
-      - [servers.host](#servers-host)
-      - [servers.pathname](#servers-pathname)
-  - [options.tcp](#options-tcp)
-    - [tpc.host](#tpc-host)
-    - [tcp.port](#tcp-port)
-  - [options.http](#options-http)
-    - [http.authorization](#http-authorization)
-    - [authorization.credentials](#authorization-credentials)
-    - [credentials.cookies](#credentials-cookies)
-    - [credentials.headers](#credentials-headers)
-    - [credentials.query](#credentials-query)
-  - [options.tls](#options-tls)
-    - [tls.version](#tls-version)
-    - [tls.keys](#tls-keys)
-    - [tls.trust](#tls-trust)
-    - [tls.signers](#tls-signers)
-    - [tls.trustcacerts](#tls-trustcacerts)
-    - [tls.sni\*](#tls-sni)
-    - [tls.alpn](#tls-alpn)
-    - [tls.mutual](#tls-mutual)
-- [mqtt-kafka](#mqtt-kafka)
-  - [mqtt-kafka.channels](#mqtt-kafka-channels)
-    - [channels.sessions](#channels-sessions)
-    - [channels.retained](#channels-retained)
-    - [channels.messages](#channels-messages)
-- [routes\[\].when](#routes-when)
-  - [when\[\].api-id](#when-api-id)
-  - [when\[\].operation-id](#when-operation-id)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with](#routes-with)
-  - [with.api-id](#with-api-id)
-  - [with.operation-id](#with-operation-id)
-- [exit](#exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "client", "proxy", "server" ]
-
-Behave as a `asyncapi` `client` or `proxy` or `server`.
-
-```yaml
-kind: server
-```
+The `server` kind `asyncapi` binding creates composite of `tcp`, `tls`, and `mqtt` or `http` bindings with server kind and adapts MQTT/HTTP streams to AsyncAPI streams.
 
 ### options
 
@@ -217,7 +163,7 @@ The server pathname to match based on the server's `pathname` in an asyncapi `3.
 
 `client` specific `tcp` options.
 
-##### tpc.host
+##### tcp.host
 
 > `string`
 
@@ -377,26 +323,26 @@ AsyncAPI Kafka messages channel.
 messages: mqttMessages
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
 List of conditions to match this route when adapting `asyncapi` MQTT streams to `asyncapi` Kafka streams.
 Read more: [When a route matches](../../../concepts/bindings.md#when-a-route-matches)
 
-#### when[].api-id
+##### when[].api-id
 
 > `string`
 
 AsyncAPI spec identifier that matches from `asyncapi` binding MQTT stream.
 
-#### when[].operation-id
+##### when[].operation-id
 
 > `string`
 
 AsyncAPI OperationId that can be mapped between AsyncAPI MQTT and AsyncAPI Kafka spec
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -409,7 +355,7 @@ routes:
     exit: asyncapi_client
 ```
 
-### routes[].with
+#### routes[].with
 
 > `object`
 
@@ -420,13 +366,13 @@ with:
   api-id: my-asyncapi-spec
 ```
 
-#### with.api-id
+##### with.api-id
 
 > `string`
 
 AsyncAPI spec identifier that the route exits with to the next binding
 
-#### with.operation-id
+##### with.operation-id
 
 > `string`
 
@@ -440,6 +386,24 @@ Default exit binding.
 
 ```yaml
 exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

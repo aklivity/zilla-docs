@@ -21,44 +21,21 @@ tcp_server:
     port: 12345
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: tcp\*
 
 Defines a binding with `tcp` protocol support, with `server` or `client` behavior.
 
-The `server` kind `tcp` binding listens for inbound socket connections, producing higher level application streams for each remote `tcp` client.
-
-The `client` kind `tcp` binding receives inbound application streams and initiates outbound `tcp` network connections to a remote `tcp` server address.
-
 Conditional routes based on the hostname authority and network address mask are used to route these streams to an `exit` binding.
 
-## Configuration
+### kind: server\*
 
-:::: note Properties
+The `server` kind `tcp` binding listens for inbound socket connections, producing higher level application streams for each remote `tcp` client.
 
-- [kind\*](#kind)
-- [options](#options)
-- [options.host](#options-host)
-- [options.port](#options-port)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].authority](#when-authority)
-  - [when\[\].cidr](#when-cidr)
-  - [when\[\].port](#when-port)
-- [routes\[\].exit\*](#routes-exit)
+### kind: client\*
 
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "client", "server" ]
-
-Behave as a `tcp` `client` or `server`.
+The `client` kind `tcp` binding receives inbound application streams and initiates outbound `tcp` network connections to a remote `tcp` server address.
 
 ### options
 
@@ -72,13 +49,13 @@ options:
   port: 12345
 ```
 
-### options.host
+#### options.host
 
 > `string`
 
 Hostname or IP address.
 
-### options.port
+#### options.port
 
 > `integer` | `string` | `array` of  `integer` | `array` of `string`
 
@@ -100,38 +77,38 @@ exit: echo_server
 
 Conditional `tcp`-specific routes.
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
 List of roles required by each named guard to authorize this route.
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
 List of conditions (any match) to match this route.
 Read more: [When a route matches](../../../concepts/bindings.md#when-a-route-matches)
 
-#### when[].authority
+##### when[].authority
 
 > `string`
 
 Associated authority.
 
-#### when[].cidr
+##### when[].cidr
 
 > `string`
 
 CIDR mask.
 
-#### when[].port
+##### when[].port
 
 > `integer` | `string` | `array` of  `integer` | `array` of `string`
 
 Port number(s), including port number ranges.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -142,6 +119,24 @@ routes:
   - when:
     ...
     exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

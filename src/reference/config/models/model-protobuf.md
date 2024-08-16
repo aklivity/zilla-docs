@@ -24,27 +24,11 @@ catalog:
       record: EchoMessage
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: protobuf\*
 
 Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
-
-## Configuration
-
-:::: note Properties
-
-- [view](#view)
-- [catalog\*](#catalog)
-  - [catalog.strategy](#catalog-strategy)
-  - [catalog.subject](#catalog-subject)
-  - [catalog.version](#catalog-version)
-  - [catalog.id](#catalog-id)
-  - [catalog.record\*](#catalog-record)
-
-::: right
-\* required
-:::
-
-::::
 
 ### view
 

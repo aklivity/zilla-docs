@@ -51,80 +51,15 @@ http_kafka_proxy:
           location: /items/${params.id};cid=${correlationId}
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: http-kafka\*
 
 The `proxy` kind `http-kafka` binding adapts `http` request-response streams to `kafka` topic streams.
 
-## Fetch capability
-
-Routes with `fetch` capability map `http` `GET` requests to a `kafka` log-compacted topic, supporting filtered retrieval of messages with a specific key, or unfiltered retrieval of all messages with distinct keys in the topic merged into a unified response.
-
-Filtering can be performed by `kafka` message key, message headers, or a combination of both message key and headers, extracting the parameter values from the inbound `http` request path.
-
-Status `200` `http` responses include an `etag` header that can be used with `if-none-match` for subsequent conditional `GET` requests to check for updates. Rather than polling, `http` requests can also include the `prefer: wait=N` header to wait a maximum of `N` seconds before responding with `304` if not modified. When a new message arrives in the topic that would modify the response, then all `prefer: wait=N` clients receive the response immediately.
-
-## Produce capability
-
-Routes with `produce` capability map any `http` request-response to a correlated pair of `kafka` messages. The `http` request message is sent to a `requests` topic, with a `zilla:correlation-id` header. When the request message received and processed by the `kafka` `requests` topic consumer, it produces a response message to the `responses` topic, with the same `zilla:correlation-id` header to correlate the response.
-
-Requests including an `idempotency-key` `http` header can be replayed and safely receive the same response. This requires the `kafka` consumer to detect and ignore the duplicate request with the same `idempotency-key` and `zilla:correlation-id`.
-
-Specifying `async` allows clients to include a `prefer: respond-async` header in the `http` request to receive `202 Accepted` response with `location` response header.
-
-A corresponding `routes[].when` object with matching `GET` method and `location` path is also required for follow up `GET` requests to return the same response as would have been returned if `prefer: respond-async` request header had been omitted.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.idempotency](#options-idempotency)
-    - [idempotency.header](#idempotency-header)
-  - [options.correlation](#options-correlation)
-    - [correlation.headers](#correlation-headers)
-    - [headers.reply-to](#headers-reply-to)
-    - [headers.correlation-id](#headers-correlation-id)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].method](#when-method)
-  - [when\[\].path](#when-path)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with](#routes-with)
-- [with.capability: fetch](#with-capability-fetch)
-  - [with.topic](#with-topic)
-  - [with.filters](#with-filters)
-    - [filters\[\].key](#filters-key)
-    - [filters\[\].headers](#filters-headers)
-  - [with.merge](#with-merge)
-    - [merge.content-type](#merge-content-type)
-    - [merge.patch](#merge-patch)
-    - [patch.initial](#patch-initial)
-    - [patch.path](#patch-path)
-- [with.capability: produce](#with-capability-produce)
-  - [with.topic](#with-topic-1)
-  - [with.acks](#with-acks)
-  - [with.key](#with-key)
-  - [with.overrides](#with-overrides)
-  - [with.reply-to](#with-reply-to)
-  - [with.async](#with-async)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "proxy" ]
+### kind: proxy\*
 
 Behave as an `http-kafka` `proxy`.
-
-```yaml
-kind: proxy
-```
 
 ### options
 
@@ -243,7 +178,7 @@ routes:
       key: ${params.id}
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -256,7 +191,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -270,19 +205,19 @@ routes:
         path: /items/{id};cid={correlationId}
 ```
 
-#### when[].method
+##### when[].method
 
 > `string`
 
 HTTP Method, such as `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`.
 
-#### when[].path
+##### when[].path
 
 > `string`
 
 Path with optional embedded parameter names, such as `/{topic}`.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -295,7 +230,7 @@ routes:
     exit: kafka_cache_client
 ```
 
-### routes[].with
+#### routes[].with
 
 > **oneOf**: [Fetch](#with-capability-fetch) | [Produce](#with-capability-produce)
 
@@ -313,11 +248,17 @@ with:
   capability: produce
 ```
 
-### with.capability: fetch
+#### with.capability: fetch
 
 > `object`
 
 Kafka parameters for matched route when adapting `http` request-response streams to `kafka` topic fetch streams.
+
+Routes with `fetch` capability map `http` `GET` requests to a `kafka` log-compacted topic, supporting filtered retrieval of messages with a specific key, or unfiltered retrieval of all messages with distinct keys in the topic merged into a unified response.
+
+Filtering can be performed by `kafka` message key, message headers, or a combination of both message key and headers, extracting the parameter values from the inbound `http` request path.
+
+Status `200` `http` responses include an `etag` header that can be used with `if-none-match` for subsequent conditional `GET` requests to check for updates. Rather than polling, `http` requests can also include the `prefer: wait=N` header to wait a maximum of `N` seconds before responding with `304` if not modified. When a new message arrives in the topic that would modify the response, then all `prefer: wait=N` clients receive the response immediately.
 
 ```yaml
 with:
@@ -332,13 +273,13 @@ with:
       path: /-
 ```
 
-#### with.topic
+##### with.topic
 
 > `string`
 
 Topic name, optionally referencing path parameter such as `${params.topic}`.
 
-#### with.filters
+##### with.filters
 
 > `array` of `object`
 
@@ -356,15 +297,15 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
-#### with.merge
+##### with.merge
 
 > `object`
 
 Merge multiple Kafka messages into a unified HTTP response. Kafka merge configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### merge.content-type
+##### merge.content-type: application/json
 
-> `const` | Value: application/json
+> `const`
 
 Content type of merged HTTP response.
 
@@ -378,23 +319,31 @@ Describes how to patch initial HTTP response to include one or more Kafka messag
 
   Kafka merge patch configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### patch.initial
+##### patch.initial: []
 
-> `const` | Value: "[]"
+> `const`
 
 Initial JSON value.
 
-##### patch.path
+##### patch.path: /-
 
-> `const` | Value: /-
+> `const`
 
 JSON Patch path to include each Kafka message in unified HTTP response.
 
-### with.capability: produce
+#### with.capability: produce
 
 > `object`
 
 Kafka parameters for matched route when adapting `http` request-response streams to `kafka` topic produce streams.
+
+Routes with `produce` capability map any `http` request-response to a correlated pair of `kafka` messages. The `http` request message is sent to a `requests` topic, with a `zilla:correlation-id` header. When the request message received and processed by the `kafka` `requests` topic consumer, it produces a response message to the `responses` topic, with the same `zilla:correlation-id` header to correlate the response.
+
+Requests including an `idempotency-key` `http` header can be replayed and safely receive the same response. This requires the `kafka` consumer to detect and ignore the duplicate request with the same `idempotency-key` and `zilla:correlation-id`.
+
+Specifying `async` allows clients to include a `prefer: respond-async` header in the `http` request to receive `202 Accepted` response with `location` response header.
+
+A corresponding `routes[].when` object with matching `GET` method and `location` path is also required for follow up `GET` requests to return the same response as would have been returned if `prefer: respond-async` request header had been omitted.
 
 ```yaml
 with:
@@ -409,43 +358,62 @@ with:
     location: /items/${params.id};cid=${correlationId}
 ```
 
-#### with.topic
+##### with.topic
 
 > `string`
 
 Kafka topic name, optionally referencing path parameter such as `${params.topic}`.
 
-#### with.acks
+##### with.acks
 
 > `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
 
 Kafka acknowledgement mode
 
-#### with.key
+##### with.key
 
 > `string`
 
 Kafka message key, optionally referencing path parameter such as `${params.id}`.
 
-#### with.overrides
+##### with.overrides
 
 > `map` of `name: value` properties
 
 Kafka message headers, with values optionally referencing path parameter.
 
-#### with.reply-to
+##### with.reply-to
 
 > `string`
 
 Kafka reply-to topic name.
 
-#### with.async
+##### with.async
 
 > `map` of `name: value` properties
 
 Allows an HTTP response to be retrieved asynchronously.
 
 A `location: <path>` property can be used to define the path where an async result can be fetched, with the `<path>` value optionally referencing route path parameters or the `${correlationId}`.
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "http" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - http.*
+```
 
 ---
 

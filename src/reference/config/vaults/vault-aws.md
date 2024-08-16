@@ -24,28 +24,13 @@ server:
       resourcegroupstaggingapi: http://localhost:8000/resourcegroupstaggingapi
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: aws\*
 
 Defines a vault remotely accessing AWS services from an EC2 instance.
 
 This is typically combined with `tls` binding `vault` property, referencing resources such as `secrets` by Amazon Resource Names (ARNs).
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-- [options.overrides](#options-overrides)
-  - [overrides.acm](#overrides-acm)
-  - [overrides.acmpca](#overrides-acmpca)
-  - [overrides.secretsmanager](#overrides-secretsmanager)
-  - [overrides.resourcegroupstaggingapi](#overrides-resourcegroupstaggingapi)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 
@@ -62,7 +47,7 @@ options:
     resourcegroupstaggingapi: http://localhost:8000/resourcegroupstaggingapi
 ```
 
-### options.overrides
+#### options.overrides
 
 > `object`
 

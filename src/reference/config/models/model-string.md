@@ -9,29 +9,40 @@ category:
 
 Zilla runtime string model
 
-```yaml {1}
-model: string
-encoding: utf_8
-```
+## Configuration (\* required)
 
-## Summary
+### model: string\*
 
 Defines a model to enforce validation for string data.
 
-## Configuration
+```yaml {1}
+model: string
+encoding: utf_8
+minLength: 1
+maxLength: 100
+pattern: ^wait=\d+$
+```
 
-:::: note Properties
+### encoding
 
-- [encoding\*](#encoding)
+> `enum` [ "utf_8","utf_16" ]
 
-::: right
-\* required
-:::
+Define character encoding for unicode.
 
-::::
+### minLength
 
-### encoding\*
+> `integer` | minimum: 1
+
+Define string minimum length.
+
+### maxLength
+
+> `integer` | minimum: 1
+
+Define string maximum length.
+
+### pattern
 
 > `string`
 
-Define character encoding for unicode.
+Define string regex pattern.

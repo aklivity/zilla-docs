@@ -35,43 +35,13 @@ mqtt_kafka_proxy:
   exit: kafka_cache_client
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: mqtt-kafka\*
 
 Defines a binding with `mqtt-kafka` support, with `proxy` behavior.
 
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.server](#options-server)
-  - [options.topics](#options-topics)
-    - [topics.sessions\*](#topics-sessions)
-    - [topics.messages\*](#topics-messages)
-    - [topics.retained\*](#topics-retained)
-  - [options.clients](#options-clients)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].publish](#when-publish)
-    - [publish\[\].topic](#publish-topic)
-  - [when\[\].subscribe](#when-subscribe)
-    - [subscribe\[\].topic](#subscribe-topic)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with](#routes-with)
-  - [with.messages](#with-messages)
-- [exit](#exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "proxy" ]
+### kind: proxy\*
 
 Behave as a `mqtt-kafka` `proxy`.
 
@@ -110,7 +80,11 @@ options:
 
 > `string`
 
-Compacted Kafka topic for storing mqtt session states. Cleanup policy must be log compacted.
+A Kafka topic for storing mqtt session states.
+
+::: warning cleanup.policy Required
+A `compact` [cleanup.policy](https://kafka.apache.org/30/generated/topic_config.html#topicconfigs_cleanup.policy) is required.
+:::
 
 ##### topics.messages\*
 
@@ -122,7 +96,11 @@ The default Kafka topic used for routing mqtt messages.
 
 > `string`
 
-Compacted Kafka topic for storing mqtt retained messages.
+A Kafka topic for storing mqtt retained messages.
+
+::: info cleanup.policy Recommended
+A `compact` [cleanup.policy](https://kafka.apache.org/30/generated/topic_config.html#topicconfigs_cleanup.policy) is recommended.
+:::
 
 #### options.clients
 
@@ -134,6 +112,24 @@ Pattern defining how to extract client identity from the topic. Using this we ca
 options:
   clients:
     - place/{identity}/#
+```
+
+#### options.publish
+
+> `object`
+
+MQTT `publish`-specific options.
+
+##### publish.qosMax
+
+> `enum` [ "at_most_once", "at_least_once", "exactly_once" ] | default: "exactly_once"
+
+Highest allowed QOS level.
+
+```yaml
+options:
+  publish:
+    qosMax: at_most_once
 ```
 
 ### routes
@@ -154,7 +150,7 @@ routes:
     exit: kafka_cache_client
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -167,7 +163,7 @@ routes:
         - publish:clients
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -183,7 +179,7 @@ routes:
           - topic: place/#
 ```
 
-#### when[].publish
+##### when[].publish
 
 > `array` of `object`
 
@@ -201,7 +197,7 @@ Array of MQTT topic filters matching topic names for publish.
 
 MQTT topic filter pattern.
 
-#### when[].subscribe
+##### when[].subscribe
 
 > `array` of `object`
 
@@ -219,13 +215,13 @@ Array of MQTT topic filters matching topic names for subscribe.
 
 MQTT topic filter pattern.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
 Next binding when following this route.
 
-### routes[].with
+#### routes[].with
 
 > `object`
 
@@ -236,7 +232,7 @@ with:
   messages: mqtt-devices
 ```
 
-#### with.messages
+##### with.messages
 
 > `string`
 
@@ -250,6 +246,24 @@ Default exit binding when no conditional routes are viable.
 
 ```yaml
 exit: kafka_cache_client
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

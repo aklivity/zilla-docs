@@ -19,23 +19,11 @@ catalogs:
           path: path/to/local_file.txt
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: filesystem\*
 
 Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pulled from the filesystem relative `zilla.yaml` to enforce validation, create APIs or gRPC services.
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-  - [options.subjects\*](#options-subjects)
-    - [subjects.path\*](#subjects-path)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 

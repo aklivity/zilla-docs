@@ -17,30 +17,32 @@ echo_server:
     kind: server
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: echo
 
 This binding supports the `echo` protocol and is run with the `server` behavior. It reads inbound messages and writes it back to the sender.
 
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "server" ]
+### kind: server
 
 Behaves as an `echo` `server`.
 
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
 ```yaml
-kind: server
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

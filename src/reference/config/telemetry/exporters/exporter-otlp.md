@@ -21,25 +21,10 @@ exporters:
         - metrics
       endpoint:
         protocol: http
-        location: http://otlp-collector:4318/v1/metrics
+        location: http://otlp-collector:4318
 ```
 
-## Configuration
-
-:::: note Properties
-
-- [options\*](#options)
-  - [options.interval](#options-interval)
-  - [options.signals](#options-signals)
-  - [options.endpoint\*](#options-endpoint)
-    - [endpoint.protocol](#endpoint-protocol)
-    - [endpoint.location\*](#endpoint-location)
-
-::: right
-\* required
-:::
-
-::::
+## Configuration (\* required)
 
 ### options
 
@@ -55,7 +40,7 @@ options:
     - metrics
   endpoint:
     protocol: http
-    location: http://otlp-collector:4318/v1/metrics
+    location: http://otlp-collector:4318
 ```
 
 #### options.interval

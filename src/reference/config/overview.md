@@ -26,26 +26,7 @@ telemetry:
   ...
 ```
 
-## Configuration
-
-:::: note Properties
-
-- [name\*](#name)
-- [bindings](#bindings)
-  - [routes.exit](#routes-exit)
-- [guards](#guards)
-- [vaults](#vaults)
-- [catalogs](#catalogs)
-- [telemetry](#telemetry)
-  - [attributes](#attributes)
-  - [exporters](#exporters)
-  - [metrics](#metrics)
-
-::: right
-\* required
-:::
-
-::::
+## Configuration (\* required)
 
 ### name\*
 

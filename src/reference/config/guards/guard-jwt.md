@@ -46,30 +46,9 @@ guards:
       challenge: 30
 ```
 
-## Configuration
+## Configuration (\* required)
 
-:::: note Properties
-
-- [options](#options)
-- [options.issuer](#options-issuer)
-  - [options.audience](#options-audience)
-  - [options.challenge](#options-challenge)
-  - [options.keys](#options-keys)
-    - [keys\[\].kty](#keys-kty)
-    - [keys\[\].kid](#keys-kid)
-    - [keys\[\].n](#keys-n)
-    - [keys\[\].e](#keys-e)
-    - [keys\[\].alg](#keys-alg)
-    - [keys\[\].crv](#keys-crv)
-    - [keys\[\].x](#keys-x)
-    - [keys\[\].y](#keys-y)
-
-::: right \* required
-:::
-
-::::
-
-### type: jwt
+### type: jwt\*
 
 Defines a guard with `JSON Web Token (JWT)` support.
 
@@ -126,41 +105,44 @@ Challenge period (seconds).
 
 If not provided, relies on the `issuer` to infer the location of a remote `.well-known/jwks.json` file.
 
-::: info Examples
+::: note Supported keys
 
-**kty** `string`
+**kty**: `string`
 
 > Key type, e.g. "RSA" , "EC".
 
-**kid** `string`
+**kid**: `string`
 
 > Key ID.
 
-**n** `string`
+**n**: `string`
 
 > "RSA" modulus.
 
-**e** `string`
+**e**: `string`
 
 > "RSA" exponent.
 
-**alg** `string`
+**alg**: `string`
 
 > "RSA" algorithm, e.g. "RS256".
 
-**crv** `string`
+**crv**: `string`
 
 > "EC" curve name.
 
-**x** `string`
+**x**: `string`
 
 > "EC" point X coordinate.
 
-**y** `string`
+**y**: `string`
 
 > "EC" point Y coordinate.
 
+:::
+
 ---
 
-::: right \* required
+::: right
+\* required
 :::

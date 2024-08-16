@@ -27,27 +27,11 @@ exporters:
         stream: zilla-log-stream
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: aws-cloudwatch\*
 
 Specifies an exporter for transmitting Custom Metrics and Log Events to AWS CloudWatch.
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-- [options.metrics](#options-metrics)
-  - [metrics.namespace\*](#metrics-namespace)
-  - [metrics.interval](#metrics-interval)
-- [options.logs](#options-logs)
-  - [logs.group\*](#logs-group)
-  - [logs.stream\*](#logs-stream)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 
@@ -65,13 +49,13 @@ options:
     stream: zilla-log-stream
 ```
 
-### options.metrics
+#### options.metrics
 
 > `object`
 
 Configuration for transmitting custom metric data points to Amazon CloudWatch.
 
-#### metrics.namespace\*
+##### metrics.namespace\*
 
 > `string`
 
@@ -79,25 +63,25 @@ The namespace for the metric data.
 
 To avoid conflicts with Amazon Web Services service namespaces, you should not specify a namespace that begins with `AWS/`.
 
-#### metrics.interval
+##### metrics.interval
 
 > `integer`
 
 Interval in seconds to push data to the Amazon CloudWatch. Default: 30 seconds.
 
-### options.logs
+#### options.logs
 
 > `object`
 
 Configuration for transmitting log events to Amazon CloudWatch.
 
-#### logs.group\*
+##### logs.group\*
 
 > `string`
 
 The name of the log group.
 
-#### logs.stream\*
+##### logs.stream\*
 
 > `string`
 

@@ -25,46 +25,19 @@ proxy_server:
       exit: tls_server
 ```
 
-## Summary
+## Configuration (\* required)
 
-Defines a binding with `proxy` protocol support, with `server` or `client` behavior.
+### type: proxy\*
+
+Defines a binding with `proxy` protocol support, with `server` or `client` behavior. Conditional routes based on the network transport type or network addresses are used to route these streams to an `exit` binding.
+
+### kind: server\*
 
 The `server` kind `proxy` binding decodes `Proxy v2` protocol on the inbound network stream, producing higher level application streams for each request.
 
+### kind: client\*
+
 The `client` kind `proxy` binding receives inbound application streams and encodes each as a network stream via `Proxy v2` protocol.
-
-Conditional routes based on the network transport type or network addresses are used to route these streams to an `exit` binding.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].transport](#when-transport)
-  - [when\[\].family](#when-family)
-  - [when\[\].source](#when-source)
-    - [source.host](#source-host)
-    - [source.port](#source-port)
-  - [when\[\].destination](#when-destination)
-    - [destination.host](#destination-host)
-    - [destination.port](#destination-port)
-- [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "client", "server" ]
-
-Behave as `proxy` `client` or `server`.
 
 ### exit
 
@@ -92,7 +65,7 @@ routes:
     exit: tls_server
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -105,26 +78,26 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
 List of conditions (any match) to match this route.
 Read more: [When a route matches](../../../concepts/bindings.md#when-a-route-matches)
 
-#### when[].transport
+##### when[].transport
 
 > `enum` [ "stream", "datagram" ]
 
 Transport type.
 
-#### when[].family
+##### when[].family
 
 > `enum` [ "inet", "inet4", "inet6", "unix" ]
 
 Address family.
 
-#### when[].source
+##### when[].source
 
 > `object`
 
@@ -142,7 +115,7 @@ Hostname or IP address.
 
 Port number.
 
-#### when[].destination
+##### when[].destination
 
 > `object`
 
@@ -160,7 +133,7 @@ Hostname or IP address.
 
 Port number.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -171,6 +144,24 @@ routes:
   - when:
     ...
     exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

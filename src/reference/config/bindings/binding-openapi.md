@@ -43,61 +43,19 @@ openapi_client:
             version: latest
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: openapi\*
 
 Defines a binding with `openapi` spec, with `server` or `client` behavior.
 
+### kind: server\*
+
 The `server` kind `openapi` binding creates composite of `tcp`, `tls`, and `http` bindings with server kind and adapts HTTP request-response streams to OpenAPI request-response streams.
 
+### kind: client\*
+
 The `client` kind `openapi` binding creates composite of `http`, `tls`, and `tcp` bindings with client kind and adapts OpenAPI request-response streams to HTTP request-response streams.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.specs](#options-specs)
-    - [specs.catalog](#specs-catalog)
-        - [catalog.subject](#catalog-subject)
-        - [catalog.version](#catalog-version)
-    - [specs.servers](#specs-servers)
-      - [servers.url](#servers-url)
-  - [options.http](#options-http)
-    - [http.authorization](#http-authorization)
-    - [authorization.credentials](#authorization-credentials)
-    - [credentials.cookies](#credentials-cookies)
-    - [credentials.headers](#credentials-headers)
-    - [credentials.query](#credentials-query)
-  - [options.tcp](#options-tcp)
-    - [tcp.host](#tcp-host)
-    - [tcp.port](#tcp-port)
-  - [options.tls](#options-tls)
-    - [tls.version](#tls-version)
-    - [tls.keys](#tls-keys)
-    - [tls.trust](#tls-trust)
-    - [tls.signers](#tls-signers)
-    - [tls.trustcacerts](#tls-trustcacerts)
-    - [tls.sni\*](#tls-sni)
-    - [tls.alpn](#tls-alpn)
-    - [tls.mutual](#tls-mutual)
-- [exit](#exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "client", "server" ]
-
-Behave as a `openapi` `client` or `server`.
-
-```yaml
-kind: server
-```
 
 ### options
 
@@ -275,6 +233,24 @@ Default exit binding.
 
 ```yaml
 exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

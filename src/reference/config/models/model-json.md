@@ -20,25 +20,11 @@ catalog:
     - id: 1
 ```
 
-## Summary
+## Configuration (\* required)
+
+### model: json\*
 
 Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
-
-## Configuration
-
-:::: note Properties
-
-- [catalog\*](#catalog)
-  - [catalog.strategy](#catalog-strategy)
-  - [catalog.subject](#catalog-subject)
-  - [catalog.version](#catalog-version)
-  - [catalog.id](#catalog-id)
-
-::: right
-\* required
-:::
-
-::::
 
 ### catalog\*
 

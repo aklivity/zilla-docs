@@ -20,7 +20,7 @@
   <a href="https://docs.aklivity.io/zilla/"><b>Documentation</b></a> &bull;
   <a href="https://docs.aklivity.io/zilla/latest/guides/install/"><b>Get Started</b></a> &bull;
   <a href="https://github.com/aklivity/zilla-examples"><b>Examples</b></a> &bull;
-  <a href="https://www.aklivity.io/blog"><b>Blog</b></a> 
+  <a href="https://www.aklivity.io/blog"><b>Blog</b></a>
 </h3>
 <!-- markdownlint-restore -->
 
@@ -179,6 +179,18 @@ parentArray:
 
 Description.
 ````
+
+### Generate schema asset
+
+capture the output and delete the first and last lines
+
+```bash
+docker run -it --rm -e ZILLA_INCUBATOR_ENABLED=true ghcr.io/aklivity/zilla:latest start -v -Pzilla.engine.verbose.schema > src/.vuepress/public/assets/zilla-schema.json
+```
+
+```bash
+pnpm check-schema > schema-edits.txt
+```
 
 ## Provide feedback
 

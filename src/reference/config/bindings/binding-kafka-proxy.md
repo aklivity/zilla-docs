@@ -29,33 +29,13 @@ kafka_proxy:
   exit: tls_client
 ```
 
-## Summary
+## Configuration (\* required)
 
-Defines a binding with `kafka-proxy`  support, with `proxy` behavior.
+### type: kafka-proxy\*
 
-## Configuration
+Defines a binding with `kafka-proxy` support, with `proxy` behavior.
 
-:::: note Properties
-
-- [kind\*](#kind)
-- [options\*](#options)
-- [options.external\*](#options-external)
-  - [external.host\*](#external-host)
-  - [external.port\*](#external-port)
-- [options.internal\*](#options-internal)
-  - [internal.host\*](#internal-host)
-  - [internal.port\*](#internal-port)
-- [exit\*](#exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "proxy" ]
+### kind: proxy\*
 
 Behave as a `proxy`.
 
@@ -75,7 +55,7 @@ options:
     port: 9094
 ```
 
-### options.external\*
+#### options.external\*
 
 > `object`
 
@@ -99,7 +79,7 @@ Hostname pattern for external Kafka broker names, where `#` is an integer.
 
 Port number for external Kafka broker.
 
-### options.internal\*
+#### options.internal\*
 
 > `object`
 
@@ -131,6 +111,24 @@ Default exit binding when no conditional routes are viable.
 
 ```yaml
 exit: tls_client
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

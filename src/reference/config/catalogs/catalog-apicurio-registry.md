@@ -21,25 +21,11 @@ catalog:
     id-encoding: default
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: apicurio-registry\*
 
 Defines a catalog with schemas, AsyncAPI/OpenAPI definitions pulled from a remote registry to enforce validation or create APIs.
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-  - [options.url\*](#options-url)
-  - [options.group-id](#options-group-id)
-  - [options.use-id](#options-use-id)
-  - [options.id-encoding](#options-id-encoding)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 

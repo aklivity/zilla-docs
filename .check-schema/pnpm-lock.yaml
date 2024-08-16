@@ -13,7 +13,7 @@ importers:
         version: 11.7.0
       marked:
         specifier: ^11.0.0
-        version: 11.0.0
+        version: 11.2.0
 
 packages:
 
@@ -34,8 +34,8 @@ packages:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
-  marked@11.0.0:
-    resolution: {integrity: sha512-2GsW34uXaFEGTQ/+3rCnNC6vUYTAgFuDLGl70v/aWinA5mIJtTrrFAmfbLOfVvgPyxXuDVL9He/7reCK+6j3Sw==}
+  marked@11.2.0:
+    resolution: {integrity: sha512-HR0m3bvu0jAPYiIvLUUQtdg1g6D247//lvcekpHO1WMvbwDlwSkZAX9Lw4F4YHE1T0HaaNve0tuAWuV1UJ6vtw==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -57,4 +57,4 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  marked@11.0.0: {}
+  marked@11.2.0: {}

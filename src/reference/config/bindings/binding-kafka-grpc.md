@@ -37,55 +37,19 @@ kafka_grpc_proxy:
         authority: localhost:7151
 ```
 
-## Summary
+## Configuration (\* required)
 
-The `remote_server` kind `kafka-grpc` binding adapts `kafka` topic streams to `grpc` request-response streams.
+::::
+
+### type: kafka-grpc\*
 
 The `grpc` request message is received from a `requests` topic, with a `zilla:correlation-id` header, initiating a `grpc` service method invocation. When the `grpc` response received, a response message is produced to the `responses` topic, with the same `zilla:correlation-id` header to correlate the response.
 
 Note that `grpc` requests and responses can be `unary` or `streaming`.
 
-## Configuration
+### kind: remote_server\*
 
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.acks](#options-acks)
-  - [options.idempotency](#options-idempotency)
-    - [idempotency.metadata](#idempotency-metadata)
-  - [options.correlation](#options-correlation)
-    - [correlation.headers](#correlation-headers)
-    - [headers.service](#headers-service)
-    - [headers.method](#headers-method)
-    - [headers.correlation-id](#headers-correlation-id)
-    - [headers.reply-to](#headers-reply-to)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].topic](#when-topic)
-  - [when\[\].reply-to](#when-reply-to)
-  - [when\[\].method](#when-method)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with](#routes-with)
-  - [with.scheme](#with-scheme)
-  - [with.authority](#with-authority)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "remote_server" ]
-
-Behave as an `kafka-grpc` `remote_server`.
-
-```yaml
-kind: remote_server
-```
+The `remote_server` kind `kafka-grpc` binding adapts `kafka` topic streams to `grpc` request-response streams.
 
 ### options
 
@@ -181,7 +145,7 @@ routes:
       authority: localhost:7151
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -194,7 +158,7 @@ routes:
         - echo:messages
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -209,37 +173,37 @@ routes:
         method: example.EchoService/*
 ```
 
-#### when[].topic
+##### when[].topic
 
 > `string`
 
 The name of a Kafka topic for requests.
 
-#### when[].key
+##### when[].key
 
 > `string`
 
 The name of a Kafka topic for requests.
 
-#### when[].headers
+##### when[].headers
 
 > `map` of `name: value` properties
 
 Header name value pairs (all match).
 
-#### when[].reply-to
+##### when[].reply-to
 
 > `string`
 
 The name of the Kafka topic for correlated responses.
 
-#### when[].method
+##### when[].method
 
 > `string`
 
 Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for the method to indicate any method.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -252,7 +216,7 @@ routes:
     exit: kafka_cache_client
 ```
 
-### routes[].with
+#### routes[].with
 
 > `object`
 
@@ -264,17 +228,36 @@ with:
   authority: localhost:7151
 ```
 
-#### with.scheme
+##### with.scheme
 
 > `string`
 
 The `grpc` request scheme.
 
-#### with.authority
+##### with.authority
 
 > `string`
 
 The `grpc` request authority.
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "grpc" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - grpc.*
+```
 
 ---
 

@@ -39,9 +39,9 @@ Here is the simplest configuration for declaring the gRPC service. There is a `s
 grpc_server:
   type: grpc
   kind: server
-  options:
-    services:
-      - route_guide.proto
+  catalog:
+    host_filesystem:
+      - subject: route_guide
   routes:
     - when:
         - method: routeguide.RouteGuide/*

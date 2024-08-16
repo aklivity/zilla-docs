@@ -19,23 +19,11 @@ catalog:
     context: default
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: karapace-schema-registry\*
 
 Defines a catalog with a schema pulled from a remote schema registry to enforce validation.
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-  - [options.url\*](#options-url)
-  - [options.context](#options-context)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 

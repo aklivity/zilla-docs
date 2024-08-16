@@ -22,21 +22,7 @@ exporters:
           path: /metrics
 ```
 
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-  - [options.endpoints](#options-endpoints)
-    - [endpoints\[\].scheme](#endpoints-scheme)
-    - [endpoints\[\].port](#endpoints-port)
-    - [endpoints\[\].path](#endpoints-path)
-
-::: right
-\* required
-:::
-
-::::
+## Configuration (\* required)
 
 ### options
 

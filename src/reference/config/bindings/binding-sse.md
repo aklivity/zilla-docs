@@ -18,39 +18,21 @@ sse_server:
   exit: sse_kafka_proxy
 ```
 
-## Summary
+## Configuration (\* required)
 
-Defines a binding with `Server Sent Events (sse)` protocol support, with `server` behavior.
+### type: sse\*
 
-The `server` kind `sse` binding converts inbound `http` request-response streams into `sse` request-response streams, with optionally configured `retry` delay.
+Defines a binding with Server Sent Events (sse) protocol support, with `server` behavior.
+
+### kind: server\*
+
+The `server` kind `sse` binding converts inbound `http` request-response streams into `sse` request-response streams.
 
 Messages received on the `sse` response stream are encoded using `Server Sent Events` protocol, including support for custom `event` types and last event `id`.
 
-## Configuration
+### kind: client\*
 
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-- [options.retry](#options-retry)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].path\*](#when-path)
-- [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "client", "server" ]
-
-Behave as a `sse` `client` or `server`.
+The `client` kind `sse` binding converts outbound `see` request-response streams into `http` request-response streams.
 
 ### options
 
@@ -63,11 +45,29 @@ options:
   retry: 2000
 ```
 
-### options.retry
+#### options.retry
 
 > `integer` | Default: `2000`
 
 Retry delay (ms)
+
+#### options.requests
+
+> `array` of `object`
+
+the `requests`-specific options.
+
+##### requests[].path
+
+> `string`
+
+The path selector.
+
+##### requests[].content
+
+> `object` of a named [`model`](../models/)
+
+Enforce validation for the request content.
 
 ### exit
 
@@ -95,7 +95,7 @@ routes:
     exit: sse_kafka_proxy
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -108,7 +108,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -121,13 +121,13 @@ routes:
       - path: /items
 ```
 
-#### when[].path\*
+##### when[].path\*
 
 > `string`
 
 Path pattern.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -138,6 +138,25 @@ routes:
   - when:
     ...
     exit: sse_kafka_proxy
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "http" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - http.*
 ```
 
 ---

@@ -21,23 +21,11 @@ catalog:
     context: default
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: confluent-schema-registry\*
 
 Defines a catalog with a schema pulled from a remote schema registry to enforce validation.
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-  - [options.url\*](#options-url)
-  - [options.context](#options-context)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 
@@ -54,3 +42,9 @@ Schema Registry URL to access schemas via API calls.
 > `string` | Default: `"default"`
 
 Schema context represents an independent scope in the Schema Registry.
+
+---
+
+::: right
+\* required
+:::

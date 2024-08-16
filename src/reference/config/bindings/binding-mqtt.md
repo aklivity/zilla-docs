@@ -36,52 +36,21 @@ mqtt_server:
   exit: mqtt_kafka_proxy
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: mqtt\*
 
 Defines a binding with `mqtt` protocol support, with `server` behavior.
+
+### kind: server\*
 
 The `server` kind `mqtt` binding decodes the MQTT protocol on the inbound network stream, producing higher level application streams for each `publish` or `subscribe` `topic`. The `session` state is also described by a higher level application stream.
 
 Conditional routes based on the `topic` `name` are used to route these application streams to an `exit` binding.
 
-## Configuration
+### kind: client\*
 
-:::: note Properties
-
-- [kind\*](#kind)
-- [exit](#exit)
-- [options](#options)
-- [options.authorization](#options-authorization)
-  - [authorization.credentials](#authorization-credentials)
-    - [credentials.connect](#credentials-connect)
-    - [connect.username](#connect-username)
-    - [connect.password](#connect-password)
-- [options.versions](#options-versions)
-- [options.topics](#options-topics)
-  - [topics\[\].name\*](#topics-name)
-  - [topics\[\].content](#topics-content)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].session](#when-session)
-    - [session\[\].client-id](#session-client-id)
-  - [when\[\].publish](#when-publish)
-    - [publish\[\].topic](#publish-topic)
-  - [when\[\].subscribe](#when-subscribe)
-    - [subscribe\[\].topic](#subscribe-topic)
-- [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "server" ]
-
-Behave as a `mqtt` `server`.
+The `client` kind `mqtt` binding encodes the MQTT protocol to the outbound network stream.
 
 ### exit
 
@@ -111,7 +80,7 @@ options:
     - v3.1.1
 ```
 
-### options.authorization
+#### options.authorization
 
 > `object` as map of named objects
 
@@ -149,13 +118,13 @@ Extract credentials from the MQTT connect packet username property with `{creden
 
 Extract credentials from the MQTT connect packet password property with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
-### options.versions
+#### options.versions
 
 > `array` of `enum` [ "v5", "v3.1.1" ]
 
 Supported protocol versions.
 
-### options.topics
+#### options.topics
 
 > `array` of `object`
 
@@ -173,13 +142,27 @@ Topic name.
 
 Enforce validation for content
 
+#### topics[].user-properties
+
+> `map` of "name: [model](../models/)" properties
+
+Enforce validation for user provided properties
+
+```yaml
+user-properties:
+  my-app-prop:
+    type: integer
+    minimum: 0
+    maximum: 100
+```
+
 ### routes
 
 > `array` of `object`
 
 Conditional `mqtt`-specific routes.
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -192,7 +175,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -211,7 +194,7 @@ routes:
           - topic: reply
 ```
 
-#### when[].session
+##### when[].session
 
 > `array` of `object`
 
@@ -223,27 +206,27 @@ Array of mqtt session properties
 
 An MQTT client identifier, allowing the usage of wildcards.
 
-#### when[].publish
+##### when[].publish
 
 > `array` of `object`
 
 Array of MQTT topic names for publish capability.
 
-##### publish[].topic
+###### publish[].topic
 
 > `string`
 
-#### when[].subscribe
+##### when[].subscribe
 
 > `array` of `object`
 
 Array of MQTT topic names for subscribe capability.
 
-##### subscribe[].topic
+###### subscribe[].topic
 
 > `string`
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -254,6 +237,24 @@ routes:
   - when:
     ...
     exit: mqtt_kafka_proxy
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

@@ -23,7 +23,9 @@ http_filesystem_proxy:
         path: ${params.path}
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: http-filesystem\*
 
 Defines a binding with `http-filesystem` support, with `proxy` behavior.
 
@@ -31,35 +33,9 @@ The `proxy` kind `http-filesystem` binding adapts `http` data streams into `file
 
 Behaves as a web server when combined with `tcp,` `tls`, `http` and `filesystem` bindings.
 
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].path\*](#when-path)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with](#routes-with)
-  - [with\[\].path\*](#with-path)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "proxy" ]
+### kind: proxy\*
 
 Behave as an `http-filesystem` `proxy`.
-
-```yaml
-kind: proxy
-```
 
 ### exit
 
@@ -86,7 +62,7 @@ routes:
       path: ${params.path}
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -99,7 +75,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -112,13 +88,13 @@ routes:
       - path: /{path}
 ```
 
-#### when[].path\*
+##### when[].path\*
 
 > `string`
 
 Path with optional embedded parameter names, such as `/{path}`.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -131,17 +107,36 @@ routes:
     exit: filesystem_server
 ```
 
-### routes[].with
+#### routes[].with
 
 > `object`
 
 Filesystem parameters used when adapting `http` data streams into `filesystem` data streams.
 
-#### with.path\*
+##### with.path\*
 
 > `string`
 
 Topic name, optionally referencing path parameter such as `${params.path}`.
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "http" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - http.*
+```
 
 ---
 

@@ -25,9 +25,13 @@ sse_kafka_proxy:
           id: '["${base64(key)}","${etag}"]'
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: sse-kafka\*
 
 Defines a binding with `sse-kafka` support, with `proxy` behavior.
+
+### kind: proxy\*
 
 The `proxy` kind `sse-kafka` binding adapts `sse` data streams into `kafka` data streams, so that `kafka` messages can be delivered to `sse` clients.
 
@@ -38,37 +42,6 @@ Progress across `kafka` topic partitions is conveyed to the `sse` client via eve
 The event `id` can be configured to include the message `key` and `etag` of each message, avoiding the need to duplicate the key in the message body and making it suitable for integration with `http-kafka` binding's use of `etag` for conditional `if-match` operations.
 
 When a `kafka` tombstone (`null` value) message is received by the `sse-kafka` binding, it delivers a `delete` event to the `sse` client. This informs the client which specific message has been deleted by observing the message key from the `sse` `delete` event `id`.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].path\*](#when-path)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with](#routes-with)
-  - [with.topic\*](#with-topic)
-  - [with.filters](#with-filters)
-    - [filters\[\].key](#filters-key)
-    - [filters\[\].headers](#filters-headers)
-  - [with.event](#with-event)
-    - [event.id\*](#event-id)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "proxy" ]
-
-Behave as a `sse-kafka` `proxy`.
 
 ### exit
 
@@ -97,7 +70,7 @@ routes:
         id: '["${base64(key)}","${etag}"]'
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -110,7 +83,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -123,13 +96,13 @@ routes:
       - path: /items
 ```
 
-#### when[].path\*
+##### when[].path\*
 
 > `string`
 
 Path with optional embedded parameter names, such as `/{topic}`.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -142,19 +115,19 @@ routes:
     exit: kafka_cache_client
 ```
 
-### routes[].with
+#### routes[].with
 
 > `object`
 
 Kafka parameters used when adapting `sse` data streams to `kafka` data streams.
 
-#### with.topic\*
+##### with.topic\*
 
 > `string`
 
 Topic name, optionally referencing path parameter such as `${params.topic}`.
 
-#### with.filters
+##### with.filters
 
 > `array` of `object`
 
@@ -174,7 +147,7 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
-#### with.event
+##### with.event
 
 > `object`
 
@@ -185,6 +158,25 @@ Defines the SSE event syntax used when delivering Kafka messages to SSE clients.
 > `enum` [ `"${etag}"`, `"["${base64(key)}","${etag}"]"` ] | Default: `"${etag}"`
 
 Format of `id` field in `sse` `event`
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "http" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - http.*
+```
 
 ---
 

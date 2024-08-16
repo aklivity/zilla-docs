@@ -31,11 +31,13 @@ http_server:
       exit: echo_server
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: http\*
 
 Defines a binding with `http` protocol support, with `server` or `client` behavior.
 
-## Server behavior
+### kind: server
 
 The `server` kind `http` binding decodes `HTTP/1.1` protocol or `HTTP/2` protocol on the inbound network stream, producing higher level application streams for each request.
 
@@ -45,55 +47,42 @@ Authorization is enforced by a [`guard`](../../config/overview.md#guards) and th
 
 Conditional routes based on `http` request headers are used to route these application streams to an `exit` binding.
 
-## Client behavior
+```yaml {2}
+http_server:
+  type: http
+  kind: server
+  options:
+    access-control:
+      policy: cross-origin
+    authorization:
+      my_jwt_guard:
+        credentials:
+          headers:
+            authorization: Bearer {credentials}
+  routes:
+    - when:
+        - headers:
+            ":scheme": https
+            ":authority": example.com:443
+      exit: echo_server
+```
+
+
+### kind: client
 
 The `client` kind `http` binding receives inbound application streams and encodes each request as a network stream via `HTTP/1.1` protocol. Note that the same network stream can be reused to encode multiple `HTTP/1.1` requests.
 
 Conditional routes based on `http` request headers are used to route these network streams to an `exit` binding.
 
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.versions](#options-versions)
-  - [options.access-control](#options-access-control)
-    - [access-control.policy\*](#access-control-policy)
-    - [access-control.policy: same-origin](#access-control-policy-same-origin)
-    - [access-control.policy: cross-origin](#access-control-policy-cross-origin)
-    - [access-control.allow](#access-control-allow)
-      - [allow.origins](#allow-origins)
-      - [allow.methods](#allow-methods)
-      - [allow.headers](#allow-headers)
-      - [allow.credentials](#allow-credentials)
-    - [access-control.max-age](#access-control-max-age)
-    - [access-control.expose](#access-control-expose)
-      - [expose.headers](#expose-headers)
-  - [options.authorization](#options-authorization)
-    - [authorization.credentials](#authorization-credentials)
-      - [credentials.cookies](#credentials-cookies)
-      - [credentials.headers](#credentials-headers)
-      - [credentials.query](#credentials-query)
-  - [options.overrides](#options-overrides)
-- [exit](#exit)
-- [routes](#routes)
-  - [routes\[\].guarded](#routes-guarded)
-  - [routes\[\].when](#routes-when)
-    - [when\[\].headers](#when-headers)
-  - [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "server", "client" ]
-
-Behave as an `http` `server` or `client`.
+```yaml {2}
+http_client:
+  type: http
+  kind: client
+  options:
+    versions:
+      - h2
+  exit: tcp_client
+```
 
 ### options
 
@@ -319,6 +308,25 @@ routes:
   - when:
     ...
     exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "http" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - http.*
 ```
 
 ---

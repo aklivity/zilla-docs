@@ -9,8 +9,6 @@ tag:
 
 # grpc-kafka Binding
 
-<!-- markdownlint-disable MD024 -->
-
 Zilla runtime grpc-kafka binding.
 
 ```yaml {2}
@@ -61,76 +59,15 @@ grpc_kafka_proxy:
         reply-to: responses
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: grpc-kafka\*
 
 The `proxy` kind `grpc-kafka` binding adapts `grpc` request-response streams to `kafka` topic streams.
 
-## Fetch capability
-
-Routes with `fetch` capability map `grpc` `Empty` requests to a `kafka` topic, supporting filtered retrieval of messages with a specific key or headers, or unfiltered retrieval of all messages in the topic merged into a unified response.
-
-Filtering can be performed by `kafka` message key, message headers, or a combination of both message key and headers.
-
-Reliable message delivery is achieved by capturing the value of the `reliability` `field` injected into each response stream message at the `grpc` client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new `grpc` request.
-
-## Produce capability
-
-Routes with `produce` capability map any `grpc` request-response to a correlated stream of `kafka` messages. The `grpc` request message(s) are sent to a `requests` topic, with a `zilla:correlation-id` header. When the request message(s) are received and processed by the `kafka` `requests` topic consumer, it produces response message(s) to the `responses` topic, with the same `zilla:correlation-id` header to correlate the response.
-
-Requests including an `idempotency-key` `grpc` metadata header can be replayed and safely receive the same response. This requires the `kafka` consumer to detect and ignore the duplicate request with the same `idempotency-key` and `zilla:correlation-id`.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.idempotency](#options-idempotency)
-    - [idempotency.metadata](#idempotency-metadata)
-  - [options.reliability](#options-reliability)
-    - [reliability.field](#reliability-field)
-    - [reliability.metadata](#reliability-metadata)
-  - [options.correlation](#options-correlation)
-    - [correlation.headers](#correlation-headers)
-    - [headers.service](#headers-service)
-    - [headers.method](#headers-method)
-    - [headers.correlation-id](#headers-correlation-id)
-    - [headers.reply-to](#headers-reply-to)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].method](#when-method)
-  - [when\[\].metadata](#when-metadata)
-    - [metadata.base64](#metadata-base64)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with\*](#routes-with)
-- [with.capability: fetch](#with-capability-fetch)
-  - [with.topic](#with-topic)
-  - [with.filters](#with-filters)
-    - [filters\[\].key](#filters-key)
-    - [filters\[\].headers](#filters-headers)
-- [with.capability: produce](#with-capability-produce)
-  - [with.topic](#with-topic-1)
-  - [with.acks](#with-acks)
-  - [with.key](#with-key)
-  - [with.overrides](#with-overrides)
-  - [with.reply-to](#with-reply-to)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "proxy" ]
+### kind: proxy\*
 
 Behave as an `grpc-kafka` `proxy`.
-
-```yaml
-kind: proxy
-```
 
 ### options
 
@@ -264,7 +201,7 @@ routes:
       reply-to: responses
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -277,7 +214,7 @@ routes:
         - read:messages
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -294,13 +231,13 @@ routes:
             base64: Y3VzdG9tIHZhbHVl
 ```
 
-#### when[].method
+##### when[].method
 
 > `string`
 
 Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for the method to indicate any method.
 
-#### when[].metadata
+##### when[].metadata
 
 > `map` of `name: value` properties
 
@@ -314,7 +251,7 @@ Each metadata header value can be `string` or `object` with `base64` property.
 
 Base64 encoded value for binary metadata header.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -327,7 +264,7 @@ routes:
     exit: kafka_cache_client
 ```
 
-### routes[].with\*
+#### routes[].with\*
 
 > **oneOf**: [fetch](#with-capability-fetch) | [produce](#with-capability-produce)
 
@@ -345,11 +282,17 @@ with:
   capability: produce
 ```
 
-### with.capability: fetch
+#### with.capability: fetch
 
 > `object`
 
 Kafka parameters for matched route when adapting `grpc` request-response streams to `kafka` topic fetch streams.
+
+Routes with `fetch` capability map `grpc` `Empty` requests to a `kafka` topic, supporting filtered retrieval of messages with a specific key or headers, or unfiltered retrieval of all messages in the topic merged into a unified response.
+
+Filtering can be performed by `kafka` message key, message headers, or a combination of both message key and headers.
+
+Reliable message delivery is achieved by capturing the value of the `reliability` `field` injected into each response stream message at the `grpc` client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new `grpc` request.
 
 ```yaml
 with:
@@ -361,13 +304,13 @@ with:
       custom-text: custom-value
 ```
 
-#### with.topic
+##### with.topic
 
 > `string`
 
 The name of a Kafka topic.
 
-#### with.filters
+##### with.filters
 
 > `array` of `object`
 
@@ -385,11 +328,15 @@ The filter criteria for the Kafka message key.
 
 The filter criteria for the Kafka message headers.
 
-### with.capability: produce
+#### with.capability: produce
 
 > `object`
 
 Kafka parameters for matched route when adapting `grpc` request-response streams to `kafka` topic produce streams.
+
+Routes with `produce` capability map any `grpc` request-response to a correlated stream of `kafka` messages. The `grpc` request message(s) are sent to a `requests` topic, with a `zilla:correlation-id` header. When the request message(s) are received and processed by the `kafka` `requests` topic consumer, it produces response message(s) to the `responses` topic, with the same `zilla:correlation-id` header to correlate the response.
+
+Requests including an `idempotency-key` `grpc` metadata header can be replayed and safely receive the same response. This requires the `kafka` consumer to detect and ignore the duplicate request with the same `idempotency-key` and `zilla:correlation-id`.
 
 ```yaml
 with:
@@ -402,35 +349,54 @@ with:
   reply-to: responses
 ```
 
-#### with.topic
+##### with.topic
 
 > `string`
 
 The name of a Kafka topic for requests.
 
-#### with.acks
+##### with.acks
 
 > `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
 
 Kafka acknowledgment mode
 
-#### with.key
+##### with.key
 
 > `string`
 
 The Kafka message key to include with each message.
 
-#### with.overrides
+##### with.overrides
 
 > `map` of `name: value` properties
 
 The Kafka message headers to inject with each message.
 
-#### with.reply-to
+##### with.reply-to
 
 > `string`
 
 The name of the Kafka topic for correlated responses.
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream", "grpc" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+    - grpc.*
+```
 
 ---
 

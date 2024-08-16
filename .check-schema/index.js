@@ -33,7 +33,7 @@ const main = async () => {
 
     function getObjProps(attr, obj, reqKeys) {
         var props = [];
-        // if (obj.options) console.log("options", obj)
+        // console.log(attr, Object.keys(obj || {}));
         Object.keys(obj || {}).forEach((k) => {
             var i = obj[k];
             if (!!i.deprecated) return
@@ -72,7 +72,6 @@ const main = async () => {
                     props.push(...getObjProps(k, properties, required))
                 );
 
-
             //collect
             if (!!!i) return
             if (reqKeys && !reqKeys.include) {
@@ -80,6 +79,7 @@ const main = async () => {
             }
             var req = !!reqKeys?.includes(k);
             var path = [attr, k].filter((s) => !!s).join(".");
+            // console.log(`${path}: ${i.const}`)
             if (i.properties) {
                 props.push([path, "object", req, i.const]);
             } else if (i.additionalProperties) {
@@ -100,8 +100,8 @@ const main = async () => {
                 props.push([path, i.type, req, i.const]);
             } else if (i.const) {
                 props.push([`${path}: ${i.const}`, "string", req, i.const]);
-            } else if (i.enum) {
-                props.push([path, i.enum.join(","), req, i.const]);
+            } else if (i.enum?.length) {
+                i.enum.forEach((e) => props.push([`${path}: ${e}`, e, req, i.const]));
             } else if (i.const) {
                 props.push([path, i.const, req, i.const]);
             } else if (i.oneOf) {
@@ -127,7 +127,10 @@ const main = async () => {
                 name: fi.properties.type.const,
                 props: {
                     [fi.properties.type.const]: {
-                        ...(schema.$defs[type] || {}), ...(then || {}),
+                        ...(then || {}),
+                        required:  [...(schema.$defs[type].required || []), ...(then.required || [])],
+                        oneOf:  [...(schema.$defs[type].oneOf || []), ...(then.oneOf || [])],
+                        properties: {...(schema.$defs[type].properties || {}), ...(then.properties || {})},
                     }
                 },
             }))
@@ -163,7 +166,7 @@ const main = async () => {
         var filename = `src/reference/config/${folder.replaceAll(".", "/")}/${type
             .split(".")
             .findLast((n) => !!n)}-${name}.md`;
-        // console.log('parsing', filename)
+        // console.log(filename, JSON.stringify(props, null, 4))
         if (
             fs.existsSync(filename)
         ) {
@@ -176,8 +179,7 @@ const main = async () => {
             var sorted = attrs.map((a) => a[0]).sort();
             // console.log("findings", type, name, sorted, headers);
             var addList = sorted.filter((x) =>
-                !headers.includes(x) &&
-                !["telemetry", "telemetry.metrics", "type", "catalog", "entry"].includes(x)
+                !headers.includes(x)
             );
             var removeList = headers.filter((x) =>
                 !sorted.includes(x) &&

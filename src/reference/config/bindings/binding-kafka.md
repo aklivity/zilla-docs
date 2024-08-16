@@ -29,11 +29,15 @@ kafka_client:
   exit: tcp_client
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: kafka\*
 
 Defines a binding with `kafka` protocol support, with `cache_client`, `cache_server` or `client` behavior.
 
-## Cache behavior
+### kind: cache_client
+
+### kind: cache_server
 
 The `cache_client` and `cache_server` kinds combine to provide a persistent cache of `kafka` messages per `topic` `partition` honoring the `kafka` `topic` configuration for message expiration and compaction. Messages ordering is guaranteed per `partition` and messages are merged into a unified stream for the `topic` spanning all `partitions`.
 
@@ -49,47 +53,11 @@ When the `kafka` `topic` is not compacted, then the binding can be configured to
 
 The `cache_client` and `cache_server` also combine to provide a staging area when producing new messages as `kafka` requires exact message length up front when producing new messages and `kafka` does not support producing multiple messages in parallel over the same network connection.
 
-## Client behavior
+### kind: client
 
 The `client` kind `kafka` binding receives inbound application streams and encodes each as a network stream via `kafka` request-response protocol. Note that the same network stream can be reused to encode multiple `kafka` requests, including both `fetch` and `produce` requests.
 
 Conditional routes based on `kafka` `topic` names are used to route these network streams to an `exit` binding that ultimately reaches a `kafka` broker.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-- [options.bootstrap](#options-bootstrap)
-- [options.topics](#options-topics)
-  - [topics\[\].name\*](#topics-name)
-  - [topics\[\].defaultOffset](#topics-defaultoffset)
-  - [topics\[\].key](#topics-key)
-  - [topics\[\].value](#topics-value)
-- [options.servers](#options-servers)
-- [options.sasl](#options-sasl)
-  - [sasl.mechanism\*](#sasl-mechanism)
-  - [sasl.username](#sasl-username)
-  - [sasl.password](#sasl-password)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].topic\*](#when-topic)
-- [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "cache_client", "cache_server", "client" ]
-
-Behave as a `kafka` `cache_client`, `cache_server` or `client`.
 
 ### options
 
@@ -107,13 +75,13 @@ options:
       defaultOffset: live
 ```
 
-### options.bootstrap
+#### options.bootstrap
 
 > `array` of `string`
 
 Topics to bootstrap in cache server even when no clients.
 
-### options.topics
+#### options.topics
 
 > `array` of `object`
 
@@ -143,13 +111,13 @@ Enforce validation for key
 
 Enforce validation for value
 
-### options.servers
+#### options.servers
 
 > `array` of `string`
 
 Bootstrap servers to use when connecting to `kafka` cluster.
 
-### options.sasl
+#### options.sasl
 
 > `object`
 
@@ -190,7 +158,7 @@ exit: echo_server
 
 Conditional `kafka`-specific routes.
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -203,20 +171,20 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
 List of conditions (any match) to match this route.
 Read more: [When a route matches](../../../concepts/bindings.md#when-a-route-matches)
 
-#### when[].topic\*
+##### when[].topic\*
 
 > `string`
 
 Topic name pattern.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -224,6 +192,24 @@ Next binding when following this route.
 
 ```yaml
 exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

@@ -15,6 +15,20 @@ Read how to [enable incubator features](../../../how-tos/deploy-operate.md#enabl
 
 Zilla runtime amqp binding.
 
+## Configuration
+
+::: right
+\* required
+:::
+
+### type: amqp\*
+
+Defines a binding with [AMQP 1.0](https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-overview-v1.0-os.html) protocol support, with `server` behavior. Conditional routes based on the link address are used to route these application streams to an `exit` binding.
+
+### kind: server\*
+
+The `server` kind `amqp` binding decodes the AMQP protocol on the inbound network stream, producing higher level application streams for each send or receive link.
+
 ```yaml {2}
 amqp_server:
   type: amqp
@@ -24,42 +38,6 @@ amqp_server:
         - address: echo
           capabilities: send_and_receive
     exit: echo_server
-```
-
-## Summary
-
-Defines a binding with `amqp 1.0` protocol support, with `server` behavior.
-
-The `server` kind `amqp` binding decodes `amqp 1.0` protocol on the inbound network stream, producing higher level application streams for each `send` or `receive` `link`.
-
-Conditional routes based on the `link` `address` are used to route these application streams to an `exit` binding.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].address](#when-address)
-  - [when\[\].capabilities](#when-capabilities)
-- [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "server" ]
-
-Behave as an `amqp 1.0` `proxy`.
-
-```yaml
-kind: proxy
 ```
 
 ### exit
@@ -76,7 +54,7 @@ exit: echo_server
 
 > `array` of `object`
 
-Conditional `amqp`-specific routes for adapting `http` request-response streams to `kafka` topic streams.
+Conditional `amqp`-specific routes for adapting HTTP request-response streams to Kafka topic streams.
 
 ```yaml
 routes:
@@ -86,7 +64,7 @@ routes:
     exit: echo_server
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -99,7 +77,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -113,19 +91,19 @@ routes:
         capabilities: send_and_receive
 ```
 
-#### when[].address
+##### when[].address
 
 > `string`
 
 Link address.
 
-#### when[].capabilities
+##### when[].capabilities
 
 > `enum` [ "send_only", "receive_only", "send_and_receive" ] | Default: `"send_and_receive"`
 
 Send or receive, or both.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -136,6 +114,24 @@ routes:
   - when:
     ...
     exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

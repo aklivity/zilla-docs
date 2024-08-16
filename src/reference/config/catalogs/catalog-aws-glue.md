@@ -22,24 +22,11 @@ catalog:
     compression: zlib
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: aws-glue\*
 
 Defines a catalog that can fetch schemas [AWS Glue](https://aws.amazon.com/glue/) to enforce validation.
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-  - [options.registry\*](#options-registry)
-  - [options.max-age](#options-max-age)
-  - [options.compression](#options-compression)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 

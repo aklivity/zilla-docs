@@ -21,54 +21,23 @@ ws_server:
     exit: echo_server
 ```
 
-## Summary
+## Configuration (\* required)
 
-Defines a binding with `WebSockets` protocol support, with `server` or `client` behavior.
+### type: ws\*
 
-## Server behavior
+Defines a binding with WebSockets protocol support, with `server` or `client` behavior.
+
+### kind: server\*
 
 The `server` kind `ws` binding converts inbound `http` request-response streams into `ws` full-duplex streams.
 
 Conditional routes based on `ws` scheme, authority, path or negotiated subprotocol are used to route these streams to an `exit` binding.
 
-## Client behavior
+### kind: client\*
 
 The `client` kind `ws` binding converts inbound `ws` full duplex streams into `http` request-response streams.
 
 Conditional routes based on `ws` scheme, authority, path or negotiated subprotocol are used to route these streams to an `exit` binding.
-
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-- [options.defaults](#options-defaults)
-  - [defaults.protocol](#defaults-protocol)
-  - [defaults.scheme](#defaults-scheme)
-  - [defaults.authority](#defaults-authority)
-  - [defaults.path](#defaults-path)
-- [exit](#exit)
-- [routes](#routes)
-- [routes\[\].guarded](#routes-guarded)
-- [routes\[\].when](#routes-when)
-  - [when\[\].protocol](#when-protocol)
-  - [when\[\].scheme](#when-scheme)
-  - [when\[\].authority](#when-authority)
-  - [when\[\].path](#when-path)
-- [routes\[\].exit\*](#routes-exit)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "client", "server" ]
-
-Behave as a `ws` `client` or `server`.
 
 ### options
 
@@ -76,7 +45,7 @@ Behave as a `ws` `client` or `server`.
 
 `ws`-specific options.
 
-### options.defaults
+#### options.defaults
 
 > `object`
 
@@ -129,7 +98,7 @@ routes:
   exit: echo_server
 ```
 
-### routes[].guarded
+#### routes[].guarded
 
 > `object` as named map of `string:string` `array`
 
@@ -142,7 +111,7 @@ routes:
         - read:items
 ```
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
@@ -155,31 +124,31 @@ routes:
       - protocol: echo
 ```
 
-#### when[].protocol
+##### when[].protocol
 
 > `string`
 
 Subprotocol pattern.
 
-#### when[].scheme
+##### when[].scheme
 
 > `string`
 
 Scheme pattern.
 
-#### when[].authority
+##### when[].authority
 
 > `string`
 
 Authority pattern.
 
-#### when[].path
+##### when[].path
 
 > `string`
 
 Path pattern.
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -190,6 +159,24 @@ routes:
   - when:
     ...
     exit: echo_server
+```
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
 ```
 
 ---

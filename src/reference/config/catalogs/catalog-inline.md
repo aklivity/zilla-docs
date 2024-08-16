@@ -13,7 +13,7 @@ Zilla runtime inline catalog.
 catalog:
   type: inline
   options:
-    subjects: 
+    subjects:
       items-snapshots:
         schema: |
           {
@@ -33,24 +33,11 @@ catalog:
           }
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: inline\*
 
 Defines a catalog with schemas to enforce validation. The schemas are defined inline with the other properties.
-
-## Configuration
-
-:::: note Properties
-
-- [options](#options)
-  - [options.subjects\*](#options-subjects)
-    - [subjects.schema\*](#subjects-schema)
-    - [subjects.version](#subjects-version)
-
-::: right
-\* required
-:::
-
-::::
 
 ### options
 

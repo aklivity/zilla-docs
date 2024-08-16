@@ -38,49 +38,15 @@ openapi_asyncapi_proxy:
         api-id: my-asyncapi-spec
 ```
 
-## Summary
+## Configuration (\* required)
+
+### type: openapi-asyncapi\*
 
 The `proxy` kind `openapi-asyncapi` binding adapts OpenAPI request-response streams to AsyncAPI streams.
 
-## Configuration
-
-:::: note Properties
-
-- [kind\*](#kind)
-- [options](#options)
-  - [options.specs](#options-specs)
-    - [specs.openapi](#specs-openapi)
-        - [openapi.catalog](#openapi-catalog)
-          - [catalog.subject](#catalog-subject)
-          - [catalog.version](#catalog-version)
-    - [specs.asyncapi](#specs-asyncapi)
-        - [asyncapi.catalog](#asyncapi-catalog)
-          - [catalog.subject](#catalog-subject)
-          - [catalog.version](#catalog-version)
-- [routes](#routes)
-- [routes\[\].when](#routes-when)
-  - [when\[\].api-id](#when-api-id)
-  - [when\[\].operation-id](#when-operation-id)
-- [routes\[\].exit\*](#routes-exit)
-- [routes\[\].with](#routes-with)
-  - [with.api-id](#with-api-id)
-  - [with.operation-id](#with-operation-id)
-
-::: right
-\* required
-:::
-
-::::
-
-### kind\*
-
-> `enum` [ "proxy" ]
+### kind: proxy\*
 
 Behave as an `openapi-asyncapi` `proxy`.
-
-```yaml
-kind: proxy
-```
 
 ### options
 
@@ -153,26 +119,26 @@ Catalog artifact version to use.
 
 Conditional `openapi-asyncapi`-specific routes for adapting `openapi` operations to `asyncapi` operations.
 
-### routes[].when
+#### routes[].when
 
 > `array` of `object`
 
 List of conditions to match this route when adapting `openapi` request-response streams to `asyncapi` streams.
 Read more: [When a route matches](../../../concepts/bindings.md#when-a-route-matches)
 
-#### when[].api-id
+##### when[].api-id
 
 > `string`
 
 OpenAPI spec identifier that matches from the `openapi` binding request stream.
 
-#### when[].operation-id
+##### when[].operation-id
 
 > `string`
 
 OpenAPI OperationId that can be mapped between OpenAPI and AsyncAPI spec
 
-### routes[].exit\*
+#### routes[].exit\*
 
 > `string`
 
@@ -185,7 +151,7 @@ routes:
     exit: asyncapi_client
 ```
 
-### routes[].with
+#### routes[].with
 
 > `object`
 
@@ -196,17 +162,35 @@ with:
   api-id: my-asyncapi-spec
 ```
 
-#### with.api-id
+##### with.api-id
 
 > `string`
 
 AsyncAPI spec identifier that the route exits with to the next binding
 
-#### with.operation-id
+##### with.operation-id
 
 > `string`
 
 AsyncAPI OperationId that the route exits with to the next binding
+
+### telemetry
+
+> `object`
+
+Defines the desired telemetry for the binding.
+
+#### telemetry.metrics
+
+> `enum` [ "stream" ]
+
+Telemetry metrics to track
+
+```yaml
+telemetry:
+  metrics:
+    - stream.*
+```
 
 ---
 

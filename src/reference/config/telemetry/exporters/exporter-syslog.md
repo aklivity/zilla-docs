@@ -48,23 +48,7 @@ exporters:
         - syslog
 ```
 
-## Configuration
-
-:::: note Properties
-
-- [vault](#vault)
-- [options\*](#options)
-  - [options.host\*](#options-host)
-  - [options.port\*](#options-port)
-  - [options.protocol\*](#options-protocol)
-  - [options.trust](#options-trust)
-  - [options.trustcacerts](#options-trustcacerts)
-
-::: right
-\* required
-:::
-
-::::
+## Configuration (\* required)
 
 ### vault
 
