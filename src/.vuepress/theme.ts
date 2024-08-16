@@ -74,6 +74,7 @@ export default hopeTheme({
     },
     shiki: false,
     prismjs: true,
+    redirect: true,
     mdEnhance: {
       align: true,
       attrs: true,

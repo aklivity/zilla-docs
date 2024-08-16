@@ -1,4 +1,5 @@
 ---
+redirectFrom: /solutions/how-tos/amazon-msk/secure-public-access/overview.html
 icon: aky-zilla-plus
 description: Securely access your Kafka cluster via the internet.
 ---

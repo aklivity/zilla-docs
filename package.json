@@ -22,19 +22,20 @@
     "check-schema": "node ./.check-schema"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.13",
-    "@vuepress/plugin-catalog": "2.0.0-rc.36",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.36",
-    "@vuepress/plugin-google-analytics": "2.0.0-rc.34",
-    "@vuepress/plugin-prismjs": "2.0.0-rc.36",
-    "@vuepress/plugin-register-components": "2.0.0-rc.34",
+    "@vuepress/bundler-vite": "2.0.0-rc.14",
+    "@vuepress/plugin-catalog": "2.0.0-rc.41",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.39",
+    "@vuepress/plugin-google-analytics": "2.0.0-rc.37",
+    "@vuepress/plugin-prismjs": "2.0.0-rc.39",
+    "@vuepress/plugin-redirect": "2.0.0-rc.39",
+    "@vuepress/plugin-register-components": "2.0.0-rc.37",
     "link-checker": "^1.4.2",
     "markdownlint-cli2": "^0.8.1",
     "mathjax-full": "^3.2.2",
     "mermaid": "^10.9.1",
-    "vue": "^3.4.29",
-    "vuepress": "2.0.0-rc.13",
-    "vuepress-theme-hope": "2.0.0-rc.49"
+    "vue": "^3.4.38",
+    "vuepress": "2.0.0-rc.14",
+    "vuepress-theme-hope": "2.0.0-rc.52"
   },
   "pnpm": {
     "overrides": {
