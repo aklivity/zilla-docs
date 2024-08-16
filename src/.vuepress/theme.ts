@@ -72,8 +72,13 @@ export default hopeTheme({
         facetFilters: [`version:${versionKey}`, `product:${siteBase}`],
       },
     },
-    shiki: false,
-    prismjs: true,
+    shiki: {
+      themes: {
+        light: "light-plus",
+        dark: "dark-plus",
+      },
+      lineNumbers: 3
+    },
     redirect: true,
     mdEnhance: {
       align: true,
