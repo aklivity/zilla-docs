@@ -180,8 +180,12 @@ export const enSidebar = sidebar({
         },
         {
           text: "Amazon MSK",
-          link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
-          children: [],
+          children: [
+            {
+              text: "Terraform",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
+            },
+          ],
         },
       ],
     },
@@ -354,6 +358,12 @@ export const enSidebar = sidebar({
           text: "IoT Ingest and Control on AWS",
           icon: "aky-zilla-plus",
           link: "solutions/concepts/kafka-proxies/iot-ingest-control.md",
+          children: [],
+        },
+        {
+          text: "Web Streaming on AWS",
+          icon: "aky-zilla-plus",
+          link: "solutions/concepts/kafka-proxies/web-streaming.md",
           children: [],
         },
       ],
