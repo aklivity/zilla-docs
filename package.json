@@ -24,7 +24,7 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.13",
     "@vuepress/plugin-catalog": "2.0.0-rc.36",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.36",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.28",
     "@vuepress/plugin-google-analytics": "2.0.0-rc.34",
     "@vuepress/plugin-redirect": "2.0.0-rc.36",
     "@vuepress/plugin-register-components": "2.0.0-rc.34",
