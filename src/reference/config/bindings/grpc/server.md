@@ -1,0 +1,45 @@
+---
+shortTitle: grpc server
+description: Zilla runtime grpc server binding
+category:
+  - Binding
+tag:
+  - Server
+---
+
+# grpc server Binding
+
+The grpc server binding adapts `http` request-response streams to `grpc` request-response streams, with support for both `application/grpc+proto` and `application/grpc-web+proto` content types.
+
+The `type:grpc kind:server` binding adapts `http` request-response streams to `grpc` request-response streams, with support for both `application/grpc+proto` and `application/grpc-web+proto` content types.
+
+```yaml {4-6,9-13}
+grpc_server:
+  type: grpc
+  kind: server
+  catalog:
+    host_filesystem:
+      - subject: echo
+  routes:
+    - when:
+        - method: example.EchoService/*
+          metadata:
+            custom-text: custom value
+            custom-binary:
+              base64: Y3VzdG9tIHZhbHVl
+      exit: echo_server
+```
+
+## Configuration (\* required)
+
+<!-- @include: ../.partials/cataloged.md -->
+<!-- @include: .partials/options.md -->
+<!-- @include: ../.partials/exit.md -->
+<!-- @include: .partials/routes.md -->
+<!-- @include: ../.partials/telemetry-grpc.md -->
+
+---
+
+::: right
+\* required
+:::
