@@ -9,7 +9,7 @@ const main = async () => {
     var errors = [];
 
     function getPageProps(name, tokens) {
-        var foundHeadings = [name];
+        var foundHeadings = [];
         tokens
             .filter(({ depth, type }) => type == "heading" && depth == 3)
             .forEach((t) => {
@@ -34,8 +34,8 @@ const main = async () => {
     function getObjProps(attr, obj, reqKeys) {
         var props = [];
         // console.log(attr, Object.keys(obj || {}));
-        Object.keys(obj || {}).forEach((k) => {
-            var i = obj[k];
+        Object.entries(obj).forEach(([k, i]) => {
+            // console.log(k, JSON.stringify(i, null, 4));
             if (!!i.deprecated) return
 
             //recurse
@@ -79,7 +79,6 @@ const main = async () => {
             }
             var req = !!reqKeys?.includes(k);
             var path = [attr, k].filter((s) => !!s).join(".");
-            // console.log(`${path}: ${i.const}`)
             if (i.properties) {
                 props.push([path, "object", req, i.const]);
             } else if (i.additionalProperties) {
@@ -119,54 +118,75 @@ const main = async () => {
         return props;
     }
 
-    var sections = ["binding", "guard", "vault", "catalog"]
-        .map((type) =>
-            schema.$defs[type]?.allOf.map(({ if: fi, then }) => ({
-                type,
-                folder: `${type}s`,
-                name: fi.properties.type.const,
-                props: {
-                    [fi.properties.type.const]: {
-                        ...(then || {}),
-                        required:  [...(schema.$defs[type].required || []), ...(then.required || [])],
-                        oneOf:  [...(schema.$defs[type].oneOf || []), ...(then.oneOf || [])],
-                        properties: {...(schema.$defs[type].properties || {}), ...(then.properties || {})},
-                    }
-                },
-            }))
-        )
-        .flat(1);
-
-    sections.push(
-        ...schema.$defs.telemetry.exporter?.allOf.map(({ if: fi, then }) => ({
-            type: "exporter",
-            folder: "telemetry.exporters",
-            name: fi.properties.type.const,
-            props: {
-                [fi.properties.type.const]: {
-                    ...(schema.$defs.telemetry.exporter || {}), ...(then || {}),
-                }
+    var sections = Object.entries({
+        guards: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
+        vaults: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
+        catalogs: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
+    }).map(([section, props]) =>
+        props?.allOf?.map(({ if: fi, then }) => ({
+            folder: section,
+            name: fi.properties.type.const || fi.properties.type.enum?.[0],
+            properties: {
+                ...(props?.properties || {}), 
+                ...(then.properties || {}),
+                required: [...(props?.required || []), ...(then.required || [])],
+                oneOf: [...(props?.oneOf || []), ...(then.oneOf || [])],
             },
         }))
+    ).flat(1);
+
+    var bindings = schema.properties.bindings.patternProperties[Object.keys(schema.properties.bindings.patternProperties)[0]];
+    bindings.allOf?.forEach(({ if: fi, then }) => {
+        var folder = `bindings.${fi.properties.type.const}`;
+        if (then.oneOf) {
+            sections.push(...then.oneOf.map(({ properties, required, oneOf, anyOf }) => ({
+                folder,
+                name: properties.kind.const,
+                properties: {
+                    ...(then.properties || {}), 
+                    ...(properties || {}),
+                    required: [ ...(then.required || []), ...(required || []) ],
+                    oneOf: [ ...(then.oneOf || []), ...(oneOf || []) ],
+                    anyOf: [ ...(then.anyOf || []), ...(anyOf || []) ],
+                },
+            })));
+        } else {
+            sections.push({
+                folder,
+                name: then.properties.kind.enum[0],
+                properties: {
+                    ...(then || {}),
+                }
+            });
+        }
+    })
+
+    var exporterProps = schema.properties.telemetry.properties.exporters.patternProperties[Object.keys(schema.properties.telemetry.properties.exporters.patternProperties)[0]]
+    sections.push(
+        ...exporterProps?.allOf?.map(({ if: fi, then }) => ({
+            folder: "telemetry.exporters",
+            name: fi.properties.type.const,
+            properties: then,
+        }))
     );
+    // console.log("sections", sections);
     // sections.push(
     //     ...schema.$defs.converter.model?.allOf.map(({ if: fi, then }) => ({
     //         type: "model",
     //         folder: "models",
     //         name: fi.properties.model.const,
-    //         props:{ [fi.properties.model.const]: { 
+    //         properties:{ [fi.properties.model.const]: { 
     //             ...(schema.$defs.converter.model || {}), ...(then || {}) ,
     //         }},
     //     }))
     // );
 
-    sections.forEach(({ type, folder, name, props }) => {
-        delete props.type;
-        var attrs = getObjProps(null, props, []);
-        var filename = `src/reference/config/${folder.replaceAll(".", "/")}/${type
-            .split(".")
-            .findLast((n) => !!n)}-${name}.md`;
-        // console.log(filename, JSON.stringify(props, null, 4))
+    sections.forEach(({ folder, name, properties }) => {
+        delete properties.type;
+        delete properties.kind;
+        var filename = `src/reference/config/${folder.replaceAll(".", "/")}/${name}.md`;
+        console.log(filename, properties);
+        var attrs = getObjProps(null, properties, []);
         if (
             fs.existsSync(filename)
         ) {
@@ -177,7 +197,7 @@ const main = async () => {
                 )
             ).sort();
             var sorted = attrs.map((a) => a[0]).sort();
-            // console.log("findings", type, name, sorted, headers);
+            console.log("findings", folder, name, sorted, headers);
             var addList = sorted.filter((x) =>
                 !headers.includes(x)
             );
@@ -185,8 +205,8 @@ const main = async () => {
                 !sorted.includes(x) &&
                 !["routes[].exit", "routes[].guarded"].includes(x)
             );
-            if (addList.length) console.log(type, name, "add", addList);
-            if (removeList.length) console.log(type, name, "remove", removeList);
+            if (addList.length) console.log(folder, name, "add", addList);
+            if (removeList.length) console.log(folder, name, "remove", removeList);
         } else {
             errors.push(`missing ${name}`);
         }
@@ -196,7 +216,7 @@ const main = async () => {
     // {
     //     type: 'telemetry.metrics',
     //     name: 'grpc',
-    //     props: schema.$defs.telemetry.metrics.items.enum.filter((m) => m.startsWith('grpc')),
+    //     properties: schema.$defs.telemetry.metrics.items.enum.filter((m) => m.startsWith('grpc')),
     // }
 
     // console.log(errors)

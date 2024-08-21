@@ -172,7 +172,7 @@ Additionally, a route is defined to capture any "device" messages and route them
 ```
 
 ::: right
-[More on When a route matches](../../concepts/bindings.md#when-a-route-matches)
+[More on When a route matches](../../../concepts/bindings.md#when-a-route-matches)
 [More on binding-mqtt-kafka routing](../../reference/config/bindings/binding-mqtt-kafka.md#routes)
 :::
 

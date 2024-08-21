@@ -14,10 +14,7 @@ The grpc client binding adapts `grpc` request-response streams to `http` request
 The `type:grpc kind:client` binding adapts `grpc` request-response streams to `http` request-response streams.
 
 ```yaml
-grpc_server:
-  type: grpc
-  kind: client
-  exit: tcp_server
+<!-- @include: .partials/client.yaml -->
 ```
 
 ## Configuration (\* required)
