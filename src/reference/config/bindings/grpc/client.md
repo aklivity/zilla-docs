@@ -1,5 +1,5 @@
 ---
-shortTitle: grpc client
+shortTitle: client
 description: Zilla runtime grpc client binding
 category:
   - Binding
@@ -7,11 +7,9 @@ tag:
   - Client
 ---
 
-# grpc client Binding
+# grpc client
 
 The grpc client binding adapts `grpc` request-response streams to `http` request-response streams.
-
-The `type:grpc kind:client` binding adapts `grpc` request-response streams to `http` request-response streams.
 
 ```yaml
 <!-- @include: .partials/client.yaml -->
@@ -22,9 +20,3 @@ The `type:grpc kind:client` binding adapts `grpc` request-response streams to `h
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: .partials/routes.md -->
 <!-- @include: ../.partials/telemetry-grpc.md -->
-
----
-
-::: right
-\* required
-:::

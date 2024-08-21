@@ -1,5 +1,5 @@
 ---
-shortTitle: grpc server
+shortTitle: server
 description: Zilla runtime grpc server binding
 category:
   - Binding
@@ -7,11 +7,9 @@ tag:
   - Server
 ---
 
-# grpc server Binding
+# grpc server
 
 The grpc server binding adapts `http` request-response streams to `grpc` request-response streams, with support for both `application/grpc+proto` and `application/grpc-web+proto` content types.
-
-The `type:grpc kind:server` binding adapts `http` request-response streams to `grpc` request-response streams, with support for both `application/grpc+proto` and `application/grpc-web+proto` content types.
 
 ```yaml {4-6,9-13}
 <!-- @include: .partials/server.yaml -->

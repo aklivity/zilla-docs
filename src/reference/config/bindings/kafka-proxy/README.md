@@ -39,7 +39,9 @@ kafka_proxy:
 
 Defines a binding with `kafka-proxy` support, with `proxy` behavior.
 
-### kind: proxy
+## proxy
+
+> [Full config](./proxy.md)
 
 Behave as a `proxy`.
 
@@ -117,7 +119,7 @@ Default exit binding when no conditional routes are viable.
 exit: tls_client
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

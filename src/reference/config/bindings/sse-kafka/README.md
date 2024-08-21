@@ -35,7 +35,9 @@ sse_kafka_proxy:
 
 Defines a binding with `sse-kafka` support, with `proxy` behavior.
 
-### kind: proxy
+## proxy
+
+> [Full config](./proxy.md)
 
 The `proxy` kind `sse-kafka` binding adapts `sse` data streams into `kafka` data streams, so that `kafka` messages can be delivered to `sse` clients.
 

@@ -33,11 +33,15 @@ Defines a binding with `tcp` protocol support, with `server` or `client` behavio
 
 Conditional routes based on the hostname authority and network address mask are used to route these streams to an `exit` binding.
 
-### kind: server
+## server
+
+> [Full config](./server.md)
 
 The `server` kind `tcp` binding listens for inbound socket connections, producing higher level application streams for each remote `tcp` client.
 
-### kind: client
+## client
+
+> [Full config](./client.md)
 
 The `client` kind `tcp` binding receives inbound application streams and initiates outbound `tcp` network connections to a remote `tcp` server address.
 
@@ -125,7 +129,7 @@ routes:
     exit: echo_server
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

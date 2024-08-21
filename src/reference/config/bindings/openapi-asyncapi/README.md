@@ -48,7 +48,9 @@ openapi_asyncapi_proxy:
 
 The `proxy` kind `openapi-asyncapi` binding adapts OpenAPI request-response streams to AsyncAPI streams.
 
-### kind: proxy
+## proxy
+
+> [Full config](./proxy.md)
 
 Behave as an `openapi-asyncapi` `proxy`.
 
@@ -178,7 +180,7 @@ AsyncAPI spec identifier that the route exits with to the next binding
 
 AsyncAPI OperationId that the route exits with to the next binding
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

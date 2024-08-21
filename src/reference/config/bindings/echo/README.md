@@ -13,28 +13,14 @@ tag:
 
 # echo Binding
 
-Zilla runtime echo binding.
-
-```yaml {2}
-echo_server:
-    type: echo
-    kind: server
-```
-
-## Configuration (\* required)
-
-### type: echo
-
 This binding supports the `echo` protocol and is run with the `server` behavior. It reads inbound messages and writes it back to the sender.
 
-### kind: server
+## server
+
+> [Full config](./server.md)
 
 Behaves as an `echo` `server`.
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
-
----
-
-::: right
-\* required
-:::
+```yaml {3}
+<!-- @include: .partials/server.yaml -->
+```

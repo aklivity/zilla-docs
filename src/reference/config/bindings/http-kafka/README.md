@@ -61,7 +61,9 @@ http_kafka_proxy:
 
 The `proxy` kind `http-kafka` binding adapts `http` request-response streams to `kafka` topic streams.
 
-### kind: proxy
+## proxy
+
+> [Full config](./proxy.md)
 
 Behave as an `http-kafka` `proxy`.
 

@@ -17,10 +17,10 @@ Zilla runtime grpc-kafka binding.
 
 ## proxy
 
+> [Full Config](./proxy.md)
+
 Behave as an `grpc-kafka` `proxy`.
 
 ```yaml {3}
 <!-- @include: .partials/proxy.yaml -->
 ```
-
-> [Full Config](./proxy.md)

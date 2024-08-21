@@ -46,25 +46,21 @@ mqtt_server:
 
 Defines a binding with `mqtt` protocol support, with `server` behavior.
 
-### kind: server
+## server
+
+> [Full config](./server.md)
 
 The `server` kind `mqtt` binding decodes the MQTT protocol on the inbound network stream, producing higher level application streams for each `publish` or `subscribe` `topic`. The `session` state is also described by a higher level application stream.
 
 Conditional routes based on the `topic` `name` are used to route these application streams to an `exit` binding.
 
-### kind: client
+## client
+
+> [Full config](./client.md)
 
 The `client` kind `mqtt` binding encodes the MQTT protocol to the outbound network stream.
 
-### exit
-
-> `string`
-
-Default exit binding when no conditional routes are viable.
-
-```yaml
-exit: echo_server
-```
+<!-- @include: ../.partials/exit.md -->
 
 ### options
 
@@ -243,7 +239,7 @@ routes:
     exit: mqtt_kafka_proxy
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

@@ -35,23 +35,19 @@ proxy_server:
 
 Defines a binding with `proxy` protocol support, with `server` or `client` behavior. Conditional routes based on the network transport type or network addresses are used to route these streams to an `exit` binding.
 
-### kind: server
+## server
+
+> [Full config](./server.md)
 
 The `server` kind `proxy` binding decodes `Proxy v2` protocol on the inbound network stream, producing higher level application streams for each request.
 
-### kind: client
+## client
+
+> [Full config](./client.md)
 
 The `client` kind `proxy` binding receives inbound application streams and encodes each as a network stream via `Proxy v2` protocol.
 
-### exit
-
-> `string`
-
-Default exit binding when no conditional routes are viable.
-
-```yaml
-exit: echo_server
-```
+<!-- @include: ../.partials/exit.md -->
 
 ### routes
 
@@ -150,7 +146,7 @@ routes:
     exit: echo_server
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

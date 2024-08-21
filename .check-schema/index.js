@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const { marked } = require("marked");
 const { $RefParser } = require("@apidevtools/json-schema-ref-parser");
 const schema = require("./zilla-schema.json");
@@ -8,7 +9,7 @@ const main = async () => {
     // console.log("RefParser", JSON.stringify(schema, null, 4))
     var errors = [];
 
-    function getPageProps(name, tokens) {
+    function getPageProps(tokens) {
         var foundHeadings = [];
         tokens
             .filter(({ depth, type }) => type == "heading" && depth == 3)
@@ -16,7 +17,7 @@ const main = async () => {
                 if (t.text && t.type && t.type === "heading") {
                     t.tokens
                         .filter(({ type }) => type === "text")
-                        .forEach(({ text }) => foundHeadings.push(`${name}.${text}`));
+                        .forEach(({ text }) => foundHeadings.push(`${text}`));
                 }
             });
         tokens
@@ -119,15 +120,17 @@ const main = async () => {
     }
 
     var sections = Object.entries({
-        guards: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
-        vaults: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
-        catalogs: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
+        guard: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
+        vault: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
+        catalog: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
     }).map(([section, props]) =>
         props?.allOf?.map(({ if: fi, then }) => ({
-            folder: section,
+            folder: `${section}s`,
             name: fi.properties.type.const || fi.properties.type.enum?.[0],
             properties: {
-                ...(props?.properties || {}), 
+                ...schema.$defs[section].properties,
+                options: { ...(schema.$defs.options[section]?.[(fi.properties.type.const || fi.properties.type.enum?.[0])] || {}) },
+                ...(props?.properties || {}),
                 ...(then.properties || {}),
                 required: [...(props?.required || []), ...(then.required || [])],
                 oneOf: [...(props?.oneOf || []), ...(then.oneOf || [])],
@@ -143,11 +146,13 @@ const main = async () => {
                 folder,
                 name: properties.kind.const,
                 properties: {
-                    ...(then.properties || {}), 
+                    ...schema.$defs.binding.properties,
+                    options: { ...(schema.$defs.options.binding[properties.kind.const] || {}) },
+                    ...(then.properties || {}),
                     ...(properties || {}),
-                    required: [ ...(then.required || []), ...(required || []) ],
-                    oneOf: [ ...(then.oneOf || []), ...(oneOf || []) ],
-                    anyOf: [ ...(then.anyOf || []), ...(anyOf || []) ],
+                    required: [...(then.required || []), ...(required || [])],
+                    oneOf: [...(then.oneOf || []), ...(oneOf || [])],
+                    anyOf: [...(then.anyOf || []), ...(anyOf || [])],
                 },
             })));
         } else {
@@ -184,18 +189,21 @@ const main = async () => {
     sections.forEach(({ folder, name, properties }) => {
         delete properties.type;
         delete properties.kind;
-        var filename = `src/reference/config/${folder.replaceAll(".", "/")}/${name}.md`;
-        console.log(filename, properties);
+        var foldername = `src/reference/config/${folder.replaceAll(".", "/")}`;
+        var filename = `${name}.md`;
+        var filePath = `${foldername}/${filename}`;
+        // console.log(filePath, properties);
         var attrs = getObjProps(null, properties, []);
-        if (
-            fs.existsSync(filename)
-        ) {
-            var headers = getPageProps(name,
-                marked.lexer(
-                    fs.readFileSync(filename, "utf8")
-                        .toString()
-                )
-            ).sort();
+        if (fs.existsSync(filePath)) {
+
+            var fullMdContent = fs.readFileSync(filePath, "utf8")
+            .toString();
+            fullMdContent = fullMdContent.replace(/<!--\s@include:\s(.+\.md)\s-->/g, (_, p1) => 
+                (fs.readFileSync(path.resolve(foldername, p1), "utf8").toString())
+            );
+            // console.log("fullMdContent", fullMdContent)
+
+            var headers = getPageProps(marked.lexer(fullMdContent)).sort();
             var sorted = attrs.map((a) => a[0]).sort();
             console.log("findings", folder, name, sorted, headers);
             var addList = sorted.filter((x) =>

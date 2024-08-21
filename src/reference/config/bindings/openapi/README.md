@@ -53,11 +53,15 @@ openapi_client:
 
 Defines a binding with `openapi` spec, with `server` or `client` behavior.
 
-### kind: server
+## server
+
+> [Full config](./server.md)
 
 The `server` kind `openapi` binding creates composite of `tcp`, `tls`, and `http` bindings with server kind and adapts HTTP request-response streams to OpenAPI request-response streams.
 
-### kind: client
+## client
+
+> [Full config](./client.md)
 
 The `client` kind `openapi` binding creates composite of `http`, `tls`, and `tcp` bindings with client kind and adapts OpenAPI request-response streams to HTTP request-response streams.
 
@@ -239,7 +243,7 @@ Default exit binding.
 exit: echo_server
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

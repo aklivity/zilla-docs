@@ -39,9 +39,13 @@ kafka_client:
 
 Defines a binding with `kafka` protocol support, with `cache_client`, `cache_server` or `client` behavior.
 
-### kind: cache_client
+## cache_client
 
-### kind: cache_server
+> [Full config](./cache_client.md)
+
+## cache_server
+
+> [Full config](./cache_server.md)
 
 The `cache_client` and `cache_server` kinds combine to provide a persistent cache of `kafka` messages per `topic` `partition` honoring the `kafka` `topic` configuration for message expiration and compaction. Messages ordering is guaranteed per `partition` and messages are merged into a unified stream for the `topic` spanning all `partitions`.
 
@@ -57,7 +61,9 @@ When the `kafka` `topic` is not compacted, then the binding can be configured to
 
 The `cache_client` and `cache_server` also combine to provide a staging area when producing new messages as `kafka` requires exact message length up front when producing new messages and `kafka` does not support producing multiple messages in parallel over the same network connection.
 
-### kind: client
+## client
+
+> [Full config](./client.md)
 
 The `client` kind `kafka` binding receives inbound application streams and encodes each as a network stream via `kafka` request-response protocol. Note that the same network stream can be reused to encode multiple `kafka` requests, including both `fetch` and `produce` requests.
 
@@ -146,15 +152,7 @@ SASL username.
 
 SASL password.
 
-### exit
-
-> `string`
-
-Default exit binding when no conditional routes are viable.
-
-```yaml
-exit: echo_server
-```
+<!-- @include: ../.partials/exit.md -->
 
 ### routes
 
@@ -198,7 +196,7 @@ Next binding when following this route.
 exit: echo_server
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

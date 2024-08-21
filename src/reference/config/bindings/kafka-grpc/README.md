@@ -51,7 +51,9 @@ The `grpc` request message is received from a `requests` topic, with a `zilla:co
 
 Note that `grpc` requests and responses can be `unary` or `streaming`.
 
-### kind: remote_server
+## remote_server
+
+> [Full config](./remote_server.md)
 
 The `remote_server` kind `kafka-grpc` binding adapts `kafka` topic streams to `grpc` request-response streams.
 

@@ -31,13 +31,17 @@ ws_server:
 
 Defines a binding with WebSockets protocol support, with `server` or `client` behavior.
 
-### kind: server
+## server
+
+> [Full config](./server.md)
 
 The `server` kind `ws` binding converts inbound `http` request-response streams into `ws` full-duplex streams.
 
 Conditional routes based on `ws` scheme, authority, path or negotiated subprotocol are used to route these streams to an `exit` binding.
 
-### kind: client
+## client
+
+> [Full config](./client.md)
 
 The `client` kind `ws` binding converts inbound `ws` full duplex streams into `http` request-response streams.
 
@@ -79,15 +83,7 @@ Authority.
 
 Path.
 
-### exit
-
-> `string`
-
-Default exit binding when no conditional routes are viable.
-
-```yaml
-exit: echo_server
-```
+<!-- @include: ../.partials/exit.md -->
 
 ### routes
 
@@ -165,7 +161,7 @@ routes:
     exit: echo_server
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 

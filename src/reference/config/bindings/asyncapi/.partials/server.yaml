@@ -1,0 +1,7 @@
+  asyncapi_server:
+    type: asyncapi
+    kind: server
+    options:
+      specs:
+        my-mqtt-api-spec: mqtt/asyncapi.yaml
+    exit: asyncapi_proxy

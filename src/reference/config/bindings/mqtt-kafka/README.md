@@ -45,7 +45,9 @@ mqtt_kafka_proxy:
 
 Defines a binding with `mqtt-kafka` support, with `proxy` behavior.
 
-### kind: proxy
+## proxy
+
+> [Full config](./proxy.md)
 
 Behave as a `mqtt-kafka` `proxy`.
 
@@ -252,7 +254,7 @@ Default exit binding when no conditional routes are viable.
 exit: kafka_cache_client
 ```
 
-<!-- @include: ../.partials/telemetry-grpc.md -->
+<!-- @include: ../.partials/telemetry.md -->
 
 ---
 
