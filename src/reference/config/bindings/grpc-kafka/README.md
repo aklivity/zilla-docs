@@ -22,5 +22,5 @@ Zilla runtime grpc-kafka binding.
 Behave as an `grpc-kafka` `proxy`.
 
 ```yaml {3}
-<!-- @include: .partials/proxy.yaml -->
+<!-- @include: ./.partials/proxy.yaml -->
 ```

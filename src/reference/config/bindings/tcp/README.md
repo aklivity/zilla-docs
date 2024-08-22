@@ -13,22 +13,6 @@ tag:
 
 # tcp Binding
 
-Zilla runtime tcp binding.
-
-```yaml {2}
-tcp_server:
-  type: tcp
-  kind: server
-  exit: echo_server
-  options:
-    host: 0.0.0.0
-    port: 12345
-```
-
-## Configuration (\* required)
-
-### type: tcp\*
-
 Defines a binding with `tcp` protocol support, with `server` or `client` behavior.
 
 Conditional routes based on the hostname authority and network address mask are used to route these streams to an `exit` binding.
@@ -39,100 +23,16 @@ Conditional routes based on the hostname authority and network address mask are 
 
 The `server` kind `tcp` binding listens for inbound socket connections, producing higher level application streams for each remote `tcp` client.
 
+```yaml {3}
+<!-- @include: ./.partials/server.yaml -->
+```
+
 ## client
 
 > [Full config](./client.md)
 
 The `client` kind `tcp` binding receives inbound application streams and initiates outbound `tcp` network connections to a remote `tcp` server address.
 
-### options
-
-> `object`
-
-`tcp`-specific options.
-
-```yaml
-options:
-  host: 0.0.0.0
-  port: 12345
+```yaml {3}
+<!-- @include: ./.partials/client.yaml -->
 ```
-
-#### options.host
-
-> `string`
-
-Hostname or IP address.
-
-#### options.port
-
-> `integer` | `string` | `array` of  `integer` | `array` of `string`
-
-Port number(s), including port number ranges.
-
-### exit
-
-> `string`
-
-Default exit binding when no conditional routes are viable, for kind `server` only.
-
-```yaml
-exit: echo_server
-```
-
-### routes
-
-> `array` of `object`
-
-Conditional `tcp`-specific routes.
-
-#### routes[].guarded
-
-> `object` as named map of `string:string` `array`
-
-List of roles required by each named guard to authorize this route.
-
-#### routes[].when
-
-> `array` of `object`
-
-List of conditions (any match) to match this route.
-Read more: [When a route matches](../../../../concepts/bindings.md#when-a-route-matches)
-
-##### when[].authority
-
-> `string`
-
-Associated authority.
-
-##### when[].cidr
-
-> `string`
-
-CIDR mask.
-
-##### when[].port
-
-> `integer` | `string` | `array` of  `integer` | `array` of `string`
-
-Port number(s), including port number ranges.
-
-#### routes[].exit\*
-
-> `string`
-
-Next binding when following this route, for kind `server` only.
-
-```yaml
-routes:
-  - when:
-    ...
-    exit: echo_server
-```
-
-<!-- @include: ../.partials/telemetry.md -->
-
----
-
-::: right
-\* required
-:::

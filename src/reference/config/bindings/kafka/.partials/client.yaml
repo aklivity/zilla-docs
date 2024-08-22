@@ -1,0 +1,4 @@
+  kafka_client:
+    type: kafka
+    kind: client
+    exit: tcp_client

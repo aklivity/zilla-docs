@@ -233,24 +233,21 @@ const main = async () => {
             );
             // console.log("fullMdContent", fullMdContent)
 
-            var headers = getPageProps(marked.lexer(fullMdContent)).sort();
-            var sorted = attrs.map((a) => a[0]).sort();
-            console.log("findings", folder, name, sorted, headers);
-
-            // dedupe
-            sorted = sorted.filter((value, index, array) =>
+            // get page headers and schema props
+            var pageHeaders = getPageProps(marked.lexer(fullMdContent)).sort().filter((value, index, array) =>
                 array.indexOf(value) === index
             );
-            headers = headers.filter((value, index, array) =>
+            var schemaProps = attrs.map((a) => a[0]).sort().filter((value, index, array) =>
                 array.indexOf(value) === index
-            )
+            );
+            // console.log("findings", folder, name, schemaProps, pageHeaders);
 
             // print diff check
-            console.log(folder, name, "add", sorted.filter((x) =>
-                !headers.includes(x)
+            console.log(folder, name, "add", schemaProps.filter((x) =>
+                !pageHeaders.includes(x)
             ));
-            console.log(folder, name, "remove", headers.filter((x) =>
-                !sorted.includes(x)
+            console.log(folder, name, "remove", pageHeaders.filter((x) =>
+                !schemaProps.includes(x)
             ));
         } else {
             errors.push(`missing ${name}`);

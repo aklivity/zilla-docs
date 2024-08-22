@@ -22,5 +22,5 @@ This binding supports the `echo` protocol and is run with the `server` behavior.
 Behaves as an `echo` `server`.
 
 ```yaml {3}
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```

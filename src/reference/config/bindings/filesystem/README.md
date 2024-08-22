@@ -22,5 +22,5 @@ The `server` kind `filesystem` binding provides access to files and directories 
 Behave as a `filesystem` `server`.
 
 ```yaml {3}
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```

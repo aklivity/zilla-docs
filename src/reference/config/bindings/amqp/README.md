@@ -26,5 +26,5 @@ Read how to [enable incubator features](../../../how-tos/deploy-operate.md#enabl
 The amqp server binding decodes the AMQP protocol on the inbound network stream, producing higher level application streams for each send or receive link.
 
 ```yaml {3}
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```

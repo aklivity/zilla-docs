@@ -14,30 +14,10 @@ tag:
 
 # kafka-proxy Binding
 
+Defines a binding with `kafka-proxy` support, with `proxy` behavior.
+
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
-
-Zilla runtime kafka-proxy binding.
-
-```yaml {2}
-kafka_proxy:
-  type: kafka-proxy
-  kind: proxy
-  options:
-    external:
-      host: kafka-#.external.net
-      port: 9093
-    internal:
-      host: b-#.kafka.internal.net
-      port: 9094
-  exit: tls_client
-```
-
-## Configuration (\* required)
-
-### type: kafka-proxy\*
-
-Defines a binding with `kafka-proxy` support, with `proxy` behavior.
 
 ## proxy
 
@@ -45,84 +25,6 @@ Defines a binding with `kafka-proxy` support, with `proxy` behavior.
 
 Behave as a `proxy`.
 
-### options\*
-
-> `object`
-
-`kafka-proxy`-specific options.
-
-```yaml
-options:
-  external:
-    host: kafka-#.external.net
-    port: 9093
-  internal:
-    host: b-#.kafka.internal.net
-    port: 9094
+```yaml {3}
+<!-- @include: ./.partials/proxy.yaml -->
 ```
-
-#### options.external\*
-
-> `object`
-
-Kafka proxy endpoint used by external clients.
-
-```yaml
-external:
-  host: kafka-#.external.net
-  port: 9093
-```
-
-#### external.host\*
-
-> `string`
-
-Hostname pattern for external Kafka broker names, where `#` is an integer.
-
-#### external.port\*
-
-> `integer`
-
-Port number for external Kafka broker.
-
-#### options.internal\*
-
-> `object`
-
-Internal Kafka broker endpoint.
-
-```yaml
-internal:
-  host: b-#.kafka.internal.net
-  port: 9094
-```
-
-#### internal.host\*
-
-> `string`
-
-Hostname pattern for internal Kafka broker names, where `#` is an integer.
-
-#### internal.port\*
-
-> `integer`
-
-Port number for internal Kafka broker.
-
-### exit\*
-
-> `string`
-
-Default exit binding when no conditional routes are viable.
-
-```yaml
-exit: tls_client
-```
-
-<!-- @include: ../.partials/telemetry.md -->
-
----
-
-::: right
-\* required
-:::

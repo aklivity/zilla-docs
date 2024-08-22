@@ -28,7 +28,7 @@ Authorization is enforced by a [`guard`](../../config/overview.md#guards) and th
 Conditional routes based on `http` request headers are used to route these application streams to an `exit` binding.
 
 ```yaml {3}
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```
 
 ## client
@@ -40,5 +40,5 @@ The `client` kind `http` binding receives inbound application streams and encode
 Conditional routes based on `http` request headers are used to route these network streams to an `exit` binding.
 
 ```yaml {3}
-<!-- @include: .partials/client.yaml -->
+<!-- @include: ./.partials/client.yaml -->
 ```

@@ -1,0 +1,8 @@
+  ws_server:
+    type: ws
+    kind: server
+    exit: default_server
+    routes:
+      - when:
+          - protocol: echo
+        exit: echo_server

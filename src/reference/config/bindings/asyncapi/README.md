@@ -25,7 +25,7 @@ The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `
 AsyncAPI streams to Kafka/MQTT/HTTP streams.
 
 ```yaml {3}
-<!-- @include: .partials/client.yaml -->
+<!-- @include: ./.partials/client.yaml -->
 ```
 
 ## proxy
@@ -35,7 +35,7 @@ AsyncAPI streams to Kafka/MQTT/HTTP streams.
 The `proxy` kind `asyncapi` binding creates composite of `mqtt-kafka` binding with proxy kind mapping MQTT streams to Kafka streams.
 
 ```yaml {3}
-<!-- @include: .partials/proxy.yaml -->
+<!-- @include: ./.partials/proxy.yaml -->
 ```
 
 ## server
@@ -45,5 +45,5 @@ The `proxy` kind `asyncapi` binding creates composite of `mqtt-kafka` binding wi
 The `server` kind `asyncapi` binding creates composite of `tcp`, `tls`, and `mqtt` or `http` bindings with server kind and adapts MQTT/HTTP streams to AsyncAPI streams.
 
 ```yaml {3}
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```

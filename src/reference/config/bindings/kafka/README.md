@@ -13,35 +13,15 @@ tag:
 
 # kafka Binding
 
-Zilla runtime kafka binding.
-
-```yaml {2,10,17}
-kafka_cache_client:
-  type: kafka
-  kind: cache_client
-  exit: kafka_cache_server
-kafka_cache_server:
-  type: kafka
-  kind: cache_server
-  options:
-    bootstrap:
-      - items-responses
-  exit: kafka_client
-kafka_client:
-  type: kafka
-  kind: client
-  exit: tcp_client
-```
-
-## Configuration (\* required)
-
-### type: kafka\*
-
 Defines a binding with `kafka` protocol support, with `cache_client`, `cache_server` or `client` behavior.
 
 ## cache_client
 
 > [Full config](./cache_client.md)
+
+```yaml {3}
+<!-- @include: ./.partials/cache_client.yaml -->
+```
 
 ## cache_server
 
@@ -61,6 +41,10 @@ When the `kafka` `topic` is not compacted, then the binding can be configured to
 
 The `cache_client` and `cache_server` also combine to provide a staging area when producing new messages as `kafka` requires exact message length up front when producing new messages and `kafka` does not support producing multiple messages in parallel over the same network connection.
 
+```yaml {3}
+<!-- @include: ./.partials/cache_server.yaml -->
+```
+
 ## client
 
 > [Full config](./client.md)
@@ -69,137 +53,6 @@ The `client` kind `kafka` binding receives inbound application streams and encod
 
 Conditional routes based on `kafka` `topic` names are used to route these network streams to an `exit` binding that ultimately reaches a `kafka` broker.
 
-### options
-
-> `object`
-
-`kafka`-specific options.
-
-```yaml
-options:
-  bootstrap:
-    - items-requests
-    - items-responses
-  topics:
-    - name: items-requests
-      defaultOffset: live
+```yaml {3}
+<!-- @include: ./.partials/client.yaml -->
 ```
-
-#### options.bootstrap
-
-> `array` of `string`
-
-Topics to bootstrap in cache server even when no clients.
-
-#### options.topics
-
-> `array` of `object`
-
-Topic configuration.
-
-#### topics[].name\*
-
-> `string`
-
-Topic name.
-
-#### topics[].defaultOffset
-
-> `enum` [ "live", "historical" ] | Default: `"historical"`
-
-Fetch offset to use for new consumers
-
-#### topics[].key
-
-> `object` of a named [`model`](../models/)
-
-Enforce validation for key
-
-#### topics[].value
-
-> `object` of a named [`model`](../models/)
-
-Enforce validation for value
-
-#### options.servers
-
-> `array` of `string`
-
-Bootstrap servers to use when connecting to `kafka` cluster.
-
-#### options.sasl
-
-> `object`
-
-SASL credentials to use when connecting to `kafka` brokers.
-
-#### sasl.mechanism\*
-
-> `enum` [ "plain", "scram-sha-1", "scram-sha-256", "scram-sha-512" ]
-
-SASL mechanism\
-Supports `plain` and `scram` mechanisms.
-
-#### sasl.username
-
-> `string`
-
-SASL username.
-
-#### sasl.password
-
-> `string`
-
-SASL password.
-
-<!-- @include: ../.partials/exit.md -->
-
-### routes
-
-> `array` of `object`
-
-Conditional `kafka`-specific routes.
-
-#### routes[].guarded
-
-> `object` as named map of `string:string` `array`
-
-List of roles required by each named guard to authorize this route.
-
-```yaml
-routes:
-  - guarded:
-      my_guard:
-        - read:items
-```
-
-#### routes[].when
-
-> `array` of `object`
-
-List of conditions (any match) to match this route.
-Read more: [When a route matches](../../../../concepts/bindings.md#when-a-route-matches)
-
-##### when[].topic\*
-
-> `string`
-
-Topic name pattern.
-
-#### routes[].exit\*
-
-> `string`
-
-Next binding when following this route.
-
-```yaml
-exit: echo_server
-```
-
-<!-- @include: ../.partials/telemetry.md -->
-
----
-
-::: right
-\* required
-:::

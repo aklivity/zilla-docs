@@ -7,12 +7,12 @@ shortTitle: server
 The asyncapi server binding creates composite of `tcp`, `tls`, and `mqtt` or `http` bindings with server kind and adapts MQTT/HTTP streams to AsyncAPI streams.
 
 ```yaml
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```
 
 ## Configuration (\* required)
 
-<!-- @include: .partials/options.md -->
+<!-- @include: ./.partials/options.md -->
 
 ### mqtt-kafka
 
@@ -64,6 +64,6 @@ AsyncAPI Kafka messages channel.
 messages: mqttMessages
 ```
 
-<!-- @include: .partials/routes.md -->
+<!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

@@ -13,12 +13,12 @@ Authorization is enforced by a [`guard`](../../config/overview.md#guards) and th
 Conditional routes based on `http` request headers are used to route these application streams to an `exit` binding.
 
 ```yaml {3}
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```
 
 ## Configuration (\* required)
 
-<!-- @include: .partials/options.md -->
-<!-- @include: .partials/routes.md -->
+<!-- @include: ./.partials/options.md -->
+<!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

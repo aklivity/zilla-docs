@@ -24,5 +24,5 @@ The `proxy` kind `http-filesystem` binding adapts `http` data streams into `file
 Behaves as a web server when combined with `tcp,` `tls`, `http` and `filesystem` bindings.
 
 ```yaml {3}
-<!-- @include: .partials/proxy.yaml -->
+<!-- @include: ./.partials/proxy.yaml -->
 ```

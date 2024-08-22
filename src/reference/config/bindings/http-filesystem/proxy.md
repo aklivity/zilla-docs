@@ -9,11 +9,11 @@ The http-filesystem proxy binding adapts `http` data streams into `filesystem` d
 Behaves as a web server when combined with `tcp,` `tls`, `http` and `filesystem` bindings.
 
 ```yaml {3}
-<!-- @include: .partials/proxy.yaml -->
+<!-- @include: ./.partials/proxy.yaml -->
 ```
 
 ## Configuration (\* required)
 
-<!-- @include: .partials/routes.md -->
+<!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

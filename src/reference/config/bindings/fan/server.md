@@ -7,7 +7,7 @@ shortTitle: server
 The fan server binding behaves as an `fan-in` and `fan-out` `server`. The `server` kind `fan` binding performs fan-in of data on all inbound network streams, grouping them into a single application stream. Then data received from the application stream is fanned-out to all network streams in the group.
 
 ```yaml {3}
-<!-- @include: .partials/server.yaml -->
+<!-- @include: ./.partials/server.yaml -->
 ```
 
 ## Configuration (\* required)
