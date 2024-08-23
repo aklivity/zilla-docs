@@ -90,13 +90,13 @@ routes:
         path: /items/{id};cid={correlationId}
 ```
 
-##### when[].method
+#### when[].method
 
 > `string`
 
 HTTP Method, such as `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`.
 
-##### when[].path
+#### when[].path
 
 > `string`
 
@@ -158,43 +158,43 @@ with:
       path: /-
 ```
 
-##### with.topic
+#### with.topic
 
 > `string`
 
 Topic name, optionally referencing path parameter such as `${params.topic}`.
 
-##### with.filters
+#### with.filters
 
 > `array` of `object`
 
 List of criteria (any match) to this filter. Kafka filters for matched route when adapting `http` request-response streams to `kafka` topic fetch streams. All specified headers and key must match for the combined criteria to match.
 
-##### filters[].key
+#### filters[].key
 
 > `string`
 
 Message key, optionally referencing path parameter such as `${params.key}`.
 
-##### filters[].headers
+#### filters[].headers
 
 > `map` of `name: value` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
-##### with.merge
+#### with.merge
 
 > `object`
 
 Merge multiple Kafka messages into a unified HTTP response. Kafka merge configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### merge.content-type: application/json
+#### merge.content-type: application/json
 
 > `const`
 
 Content type of merged HTTP response.
 
-##### merge.patch
+#### merge.patch
 
 > `object`
 
@@ -204,13 +204,13 @@ Describes how to patch initial HTTP response to include one or more Kafka messag
 
   Kafka merge patch configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-##### patch.initial: []
+#### patch.initial: []
 
 > `const`
 
 Initial JSON value.
 
-##### patch.path: /-
+#### patch.path: /-
 
 > `const`
 
@@ -243,37 +243,37 @@ with:
     location: /items/${params.id};cid=${correlationId}
 ```
 
-##### with.topic
+#### with.topic
 
 > `string`
 
 Kafka topic name, optionally referencing path parameter such as `${params.topic}`.
 
-##### with.acks
+#### with.acks
 
 > `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
 
 Kafka acknowledgement mode
 
-##### with.key
+#### with.key
 
 > `string`
 
 Kafka message key, optionally referencing path parameter such as `${params.id}`.
 
-##### with.overrides
+#### with.overrides
 
 > `map` of `name: value` properties
 
 Kafka message headers, with values optionally referencing path parameter.
 
-##### with.reply-to
+#### with.reply-to
 
 > `string`
 
 Kafka reply-to topic name.
 
-##### with.async
+#### with.async
 
 > `map` of `name: value` properties
 

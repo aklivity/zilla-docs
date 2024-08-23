@@ -13,5 +13,5 @@ The openapi client binding
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
-<!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/vault.md -->
 <!-- @include: ../.partials/telemetry.md -->

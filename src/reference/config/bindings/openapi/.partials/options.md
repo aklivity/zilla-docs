@@ -42,9 +42,9 @@ Catalog artifact version to use.
 
 #### specs.servers
 
-> `object`
+> `array` of `object`
 
-#### servers.url
+#### servers[].url
 
 > `string`
 
@@ -56,7 +56,7 @@ The server url to match in openapi spec
 
 `http` specific options.
 
-##### http.authorization
+#### http.authorization
 
 > `object` as map of named properties
 
@@ -70,25 +70,25 @@ authorization:
         authorization: Bearer {credentials}
 ```
 
-##### authorization.credentials
+#### authorization.credentials
 
 > `object`
 
 Defines how to extract credentials from the HTTP request.
 
-##### credentials.cookies
+#### credentials.cookies
 
 > `map` of `name: value` properties
 
 Named cookie value pattern with `{credentials}`.
 
-##### credentials.headers
+#### credentials.headers
 
 > `map` of `name: value` properties
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
-##### credentials.query
+#### credentials.query
 
 > `map` of `name: value` properties
 
@@ -100,13 +100,13 @@ Named query parameter value pattern with `{credentials}`.
 
 `client` specific `tcp` options.
 
-##### tcp.host
+#### tcp.host
 
 > `string`
 
 Hostname or IP address.
 
-##### tcp.port
+#### tcp.port
 
 > `integer` | `string` | `array` of `integer` | `array` of `string`
 
@@ -118,49 +118,49 @@ Port number(s), including port number ranges.
 
 `tls` specific options.
 
-##### tls.version
+#### tls.version
 
 > `string`
 
 Protocol version.
 
-##### tls.keys
+#### tls.keys
 
 > `array` of `string`
 
 A list of reference names for the Vault key.
 
-##### tls.trust
+#### tls.trust
 
 > `array` of `string`
 
 A list of reference names for the Vault certificate.
 
-##### tls.signers
+#### tls.signers
 
 > `array` of `string`
 
 A list of reference names for the Vault signer certificate.
 
-##### tls.trustcacerts
+#### tls.trustcacerts
 
 > `boolean` | Default: `true` when trust is `null`
 
 Trust CA certificates.
 
-##### tls.sni\*
+#### tls.sni\*
 
 > `array` of `string`
 
 A list of the Server Name Indications.
 
-##### tls.alpn
+#### tls.alpn
 
 > `array` of `string`
 
 Application protocols.
 
-##### tls.mutual
+#### tls.mutual
 
 > `enum` [ "required", "requested", "none" ] | Default: `"none"`
 

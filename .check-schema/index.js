@@ -40,10 +40,11 @@ const main = async () => {
             if (!i || !!i.deprecated) return
 
             //recurse
-            if (i.properties) {
+            if (i.properties && Object.keys(i.properties).length) {
+                // console.log(k, Object.keys(i.properties).length)
                 props.push(...getObjProps(k, i.properties, i.required));
             }
-            if (i.items?.properties) {
+            if (i.items?.properties && Object.keys(i.items?.properties).length) {
                 props.push(
                     ...getObjProps(`${k}[]`, i.items.properties, i.items.required)
                 );
@@ -80,7 +81,7 @@ const main = async () => {
             }
             var req = !!reqKeys?.includes(k);
             var path = [attr, k].filter((s) => !!s).join(".");
-            if (i.properties) {
+            if (i.properties && Object.keys(i.properties).length) {
                 props.push([path, "object", req, i.const]);
             } else if (i.additionalProperties) {
                 if (i.additionalProperties.oneOf) {
@@ -120,33 +121,34 @@ const main = async () => {
     }
 
     var sections = [];
-    var sections = Object.entries({
-        guard: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
-        vault: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
-        catalog: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
-    }).map(([section, props]) =>
-        props?.allOf?.map(({ if: fi, then }) => ({
-            folder: `${section}s`,
-            name: fi.properties.type.const || fi.properties.type.enum?.[0],
-            props: {
-                ...schema.$defs[section].properties,
-                ...(props?.properties || {}),
-                ...(then.properties || {}),
-                options: {
-                    ...(schema.$defs.options[section]?.[(fi.properties.type.const || fi.properties.type.enum?.[0])] || {}),
-                    ...(schema.$defs[section].properties?.options || {}),
-                    ...(props?.properties?.options || {}),
-                    ...(then.properties?.options || {}),
-                },
-                required: [...(props?.required || []), ...(then.required || [])],
-                anyOf: [...(then.anyOf || [])],
-            },
-        }))
-    ).flat(1);
+    // var sections = Object.entries({
+    //     guard: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
+    //     vault: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
+    //     catalog: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
+    // }).map(([section, props]) =>
+    //     props?.allOf?.map(({ if: fi, then }) => ({
+    //         folder: `${section}s`,
+    //         name: fi.properties.type.const || fi.properties.type.enum?.[0],
+    //         props: {
+    //             ...schema.$defs[section].properties,
+    //             ...(props?.properties || {}),
+    //             ...(then.properties || {}),
+    //             options: {
+    //                 ...(schema.$defs.options[section]?.[(fi.properties.type.const || fi.properties.type.enum?.[0])] || {}),
+    //                 ...(schema.$defs[section].properties?.options || {}),
+    //                 ...(props?.properties?.options || {}),
+    //                 ...(then.properties?.options || {}),
+    //             },
+    //             required: [...(props?.required || []), ...(then.required || [])],
+    //             anyOf: [...(then.anyOf || [])],
+    //         },
+    //     }))
+    // ).flat(1);
 
     var bindings = schema.properties.bindings.patternProperties[Object.keys(schema.properties.bindings.patternProperties)[0]];
     bindings.allOf?.forEach(({ if: fi, then }) => {
         var folder = `bindings.${fi.properties.type.const}`;
+        // if (folder == "bindings.grpc") console.log(folder, JSON.stringify({ if: fi, then }, null, 4))
         if (then.oneOf) {
             sections.push(...then.oneOf.map(({ properties, required, oneOf, anyOf }) => ({
                 folder,
@@ -155,11 +157,13 @@ const main = async () => {
                     ...bindings.properties,
                     ...(then.properties || {}),
                     ...(properties || {}),
-                    options: {
-                        ...(then.properties?.options || {}),
-                        ...(properties?.options || {}),
-                    },
-                    routes: {
+                    options: (then.properties?.options != false ? {
+                        properties: {
+                            ...(then.properties?.options?.properties || {}),
+                            ...(properties?.options?.properties || {}),
+                        }
+                    } : {}),
+                    routes: (then.properties?.routes != false ? {
                         items: {
                             properties: {
                                 ...(bindings.properties?.routes?.items?.properties || {}),
@@ -167,7 +171,7 @@ const main = async () => {
                                 ...(properties?.routes?.items?.properties || {}),
                             }
                         }
-                    },
+                    } : {}),
                     required: [...(then.required || []), ...(required || [])],
                     oneOf,
                     anyOf: [...(then.anyOf || []), ...(anyOf || [])],
@@ -180,14 +184,14 @@ const main = async () => {
                 props: {
                     ...bindings.properties,
                     ...(then.properties || {}),
-                    routes: {
+                    routes: (then.properties?.routes != false ? {
                         items: {
                             properties: {
                                 ...(bindings.properties?.routes?.items?.properties || {}),
                                 ...(then.properties?.routes?.items?.properties || {}),
                             }
                         }
-                    },
+                    } : {}),
                     required: [...(then.required || [])],
                 }
             });
@@ -204,7 +208,7 @@ const main = async () => {
             props: then,
         }))
     );
-    // console.log("sections", sections);
+    // var modelProps = schema.properties.converter.properties.exporters.patternProperties[Object.keys(schema.properties.telemetry.properties.exporters.patternProperties)[0]]
     // sections.push(
     //     ...schema.$defs.converter.model?.allOf.map(({ if: fi, then }) => ({
     //         type: "model",
@@ -243,14 +247,19 @@ const main = async () => {
             // console.log("findings", folder, name, schemaProps, pageHeaders);
 
             // print diff check
-            console.log(folder, name, "add", schemaProps.filter((x) =>
+            var addDiff = schemaProps.filter((x) =>
                 !pageHeaders.includes(x)
-            ));
-            console.log(folder, name, "remove", pageHeaders.filter((x) =>
+            )
+            if (addDiff.length >= 0) console.log(folder, name, "add", addDiff);
+            var removeDiff = pageHeaders.filter((x) =>
                 !schemaProps.includes(x)
-            ));
+            )
+            if (removeDiff.length >= 0) console.log(folder, name, "remove", removeDiff);
+
+            if (addDiff.length + removeDiff.length) process.exitCode = 1;
         } else {
             errors.push(`missing ${name}`);
+            process.exitCode = 1;
         }
     });
 

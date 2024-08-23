@@ -14,5 +14,4 @@ The http-kafka proxy binding
 
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
-<!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

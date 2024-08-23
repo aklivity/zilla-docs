@@ -73,13 +73,13 @@ routes:
             base64: Y3VzdG9tIHZhbHVl
 ```
 
-##### when[].method
+#### when[].method
 
 > `string`
 
 Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for the method to indicate any method.
 
-##### when[].metadata
+#### when[].metadata
 
 > `map` of `name: value` properties
 
@@ -87,7 +87,7 @@ Metadata header name value pairs (all match).
 
 Each metadata header value can be `string` or `object` with `base64` property.
 
-##### metadata.base64
+#### metadata.base64
 
 > `string`
 
@@ -146,25 +146,25 @@ with:
       custom-text: custom-value
 ```
 
-##### with.topic
+#### with.topic
 
 > `string`
 
 The name of a Kafka topic.
 
-##### with.filters
+#### with.filters
 
 > `array` of `object`
 
 List of criteria (any match) to this filter. Kafka filters for matched route when adapting `grpc` request-response streams to `kafka` topic fetch streams. All specified headers and key must match for the combined criteria to match.
 
-##### filters[].key
+#### filters[].key
 
 > `string`
 
 The filter criteria for the Kafka message key.
 
-##### filters[].headers
+#### filters[].headers
 
 > `map` of `name: value` properties
 
@@ -191,31 +191,31 @@ with:
   reply-to: responses
 ```
 
-##### with.topic
+#### with.topic
 
 > `string`
 
 The name of a Kafka topic for requests.
 
-##### with.acks
+#### with.acks
 
 > `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
 
 Kafka acknowledgment mode
 
-##### with.key
+#### with.key
 
 > `string`
 
 The Kafka message key to include with each message.
 
-##### with.overrides
+#### with.overrides
 
 > `map` of `name: value` properties
 
 The Kafka message headers to inject with each message.
 
-##### with.reply-to
+#### with.reply-to
 
 > `string`
 

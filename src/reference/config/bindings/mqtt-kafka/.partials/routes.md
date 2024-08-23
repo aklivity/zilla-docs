@@ -45,7 +45,7 @@ routes:
           - topic: place/#
 ```
 
-##### when[].publish
+#### when[].publish
 
 > `array` of `object`
 
@@ -57,13 +57,13 @@ Array of MQTT topic filters matching topic names for publish.
     - topic: subs/#
 ```
 
-##### publish[].topic
+#### publish[].topic
 
 > `string`
 
 MQTT topic filter pattern.
 
-##### when[].subscribe
+#### when[].subscribe
 
 > `array` of `object`
 
@@ -75,7 +75,7 @@ Array of MQTT topic filters matching topic names for subscribe.
     - topic: subs/#
 ```
 
-##### subscribe[].topic
+#### subscribe[].topic
 
 > `string`
 
@@ -98,7 +98,7 @@ with:
   messages: mqtt-devices
 ```
 
-##### with.messages
+#### with.messages
 
 > `string`
 

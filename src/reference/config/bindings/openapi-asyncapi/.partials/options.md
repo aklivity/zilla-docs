@@ -19,7 +19,7 @@ options:
 
 OpenAPI and AsyncAPI specs definition.
 
-##### specs.openapi
+#### specs.openapi
 
 > `object` of `name: value` properties
 
@@ -41,7 +41,7 @@ Subject name used when storing the catalog artifact.
 
 Catalog artifact version to use.
 
-##### specs.asyncapi
+#### specs.asyncapi
 
 > `object` of `name: value` properties
 

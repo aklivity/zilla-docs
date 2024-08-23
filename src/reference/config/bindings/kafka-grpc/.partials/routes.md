@@ -47,31 +47,31 @@ routes:
         method: example.EchoService/*
 ```
 
-##### when[].topic
+#### when[].topic
 
 > `string`
 
 The name of a Kafka topic for requests.
 
-##### when[].key
+#### when[].key
 
 > `string`
 
 The name of a Kafka topic for requests.
 
-##### when[].headers
+#### when[].headers
 
 > `map` of `name: value` properties
 
 Header name value pairs (all match).
 
-##### when[].reply-to
+#### when[].reply-to
 
 > `string`
 
 The name of the Kafka topic for correlated responses.
 
-##### when[].method
+#### when[].method
 
 > `string`
 
@@ -102,13 +102,13 @@ with:
   authority: localhost:7151
 ```
 
-##### with.scheme
+#### with.scheme
 
 > `string`
 
 The `grpc` request scheme.
 
-##### with.authority
+#### with.authority
 
 > `string`
 

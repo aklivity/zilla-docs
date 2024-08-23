@@ -17,14 +17,8 @@ The grpc server binding adapts `http` request-response streams to `grpc` request
 
 ## Configuration (\* required)
 
-<!-- @include: ../.partials/cataloged.md -->
+<!-- @include: ../.partials/catalog.md -->
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/telemetry-grpc.md -->
-
----
-
-::: right
-\* required
-:::

@@ -3,7 +3,8 @@
 > `object`
 
 `grpc`-specific options.
-```yaml {2}
+
+```yaml
 grpc_client:
   type: grpc
   kind: client

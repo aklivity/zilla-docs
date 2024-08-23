@@ -12,7 +12,26 @@ The kafka cache_client binding
 
 ## Configuration (\* required)
 
-<!-- @include: ./.partials/options.md -->
+### options
+
+> `object`
+
+`kafka`-specific options.
+
+```yaml
+options:
+  topics:
+    - name: items-requests
+```
+
+#### options.topics
+
+> `array` of `object`
+
+Topic configuration.
+
+<!-- @include: ../.partials/options-kafka-topics.md -->
+
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

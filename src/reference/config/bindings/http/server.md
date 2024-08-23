@@ -18,7 +18,130 @@ Conditional routes based on `http` request headers are used to route these appli
 
 ## Configuration (\* required)
 
+### options
+
+> `object`
+
+`server`-specific options.
+
+```yaml
+options:
+  access-control:
+    policy: cross-origin
+  authorization:
+    my_jwt_guard:
+      credentials:
+        headers:
+          authorization: Bearer {credentials}
+  overrides:
+    custom-text: custom-value
+```
+
 <!-- @include: ./.partials/options.md -->
+
+#### options.access-control
+
+> **oneOf**: [same-origin](#access-control-policy-same-origin) | [cross-origin](#access-control-policy-cross-origin)
+
+Access control policy for the `HTTP` protocol.
+
+#### access-control.policy\*
+
+> `enum` [ "same-origin" , "cross-origin" ]
+
+Supported access control policies.
+
+#### access-control.policy: same-origin
+
+> `string`
+
+Extra properties aren't needed when using Same Origin access control for the `HTTP` protocol.
+
+```yaml
+options:
+  access-control:
+    policy: same-origin
+```
+
+#### access-control.policy: cross-origin
+
+> `object`
+
+Additional properties that cover Cross Origin Resource Sharing (CORS) access control for the `HTTP` protocol.
+
+```yaml
+options:
+  access-control:
+    policy: cross-origin
+```
+
+#### access-control.allow
+
+> `object` | Default: all origins, methods and headers, without credentials
+
+Allowed cross-origin request origins, methods, headers and credentials.
+CORS allowed request origins, methods, headers and credentials for the `HTTP` protocol.
+
+#### allow.origins
+
+> `array` of `string`
+
+Allowed request origins.
+
+#### allow.methods
+
+> `array` of `string`
+
+Allowed request methods.
+
+#### allow.headers
+
+> `array` of `string`
+
+Allowed request headers.
+
+#### allow.credentials
+
+> `boolean`
+
+Support `fetch` credentials mode `include`.
+
+#### access-control.max-age
+
+> `integer`
+
+Maximum cache age (in seconds) for allowed headers and methods.
+
+#### access-control.expose
+
+> `object` | Default: all response headers
+
+Exposed cross-origin response headers.
+
+#### expose.headers
+
+> `array` of `string`
+
+Exposed response headers.
+
+
+#### options.authorization
+
+> `object` as map of named objects
+
+Authorization by a named guard for the `HTTP/1.1` and `HTTP/2` protocols.
+
+```yaml
+authorization:
+  my_jwt_guard:
+    credentials:
+      headers:
+        authorization: Bearer {credentials}
+```
+
+<!-- @include: ../.partials/options-http-auth.md -->
+
+
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

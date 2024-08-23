@@ -4,6 +4,19 @@
 
 Conditional `openapi-asyncapi`-specific routes for adapting `openapi` operations to `asyncapi` operations.
 
+#### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      my_guard:
+        - read:items
+```
+
 #### routes[].when
 
 > `array` of `object`
@@ -11,13 +24,13 @@ Conditional `openapi-asyncapi`-specific routes for adapting `openapi` operations
 List of conditions to match this route when adapting `openapi` request-response streams to `asyncapi` streams.
 Read more: [When a route matches](../../../../concepts/bindings.md#when-a-route-matches)
 
-##### when[].api-id
+#### when[].api-id
 
 > `string`
 
 OpenAPI spec identifier that matches from the `openapi` binding request stream.
 
-##### when[].operation-id
+#### when[].operation-id
 
 > `string`
 
@@ -47,13 +60,13 @@ with:
   api-id: my-asyncapi-spec
 ```
 
-##### with.api-id
+#### with.api-id
 
 > `string`
 
 AsyncAPI spec identifier that the route exits with to the next binding
 
-##### with.operation-id
+#### with.operation-id
 
 > `string`
 

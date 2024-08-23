@@ -34,53 +34,98 @@ routes:
 List of conditions (any match) to match this route.
 Read more: [When a route matches](../../../../concepts/bindings.md#when-a-route-matches)
 
-##### when[].transport
+#### when[].transport
 
 > `enum` [ "stream", "datagram" ]
 
 Transport type.
 
-##### when[].family
+#### when[].family
 
 > `enum` [ "inet", "inet4", "inet6", "unix" ]
 
 Address family.
 
-##### when[].source
+#### when[].source
 
 > `object`
 
 Source address.
 
-##### source.host
+#### source.host
 
 > `string`
 
 Hostname or IP address.
 
-##### source.port
+#### source.port
 
 > `integer`
 
 Port number.
 
-##### when[].destination
+#### when[].destination
 
 > `object`
 
 Destination address.
 
-##### destination.host
+#### destination.host
 
 > `string`
 
 Hostname or IP address.
 
-##### destination.port
+#### destination.port
 
 > `integer`
 
 Port number.
+
+#### when[].info
+
+> `object`
+
+#### info.alpn
+
+> `string`
+
+#### info.authority
+
+> `string`
+
+#### info.identity
+
+> `string`
+
+#### info.namespace
+
+> `string`
+
+#### info.secure
+
+> `string`
+
+#### secure.cipher
+
+> `string`
+
+#### secure.key
+
+> `string`
+
+#### secure.name
+
+> `string`
+
+#### secure.signature
+
+> `string`
+
+#### secure.version
+
+> `string`
+
 
 #### routes[].exit\*
 

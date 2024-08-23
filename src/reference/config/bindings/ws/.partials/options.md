@@ -33,5 +33,3 @@ Authority.
 > `string`
 
 Path.
-
-<!-- @include: ../.partials/exit.md -->

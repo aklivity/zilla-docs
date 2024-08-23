@@ -22,6 +22,19 @@ Conditional `asyncapi`-specific routes for adapting streams.
           operation-id: onSensorData
 ```
 
+#### routes[].guarded
+
+> `object` as named map of `string:string` `array`
+
+List of roles required by each named guard to authorize this route.
+
+```yaml
+routes:
+  - guarded:
+      my_guard:
+        - read:items
+```
+
 #### routes[].when
 
 > `array` of `object`
@@ -29,30 +42,18 @@ Conditional `asyncapi`-specific routes for adapting streams.
 List of conditions to match this route when adapting `asyncapi` MQTT streams to `asyncapi` Kafka streams.
 Read more: [When a route matches](../../../../concepts/bindings.md#when-a-route-matches)
 
-##### when[].api-id
+#### when[].api-id
 
 > `string`
 
 AsyncAPI spec identifier that matches from `asyncapi` binding MQTT stream.
 
-##### when[].operation-id
+#### when[].operation-id
 
 > `string`
 
 AsyncAPI OperationId that can be mapped between AsyncAPI MQTT and AsyncAPI Kafka spec
 
-#### routes[].exit\*
-
-> `string`
-
-Default exit binding when no conditional routes are viable.
-
-```yaml
-routes:
-  - when:
-    ...
-    exit: asyncapi_client
-```
 
 #### routes[].with
 
@@ -65,13 +66,13 @@ with:
   api-id: my-asyncapi-spec
 ```
 
-##### with.api-id
+#### with.api-id
 
 > `string`
 
 AsyncAPI spec identifier that the route exits with to the next binding
 
-##### with.operation-id
+#### with.operation-id
 
 > `string`
 

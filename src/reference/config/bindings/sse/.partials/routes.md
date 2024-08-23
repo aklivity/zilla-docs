@@ -40,7 +40,7 @@ routes:
       - path: /items
 ```
 
-##### when[].path\*
+#### when[].path\*
 
 > `string`
 

@@ -53,20 +53,20 @@ options:
 
 Private keys.
 
-##### keys.store\*
+#### keys.store\*
 
 > `string`
 
 Relative path to keystore.
 
-##### keys.type
+#### keys.type
 
 > `string`
 
 Keystore type,\
 defaults to `"pkcs12"`
 
-##### keys.password
+#### keys.password
 
 > `string`
 
@@ -78,20 +78,20 @@ Keystore password.
 
 Trust certificates.
 
-##### trust.store\*
+#### trust.store\*
 
 > `string`
 
 Relative path to keystore.
 
-##### trust.type
+#### trust.type
 
 > `string`
 
 Keystore type,\
 defaults to `"pkcs12"`
 
-##### trust.password
+#### trust.password
 
 > `string`
 
@@ -103,20 +103,20 @@ Keystore password.
 
 Signer certificates.
 
-##### signers.store\*
+#### signers.store\*
 
 > `string`
 
 Relative path to keystore.
 
-##### signers.type
+#### signers.type
 
 > `string`
 
 Keystore type.\
 defaults to `"pkcs12"`
 
-##### signers.password
+#### signers.password
 
 > `string`
 

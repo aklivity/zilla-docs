@@ -37,19 +37,19 @@ routes:
       - alpn: echo
 ```
 
-##### when[].authority
+#### when[].authority
 
 > `string`
 
 Associated authority.
 
-##### when[].alpn
+#### when[].alpn
 
 > `string`
 
 Application protocol.
 
-##### when[].port
+#### when[].port
 
 > `integer` | `string` | `array` of  `integer` | `array` of `string`
 

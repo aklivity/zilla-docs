@@ -41,7 +41,7 @@ routes:
       - path: /items
 ```
 
-##### when[].path\*
+#### when[].path\*
 
 > `string`
 
@@ -66,13 +66,13 @@ routes:
 
 Kafka parameters used when adapting `sse` data streams to `kafka` data streams.
 
-##### with.topic\*
+#### with.topic\*
 
 > `string`
 
 Topic name, optionally referencing path parameter such as `${params.topic}`.
 
-##### with.filters
+#### with.filters
 
 > `array` of `object`
 
@@ -80,25 +80,25 @@ Kafka filters for matched route when adapting `sse` data streams to `kafka` data
 
 List of criteria (any match). All specified headers and key must match for the combined criteria to match.
 
-##### filters[].key
+#### filters[].key
 
 > `string`
 
 Message key, optionally referencing path parameter such as `${params.key}`.
 
-##### filters[].headers
+#### filters[].headers
 
 > `map` of `name: value` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
-##### with.event
+#### with.event
 
 > `object`
 
 Defines the SSE event syntax used when delivering Kafka messages to SSE clients.
 
-##### event.id\*
+#### event.id\*
 
 > `enum` [ `"${etag}"`, `"["${base64(key)}","${etag}"]"` ] | Default: `"${etag}"`
 

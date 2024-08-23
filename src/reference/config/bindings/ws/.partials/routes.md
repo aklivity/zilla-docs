@@ -37,25 +37,25 @@ routes:
       - protocol: echo
 ```
 
-##### when[].protocol
+#### when[].protocol
 
 > `string`
 
 Subprotocol pattern.
 
-##### when[].scheme
+#### when[].scheme
 
 > `string`
 
 Scheme pattern.
 
-##### when[].authority
+#### when[].authority
 
 > `string`
 
 Authority pattern.
 
-##### when[].path
+#### when[].path
 
 > `string`
 

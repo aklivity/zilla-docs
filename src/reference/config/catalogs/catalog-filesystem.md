@@ -35,7 +35,7 @@ Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pull
 
 Unique identifier for artifact categorization in the catalog.
 
-##### subjects.path\*
+#### subjects.path\*
 
 > `string`
 

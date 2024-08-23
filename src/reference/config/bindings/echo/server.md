@@ -12,5 +12,4 @@ The echo server binding supports the `echo` protocol and is run with the `server
 
 ## Configuration (\* required)
 
-<!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

@@ -61,13 +61,13 @@ Specifies what signals should be exported. The default behavior is to export all
 
 Contains details for the OpenTelemetry Protocol collector endpoint.
 
-##### endpoint.protocol
+#### endpoint.protocol
 
 > `string`
 
 Specifies the protocol to use for exporting data. Currently only `http` is supported. The default is `http`.
 
-##### endpoint.location\*
+#### endpoint.location\*
 
 > `string`
 

@@ -17,15 +17,5 @@ The kafka-proxy proxy binding
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
-
-### exit\*
-
-> `string`
-
-Default exit binding when no conditional routes are viable.
-
-```yaml
-exit: tls_client
-```
-
+<!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

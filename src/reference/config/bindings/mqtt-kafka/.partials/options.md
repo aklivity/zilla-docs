@@ -29,7 +29,7 @@ options:
     retained: mqtt-retained
 ```
 
-##### topics.sessions\*
+#### topics.sessions\*
 
 > `string`
 
@@ -39,13 +39,13 @@ A Kafka topic for storing mqtt session states.
 A `compact` [cleanup.policy](https://kafka.apache.org/30/generated/topic_config.html#topicconfigs_cleanup.policy) is required.
 :::
 
-##### topics.messages\*
+#### topics.messages\*
 
 > `string`
 
 The default Kafka topic used for routing mqtt messages.
 
-##### topics.retained\*
+#### topics.retained\*
 
 > `string`
 
@@ -73,7 +73,7 @@ options:
 
 MQTT `publish`-specific options.
 
-##### publish.qosMax
+#### publish.qosMax
 
 > `enum` [ "at_most_once", "at_least_once", "exactly_once" ] | default: "exactly_once"
 

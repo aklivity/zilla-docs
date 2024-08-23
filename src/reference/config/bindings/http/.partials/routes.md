@@ -41,7 +41,7 @@ routes:
           ":authority": example.com:443
 ```
 
-##### when[].headers
+#### when[].headers
 
 > `map` of `name: value` properties
 

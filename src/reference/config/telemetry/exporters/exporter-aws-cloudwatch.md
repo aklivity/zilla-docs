@@ -55,7 +55,7 @@ options:
 
 Configuration for transmitting custom metric data points to Amazon CloudWatch.
 
-##### metrics.namespace\*
+#### metrics.namespace\*
 
 > `string`
 
@@ -63,7 +63,7 @@ The namespace for the metric data.
 
 To avoid conflicts with Amazon Web Services service namespaces, you should not specify a namespace that begins with `AWS/`.
 
-##### metrics.interval
+#### metrics.interval
 
 > `integer`
 
@@ -75,13 +75,13 @@ Interval in seconds to push data to the Amazon CloudWatch. Default: 30 seconds.
 
 Configuration for transmitting log events to Amazon CloudWatch.
 
-##### logs.group\*
+#### logs.group\*
 
 > `string`
 
 The name of the log group.
 
-##### logs.stream\*
+#### logs.stream\*
 
 > `string`
 

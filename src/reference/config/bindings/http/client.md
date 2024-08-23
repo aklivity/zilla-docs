@@ -14,7 +14,20 @@ Conditional routes based on `http` request headers are used to route these netwo
 
 ## Configuration (\* required)
 
+### options
+
+> `object`
+
+`client`-specific options.
+
+```yaml
+options:
+  overrides:
+    custom-text: custom-value
+```
+
 <!-- @include: ./.partials/options.md -->
+
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

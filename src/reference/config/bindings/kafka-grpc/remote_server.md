@@ -14,5 +14,4 @@ The kafka-grpc remote_server binding
 
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
-<!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry-grpc.md -->

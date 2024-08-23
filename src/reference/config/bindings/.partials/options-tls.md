@@ -1,63 +1,47 @@
-### options
-
-> `object`
-
-`tls`-specific options.
-
-```yaml
-options:
-  keys:
-  - localhost
-  sni:
-  - localhost
-  alpn:
-  - echo
-```
-
-#### options.version
+#### tls.version
 
 > `string`
 
 Protocol version.
 
-#### options.keys
+#### tls.keys
 
 > `array` of `string`
 
 A list of reference names for the Vault key.
 
-#### options.trust
+#### tls.trust
 
 > `array` of `string`
 
 A list of reference names for the Vault certificate.
 
-#### options.signers
+#### tls.signers
 
 > `array` of `string`
 
 A list of reference names for the Vault signer certificate.
 
-#### options.trustcacerts
+#### tls.trustcacerts
 
 > `boolean` | Default: `true` when trust is `null`
 
 Trust CA certificates.
 
-#### options.sni\*
+#### tls.sni\*
 
 > `array` of `string`
 
 A list of the Server Name Indications.
 
-#### options.alpn
+#### tls.alpn
 
 > `array` of `string`
 
 Application protocols.
 
-#### options.mutual
+#### tls.mutual
 
 > `enum` [ "required", "requested", "none" ] | Default: `"none"`
 
-Mutual authentication
+Mutual authentication.

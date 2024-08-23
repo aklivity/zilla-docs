@@ -49,13 +49,13 @@ routes:
             base64: Y3VzdG9tIHZhbHVl
 ```
 
-##### when[].method
+#### when[].method
 
 > `string`
 
 gRPC service method name, such as `example.EchoService/EchoUnary`, or service method pattern such as `example.EchoService/*`.
 
-##### when[].metadata
+#### when[].metadata
 
 > `map` of `name: value` properties
 
@@ -63,7 +63,7 @@ Metadata header name value pairs (all match).
 
 Each metadata header value can be `string` or `object` with `base64` property.
 
-##### metadata.base64
+#### metadata.base64
 
 > `string`
 

@@ -39,13 +39,13 @@ routes:
         capabilities: send_and_receive
 ```
 
-##### when[].address
+#### when[].address
 
 > `string`
 
 Link address.
 
-##### when[].capabilities
+#### when[].capabilities
 
 > `enum` [ "send_only", "receive_only", "send_and_receive" ] | Default: `"send_and_receive"`
 

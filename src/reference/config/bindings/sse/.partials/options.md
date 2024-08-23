@@ -21,14 +21,20 @@ Retry delay (ms)
 
 the `requests`-specific options.
 
-##### requests[].path
+#### requests[].path
 
 > `string`
 
 The path selector.
 
-##### requests[].content
+#### requests[].content
 
-> `object` of a named [`model`](../models/)
+> `object`
 
 Enforce validation for the request content.
+
+#### content.model
+
+> `model` [ [`avro`](../../models/model-avro.md), [`json`](../../models/model-avro.md), [`protobuf`](../../models/model-protobuf.md), [`string`](../../models/model-string.md), [`integer`](../../models/model-integer.md) ]
+
+A schema or type to validate the request content.

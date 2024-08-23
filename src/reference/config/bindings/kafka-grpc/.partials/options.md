@@ -30,7 +30,7 @@ The `kafka` acknowledgment mode.
 
 Metadata header used to specify the idempotency key when adapting `kafka` topic streams to `grpc` request-response streams.
 
-##### idempotency.metadata
+#### idempotency.metadata
 
 > `string` | Default: `"idempotency-key"`.
 
@@ -42,31 +42,31 @@ The `grpc` metadata header name for idempotency key.
 
 Kafka request message headers injected when adapting `kafka` topic streams to `grpc` request-response streams.
 
-##### correlation.headers
+#### correlation.headers
 
 > `object`
 
 Kafka request message correlation header names used when adapting `kafka` topic streams to `grpc` request-response streams.
 
-##### headers.service
+#### headers.service
 
 > `string` | Default: `"zilla:service"`
 
 Kafka header name for `grpc` service.
 
-##### headers.method
+#### headers.method
 
 > `string` | Default: `"zilla:method"`
 
 Kafka header name for `grpc` method.
 
-##### headers.correlation-id
+#### headers.correlation-id
 
 > `string` | Default: `"zilla:correlation-id"`
 
 Kafka header name for request-response correlation identifier.
 
-##### headers.reply-to
+#### headers.reply-to
 
 > `string` | Default: `"zilla:reply-to"`
 

@@ -49,13 +49,13 @@ Defines a catalog with schemas to enforce validation. The schemas are defined in
 
 Unique identifier for schema categorization in the registry.
 
-##### subjects.schema\*
+#### subjects.schema\*
 
 > `string`
 
 Definition specifying data structure and format in detail.
 
-##### subjects.version
+#### subjects.version
 
 > `string` | Default: `"latest"`
 

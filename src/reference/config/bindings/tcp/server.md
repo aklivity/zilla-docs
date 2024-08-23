@@ -13,6 +13,27 @@ The tcp server binding
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
+
+### routes
+
+> `array` of `object`
+
+Conditional `server`-specific routes.
+
 <!-- @include: ./.partials/routes.md -->
+
+#### routes[].exit\*
+
+> `string`
+
+Next binding when following this route, for kind `server` only.
+
+```yaml
+routes:
+  - when:
+    ...
+    exit: echo_server
+```
+
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->
