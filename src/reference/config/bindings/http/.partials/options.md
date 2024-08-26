@@ -33,7 +33,7 @@ A schema or type to validate the request content.
 
 #### params.path
 
-> `object` of a named [`model`](../models/)
+> `object` of a named [`model`](../../../models/)
 
 Enforce validation for path
 
@@ -43,7 +43,7 @@ Enforce validation for path
 
 #### params.query
 
-> `object` of a named [`model`](../models/)
+> `object` of a named [`model`](../../../models/)
 
 Enforce validation for query
 
@@ -69,7 +69,7 @@ Enforce validation for query
 
 #### responses[].headers
 
-> `map` of "name: [model](../models/)" properties
+> `map` of "name: [model](../../../models/)" properties
 
 Enforce validation for response headers.
 

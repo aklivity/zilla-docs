@@ -68,7 +68,7 @@ Topic name.
 
 #### topics[].content
 
-> `object` of a named [`model`](../models/)
+> `object` of a named [`model`](../../models/)
 
 Enforce validation for content
 
@@ -80,9 +80,9 @@ A schema or type to validate the request content.
 
 #### topics[].user-properties
 
-> `map` of "name: [model](../models/)" properties
+> `map` of "name: [model](../../models/)" properties
 
-Enforce validation for user provided properties
+Enforce validation for user provided properties.
 
 ```yaml
 user-properties:

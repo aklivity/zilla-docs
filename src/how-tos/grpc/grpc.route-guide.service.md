@@ -8,7 +8,7 @@ next: false
 
 This guide will walk through each unique gRPC message request and response design and how Zilla is configured to manage the connection for each.
 
-Let's take a look at how Zilla would be configured with a full featured gRPC service. For this, we will use the [route_guide.proto](https://github.com/grpc/grpc-java/blob/master/examples/src/main/proto/route_guide.proto) to define the gRPC service and the method request-response types. You can find examples of running this service in any language on the [gRPC docs](https://grpc.io/docs/languages/) as well as example clients like this one implemented in [java](https://grpc.io/docs/languages/java/basics/README.md#client).
+Let's take a look at how Zilla would be configured with a full featured gRPC service. For this, we will use the [route_guide.proto](https://github.com/grpc/grpc-java/blob/master/examples/src/main/proto/route_guide.proto) to define the gRPC service and the method request-response types. You can find examples of running this service in any language on the [gRPC docs](https://grpc.io/docs/languages/) as well as example clients like this one implemented in [java](https://grpc.io/docs/languages/java/basics/#client).
 
 ## Step 1: Declaring the service
 

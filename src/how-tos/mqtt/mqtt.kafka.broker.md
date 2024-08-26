@@ -154,7 +154,7 @@ A [ws](../../reference/config/bindings/tcp/) binding is added to handle any MQTT
 
 ### Service definition
 
-The service definition defines how the clients using this service will interact with Kafka through Zilla. The required set of Kafka topics are defined in the [options.topics](../../reference/config/bindings/mqtt-kafka/README.md#options-topics) where Zilla manages any MQTT required features. A client identity can be determined by pulling the identifier out of the topic using the [options.clients](../../reference/config/bindings/mqtt-kafka/proxy.md#options-clients) property.
+The service definition defines how the clients using this service will interact with Kafka through Zilla. The required set of Kafka topics are defined in the [options.topics](../../reference/config/bindings/mqtt-kafka/proxy.md#options-topics) where Zilla manages any MQTT required features. A client identity can be determined by pulling the identifier out of the topic using the [options.clients](../../reference/config/bindings/mqtt-kafka/proxy.md#options-clients) property.
 
 ```yaml{7-9,21}
 <!-- @include: ./mqtt_kafka_broker_zilla.yaml#kafka_mapping -->
