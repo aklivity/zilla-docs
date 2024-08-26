@@ -82,4 +82,3 @@ The number of `grpc` request messages per RPC.
 > `histogram`
 
 The number of `grpc` response messages per RPC.
-

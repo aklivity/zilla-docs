@@ -117,4 +117,3 @@ defaults to `"pkcs12"`
 > `string`
 
 Keystore password.
-

@@ -72,4 +72,3 @@ Endpoint URL override for AWS Secrets Manager API.
 > `string`
 
 Endpoint URL override for AWS Resource Groups Tagging API.
-

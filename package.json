@@ -17,7 +17,7 @@
     "dev": "vuepress-vite dev src",
     "update-package": "pnpm add -g pnpm && pnpm dlx vp-update",
     "lint": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#.config\" \"#.check-schema\"",
-    "lint-fix": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#.config\" \"#.check-schema\"",
+    "lint-fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\" \"#.config\" \"#.check-schema\"",
     "link-checker": "pnpm build && link-checker src/.vuepress/dist",
     "check-schema": "node ./.check-schema"
   },

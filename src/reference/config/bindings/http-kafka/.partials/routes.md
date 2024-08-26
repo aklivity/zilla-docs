@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD024 -->
 ### routes
 
 > `array` of `object`

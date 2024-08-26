@@ -34,4 +34,3 @@ The `client` kind `openapi` binding creates composite of `http`, `tls`, and `tcp
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->
 ```
-

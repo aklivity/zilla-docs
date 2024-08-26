@@ -114,4 +114,3 @@ The number of closed received streams.
 > `counter`
 
 The number of closed sent streams.
-

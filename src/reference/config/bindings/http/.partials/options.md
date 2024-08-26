@@ -19,28 +19,17 @@ A schema or type to validate the request content.
 
 > `string`
 
-
-
 #### requests[].headers
 
 > `string`
-
-#### requests[].headers
-
-> `string`
-
-
 
 #### requests[].method
 
->  `enum` [ "GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE" ]
-
-
+> `enum` [ "GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE" ]
 
 #### requests[].params
 
 > `string`
-
 
 #### params.path
 
@@ -70,12 +59,9 @@ Enforce validation for query
 
 > `array` of `object`
 
-
 #### responses[].content
 
 > `string`
-
-
 
 #### responses[].content-type
 
@@ -102,11 +88,9 @@ headers:
 
 > `string`
 
-
 #### options.versions
 
 Supported protocol versions.
-
 
 #### options.overrides
 

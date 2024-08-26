@@ -54,7 +54,6 @@ AsyncAPI spec identifier that matches from `asyncapi` binding MQTT stream.
 
 AsyncAPI OperationId that can be mapped between AsyncAPI MQTT and AsyncAPI Kafka spec
 
-
 #### routes[].with
 
 > `object`

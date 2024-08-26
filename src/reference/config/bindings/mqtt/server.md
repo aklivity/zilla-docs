@@ -12,7 +12,6 @@ The mqtt server binding
 
 ## Configuration (\* required)
 
-
 ### options
 
 > `object`

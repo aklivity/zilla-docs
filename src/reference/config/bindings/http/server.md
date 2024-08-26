@@ -124,7 +124,6 @@ Exposed cross-origin response headers.
 
 Exposed response headers.
 
-
 #### options.authorization
 
 > `object` as map of named objects
@@ -140,7 +139,6 @@ authorization:
 ```
 
 <!-- @include: ../.partials/options-http-auth.md -->
-
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->

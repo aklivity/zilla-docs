@@ -66,4 +66,3 @@ The `http` request content length in `bytes`.
 > `histogram`
 
 The `http` response content length in `bytes`.
-

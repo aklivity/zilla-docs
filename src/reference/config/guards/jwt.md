@@ -136,4 +136,3 @@ If not provided, relies on the `issuer` to infer the location of a remote `.well
 > "EC" point Y coordinate.
 
 :::
-

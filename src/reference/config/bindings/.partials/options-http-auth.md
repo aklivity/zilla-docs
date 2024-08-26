@@ -21,4 +21,3 @@ Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`
 > `map` of `name: value` properties
 
 Named query parameter value pattern with `{credentials}`.
-

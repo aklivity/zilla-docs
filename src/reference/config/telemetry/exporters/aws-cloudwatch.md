@@ -15,7 +15,6 @@ Specifies an exporter for transmitting Custom Metrics and Log Events to AWS Clou
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-
 ```yaml {3}
 exporters:
   aws_cloudwatch:
@@ -84,4 +83,3 @@ The name of the log group.
 > `string`
 
 The name of the log stream.
-

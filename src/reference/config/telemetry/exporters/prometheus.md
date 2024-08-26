@@ -62,4 +62,3 @@ URL port to accept for endpoint.
 > `string`
 
 URL path to accept for endpoint.
-

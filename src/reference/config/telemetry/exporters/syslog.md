@@ -116,4 +116,3 @@ or an AWS vault for remote pem format certificates stored in AWS secrets manager
 > `boolean`
 
 Specifies if the CA certs should be trusted. Only valid if the protocol is `tls`.
-

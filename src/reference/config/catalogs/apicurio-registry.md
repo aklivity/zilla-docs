@@ -57,4 +57,3 @@ Store identifiers as Apicurio default 8-byte long or legacy 4-byte integer.
 > `integer` | Default: `300`
 
 The maximum duration in seconds to keep a cached schema before fetching the schema again.
-
