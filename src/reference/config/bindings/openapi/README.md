@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: openapi
-description: Zilla runtime openapi binding
 category:
   - Binding
 tag:

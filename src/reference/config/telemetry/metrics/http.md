@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/telemetry/metrics/metric-http.html
 shortTitle: http
-description: Zilla runtime telemetry type
+
 category:
   - Telemetry
 tag:
@@ -66,8 +67,3 @@ The `http` request content length in `bytes`.
 
 The `http` response content length in `bytes`.
 
----
-
-::: right
-\* required
-:::

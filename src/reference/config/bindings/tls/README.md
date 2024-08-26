@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: tls
-description: Zilla runtime tls binding
 category:
   - Binding
 tag:

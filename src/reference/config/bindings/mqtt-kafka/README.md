@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: mqtt-kafka
-description: Zilla runtime mqtt-kafka binding
 category:
   - Binding
 tag:

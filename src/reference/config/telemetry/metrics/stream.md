@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/telemetry/metrics/metric-stream.html
 shortTitle: stream
-description: Zilla runtime telemetry type
+
 category:
   - Telemetry
 tag:
@@ -114,8 +115,3 @@ The number of closed received streams.
 
 The number of closed sent streams.
 
----
-
-::: right
-\* required
-:::

@@ -1,6 +1,5 @@
 ---
 shortTitle: client
-description: Zilla runtime grpc client binding
 category:
   - Binding
 tag:

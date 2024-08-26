@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: proxy
-description: Zilla runtime proxy binding
 category:
   - Binding
 tag:

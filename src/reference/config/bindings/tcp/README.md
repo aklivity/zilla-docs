@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: tcp
-description: Zilla runtime tcp binding
 category:
   - Binding
 tag:

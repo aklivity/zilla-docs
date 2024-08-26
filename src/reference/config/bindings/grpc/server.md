@@ -1,6 +1,6 @@
 ---
 shortTitle: server
-description: Zilla runtime grpc server binding
+
 category:
   - Binding
 tag:

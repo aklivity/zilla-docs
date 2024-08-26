@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: kafka
-description: Zilla runtime kafka binding
 category:
   - Binding
 tag:
@@ -15,17 +14,7 @@ tag:
 
 Defines a binding with `kafka` protocol support, with `cache_client`, `cache_server` or `client` behavior.
 
-## cache_client
-
-> [Full config](./cache_client.md)
-
-```yaml {3}
-<!-- @include: ./.partials/cache_client.yaml -->
-```
-
-## cache_server
-
-> [Full config](./cache_server.md)
+## Cache Behavior
 
 The `cache_client` and `cache_server` kinds combine to provide a persistent cache of `kafka` messages per `topic` `partition` honoring the `kafka` `topic` configuration for message expiration and compaction. Messages ordering is guaranteed per `partition` and messages are merged into a unified stream for the `topic` spanning all `partitions`.
 
@@ -40,6 +29,18 @@ When a new consumer arrives, the latest messages in the compacted topic are imme
 When the `kafka` `topic` is not compacted, then the binding can be configured to either replay historical messages first, or start with upcoming live messages instead.
 
 The `cache_client` and `cache_server` also combine to provide a staging area when producing new messages as `kafka` requires exact message length up front when producing new messages and `kafka` does not support producing multiple messages in parallel over the same network connection.
+
+## cache_client
+
+> [Full config](./cache_client.md)
+
+```yaml {3}
+<!-- @include: ./.partials/cache_client.yaml -->
+```
+
+## cache_server
+
+> [Full config](./cache_server.md)
 
 ```yaml {3}
 <!-- @include: ./.partials/cache_server.yaml -->

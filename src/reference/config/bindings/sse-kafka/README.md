@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: sse-kafka
-description: Zilla runtime sse-kafka binding
 category:
   - Binding
 tag:

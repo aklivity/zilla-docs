@@ -1,13 +1,13 @@
 ---
+redirectFrom: /reference/config/models/model-protobuf.html
 shortTitle: protobuf
-description: Zilla runtime protobuf model
 category:
   - Models
 ---
 
 # protobuf Model
 
-Zilla runtime protobuf model
+Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
 
 ```yaml {1}
 model: protobuf
@@ -26,9 +26,11 @@ catalog:
 
 ## Configuration (\* required)
 
-### type: protobuf\*
+### model: protobuf\*
 
-Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
+> `string`
+
+Specifies the model is a `protobuf`.
 
 ### view
 
@@ -52,6 +54,22 @@ To map defined catalog for schema retrieval based on catalog specific parameters
 > `subject`
 > `version`
 > `record`
+-----
+> `schema`
+> `version`
+> `record`
+
+#### catalog.id
+
+> `integer`
+
+Define specific schema id to refer from catalog.
+
+#### catalog.version
+
+> `string` | Default: `"latest"`
+
+Specific iteration or version of a registered schema in the defined catalog.
 
 #### catalog.strategy
 
@@ -65,17 +83,11 @@ To determine the subject based on the specified strategy
 
 Unique identifier for schema categorization in the catalog.
 
-#### catalog.version
+#### catalog.schema
 
-> `string` | Default: `"latest"`
+> `string`
 
-Specific iteration or version of a registered schema in the defined catalog.
-
-#### catalog.id
-
-> `integer`
-
-Define specific schema id to refer from catalog.
+Unique identifier for schema categorization in the catalog.
 
 #### catalog.record\*
 

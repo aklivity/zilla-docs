@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/telemetry/exporters/exporter-otlp.html
 shortTitle: otlp
-description: Zilla runtime otlp exporter
+
 category:
   - Telemetry
 tag:
@@ -63,18 +64,22 @@ Contains details for the OpenTelemetry Protocol collector endpoint.
 
 #### endpoint.protocol
 
-> `string`
+> `enum` [ "http" ] | Default: `"http"`
 
-Specifies the protocol to use for exporting data. Currently only `http` is supported. The default is `http`.
+Specifies the protocol to use for exporting data for exporting data to the [OTEL Collector](https://opentelemetry.io/docs/collector/).
 
 #### endpoint.location\*
 
 > `string`
 
-The URL of the collector.
+#### endpoint.overrides
 
----
+> `object`
 
-::: right
-\* required
-:::
+#### overrides.logs
+
+> `string`
+
+#### overrides.metrics
+
+> `string`

@@ -1,6 +1,6 @@
 ---
+redirectFrom: /reference/config/guards/guard-jwt.html
 shortTitle: jwt
-description: Zilla runtime jwt guard
 category:
   - Binding
 tag:
@@ -9,7 +9,11 @@ tag:
 
 # jwt Guard
 
-Zilla runtime jwt guard.
+Defines a guard with `JSON Web Token (JWT)` support.
+
+The `jwt` guard uses public keys to verify the integrity of `JWT` access tokens when identifying authorized subjects and their associated roles scope. The token issuer and audience can also be constrained to prevent access tokens from other applications from being reused inappropriately.
+
+Each verified JWT access token has an expiration time, and an optional challenge window prior to the expiration time that can be used by specific protocol bindings to send a challenge to renew the access token before it expires.
 
 If using an Identity Provider that exposes a `.well-known/jwks.json` file, simply provide the `issuer` and `audience`. The JWKS will be fetched, remotely.
 
@@ -47,14 +51,6 @@ guards:
 ```
 
 ## Configuration (\* required)
-
-### type: jwt\*
-
-Defines a guard with `JSON Web Token (JWT)` support.
-
-The `jwt` guard uses public keys to verify the integrity of `JWT` access tokens when identifying authorized subjects and their associated roles scope. The token issuer and audience can also be constrained to prevent access tokens from other applications from being reused inappropriately.
-
-Each verified JWT access token has an expiration time, and an optional challenge window prior to the expiration time that can be used by specific protocol bindings to send a challenge to renew the access token before it expires.
 
 ### options
 
@@ -141,8 +137,3 @@ If not provided, relies on the `issuer` to infer the location of a remote `.well
 
 :::
 
----
-
-::: right
-\* required
-:::

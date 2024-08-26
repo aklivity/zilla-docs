@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/telemetry/exporters/exporter-stdout.html
 shortTitle: stdout
-description: Zilla runtime stdout exporter
+
 category:
   - Telemetry
 tag:

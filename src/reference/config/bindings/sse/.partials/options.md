@@ -35,6 +35,6 @@ Enforce validation for the request content.
 
 #### content.model
 
-> `model` [ [`avro`](../../models/model-avro.md), [`json`](../../models/model-avro.md), [`protobuf`](../../models/model-protobuf.md), [`string`](../../models/model-string.md), [`integer`](../../models/model-integer.md) ]
+> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
 
 A schema or type to validate the request content.

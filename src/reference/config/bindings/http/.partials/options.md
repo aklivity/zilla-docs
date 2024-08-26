@@ -11,7 +11,7 @@ Enforce validation for the request content.
 
 #### content.model
 
-> `model` [ [`avro`](../../models/model-avro.md), [`json`](../../models/model-avro.md), [`protobuf`](../../models/model-protobuf.md), [`string`](../../models/model-string.md), [`integer`](../../models/model-integer.md) ]
+> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
 
 A schema or type to validate the request content.
 
@@ -20,6 +20,10 @@ A schema or type to validate the request content.
 > `string`
 
 
+
+#### requests[].headers
+
+> `string`
 
 #### requests[].headers
 
@@ -44,17 +48,23 @@ A schema or type to validate the request content.
 
 Enforce validation for path
 
+#### path.model
+
+> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
+
 #### params.query
 
 > `object` of a named [`model`](../models/)
 
 Enforce validation for query
 
+#### query.model
+
+> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
+
 #### requests[].path
 
 > `string`
-
-
 
 #### requests[].responses
 
@@ -71,8 +81,6 @@ Enforce validation for query
 
 > `array` of `string`
 
-
-
 #### responses[].headers
 
 > `map` of "name: [model](../models/)" properties
@@ -82,9 +90,13 @@ Enforce validation for response headers.
 ```yaml
 headers:
   my-header:
-    type: string
+    model: string
     maxLength: 100
 ```
+
+#### headers.model
+
+> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
 
 #### responses[].status
 

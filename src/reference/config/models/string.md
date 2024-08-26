@@ -1,19 +1,20 @@
 ---
+redirectFrom: /reference/config/models/model-string.html
 shortTitle: string
-description: Zilla runtime string model
+
 category:
   - Models
 ---
 
 # string Model
 
-Zilla runtime string model
+Defines a model to enforce validation for string data.
 
 ## Configuration (\* required)
 
 ### model: string\*
 
-Defines a model to enforce validation for string data.
+Specifies the model is a `string`.
 
 ```yaml {1}
 model: string

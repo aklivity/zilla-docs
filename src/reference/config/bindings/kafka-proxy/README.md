@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: kafka-proxy
-description: Zilla runtime kafka-proxy binding
 icon: aky-zilla-plus
 category:
   - Binding

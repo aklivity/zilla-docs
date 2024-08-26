@@ -1,13 +1,14 @@
 ---
+redirectFrom: /reference/config/catalogs/catalog-apicurio-registry.html
 shortTitle: apicurio-registry
-description: Zilla runtime apicurio-registry catalog
+
 category:
   - Catalog
 ---
 
 # apicurio-registry Catalog
 
-Zilla runtime apicurio-registry catalog.
+Defines a catalog with schemas, AsyncAPI/OpenAPI definitions pulled from a remote registry to enforce validation or create APIs.
 
 Accepted `type` aliases:  `apicurio`
 
@@ -22,10 +23,6 @@ catalog:
 ```
 
 ## Configuration (\* required)
-
-### type: apicurio-registry\*
-
-Defines a catalog with schemas, AsyncAPI/OpenAPI definitions pulled from a remote registry to enforce validation or create APIs.
 
 ### options
 
@@ -54,3 +51,10 @@ Use global or content identifier for resolving schemas in Apicurio.
 > `enum` [ "default", "legacy" ] | Default: `"default"`
 
 Store identifiers as Apicurio default 8-byte long or legacy 4-byte integer.
+
+#### options.max-age
+
+> `integer` | Default: `300`
+
+The maximum duration in seconds to keep a cached schema before fetching the schema again.
+

@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: http-filesystem
-description: Zilla runtime http-filesystem binding
 category:
   - Binding
 tag:

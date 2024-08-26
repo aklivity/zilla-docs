@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: openapi-asyncapi
-description: Zilla runtime openapi-asyncapi binding
 category:
   - Binding
 tag:

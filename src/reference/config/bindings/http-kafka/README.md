@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: http-kafka
-description: Zilla runtime http-kafka binding
 category:
   - Binding
 tag:

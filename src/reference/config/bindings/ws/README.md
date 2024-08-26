@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: ws
-description: Zilla runtime ws binding
 category:
   - Binding
 tag:

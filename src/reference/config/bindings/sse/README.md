@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: sse
-description: Zilla runtime sse binding
 category:
   - Binding
 tag:

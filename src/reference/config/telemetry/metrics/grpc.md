@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/telemetry/metrics/metric-grpc.html
 shortTitle: grpc
-description: Zilla runtime telemetry type
+
 category:
   - Telemetry
 tag:
@@ -82,8 +83,3 @@ The number of `grpc` request messages per RPC.
 
 The number of `grpc` response messages per RPC.
 
----
-
-::: right
-\* required
-:::

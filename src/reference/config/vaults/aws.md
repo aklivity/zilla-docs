@@ -1,6 +1,6 @@
 ---
+redirectFrom: /reference/config/vaults/vault-aws.html
 shortTitle: aws
-description: Zilla runtime aws vault
 icon: aky-zilla-plus
 category:
   - Vault
@@ -8,10 +8,12 @@ category:
 
 # aws Vault
 
+Defines a vault remotely accessing AWS services from an EC2 instance.
+
+This is typically combined with `tls` binding `vault` property, referencing resources such as `secrets` by Amazon Resource Names (ARNs).
+
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
-
-Zilla runtime aws vault.
 
 ```yaml {2}
 server:
@@ -25,12 +27,6 @@ server:
 ```
 
 ## Configuration (\* required)
-
-### type: aws\*
-
-Defines a vault remotely accessing AWS services from an EC2 instance.
-
-This is typically combined with `tls` binding `vault` property, referencing resources such as `secrets` by Amazon Resource Names (ARNs).
 
 ### options
 
@@ -77,8 +73,3 @@ Endpoint URL override for AWS Secrets Manager API.
 
 Endpoint URL override for AWS Resource Groups Tagging API.
 
----
-
-::: right
-\* required
-:::

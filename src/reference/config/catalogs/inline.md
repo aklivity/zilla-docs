@@ -1,13 +1,13 @@
 ---
+redirectFrom: /reference/config/catalogs/catalog-inline.html
 shortTitle: inline
-description: Zilla runtime inline catalog
 category:
   - Catalog
 ---
 
 # inline Catalog
 
-Zilla runtime inline catalog.
+Defines a catalog with schemas to enforce validation. The schemas are defined inline with the other properties.
 
 ```yaml {2}
 catalog:
@@ -34,10 +34,6 @@ catalog:
 ```
 
 ## Configuration (\* required)
-
-### type: inline\*
-
-Defines a catalog with schemas to enforce validation. The schemas are defined inline with the other properties.
 
 ### options
 

@@ -1,13 +1,14 @@
 ---
+redirectFrom: /reference/config/models/model-json.html
 shortTitle: json
-description: Zilla runtime json model
+
 category:
   - Models
 ---
 
 # json Model
 
-Zilla runtime json model
+Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
 
 ```yaml {1}
 model: json
@@ -24,6 +25,6 @@ catalog:
 
 ### model: json\*
 
-Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
+Specifies the model is `json`.
 
 <!-- @include: ./.partials/cataloged.md -->

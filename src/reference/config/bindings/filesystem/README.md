@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: filesystem
-description: Zilla runtime filesystem binding
 category:
   - Binding
 tag:

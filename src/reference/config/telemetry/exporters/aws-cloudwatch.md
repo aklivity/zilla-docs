@@ -1,6 +1,7 @@
 ---
-shortTitle: aws cloudwatch
-description: Zilla runtime aws cloudwatch exporter
+redirectFrom: /reference/config/telemetry/exporters/exporter-aws-cloudwatch.html
+shortTitle: aws-cloudwatch
+
 icon: aky-zilla-plus
   - Telemetry
 tag:
@@ -9,10 +10,11 @@ tag:
 
 # aws-cloudwatch Exporter
 
+Specifies an exporter for transmitting Custom Metrics and Log Events to AWS CloudWatch.
+
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-Zilla runtime aws cloudwatch exporter.
 
 ```yaml {3}
 exporters:
@@ -28,10 +30,6 @@ exporters:
 ```
 
 ## Configuration (\* required)
-
-### type: aws-cloudwatch\*
-
-Specifies an exporter for transmitting Custom Metrics and Log Events to AWS CloudWatch.
 
 ### options
 
@@ -87,8 +85,3 @@ The name of the log group.
 
 The name of the log stream.
 
----
-
-::: right
-\* required
-:::

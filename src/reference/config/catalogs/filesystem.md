@@ -1,13 +1,13 @@
 ---
+redirectFrom: /reference/config/catalogs/catalog-filesystem.html
 shortTitle: filesystem
-description: Zilla runtime filesystem catalog
 category:
   - Catalog
 ---
 
 # filesystem Catalog
 
-Zilla runtime filesystem catalog.
+Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pulled from the filesystem relative `zilla.yaml` to enforce validation, create APIs or gRPC services.
 
 ```yaml {2}
 catalogs:
@@ -20,10 +20,6 @@ catalogs:
 ```
 
 ## Configuration (\* required)
-
-### type: filesystem\*
-
-Defines a catalog with schemas, AsyncAPI/OpenAPI definitions or proto files pulled from the filesystem relative `zilla.yaml` to enforce validation, create APIs or gRPC services.
 
 ### options
 

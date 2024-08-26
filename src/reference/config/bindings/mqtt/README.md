@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: mqtt
-description: Zilla runtime mqtt binding
 category:
   - Binding
 tag:

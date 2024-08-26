@@ -1,13 +1,21 @@
 ---
+redirectFrom: /reference/config/vaults/vault-filesystem.html
 shortTitle: filesystem
-description: Zilla runtime filesystem vault
 category:
   - Vault
 ---
 
 # filesystem Vault
 
-Zilla runtime filesystem vault.
+Defines a vault stored on the local filesystem.
+
+The `filesystem` vault uses `PKCS12` format to store signed certificates and keys.
+
+The [keys](#options-keys) option is used to identify the local peer in a TLS handshake.
+
+The [trust](#options-trust) option is used to verify identity of the remote peer in a TLS handshake.
+
+The [signers](#options-signers) option is used to challenge for mutual authentication in a TLS handshake.
 
 ```yaml {2}
 server:
@@ -20,18 +28,6 @@ server:
 ```
 
 ## Configuration (\* required)
-
-### type: filesystem\*
-
-Defines a vault stored on the local filesystem.
-
-The `filesystem` vault uses `PKCS12` format to store signed certificates and keys.
-
-The [keys](#options-keys) option is used to identify the local peer in a TLS handshake.
-
-The [trust](#options-trust) option is used to verify identity of the remote peer in a TLS handshake.
-
-The [signers](#options-signers) option is used to challenge for mutual authentication in a TLS handshake.
 
 ### options
 
@@ -122,8 +118,3 @@ defaults to `"pkcs12"`
 
 Keystore password.
 
----
-
-::: right
-\* required
-:::

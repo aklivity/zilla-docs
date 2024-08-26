@@ -4,7 +4,7 @@ dir:
   collapsible: false
   link: true
 shortTitle: grpc
-description: Zilla runtime grpc binding
+
 category:
   - Binding
 tag:

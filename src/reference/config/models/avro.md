@@ -1,13 +1,14 @@
 ---
+redirectFrom: /reference/config/models/model-avro.html
 shortTitle: avro
-description: Zilla runtime avro model
+
 category:
   - Models
 ---
 
 # avro model
 
-Zilla runtime avro model
+Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
 
 ```yaml {1}
 model: avro
@@ -25,7 +26,7 @@ catalog:
 
 ### model: avro\*
 
-Defines a model to utilize schema from catalog to enforce validation, ensuring adherence to predefined data structures.
+Specifies the model is `avro`.
 
 ### view
 

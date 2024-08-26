@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: fan
-description: Zilla runtime fan binding
 category:
   - Binding
 tag:

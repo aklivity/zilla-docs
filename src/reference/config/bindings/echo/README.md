@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: echo
-description: Zilla runtime echo binding
 category:
   - Binding
 tag:

@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/catalogs/catalog-aws-glue.html
 shortTitle: aws-glue
-description: Zilla runtime aws-glue catalog
+
 icon: aky-zilla-plus
 category:
   - Catalog
@@ -8,10 +9,10 @@ category:
 
 # aws-glue Catalog
 
+Zilla runtime aws-glue catalog supports the official [AWS Glue](https://aws.amazon.com/glue/) registry. It defines a catalog that can fetch schemas [AWS Glue](https://aws.amazon.com/glue/) to enforce validation.
+
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
-
-Zilla runtime aws-glue catalog supports the official [AWS Glue](https://aws.amazon.com/glue/) registry.
 
 ```yaml {2}
 catalog:
@@ -23,10 +24,6 @@ catalog:
 ```
 
 ## Configuration (\* required)
-
-### type: aws-glue\*
-
-Defines a catalog that can fetch schemas [AWS Glue](https://aws.amazon.com/glue/) to enforce validation.
 
 ### options
 

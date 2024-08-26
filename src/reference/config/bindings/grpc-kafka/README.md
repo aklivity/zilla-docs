@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: grpc-kafka
-description: Zilla runtime grpc-kafka binding
 category:
   - Binding
 tag:

@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/telemetry/exporters/exporter-prometheus.html
 shortTitle: prometheus
-description: Zilla runtime prometheus exporter
+
 category:
   - Telemetry
 tag:
@@ -62,8 +63,3 @@ URL port to accept for endpoint.
 
 URL path to accept for endpoint.
 
----
-
-::: right
-\* required
-:::

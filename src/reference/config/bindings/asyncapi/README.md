@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: asyncapi
-description: Zilla runtime asyncapi binding
 category:
   - Binding
 tag:

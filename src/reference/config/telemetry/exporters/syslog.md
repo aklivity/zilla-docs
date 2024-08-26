@@ -1,6 +1,7 @@
 ---
+redirectFrom: /reference/config/telemetry/exporters/exporter-syslog.html
 shortTitle: syslog
-description: Zilla runtime syslog exporter
+
 icon: aky-zilla-plus
 category:
   - Telemetry
@@ -116,8 +117,3 @@ or an AWS vault for remote pem format certificates stored in AWS secrets manager
 
 Specifies if the CA certs should be trusted. Only valid if the protocol is `tls`.
 
----
-
-::: right
-\* required
-:::
