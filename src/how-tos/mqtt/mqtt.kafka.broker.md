@@ -131,25 +131,25 @@ Create a new file called `zilla.yaml` and append the below yaml to it.
 
 ### Entrypoint
 
-This will configure Zilla for accepting all of the `mqtt` traffic. The [tcp](../../reference/config/bindings/tcp/) binding defines the ports Zilla will accept traffic for both MQTT and WebSocket connections.
+This will configure Zilla for accepting all of the `mqtt` traffic. The [tcp](../../reference/config/bindings/tcp/README.md) binding defines the ports Zilla will accept traffic for both MQTT and WebSocket connections.
 
 ```yaml{12-13,15-16}
 <!-- @include: ./mqtt_kafka_broker_zilla.yaml#entrypoint -->
 ```
 
 ::: right
-[More on binding-tcp](../../reference/config/bindings/tcp/)
+[More on binding-tcp](../../reference/config/bindings/tcp/README.md)
 :::
 
-A [ws](../../reference/config/bindings/tcp/) binding is added to handle any MQTT over WebSocket using the `mqtt` protocol. The [mqtt](../../reference/config/bindings/mqtt/) binding then handles all of the MQTT message traffic that needs to go to Kafka.
+A [ws](../../reference/config/bindings/tcp/) binding is added to handle any MQTT over WebSocket using the `mqtt` protocol. The [mqtt](../../reference/config/bindings/mqtt/README.md) binding then handles all of the MQTT message traffic that needs to go to Kafka.
 
 ```yaml{17,22}
 <!-- @include: ./mqtt_kafka_broker_zilla.yaml#server -->
 ```
 
 ::: right
-[More on binding-mqtt](../../reference/config/bindings/mqtt/)
-[More on binding-ws](../../reference/config/bindings/tcp/)
+[More on binding-mqtt](../../reference/config/bindings/mqtt/README.md)
+[More on binding-ws](../../reference/config/bindings/tcp/README.md)
 :::
 
 ### Service definition
@@ -161,7 +161,7 @@ The service definition defines how the clients using this service will interact 
 ```
 
 ::: right
-[More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/)
+[More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/README.md)
 [More on topic data](../../concepts/kafka-proxies/mqtt-proxy.md#step-2-pub-sub-message-reflect-with-kafka)
 :::
 

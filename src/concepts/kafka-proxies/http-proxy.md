@@ -12,7 +12,7 @@ A developer has the freedom to define their own HTTP mapping to Kafka, with cont
 
 ## Configure Endpoints
 
-Zilla can map REST APIs to Kafka using the [http-kafka](../../reference/config/bindings/http-kafka.md/) binding in a [zilla.yaml](../../reference/config/overview.md) config. Zilla routes REST urls using [wildcard pattern matching](../bindings.md#pattern-matching) and [dynamic path params](../bindings.md#dynamic-path-parameters). Dynamic path matching and custom message routing from endpoints to Kafka topics help prevent API lock-in.
+Zilla can map REST APIs to Kafka using the [http-kafka](../../reference/config/bindings/http-kafka/README.md) binding in a [zilla.yaml](../../reference/config/overview.md) config. Zilla routes REST urls using [wildcard pattern matching](../bindings.md#pattern-matching) and [dynamic path params](../bindings.md#dynamic-path-parameters). Dynamic path matching and custom message routing from endpoints to Kafka topics help prevent API lock-in.
 
 ### HTTP request methods
 
@@ -32,7 +32,7 @@ An asynchronous interaction includes a `prefer: respond-async` header when calli
 
 ## SSE Streaming
 
-The Zilla Server-sent Events (SSE) Kafka Proxy exposes an SSE stream of Kafka messages using the [sse-kafka](../../reference/config/bindings/sse-kafka/) binding.
+The Zilla Server-sent Events (SSE) Kafka Proxy exposes an SSE stream of Kafka messages using the [sse-kafka](../../reference/config/bindings/sse-kafka/README.md) binding.
 
 An [SSE](https://html.spec.whatwg.org/multipage/server-sent-events.html) server allows a web browser using the `EventSource` interface to send a request to an SSE endpoint and receive a stream of text from the server, interpreted as individual messages. Zilla relays text messages on a Kafka topic into the event stream.
 
@@ -60,7 +60,7 @@ An HTTP response returns with an [ETag](https://developer.mozilla.org/en-US/docs
 
 ## CORS
 
-Zilla supports Cross-Origin Resource Sharing (CORS) and allows you to specify fine-grained access control, including specific request origins, methods and headers allowed, and specific response headers exposed. Since it acts more like a guard and has no dependency on Apache Kafka configuration, you need to define it in the [http](../../reference/config/bindings/http/) binding.
+Zilla supports Cross-Origin Resource Sharing (CORS) and allows you to specify fine-grained access control, including specific request origins, methods and headers allowed, and specific response headers exposed. Since it acts more like a guard and has no dependency on Apache Kafka configuration, you need to define it in the [http](../../reference/config/bindings/http/README.md) binding.
 
 ## Authorization
 

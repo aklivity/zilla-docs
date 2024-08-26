@@ -8,7 +8,7 @@ next: /tutorials/mqtt/mqtt-intro.md
 
 The Zilla MQTT Kafka Proxy manages MQTT Pub/Sub connections and messages on and off of Kafka.
 
-An MQTT server acts as a broker between publishers and subscribers. This requires a complex protocol to manage the wide range of IoT devices and use cases. By proxying these messages on and off of Kafka with the [mqtt-kafka](../../reference/config/bindings/mqtt-kafka/) binding in a [zilla.yaml](../../reference/config/overview/) config, IoT devices can transmit data to a wider range of tech stacks, adapting to more business needs.
+An MQTT server acts as a broker between publishers and subscribers. This requires a complex protocol to manage the wide range of IoT devices and use cases. By proxying these messages on and off of Kafka with the [mqtt-kafka](../../reference/config/bindings/mqtt-kafka/) binding in a [zilla.yaml](../../reference/config/overview.md) config, IoT devices can transmit data to a wider range of tech stacks, adapting to more business needs.
 
 Zilla uses specific Kafka topics to store and route MQTT messages, meaning the Kafka architecture can be optimized for MQTT Pub/Sub. MQTT client subscribers and publishers will communicate with Zilla the same as any broker.
 
@@ -30,7 +30,7 @@ An MQTT client can use any Quality of Service flag.
 
 ### MQTT over WebSocket
 
-The [tcp](../../reference/config/bindings/tcp/) binding defines the ports Zilla will accept traffic for both MQTT and WebSocket connections. Zilla natively handles WebSockets and can manage the MQTT protocol over an active connection.
+The [tcp](../../reference/config/bindings/tcp/README.md) binding defines the ports Zilla will accept traffic for both MQTT and WebSocket connections. Zilla natively handles WebSockets and can manage the MQTT protocol over an active connection.
 
 ### Last Will and Testament
 
@@ -74,4 +74,4 @@ MQTT connect, disconnect, and other session messages are maintained on the `sess
 
 ## Authorizing clients
 
-Any connection Zilla handles can be secured using the [tls](../../reference/config/bindings/tls/) binding. This means both MQTT and MQTT over WebSocket can be encrypted. Additionally, A client connection to the MQTT server can be guarded by the [jwt](../../reference/config/guards/jwt/) guard supporting JWT access tokens, with fine-grained privileges enforced on publish or subscribe to MQTT topics.
+Any connection Zilla handles can be secured using the [tls](../../reference/config/bindings/tls/) binding. This means both MQTT and MQTT over WebSocket can be encrypted. Additionally, A client connection to the MQTT server can be guarded by the [jwt](../../reference/config/guards/jwt.md) guard supporting JWT access tokens, with fine-grained privileges enforced on publish or subscribe to MQTT topics.
