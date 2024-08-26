@@ -21,6 +21,11 @@ export const enSidebar = sidebar({
           link: "resolvers.md",
           children: [],
         },
+        {
+          text: "Zilla Headers",
+          link: "headers.md",
+          children: [],
+        },
       ],
     },
     {
