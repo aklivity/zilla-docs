@@ -4,17 +4,15 @@
     options:
       specs:
         my-mqtt-api-spec:
-          my-kafka-api-spec:
-            catalog:
-              my_catalog:
-                subject: petstore
-                version: latest
+          catalog:
+            my_catalog:
+              subject: mqtt-streetlights
+              version: latest
         my-kafka-api-spec:
-          my-kafka-api-spec:
-            catalog:
-              my_catalog:
-                subject: petstore
-                version: latest
+          catalog:
+            my_catalog:
+              subject: kafka-streetlights
+              version: latest
       mqtt-kafka:
         channels:
           sessions: mqttSessions
