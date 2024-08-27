@@ -72,7 +72,7 @@ When referencing specific attributes of the Zilla api always use and highlight t
 
 - `[grpc-kafka](../path/to/bindings/grpc-kafka/README.md) Binding`
 - `[jwt](../path/to/guards/jwt.md) Guard`
-- `[produce capability](../path/to/bidndings/grpc-kafka/proxy.md#produce-capability)`
+- `[produce capability](../path/to/bindings/grpc-kafka/proxy.md#produce-capability)`
 
 [Reference-style links](https://www.markdownguide.org/basic-syntax/#reference-style-links) should only be used to clarify reading the raw text document when it is needed. This should be used in lists, tables, or complicated paragraphs. When used the reference definition should be placed in a group with other references and as close the usage as makes sense. Exact highlighted context should be used unless there is a case when reuse of the same link is needed in the same section.
 
