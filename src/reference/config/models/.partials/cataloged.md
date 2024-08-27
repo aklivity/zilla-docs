@@ -11,9 +11,6 @@ To map defined catalog for schema retrieval based on catalog specific parameters
 -----
 > `subject`
 > `version`
------
-> `schema`
-> `version`
 
 #### catalog.id
 
@@ -38,7 +35,3 @@ To determine the subject based on the specified strategy
 > `string`
 
 Unique identifier for schema categorization in the catalog.
-
-#### catalog.schema
-
-> `string`
