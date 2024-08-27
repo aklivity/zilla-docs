@@ -1,8 +1,8 @@
   ws_server:
     type: ws
     kind: server
-    exit: default_server
+    exit: echo_server
     routes:
       - when:
-          - protocol: echo
-        exit: echo_server
+          - protocol: mqtt
+        exit: mqtt_server
