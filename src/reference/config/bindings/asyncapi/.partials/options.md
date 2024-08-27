@@ -8,7 +8,7 @@ specs specific options
 
 > `object` as map of named properties
 
-catalog specific options.
+To map defined catalog for schema retrieval based on catalog specific parameters.
 
 #### catalog.subject
 
@@ -18,9 +18,9 @@ Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
-> `string`
+> `string` | Default: `"latest"`
 
-Catalog artifact version to use.
+Specific iteration or version of a registered schema in the defined catalog.
 
 #### specs.servers
 
