@@ -687,22 +687,6 @@
                 {
                     "type": "object",
                     "properties": {
-                        "schema": {
-                            "type": "string"
-                        },
-                        "version": {
-                            "type": "string",
-                            "default": "latest"
-                        }
-                    },
-                    "required": [
-                        "schema"
-                    ],
-                    "additionalProperties": false
-                },
-                {
-                    "type": "object",
-                    "properties": {
                         "strategy": {
                             "type": "string"
                         },
@@ -4236,22 +4220,6 @@
                                                     {
                                                         "type": "object",
                                                         "properties": {
-                                                            "schema": {
-                                                                "type": "string"
-                                                            },
-                                                            "version": {
-                                                                "type": "string",
-                                                                "default": "latest"
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "schema"
-                                                        ],
-                                                        "additionalProperties": false
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "properties": {
                                                             "strategy": {
                                                                 "type": "string"
                                                             },
@@ -4457,22 +4425,6 @@
                                                     {
                                                         "type": "object",
                                                         "properties": {
-                                                            "schema": {
-                                                                "type": "string"
-                                                            },
-                                                            "version": {
-                                                                "type": "string",
-                                                                "default": "latest"
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "schema"
-                                                        ],
-                                                        "additionalProperties": false
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "properties": {
                                                             "strategy": {
                                                                 "type": "string"
                                                             },
@@ -4553,26 +4505,6 @@
                                                         },
                                                         "required": [
                                                             "id",
-                                                            "record"
-                                                        ],
-                                                        "additionalProperties": false
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "schema": {
-                                                                "type": "string"
-                                                            },
-                                                            "version": {
-                                                                "type": "string",
-                                                                "default": "latest"
-                                                            },
-                                                            "record": {
-                                                                "type": "string"
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "schema",
                                                             "record"
                                                         ],
                                                         "additionalProperties": false
@@ -4856,22 +4788,6 @@
                                                         },
                                                         "required": [
                                                             "id"
-                                                        ],
-                                                        "additionalProperties": false
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "schema": {
-                                                                "type": "string"
-                                                            },
-                                                            "version": {
-                                                                "type": "string",
-                                                                "default": "latest"
-                                                            }
-                                                        },
-                                                        "required": [
-                                                            "schema"
                                                         ],
                                                         "additionalProperties": false
                                                     },
