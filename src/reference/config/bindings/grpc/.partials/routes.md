@@ -69,7 +69,7 @@ Each metadata header value can be `string` or `object` with `base64` property.
 
 Base64 encoded value for binary metadata header.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

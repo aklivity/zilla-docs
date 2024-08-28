@@ -22,7 +22,7 @@ Conditional `server`-specific routes.
 
 <!-- @include: ./.partials/routes.md -->
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

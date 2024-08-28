@@ -14,7 +14,7 @@ model: double
 
 ## Configuration (\* required)
 
-### model: double\*
+### model: double
 
 Specifies the model is a `double`.
 

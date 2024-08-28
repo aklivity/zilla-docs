@@ -36,7 +36,7 @@ OpenAPI spec identifier that matches from the `openapi` binding request stream.
 
 OpenAPI OperationId that can be mapped between OpenAPI and AsyncAPI spec
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

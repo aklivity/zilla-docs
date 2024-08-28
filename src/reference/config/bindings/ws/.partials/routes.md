@@ -61,7 +61,7 @@ Authority pattern.
 
 Path pattern.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

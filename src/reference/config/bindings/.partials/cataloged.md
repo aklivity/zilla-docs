@@ -12,13 +12,13 @@ To map defined catalog for schema retrieval based on catalog specific parameters
 > `subject`
 > `version`
 
-#### catalog.strategy
+#### catalog.strategy\*
 
 > `enum` [ "topic" ]
 
 To determine the subject based on the specified strategy
 
-#### catalog.subject
+#### catalog.subject\*
 
 > `string`
 
@@ -30,7 +30,7 @@ Unique identifier for schema categorization in the catalog.
 
 Specific iteration or version of a registered schema in the defined catalog.
 
-#### catalog.id
+#### catalog.id\*
 
 > `integer`
 

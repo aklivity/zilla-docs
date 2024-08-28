@@ -24,7 +24,7 @@ catalog:
 
 ## Configuration (\* required)
 
-### model: avro\*
+### model: avro
 
 Specifies the model is `avro`.
 

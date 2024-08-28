@@ -15,7 +15,7 @@ options:
   server: mqtt-1.example.com:1883
 ```
 
-#### options.topics
+#### options.topics\*
 
 > `object`
 
@@ -73,7 +73,7 @@ options:
 
 MQTT `publish`-specific options.
 
-#### publish.qosMax
+#### publish.qosMax\*
 
 > `enum` [ "at_most_once", "at_least_once", "exactly_once" ] | default: "exactly_once"
 

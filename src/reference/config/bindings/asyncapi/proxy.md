@@ -148,7 +148,7 @@ authorization:
 <!-- @include: ../.partials/options-mqtt-auth.md -->
 
 <!-- @include: ./.partials/routes.md -->
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

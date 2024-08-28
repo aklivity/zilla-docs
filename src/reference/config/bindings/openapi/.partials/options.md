@@ -28,7 +28,7 @@ options:
 
 catalog specific options.
 
-#### catalog.subject
+#### catalog.subject\*
 
 > `string`
 
@@ -70,7 +70,7 @@ authorization:
         authorization: Bearer {credentials}
 ```
 
-#### authorization.credentials
+#### authorization.credentials\*
 
 > `object`
 
@@ -148,7 +148,7 @@ A list of reference names for the Vault signer certificate.
 
 Trust CA certificates.
 
-#### tls.sni\*
+#### tls.sni
 
 > `array` of `string`
 

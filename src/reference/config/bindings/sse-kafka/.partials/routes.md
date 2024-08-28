@@ -41,13 +41,13 @@ routes:
       - path: /items
 ```
 
-#### when[].path\*
+#### when[].path
 
 > `string`
 
 Path with optional embedded parameter names, such as `/{topic}`.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 
@@ -98,7 +98,7 @@ Message headers, with value optionally referencing path parameter such as `${par
 
 Defines the SSE event syntax used when delivering Kafka messages to SSE clients.
 
-#### event.id\*
+#### event.id
 
 > `enum` [ `"${etag}"`, `"["${base64(key)}","${etag}"]"` ] | Default: `"${etag}"`
 

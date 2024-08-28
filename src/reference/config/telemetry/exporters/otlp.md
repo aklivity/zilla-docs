@@ -56,7 +56,7 @@ Interval in seconds to push data to the collector.
 
 Specifies what signals should be exported. The default behavior is to export all supported signals.
 
-#### options.endpoint
+#### options.endpoint\*
 
 > `object`
 

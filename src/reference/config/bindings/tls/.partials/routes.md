@@ -55,7 +55,7 @@ Application protocol.
 
 Port number(s), including port number ranges.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

@@ -12,7 +12,7 @@ The fan server binding behaves as an `fan-in` and `fan-out` `server`. The `serve
 
 ## Configuration (\* required)
 
-### exit\*
+### exit
 
 > `string`
 

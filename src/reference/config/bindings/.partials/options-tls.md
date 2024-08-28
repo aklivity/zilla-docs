@@ -28,7 +28,7 @@ A list of reference names for the Vault signer certificate.
 
 Trust CA certificates.
 
-#### tls.sni\*
+#### tls.sni
 
 > `array` of `string`
 

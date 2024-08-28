@@ -40,13 +40,13 @@ routes:
       - path: /items
 ```
 
-#### when[].path\*
+#### when[].path
 
 > `string`
 
 Path pattern.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

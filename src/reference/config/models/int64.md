@@ -14,7 +14,7 @@ model: int64
 
 ## Configuration (\* required)
 
-### model: int64\*
+### model: int64
 
 Specifies the model is a `int64`.
 

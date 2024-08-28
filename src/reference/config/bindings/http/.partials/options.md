@@ -9,7 +9,7 @@
 
 Enforce validation for the request content.
 
-#### content.model
+#### content.model\*
 
 > `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
 
@@ -37,7 +37,7 @@ A schema or type to validate the request content.
 
 Enforce validation for path
 
-#### path.model
+#### path.model\*
 
 > `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
 
@@ -47,7 +47,7 @@ Enforce validation for path
 
 Enforce validation for query
 
-#### query.model
+#### query.model\*
 
 > `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
 
@@ -80,7 +80,7 @@ headers:
     maxLength: 100
 ```
 
-#### headers.model
+#### headers.model\*
 
 > `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
 

@@ -13,20 +13,18 @@ const main = async () => {
         var foundHeadings = [];
         tokens
             .filter(({ depth, type }) => type == "heading" && depth == 3)
-            .forEach((t) => {
-                if (t.text && t.type && t.type === "heading") {
-                    t.tokens
-                        .filter(({ type }) => type === "text")
-                        .forEach(({ text }) => foundHeadings.push(`${text}`));
+            .forEach(({ type, text }) => {
+                if (text && type === "heading") {
+                    // console.log("heading", t);
+                    foundHeadings.push(text)
                 }
             });
         tokens
             .filter(({ depth, type }) => type == "heading" && depth > 3)
-            .forEach((t) => {
-                if (t.text && t.type && t.type === "heading") {
-                    t.tokens
-                        .filter(({ type }) => type === "text")
-                        .forEach(({ text }) => foundHeadings.push(text));
+            .forEach(({ type, text }) => {
+                if (text && type === "heading") {
+                    // console.log("heading", t);
+                    foundHeadings.push(text)
                 }
             });
         return foundHeadings;
@@ -75,13 +73,10 @@ const main = async () => {
 
             //collect
             if (!!!i) return
-            if (reqKeys && !reqKeys.include) {
-                reqKeys = Object.keys(reqKeys);
-            }
             var req = !!reqKeys?.includes(k);
             var path = [attr, k].filter((s) => !!s).join(".");
             if (i.properties && Object.keys(i.properties).length) {
-                props.push([path, "object", req, i.const]);
+                props.push([path, "object", req, i.default || i.const]);
             } else if (i.additionalProperties) {
                 if (i.additionalProperties.oneOf) {
                     props.push([
@@ -91,19 +86,19 @@ const main = async () => {
                         i.const,
                     ]);
                 } else {
-                    props.push([path, i.additionalProperties.type, req, i.const]);
+                    props.push([path, i.additionalProperties.type, req, i.default || i.const]);
                 }
             } else if (i.items) {
-                props.push([path, "array", req, i.const]);
+                props.push([path, "array", req, i.default || i.const]);
             } else if (i.type) {
                 if (i.const) path = `${path}: ${i.const}`;
-                props.push([path, i.type, req, i.const]);
+                props.push([path, i.type, req, i.default || i.const]);
             } else if (i.const) {
-                props.push([`${path}: ${i.const}`, "string", req, i.const]);
+                props.push([`${path}: ${i.const}`, "string", req, i.default || i.const]);
             } else if (i.enum?.length) {
-                i.enum.forEach((e) => props.push([`${path}: ${e}`, e, req, i.const]));
+                i.enum.forEach((e) => props.push([`${path}: ${e}`, e, req, i.default || i.const]));
             } else if (i.const) {
-                props.push([path, i.const, req, i.const]);
+                props.push([path, i.const, req, i.default || i.const]);
             } else if (i.oneOf) {
                 props.push([
                     path,
@@ -115,6 +110,7 @@ const main = async () => {
                     i.const,
                 ]);
             }
+            // console.log('props', JSON.stringify(props));
         });
         return props;
     }
@@ -229,7 +225,7 @@ const main = async () => {
         var filename = `${name}.md`;
         var filePath = `${foldername}/${filename}`;
         // console.log(filePath, props);
-        var attrs = getObjProps(null, props, []);
+        var schemaAttrs = getObjProps(null, props, []);
         if (fs.existsSync(filePath)) {
 
             var fullMdContent = fs.readFileSync(filePath, "utf8")
@@ -237,12 +233,16 @@ const main = async () => {
             fullMdContent = fullMdContent.replace(/<!--\s@include:\s(.+\.md)\s-->/g, (_, p1) =>
                 (fs.readFileSync(path.resolve(foldername, p1), "utf8").toString())
             );
+            var mdAttrs = getPageProps(marked.lexer(fullMdContent));
+
+            // console.log('mdAttrs', mdAttrs)
+            // console.log('schemaAttrs', schemaAttrs)
 
             // get page headers and schema props
-            var pageHeaders = getPageProps(marked.lexer(fullMdContent)).sort().filter((value, index, array) =>
+            var pageHeaders = mdAttrs.filter((value, index, array) =>
                 array.indexOf(value) === index
             );
-            var schemaProps = attrs.map((a) => a[0]).sort().filter((value, index, array) =>
+            var schemaProps = schemaAttrs.map((a) => (`${a[0]}${a[2]==true?'\\*':''}`)).filter((value, index, array) =>
                 array.indexOf(value) === index
             );
 

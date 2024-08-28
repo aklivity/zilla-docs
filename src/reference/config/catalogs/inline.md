@@ -39,7 +39,7 @@ catalog:
 
 > `object`
 
-#### options.subjects\*
+#### options.subjects
 
 > `object` as map of named objects
 

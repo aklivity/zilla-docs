@@ -94,7 +94,7 @@ Each metadata header value can be `string` or `object` with `base64` property.
 
 Base64 encoded value for binary metadata header.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 
@@ -107,7 +107,7 @@ routes:
     exit: kafka_cache_client
 ```
 
-#### routes[].with\*
+#### routes[].with
 
 > **oneOf**: [fetch](#with-capability-fetch) | [produce](#with-capability-produce)
 
@@ -125,7 +125,7 @@ with:
   capability: produce
 ```
 
-#### with.capability: fetch
+#### with.capability: fetch\*
 
 > `object`
 
@@ -147,7 +147,7 @@ with:
       custom-text: custom-value
 ```
 
-#### with.topic
+#### with.topic\*
 
 > `string`
 
@@ -171,7 +171,7 @@ The filter criteria for the Kafka message key.
 
 The filter criteria for the Kafka message headers.
 
-#### with.capability: produce
+#### with.capability: produce\*
 
 > `object`
 
@@ -192,7 +192,7 @@ with:
   reply-to: responses
 ```
 
-#### with.topic
+#### with.topic\*
 
 > `string`
 
@@ -216,7 +216,7 @@ The Kafka message key to include with each message.
 
 The Kafka message headers to inject with each message.
 
-#### with.reply-to
+#### with.reply-to\*
 
 > `string`
 

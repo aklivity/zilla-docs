@@ -20,7 +20,7 @@ options:
 
 HTTP request header used to specify the idempotency key when adapting `http` request-response streams to `kafka` topic streams.
 
-#### idempotency.header
+#### idempotency.header\*
 
 > `string` | Default: `"idempotency-key"`
 
@@ -32,7 +32,7 @@ HTTP request header name for idempotency key.
 
 Kafka request message headers injected when adapting `http` request-response streams to `kafka` topic streams.
 
-#### correlation.headers
+#### correlation.headers\*
 
 > `map` of `name: value` properties
 

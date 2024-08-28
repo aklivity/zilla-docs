@@ -1,4 +1,4 @@
-#### authorization.credentials
+#### authorization.credentials\*
 
 > `object`
 

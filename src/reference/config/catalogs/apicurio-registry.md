@@ -28,7 +28,7 @@ catalog:
 
 > `object`
 
-#### options.url\*
+#### options.url
 
 > `string`
 

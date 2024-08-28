@@ -149,7 +149,7 @@ authorization:
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

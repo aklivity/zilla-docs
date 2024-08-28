@@ -24,13 +24,13 @@ routes:
 List of conditions (any match) to match this route.
 Read more: [When a route matches](../../../../../concepts/bindings.md#when-a-route-matches)
 
-#### when[].topic\*
+#### when[].topic
 
 > `string`
 
 Topic name pattern.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

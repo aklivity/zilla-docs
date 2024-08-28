@@ -44,7 +44,7 @@ A list of reference names for the Vault signer certificate.
 
 Trust CA certificates.
 
-#### options.sni\*
+#### options.sni
 
 > `array` of `string`
 

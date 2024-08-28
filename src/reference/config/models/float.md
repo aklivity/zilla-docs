@@ -14,7 +14,7 @@ model: float
 
 ## Configuration (\* required)
 
-### model: float\*
+### model: float
 
 Specifies the model is a `float`.
 

@@ -81,7 +81,7 @@ Array of MQTT topic filters matching topic names for subscribe.
 
 MQTT topic filter pattern.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

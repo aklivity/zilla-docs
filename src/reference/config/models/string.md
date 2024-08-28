@@ -12,7 +12,7 @@ Defines a model to enforce validation for string data.
 
 ## Configuration (\* required)
 
-### model: string\*
+### model: string
 
 Specifies the model is a `string`.
 

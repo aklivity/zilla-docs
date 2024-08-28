@@ -20,7 +20,7 @@ options:
 
 OpenAPI and AsyncAPI specs definition.
 
-#### specs.openapi
+#### specs.openapi\*
 
 > `object` of `name: value` properties
 
@@ -30,7 +30,7 @@ OpenAPI and AsyncAPI specs definition.
 
 catalog specific options.
 
-#### catalog.subject
+#### catalog.subject\*
 
 > `string`
 
@@ -42,7 +42,7 @@ Subject name used when storing the catalog artifact.
 
 Catalog artifact version to use.
 
-#### specs.asyncapi
+#### specs.asyncapi\*
 
 > `object` of `name: value` properties
 
@@ -52,7 +52,7 @@ Catalog artifact version to use.
 
 `catalog` catalog specific options.
 
-#### catalog.subject
+#### catalog.subject\*
 
 > `string`
 

@@ -33,7 +33,7 @@ The path selector.
 
 Enforce validation for the request content.
 
-#### content.model
+#### content.model\*
 
 > `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
 

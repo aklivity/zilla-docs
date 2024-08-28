@@ -47,7 +47,7 @@ routes:
 
 Header name value pairs (all match).
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

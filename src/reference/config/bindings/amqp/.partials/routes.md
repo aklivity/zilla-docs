@@ -51,7 +51,7 @@ Link address.
 
 Send or receive, or both.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

@@ -47,7 +47,7 @@ routes:
         method: example.EchoService/*
 ```
 
-#### when[].topic
+#### when[].topic\*
 
 > `string`
 
@@ -65,7 +65,7 @@ The name of a Kafka topic for requests.
 
 Header name value pairs (all match).
 
-#### when[].reply-to
+#### when[].reply-to\*
 
 > `string`
 
@@ -77,7 +77,7 @@ The name of the Kafka topic for correlated responses.
 
 Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for the method to indicate any method.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 
@@ -102,13 +102,13 @@ with:
   authority: localhost:7151
 ```
 
-#### with.scheme
+#### with.scheme\*
 
 > `string`
 
 The `grpc` request scheme.
 
-#### with.authority
+#### with.authority\*
 
 > `string`
 

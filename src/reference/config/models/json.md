@@ -23,7 +23,7 @@ catalog:
 
 ## Configuration (\* required)
 
-### model: json\*
+### model: json
 
 Specifies the model is `json`.
 

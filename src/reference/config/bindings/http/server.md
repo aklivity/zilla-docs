@@ -45,7 +45,7 @@ options:
 
 Access control policy for the `HTTP` protocol.
 
-#### access-control.policy\*
+#### access-control.policy
 
 > `enum` [ "same-origin" , "cross-origin" ]
 

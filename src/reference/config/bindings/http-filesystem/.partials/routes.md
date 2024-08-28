@@ -39,13 +39,13 @@ routes:
       - path: /{path}
 ```
 
-#### when[].path\*
+#### when[].path
 
 > `string`
 
 Path with optional embedded parameter names, such as `/{path}`.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

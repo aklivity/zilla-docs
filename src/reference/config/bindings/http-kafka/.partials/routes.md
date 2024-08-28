@@ -103,7 +103,7 @@ HTTP Method, such as `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS
 
 Path with optional embedded parameter names, such as `/{topic}`.
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 
@@ -134,7 +134,7 @@ with:
   capability: produce
 ```
 
-#### with.capability: fetch
+#### with.capability: fetch\*
 
 > `object`
 
@@ -159,7 +159,7 @@ with:
       path: /-
 ```
 
-#### with.topic
+#### with.topic\*
 
 > `string`
 
@@ -189,7 +189,7 @@ Message headers, with value optionally referencing path parameter such as `${par
 
 Merge multiple Kafka messages into a unified HTTP response. Kafka merge configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-#### merge.content-type: application/json
+#### merge.content-type: application/json\*
 
 > `const`
 
@@ -205,19 +205,19 @@ Describes how to patch initial HTTP response to include one or more Kafka messag
 
   Kafka merge patch configuration for matched route when adapting `http` request-response streams to `kafka` topic streams where all messages are fetched and must be merged into a unified `http` response.
 
-#### patch.initial: []
+#### patch.initial: []\*
 
 > `const`
 
 Initial JSON value.
 
-#### patch.path: /-
+#### patch.path: /-\*
 
 > `const`
 
 JSON Patch path to include each Kafka message in unified HTTP response.
 
-#### with.capability: produce
+#### with.capability: produce\*
 
 > `object`
 
@@ -244,7 +244,7 @@ with:
     location: /items/${params.id};cid=${correlationId}
 ```
 
-#### with.topic
+#### with.topic\*
 
 > `string`
 

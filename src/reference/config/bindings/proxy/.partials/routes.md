@@ -126,7 +126,7 @@ Port number.
 
 > `string`
 
-#### routes[].exit\*
+#### routes[].exit
 
 > `string`
 

@@ -55,7 +55,7 @@ The `grpc` metadata header name for the last `message-id` seen when resuming a s
 
 Kafka request message headers injected when adapting `grpc` request-response streams to `kafka` topic streams.
 
-#### correlation.headers
+#### correlation.headers\*
 
 > `map` of `name: value` properties
 

@@ -26,7 +26,7 @@ catalog:
 
 ## Configuration (\* required)
 
-### model: protobuf\*
+### model: protobuf
 
 > `string`
 
@@ -38,7 +38,7 @@ Specifies the model is a `protobuf`.
 
 Transforms the model from this data type to the Protobuf schema on produce and to this data type from the Protobuf schema on consume.
 
-### catalog\*
+### catalog
 
 > `object`
 
@@ -54,12 +54,8 @@ To map defined catalog for schema retrieval based on catalog specific parameters
 > `subject`
 > `version`
 > `record`
------
-> `schema`
-> `version`
-> `record`
 
-#### catalog.id
+#### catalog.id\*
 
 > `integer`
 
@@ -71,19 +67,13 @@ Define specific schema id to refer from catalog.
 
 Specific iteration or version of a registered schema in the defined catalog.
 
-#### catalog.strategy
+#### catalog.strategy\*
 
 > `enum` [ "topic" ]
 
 To determine the subject based on the specified strategy
 
-#### catalog.subject
-
-> `string`
-
-Unique identifier for schema categorization in the catalog.
-
-#### catalog.schema
+#### catalog.subject\*
 
 > `string`
 

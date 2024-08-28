@@ -15,7 +15,7 @@ model: int32
 
 ## Configuration (\* required)
 
-### model: int32\*
+### model: int32
 
 Specifies the model is a `int32`.
 

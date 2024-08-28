@@ -49,7 +49,7 @@ options:
 
 Private keys.
 
-#### keys.store\*
+#### keys.store
 
 > `string`
 
@@ -74,7 +74,7 @@ Keystore password.
 
 Trust certificates.
 
-#### trust.store\*
+#### trust.store
 
 > `string`
 
@@ -99,7 +99,7 @@ Keystore password.
 
 Signer certificates.
 
-#### signers.store\*
+#### signers.store
 
 > `string`
 

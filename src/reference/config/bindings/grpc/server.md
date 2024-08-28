@@ -23,7 +23,7 @@ The grpc server binding adapts `http` request-response streams to `grpc` request
 
 To map defined catalog for schema retrieval based on catalog specific parameters.
 
-#### catalog.subject
+#### catalog.subject\*
 
 > `string`
 
