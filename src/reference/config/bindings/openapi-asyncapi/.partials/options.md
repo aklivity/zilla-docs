@@ -9,9 +9,17 @@
 options:
   specs:
     openapi:
-      my-openapi-spec: spec/openapi.yaml
+      my-openapi-spec:
+        catalog:
+          my_catalog:
+            subject: petstore
+            version: latest
     asyncapi:
-      my-asyncapi-spec: spec/asyncapi.yaml
+      my-asyncapi-spec:
+        catalog:
+            my_catalog:
+              subject: petstore
+              version: latest
 ```
 
 #### options.specs

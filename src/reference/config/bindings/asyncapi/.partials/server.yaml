@@ -1,7 +1,11 @@
-  asyncapi_server:
+  mqtt_asyncapi_server:
     type: asyncapi
     kind: server
     options:
       specs:
-        my-mqtt-api-spec: mqtt/asyncapi.yaml
-    exit: asyncapi_proxy
+        my-mqtt-api-spec:
+          catalog:
+            my_catalog:
+              subject: mqtt-streetlights
+              version: latest
+    exit: south_kafka_proxy
