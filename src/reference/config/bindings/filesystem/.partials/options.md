@@ -18,6 +18,6 @@ File system URI or directory name with trailing slash.
 
 #### options.symlinks
 
-> `enum` [ "follow", "ignore" ] | Default: `"ignore"`
+> `enum` [ `follow`, `ignore` ] | Default: `ignore`
 
 How to treat symbolic links.

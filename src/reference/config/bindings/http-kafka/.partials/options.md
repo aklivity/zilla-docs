@@ -22,7 +22,7 @@ HTTP request header used to specify the idempotency key when adapting `http` req
 
 #### idempotency.header\*
 
-> `string` | Default: `"idempotency-key"`
+> `string` | Default: `idempotency-key`
 
 HTTP request header name for idempotency key.
 
@@ -34,18 +34,18 @@ Kafka request message headers injected when adapting `http` request-response str
 
 #### correlation.headers\*
 
-> `map` of `name: value` properties
+> `object`
 
 Kafka request message reply to and correlation id header names injected when adapting `http` request-response streams to `kafka` topic streams.
 
 #### headers.reply-to
 
-> `string` | Default: `"zilla:reply-to"`
+> `string` | Default: `zilla:reply-to`
 
 Kafka header name for reply-to topic.
 
 #### headers.correlation-id
 
-> `string` | Default: `"zilla:correlation-id"`
+> `string` | Default: `zilla:correlation-id`
 
 Kafka header name for request-response correlation identifier.

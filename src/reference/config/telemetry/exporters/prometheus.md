@@ -47,13 +47,13 @@ Contains `prometheus` endpoints.
 
 #### endpoints[].scheme\*
 
-> `enum` [ "http" ]
+> `enum` [ `http` ]
 
 URL scheme to accept for endpoint.
 
 #### endpoints[].port\*
 
-> `int`
+> `integer`
 
 URL port to accept for endpoint.
 

@@ -19,7 +19,7 @@ The grpc server binding adapts `http` request-response streams to `grpc` request
 
 ### catalog
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 To map defined catalog for schema retrieval based on catalog specific parameters.
 
@@ -31,7 +31,7 @@ Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
-> `string` | Default: `"latest"`
+> `string` | Default: `latest`
 
 Specific iteration or version of a registered schema in the defined catalog.
 

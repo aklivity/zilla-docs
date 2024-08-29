@@ -27,7 +27,7 @@ Metadata header used to specify the idempotency key when adapting `grpc` request
 
 #### idempotency.metadata
 
-> `string` | Default: `"idempotency-key"`
+> `string` | Default: `idempotency-key`
 
 The `grpc` metadata header name for idempotency key.
 
@@ -39,13 +39,13 @@ Properties used when handling stream recovery.
 
 #### reliability.field
 
-> `integer` | Default: `32767`
+> `integer` | Default: `32767` Minimum: `1` Maximum: `536870911`
 
 The `grpc` unknown field number to send the `message-id`.
 
 #### reliability.metadata
 
-> `string` | Default: `"last-message-id"`
+> `string` | Default: `last-message-id`
 
 The `grpc` metadata header name for the last `message-id` seen when resuming a stream.
 
@@ -57,30 +57,30 @@ Kafka request message headers injected when adapting `grpc` request-response str
 
 #### correlation.headers\*
 
-> `map` of `name: value` properties
+> `object`
 
 Kafka request message reply to and correlation id header names injected when adapting `grpc` request-response streams to `kafka` topic streams.
 
 #### headers.service
 
-> `string` | Default: `"zilla:service"`
+> `string` | Default: `zilla:service`
 
 Kafka header name for `grpc` service.
 
 #### headers.method
 
-> `string` | Default: `"zilla:method"`
+> `string` | Default: `zilla:method`
 
 Kafka header name for `grpc` method.
 
 #### headers.correlation-id
 
-> `string` | Default: `"zilla:correlation-id"`
+> `string` | Default: `zilla:correlation-id`
 
 Kafka header name for request-response correlation identifier.
 
 #### headers.reply-to
 
-> `string` | Default: `"zilla:reply-to"`
+> `string` | Default: `zilla:reply-to`
 
 Kafka header name for reply-to topic.

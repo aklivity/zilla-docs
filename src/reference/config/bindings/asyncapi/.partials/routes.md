@@ -24,7 +24,7 @@ Conditional `asyncapi`-specific routes for adapting streams.
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 

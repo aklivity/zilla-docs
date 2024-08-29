@@ -18,6 +18,6 @@ Hostname or IP address.
 
 #### options.port
 
-> `integer` | `string` | `array` of  `integer` | `array` of `string`
+> `integer`, `string`, `array`
 
 Port number(s), including port number ranges.

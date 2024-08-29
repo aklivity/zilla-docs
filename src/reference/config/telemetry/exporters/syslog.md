@@ -100,7 +100,7 @@ The port of the syslog server.
 
 #### options.protocol*
 
-> `enum` [ "tcp", "udp", "tls" ] | Default: `"tcp"`
+> `enum` [ `tcp`, `udp`, `tls` ] | Default: `tcp`
 
 The protocol to use to communicate with the syslog server. Valid values are: `tcp`, `udp`, `tls`.
 

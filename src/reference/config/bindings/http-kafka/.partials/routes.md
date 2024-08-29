@@ -66,7 +66,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 Roles required by named guard.
 
@@ -99,7 +99,7 @@ HTTP Method, such as `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS
 
 #### when[].path
 
-> `string`
+> `string` | Pattern: `^/`
 
 Path with optional embedded parameter names, such as `/{topic}`.
 
@@ -116,18 +116,18 @@ routes:
     exit: kafka_cache_client
 ```
 
-#### routes[].with
+#### routes[].with\*
 
-> **oneOf**: [Fetch](#with-capability-fetch) | [Produce](#with-capability-produce)
+> `object`
 
-Defines the route with the Fetch capability.
+Defines the route with the [Fetch](#with-capability-fetch) capability.
 
 ```yaml
 with:
   capability: fetch
 ```
 
-Defines the route with the Produce capability.
+Defines the route with the [Produce](#with-capability-produce) capability.
 
 ```yaml
 with:
@@ -136,7 +136,7 @@ with:
 
 #### with.capability: fetch\*
 
-> `object`
+> `const`
 
 Kafka parameters for matched route when adapting `http` request-response streams to `kafka` topic fetch streams.
 
@@ -155,7 +155,7 @@ with:
   merge:
     content-type: application/json
     patch:
-      initial: "[]"
+      initial: []
       path: /-
 ```
 
@@ -179,7 +179,7 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 #### filters[].headers
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
@@ -219,7 +219,7 @@ JSON Patch path to include each Kafka message in unified HTTP response.
 
 #### with.capability: produce\*
 
-> `object`
+> `const`
 
 Kafka parameters for matched route when adapting `http` request-response streams to `kafka` topic produce streams.
 
@@ -252,7 +252,7 @@ Kafka topic name, optionally referencing path parameter such as `${params.topic}
 
 #### with.acks
 
-> `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
+> `enum` [ `none`, `leader_only`, `in_sync_replicas` ] | Default: `in_sync_replicas`
 
 Kafka acknowledgement mode
 
@@ -264,7 +264,7 @@ Kafka message key, optionally referencing path parameter such as `${params.id}`.
 
 #### with.overrides
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Kafka message headers, with values optionally referencing path parameter.
 
@@ -276,7 +276,7 @@ Kafka reply-to topic name.
 
 #### with.async
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Allows an HTTP response to be retrieved asynchronously.
 

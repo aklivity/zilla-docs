@@ -11,45 +11,49 @@ Enforce validation for the request content.
 
 #### content.model\*
 
-> `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the request content.
+A schema or type to validate the request content. Refer to the individual [model](../../models) docs for type specific implementation.
 
 #### requests[].content-type
 
-> `string`
+> `array` of `string`
 
 #### requests[].headers
 
-> `string`
+> `object` as map of named:`object`
 
 #### requests[].method
 
-> `enum` [ "GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE" ]
+> `enum` [ `GET`, `PUT`, `POST`, `DELETE`, `OPTIONS`, `HEAD`, `PATCH`, `TRACE` ]
 
 #### requests[].params
 
-> `string`
+> `object`
 
 #### params.path
 
-> `object` of a named [`model`](../../../models/)
+> `object` as map of named:`object`
 
 Enforce validation for path
 
 #### path.model\*
 
-> `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+
+A schema or type to validate the path content. Refer to the individual [model](../../models) docs for type specific implementation.
 
 #### params.query
 
-> `object` of a named [`model`](../../../models/)
+> `object` as map of named:`object`
 
 Enforce validation for query
 
 #### query.model\*
 
-> `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+
+A schema or type to validate the query content. Refer to the individual [model](../../models) docs for type specific implementation.
 
 #### requests[].path
 
@@ -61,7 +65,15 @@ Enforce validation for query
 
 #### responses[].content
 
-> `string`
+> `object`
+
+Enforce validation for the response content.
+
+#### content.model\*
+
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+
+A schema or type to validate the response content. Refer to the individual [model](../../models) docs for type specific implementation.
 
 #### responses[].content-type
 
@@ -69,7 +81,7 @@ Enforce validation for query
 
 #### responses[].headers
 
-> `map` of "name: [model](../../../models/)" properties
+> `object` as map of named:`object`
 
 Enforce validation for response headers.
 
@@ -82,18 +94,22 @@ headers:
 
 #### headers.model\*
 
-> `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+
+A schema or type to validate the headers content. Refer to the individual [model](../../models) docs for type specific implementation.
 
 #### responses[].status
 
-> `string`
+> `integer`, `array` of `integer`
 
 #### options.versions
+
+> `array` of `enum` [ `http/1.1`, `h2` ] | Default: `http/1.1,h2`
 
 Supported protocol versions.
 
 #### options.overrides
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Request header overrides.

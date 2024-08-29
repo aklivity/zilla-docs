@@ -16,7 +16,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -36,13 +36,13 @@ Read more: [When a route matches](../../../../../concepts/bindings.md#when-a-rou
 
 #### when[].transport
 
-> `enum` [ "stream", "datagram" ]
+> `enum` [ `stream`, `datagram` ]
 
 Transport type.
 
 #### when[].family
 
-> `enum` [ "inet", "inet4", "inet6", "unix" ]
+> `enum` [ `inet`, `inet4`, `inet6`, `unix` ]
 
 Address family.
 
@@ -104,7 +104,7 @@ Port number.
 
 #### info.secure
 
-> `string`
+> `object`
 
 #### secure.cipher
 

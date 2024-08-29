@@ -17,7 +17,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -88,7 +88,7 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 #### filters[].headers
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
@@ -100,6 +100,6 @@ Defines the SSE event syntax used when delivering Kafka messages to SSE clients.
 
 #### event.id
 
-> `enum` [ `"${etag}"`, `"["${base64(key)}","${etag}"]"` ] | Default: `"${etag}"`
+> `enum` [ `${etag}`, `["${base64(key)}","${etag}"]` ] | Default: `${etag}`
 
 Format of `id` field in `sse` `event`

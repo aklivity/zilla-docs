@@ -6,7 +6,7 @@ Conditional `openapi-asyncapi`-specific routes for adapting `openapi` operations
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -49,7 +49,7 @@ routes:
     exit: asyncapi_client
 ```
 
-#### routes[].with
+#### routes[].with\*
 
 > `object`
 

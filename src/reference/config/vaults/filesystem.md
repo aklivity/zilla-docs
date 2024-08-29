@@ -57,10 +57,9 @@ Relative path to keystore.
 
 #### keys.type
 
-> `string`
+> `string` | Default: `pkcs12`
 
-Keystore type,\
-defaults to `"pkcs12"`
+Keystore type.
 
 #### keys.password
 
@@ -82,10 +81,9 @@ Relative path to keystore.
 
 #### trust.type
 
-> `string`
+> `string` | Default: `pkcs12`
 
-Keystore type,\
-defaults to `"pkcs12"`
+Keystore type.
 
 #### trust.password
 
@@ -107,10 +105,9 @@ Relative path to keystore.
 
 #### signers.type
 
-> `string`
+> `string` | Default: `pkcs12`
 
-Keystore type.\
-defaults to `"pkcs12"`
+Keystore type.
 
 #### signers.password
 

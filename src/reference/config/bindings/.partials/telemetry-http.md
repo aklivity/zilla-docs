@@ -6,7 +6,7 @@ Defines the desired telemetry for the binding.
 
 #### telemetry.metrics
 
-> `enum` [ "stream", "http" ]
+> `array`
 
 Telemetry metrics to track
 

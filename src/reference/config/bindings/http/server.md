@@ -41,19 +41,19 @@ options:
 
 #### options.access-control
 
-> **oneOf**: [same-origin](#access-control-policy-same-origin) | [cross-origin](#access-control-policy-cross-origin)
+> `object`
 
-Access control policy for the `HTTP` protocol.
+Defines the [same-origin](#access-control-policy-same-origin) or [cross-origin](#access-control-policy-cross-origin) access control policy for the `HTTP` protocol.
 
 #### access-control.policy
 
-> `enum` [ "same-origin" , "cross-origin" ]
+> `enum` [ `same-origin`, `cross-origin` ]
 
 Supported access control policies.
 
 #### access-control.policy: same-origin
 
-> `string`
+> `const`
 
 Extra properties aren't needed when using Same Origin access control for the `HTTP` protocol.
 
@@ -65,7 +65,7 @@ options:
 
 #### access-control.policy: cross-origin
 
-> `object`
+> `const`
 
 Additional properties that cover Cross Origin Resource Sharing (CORS) access control for the `HTTP` protocol.
 
@@ -77,10 +77,13 @@ options:
 
 #### access-control.allow
 
-> `object` | Default: all origins, methods and headers, without credentials
+> `object`
 
-Allowed cross-origin request origins, methods, headers and credentials.
-CORS allowed request origins, methods, headers and credentials for the `HTTP` protocol.
+Sets the CORS allowed request origins, methods, headers and credentials for the `HTTP` protocol.
+
+::: important
+Omission of the allow object means Zilla will allow all origins, methods and headers, without credentials.
+:::
 
 #### allow.origins
 
@@ -108,15 +111,19 @@ Support `fetch` credentials mode `include`.
 
 #### access-control.max-age
 
-> `integer`
+> `number`
 
 Maximum cache age (in seconds) for allowed headers and methods.
 
 #### access-control.expose
 
-> `object` | Default: all response headers
+> `object`
 
 Exposed cross-origin response headers.
+
+::: important
+Omission means all response headers.
+:::
 
 #### expose.headers
 
@@ -126,7 +133,7 @@ Exposed response headers.
 
 #### options.authorization
 
-> `object` as map of named objects
+> `object` as map of named:`object`
 
 Authorization by a named guard for the `HTTP/1.1` and `HTTP/2` protocols.
 

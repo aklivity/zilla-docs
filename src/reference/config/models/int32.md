@@ -17,6 +17,8 @@ model: int32
 
 ### model: int32
 
+> `const`
+
 Specifies the model is a `int32`.
 
-<!-- @include: ./.partials/number.md -->
+<!-- @include: ./.partials/integer.md -->

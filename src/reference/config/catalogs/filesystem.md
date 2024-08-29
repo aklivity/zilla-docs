@@ -27,7 +27,7 @@ catalogs:
 
 #### options.subjects
 
-> `object` as map of named objects
+> `object` as map of named:`object`
 
 Unique identifier for artifact categorization in the catalog.
 

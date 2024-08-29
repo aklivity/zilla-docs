@@ -9,22 +9,53 @@ const main = async () => {
     // console.log("RefParser", JSON.stringify(schema))
     var errors = [];
 
-    function getPageProps(tokens) {
+    function getExtraProps(o) {
+        return {
+            default: (o.default ? "`" + o.default + "`" : undefined),
+            pattern: (o.pattern ? "`" + (o.pattern?.replaceAll("\\", "\\\\") || "") + "`" : undefined),
+            minimum: (o.minimum ? "`" + o.minimum + "`" : undefined),
+            maximum: (o.maximum ? "`" + o.maximum + "`" : undefined)
+        };
+    }
+
+    function getType(i) {
+        // console.log(i);
+        var type = "`" + (i.type || "object") + "`";
+        if (i.enum) type = "`enum`" + ` [ ${i.enum.map((e) => ("`" + e + "`")).join(", ")} ]`;
+        if (i.items?.enum) type = `${"`array`"}${i.items.enum ? " of `enum`" + ` [ ${i.items.enum.map((e) => ("`" + e + "`")).join(", ")} ]` : ""}`;
+        else if (i.items) type = `${"`array`"}${(i.items.type ? " of `" + (i.items.type) + "`" : "")}`;
+        return type;
+    }
+
+    function getPageProps(pageTokens) {
         var foundHeadings = [];
-        tokens
-            .filter(({ depth, type }) => type == "heading" && depth == 3)
-            .forEach(({ type, text }) => {
-                if (text && type === "heading") {
-                    // console.log("heading", t);
-                    foundHeadings.push(text)
-                }
-            });
-        tokens
-            .filter(({ depth, type }) => type == "heading" && depth > 3)
-            .forEach(({ type, text }) => {
-                if (text && type === "heading") {
-                    // console.log("heading", t);
-                    foundHeadings.push(text)
+        // console.log("tokens", tokens);
+        pageTokens
+            .forEach(({ type, depth, tokens }, i) => {
+                if (type === "heading" && depth >= 3) {
+                    var h = []
+                    // console.log("tokens", tokens);
+                    // console.log("heading", tokens[i + 1]);
+                    // h.push(text)
+                    tokens
+                        .filter(({ type }) => type === "text")
+                        .forEach(({ text }) => {
+                            h.push(text)
+                        });
+                    tokens
+                        .filter(({ type }) => type === "escape")
+                        .forEach(({ text }) => h.push(text === "*"));
+                    if (h.length == 1) h.push(false);
+                    if (pageTokens.length > i + 1 && pageTokens[i + 1].type === "blockquote") {
+                        var b = pageTokens[i + 1];
+                        // console.log("blockquote", b);
+                        b.tokens
+                            .filter(({ type }) => type === "paragraph")
+                            .forEach(({ text }) => {
+                                h.push(...text.split(" | "))
+                            });
+                    }
+                    foundHeadings.push(h)
                 }
             });
         return foundHeadings;
@@ -38,7 +69,9 @@ const main = async () => {
             if (!i || !!i.deprecated) return
 
             //recurse
+            var patternProperties = false;
             if (i.patternProperties) {
+                patternProperties = true;
                 i = i.patternProperties[Object.keys(i.patternProperties)[0]];
             }
             if (i.properties && Object.keys(i.properties).length) {
@@ -51,6 +84,10 @@ const main = async () => {
             }
 
             i.anyOf?.filter(({ properties }) => !!properties)
+                .forEach(({ properties, required }) =>
+                    props.push(...getObjProps(k, properties, required))
+                );
+            i.allOf?.filter(({ properties }) => !!properties)
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(k, properties, required))
                 );
@@ -75,39 +112,51 @@ const main = async () => {
             if (!!!i) return
             var req = !!reqKeys?.includes(k);
             var path = [attr, k].filter((s) => !!s).join(".");
+            var type = getType(i);
+            if (patternProperties) type = "`object` as map of named:" + type;
+
             if (i.properties && Object.keys(i.properties).length) {
-                props.push([path, "object", req, i.default || i.const]);
+                props.push([path, req, type, getExtraProps(i)]);
             } else if (i.additionalProperties) {
                 if (i.additionalProperties.oneOf) {
                     props.push([
                         path,
-                        i.additionalProperties.oneOf.map(({ type }) => type).join(","),
                         req,
-                        i.const,
+                        "`object` as map of named: " + i.additionalProperties.oneOf
+                            .map(getType)
+                            .join(" or ") + " properties"
+                        ,
+                        getExtraProps(i)
                     ]);
                 } else {
-                    props.push([path, i.additionalProperties.type, req, i.default || i.const]);
+                    type = "`object` as map of named: `" + i.additionalProperties.type + "` properties";
+                    props.push([path, req, type, getExtraProps(i)]);
                 }
             } else if (i.items) {
-                props.push([path, "array", req, i.default || i.const]);
+                props.push([path, req, type, getExtraProps(i)]);
             } else if (i.type) {
-                if (i.const) path = `${path}: ${i.const}`;
-                props.push([path, i.type, req, i.default || i.const]);
+                if (i.const) {
+                    path = `${path}: ${i.const}`;
+                    type = "`const`";
+                }
+                props.push([path, req, type, getExtraProps(i)]);
             } else if (i.const) {
-                props.push([`${path}: ${i.const}`, "string", req, i.default || i.const]);
+                props.push([`${path}: ${i.const}`, req, "`const`", getExtraProps(i)]);
             } else if (i.enum?.length) {
-                i.enum.forEach((e) => props.push([`${path}: ${e}`, e, req, i.default || i.const]));
-            } else if (i.const) {
-                props.push([path, i.const, req, i.default || i.const]);
+                i.enum.forEach((e) => props.push([`${path}: ${e}`, req, type, getExtraProps(i)]));
+                // } else if (i.const) {
+                //     props.push([path, req, type, getExtraProps(i)]);
             } else if (i.oneOf) {
                 props.push([
                     path,
-                    i.oneOf
-                        .filter(({ type }) => !!type)
-                        .map(({ type }) => type)
-                        .join(","),
                     req,
-                    i.const,
+                    i.oneOf
+                        .map(getType)
+                        .filter((value, index, array) =>
+                            array.indexOf(value) === index
+                        )
+                        .join(", "),
+                    getExtraProps(i)
                 ]);
             }
             // console.log('props', JSON.stringify(props));
@@ -128,6 +177,7 @@ const main = async () => {
                 ...(props?.properties || {}),
                 ...(then.properties || {}),
                 options: (then.properties?.options != false ? {
+                    ...then.properties?.options,
                     properties: {
                         ...(props?.properties?.options?.properties || {}),
                         ...(then.properties?.options?.properties || {}),
@@ -151,13 +201,16 @@ const main = async () => {
                     ...(then.properties || {}),
                     ...(properties || {}),
                     options: (then.properties?.options != false ? {
+                        ...then.properties?.options,
                         properties: {
                             ...(then.properties?.options?.properties || {}),
                             ...(properties?.options?.properties || {}),
                         }
                     } : {}),
                     routes: (then.properties?.routes != false ? {
+                        ...then.properties?.routes,
                         items: {
+                            ...then.properties?.routes?.items,
                             properties: {
                                 ...(bindings.properties?.routes?.items?.properties || {}),
                                 ...(then.properties?.routes?.items?.properties || {}),
@@ -178,7 +231,9 @@ const main = async () => {
                     ...bindings.properties,
                     ...(then.properties || {}),
                     routes: (then.properties?.routes != false ? {
+                        ...then.properties?.routes,
                         items: {
+                            ...then.properties?.routes?.items,
                             properties: {
                                 ...(bindings.properties?.routes?.items?.properties || {}),
                                 ...(then.properties?.routes?.items?.properties || {}),
@@ -239,27 +294,75 @@ const main = async () => {
             // console.log('schemaAttrs', schemaAttrs)
 
             // get page headers and schema props
-            var pageHeaders = mdAttrs.filter((value, index, array) =>
-                array.indexOf(value) === index
-            );
-            var schemaProps = schemaAttrs.map((a) => (`${a[0]}${a[2]==true?'\\*':''}`)).filter((value, index, array) =>
-                array.indexOf(value) === index
-            );
+            var pageHeaders = mdAttrs.reduce((o, a) => (
+                {
+                    ...o, [a[0]]: {
+                        name: a[0],
+                        required: a[1] || false,
+                        type: a[2] || '',
+                        extra: (a[3] || ''),
+                    }
+                }), {});
+            var schemaProps = schemaAttrs.reduce((o, a) => (
+                {
+                    ...o, [a[0]]: {
+                        name: a[0],
+                        required: a[1] || false,
+                        type: a[2] || '',
+                        extra: (a[3] ? Object.entries(a[3]).filter(([_, o]) => (!!o)).map(([k, o]) => (`${k.charAt(0).toUpperCase() + k.slice(1).toLowerCase()}: ${o}`)).join(' ') : ''),
+                    }
+                }), {});
+
+            // console.log('pageHeaders', pageHeaders)
+            // console.log('schemaProps', schemaProps)
 
             // print diff check
-            var addDiff = schemaProps.filter((x) =>
-                !pageHeaders.includes(x)
-            )
-            var removeDiff = pageHeaders.filter((x) =>
-                !schemaProps.includes(x)
-            )
+            // Object.entries(obj).forEach(([k, i]) { name, required, type, default }
+            var addDiff = Object.entries(schemaProps).map(([k, o]) => {
+                // console.log(k, o, pageHeaders[k]);
+                if (pageHeaders[k] &&
+                    (pageHeaders[k].name != o.name
+                        || pageHeaders[k].required != o.required
+                        || pageHeaders[k].type != o.type
+                        || pageHeaders[k].extra != o.extra)
+                ) {
+                    var p = {
+                        name: o.name
+                    };
+                    if (pageHeaders[k].required != o.required) p.required = o.required;
+                    if (pageHeaders[k].type != o.type) p.type = o.type;
+                    if (pageHeaders[k].extra != o.extra) p.extra = o.extra?.replaceAll("\\\\", "\\");
+                    return p
+                } else if (!pageHeaders[k]) {
+                    return o
+                }
+            }).filter((x) => !!x);
+            var removeDiff = Object.entries(pageHeaders).map(([k, o]) => {
+                if (schemaProps[k] &&
+                    (schemaProps[k].name != o.name
+                        || schemaProps[k].required != o.required
+                        || schemaProps[k].type != o.type
+                        || schemaProps[k].extra != o.extra)
+                ) {
+                    var p = {
+                        name: o.name
+                    };
+                    if (schemaProps[k].required != o.required) p.required = o.required;
+                    if (schemaProps[k].type != o.type) p.type = o.type;
+                    if (schemaProps[k].extra != o.extra) p.extra = o.extra?.replaceAll("\\\\", "\\");
+                    return p
+                } else if (!schemaProps[k]) {
+                    return o
+                }
+            }).filter((x) => !!x);
+            console.log(folder, name, "add", addDiff, "remove", removeDiff);
             if (addDiff.length + removeDiff.length) {
                 process.exitCode = 1;
-                console.log(folder, name, "add", addDiff, "remove", removeDiff);
+                // console.log(folder, name, "add", addDiff, "remove", removeDiff);
                 // console.log("findings", folder, name, schemaProps, pageHeaders);
             }
         } else {
-            errors.push(`missing ${name}`);
+            errors.push(`missing ${folder} ${name}`);
             process.exitCode = 1;
         }
     });

@@ -25,6 +25,8 @@ catalog:
 
 ### model: json
 
+> `const`
+
 Specifies the model is `json`.
 
 <!-- @include: ./.partials/cataloged.md -->

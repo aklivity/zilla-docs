@@ -46,7 +46,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 Roles required by named guard.
 
@@ -76,13 +76,13 @@ routes:
 
 #### when[].method
 
-> `string`
+> `string` | Pattern: `^(?<Service>[^/]+)/(?<Method>[^/]+)`
 
 Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for the method to indicate any method.
 
 #### when[].metadata
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` or `object` properties
 
 Metadata header name value pairs (all match).
 
@@ -107,18 +107,18 @@ routes:
     exit: kafka_cache_client
 ```
 
-#### routes[].with
+#### routes[].with\*
 
-> **oneOf**: [fetch](#with-capability-fetch) | [produce](#with-capability-produce)
+> `object`
 
-Defines the route with the `fetch` capability.
+Defines the route with the [fetch](#with-capability-fetch) capability.
 
 ```yaml
 with:
   capability: fetch
 ```
 
-Defines the route with the `produce` capability.
+Defines the route with the [produce](#with-capability-produce) capability.
 
 ```yaml
 with:
@@ -127,7 +127,7 @@ with:
 
 #### with.capability: fetch\*
 
-> `object`
+> `const`
 
 Kafka parameters for matched route when adapting `grpc` request-response streams to `kafka` topic fetch streams.
 
@@ -167,13 +167,13 @@ The filter criteria for the Kafka message key.
 
 #### filters[].headers
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 The filter criteria for the Kafka message headers.
 
 #### with.capability: produce\*
 
-> `object`
+> `const`
 
 Kafka parameters for matched route when adapting `grpc` request-response streams to `kafka` topic produce streams.
 
@@ -200,7 +200,7 @@ The name of a Kafka topic for requests.
 
 #### with.acks
 
-> `enum` [ "none", "leader_only", "in_sync_replicas" ] | Default: `"in_sync_replicas"`
+> `enum` [ `none`, `leader_only`, `in_sync_replicas` ] | Default: `in_sync_replicas`
 
 Kafka acknowledgment mode
 
@@ -212,7 +212,7 @@ The Kafka message key to include with each message.
 
 #### with.overrides
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 The Kafka message headers to inject with each message.
 

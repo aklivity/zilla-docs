@@ -91,15 +91,19 @@ Audience claim.
 
 #### options.challenge
 
-> `integer`
+> `number`
 
 Challenge period (seconds).
 
 #### options.keys
 
-> `array` of `object`
+> `string`, `array` of `object`
 
-If not provided, relies on the `issuer` to infer the location of a remote `.well-known/jwks.json` file.
+If not provided, the `jwt` vault relies on the issuer to infer the location of a remote `.well-known/jwks.json` file.
+
+If a `string` is provided, the value is expected to be a URI.
+
+If an `array` of objects is provided, the value is expected to be a list of object with the supported keys and their values.
 
 ::: note Supported keys
 

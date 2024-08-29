@@ -333,15 +333,16 @@
                                 "options": {
                                     "properties": {
                                         "interval": {
-                                            "type": "number"
+                                            "type": "number",
+                                            "default": 30
                                         },
                                         "signals": {
                                             "type": "array",
                                             "items": {
+                                                "type": "string",
                                                 "enum": [
                                                     "metrics",
-                                                    "logs",
-                                                    "traces"
+                                                    "logs"
                                                 ]
                                             }
                                         },
@@ -406,6 +407,7 @@
                                         "endpoints": {
                                             "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "scheme": {
                                                         "title": "Scheme",
@@ -726,7 +728,7 @@
                         "type": "object",
                         "patternProperties": {
                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                "title": "Authorization",
+                                "title": "Guard",
                                 "type": "object",
                                 "properties": {
                                     "credentials": {
@@ -901,7 +903,8 @@
                                     "enum": [
                                         "live",
                                         "historical"
-                                    ]
+                                    ],
+                                    "default": "historical"
                                 },
                                 "deltaType": {
                                     "type": "string",
@@ -911,11 +914,75 @@
                                     ],
                                     "deprecated": true
                                 },
+                                "transforms": {
+                                    "title": "Transforms",
+                                    "type": "array",
+                                    "oneOf": [
+                                        {
+                                            "items": [
+                                                {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "extract-headers": {
+                                                            "type": "object",
+                                                            "patternProperties": {
+                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                                    "type": "string",
+                                                                    "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        },
+                                                        "extract-key": {
+                                                            "type": "string",
+                                                            "additionalProperties": false
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "items": [
+                                                {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "extract-headers": {
+                                                            "type": "object",
+                                                            "patternProperties": {
+                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                                    "type": "string",
+                                                                    "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "items": [
+                                                {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "extract-key": {
+                                                            "type": "string",
+                                                            "additionalProperties": false
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
                                 "key": {
-                                    "$ref": "#/$defs/converter"
+                                    "$ref": "#/$defs/converter/model"
                                 },
                                 "value": {
-                                    "$ref": "#/$defs/converter"
+                                    "$ref": "#/$defs/converter/model"
                                 }
                             }
                         }
@@ -1016,6 +1083,7 @@
                     "additionalProperties": false
                 },
                 "tls": {
+                    "type": "object",
                     "properties": {
                         "version": {
                             "title": "Version",
@@ -1050,10 +1118,7 @@
                             "title": "Application Protocols",
                             "type": "array",
                             "items": {
-                                "type": [
-                                    "string",
-                                    "null"
-                                ]
+                                "type": "string"
                             }
                         },
                         "mutual": {
@@ -1063,7 +1128,8 @@
                                 "required",
                                 "requested",
                                 "none"
-                            ]
+                            ],
+                            "default": "none"
                         },
                         "signers": {
                             "title": "Vault Signer Certificates",
@@ -1124,6 +1190,7 @@
                         "mqtt-kafka",
                         "openapi",
                         "openapi-asyncapi",
+                        "pgsql",
                         "proxy",
                         "sse",
                         "sse-kafka",
@@ -1229,10 +1296,16 @@
                             "vault": false,
                             "options": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "additionalProperties": false,
                                                 "properties": {
                                                     "address": {
@@ -1422,10 +1495,16 @@
                                 "additionalProperties": false
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "additionalProperties": false,
                                                 "properties": {
                                                     "api-id": {
@@ -1650,11 +1729,18 @@
                                 ]
                             },
                             "vault": false,
+                            "options": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "method": {
                                                         "title": "Method",
@@ -1721,35 +1807,28 @@
                                         },
                                         "additionalProperties": false
                                     },
-                                    "catalog":
-                                            {
+                                    "catalog": {
+                                        "type": "object",
+                                        "patternProperties": {
+                                            "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
                                                 "type": "object",
-                                                "patternProperties":
-                                                {
-                                                    "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$":
-                                                    {
-                                                        "type": "object",
-                                                        "properties":
-                                                        {
-                                                            "subject":
-                                                            {
-                                                                "type": "string"
-                                                            },
-                                                            "version":
-                                                            {
-                                                                "type": "string",
-                                                                "default": "latest"
-                                                            }
-                                                        },
-                                                        "required":
-                                                        [
-                                                            "subject"
-                                                        ],
-                                                        "additionalProperties": false
+                                                "properties": {
+                                                    "subject": {
+                                                        "type": "string"
                                                     },
-                                                    "additionalProperties": false
-                                                }
-                                            }
+                                                    "version": {
+                                                        "type": "string",
+                                                        "default": "latest"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "subject"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "additionalProperties": false
+                                        }
+                                    }
                                 }
                             },
                             {
@@ -1854,10 +1933,16 @@
                                 "additionalProperties": false
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "method": {
                                                         "title": "Method",
@@ -1905,6 +1990,7 @@
                                                             "title": "Filters",
                                                             "type": "array",
                                                             "items": {
+                                                                "type": "object",
                                                                 "properties": {
                                                                     "key": {
                                                                         "title": "Key",
@@ -1942,7 +2028,8 @@
                                                                 "none",
                                                                 "leader_only",
                                                                 "in_sync_replicas"
-                                                            ]
+                                                            ],
+                                                            "default": "in_sync_replicas"
                                                         },
                                                         "key": {
                                                             "title": "Key",
@@ -2028,7 +2115,11 @@
                                         "properties": {
                                             "policy": {
                                                 "title": "Policy",
-                                                "type": "string"
+                                                "type": "string",
+                                                "enum": [
+                                                    "same-origin",
+                                                    "cross-origin"
+                                                ]
                                             }
                                         },
                                         "oneOf": [
@@ -2140,7 +2231,7 @@
                                                     "type": "object",
                                                     "patternProperties": {
                                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                            "$ref": "#/$defs/validator"
+                                                            "$ref": "#/$defs/validator/model"
                                                         }
                                                     }
                                                 },
@@ -2151,7 +2242,7 @@
                                                             "type": "object",
                                                             "patternProperties": {
                                                                 "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "$ref": "#/$defs/validator"
+                                                                    "$ref": "#/$defs/validator/model"
                                                                 }
                                                             }
                                                         },
@@ -2159,7 +2250,7 @@
                                                             "type": "object",
                                                             "patternProperties": {
                                                                 "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "$ref": "#/$defs/validator"
+                                                                    "$ref": "#/$defs/validator/model"
                                                                 }
                                                             }
                                                         }
@@ -2167,7 +2258,7 @@
                                                     "additionalProperties": false
                                                 },
                                                 "content": {
-                                                    "$ref": "#/$defs/validator"
+                                                    "$ref": "#/$defs/validator/model"
                                                 },
                                                 "responses": {
                                                     "type": "array",
@@ -2197,12 +2288,12 @@
                                                                 "type": "object",
                                                                 "patternProperties": {
                                                                     "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                        "$ref": "#/$defs/validator"
+                                                                        "$ref": "#/$defs/validator/model"
                                                                     }
                                                                 }
                                                             },
                                                             "content": {
-                                                                "$ref": "#/$defs/validator"
+                                                                "$ref": "#/$defs/validator/model"
                                                             }
                                                         },
                                                         "anyOf": [
@@ -2254,10 +2345,16 @@
                                 "additionalProperties": false
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "headers": {
                                                         "title": "Headers",
@@ -2332,10 +2429,16 @@
                             "vault": false,
                             "options": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "path": {
                                                         "title": "Path",
@@ -2442,10 +2545,16 @@
                                 "additionalProperties": false
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "method": {
                                                         "title": "Method",
@@ -2453,7 +2562,8 @@
                                                     },
                                                     "path": {
                                                         "title": "Path",
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "pattern": "^/"
                                                     }
                                                 },
                                                 "additionalProperties": false
@@ -2476,6 +2586,7 @@
                                                             "title": "Filters",
                                                             "type": "array",
                                                             "items": {
+                                                                "type": "object",
                                                                 "properties": {
                                                                     "key": {
                                                                         "title": "Key",
@@ -2549,7 +2660,8 @@
                                                                 "none",
                                                                 "leader_only",
                                                                 "in_sync_replicas"
-                                                            ]
+                                                            ],
+                                                            "default": "in_sync_replicas"
                                                         },
                                                         "key": {
                                                             "title": "Key",
@@ -2622,10 +2734,16 @@
                             },
                             "vault": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "topic": {
                                                         "title": "Topic",
@@ -2676,10 +2794,10 @@
                                                             "type": "string"
                                                         },
                                                         "key": {
-                                                            "$ref": "#/$defs/converter"
+                                                            "$ref": "#/$defs/converter/model"
                                                         },
                                                         "value": {
-                                                            "$ref": "#/$defs/converter"
+                                                            "$ref": "#/$defs/converter/model"
                                                         }
                                                     }
                                                 }
@@ -2765,7 +2883,8 @@
                                             "none",
                                             "leader_only",
                                             "in_sync_replicas"
-                                        ]
+                                        ],
+                                        "default": "in_sync_replicas"
                                     },
                                     "idempotency": {
                                         "title": "Idempotency",
@@ -2815,10 +2934,16 @@
                                 }
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "topic": {
                                                         "title": "Topic",
@@ -2875,7 +3000,15 @@
                                     ]
                                 }
                             },
-                            "exit": false
+                            "exit": false,
+                            "entry": {
+                                "title": "Entry",
+                                "type": "string",
+                                "pattern": "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$"
+                            },
+                            "required": [
+                                "entry"
+                            ]
                         },
                         "required": [
                             "routes"
@@ -2903,19 +3036,29 @@
                             },
                             "vault": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "additionalProperties": false,
                                                 "properties": {
                                                     "session": {
                                                         "title": "Session",
                                                         "type": "array",
                                                         "items": {
-                                                            "client-id": {
-                                                                "title": "Client Id",
-                                                                "type": "string"
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "client-id": {
+                                                                    "title": "Client Id",
+                                                                    "type": "string"
+                                                                }
                                                             }
                                                         }
                                                     },
@@ -2923,19 +3066,27 @@
                                                         "title": "Subscribe",
                                                         "type": "array",
                                                         "items": {
-                                                            "topic": {
-                                                                "title": "Topic",
-                                                                "type": "string"
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "topic": {
+                                                                    "title": "Topic",
+                                                                    "type": "string"
+                                                                }
                                                             }
                                                         }
                                                     },
                                                     "publish": {
-                                                        "title": "Subscribe",
+                                                        "title": "Publish",
                                                         "type": "array",
                                                         "items": {
-                                                            "topic": {
-                                                                "title": "Topic",
-                                                                "type": "string"
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "topic": {
+                                                                    "title": "Topic",
+                                                                    "type": "string"
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -2992,13 +3143,13 @@
                                                             "type": "string"
                                                         },
                                                         "content": {
-                                                            "$ref": "#/$defs/validator"
+                                                            "$ref": "#/$defs/validator/model"
                                                         },
                                                         "user-properties": {
                                                             "type": "object",
                                                             "patternProperties": {
                                                                 "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "$ref": "#/$defs/validator"
+                                                                    "$ref": "#/$defs/validator/model"
                                                                 }
                                                             }
                                                         }
@@ -3113,10 +3264,16 @@
                                 "additionalProperties": false
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "anyOf": [
                                                     {
                                                         "properties": {
@@ -3124,6 +3281,7 @@
                                                                 "title": "Subscribe",
                                                                 "type": "array",
                                                                 "items": {
+                                                                    "type": "object",
                                                                     "properties": {
                                                                         "topic": {
                                                                             "title": "Topic",
@@ -3141,6 +3299,7 @@
                                                                 "title": "Publish",
                                                                 "type": "array",
                                                                 "items": {
+                                                                    "type": "object",
                                                                     "properties": {
                                                                         "topic": {
                                                                             "title": "Topic",
@@ -3291,18 +3450,6 @@
                                         "required": [
                                             "exit"
                                         ]
-                                    },
-                                    {
-                                        "properties": {
-                                            "routes": {
-                                                "required": [
-                                                    "exit"
-                                                ]
-                                            }
-                                        },
-                                        "required": [
-                                            "routes"
-                                        ]
                                     }
                                 ]
                             },
@@ -3310,13 +3457,6 @@
                                 "properties": {
                                     "kind": {
                                         "const": "client"
-                                    },
-                                    "routes": {
-                                        "items": {
-                                            "properties": {
-                                                "exit": false
-                                            }
-                                        }
                                     },
                                     "exit": false
                                 }
@@ -3427,10 +3567,16 @@
                                 "additionalProperties": false
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "api-id": {
                                                         "title": "ApiId",
@@ -3481,6 +3627,38 @@
                     "if": {
                         "properties": {
                             "type": {
+                                "const": "pgsql"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "pgsql"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "client",
+                                    "server"
+                                ]
+                            },
+                            "vault": false,
+                            "options": false,
+                            "routes": false
+                        },
+                        "anyOf": [
+                            {
+                                "required": [
+                                    "exit"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
                                 "const": "proxy"
                             }
                         }
@@ -3499,10 +3677,16 @@
                             "vault": false,
                             "options": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "additionalProperties": false,
                                                 "properties": {
                                                     "transport": {
@@ -3656,7 +3840,7 @@
                                                     "type": "string"
                                                 },
                                                 "content": {
-                                                    "$ref": "#/$defs/validator"
+                                                    "$ref": "#/$defs/validator/model"
                                                 }
                                             },
                                             "anyOf": [
@@ -3674,10 +3858,16 @@
                                 "additionalProperties": false
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "path": {
                                                         "title": "Path",
@@ -3727,10 +3917,16 @@
                             "vault": false,
                             "options": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "path": {
                                                         "title": "Path",
@@ -3750,6 +3946,7 @@
                                                     "title": "Filters",
                                                     "type": "array",
                                                     "items": {
+                                                        "type": "object",
                                                         "properties": {
                                                             "key": {
                                                                 "title": "Key",
@@ -3827,10 +4024,16 @@
                                 "$ref": "#/$defs/options/binding/tcp"
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "authority": {
                                                         "title": "Authority",
@@ -3942,10 +4145,16 @@
                                 ]
                             },
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "authority": {
                                                         "title": "Authority",
@@ -3990,6 +4199,18 @@
                                 }
                             }
                         },
+                        "if": {
+                            "properties": {
+                                "kind": {
+                                    "const": "server"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "vault"
+                            ]
+                        },
                         "anyOf": [
                             {
                                 "required": [
@@ -4019,7 +4240,19 @@
                                         "const": "server"
                                     },
                                     "options": {
-                                        "$ref": "#/$defs/options/binding/tls"
+                                        "$ref": "#/$defs/options/binding/tls",
+                                        "oneOf": [
+                                            {
+                                                "required": [
+                                                    "keys"
+                                                ]
+                                            },
+                                            {
+                                                "required": [
+                                                    "signers"
+                                                ]
+                                            }
+                                        ]
                                     }
                                 }
                             },
@@ -4055,10 +4288,16 @@
                             },
                             "vault": false,
                             "routes": {
+                                "title": "Routes",
+                                "type": "array",
                                 "items": {
+                                    "type": "object",
                                     "properties": {
                                         "when": {
+                                            "title": "When",
+                                            "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "protocol": {
                                                         "title": "Subprotocol",
@@ -4147,14 +4386,6 @@
             ]
         },
         "converter": {
-            "oneOf": [
-                {
-                    "$ref": "#/$defs/converter/types"
-                },
-                {
-                    "$ref": "#/$defs/converter/model"
-                }
-            ],
             "types": {
                 "type": "string",
                 "enum": [
@@ -4221,7 +4452,10 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "strategy": {
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "topic"
+                                                                ]
                                                             },
                                                             "version": {
                                                                 "type": "string",
@@ -4426,7 +4660,10 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "strategy": {
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "topic"
+                                                                ]
                                                             },
                                                             "version": {
                                                                 "type": "string",
@@ -4513,7 +4750,10 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "strategy": {
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "topic"
+                                                                ]
                                                             },
                                                             "version": {
                                                                 "type": "string",
@@ -4601,22 +4841,16 @@
             }
         },
         "validator": {
-            "oneOf": [
-                {
-                    "$ref": "#/$defs/validator/types"
-                },
-                {
-                    "$ref": "#/$defs/validator/model"
-                }
-            ],
             "types": {
                 "type": "string",
                 "enum": [
+                    "avro",
                     "double",
                     "float",
                     "int32",
                     "int64",
                     "json",
+                    "protobuf",
                     "string"
                 ]
             },
@@ -4795,7 +5029,10 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "strategy": {
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "topic"
+                                                                ]
                                                             },
                                                             "version": {
                                                                 "type": "string",

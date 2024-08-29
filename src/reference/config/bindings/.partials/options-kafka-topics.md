@@ -12,9 +12,9 @@ Enforce validation for key
 
 #### key.model\*
 
-> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
+> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
 
-A schema or type to validate the topic's key.
+A schema or type to validate the topic's key. Refer to the individual [model](../../models) docs for type specific implementation.
 
 #### topics[].value
 
@@ -24,6 +24,10 @@ Enforce validation for value
 
 #### value.model\*
 
-> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
+> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
 
-A schema or type to validate the topic's value.
+A schema or type to validate the topic's value. Refer to the individual [model](../../models) docs for type specific implementation.
+
+#### topics[].transforms
+
+> `array`

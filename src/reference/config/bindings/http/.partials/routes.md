@@ -15,7 +15,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -43,7 +43,7 @@ routes:
 
 #### when[].headers
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Header name value pairs (all match).
 

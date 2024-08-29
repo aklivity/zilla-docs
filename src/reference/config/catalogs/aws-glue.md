@@ -37,12 +37,12 @@ The AWS Glue Registry name to access schemas.
 
 #### options.max-age
 
-> `number` | Default: `"300"`
+> `number` | Default: `300`
 
 Configures the time to live in `seconds` for the schema information retrieved against the latest version. The default is 300 seconds or 5 minutes.
 
 #### options.compression
 
-> `enum` [ "none", "zlib" ] | Default: `"none"`
+> `enum` [ `none`, `zlib` ] | Default: `none`
 
 Configures the compression level for the message payloads that are serialized by the models configured in this catalog.

@@ -14,6 +14,8 @@ Defines a model to enforce validation for string data.
 
 ### model: string
 
+> `const`
+
 Specifies the model is a `string`.
 
 ```yaml {1}
@@ -26,19 +28,19 @@ pattern: ^wait=\d+$
 
 ### encoding
 
-> `enum` [ "utf_8","utf_16" ]
+> `enum` [ `utf_8`, `utf_16` ]
 
 Define character encoding for unicode.
 
 ### minLength
 
-> `integer` | minimum: 1
+> `integer` | Minimum: `1`
 
 Define string minimum length.
 
 ### maxLength
 
-> `integer` | minimum: 1
+> `integer` | Minimum: `1`
 
 Define string maximum length.
 

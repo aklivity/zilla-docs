@@ -1,11 +1,11 @@
 ### format
 
-> `enum` [ "binary", "text" ] | Default: `"text"`
-
-### range
-
-> `string` | Pattern: "((?:\\(|\\[))(-?\\d+)?,(-?\\d+)?((?:\\)|\\]))"
+> `enum` [ `binary`, `text` ] | Default: `text`
 
 ### multiple
 
-> `integer`
+> `number`
+
+### range
+
+> `string` | Pattern: `((?:\\(|\\[))(-?\\d+(?:\\.\\d+)?)?,(-?\\d+(?:\\.\\d+)?)?((?:\\)|\\]))`

@@ -16,6 +16,12 @@ model: float
 
 ### model: float
 
+> `const`
+
 Specifies the model is a `float`.
 
 <!-- @include: ./.partials/number.md -->
+
+### range
+
+> `string` | Pattern: `((?:\\(|\\[))(-?\\d+(?:\\.\\d+)?)?,(-?\\d+(?:\\.\\d+)?)?((?:\\)|\\]))`

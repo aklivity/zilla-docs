@@ -26,11 +26,13 @@ catalog:
 
 ### model: avro
 
+> `const`
+
 Specifies the model is `avro`.
 
 ### view
 
-> `enum` [ "json" ]
+> `enum` [ `json` ]
 
 Transforms the model from this data type to the Avro schema on produce and to this data type from the Avro schema on consume.
 

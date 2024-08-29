@@ -49,7 +49,7 @@ Topic configuration.
 
 #### topics[].defaultOffset
 
-> `enum` [ "live", "historical" ] | Default: `"historical"`
+> `enum` [ `live`, `historical` ] | Default: `historical`
 
 Fetch offset to use for new consumers
 
@@ -113,9 +113,13 @@ messages: mqttMessages
 
 ### options.http
 
+> `object`
+
+http specific options.
+
 #### http.authorization
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -131,9 +135,11 @@ authorization:
 
 ### options.mqtt
 
+> `object`
+
 #### mqtt.authorization
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 

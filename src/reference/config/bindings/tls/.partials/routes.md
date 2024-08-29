@@ -13,7 +13,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -51,7 +51,7 @@ Application protocol.
 
 #### when[].port
 
-> `integer` | `string` | `array` of  `integer` | `array` of `string`
+> `integer`, `string`, `array`
 
 Port number(s), including port number ranges.
 

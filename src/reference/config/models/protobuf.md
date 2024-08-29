@@ -28,19 +28,19 @@ catalog:
 
 ### model: protobuf
 
-> `string`
+> `const`
 
 Specifies the model is a `protobuf`.
 
 ### view
 
-> `enum` [ "json" ]
+> `enum` [ `json` ]
 
 Transforms the model from this data type to the Protobuf schema on produce and to this data type from the Protobuf schema on consume.
 
 ### catalog
 
-> `object`
+> `object` as map of named:`array`
 
 To map defined catalog for schema retrieval based on catalog specific parameters. Any of the possible combination can be configured.
 
@@ -63,13 +63,13 @@ Define specific schema id to refer from catalog.
 
 #### catalog.version
 
-> `string` | Default: `"latest"`
+> `string` | Default: `latest`
 
 Specific iteration or version of a registered schema in the defined catalog.
 
 #### catalog.strategy\*
 
-> `enum` [ "topic" ]
+> `enum` [ `topic` ]
 
 To determine the subject based on the specified strategy
 

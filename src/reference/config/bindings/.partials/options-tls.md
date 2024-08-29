@@ -24,9 +24,9 @@ A list of reference names for the Vault signer certificate.
 
 #### tls.trustcacerts
 
-> `boolean` | Default: `true` when trust is `null`
+> `boolean`
 
-Trust CA certificates.
+Trust CA certificates. This property will be considered set to `true` when [tls.trust](#tls-trust) is `null`.
 
 #### tls.sni
 
@@ -42,6 +42,6 @@ Application protocols.
 
 #### tls.mutual
 
-> `enum` [ "required", "requested", "none" ] | Default: `"none"`
+> `enum` [ `required`, `requested`, `none` ] | Default: `none`
 
 Mutual authentication.

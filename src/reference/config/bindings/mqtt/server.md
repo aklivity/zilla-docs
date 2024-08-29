@@ -34,7 +34,7 @@ options:
 
 #### options.authorization
 
-> `object` as map of named objects
+> `object` as map of named:`object`
 
 Authorization by a named guard.
 
@@ -50,7 +50,7 @@ authorization:
 
 #### options.versions
 
-> `array` of `enum` [ "v5", "v3.1.1" ]
+> `array` of `enum` [ `v3.1.1`, `v5` ]
 
 Supported protocol versions.
 
@@ -68,19 +68,19 @@ Topic name.
 
 #### topics[].content
 
-> `object` of a named [`model`](../../models/)
+> `object`
 
 Enforce validation for content
 
 #### content.model\*
 
-> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
+> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
 
-A schema or type to validate the request content.
+A schema or type to validate the request content. Refer to the individual [model](../../models) docs for type specific implementation.
 
 #### topics[].user-properties
 
-> `map` of "name: [model](../../models/)" properties
+> `object` as map of named:`object`
 
 Enforce validation for user provided properties.
 
@@ -93,7 +93,9 @@ user-properties:
 
 #### user-properties.model\*
 
-> `model` [ [`avro`](../../models/avro.md), [`json`](../../models/avro.md), [`protobuf`](../../models/protobuf.md), [`string`](../../models/string.md), [`double`](../../models/double.md), [`float`](../../models/float.md), [`int32`](../../models/int32.md), [`int64`](../../models/int64.md) ]
+> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
+
+A schema or type to validate the user-properties content. Refer to the individual [model](../../models) docs for type specific implementation.
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->

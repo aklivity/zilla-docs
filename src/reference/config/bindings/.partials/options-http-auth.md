@@ -6,18 +6,18 @@ Defines how to extract credentials from the HTTP request.
 
 #### credentials.cookies
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Named cookie value pattern with `{credentials}`.
 
 #### credentials.headers
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
 #### credentials.query
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Named query parameter value pattern with `{credentials}`.

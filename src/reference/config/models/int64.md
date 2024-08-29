@@ -16,6 +16,8 @@ model: int64
 
 ### model: int64
 
+> `const`
+
 Specifies the model is a `int64`.
 
-<!-- @include: ./.partials/number.md -->
+<!-- @include: ./.partials/integer.md -->

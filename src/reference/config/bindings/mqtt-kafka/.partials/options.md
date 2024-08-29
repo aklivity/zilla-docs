@@ -75,7 +75,7 @@ MQTT `publish`-specific options.
 
 #### publish.qosMax\*
 
-> `enum` [ "at_most_once", "at_least_once", "exactly_once" ] | default: "exactly_once"
+> `enum` [ `at_most_once`, `at_least_once`, `exactly_once` ] | Default: `exactly_once`
 
 Highest allowed QOS level.
 

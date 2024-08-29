@@ -1,20 +1,38 @@
 ### catalog
 
-> `object`
+> `object` as map of named:`array`
 
 To map defined catalog for schema retrieval based on catalog specific parameters. Any of the possible combination can be configured.
 
 > `id`
+
+```yaml
+catalog:
+  my_catalog:
+    id: unique-catalog-id
+```
+
 -----
 > `strategy`
-> `version`
+
+```yaml
+catalog:
+  my_catalog:
+    - strategy: topic
+```
+
 -----
 > `subject`
-> `version`
+
+```yaml
+catalog:
+  my_catalog:
+    subject: http
+```
 
 #### catalog.strategy\*
 
-> `enum` [ "topic" ]
+> `enum` [ `topic` ]
 
 To determine the subject based on the specified strategy
 
@@ -26,7 +44,7 @@ Unique identifier for schema categorization in the catalog.
 
 #### catalog.version
 
-> `string` | Default: `"latest"`
+> `string` | Default: `latest`
 
 Specific iteration or version of a registered schema in the defined catalog.
 

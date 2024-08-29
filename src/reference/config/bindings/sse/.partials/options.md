@@ -35,6 +35,6 @@ Enforce validation for the request content.
 
 #### content.model\*
 
-> `model` [ [`avro`](../../../models/avro.md), [`json`](../../../models/avro.md), [`protobuf`](../../../models/protobuf.md), [`string`](../../../models/string.md), [`double`](../../../models/double.md), [`float`](../../../models/float.md), [`int32`](../../../models/int32.md), [`int64`](../../../models/int64.md) ]
+> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
 
-A schema or type to validate the request content.
+A schema or type to validate the request content. Refer to the individual [model](../../models) docs for type specific implementation.

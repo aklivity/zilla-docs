@@ -62,9 +62,9 @@ To avoid conflicts with Amazon Web Services service namespaces, you should not s
 
 #### metrics.interval
 
-> `integer`
+> `integer` | Default: `30`
 
-Interval in seconds to push data to the Amazon CloudWatch. Default: 30 seconds.
+Interval in seconds to push data to the Amazon CloudWatch.
 
 #### options.logs
 

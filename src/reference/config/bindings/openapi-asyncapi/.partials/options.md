@@ -30,11 +30,11 @@ OpenAPI and AsyncAPI specs definition.
 
 #### specs.openapi\*
 
-> `object` of `name: value` properties
+> `object` as map of named:`object`
 
 #### openapi.catalog
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 catalog specific options.
 
@@ -46,17 +46,17 @@ Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
-> `string`
+> `string` | Default: `latest`
 
 Catalog artifact version to use.
 
 #### specs.asyncapi\*
 
-> `object` of `name: value` properties
+> `object` as map of named:`object`
 
 #### asyncapi.catalog
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 `catalog` catalog specific options.
 
@@ -68,6 +68,6 @@ Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
-> `string`
+> `string` | Default: `latest`
 
 Catalog artifact version to use.

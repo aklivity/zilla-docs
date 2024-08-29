@@ -18,13 +18,13 @@ options:
 
 #### options.specs
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 `specs` specific options
 
 #### specs.catalog
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 catalog specific options.
 
@@ -36,7 +36,7 @@ Subject name used when storing the catalog artifact.
 
 #### catalog.version
 
-> `string`
+> `string` | Default: `latest`
 
 Catalog artifact version to use.
 
@@ -46,7 +46,7 @@ Catalog artifact version to use.
 
 #### servers[].url
 
-> `string`
+> `string` | Pattern: `^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$`
 
 The server url to match in openapi spec
 
@@ -54,11 +54,11 @@ The server url to match in openapi spec
 
 > `object`
 
-`http` specific options.
+http specific options.
 
 #### http.authorization
 
-> `object` as map of named properties
+> `object` as map of named:`object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -78,19 +78,19 @@ Defines how to extract credentials from the HTTP request.
 
 #### credentials.cookies
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Named cookie value pattern with `{credentials}`.
 
 #### credentials.headers
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
 #### credentials.query
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Named query parameter value pattern with `{credentials}`.
 
@@ -108,7 +108,7 @@ Hostname or IP address.
 
 #### tcp.port
 
-> `integer` | `string` | `array` of `integer` | `array` of `string`
+> `integer`, `string`, `array`
 
 Port number(s), including port number ranges.
 
@@ -144,9 +144,9 @@ A list of reference names for the Vault signer certificate.
 
 #### tls.trustcacerts
 
-> `boolean` | Default: `true` when trust is `null`
+> `boolean`
 
-Trust CA certificates.
+Trust CA certificates. This property will be considered set to `true` when [tls.trust](#tls-trust) is `null`.
 
 #### tls.sni
 
@@ -162,6 +162,6 @@ Application protocols.
 
 #### tls.mutual
 
-> `enum` [ "required", "requested", "none" ] | Default: `"none"`
+> `enum` [ `required`, `requested`, `none` ] | Default: `none`
 
 Mutual authentication.

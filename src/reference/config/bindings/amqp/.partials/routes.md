@@ -14,7 +14,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -47,7 +47,7 @@ Link address.
 
 #### when[].capabilities
 
-> `enum` [ "send_only", "receive_only", "send_and_receive" ] | Default: `"send_and_receive"`
+> `enum` [ `send_only`, `receive_only`, `send_and_receive` ] | Default: `send_and_receive`
 
 Send or receive, or both.
 

@@ -20,7 +20,7 @@ options:
 
 #### options.acks
 
-> `enum` [ "none", "leader_only", "in_sync_replicas" ]
+> `enum` [ `none`, `leader_only`, `in_sync_replicas` ] | Default: `in_sync_replicas`
 
 The `kafka` acknowledgment mode.
 
@@ -32,7 +32,7 @@ Metadata header used to specify the idempotency key when adapting `kafka` topic 
 
 #### idempotency.metadata
 
-> `string` | Default: `"idempotency-key"`.
+> `string` | Default: `idempotency-key`
 
 The `grpc` metadata header name for idempotency key.
 
@@ -50,24 +50,24 @@ Kafka request message correlation header names used when adapting `kafka` topic 
 
 #### headers.service
 
-> `string` | Default: `"zilla:service"`
+> `string` | Default: `zilla:service`
 
 Kafka header name for `grpc` service.
 
 #### headers.method
 
-> `string` | Default: `"zilla:method"`
+> `string` | Default: `zilla:method`
 
 Kafka header name for `grpc` method.
 
 #### headers.correlation-id
 
-> `string` | Default: `"zilla:correlation-id"`
+> `string` | Default: `zilla:correlation-id`
 
 Kafka header name for request-response correlation identifier.
 
 #### headers.reply-to
 
-> `string` | Default: `"zilla:reply-to"`
+> `string` | Default: `zilla:reply-to`
 
 Kafka header name for reply-to topic.

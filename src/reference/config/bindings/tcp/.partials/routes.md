@@ -1,6 +1,6 @@
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -19,12 +19,12 @@ Associated authority.
 
 #### when[].cidr
 
-> `string`
+> `string` | Pattern: `^[0-9a-fA-F:.]+/(\\d{1,3})$`
 
 CIDR mask.
 
 #### when[].port
 
-> `integer` | `string` | `array` of  `integer` | `array` of `string`
+> `integer`, `string`, `array`
 
 Port number(s), including port number ranges.

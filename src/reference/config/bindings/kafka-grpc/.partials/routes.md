@@ -21,7 +21,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as named map of `string:string` `array`
+> `object` as map of named:`array` of `string`
 
 Roles required by named guard.
 
@@ -61,7 +61,7 @@ The name of a Kafka topic for requests.
 
 #### when[].headers
 
-> `map` of `name: value` properties
+> `object` as map of named: `string` properties
 
 Header name value pairs (all match).
 
@@ -73,7 +73,7 @@ The name of the Kafka topic for correlated responses.
 
 #### when[].method
 
-> `string`
+> `string` | Pattern: `^(?<Service>[^/]+)/(?<Method>[^/]+)`
 
 Pattern matching the fully qualified name of a `grpc` service method, in the format `<service>/<method>` allowing wildcard `*` for the method to indicate any method.
 
@@ -90,7 +90,7 @@ routes:
     exit: kafka_cache_client
 ```
 
-#### routes[].with
+#### routes[].with\*
 
 > `object`
 

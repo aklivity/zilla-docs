@@ -16,6 +16,8 @@ model: double
 
 ### model: double
 
+> `const`
+
 Specifies the model is a `double`.
 
 <!-- @include: ./.partials/number.md -->

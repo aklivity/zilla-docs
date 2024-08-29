@@ -41,7 +41,7 @@ catalog:
 
 #### options.subjects
 
-> `object` as map of named objects
+> `object` as map of named:`object`
 
 Unique identifier for schema categorization in the registry.
 
@@ -53,6 +53,6 @@ Definition specifying data structure and format in detail.
 
 #### subjects.version
 
-> `string` | Default: `"latest"`
+> `string` | Default: `latest`
 
 Specific iteration or version of a registered schema.
