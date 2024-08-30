@@ -76,7 +76,7 @@ Enforce validation for content
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the request content. Refer to the individual [model](../../models) docs for type specific implementation.
+A schema or type to validate the request content. Refer to the individual [model](../../models/) docs for type specific implementation.
 
 #### topics[].user-properties
 
@@ -95,7 +95,7 @@ user-properties:
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the user-properties content. Refer to the individual [model](../../models) docs for type specific implementation.
+A schema or type to validate the user-properties content. Refer to the individual [model](../../models/) docs for type specific implementation.
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->

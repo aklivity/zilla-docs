@@ -13,7 +13,7 @@ Enforce validation for the request content.
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the request content. Refer to the individual [model](../../../models) docs for type specific implementation.
+A schema or type to validate the request content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
 #### requests[].content-type
 
@@ -41,7 +41,7 @@ Enforce validation for path
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the path content. Refer to the individual [model](../../../models) docs for type specific implementation.
+A schema or type to validate the path content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
 #### params.query
 
@@ -53,7 +53,7 @@ Enforce validation for query
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the query content. Refer to the individual [model](../../../models) docs for type specific implementation.
+A schema or type to validate the query content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
 #### requests[].path
 
@@ -74,7 +74,7 @@ Enforce validation for the response content.
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the response content. Refer to the individual [model](../../../models) docs for type specific implementation.
+A schema or type to validate the response content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 <!-- markdownlint-enable MD024 -->
 
 #### responses[].content-type
@@ -98,7 +98,7 @@ headers:
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the headers content. Refer to the individual [model](../../../models) docs for type specific implementation.
+A schema or type to validate the headers content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
 #### responses[].status
 
