@@ -183,9 +183,9 @@ const main = async () => {
                         ...(then.properties?.options?.properties || {}),
                     }
                 } : {}),
-                required: [...(props?.required || []), ...(then.required || [])],
                 anyOf: [...(then.anyOf || [])],
             },
+            required: [...(props?.required || []), ...(then.required || [])],
         }))
     ).flat(1);
 
@@ -218,10 +218,10 @@ const main = async () => {
                             }
                         }
                     } : {}),
-                    required: [...(then.required || []), ...(required || [])],
                     oneOf,
                     anyOf: [...(then.anyOf || []), ...(anyOf || [])],
                 },
+                required: [...(then.required || []), ...(required || [])],
             })));
         } else {
             sections.push({
@@ -240,8 +240,8 @@ const main = async () => {
                             }
                         }
                     } : {}),
-                    required: [...(then.required || [])],
-                }
+                },
+                required: [...(then.required || [])],
             });
         }
     })
@@ -255,9 +255,9 @@ const main = async () => {
             props: {
                 ...(exporterProps?.properties || {}),
                 ...(then.properties || {}),
-                required: [...(exporterProps?.required || []), ...(then.required || [])],
                 anyOf: [...(then.anyOf || [])],
-            }
+            },
+            required: [...(exporterProps?.required || []), ...(then.required || [])],
         }))
     );
     sections.push(
@@ -266,21 +266,21 @@ const main = async () => {
             name: fi.properties.model.const,
             props: {
                 ...(then.properties || {}),
-                required: (then.required || []),
                 anyOf: (then.anyOf || []),
-            }
+            },
+            required: (then.required || []),
         }))
     );
 
     // console.log("sections", JSON.stringify(sections));
-    sections.forEach(({ folder, name, props }) => {
+    sections.forEach(({ folder, name, props, required }) => {
         delete props.type;
         delete props.kind;
         var foldername = `src/reference/config/${folder.replaceAll(".", "/")}`;
         var filename = `${name}.md`;
         var filePath = `${foldername}/${filename}`;
         // console.log(filePath, props);
-        var schemaAttrs = getObjProps(null, props, []);
+        var schemaAttrs = getObjProps(null, props, required);
         if (fs.existsSync(filePath)) {
 
             var fullMdContent = fs.readFileSync(filePath, "utf8")

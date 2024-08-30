@@ -1,5 +1,4 @@
-<!-- markdownlint-disable MD024 -->
-### routes
+### routes\*
 
 > `array` of `object`
 
@@ -244,11 +243,13 @@ with:
     location: /items/${params.id};cid=${correlationId}
 ```
 
+<!-- markdownlint-disable MD024 -->
 #### with.topic\*
 
 > `string`
 
 Kafka topic name, optionally referencing path parameter such as `${params.topic}`.
+<!-- markdownlint-enable MD024 -->
 
 #### with.acks
 

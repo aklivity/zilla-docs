@@ -1,4 +1,4 @@
-### catalog
+### catalog\*
 
 > `object` as map of named:`array`
 

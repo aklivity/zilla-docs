@@ -29,12 +29,12 @@ The path selector.
 
 #### requests[].content
 
-> `object`
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for the request content.
 
 #### content.model\*
 
-> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the request content. Refer to the individual [model](../../models) docs for type specific implementation.

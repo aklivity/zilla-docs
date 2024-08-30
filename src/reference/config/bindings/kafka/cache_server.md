@@ -48,6 +48,10 @@ Topic configuration.
 
 Fetch offset to use for new consumers
 
+#### topics[].transforms
+
+> `array`
+
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

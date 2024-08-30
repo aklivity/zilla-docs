@@ -1,4 +1,3 @@
-<!-- markdownlint-disable MD024 -->
 ### options
 
 > `object`
@@ -60,6 +59,7 @@ Catalog artifact version to use.
 
 `catalog` catalog specific options.
 
+<!-- markdownlint-disable MD024 -->
 #### catalog.subject\*
 
 > `string`
@@ -71,3 +71,4 @@ Subject name used when storing the catalog artifact.
 > `string` | Default: `latest`
 
 Catalog artifact version to use.
+<!-- markdownlint-enable MD024 -->

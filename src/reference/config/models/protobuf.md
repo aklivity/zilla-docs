@@ -38,7 +38,7 @@ Specifies the model is a `protobuf`.
 
 Transforms the model from this data type to the Protobuf schema on produce and to this data type from the Protobuf schema on consume.
 
-### catalog
+### catalog\*
 
 > `object` as map of named:`array`
 

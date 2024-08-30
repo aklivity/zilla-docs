@@ -52,7 +52,7 @@ guards:
 
 ## Configuration (\* required)
 
-### options
+### options\*
 
 > `object`
 

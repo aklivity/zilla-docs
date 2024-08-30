@@ -1,5 +1,4 @@
-<!-- markdownlint-disable MD024 -->
-### routes
+### routes\*
 
 > `array` of `object`
 
@@ -192,11 +191,13 @@ with:
   reply-to: responses
 ```
 
+<!-- markdownlint-disable MD024 -->
 #### with.topic\*
 
 > `string`
 
 The name of a Kafka topic for requests.
+<!-- markdownlint-enable MD024 -->
 
 #### with.acks
 

@@ -27,7 +27,7 @@ exporters:
 
 ## Configuration (\* required)
 
-### options
+### options\*
 
 > `object`
 

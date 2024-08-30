@@ -5,7 +5,7 @@
 
 #### requests[].content
 
-> `object`
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for the request content.
 
@@ -21,7 +21,7 @@ A schema or type to validate the request content. Refer to the individual [model
 
 #### requests[].headers
 
-> `object` as map of named:`object`
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 #### requests[].method
 
@@ -33,7 +33,7 @@ A schema or type to validate the request content. Refer to the individual [model
 
 #### params.path
 
-> `object` as map of named:`object`
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for path
 
@@ -45,7 +45,7 @@ A schema or type to validate the path content. Refer to the individual [model](.
 
 #### params.query
 
-> `object` as map of named:`object`
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for query
 
@@ -65,15 +65,17 @@ A schema or type to validate the query content. Refer to the individual [model](
 
 #### responses[].content
 
-> `object`
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for the response content.
 
+<!-- markdownlint-disable MD024 -->
 #### content.model\*
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the response content. Refer to the individual [model](../../models) docs for type specific implementation.
+<!-- markdownlint-enable MD024 -->
 
 #### responses[].content-type
 
@@ -81,7 +83,7 @@ A schema or type to validate the response content. Refer to the individual [mode
 
 #### responses[].headers
 
-> `object` as map of named:`object`
+> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for response headers.
 

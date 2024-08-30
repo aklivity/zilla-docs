@@ -979,10 +979,10 @@
                                     ]
                                 },
                                 "key": {
-                                    "$ref": "#/$defs/converter/model"
+                                    "$ref": "#/$defs/converter"
                                 },
                                 "value": {
-                                    "$ref": "#/$defs/converter/model"
+                                    "$ref": "#/$defs/converter"
                                 }
                             }
                         }
@@ -1083,7 +1083,6 @@
                     "additionalProperties": false
                 },
                 "tls": {
-                    "type": "object",
                     "properties": {
                         "version": {
                             "title": "Version",
@@ -2231,7 +2230,7 @@
                                                     "type": "object",
                                                     "patternProperties": {
                                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                            "$ref": "#/$defs/validator/model"
+                                                            "$ref": "#/$defs/validator"
                                                         }
                                                     }
                                                 },
@@ -2242,7 +2241,7 @@
                                                             "type": "object",
                                                             "patternProperties": {
                                                                 "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "$ref": "#/$defs/validator/model"
+                                                                    "$ref": "#/$defs/validator"
                                                                 }
                                                             }
                                                         },
@@ -2250,7 +2249,7 @@
                                                             "type": "object",
                                                             "patternProperties": {
                                                                 "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "$ref": "#/$defs/validator/model"
+                                                                    "$ref": "#/$defs/validator"
                                                                 }
                                                             }
                                                         }
@@ -2258,7 +2257,7 @@
                                                     "additionalProperties": false
                                                 },
                                                 "content": {
-                                                    "$ref": "#/$defs/validator/model"
+                                                    "$ref": "#/$defs/validator"
                                                 },
                                                 "responses": {
                                                     "type": "array",
@@ -2288,12 +2287,12 @@
                                                                 "type": "object",
                                                                 "patternProperties": {
                                                                     "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                        "$ref": "#/$defs/validator/model"
+                                                                        "$ref": "#/$defs/validator"
                                                                     }
                                                                 }
                                                             },
                                                             "content": {
-                                                                "$ref": "#/$defs/validator/model"
+                                                                "$ref": "#/$defs/validator"
                                                             }
                                                         },
                                                         "anyOf": [
@@ -2794,10 +2793,10 @@
                                                             "type": "string"
                                                         },
                                                         "key": {
-                                                            "$ref": "#/$defs/converter/model"
+                                                            "$ref": "#/$defs/converter"
                                                         },
                                                         "value": {
-                                                            "$ref": "#/$defs/converter/model"
+                                                            "$ref": "#/$defs/converter"
                                                         }
                                                     }
                                                 }
@@ -3005,12 +3004,10 @@
                                 "title": "Entry",
                                 "type": "string",
                                 "pattern": "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$"
-                            },
-                            "required": [
-                                "entry"
-                            ]
+                            }
                         },
                         "required": [
+                            "entry",
                             "routes"
                         ]
                     }
@@ -3143,13 +3140,13 @@
                                                             "type": "string"
                                                         },
                                                         "content": {
-                                                            "$ref": "#/$defs/validator/model"
+                                                            "$ref": "#/$defs/validator"
                                                         },
                                                         "user-properties": {
                                                             "type": "object",
                                                             "patternProperties": {
                                                                 "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "$ref": "#/$defs/validator/model"
+                                                                    "$ref": "#/$defs/validator"
                                                                 }
                                                             }
                                                         }
@@ -3840,7 +3837,7 @@
                                                     "type": "string"
                                                 },
                                                 "content": {
-                                                    "$ref": "#/$defs/validator/model"
+                                                    "$ref": "#/$defs/validator"
                                                 }
                                             },
                                             "anyOf": [
@@ -4386,6 +4383,14 @@
             ]
         },
         "converter": {
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/converter/types"
+                },
+                {
+                    "$ref": "#/$defs/converter/model"
+                }
+            ],
             "types": {
                 "type": "string",
                 "enum": [
@@ -4618,7 +4623,7 @@
                                     "pattern": "((?:\\(|\\[))(-?\\d+)?,(-?\\d+)?((?:\\)|\\]))"
                                 },
                                 "multiple": {
-                                    "type": "number"
+                                    "type": "integer"
                                 }
                             },
                             "additionalProperties": false
@@ -4841,16 +4846,22 @@
             }
         },
         "validator": {
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/validator/types"
+                },
+                {
+                    "$ref": "#/$defs/validator/model"
+                }
+            ],
             "types": {
                 "type": "string",
                 "enum": [
-                    "avro",
                     "double",
                     "float",
                     "int32",
                     "int64",
                     "json",
-                    "protobuf",
                     "string"
                 ]
             },

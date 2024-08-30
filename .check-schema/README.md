@@ -7,8 +7,8 @@ This project compares the JSON Schema from the Zilla to the [Reference](../src/r
 In the repository root directory run:
 
 ```bash
-docker run -e ZILLA_INCUBATOR_ENABLED=true ghcr.io/aklivity/zilla:latest start -v -Pzilla.engine.verbose.schema.plain > ./.check-schema/zilla-schema.json
-docker run -e ZILLA_INCUBATOR_ENABLED=true ghcr.io/aklivity/zilla:latest start -v -Pzilla.engine.verbose.schema > ./src/.vuepress/public/assets/zilla-schema.json
+docker run -it --rm -e ZILLA_INCUBATOR_ENABLED=true ghcr.io/aklivity/zilla:latest start -v -Pzilla.engine.verbose.schema.plain > ./.check-schema/zilla-schema.json
+docker run -it --rm -e ZILLA_INCUBATOR_ENABLED=true ghcr.io/aklivity/zilla:latest start -v -Pzilla.engine.verbose.schema > ./src/.vuepress/public/assets/zilla-schema.json
 ```
 
 Once the docker container has printed "started" it must be deleted for the command to complete.

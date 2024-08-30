@@ -6,7 +6,7 @@ Topic name.
 
 #### topics[].key
 
-> `object`
+> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ], `object`
 
 Enforce validation for key
 
@@ -18,7 +18,7 @@ A schema or type to validate the topic's key. Refer to the individual [model](..
 
 #### topics[].value
 
-> `object`
+> `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ], `object`
 
 Enforce validation for value
 
@@ -27,7 +27,3 @@ Enforce validation for value
 > `enum` [ `avro`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
 
 A schema or type to validate the topic's value. Refer to the individual [model](../../models) docs for type specific implementation.
-
-#### topics[].transforms
-
-> `array`
