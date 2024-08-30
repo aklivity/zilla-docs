@@ -157,5 +157,13 @@ authorization:
 
 <!-- @include: ../.partials/options-mqtt-auth.md -->
 
+#### options.tls
+
+> `object`
+
+`tls` specific options.
+
+<!-- @include: ../.partials/options-tls.md -->
+
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/telemetry.md -->

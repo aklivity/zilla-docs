@@ -37,4 +37,4 @@ Enforce validation for the request content.
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the request content. Refer to the individual [model](../../models) docs for type specific implementation.
+A schema or type to validate the request content. Refer to the individual [model](../../../models) docs for type specific implementation.

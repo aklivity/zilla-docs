@@ -13,5 +13,13 @@ The openapi client binding
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
+
+#### options.tls
+
+> `object`
+
+`tls` specific options.
+
+<!-- @include: ../.partials/options-tls.md -->
 <!-- @include: ../.partials/vault.md -->
 <!-- @include: ../.partials/telemetry.md -->

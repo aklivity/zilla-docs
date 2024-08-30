@@ -14,5 +14,12 @@ The openapi server binding
 
 <!-- @include: ../.partials/vault.md -->
 <!-- @include: ./.partials/options.md -->
+#### options.tls
+
+> `object`
+
+`tls` specific options.
+
+<!-- @include: ../.partials/options-tls.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

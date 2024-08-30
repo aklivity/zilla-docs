@@ -42,7 +42,7 @@ A list of reference names for the Vault signer certificate.
 
 > `boolean`
 
-Trust CA certificates. This property will be considered set to `true` when [tls.trust](#tls-trust) is `null`.
+Trust CA certificates. This property will be considered set to `true` when [options.trust](#options-trust) is `null`.
 
 #### options.sni
 
