@@ -27,6 +27,39 @@ const main = async () => {
         return type;
     }
 
+    function getOptions(name, parent, childProps){
+        var anyOfProps = parent.anyOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
+        var oneOfProps = parent.oneOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
+        return (childProps?.options != false ? {
+            ...parent?.properties?.options,
+            ...childProps?.options,
+            properties: {
+                ...(parent?.properties?.options?.properties || {}),
+                ...(childProps?.options?.properties || {}),
+                ...(anyOfProps?.[0] || {}),
+                ...(oneOfProps?.[0] || {}),
+            }
+        } : {});
+    }
+
+    function getRoutes(name, root, parent, childProps){
+        var anyOfProps = parent.anyOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.routes)).map(({properties}) => (properties?.routes?.items?.properties));
+        var oneOfProps = parent.oneOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.routes)).map(({properties}) => (properties?.routes?.items?.properties));
+        return (parent?.properties?.routes != false ? {
+            ...parent?.properties?.routes,
+            items: {
+                ...parent?.properties?.routes?.items,
+                properties: {
+                    ...(root?.properties?.routes?.items?.properties || {}),
+                    ...(parent?.properties?.routes?.items?.properties || {}),
+                    ...(childProps?.routes?.items?.properties || {}),
+                    ...(anyOfProps?.[0] || {}),
+                    ...(oneOfProps?.[0] || {}),
+                }
+            }
+        } : {});
+    }
+
     function getPageProps(pageTokens) {
         var foundHeadings = [];
         // console.log("tokens", tokens);
@@ -64,6 +97,7 @@ const main = async () => {
     function getObjProps(attr, obj, reqKeys) {
         var props = [];
         // console.log(attr, Object.keys(obj || {}));
+        // if (attr === "options") console.log(JSON.stringify(obj));
         Object.entries(obj).forEach(([k, i]) => {
             // console.log(k, JSON.stringify(i));
             if (!i || !!i.deprecated) return
@@ -87,10 +121,11 @@ const main = async () => {
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(k, properties, required))
                 );
-            i.allOf?.filter(({ properties }) => !!properties)
-                .forEach(({ properties, required }) =>
-                    props.push(...getObjProps(k, properties, required))
-                );
+            if (i.allOf || i.oneOf) {
+                var allOf = i.allOf?.reduce((a, b) => ({...a, ...b}), {});
+                var oneOf = i.oneOf?.reduce((a, b) => ({...a, ...b}), {});
+                props.push(...getObjProps(k, {...(allOf?.properties || {}), ...(oneOf?.properties || {})}, [...(allOf?.required || []), ...(oneOf?.required || [])]))
+            }
             i.items?.anyOf?.filter(({ properties }) => !!properties)
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(`${k}[]`, properties, required))
@@ -144,8 +179,6 @@ const main = async () => {
                 props.push([`${path}: ${i.const}`, req, "`const`", getExtraProps(i)]);
             } else if (i.enum?.length) {
                 i.enum.forEach((e) => props.push([`${path}: ${e}`, req, type, getExtraProps(i)]));
-                // } else if (i.const) {
-                //     props.push([path, req, type, getExtraProps(i)]);
             } else if (i.oneOf) {
                 props.push([
                     path,
@@ -200,24 +233,8 @@ const main = async () => {
                     ...bindings.properties,
                     ...(then.properties || {}),
                     ...(properties || {}),
-                    options: (then.properties?.options != false ? {
-                        ...then.properties?.options,
-                        properties: {
-                            ...(then.properties?.options?.properties || {}),
-                            ...(properties?.options?.properties || {}),
-                        }
-                    } : {}),
-                    routes: (then.properties?.routes != false ? {
-                        ...then.properties?.routes,
-                        items: {
-                            ...then.properties?.routes?.items,
-                            properties: {
-                                ...(bindings.properties?.routes?.items?.properties || {}),
-                                ...(then.properties?.routes?.items?.properties || {}),
-                                ...(properties?.routes?.items?.properties || {}),
-                            }
-                        }
-                    } : {}),
+                    options: getOptions(properties.kind.const, then, properties),
+                    routes: getRoutes(properties.kind.const, bindings, then, properties),
                     oneOf,
                     anyOf: [...(then.anyOf || []), ...(anyOf || [])],
                 },
@@ -230,16 +247,7 @@ const main = async () => {
                 props: {
                     ...bindings.properties,
                     ...(then.properties || {}),
-                    routes: (then.properties?.routes != false ? {
-                        ...then.properties?.routes,
-                        items: {
-                            ...then.properties?.routes?.items,
-                            properties: {
-                                ...(bindings.properties?.routes?.items?.properties || {}),
-                                ...(then.properties?.routes?.items?.properties || {}),
-                            }
-                        }
-                    } : {}),
+                    routes: getRoutes(then.properties.kind.enum[0], bindings, then)
                 },
                 required: [...(then.required || [])],
             });

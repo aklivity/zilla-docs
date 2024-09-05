@@ -1048,97 +1048,91 @@
                     }
                 },
                 "tcp": {
-                    "properties": {
-                        "host": {
-                            "title": "Host",
-                            "type": "string"
-                        },
-                        "port": {
-                            "title": "Port",
-                            "oneOf": [
-                                {
-                                    "type": "integer"
-                                },
-                                {
-                                    "type": "string",
-                                    "pattern": "^\\d+(-\\d+)?$"
-                                },
-                                {
-                                    "type": "array",
-                                    "items": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "string",
-                                                "pattern": "^\\d+(-\\d+)?$"
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
+                    "host": {
+                        "title": "Host",
+                        "type": "string"
                     },
-                    "additionalProperties": false
+                    "port": {
+                        "title": "Port",
+                        "oneOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^\\d+(-\\d+)?$"
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "oneOf": [
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "pattern": "^\\d+(-\\d+)?$"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
                 },
                 "tls": {
-                    "properties": {
-                        "version": {
-                            "title": "Version",
+                    "version": {
+                        "title": "Version",
+                        "type": "string"
+                    },
+                    "keys": {
+                        "title": "Vault Keys",
+                        "type": "array",
+                        "items": {
                             "type": "string"
-                        },
-                        "keys": {
-                            "title": "Vault Keys",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "trust": {
-                            "title": "Vault Certificates",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "trustcacerts": {
-                            "title": "Trust CA Certificates",
-                            "type": "boolean"
-                        },
-                        "sni": {
-                            "title": "Server Names",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "alpn": {
-                            "title": "Application Protocols",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "mutual": {
-                            "title": "Mutual Authentication",
-                            "type": "string",
-                            "enum": [
-                                "required",
-                                "requested",
-                                "none"
-                            ],
-                            "default": "none"
-                        },
-                        "signers": {
-                            "title": "Vault Signer Certificates",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
                         }
                     },
-                    "additionalProperties": false
+                    "trust": {
+                        "title": "Vault Certificates",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "trustcacerts": {
+                        "title": "Trust CA Certificates",
+                        "type": "boolean"
+                    },
+                    "sni": {
+                        "title": "Server Names",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "alpn": {
+                        "title": "Application Protocols",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "mutual": {
+                        "title": "Mutual Authentication",
+                        "type": "string",
+                        "enum": [
+                            "required",
+                            "requested",
+                            "none"
+                        ],
+                        "default": "none"
+                    },
+                    "signers": {
+                        "title": "Vault Signer Certificates",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
                 }
             },
             "catalog": {
@@ -1425,10 +1419,20 @@
                                         "additionalProperties": false
                                     },
                                     "tcp": {
-                                        "$ref": "#/$defs/options/binding/tcp"
+                                        "title": "tcp Options",
+                                        "type": "object",
+                                        "properties": {
+                                            "$ref": "#/$defs/options/binding/tcp"
+                                        },
+                                        "additionalProperties": false
                                     },
                                     "tls": {
-                                        "$ref": "#/$defs/options/binding/tls"
+                                        "title": "tls Options",
+                                        "type": "object",
+                                        "properties": {
+                                            "$ref": "#/$defs/options/binding/tls"
+                                        },
+                                        "additionalProperties": false
                                     },
                                     "http": {
                                         "title": "Http",
@@ -3366,10 +3370,20 @@
                             "options": {
                                 "properties": {
                                     "tcp": {
-                                        "$ref": "#/$defs/options/binding/tcp"
+                                        "title": "tcp Options",
+                                        "type": "object",
+                                        "properties": {
+                                            "$ref": "#/$defs/options/binding/tcp"
+                                        },
+                                        "additionalProperties": false
                                     },
                                     "tls": {
-                                        "$ref": "#/$defs/options/binding/tls"
+                                        "title": "tls Options",
+                                        "type": "object",
+                                        "properties": {
+                                            "$ref": "#/$defs/options/binding/tls"
+                                        },
+                                        "additionalProperties": false
                                     },
                                     "http": {
                                         "title": "Http",
@@ -4018,7 +4032,12 @@
                             },
                             "vault": false,
                             "options": {
-                                "$ref": "#/$defs/options/binding/tcp"
+                                "title": "Options",
+                                "type": "object",
+                                "properties": {
+                                    "$ref": "#/$defs/options/binding/tcp"
+                                },
+                                "additionalProperties": false
                             },
                             "routes": {
                                 "title": "Routes",
@@ -4227,7 +4246,24 @@
                                         "const": "client"
                                     },
                                     "options": {
-                                        "$ref": "#/$defs/options/binding/tls"
+                                        "title": "Options",
+                                        "type": "object",
+                                        "properties": {
+                                            "$ref": "#/$defs/options/binding/tls"
+                                        },
+                                        "additionalProperties": false,
+                                        "oneOf": [
+                                            {
+                                                "required": [
+                                                    "keys"
+                                                ]
+                                            },
+                                            {
+                                                "required": [
+                                                    "signers"
+                                                ]
+                                            }
+                                        ]
                                     }
                                 }
                             },
@@ -4237,7 +4273,12 @@
                                         "const": "server"
                                     },
                                     "options": {
-                                        "$ref": "#/$defs/options/binding/tls",
+                                        "title": "Options",
+                                        "type": "object",
+                                        "properties": {
+                                            "$ref": "#/$defs/options/binding/tls"
+                                        },
+                                        "additionalProperties": false,
                                         "oneOf": [
                                             {
                                                 "required": [
