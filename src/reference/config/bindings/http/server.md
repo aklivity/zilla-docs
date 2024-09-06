@@ -89,19 +89,19 @@ Omission of the allow object means Zilla will allow all origins, methods and hea
 
 > `array` of `string`
 
-Allowed request origins.
+Allowed request origins. Omission of this property is considered allow all `*`.
 
 #### allow.methods
 
 > `array` of `string`
 
-Allowed request methods.
+Allowed request methods. Omission of this property is considered allow all `*`.
 
 #### allow.headers
 
 > `array` of `string`
 
-Allowed request headers.
+Allowed request headers. Omission of this property is considered allow all `*`.
 
 #### allow.credentials
 

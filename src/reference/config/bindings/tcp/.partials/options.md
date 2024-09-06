@@ -20,4 +20,16 @@ Hostname or IP address.
 
 > `integer`, `string`, `array`
 
-Port number(s), including port number ranges.
+Port number(s), including port number ranges with the pattern: `^\\d+(-\\d+)?$`.
+
+```yaml
+options:
+  port: 12345
+```
+
+```yaml
+options:
+  port:
+    - 12345
+    - "54320-54330"
+```

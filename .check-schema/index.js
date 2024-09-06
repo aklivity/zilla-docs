@@ -30,14 +30,14 @@ const main = async () => {
     function getOptions(name, parent, childProps){
         var anyOfProps = parent.anyOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
         var oneOfProps = parent.oneOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
-        return (childProps?.options != false ? {
+        return (childProps?.options !== false ? {
             ...parent?.properties?.options,
             ...childProps?.options,
             properties: {
                 ...(parent?.properties?.options?.properties || {}),
-                ...(childProps?.options?.properties || {}),
                 ...(anyOfProps?.[0] || {}),
                 ...(oneOfProps?.[0] || {}),
+                ...(childProps?.options?.properties || {}),
             }
         } : {});
     }
@@ -45,7 +45,7 @@ const main = async () => {
     function getRoutes(name, root, parent, childProps){
         var anyOfProps = parent.anyOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.routes)).map(({properties}) => (properties?.routes?.items?.properties));
         var oneOfProps = parent.oneOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.routes)).map(({properties}) => (properties?.routes?.items?.properties));
-        return (parent?.properties?.routes != false ? {
+        return (parent?.properties?.routes !== false ? {
             ...parent?.properties?.routes,
             items: {
                 ...parent?.properties?.routes?.items,
@@ -58,6 +58,14 @@ const main = async () => {
                 }
             }
         } : {});
+    }
+
+    function getRequired(name, parent, childRequired){
+        return [
+            ...(parent?.anyOf?.reduce(({required:r1}, {required:r2}) => ([...(r1 || []), ...(r2 || [])]), []) || []),
+            ...(parent?.required || []),
+            ...(childRequired || [])
+        ];
     }
 
     function getPageProps(pageTokens) {
@@ -99,8 +107,12 @@ const main = async () => {
         // console.log(attr, Object.keys(obj || {}));
         // if (attr === "options") console.log(JSON.stringify(obj));
         Object.entries(obj).forEach(([k, i]) => {
-            // console.log(k, JSON.stringify(i));
             if (!i || !!i.deprecated) return
+
+            // spread extra props
+            i = i.anyOf?.reduce((a, b) => ({...a, ...b}), i) || i;
+            i = i.allOf?.reduce((a, b) => ({...a, ...b}), i) || i;
+            // console.log(k, JSON.stringify(i));
 
             //recurse
             var patternProperties = false;
@@ -121,11 +133,6 @@ const main = async () => {
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(k, properties, required))
                 );
-            if (i.allOf || i.oneOf) {
-                var allOf = i.allOf?.reduce((a, b) => ({...a, ...b}), {});
-                var oneOf = i.oneOf?.reduce((a, b) => ({...a, ...b}), {});
-                props.push(...getObjProps(k, {...(allOf?.properties || {}), ...(oneOf?.properties || {})}, [...(allOf?.required || []), ...(oneOf?.required || [])]))
-            }
             i.items?.anyOf?.filter(({ properties }) => !!properties)
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(`${k}[]`, properties, required))
@@ -209,14 +216,10 @@ const main = async () => {
             props: {
                 ...(props?.properties || {}),
                 ...(then.properties || {}),
-                options: (then.properties?.options != false ? {
-                    ...then.properties?.options,
-                    properties: {
-                        ...(props?.properties?.options?.properties || {}),
-                        ...(then.properties?.options?.properties || {}),
-                    }
-                } : {}),
+                options: getOptions(fi.properties.type.const || fi.properties.type.enum?.[0], props, then.properties),
+                allOf: [...(then.allOf || [])],
                 anyOf: [...(then.anyOf || [])],
+                oneOf: [...(then.oneOf || [])],
             },
             required: [...(props?.required || []), ...(then.required || [])],
         }))
@@ -226,7 +229,7 @@ const main = async () => {
     bindings.allOf?.forEach(({ if: fi, then }) => {
         var folder = `bindings.${fi.properties.type.const}`;
         if (then.oneOf) {
-            sections.push(...then.oneOf.map(({ properties, required, oneOf, anyOf }) => ({
+            sections.push(...then.oneOf.map(({ properties, required, oneOf, anyOf, allOf }) => ({
                 folder,
                 name: properties.kind.const,
                 props: {
@@ -235,10 +238,11 @@ const main = async () => {
                     ...(properties || {}),
                     options: getOptions(properties.kind.const, then, properties),
                     routes: getRoutes(properties.kind.const, bindings, then, properties),
-                    oneOf,
+                    allOf: [...(then.allOf || []), ...(allOf || [])],
                     anyOf: [...(then.anyOf || []), ...(anyOf || [])],
+                    oneOf: [...(then.oneOf || []), ...(oneOf || [])],
                 },
-                required: [...(then.required || []), ...(required || [])],
+                required: getRequired(properties.kind.const, then, required),
             })));
         } else {
             sections.push({
@@ -247,7 +251,11 @@ const main = async () => {
                 props: {
                     ...bindings.properties,
                     ...(then.properties || {}),
-                    routes: getRoutes(then.properties.kind.enum[0], bindings, then)
+                    options: getOptions(then.properties.kind.enum[0], bindings, then.properties),
+                    routes: getRoutes(then.properties.kind.enum[0], bindings, then),
+                    allOf: [...(then.allOf || [])],
+                    anyOf: [...(then.anyOf || [])],
+                    oneOf: [...(then.oneOf || [])],
                 },
                 required: [...(then.required || [])],
             });

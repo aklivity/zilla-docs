@@ -1048,91 +1048,101 @@
                     }
                 },
                 "tcp": {
-                    "host": {
-                        "title": "Host",
-                        "type": "string"
-                    },
-                    "port": {
-                        "title": "Port",
-                        "oneOf": [
-                            {
-                                "type": "integer"
-                            },
-                            {
-                                "type": "string",
-                                "pattern": "^\\d+(-\\d+)?$"
-                            },
-                            {
-                                "type": "array",
-                                "items": {
-                                    "oneOf": [
-                                        {
-                                            "type": "integer"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "pattern": "^\\d+(-\\d+)?$"
-                                        }
-                                    ]
+                    "title": "tcp Options",
+                    "type": "object",
+                    "properties": {
+                        "host": {
+                            "title": "Host",
+                            "type": "string"
+                        },
+                        "port": {
+                            "title": "Port",
+                            "oneOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "string",
+                                    "pattern": "^\\d+(-\\d+)?$"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "type": "integer"
+                                            },
+                                            {
+                                                "type": "string",
+                                                "pattern": "^\\d+(-\\d+)?$"
+                                            }
+                                        ]
+                                    }
                                 }
-                            }
-                        ]
-                    }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
                 },
                 "tls": {
-                    "version": {
-                        "title": "Version",
-                        "type": "string"
-                    },
-                    "keys": {
-                        "title": "Vault Keys",
-                        "type": "array",
-                        "items": {
+                    "title": "tls Options",
+                    "type": "object",
+                    "properties": {
+                        "version": {
+                            "title": "Version",
                             "type": "string"
+                        },
+                        "keys": {
+                            "title": "Vault Keys",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "trust": {
+                            "title": "Vault Certificates",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "trustcacerts": {
+                            "title": "Trust CA Certificates",
+                            "type": "boolean"
+                        },
+                        "sni": {
+                            "title": "Server Names",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "alpn": {
+                            "title": "Application Protocols",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "mutual": {
+                            "title": "Mutual Authentication",
+                            "type": "string",
+                            "enum": [
+                                "required",
+                                "requested",
+                                "none"
+                            ],
+                            "default": "none"
+                        },
+                        "signers": {
+                            "title": "Vault Signer Certificates",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     },
-                    "trust": {
-                        "title": "Vault Certificates",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "trustcacerts": {
-                        "title": "Trust CA Certificates",
-                        "type": "boolean"
-                    },
-                    "sni": {
-                        "title": "Server Names",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "alpn": {
-                        "title": "Application Protocols",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "mutual": {
-                        "title": "Mutual Authentication",
-                        "type": "string",
-                        "enum": [
-                            "required",
-                            "requested",
-                            "none"
-                        ],
-                        "default": "none"
-                    },
-                    "signers": {
-                        "title": "Vault Signer Certificates",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
+                    "additionalProperties": false
                 }
             },
             "catalog": {
@@ -1419,20 +1429,10 @@
                                         "additionalProperties": false
                                     },
                                     "tcp": {
-                                        "title": "tcp Options",
-                                        "type": "object",
-                                        "properties": {
-                                            "$ref": "#/$defs/options/binding/tcp"
-                                        },
-                                        "additionalProperties": false
+                                        "$ref": "#/$defs/options/binding/tcp"
                                     },
                                     "tls": {
-                                        "title": "tls Options",
-                                        "type": "object",
-                                        "properties": {
-                                            "$ref": "#/$defs/options/binding/tls"
-                                        },
-                                        "additionalProperties": false
+                                        "$ref": "#/$defs/options/binding/tls"
                                     },
                                     "http": {
                                         "title": "Http",
@@ -3370,20 +3370,10 @@
                             "options": {
                                 "properties": {
                                     "tcp": {
-                                        "title": "tcp Options",
-                                        "type": "object",
-                                        "properties": {
-                                            "$ref": "#/$defs/options/binding/tcp"
-                                        },
-                                        "additionalProperties": false
+                                        "$ref": "#/$defs/options/binding/tcp"
                                     },
                                     "tls": {
-                                        "title": "tls Options",
-                                        "type": "object",
-                                        "properties": {
-                                            "$ref": "#/$defs/options/binding/tls"
-                                        },
-                                        "additionalProperties": false
+                                        "$ref": "#/$defs/options/binding/tls"
                                     },
                                     "http": {
                                         "title": "Http",
@@ -4032,12 +4022,7 @@
                             },
                             "vault": false,
                             "options": {
-                                "title": "Options",
-                                "type": "object",
-                                "properties": {
-                                    "$ref": "#/$defs/options/binding/tcp"
-                                },
-                                "additionalProperties": false
+                                "$ref": "#/$defs/options/binding/tcp"
                             },
                             "routes": {
                                 "title": "Routes",
@@ -4246,22 +4231,24 @@
                                         "const": "client"
                                     },
                                     "options": {
-                                        "title": "Options",
-                                        "type": "object",
-                                        "properties": {
-                                            "$ref": "#/$defs/options/binding/tls"
-                                        },
-                                        "additionalProperties": false,
-                                        "oneOf": [
+                                        "allOf": [
                                             {
-                                                "required": [
-                                                    "keys"
-                                                ]
+
+                                                "$ref": "#/$defs/options/binding/tls"
                                             },
                                             {
-                                                "required": [
-                                                    "signers"
-                                                ]
+                                                "oneOf": [
+                                                {
+                                                    "required": [
+                                                        "keys"
+                                                    ]
+                                                },
+                                                {
+                                                    "required": [
+                                                        "signers"
+                                                    ]
+                                                }
+                                            ]
                                             }
                                         ]
                                     }
@@ -4273,22 +4260,24 @@
                                         "const": "server"
                                     },
                                     "options": {
-                                        "title": "Options",
-                                        "type": "object",
-                                        "properties": {
-                                            "$ref": "#/$defs/options/binding/tls"
-                                        },
-                                        "additionalProperties": false,
-                                        "oneOf": [
+                                        "allOf": [
                                             {
-                                                "required": [
-                                                    "keys"
-                                                ]
+
+                                                "$ref": "#/$defs/options/binding/tls"
                                             },
                                             {
-                                                "required": [
-                                                    "signers"
-                                                ]
+                                                "oneOf": [
+                                                {
+                                                    "required": [
+                                                        "keys"
+                                                    ]
+                                                },
+                                                {
+                                                    "required": [
+                                                        "signers"
+                                                    ]
+                                                }
+                                            ]
                                             }
                                         ]
                                     }

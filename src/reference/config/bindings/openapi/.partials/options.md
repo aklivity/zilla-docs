@@ -88,7 +88,7 @@ Named cookie value pattern with `{credentials}`.
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
-#### credentials.query
+#### credentials.query\*
 
 > `object` as map of named: `string` properties
 

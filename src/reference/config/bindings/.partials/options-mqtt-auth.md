@@ -4,7 +4,7 @@
 
 Defines how to extract credentials from the MQTT connect packet.
 
-#### credentials.connect
+#### credentials.connect\*
 
 > `object`
 
