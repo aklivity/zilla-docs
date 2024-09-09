@@ -18,13 +18,13 @@ options:
 
 #### options.specs
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 `specs` specific options
 
 #### specs.catalog
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 catalog specific options.
 
@@ -44,6 +44,8 @@ Catalog artifact version to use.
 
 > `array` of `object`
 
+The servers to match from the schema that are used when defining endpoints.
+
 #### servers[].url
 
 > `string` | Pattern: `^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$`
@@ -58,7 +60,7 @@ http specific options.
 
 #### http.authorization
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -98,7 +100,7 @@ Named query parameter value pattern with `{credentials}`.
 
 > `object`
 
-`client` specific `tcp` options.
+TCP options to connect to an external client.
 
 #### tcp.host
 

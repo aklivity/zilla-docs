@@ -29,13 +29,15 @@ OpenAPI and AsyncAPI specs definition.
 
 #### specs.openapi\*
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
+
+Options for each configured OpenAPI spec.
 
 #### openapi.catalog
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
-catalog specific options.
+Catalog specific options.
 
 #### catalog.subject\*
 
@@ -51,11 +53,13 @@ Catalog artifact version to use.
 
 #### specs.asyncapi\*
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
+
+Options for each configured AsyncAPI spec.
 
 #### asyncapi.catalog
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 `catalog` catalog specific options.
 

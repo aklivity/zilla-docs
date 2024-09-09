@@ -3,6 +3,8 @@
 
 > `array` of `object`
 
+<!-- todo: Dev input -->
+
 #### requests[].content
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
@@ -19,17 +21,25 @@ A schema or type to validate the request content. Refer to the individual [model
 
 > `array` of `string`
 
+Content type of the HTTP request.
+
 #### requests[].headers
 
 > `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+
+Enforce validation for request headers.
 
 #### requests[].method
 
 > `enum` [ `GET`, `PUT`, `POST`, `DELETE`, `OPTIONS`, `HEAD`, `PATCH`, `TRACE` ]
 
+HTTP request method.
+
 #### requests[].params
 
 > `object`
+
+Query parameters of the HTTP request.
 
 #### params.path
 
@@ -59,9 +69,13 @@ A schema or type to validate the query content. Refer to the individual [model](
 
 > `string`
 
+URL path of the HTTP request.
+
 #### requests[].responses
 
 > `array` of `object`
+
+<!-- todo: Dev input -->
 
 #### responses[].content
 
@@ -80,6 +94,8 @@ A schema or type to validate the response content. Refer to the individual [mode
 #### responses[].content-type
 
 > `array` of `string`
+
+Content type of the HTTP response.
 
 #### responses[].headers
 
@@ -103,6 +119,8 @@ A schema or type to validate the headers content. Refer to the individual [model
 #### responses[].status
 
 > `integer`, `array` of `integer`
+
+HTTP status code or codes for the response
 
 #### options.versions
 

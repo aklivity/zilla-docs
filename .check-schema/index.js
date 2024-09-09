@@ -1,3 +1,4 @@
+const process = require('node:process');
 const fs = require("fs");
 const path = require("path");
 const { marked } = require("marked");
@@ -30,7 +31,7 @@ const main = async () => {
     function getOptions(name, parent, childProps){
         var anyOfProps = parent.anyOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
         var oneOfProps = parent.oneOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
-        return (childProps?.options !== false ? {
+        return (childProps?.options !== false && parent?.properties?.options !== false ? {
             ...parent?.properties?.options,
             ...childProps?.options,
             properties: {
@@ -151,11 +152,11 @@ const main = async () => {
                 );
 
             //collect
-            if (!!!i) return
+            if (!i) return
             var req = !!reqKeys?.includes(k);
             var path = [attr, k].filter((s) => !!s).join(".");
             var type = getType(i);
-            if (patternProperties) type = "`object` as map of named:" + type;
+            if (patternProperties) type = "`object` as map of named: " + type;
 
             if (i.properties && Object.keys(i.properties).length) {
                 props.push([path, req, type, getExtraProps(i)]);
@@ -204,7 +205,6 @@ const main = async () => {
         return props;
     }
 
-    var sections = [];
     var sections = Object.entries({
         guard: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
         vault: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
@@ -274,7 +274,7 @@ const main = async () => {
                 anyOf: [...(then.anyOf || [])],
             },
             required: [...(exporterProps?.required || []), ...(then.required || [])],
-        }))
+        })) || {}
     );
     sections.push(
         ...schema.$defs.converter.model?.allOf.map(({ if: fi, then }) => ({
@@ -285,7 +285,7 @@ const main = async () => {
                 anyOf: (then.anyOf || []),
             },
             required: (then.required || []),
-        }))
+        })) || {}
     );
 
     // console.log("sections", JSON.stringify(sections));
@@ -325,7 +325,7 @@ const main = async () => {
                         name: a[0],
                         required: a[1] || false,
                         type: a[2] || '',
-                        extra: (a[3] ? Object.entries(a[3]).filter(([_, o]) => (!!o)).map(([k, o]) => (`${k.charAt(0).toUpperCase() + k.slice(1).toLowerCase()}: ${o}`)).join(' ') : ''),
+                        extra: (a[3] ? Object.entries(a[3]).filter((e) => (!!e[1])).map(([k, o]) => (`${k.charAt(0).toUpperCase() + k.slice(1).toLowerCase()}: ${o}`)).join(' ') : ''),
                     }
                 }), {});
 

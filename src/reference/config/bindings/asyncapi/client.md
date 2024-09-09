@@ -57,6 +57,8 @@ Fetch offset to use for new consumers
 
 > `array`
 
+<!-- todo: Dev input -->
+
 #### kafka.sasl
 
 > `object`
@@ -119,11 +121,11 @@ messages: mqttMessages
 
 > `object`
 
-http specific options.
+HTTP specific options.
 
 #### http.authorization
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -141,9 +143,11 @@ authorization:
 
 > `object`
 
+MQTT specific options.
+
 #### mqtt.authorization
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -161,7 +165,7 @@ authorization:
 
 > `object`
 
-`tls` specific options.
+TLS specific options.
 
 <!-- @include: ../.partials/options-tls.md -->
 

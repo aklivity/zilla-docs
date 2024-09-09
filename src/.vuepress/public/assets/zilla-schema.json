@@ -159,13 +159,13 @@
                                             "type": {
                                                 "anyOf": [
                                                     {
-                                                        "type": "string",
-                                                        "default": "pkcs12"
+                                                        "type": "string"
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "pkcs12"
                                             },
                                             "password": {
                                                 "anyOf": [
@@ -197,13 +197,13 @@
                                             "type": {
                                                 "anyOf": [
                                                     {
-                                                        "type": "string",
-                                                        "default": "pkcs12"
+                                                        "type": "string"
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "pkcs12"
                                             },
                                             "password": {
                                                 "anyOf": [
@@ -235,13 +235,13 @@
                                             "type": {
                                                 "anyOf": [
                                                     {
-                                                        "type": "string",
-                                                        "default": "pkcs12"
+                                                        "type": "string"
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "pkcs12"
                                             },
                                             "password": {
                                                 "anyOf": [
@@ -475,13 +475,13 @@
                                         "interval": {
                                             "anyOf": [
                                                 {
-                                                    "type": "number",
-                                                    "default": 30
+                                                    "type": "number"
                                                 },
                                                 {
                                                     "$ref": "#/$defs/expression"
                                                 }
-                                            ]
+                                            ],
+                                            "default": 30
                                         },
                                         "signals": {
                                             "type": "array",
@@ -509,13 +509,13 @@
                                                             "type": "string",
                                                             "enum": [
                                                                 "http"
-                                                            ],
-                                                            "default": "http"
+                                                            ]
                                                         },
                                                         {
                                                             "$ref": "#/$defs/expression"
                                                         }
-                                                    ]
+                                                    ],
+                                                    "default": "http"
                                                 },
                                                 "location": {
                                                     "anyOf": [
@@ -662,6 +662,7 @@
             }
         },
         "catalog": {
+            "title": "Catalog",
             "type": "object",
             "properties": {
                 "type": {
@@ -728,13 +729,13 @@
                                     "group-id": {
                                         "anyOf": [
                                             {
-                                                "type": "string",
-                                                "default": "default"
+                                                "type": "string"
                                             },
                                             {
                                                 "$ref": "#/$defs/expression"
                                             }
-                                        ]
+                                        ],
+                                        "default": "default"
                                     },
                                     "use-id": {
                                         "anyOf": [
@@ -743,13 +744,13 @@
                                                 "enum": [
                                                     "globalId",
                                                     "contentId"
-                                                ],
-                                                "default": "globalId"
+                                                ]
                                             },
                                             {
                                                 "$ref": "#/$defs/expression"
                                             }
-                                        ]
+                                        ],
+                                        "default": "globalId"
                                     },
                                     "id-encoding": {
                                         "anyOf": [
@@ -758,25 +759,25 @@
                                                 "enum": [
                                                     "default",
                                                     "legacy"
-                                                ],
-                                                "default": "default"
+                                                ]
                                             },
                                             {
                                                 "$ref": "#/$defs/expression"
                                             }
-                                        ]
+                                        ],
+                                        "default": "default"
                                     },
                                     "max-age": {
                                         "title": "Max Age",
                                         "anyOf": [
                                             {
-                                                "type": "number",
-                                                "default": 300
+                                                "type": "number"
                                             },
                                             {
                                                 "$ref": "#/$defs/expression"
                                             }
-                                        ]
+                                        ],
+                                        "default": 300
                                     }
                                 },
                                 "additionalProperties": false
@@ -857,13 +858,13 @@
                                                     "version": {
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "latest"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "latest"
                                                     },
                                                     "schema": {
                                                         "anyOf": [
@@ -975,13 +976,13 @@
                         "version": {
                             "anyOf": [
                                 {
-                                    "type": "string",
-                                    "default": "latest"
+                                    "type": "string"
                                 },
                                 {
                                     "$ref": "#/$defs/expression"
                                 }
-                            ]
+                            ],
+                            "default": "latest"
                         }
                     },
                     "required": [
@@ -1005,13 +1006,13 @@
                         "version": {
                             "anyOf": [
                                 {
-                                    "type": "string",
-                                    "default": "latest"
+                                    "type": "string"
                                 },
                                 {
                                     "$ref": "#/$defs/expression"
                                 }
-                            ]
+                            ],
+                            "default": "latest"
                         }
                     },
                     "required": [
@@ -1297,13 +1298,13 @@
                                             "enum": [
                                                 "live",
                                                 "historical"
-                                            ],
-                                            "default": "historical"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "historical"
                                 },
                                 "deltaType": {
                                     "anyOf": [
@@ -1323,92 +1324,40 @@
                                 "transforms": {
                                     "title": "Transforms",
                                     "type": "array",
-                                    "oneOf": [
+                                    "items": [
                                         {
-                                            "items": [
-                                                {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "extract-headers": {
                                                     "type": "object",
-                                                    "additionalProperties": false,
-                                                    "properties": {
-                                                        "extract-headers": {
-                                                            "type": "object",
-                                                            "patternProperties": {
-                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "anyOf": [
-                                                                        {
-                                                                            "type": "string",
-                                                                            "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
-                                                                        },
-                                                                        {
-                                                                            "$ref": "#/$defs/expression"
-                                                                        }
-                                                                    ]
+                                                    "patternProperties": {
+                                                        "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "string",
+                                                                    "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
+                                                                },
+                                                                {
+                                                                    "$ref": "#/$defs/expression"
                                                                 }
-                                                            },
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "extract-key": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "string",
                                                             "additionalProperties": false
                                                         },
-                                                        "extract-key": {
-                                                            "anyOf": [
-                                                                {
-                                                                    "type": "string",
-                                                                    "additionalProperties": false
-                                                                },
-                                                                {
-                                                                    "$ref": "#/$defs/expression"
-                                                                }
-                                                            ]
+                                                        {
+                                                            "$ref": "#/$defs/expression"
                                                         }
-                                                    }
+                                                    ]
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "items": [
-                                                {
-                                                    "type": "object",
-                                                    "additionalProperties": false,
-                                                    "properties": {
-                                                        "extract-headers": {
-                                                            "type": "object",
-                                                            "patternProperties": {
-                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "anyOf": [
-                                                                        {
-                                                                            "type": "string",
-                                                                            "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
-                                                                        },
-                                                                        {
-                                                                            "$ref": "#/$defs/expression"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            },
-                                                            "additionalProperties": false
-                                                        }
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "items": [
-                                                {
-                                                    "type": "object",
-                                                    "additionalProperties": false,
-                                                    "properties": {
-                                                        "extract-key": {
-                                                            "anyOf": [
-                                                                {
-                                                                    "type": "string",
-                                                                    "additionalProperties": false
-                                                                },
-                                                                {
-                                                                    "$ref": "#/$defs/expression"
-                                                                }
-                                                            ]
-                                                        }
-                                                    }
-                                                }
-                                            ]
+                                            }
                                         }
                                     ]
                                 },
@@ -1652,13 +1601,13 @@
                                         "required",
                                         "requested",
                                         "none"
-                                    ],
-                                    "default": "none"
+                                    ]
                                 },
                                 {
                                     "$ref": "#/$defs/expression"
                                 }
-                            ]
+                            ],
+                            "default": "none"
                         },
                         "signers": {
                             "title": "Vault Signer Certificates",
@@ -1696,25 +1645,25 @@
                         "context": {
                             "anyOf": [
                                 {
-                                    "type": "string",
-                                    "default": "default"
+                                    "type": "string"
                                 },
                                 {
                                     "$ref": "#/$defs/expression"
                                 }
-                            ]
+                            ],
+                            "default": "default"
                         },
                         "max-age": {
                             "title": "Max Age",
                             "anyOf": [
                                 {
-                                    "type": "number",
-                                    "default": 300
+                                    "type": "number"
                                 },
                                 {
                                     "$ref": "#/$defs/expression"
                                 }
-                            ]
+                            ],
+                            "default": 300
                         }
                     },
                     "additionalProperties": false
@@ -1735,6 +1684,10 @@
                             "$ref": "#/$defs/expression"
                         }
                     ]
+                },
+                "catalog": {
+                    "title": "Catalog",
+                    "type": "object"
                 },
                 "type": {
                     "title": "Type",
@@ -1861,6 +1814,18 @@
                             "$ref": "#/$defs/expression"
                         }
                     ]
+                },
+                "entry": {
+                    "title": "Entry",
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "pattern": "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$"
+                        },
+                        {
+                            "$ref": "#/$defs/expression"
+                        }
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -1887,6 +1852,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -1922,13 +1889,13 @@
                                                                     "send_only",
                                                                     "receive_only",
                                                                     "send_and_receive"
-                                                                ],
-                                                                "default": "send_and_receive"
+                                                                ]
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "send_and_receive"
                                                     }
                                                 }
                                             }
@@ -1972,6 +1939,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "options": {
                                 "properties": {
                                     "specs": {
@@ -2027,6 +1996,7 @@
                                                         }
                                                     },
                                                     "catalog": {
+                                                        "title": "Catalog",
                                                         "type": "object",
                                                         "patternProperties": {
                                                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -2045,13 +2015,13 @@
                                                                     "version": {
                                                                         "anyOf": [
                                                                             {
-                                                                                "type": "string",
-                                                                                "default": "latest"
+                                                                                "type": "string"
                                                                             },
                                                                             {
                                                                                 "$ref": "#/$defs/expression"
                                                                             }
-                                                                        ]
+                                                                        ],
+                                                                        "default": "latest"
                                                                     }
                                                                 },
                                                                 "required": [
@@ -2316,6 +2286,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": false,
@@ -2341,6 +2313,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": false
@@ -2377,6 +2351,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -2399,13 +2375,13 @@
                                                 "enum": [
                                                     "follow",
                                                     "ignore"
-                                                ],
-                                                "default": "ignore"
+                                                ]
                                             },
                                             {
                                                 "$ref": "#/$defs/expression"
                                             }
-                                        ]
+                                        ],
+                                        "default": "ignore"
                                     }
                                 },
                                 "additionalProperties": false
@@ -2435,7 +2411,6 @@
                                 ]
                             },
                             "vault": false,
-                            "options": false,
                             "routes": {
                                 "title": "Routes",
                                 "type": "array",
@@ -2520,6 +2495,7 @@
                                     "kind": {
                                         "const": "server"
                                     },
+                                    "entry": false,
                                     "options": {
                                         "properties": {
                                             "services": {
@@ -2542,40 +2518,44 @@
                                         "additionalProperties": false
                                     },
                                     "catalog": {
+                                        "title": "Catalog",
                                         "type": "object",
                                         "patternProperties": {
                                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "subject": {
-                                                        "anyOf": [
-                                                            {
-                                                                "type": "string"
-                                                            },
-                                                            {
-                                                                "$ref": "#/$defs/expression"
-                                                            }
-                                                        ]
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "subject": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "$ref": "#/$defs/expression"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "version": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "$ref": "#/$defs/expression"
+                                                                }
+                                                            ],
+                                                            "default": "latest"
+                                                        }
                                                     },
-                                                    "version": {
-                                                        "anyOf": [
-                                                            {
-                                                                "type": "string",
-                                                                "default": "latest"
-                                                            },
-                                                            {
-                                                                "$ref": "#/$defs/expression"
-                                                            }
-                                                        ]
-                                                    }
-                                                },
-                                                "required": [
-                                                    "subject"
-                                                ],
-                                                "additionalProperties": false
-                                            },
-                                            "additionalProperties": false
-                                        }
+                                                    "required": [
+                                                        "subject"
+                                                    ],
+                                                    "additionalProperties": false
+                                                }
+                                            }
+                                        },
+                                        "maxProperties": 1
                                     }
                                 }
                             },
@@ -2584,6 +2564,8 @@
                                     "kind": {
                                         "const": "client"
                                     },
+                                    "entry": false,
+                                    "catalog": false,
                                     "options": false
                                 }
                             }
@@ -2608,6 +2590,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -2621,25 +2605,25 @@
                                                     {
                                                         "type": "integer",
                                                         "minimum": 1,
-                                                        "maximum": 536870911,
-                                                        "default": 32767
+                                                        "maximum": 536870911
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": 32767
                                             },
                                             "metadata": {
                                                 "title": "Grpc Last Message Id Metadata Name",
                                                 "anyOf": [
                                                     {
-                                                        "type": "string",
-                                                        "default": "last-message-id"
+                                                        "type": "string"
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "last-message-id"
                                             }
                                         }
                                     },
@@ -2651,13 +2635,13 @@
                                                 "title": "Idempotency Metadata name",
                                                 "anyOf": [
                                                     {
-                                                        "type": "string",
-                                                        "default": "idempotency-key"
+                                                        "type": "string"
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "idempotency-key"
                                             }
                                         }
                                     },
@@ -2673,49 +2657,49 @@
                                                         "title": "Grpc Service Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:service"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:service"
                                                     },
                                                     "method": {
                                                         "title": "Grpc Method Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:method"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:method"
                                                     },
                                                     "correlation-id": {
                                                         "title": "Correlation-Id Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:correlation-id"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:correlation-id"
                                                     },
                                                     "reply-to": {
                                                         "title": "Reply to Topic",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:reply-to"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:reply-to"
                                                     }
                                                 },
                                                 "additionalProperties": false
@@ -2890,13 +2874,13 @@
                                                                         "none",
                                                                         "leader_only",
                                                                         "in_sync_replicas"
-                                                                    ],
-                                                                    "default": "in_sync_replicas"
+                                                                    ]
                                                                 },
                                                                 {
                                                                     "$ref": "#/$defs/expression"
                                                                 }
-                                                            ]
+                                                            ],
+                                                            "default": "in_sync_replicas"
                                                         },
                                                         "key": {
                                                             "title": "Key",
@@ -2978,6 +2962,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -3426,6 +3412,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -3510,6 +3498,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -3521,13 +3511,13 @@
                                                 "title": "Idempotency Key HTTP Header",
                                                 "anyOf": [
                                                     {
-                                                        "type": "string",
-                                                        "default": "idempotency-key"
+                                                        "type": "string"
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "idempotency-key"
                                             }
                                         },
                                         "required": [
@@ -3547,25 +3537,25 @@
                                                         "title": "Reply-To Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:reply-to"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:reply-to"
                                                     },
                                                     "correlation-id": {
                                                         "title": "Correlation-Id Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:correlation-id"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:correlation-id"
                                                     }
                                                 },
                                                 "additionalProperties": false
@@ -3774,13 +3764,13 @@
                                                                         "none",
                                                                         "leader_only",
                                                                         "in_sync_replicas"
-                                                                    ],
-                                                                    "default": "in_sync_replicas"
+                                                                    ]
                                                                 },
                                                                 {
                                                                     "$ref": "#/$defs/expression"
                                                                 }
-                                                            ]
+                                                            ],
+                                                            "default": "in_sync_replicas"
                                                         },
                                                         "key": {
                                                             "title": "Key",
@@ -3879,6 +3869,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "routes": {
                                 "title": "Routes",
@@ -4055,6 +4047,7 @@
                                     "remote_server"
                                 ]
                             },
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -4067,13 +4060,13 @@
                                                     "none",
                                                     "leader_only",
                                                     "in_sync_replicas"
-                                                ],
-                                                "default": "in_sync_replicas"
+                                                ]
                                             },
                                             {
                                                 "$ref": "#/$defs/expression"
                                             }
-                                        ]
+                                        ],
+                                        "default": "in_sync_replicas"
                                     },
                                     "idempotency": {
                                         "title": "Idempotency",
@@ -4083,13 +4076,13 @@
                                                 "title": "Idempotency Metadata name",
                                                 "anyOf": [
                                                     {
-                                                        "type": "string",
-                                                        "default": "idempotency-key"
+                                                        "type": "string"
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "idempotency-key"
                                             }
                                         }
                                     },
@@ -4105,49 +4098,49 @@
                                                         "title": "Grpc Service Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:service"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:service"
                                                     },
                                                     "method": {
                                                         "title": "Grpc Method Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:method"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:method"
                                                     },
                                                     "correlation-id": {
                                                         "title": "Correlation-Id Kafka Header",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:correlation-id"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:correlation-id"
                                                     },
                                                     "reply-to": {
                                                         "title": "Reply to Topic",
                                                         "anyOf": [
                                                             {
-                                                                "type": "string",
-                                                                "default": "zilla:reply-to"
+                                                                "type": "string"
                                                             },
                                                             {
                                                                 "$ref": "#/$defs/expression"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "default": "zilla:reply-to"
                                                     }
                                                 },
                                                 "additionalProperties": false
@@ -4312,6 +4305,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "routes": {
                                 "title": "Routes",
@@ -4510,6 +4505,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -4597,13 +4594,13 @@
                                                             "at_most_once",
                                                             "at_least_once",
                                                             "exactly_once"
-                                                        ],
-                                                        "default": "exactly_once"
+                                                        ]
                                                     },
                                                     {
                                                         "$ref": "#/$defs/expression"
                                                     }
-                                                ]
+                                                ],
+                                                "default": "exactly_once"
                                             },
                                             "additionalProperties": false
                                         },
@@ -4742,6 +4739,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "options": {
                                 "properties": {
                                     "tcp": {
@@ -4790,6 +4789,7 @@
                                                         }
                                                     },
                                                     "catalog": {
+                                                        "title": "Catalog",
                                                         "type": "object",
                                                         "patternProperties": {
                                                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -4808,13 +4808,13 @@
                                                                     "version": {
                                                                         "anyOf": [
                                                                             {
-                                                                                "type": "string",
-                                                                                "default": "latest"
+                                                                                "type": "string"
                                                                             },
                                                                             {
                                                                                 "$ref": "#/$defs/expression"
                                                                             }
-                                                                        ]
+                                                                        ],
+                                                                        "default": "latest"
                                                                     }
                                                                 },
                                                                 "required": [
@@ -4879,6 +4879,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -4894,6 +4896,7 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "catalog": {
+                                                                "title": "Catalog",
                                                                 "type": "object",
                                                                 "patternProperties": {
                                                                     "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -4912,13 +4915,13 @@
                                                                             "version": {
                                                                                 "anyOf": [
                                                                                     {
-                                                                                        "type": "string",
-                                                                                        "default": "latest"
+                                                                                        "type": "string"
                                                                                     },
                                                                                     {
                                                                                         "$ref": "#/$defs/expression"
                                                                                     }
-                                                                                ]
+                                                                                ],
+                                                                                "default": "latest"
                                                                             }
                                                                         },
                                                                         "required": [
@@ -4942,6 +4945,7 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "catalog": {
+                                                                "title": "Catalog",
                                                                 "type": "object",
                                                                 "patternProperties": {
                                                                     "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -4960,13 +4964,13 @@
                                                                             "version": {
                                                                                 "anyOf": [
                                                                                     {
-                                                                                        "type": "string",
-                                                                                        "default": "latest"
+                                                                                        "type": "string"
                                                                                     },
                                                                                     {
                                                                                         "$ref": "#/$defs/expression"
                                                                                     }
-                                                                                ]
+                                                                                ],
+                                                                                "default": "latest"
                                                                             }
                                                                         },
                                                                         "required": [
@@ -5095,6 +5099,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": false
@@ -5127,6 +5133,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -5382,19 +5390,21 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
                                     "retry": {
                                         "anyOf": [
                                             {
-                                                "type": "integer",
-                                                "default": 2000
+                                                "type": "integer"
                                             },
                                             {
                                                 "$ref": "#/$defs/expression"
                                             }
-                                        ]
+                                        ],
+                                        "default": 2000
                                     },
                                     "requests": {
                                         "type": "array",
@@ -5493,6 +5503,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -5580,13 +5592,13 @@
                                                                     "enum": [
                                                                         "${etag}",
                                                                         "[\"${base64(key)}\",\"${etag}\"]"
-                                                                    ],
-                                                                    "default": "${etag}"
+                                                                    ]
                                                                 },
                                                                 {
                                                                     "$ref": "#/$defs/expression"
                                                                 }
-                                                            ]
+                                                            ],
+                                                            "default": "${etag}"
                                                         }
                                                     }
                                                 }
@@ -5633,6 +5645,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "$ref": "#/$defs/options/binding/tcp"
@@ -5794,6 +5808,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "routes": {
                                 "title": "Routes",
                                 "type": "array",
@@ -5978,6 +5994,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "routes": {
                                 "title": "Routes",
@@ -6200,6 +6218,7 @@
                                     ]
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -6244,13 +6263,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             }
                                                         },
                                                         "required": [
@@ -6274,13 +6293,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             }
                                                         },
                                                         "required": [
@@ -6321,13 +6340,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -6374,13 +6393,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -6427,13 +6446,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -6480,13 +6499,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -6527,6 +6546,7 @@
                                     "const": "json"
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -6571,13 +6591,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             }
                                                         },
                                                         "required": [
@@ -6601,13 +6621,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             }
                                                         },
                                                         "required": [
@@ -6655,6 +6675,7 @@
                                     ]
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -6710,13 +6731,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             },
                                                             "record": {
                                                                 "anyOf": [
@@ -6751,13 +6772,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             },
                                                             "record": {
                                                                 "anyOf": [
@@ -6913,13 +6934,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -6966,13 +6987,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -7019,13 +7040,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -7072,13 +7093,13 @@
                                             "enum": [
                                                 "binary",
                                                 "text"
-                                            ],
-                                            "default": "text"
+                                            ]
                                         },
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ]
+                                    ],
+                                    "default": "text"
                                 },
                                 "range": {
                                     "anyOf": [
@@ -7119,6 +7140,7 @@
                                     "const": "json"
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -7163,13 +7185,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             }
                                                         },
                                                         "required": [
@@ -7193,13 +7215,13 @@
                                                             "version": {
                                                                 "anyOf": [
                                                                     {
-                                                                        "type": "string",
-                                                                        "default": "latest"
+                                                                        "type": "string"
                                                                     },
                                                                     {
                                                                         "$ref": "#/$defs/expression"
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "default": "latest"
                                                             }
                                                         },
                                                         "required": [

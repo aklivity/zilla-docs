@@ -29,6 +29,8 @@ catalog:
 
 > `object`
 
+The `aws-glue`-specific options.
+
 #### options.registry\*
 
 > `string`

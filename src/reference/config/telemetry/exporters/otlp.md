@@ -72,14 +72,22 @@ Specifies the protocol to use for exporting data for exporting data to the [OTEL
 
 > `string`
 
+The URI for the collector endpoint.
+
 #### endpoint.overrides
 
 > `object`
 
+The options for overriding the endpoint for each signal type.
+
 #### overrides.logs
 
-> `string`
+> `string` | Default: `/v1/metrics`
+
+The `logs` signal endpoint URI.
 
 #### overrides.metrics
 
-> `string`
+> `string` | Default: `/v1/logs`
+
+The `metrics` signal endpoint URI.

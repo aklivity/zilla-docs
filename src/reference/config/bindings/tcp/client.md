@@ -13,13 +13,5 @@ The tcp client binding
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
-
-### routes
-
-> `array` of `object`
-
-Conditional `client`-specific routes.
-
 <!-- @include: ./.partials/routes.md -->
-
 <!-- @include: ../.partials/telemetry.md -->

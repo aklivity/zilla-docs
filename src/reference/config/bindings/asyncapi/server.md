@@ -57,6 +57,8 @@ Fetch offset to use for new consumers
 
 > `array`
 
+<!-- todo: Dev input -->
+
 #### kafka.sasl
 
 > `object`
@@ -123,7 +125,7 @@ http specific options.
 
 #### http.authorization
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -141,9 +143,11 @@ authorization:
 
 > `object`
 
+MQTT specific options.
+
 #### mqtt.authorization
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -171,7 +175,7 @@ authorization:
 
 > `string`
 
-Default exit binding when no conditional routes are viable.
+Next binding when following this route.
 
 ```yaml
 routes:

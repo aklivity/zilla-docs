@@ -133,7 +133,7 @@ Exposed response headers.
 
 #### options.authorization
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Authorization by a named guard for the `HTTP/1.1` and `HTTP/2` protocols.
 

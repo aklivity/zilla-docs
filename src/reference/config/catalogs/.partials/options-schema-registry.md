@@ -2,6 +2,8 @@
 
 > `object`
 
+The `schema-registry`-specific options.
+
 #### options.url
 
 > `string`

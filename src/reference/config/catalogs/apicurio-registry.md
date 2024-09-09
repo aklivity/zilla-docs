@@ -28,6 +28,8 @@ catalog:
 
 > `object`
 
+The `apicurio-registry`-specific options.
+
 #### options.url
 
 > `string`

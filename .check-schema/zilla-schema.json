@@ -459,6 +459,7 @@
             }
         },
         "catalog": {
+            "title": "Catalog",
             "type": "object",
             "properties": {
                 "type": {
@@ -917,64 +918,26 @@
                                 "transforms": {
                                     "title": "Transforms",
                                     "type": "array",
-                                    "oneOf": [
+                                    "items": [
                                         {
-                                            "items": [
-                                                {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "extract-headers": {
                                                     "type": "object",
-                                                    "additionalProperties": false,
-                                                    "properties": {
-                                                        "extract-headers": {
-                                                            "type": "object",
-                                                            "patternProperties": {
-                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "type": "string",
-                                                                    "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
-                                                                }
-                                                            },
-                                                            "additionalProperties": false
-                                                        },
-                                                        "extract-key": {
+                                                    "patternProperties": {
+                                                        "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
                                                             "type": "string",
-                                                            "additionalProperties": false
+                                                            "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
                                                         }
-                                                    }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "extract-key": {
+                                                    "type": "string",
+                                                    "additionalProperties": false
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "items": [
-                                                {
-                                                    "type": "object",
-                                                    "additionalProperties": false,
-                                                    "properties": {
-                                                        "extract-headers": {
-                                                            "type": "object",
-                                                            "patternProperties": {
-                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                                    "type": "string",
-                                                                    "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
-                                                                }
-                                                            },
-                                                            "additionalProperties": false
-                                                        }
-                                                    }
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "items": [
-                                                {
-                                                    "type": "object",
-                                                    "additionalProperties": false,
-                                                    "properties": {
-                                                        "extract-key": {
-                                                            "type": "string",
-                                                            "additionalProperties": false
-                                                        }
-                                                    }
-                                                }
-                                            ]
+                                            }
                                         }
                                     ]
                                 },
@@ -1175,6 +1138,10 @@
                     "title": "Vault",
                     "type": "string"
                 },
+                "catalog": {
+                    "title": "Catalog",
+                    "type": "object"
+                },
                 "type": {
                     "title": "Type",
                     "type": "string",
@@ -1272,6 +1239,11 @@
                 "exit": {
                     "title": "Exit",
                     "type": "string"
+                },
+                "entry": {
+                    "title": "Entry",
+                    "type": "string",
+                    "pattern": "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$"
                 }
             },
             "additionalProperties": false,
@@ -1298,6 +1270,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -1369,6 +1343,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "options": {
                                 "properties": {
                                     "specs": {
@@ -1403,6 +1379,7 @@
                                                         }
                                                     },
                                                     "catalog": {
+                                                        "title": "Catalog",
                                                         "type": "object",
                                                         "patternProperties": {
                                                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -1629,6 +1606,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": false,
@@ -1654,6 +1633,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": false
@@ -1690,6 +1671,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -1734,7 +1717,6 @@
                                 ]
                             },
                             "vault": false,
-                            "options": false,
                             "routes": {
                                 "title": "Routes",
                                 "type": "array",
@@ -1798,6 +1780,7 @@
                                     "kind": {
                                         "const": "server"
                                     },
+                                    "entry": false,
                                     "options": {
                                         "properties": {
                                             "services": {
@@ -1813,26 +1796,30 @@
                                         "additionalProperties": false
                                     },
                                     "catalog": {
+                                        "title": "Catalog",
                                         "type": "object",
                                         "patternProperties": {
                                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "subject": {
-                                                        "type": "string"
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "subject": {
+                                                            "type": "string"
+                                                        },
+                                                        "version": {
+                                                            "type": "string",
+                                                            "default": "latest"
+                                                        }
                                                     },
-                                                    "version": {
-                                                        "type": "string",
-                                                        "default": "latest"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "subject"
-                                                ],
-                                                "additionalProperties": false
-                                            },
-                                            "additionalProperties": false
-                                        }
+                                                    "required": [
+                                                        "subject"
+                                                    ],
+                                                    "additionalProperties": false
+                                                }
+                                            }
+                                        },
+                                        "maxProperties": 1
                                     }
                                 }
                             },
@@ -1841,6 +1828,8 @@
                                     "kind": {
                                         "const": "client"
                                     },
+                                    "entry": false,
+                                    "catalog": false,
                                     "options": false
                                 }
                             }
@@ -1865,6 +1854,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -2095,6 +2086,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -2431,6 +2424,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -2501,6 +2496,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -2737,6 +2734,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "routes": {
                                 "title": "Routes",
@@ -2878,6 +2877,7 @@
                                     "remote_server"
                                 ]
                             },
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -3037,6 +3037,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "routes": {
                                 "title": "Routes",
@@ -3200,6 +3202,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -3369,6 +3373,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "options": {
                                 "properties": {
                                     "tcp": {
@@ -3410,6 +3416,7 @@
                                                         }
                                                     },
                                                     "catalog": {
+                                                        "title": "Catalog",
                                                         "type": "object",
                                                         "patternProperties": {
                                                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -3485,6 +3492,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -3500,6 +3509,7 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "catalog": {
+                                                                "title": "Catalog",
                                                                 "type": "object",
                                                                 "patternProperties": {
                                                                     "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -3534,6 +3544,7 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "catalog": {
+                                                                "title": "Catalog",
                                                                 "type": "object",
                                                                 "patternProperties": {
                                                                     "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -3645,6 +3656,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": false
@@ -3677,6 +3690,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -3827,6 +3842,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "properties": {
@@ -3917,6 +3934,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": false,
                             "routes": {
@@ -4022,6 +4041,8 @@
                                     "client"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "options": {
                                 "$ref": "#/$defs/options/binding/tcp"
@@ -4147,6 +4168,8 @@
                                     "proxy"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "routes": {
                                 "title": "Routes",
                                 "type": "array",
@@ -4295,6 +4318,8 @@
                                     "server"
                                 ]
                             },
+                            "entry": false,
+                            "catalog": false,
                             "vault": false,
                             "routes": {
                                 "title": "Routes",
@@ -4447,6 +4472,7 @@
                                     ]
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -4655,6 +4681,7 @@
                                     "const": "json"
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -4741,6 +4768,7 @@
                                     ]
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
@@ -5030,6 +5058,7 @@
                                     "const": "json"
                                 },
                                 "catalog": {
+                                    "title": "Catalog",
                                     "type": "object",
                                     "patternProperties": {
                                         "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {

@@ -25,9 +25,11 @@ catalogs:
 
 > `object`
 
+The `filesystem`-specific options.
+
 #### options.subjects
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Unique identifier for artifact categorization in the catalog.
 

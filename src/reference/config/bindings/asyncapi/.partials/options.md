@@ -1,12 +1,12 @@
 #### options.specs
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 specs specific options
 
 #### specs.catalog
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 To map defined catalog for schema retrieval based on catalog specific parameters.
 
@@ -25,6 +25,8 @@ Specific iteration or version of a registered schema in the defined catalog.
 #### specs.servers
 
 > `array` of `object`
+
+The servers to match from the schema that are used when defining endpoints.
 
 #### servers[].url
 
@@ -48,7 +50,7 @@ The server pathname to match based on the server's `pathname` in an asyncapi `3.
 
 > `object`
 
-`client` specific `tcp` options.
+TCP options to connect to an external client.
 
 #### tcp.host
 
@@ -70,7 +72,7 @@ http specific options.
 
 #### http.authorization
 
-> `object` as map of named:`object`
+> `object` as map of named: `object`
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 

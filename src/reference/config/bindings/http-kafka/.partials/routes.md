@@ -65,7 +65,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named:`array` of `string`
+> `object` as map of named: `array` of `string`
 
 Roles required by named guard.
 
@@ -106,7 +106,7 @@ Path with optional embedded parameter names, such as `/{topic}`.
 
 > `string`
 
-Default exit binding when no conditional routes are viable.
+Next binding when following this route.
 
 ```yaml
 routes:

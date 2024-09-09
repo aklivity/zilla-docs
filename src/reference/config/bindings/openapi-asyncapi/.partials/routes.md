@@ -6,7 +6,7 @@ Conditional `openapi-asyncapi`-specific routes for adapting `openapi` operations
 
 #### routes[].guarded
 
-> `object` as map of named:`array` of `string`
+> `object` as map of named: `array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -40,7 +40,7 @@ OpenAPI OperationId that can be mapped between OpenAPI and AsyncAPI spec
 
 > `string`
 
-Default exit binding when no conditional routes are viable.
+Next binding when following this route.
 
 ```yaml
 routes:

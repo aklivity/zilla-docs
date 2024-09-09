@@ -16,7 +16,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named:`array` of `string`
+> `object` as map of named: `array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -85,6 +85,8 @@ Port number.
 #### when[].info
 
 > `object`
+
+<!-- todo: Dev input -->
 
 #### info.alpn
 
