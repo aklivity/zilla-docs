@@ -82,12 +82,12 @@ The options for overriding the endpoint for each signal type.
 
 #### overrides.logs
 
-> `string` | Default: `/v1/metrics`
+> `string` | Default: `/v1/logs`
 
 The `logs` signal endpoint URI.
 
 #### overrides.metrics
 
-> `string` | Default: `/v1/logs`
+> `string` | Default: `/v1/metrics`
 
 The `metrics` signal endpoint URI.

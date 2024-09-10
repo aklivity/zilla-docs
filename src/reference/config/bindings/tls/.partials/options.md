@@ -42,7 +42,7 @@ A list of reference names for the Vault signer certificate.
 
 > `boolean`
 
-Trust CA certificates. This property will be considered set to `true` when [options.trust](#options-trust) is `null`.
+Trust CA certificates. When the this property is not explicitly set it will be automatically set to `true` if [options.trust](#options-trust) is `null`.
 
 #### options.sni
 
@@ -58,6 +58,6 @@ Application protocols.
 
 #### options.mutual
 
-> `enum` [ `required`, `requested`, `none` ] | Default: `none`
+> `enum` [ `required`, `requested`, `none` ]
 
-Mutual authentication
+Mutual authentication. When the this property is not explicitly set it will be automatically set to `none` if [options.trust](#options-trust) is `null`, otherwise it will be set to `required`.
