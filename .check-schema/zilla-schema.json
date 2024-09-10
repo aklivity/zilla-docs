@@ -363,10 +363,12 @@
                                                     "type": "object",
                                                     "properties": {
                                                         "metrics": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "/v1/metrics"
                                                         },
                                                         "logs": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "/v1/logs"
                                                         }
                                                     }
                                                 }
@@ -1011,7 +1013,7 @@
                     }
                 },
                 "tcp": {
-                    "title": "tcp Options",
+                    "title": "Options",
                     "type": "object",
                     "properties": {
                         "host": {
@@ -1048,7 +1050,7 @@
                     "additionalProperties": false
                 },
                 "tls": {
-                    "title": "tls Options",
+                    "title": "Options",
                     "type": "object",
                     "properties": {
                         "version": {
@@ -1084,7 +1086,10 @@
                             "title": "Application Protocols",
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             }
                         },
                         "mutual": {
@@ -1094,8 +1099,7 @@
                                 "required",
                                 "requested",
                                 "none"
-                            ],
-                            "default": "none"
+                            ]
                         },
                         "signers": {
                             "title": "Vault Signer Certificates",
@@ -1104,6 +1108,20 @@
                                 "type": "string"
                             }
                         }
+                    },
+                    "not": {
+                        "allOf": [
+                            {
+                                "required": [
+                                    "keys"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "signers"
+                                ]
+                            }
+                        ]
                     },
                     "additionalProperties": false
                 }
@@ -1251,6 +1269,28 @@
                 "type",
                 "kind"
             ],
+            "anyOf": [
+                {
+                    "properties": {
+                        "kind": {
+                            "const": "remote_server"
+                        }
+                    },
+                    "required": [
+                        "entry"
+                    ]
+                },
+                {
+                    "properties": {
+                        "kind": {
+                            "not": {
+                                "const": "remote_server"
+                            }
+                        },
+                        "entry": false
+                    }
+                }
+            ],
             "allOf": [
                 {
                     "if": {
@@ -1270,7 +1310,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": false,
@@ -1343,7 +1382,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "options": {
                                 "properties": {
@@ -1606,7 +1644,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": false,
@@ -1633,7 +1670,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": false,
@@ -1671,7 +1707,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -1854,7 +1889,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -2086,7 +2120,6 @@
                                     "client"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -2117,7 +2150,8 @@
                                                 "enum": [
                                                     "same-origin",
                                                     "cross-origin"
-                                                ]
+                                                ],
+                                                "default": "same-origin"
                                             }
                                         },
                                         "oneOf": [
@@ -2365,7 +2399,25 @@
                                                 "additionalProperties": false
                                             }
                                         },
-                                        "with": false
+                                        "with": {
+                                            "properties": {
+                                                "headers": {
+                                                    "title": "Headers",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "overrides": {
+                                                            "title": "Overrides",
+                                                            "type": "object",
+                                                            "additionalProperties": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        }
                                     }
                                 }
                             }
@@ -2424,7 +2476,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": false,
@@ -2496,7 +2547,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -2734,7 +2784,6 @@
                                     "client"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "routes": {
@@ -3037,7 +3086,6 @@
                                     "client"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "routes": {
@@ -3202,7 +3250,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -3373,7 +3420,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "options": {
                                 "properties": {
@@ -3492,7 +3538,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -3656,7 +3701,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": false,
@@ -3690,7 +3734,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": false,
@@ -3842,7 +3885,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -3934,7 +3976,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": false,
@@ -4041,7 +4082,6 @@
                                     "client"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "options": {
@@ -4168,7 +4208,6 @@
                                     "proxy"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "routes": {
                                 "title": "Routes",
@@ -4318,7 +4357,6 @@
                                     "server"
                                 ]
                             },
-                            "entry": false,
                             "catalog": false,
                             "vault": false,
                             "routes": {

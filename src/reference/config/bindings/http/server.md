@@ -47,7 +47,7 @@ Defines the [same-origin](#access-control-policy-same-origin) or [cross-origin](
 
 #### access-control.policy
 
-> `enum` [ `same-origin`, `cross-origin` ]
+> `enum` [ `same-origin`, `cross-origin` ] | Default: `same-origin`
 
 Supported access control policies.
 

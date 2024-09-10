@@ -47,6 +47,33 @@ routes:
 
 Header name value pairs (all match).
 
+#### routes[].with
+
+> `object`
+
+HTTP parameters for matched route when `http` streams.
+
+```yaml
+routes:
+  - with:
+      headers:
+        overrides:
+          ":scheme": https
+          ":authority": example.com:443
+```
+
+#### with.headers
+
+> `object`
+
+Options for headers when adapting a route.
+
+#### headers.overrides
+
+> `object` as map of named: `string` properties
+
+HTTP header name value pairs overrides.
+
 #### routes[].exit
 
 > `string`
