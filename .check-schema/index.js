@@ -226,14 +226,44 @@ const main = async () => {
     ).flat(1);
 
     var bindings = schema.properties.bindings.patternProperties[Object.keys(schema.properties.bindings.patternProperties)[0]];
+    var kindsGlobalIs = bindings.anyOf?.filter(({properties}) => (properties?.kind?.const))
+    .reduce((o, a) => {
+        // eslint-disable-next-line no-unused-vars
+        const {kind:_, ...properties} = a.properties;
+        return {
+            ...o,
+            [a.properties?.kind?.const]: {...a, properties}
+            };
+    }, {})
+    var kindsGlobalNot = bindings.anyOf?.filter(({properties}) => (properties?.kind?.not?.const))
+    .reduce((o, a) => {
+        // eslint-disable-next-line no-unused-vars
+        const {kind:_, ...properties} = a.properties;
+        return {
+            ...o,
+            [a.properties?.kind?.not.const]: {},
+            all: {...o.all, ...a, properties}
+            };
+    }, {all: {}});
     bindings.allOf?.forEach(({ if: fi, then }) => {
         var folder = `bindings.${fi.properties.type.const}`;
+        var globals = {
+            properties: {
+                ...(kindsGlobalIs[fi.properties.type.const]?.properties || {}),
+                ...(kindsGlobalNot[fi.properties.type.const]?.properties || kindsGlobalNot.all?.properties || {}),
+            },
+            required: [
+                ...(kindsGlobalIs[fi.properties.type.const]?.required || []),
+                ...(kindsGlobalNot[fi.properties.type.const]?.required || kindsGlobalNot.all?.required || []),
+            ],
+        }
         if (then.oneOf) {
             sections.push(...then.oneOf.map(({ properties, required, oneOf, anyOf, allOf }) => ({
                 folder,
                 name: properties.kind.const,
                 props: {
                     ...bindings.properties,
+                    ...globals.properties,
                     ...(then.properties || {}),
                     ...(properties || {}),
                     options: getOptions(properties.kind.const, then, properties),
@@ -242,7 +272,7 @@ const main = async () => {
                     anyOf: [...(then.anyOf || []), ...(anyOf || [])],
                     oneOf: [...(then.oneOf || []), ...(oneOf || [])],
                 },
-                required: getRequired(properties.kind.const, then, required),
+                required: getRequired(properties.kind.const, then, [...(globals.required || []), ...(required || [])]),
             })));
         } else {
             sections.push({
@@ -250,6 +280,7 @@ const main = async () => {
                 name: then.properties.kind.enum[0],
                 props: {
                     ...bindings.properties,
+                    ...globals.properties,
                     ...(then.properties || {}),
                     options: getOptions(then.properties.kind.enum[0], bindings, then.properties),
                     routes: getRoutes(then.properties.kind.enum[0], bindings, then),
@@ -257,7 +288,7 @@ const main = async () => {
                     anyOf: [...(then.anyOf || [])],
                     oneOf: [...(then.oneOf || [])],
                 },
-                required: [...(then.required || [])],
+                required: [...(globals.required || []), ...(then.required || [])],
             });
         }
     })
