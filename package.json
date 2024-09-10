@@ -19,6 +19,7 @@
     "lint": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#.config\" \"#.check-schema\"",
     "lint-fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\" \"#.config\" \"#.check-schema\"",
     "link-checker": "pnpm build && link-checker src/.vuepress/dist",
+    "install-check-schema": "cd ./.check-schema && pnpm install",
     "check-schema": "node ./.check-schema"
   },
   "devDependencies": {
