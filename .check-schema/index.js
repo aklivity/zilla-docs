@@ -28,9 +28,9 @@ const main = async () => {
         return type;
     }
 
-    function getOptions(name, parent, childProps){
-        var anyOfProps = parent.anyOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
-        var oneOfProps = parent.oneOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.options)).map(({properties}) => (properties?.options?.properties));
+    function getOptions(name, parent, childProps) {
+        var anyOfProps = parent.anyOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.options)).map(({ properties }) => (properties?.options?.properties));
+        var oneOfProps = parent.oneOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.options)).map(({ properties }) => (properties?.options?.properties));
         return (childProps?.options !== false && parent?.properties?.options !== false ? {
             ...parent?.properties?.options,
             ...childProps?.options,
@@ -43,9 +43,9 @@ const main = async () => {
         } : {});
     }
 
-    function getRoutes(name, root, parent, childProps){
-        var anyOfProps = parent.anyOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.routes)).map(({properties}) => (properties?.routes?.items?.properties));
-        var oneOfProps = parent.oneOf?.filter(({properties}) => ((properties?.kind.const) === name && properties?.routes)).map(({properties}) => (properties?.routes?.items?.properties));
+    function getRoutes(name, root, parent, childProps) {
+        var anyOfProps = parent.anyOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.routes)).map(({ properties }) => (properties?.routes?.items?.properties));
+        var oneOfProps = parent.oneOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.routes)).map(({ properties }) => (properties?.routes?.items?.properties));
         return (parent?.properties?.routes !== false ? {
             ...parent?.properties?.routes,
             items: {
@@ -61,9 +61,9 @@ const main = async () => {
         } : {});
     }
 
-    function getRequired(name, parent, childRequired){
+    function getRequired(name, parent, childRequired) {
         return [
-            ...(parent?.anyOf?.reduce(({required:r1}, {required:r2}) => ([...(r1 || []), ...(r2 || [])]), []) || []),
+            ...(parent?.anyOf?.reduce(({ required: r1 }, { required: r2 }) => ([...(r1 || []), ...(r2 || [])]), []) || []),
             ...(parent?.required || []),
             ...(childRequired || [])
         ];
@@ -111,8 +111,8 @@ const main = async () => {
             if (!i || !!i.deprecated) return
 
             // spread extra props
-            i = i.anyOf?.reduce((a, b) => ({...a, ...b}), i) || i;
-            i = i.allOf?.reduce((a, b) => ({...a, ...b}), i) || i;
+            i = i.anyOf?.reduce((a, b) => ({ ...a, ...b }), i) || i;
+            i = i.allOf?.reduce((a, b) => ({ ...a, ...b }), i) || i;
             // console.log(k, JSON.stringify(i));
 
             //recurse
@@ -226,25 +226,25 @@ const main = async () => {
     ).flat(1);
 
     var bindings = schema.properties.bindings.patternProperties[Object.keys(schema.properties.bindings.patternProperties)[0]];
-    var kindsGlobalIs = bindings.anyOf?.filter(({properties}) => (properties?.kind?.const))
-    .reduce((o, a) => {
-        // eslint-disable-next-line no-unused-vars
-        const {kind:_, ...properties} = a.properties;
-        return {
-            ...o,
-            [a.properties?.kind?.const]: {...a, properties}
+    var kindsGlobalIs = bindings.anyOf?.filter(({ properties }) => (properties?.kind?.const))
+        .reduce((o, a) => {
+            // eslint-disable-next-line no-unused-vars
+            const { kind: _, ...properties } = a.properties;
+            return {
+                ...o,
+                [a.properties?.kind?.const]: { ...a, properties }
             };
-    }, {})
-    var kindsGlobalNot = bindings.anyOf?.filter(({properties}) => (properties?.kind?.not?.const))
-    .reduce((o, a) => {
-        // eslint-disable-next-line no-unused-vars
-        const {kind:_, ...properties} = a.properties;
-        return {
-            ...o,
-            [a.properties?.kind?.not.const]: {},
-            all: {...o.all, ...a, properties}
+        }, {})
+    var kindsGlobalNot = bindings.anyOf?.filter(({ properties }) => (properties?.kind?.not?.const))
+        .reduce((o, a) => {
+            // eslint-disable-next-line no-unused-vars
+            const { kind: _, ...properties } = a.properties;
+            return {
+                ...o,
+                [a.properties?.kind?.not.const]: {},
+                all: { ...o.all, ...a, properties }
             };
-    }, {all: {}});
+        }, { all: {} });
     bindings.allOf?.forEach(({ if: fi, then }) => {
         var folder = `bindings.${fi.properties.type.const}`;
         var globals = {
