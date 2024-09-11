@@ -30,25 +30,25 @@ catalog:
     - subject: http
 ```
 
-#### catalog.strategy\*
+#### catalog[].strategy\*
 
 > `enum` [ `topic` ]
 
 To determine the subject based on the specified strategy
 
-#### catalog.subject\*
+#### catalog[].subject\*
 
 > `string`
 
 Unique identifier for schema categorization in the catalog.
 
-#### catalog.version
+#### catalog[].version
 
 > `string` | Default: `latest`
 
 Specific iteration or version of a registered schema in the defined catalog.
 
-#### catalog.id\*
+#### catalog[].id\*
 
 > `integer`
 

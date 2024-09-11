@@ -29,13 +29,13 @@ catalog:
     - subject: http
 ```
 
-#### catalog.subject\*
+#### catalog[].subject\*
 
 > `string`
 
 Unique identifier for schema categorization in the catalog.
 
-#### catalog.version
+#### catalog[].version
 
 > `string` | Default: `latest`
 

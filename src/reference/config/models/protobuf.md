@@ -55,31 +55,31 @@ To map defined catalog for schema retrieval based on catalog specific parameters
 > `version`
 > `record`
 
-#### catalog.id\*
+#### catalog[].id\*
 
 > `integer`
 
 Define specific schema id to refer from catalog.
 
-#### catalog.version
+#### catalog[].version
 
 > `string` | Default: `latest`
 
 Specific iteration or version of a registered schema in the defined catalog.
 
-#### catalog.strategy\*
+#### catalog[].strategy\*
 
 > `enum` [ `topic` ]
 
 To determine the subject based on the specified strategy
 
-#### catalog.subject\*
+#### catalog[].subject\*
 
 > `string`
 
 Unique identifier for schema categorization in the catalog.
 
-#### catalog.record\*
+#### catalog[].record\*
 
 > `string`
 

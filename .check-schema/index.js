@@ -140,7 +140,7 @@ const main = async () => {
                 );
             i.items?.oneOf?.filter(({ properties }) => !!properties)
                 .forEach(({ properties, required }) =>
-                    props.push(...getObjProps(`${k}`, properties, required))
+                    props.push(...getObjProps(`${k}[]`, properties, required))
                 );
             i.oneOf?.filter(({ properties }) => !!properties)
                 .forEach(({ properties, required }) =>
