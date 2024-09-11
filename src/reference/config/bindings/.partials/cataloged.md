@@ -9,7 +9,7 @@ To map defined catalog for schema retrieval based on catalog specific parameters
 ```yaml
 catalog:
   my_catalog:
-    id: unique-catalog-id
+    - id: unique-catalog-id
 ```
 
 -----
@@ -27,7 +27,7 @@ catalog:
 ```yaml
 catalog:
   my_catalog:
-    subject: http
+    - subject: http
 ```
 
 #### catalog.strategy\*

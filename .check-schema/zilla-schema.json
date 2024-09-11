@@ -693,7 +693,10 @@
                     "type": "object",
                     "properties": {
                         "strategy": {
-                            "type": "string"
+                            "type": "string",
+                            "enum": [
+                                "topic"
+                            ]
                         },
                         "version": {
                             "type": "string",
@@ -1158,7 +1161,16 @@
                 },
                 "catalog": {
                     "title": "Catalog",
-                    "type": "object"
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/$defs/cataloged"
+                            }
+                        }
+                    },
+                    "maxProperties": 1
                 },
                 "type": {
                     "title": "Type",
@@ -1815,7 +1827,6 @@
                                     "kind": {
                                         "const": "server"
                                     },
-                                    "entry": false,
                                     "options": {
                                         "properties": {
                                             "services": {
@@ -1829,32 +1840,6 @@
                                             }
                                         },
                                         "additionalProperties": false
-                                    },
-                                    "catalog": {
-                                        "title": "Catalog",
-                                        "type": "object",
-                                        "patternProperties": {
-                                            "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "subject": {
-                                                            "type": "string"
-                                                        },
-                                                        "version": {
-                                                            "type": "string",
-                                                            "default": "latest"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "subject"
-                                                    ],
-                                                    "additionalProperties": false
-                                                }
-                                            }
-                                        },
-                                        "maxProperties": 1
                                     }
                                 }
                             },
@@ -1863,7 +1848,6 @@
                                     "kind": {
                                         "const": "client"
                                     },
-                                    "entry": false,
                                     "catalog": false,
                                     "options": false
                                 }

@@ -19,17 +19,23 @@ The grpc server binding adapts `http` request-response streams to `grpc` request
 
 ### catalog
 
-> `object` as map of named: `array` of `object`
+> `object` as map of named: `array`
 
 To map defined catalog for schema retrieval based on catalog specific parameters.
 
-#### catalog[].subject\*
+```yaml
+catalog:
+  my_catalog:
+    - subject: http
+```
+
+#### catalog.subject\*
 
 > `string`
 
-Subject name used when storing the catalog artifact.
+Unique identifier for schema categorization in the catalog.
 
-#### catalog[].version
+#### catalog.version
 
 > `string` | Default: `latest`
 
