@@ -49,7 +49,7 @@ Topic configuration.
 
 #### topics[].defaultOffset
 
-> `enum` [ `live`, `historical` ] | Default: `historical`
+> `enum` [ `live`, `historical` ]
 
 Fetch offset to use for new consumers
 
