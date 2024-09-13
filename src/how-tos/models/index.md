@@ -61,8 +61,7 @@ The `kafka cache_server` can enforce a schema on messages Fetched from a topic. 
 
 ### Expose a different model format
 
-The `kafka cache_client` can read the `view` model and translate it into the specified `model` for when a message is produced on the Kafka topic. Then
-The `kafka cache_server` can read the `model` from the topic and translate it into the `view` model.
+The `kafka cache_client` can read the `view` model and translate it into the specified `model` for when a message is produced on the Kafka topic. Then the `kafka cache_server` can read the `model` from the topic and translate it into the `view` model.
 
 In this case the `view` model that clients interact with needs to be a JSON object but the topic `model` is a serialize Avro object.
 
