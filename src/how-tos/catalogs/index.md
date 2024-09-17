@@ -58,7 +58,7 @@ catalogs:
     options:
       url: ${{env.SCHEMA_REGISTRY_URL}}
       context: default
-  my_apicurio_catalog:
+  my_apicurio_registry_catalog:
     type: apicurio-registry
     options:
       url: ${{env.APICURIO_URL}}
