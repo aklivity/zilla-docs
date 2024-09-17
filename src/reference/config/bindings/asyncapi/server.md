@@ -53,11 +53,7 @@ Topic configuration.
 
 Fetch offset to use for new consumers
 
-#### topics[].transforms
-
-> `array`
-
-<!-- todo: Dev input -->
+<!-- @include: ../.partials/options-kafka-topics-transforms.md -->
 
 #### kafka.sasl
 

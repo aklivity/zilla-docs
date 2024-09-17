@@ -27,6 +27,7 @@ const main = async () => {
         if (i.enum) type = "`enum`" + ` [ ${i.enum.map((e) => ("`" + e + "`")).join(", ")} ]`;
         if (i.items?.enum) type = `${"`array`"}${i.items.enum ? " of `enum`" + ` [ ${i.items.enum.map((e) => ("`" + e + "`")).join(", ")} ]` : ""}`;
         else if (i.items) type = `${"`array`"}${(i.items.type ? " of `" + (i.items.type) + "`" : "")}`;
+        // else if (i.oneOf?.filter(({ items }) => items?.length).length) type = "`array` of `object`";
         if (patternProperties) type = OBJECT_MAP_TYPE + type;
         return type;
     }
@@ -149,6 +150,12 @@ const main = async () => {
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(k, properties, [...(i.required || []), ...(required || [])]))
                 );
+            var oneOfItems = i.oneOf?.filter(({ items }) => items?.length)
+                ?.reduce((a, b) => ([ ...a, ...b.items ]), []);
+            if (oneOfItems?.length) {
+                props.push(...getObjProps(`${k}[]`, oneOfItems.reduce((a, b) => ({ ...a, ...b.properties }), {}), []))
+            }
+                
             i.additionalProperties?.oneOf?.filter(({ properties }) => !!properties)
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(k, properties, required))

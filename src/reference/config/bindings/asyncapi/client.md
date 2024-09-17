@@ -53,15 +53,7 @@ Topic configuration.
 
 Fetch offset to use for new consumers
 
-#### topics[].transforms
-
-> `array` of `object`
-
-<!-- todo: Dev input -->
-
-#### transforms[].extract-key
-
-> `string` | Pattern: `^\\$\\{message\\..(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
+<!-- @include: ../.partials/options-kafka-topics-transforms.md -->
 
 #### transforms[].extract-headers
 

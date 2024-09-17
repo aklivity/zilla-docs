@@ -48,9 +48,7 @@ Topic configuration.
 
 Fetch offset to use for new consumers
 
-#### topics[].transforms
-
-> `array`
+<!-- @include: ../.partials/options-kafka-topics-transforms.md -->
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
