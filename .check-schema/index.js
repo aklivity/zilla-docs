@@ -5,6 +5,8 @@ const { marked } = require("marked");
 const { $RefParser } = require("@apidevtools/json-schema-ref-parser");
 const schema = require("./zilla-schema.json");
 
+const OBJECT_MAP_TYPE = "`object` as map of named ";
+
 const main = async () => {
     await $RefParser.dereference(schema);
     // console.log("RefParser", JSON.stringify(schema))
@@ -19,12 +21,13 @@ const main = async () => {
         };
     }
 
-    function getType(i) {
+    function getType(i, patternProperties) {
         // console.log(i);
-        var type = "`" + (i.type || "object") + "`";
+        var type = "`" + (i.type || "object") + "`" + (patternProperties ? " properties" : "");
         if (i.enum) type = "`enum`" + ` [ ${i.enum.map((e) => ("`" + e + "`")).join(", ")} ]`;
         if (i.items?.enum) type = `${"`array`"}${i.items.enum ? " of `enum`" + ` [ ${i.items.enum.map((e) => ("`" + e + "`")).join(", ")} ]` : ""}`;
         else if (i.items) type = `${"`array`"}${(i.items.type ? " of `" + (i.items.type) + "`" : "")}`;
+        if (patternProperties) type = OBJECT_MAP_TYPE + type;
         return type;
     }
 
@@ -155,8 +158,7 @@ const main = async () => {
             if (!i) return
             var req = !!reqKeys?.includes(k);
             var path = [attr, k].filter((s) => !!s).join(".");
-            var type = getType(i);
-            if (patternProperties) type = "`object` as map of named: " + type;
+            var type = getType(i, patternProperties);
 
             if (i.properties && Object.keys(i.properties).length) {
                 props.push([path, req, type, getExtraProps(i)]);
@@ -165,14 +167,14 @@ const main = async () => {
                     props.push([
                         path,
                         req,
-                        "`object` as map of named: " + i.additionalProperties.oneOf
-                            .map(getType)
+                        OBJECT_MAP_TYPE + i.additionalProperties.oneOf
+                            .map((p) => (getType(p, patternProperties)))
                             .join(" or ") + " properties"
                         ,
                         getExtraProps(i)
                     ]);
                 } else {
-                    type = "`object` as map of named: `" + i.additionalProperties.type + "` properties";
+                    type = OBJECT_MAP_TYPE + "`" + i.additionalProperties.type + "` properties";
                     props.push([path, req, type, getExtraProps(i)]);
                 }
             } else if (i.items) {
@@ -192,7 +194,7 @@ const main = async () => {
                     path,
                     req,
                     i.oneOf
-                        .map(getType)
+                        .map((p) => (getType(p, patternProperties)))
                         .filter((value, index, array) =>
                             array.indexOf(value) === index
                         )

@@ -21,7 +21,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named: `array` of `string`
+> `object` as map of named `array` of `string`
 
 Roles required by named guard.
 
@@ -61,7 +61,7 @@ The name of a Kafka topic for requests.
 
 #### when[].headers
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Header name value pairs (all match).
 

@@ -34,7 +34,7 @@ options:
 
 #### options.authorization
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 Authorization by a named guard.
 

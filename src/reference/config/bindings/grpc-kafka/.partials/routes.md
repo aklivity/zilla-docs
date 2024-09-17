@@ -45,7 +45,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named: `array` of `string`
+> `object` as map of named `array` of `string`
 
 Roles required by named guard.
 
@@ -81,7 +81,7 @@ Pattern matching the fully qualified name of a `grpc` service method, in the for
 
 #### when[].metadata
 
-> `object` as map of named: `string` or `object` properties
+> `object` as map of named `string` or `object` properties
 
 Metadata header name value pairs (all match).
 
@@ -166,7 +166,7 @@ The filter criteria for the Kafka message key.
 
 #### filters[].headers
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 The filter criteria for the Kafka message headers.
 
@@ -213,7 +213,7 @@ The Kafka message key to include with each message.
 
 #### with.overrides
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 The Kafka message headers to inject with each message.
 

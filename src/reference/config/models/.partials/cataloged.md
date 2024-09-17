@@ -1,6 +1,6 @@
 ### catalog\*
 
-> `object` as map of named: `array`
+> `object` as map of named `array`
 
 To map defined catalog for schema retrieval based on catalog specific parameters. Any of the possible combination can be configured.
 

@@ -125,7 +125,7 @@ HTTP specific options.
 
 #### http.authorization
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -147,7 +147,7 @@ MQTT specific options.
 
 #### mqtt.authorization
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 

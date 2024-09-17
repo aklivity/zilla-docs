@@ -17,7 +17,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named: `array` of `string`
+> `object` as map of named `array` of `string`
 
 List of roles required by each named guard to authorize this route.
 
@@ -88,7 +88,7 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 #### filters[].headers
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 

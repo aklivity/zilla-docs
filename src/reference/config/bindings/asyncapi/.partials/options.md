@@ -1,12 +1,12 @@
 #### options.specs
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 specs specific options
 
 #### specs.catalog
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 To map defined catalog for schema retrieval based on catalog specific parameters.
 
@@ -72,7 +72,7 @@ http specific options.
 
 #### http.authorization
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -92,18 +92,18 @@ Defines how to extract credentials from the HTTP request.
 
 #### credentials.cookies
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Named cookie value pattern with `{credentials}`.
 
 #### credentials.headers
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
 
 #### credentials.query\*
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Named query parameter value pattern with `{credentials}`.

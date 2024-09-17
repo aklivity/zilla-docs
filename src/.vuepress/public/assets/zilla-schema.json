@@ -968,7 +968,10 @@
                         "strategy": {
                             "anyOf": [
                                 {
-                                    "type": "string"
+                                    "type": "string",
+                                    "enum": [
+                                        "topic"
+                                    ]
                                 },
                                 {
                                     "$ref": "#/$defs/expression"
@@ -1032,7 +1035,7 @@
                         "type": "object",
                         "patternProperties": {
                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                "title": "Guard",
+                                "title": "Authorization",
                                 "type": "object",
                                 "properties": {
                                     "credentials": {
@@ -1305,8 +1308,7 @@
                                         {
                                             "$ref": "#/$defs/expression"
                                         }
-                                    ],
-                                    "default": "historical"
+                                    ]
                                 },
                                 "deltaType": {
                                     "anyOf": [
@@ -1326,40 +1328,104 @@
                                 "transforms": {
                                     "title": "Transforms",
                                     "type": "array",
-                                    "items": [
+                                    "oneOf": [
                                         {
-                                            "type": "object",
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "extract-headers": {
+                                            "minItems": 2,
+                                            "maxItems": 2,
+                                            "items": [
+                                                {
                                                     "type": "object",
-                                                    "patternProperties": {
-                                                        "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "extract-key": {
                                                             "anyOf": [
                                                                 {
                                                                     "type": "string",
-                                                                    "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
+                                                                    "additionalProperties": false
                                                                 },
                                                                 {
                                                                     "$ref": "#/$defs/expression"
                                                                 }
                                                             ]
                                                         }
-                                                    },
-                                                    "additionalProperties": false
+                                                    }
                                                 },
-                                                "extract-key": {
-                                                    "anyOf": [
-                                                        {
-                                                            "type": "string",
+                                                {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "extract-headers": {
+                                                            "type": "object",
+                                                            "patternProperties": {
+                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                                    "anyOf": [
+                                                                        {
+                                                                            "type": "string",
+                                                                            "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
+                                                                        },
+                                                                        {
+                                                                            "$ref": "#/$defs/expression"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
                                                             "additionalProperties": false
-                                                        },
-                                                        {
-                                                            "$ref": "#/$defs/expression"
                                                         }
-                                                    ]
+                                                    }
                                                 }
-                                            }
+                                            ]
+                                        },
+                                        {
+                                            "minItems": 1,
+                                            "maxItems": 1,
+                                            "items": [
+                                                {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "extract-headers": {
+                                                            "type": "object",
+                                                            "patternProperties": {
+                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                                    "anyOf": [
+                                                                        {
+                                                                            "type": "string",
+                                                                            "pattern": "^\\$\\{message\\.value\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
+                                                                        },
+                                                                        {
+                                                                            "$ref": "#/$defs/expression"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "minItems": 1,
+                                            "maxItems": 1,
+                                            "items": [
+                                                {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "extract-key": {
+                                                            "anyOf": [
+                                                                {
+                                                                    "type": "string",
+                                                                    "additionalProperties": false
+                                                                },
+                                                                {
+                                                                    "$ref": "#/$defs/expression"
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ]
                                         }
                                     ]
                                 },
@@ -1379,7 +1445,7 @@
                         "type": "object",
                         "patternProperties": {
                             "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                "title": "Guard",
+                                "title": "Authorization",
                                 "type": "object",
                                 "properties": {
                                     "credentials": {
@@ -1698,7 +1764,16 @@
                 },
                 "catalog": {
                     "title": "Catalog",
-                    "type": "object"
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/$defs/cataloged"
+                            }
+                        }
+                    },
+                    "maxProperties": 1
                 },
                 "type": {
                     "title": "Type",
@@ -2523,7 +2598,6 @@
                                     "kind": {
                                         "const": "server"
                                     },
-                                    "entry": false,
                                     "options": {
                                         "properties": {
                                             "services": {
@@ -2544,46 +2618,6 @@
                                             }
                                         },
                                         "additionalProperties": false
-                                    },
-                                    "catalog": {
-                                        "title": "Catalog",
-                                        "type": "object",
-                                        "patternProperties": {
-                                            "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "subject": {
-                                                            "anyOf": [
-                                                                {
-                                                                    "type": "string"
-                                                                },
-                                                                {
-                                                                    "$ref": "#/$defs/expression"
-                                                                }
-                                                            ]
-                                                        },
-                                                        "version": {
-                                                            "anyOf": [
-                                                                {
-                                                                    "type": "string"
-                                                                },
-                                                                {
-                                                                    "$ref": "#/$defs/expression"
-                                                                }
-                                                            ],
-                                                            "default": "latest"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "subject"
-                                                    ],
-                                                    "additionalProperties": false
-                                                }
-                                            }
-                                        },
-                                        "maxProperties": 1
                                     }
                                 }
                             },
@@ -2592,7 +2626,6 @@
                                     "kind": {
                                         "const": "client"
                                     },
-                                    "entry": false,
                                     "catalog": false,
                                     "options": false
                                 }

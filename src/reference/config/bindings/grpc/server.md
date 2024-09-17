@@ -19,7 +19,7 @@ The grpc server binding adapts `http` request-response streams to `grpc` request
 
 ### catalog
 
-> `object` as map of named: `array`
+> `object` as map of named `array`
 
 To map defined catalog for schema retrieval based on catalog specific parameters.
 

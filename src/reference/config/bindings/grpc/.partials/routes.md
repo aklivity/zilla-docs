@@ -21,7 +21,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named: `array` of `string`
+> `object` as map of named `array` of `string`
 
 Roles required by named guard.
 
@@ -57,7 +57,7 @@ gRPC service method name, such as `example.EchoService/EchoUnary`, or service me
 
 #### when[].metadata
 
-> `object` as map of named: `string` or `object` properties
+> `object` as map of named `string` or `object` properties
 
 Metadata header name value pairs (all match).
 

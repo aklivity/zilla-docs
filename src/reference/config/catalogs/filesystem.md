@@ -29,7 +29,7 @@ The `filesystem`-specific options.
 
 #### options.subjects
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 Unique identifier for artifact categorization in the catalog.
 

@@ -8,7 +8,7 @@ The format for the integer.
 
 > `integer`
 
-<!-- todo: Dev input  `multipleOf`? -->
+Restrict the integer to a multiple of a given integer.
 
 ### range
 

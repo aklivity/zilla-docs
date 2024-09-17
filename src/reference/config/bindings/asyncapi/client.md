@@ -55,9 +55,19 @@ Fetch offset to use for new consumers
 
 #### topics[].transforms
 
-> `array`
+> `array` of `object`
 
 <!-- todo: Dev input -->
+
+#### transforms[].extract-key
+
+> `string` | Pattern: `^\\$\\{message\\..(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
+
+#### transforms[].extract-headers
+
+> `object` as map of named `string` properties | Pattern: `^\\$\\{message\\..(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
+
+must read `${message.value.name-of-the-header}`
 
 #### kafka.sasl
 
@@ -125,7 +135,7 @@ HTTP specific options.
 
 #### http.authorization
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 
@@ -147,7 +157,7 @@ MQTT specific options.
 
 #### mqtt.authorization
 
-> `object` as map of named: `object`
+> `object` as map of named `object` properties
 
 Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
 

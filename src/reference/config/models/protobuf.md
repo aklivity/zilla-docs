@@ -40,7 +40,7 @@ Transforms the model from this data type to the Protobuf schema on produce and t
 
 ### catalog\*
 
-> `object` as map of named: `array`
+> `object` as map of named `array`
 
 To map defined catalog for schema retrieval based on catalog specific parameters. Any of the possible combination can be configured.
 

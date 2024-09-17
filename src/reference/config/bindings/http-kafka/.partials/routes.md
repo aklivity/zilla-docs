@@ -65,7 +65,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named: `array` of `string`
+> `object` as map of named `array` of `string`
 
 Roles required by named guard.
 
@@ -178,7 +178,7 @@ Message key, optionally referencing path parameter such as `${params.key}`.
 
 #### filters[].headers
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
 
@@ -265,7 +265,7 @@ Kafka message key, optionally referencing path parameter such as `${params.id}`.
 
 #### with.overrides
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Kafka message headers, with values optionally referencing path parameter.
 
@@ -277,7 +277,7 @@ Kafka reply-to topic name.
 
 #### with.async
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Allows an HTTP response to be retrieved asynchronously.
 

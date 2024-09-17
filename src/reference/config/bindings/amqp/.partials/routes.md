@@ -14,7 +14,7 @@ routes:
 
 #### routes[].guarded
 
-> `object` as map of named: `array` of `string`
+> `object` as map of named `array` of `string`
 
 List of roles required by each named guard to authorize this route.
 

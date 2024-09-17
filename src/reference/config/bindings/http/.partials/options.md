@@ -3,7 +3,7 @@
 
 > `array` of `object`
 
-<!-- todo: Dev input -->
+Options to configure typed validations for request fields.
 
 #### requests[].content
 
@@ -75,7 +75,7 @@ URL path of the HTTP request.
 
 > `array` of `object`
 
-<!-- todo: Dev input -->
+Options to configure typed validations for response fields.
 
 #### responses[].content
 
@@ -130,6 +130,6 @@ Supported protocol versions.
 
 #### options.overrides
 
-> `object` as map of named: `string` properties
+> `object` as map of named `string` properties
 
 Request header overrides.
