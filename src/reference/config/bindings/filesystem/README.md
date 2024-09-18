@@ -7,7 +7,8 @@ shortTitle: filesystem
 category:
   - Binding
 tag:
-  - Server
+  - filesystem
+  - server
 ---
 
 # filesystem Binding

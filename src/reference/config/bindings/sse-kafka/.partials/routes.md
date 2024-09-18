@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `sse-kafka`-specific routes for adapting `sse` data streams to `kafka` data streams.
+Conditional `sse-kafka` specific routes.
 
 ```yaml
 routes:

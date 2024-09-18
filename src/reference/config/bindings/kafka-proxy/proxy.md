@@ -5,7 +5,7 @@ icon: aky-zilla-plus
 
 # kafka-proxy proxy
 
-The kafka-proxy proxy binding
+The kafka-proxy proxy binding for adapting `kafka` topic streams to `kafka` topic streams.
 
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}

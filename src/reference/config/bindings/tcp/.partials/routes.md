@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `tcp`-specific routes.
+Conditional `tcp` specific routes.
 
 #### routes[].guarded
 

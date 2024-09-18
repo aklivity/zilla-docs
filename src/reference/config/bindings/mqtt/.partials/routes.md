@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `mqtt`-specific routes.
+Conditional `mqtt` specific routes.
 
 #### routes[].guarded
 

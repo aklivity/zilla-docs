@@ -4,7 +4,7 @@ shortTitle: client
 
 # openapi client
 
-The openapi client binding
+The openapi client binding creates composite of `http`, `tls`, and `tcp` bindings with client kind and adapts OpenAPI request-response streams to HTTP request-response streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->

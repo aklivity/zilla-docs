@@ -7,7 +7,8 @@ shortTitle: echo
 category:
   - Binding
 tag:
-  - Server
+  - echo
+  - server
 ---
 
 # echo Binding

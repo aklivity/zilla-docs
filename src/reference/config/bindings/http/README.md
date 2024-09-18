@@ -7,7 +7,9 @@ shortTitle: http
 category:
   - Binding
 tag:
-  - Server
+  - http
+  - server
+  - client
 ---
 
 # http Binding

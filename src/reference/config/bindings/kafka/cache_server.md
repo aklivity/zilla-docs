@@ -4,7 +4,7 @@ shortTitle: cache_server
 
 # kafka cache_server
 
-The kafka cache_server binding
+The kafka cache_server binding supports proactive `fetch` of messages to keep the cache fresh in preparation for new consumers. This is enabled by configuring a list of `bootstrap` topics for the binding.
 
 ```yaml {3}
 <!-- @include: ./.partials/cache_server.yaml -->

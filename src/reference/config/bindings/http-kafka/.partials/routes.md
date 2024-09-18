@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `http-kafka`-specific routes for adapting `http` request-response streams to `kafka` topic streams.
+Conditional `http-kafka` specific routes.
 
 Correlated Request-Response route:
 

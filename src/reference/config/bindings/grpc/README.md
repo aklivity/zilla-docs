@@ -4,12 +4,12 @@ dir:
   collapsible: false
   link: true
 shortTitle: grpc
-
 category:
   - Binding
 tag:
-  - Server
-  - Client
+  - grpc
+  - server
+  - client
 ---
 
 # grpc Binding

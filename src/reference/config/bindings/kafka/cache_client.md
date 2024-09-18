@@ -4,7 +4,7 @@ shortTitle: cache_client
 
 # kafka cache_client
 
-The kafka cache_client binding
+The kafka cache_client binding supports filtering by `kafka` message key, headers or a combination of key and headers.
 
 ```yaml {3}
 <!-- @include: ./.partials/cache_client.yaml -->
@@ -16,7 +16,7 @@ The kafka cache_client binding
 
 > `object`
 
-The `kafka` specific options.
+The `cache_client` specific options.
 
 ```yaml
 options:

@@ -7,7 +7,10 @@ shortTitle: kafka
 category:
   - Binding
 tag:
-  - Server
+  - kafka
+  - cache_client
+  - cache_server
+  - client
 ---
 
 # kafka Binding

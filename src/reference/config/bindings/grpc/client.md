@@ -1,9 +1,5 @@
 ---
 shortTitle: client
-category:
-  - Binding
-tag:
-  - Client
 ---
 
 # grpc client

@@ -3,7 +3,7 @@
 
 > `array` of `object`
 
-Conditional `grpc`-specific routes.
+Conditional `grpc` specific routes.
 
 ```yaml
 routes:

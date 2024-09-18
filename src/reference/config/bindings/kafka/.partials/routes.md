@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `kafka`-specific routes.
+Conditional `kafka` specific routes.
 
 #### routes[].guarded
 

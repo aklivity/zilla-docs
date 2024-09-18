@@ -4,7 +4,7 @@ shortTitle: client
 
 # mqtt client
 
-The mqtt client binding
+The mqtt client binding encodes the MQTT protocol to the outbound network stream.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->

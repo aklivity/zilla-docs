@@ -7,8 +7,9 @@ shortTitle: proxy
 category:
   - Binding
 tag:
-  - Proxy
-  - Server
+  - proxy
+  - server
+  - client
 ---
 
 # proxy Binding
@@ -29,7 +30,7 @@ The `server` kind `proxy` binding decodes `Proxy v2` protocol on the inbound net
 
 > [Full config](./client.md)
 
-The `client` kind `proxy` binding receives inbound application streams and encodes each as a network stream via `Proxy v2` protocol.
+The `client` kind `proxy` binding receives inbound application streams and encodes each as a network stream via Proxy v2 protocol.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->

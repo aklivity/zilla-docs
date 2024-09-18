@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `sse`-specific routes.
+Conditional `sse` specific routes.
 
 ```yaml
 routes:

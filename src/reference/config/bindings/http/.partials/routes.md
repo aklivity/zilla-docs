@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `http`-specific routes.
+Conditional `http` specific routes.
 
 ```yaml
 routes:

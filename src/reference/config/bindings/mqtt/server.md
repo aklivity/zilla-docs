@@ -4,7 +4,7 @@ shortTitle: server
 
 # mqtt server
 
-The mqtt server binding
+The mqtt server binding decodes the MQTT protocol on the inbound network stream, producing higher level application streams for each `publish` or `subscribe` MQTT topic.
 
 ```yaml {3}
 <!-- @include: ./.partials/server.yaml -->

@@ -1,10 +1,5 @@
 ---
 shortTitle: server
-
-category:
-  - Binding
-tag:
-  - Server
 ---
 
 # grpc server

@@ -4,7 +4,7 @@ shortTitle: client
 
 # ws client
 
-The ws client binding
+The ws client binding converts inbound `ws` full duplex streams into `http` request-response streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->

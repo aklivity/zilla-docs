@@ -8,7 +8,8 @@ icon: aky-zilla-plus
 category:
   - Binding
 tag:
-  - Proxy
+  - kafka-proxy
+  - proxy
 ---
 
 # kafka-proxy Binding

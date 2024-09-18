@@ -4,7 +4,7 @@ shortTitle: client
 
 # kafka client
 
-The kafka client binding
+The kafka client binding receives inbound application streams and encodes each as a network stream via `kafka` request-response protocol.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->

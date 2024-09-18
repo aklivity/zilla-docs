@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `grpc-kafka`-specific routes for adapting `grpc` request-response streams to `kafka` topic streams.
+Conditional `grpc-kafka` specific routes.
 
 ```yaml
 routes:

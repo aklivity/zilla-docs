@@ -7,7 +7,8 @@ shortTitle: grpc-kafka
 category:
   - Binding
 tag:
-  - Proxy
+  - grpc-kafka
+  - proxy
 ---
 
 # grpc-kafka Binding

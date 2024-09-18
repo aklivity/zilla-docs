@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `ws`-specific routes.
+Conditional `ws` specific routes.
 
 ```yaml
 routes:

@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `asyncapi`-specific routes for adapting streams.
+Conditional `asyncapi` specific routes.
 
 ```yaml
     routes:
@@ -69,10 +69,10 @@ with:
 
 > `string`
 
-AsyncAPI spec identifier that the route exits with to the next binding
+AsyncAPI spec identifier that the route exits with to the next binding.
 
 #### with.operation-id
 
 > `string`
 
-AsyncAPI OperationId that the route exits with to the next binding
+AsyncAPI OperationId that the route exits with to the next binding.

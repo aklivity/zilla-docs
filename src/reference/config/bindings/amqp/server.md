@@ -1,9 +1,5 @@
 ---
 shortTitle: server
-category:
-  - Binding
-tag:
-  - Server
 ---
 
 # amqp server

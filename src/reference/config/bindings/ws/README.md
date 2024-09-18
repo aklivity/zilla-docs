@@ -7,7 +7,9 @@ shortTitle: ws
 category:
   - Binding
 tag:
-  - Server
+  - ws
+  - server
+  - client
 ---
 
 # ws Binding

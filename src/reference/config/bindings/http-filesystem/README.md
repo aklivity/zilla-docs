@@ -7,7 +7,8 @@ shortTitle: http-filesystem
 category:
   - Binding
 tag:
-  - Proxy
+  - http-filesystem
+  - proxy
 ---
 
 # http-filesystem Binding

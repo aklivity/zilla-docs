@@ -4,7 +4,7 @@ shortTitle: proxy
 
 # openapi-asyncapi proxy
 
-The openapi-asyncapi proxy binding
+The openapi-asyncapi proxy binding for adapting `openapi` operations to `asyncapi` operations.
 
 ```yaml {3}
 <!-- @include: ./.partials/proxy.yaml -->

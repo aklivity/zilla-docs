@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `amqp`-specific routes for adapting HTTP request-response streams to Kafka topic streams.
+Conditional `amqp` specific routes.
 
 ```yaml
 routes:

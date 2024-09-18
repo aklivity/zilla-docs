@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `openapi-asyncapi`-specific routes for adapting `openapi` operations to `asyncapi` operations.
+Conditional `openapi-asyncapi` specific routes.
 
 #### routes[].guarded
 
@@ -64,10 +64,10 @@ with:
 
 > `string`
 
-AsyncAPI spec identifier that the route exits with to the next binding
+AsyncAPI spec identifier that the route exits with to the next binding.
 
 #### with.operation-id
 
 > `string`
 
-AsyncAPI OperationId that the route exits with to the next binding
+AsyncAPI OperationId that the route exits with to the next binding.

@@ -4,7 +4,7 @@ shortTitle: server
 
 # openapi server
 
-The openapi server binding
+The openapi server binding creates composite of `tcp`, `tls`, and `http` bindings with server kind and adapts HTTP request-response streams to OpenAPI request-response streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/server.yaml -->

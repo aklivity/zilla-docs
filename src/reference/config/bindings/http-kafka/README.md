@@ -7,7 +7,8 @@ shortTitle: http-kafka
 category:
   - Binding
 tag:
-  - Proxy
+  - http-kafka
+  - proxy
 ---
 
 # http-kafka Binding

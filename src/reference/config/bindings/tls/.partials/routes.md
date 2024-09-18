@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `tls`-specific routes.
+Conditional `tls` specific routes.
 
 ```yaml
 routes:

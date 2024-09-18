@@ -7,7 +7,9 @@ shortTitle: tcp
 category:
   - Binding
 tag:
-  - Server
+  - tcp
+  - server
+  - client
 ---
 
 # tcp Binding
@@ -20,7 +22,7 @@ Conditional routes based on the hostname authority and network address mask are 
 
 > [Full config](./server.md)
 
-The `server` kind `tcp` binding listens for inbound socket connections, producing higher level application streams for each remote `tcp` client.
+The `server` kind `tcp` binding listens for inbound socket connections, producing higher level application streams for each remote TCP client.
 
 ```yaml {3}
 <!-- @include: ./.partials/server.yaml -->
@@ -30,7 +32,7 @@ The `server` kind `tcp` binding listens for inbound socket connections, producin
 
 > [Full config](./client.md)
 
-The `client` kind `tcp` binding receives inbound application streams and initiates outbound `tcp` network connections to a remote `tcp` server address.
+The `client` kind `tcp` binding receives inbound application streams and initiates outbound TCP network connections to a remote TCP server address.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->

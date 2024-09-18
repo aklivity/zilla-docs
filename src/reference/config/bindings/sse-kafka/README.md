@@ -7,7 +7,8 @@ shortTitle: sse-kafka
 category:
   - Binding
 tag:
-  - Proxy
+  - sse-kafka
+  - proxy
 ---
 
 # sse-kafka Binding

@@ -2,9 +2,9 @@
 redirectFrom: /reference/config/guards/guard-jwt.html
 shortTitle: jwt
 category:
-  - Binding
+  - Guard
 tag:
-  - Server
+  - jwt
 ---
 
 # jwt Guard

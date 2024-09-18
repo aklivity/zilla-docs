@@ -2,7 +2,7 @@
 
 > `object`
 
-`http-kafka`-specific options.
+`http-kafka` specific options.
 
 ```yaml
 options:

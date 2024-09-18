@@ -4,7 +4,7 @@ shortTitle: server
 
 # tls server
 
-The tls server binding
+The tls server binding decodes encrypted TLS protocol on the inbound network stream, producing higher level cleartext application streams for each request.
 
 ```yaml {3}
 <!-- @include: ./.partials/server.yaml -->

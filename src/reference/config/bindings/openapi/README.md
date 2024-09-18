@@ -7,8 +7,9 @@ shortTitle: openapi
 category:
   - Binding
 tag:
-  - Server
-  - Client
+  - openapi
+  - server
+  - client
 ---
 
 # openapi Binding

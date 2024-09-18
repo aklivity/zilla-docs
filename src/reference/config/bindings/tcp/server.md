@@ -4,7 +4,7 @@ shortTitle: server
 
 # tcp server
 
-The tcp server binding
+The tcp server binding listens for inbound socket connections, producing higher level application streams for each remote TCP client.
 
 ```yaml {3}
 <!-- @include: ./.partials/server.yaml -->

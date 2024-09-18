@@ -7,7 +7,8 @@ shortTitle: amqp
 category:
   - Binding
 tag:
-  - Server
+  - amqp
+  - server
 ---
 
 # amqp Binding

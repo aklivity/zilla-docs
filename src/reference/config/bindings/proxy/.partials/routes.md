@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `proxy`-specific routes.
+Conditional `proxy` specific routes.
 
 ```yaml
 routes:

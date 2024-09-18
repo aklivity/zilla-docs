@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `mqtt-kafka`-specific routes when adapting `mqtt` topic streams to `kafka` topic streams.
+Conditional `mqtt-kafka` specific routes.
 
 ```yaml
 routes:

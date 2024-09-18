@@ -7,7 +7,8 @@ shortTitle: fan
 category:
   - Binding
 tag:
-  - Server
+  - fan
+  - server
 ---
 
 # fan Binding

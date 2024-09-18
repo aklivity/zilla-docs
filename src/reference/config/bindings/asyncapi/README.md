@@ -7,9 +7,10 @@ shortTitle: asyncapi
 category:
   - Binding
 tag:
-  - Server
-  - Proxy
-  - Client
+  - asyncapi
+  - client
+  - proxy
+  - server
 ---
 
 # asyncapi Binding

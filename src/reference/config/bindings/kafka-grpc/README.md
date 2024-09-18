@@ -7,7 +7,8 @@ shortTitle: kafka-grpc
 category:
   - Binding
 tag:
-  - Remote Server
+  - kafka-grpc
+  - remote_server
 ---
 
 # kafka-grpc Binding

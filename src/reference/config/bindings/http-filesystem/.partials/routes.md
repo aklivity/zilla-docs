@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `http-kafka`-specific routes for adapting `http` data streams into `filesystem` data streams.
+Conditional `http-kafka` specific routes.
 
 ```yaml
 routes:

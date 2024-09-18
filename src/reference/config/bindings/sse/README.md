@@ -7,7 +7,9 @@ shortTitle: sse
 category:
   - Binding
 tag:
-  - Server
+  - sse
+  - server
+  - client
 ---
 
 # sse Binding
