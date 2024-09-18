@@ -16,7 +16,7 @@ The mqtt server binding
 
 > `object`
 
-`server`-specific options.
+The `server` specific options.
 
 ```yaml
 options:

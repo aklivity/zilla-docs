@@ -2,7 +2,7 @@
 
 > `object`
 
-`openapi`-specific options.
+The `openapi` specific options.
 
 ```yaml
 options:
@@ -20,13 +20,13 @@ options:
 
 > `object` as map of named `object` properties
 
-`specs` specific options
+The `specs` specific options.
 
 #### specs.catalog
 
 > `object` as map of named `object` properties
 
-catalog specific options.
+The `catalog` specific options.
 
 #### catalog.subject\*
 
@@ -56,7 +56,7 @@ The server url to match in openapi spec
 
 > `object`
 
-http specific options.
+The http specific options.
 
 #### http.authorization
 

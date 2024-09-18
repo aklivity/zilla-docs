@@ -2,7 +2,7 @@
 
 > `object` as map of named `object` properties
 
-specs specific options
+The `specs` specific options.
 
 #### specs.catalog
 
@@ -68,7 +68,7 @@ Port number(s), including port number ranges.
 
 > `object`
 
-http specific options.
+The http specific options.
 
 #### http.authorization
 

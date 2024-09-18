@@ -3,7 +3,7 @@
 
 > `object`
 
-`kafka-grpc`-specific options for adapting `kafka` topic streams to `grpc` request-response streams.
+The `kafka-grpc` specific options.
 
 ```yaml
 options:
@@ -28,7 +28,7 @@ The `kafka` acknowledgment mode.
 
 > `object`
 
-Metadata header used to specify the idempotency key when adapting `kafka` topic streams to `grpc` request-response streams.
+Metadata header used to specify the idempotency key.
 
 #### idempotency.metadata
 
@@ -40,13 +40,13 @@ The `grpc` metadata header name for idempotency key.
 
 > `object`
 
-Kafka request message headers injected when adapting `kafka` topic streams to `grpc` request-response streams.
+Kafka request message headers injected.
 
 #### correlation.headers
 
 > `object`
 
-Kafka request message correlation header names used when adapting `kafka` topic streams to `grpc` request-response streams.
+Kafka request message correlation header names used.
 
 #### headers.service
 

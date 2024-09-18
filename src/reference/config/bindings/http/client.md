@@ -18,7 +18,7 @@ Conditional routes based on `http` request headers are used to route these netwo
 
 > `object`
 
-`client`-specific options.
+The `client` specific options.
 
 ```yaml
 options:

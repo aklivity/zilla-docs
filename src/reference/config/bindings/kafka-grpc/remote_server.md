@@ -4,7 +4,7 @@ shortTitle: remote_server
 
 # kafka-grpc remote_server
 
-The kafka-grpc remote_server binding
+The kafka-grpc remote_server binding for adapting `kafka` topic streams to `grpc` request-response streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/remote_server.yaml -->

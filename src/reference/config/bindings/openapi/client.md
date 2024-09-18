@@ -19,7 +19,7 @@ The openapi client binding
 
 > `object`
 
-`tls` specific options.
+The `tls` specific options.
 
 <!-- @include: ../.partials/options-tls.md -->
 <!-- @include: ../.partials/vault.md -->

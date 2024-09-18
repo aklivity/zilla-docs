@@ -25,7 +25,7 @@ catalogs:
 
 > `object`
 
-The `filesystem`-specific options.
+The `filesystem` specific options.
 
 #### options.subjects
 

@@ -2,7 +2,7 @@
 
 > `object`
 
-`ws`-specific options.
+The `ws` specific options.
 
 #### options.defaults
 

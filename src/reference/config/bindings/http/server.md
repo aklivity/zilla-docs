@@ -22,7 +22,7 @@ Conditional routes based on `http` request headers are used to route these appli
 
 > `object`
 
-`server`-specific options.
+The `server` specific options.
 
 ```yaml
 options:

@@ -61,7 +61,7 @@ Vault name. Only applicable if the protocol is `tls`.
 
 > `object`
 
-`syslog`-specific options.
+The `syslog` specific options.
 
 ```yaml {4}
 options:

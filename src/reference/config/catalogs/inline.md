@@ -39,7 +39,7 @@ catalog:
 
 > `object`
 
-The `inline`-specific options.
+The `inline` specific options.
 
 #### options.subjects
 

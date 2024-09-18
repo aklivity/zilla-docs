@@ -2,7 +2,7 @@
 
 > `object`
 
-`filesystem`-specific options for `filesystem` access.
+The `filesystem` specific options.
 
 ```yaml
 options:

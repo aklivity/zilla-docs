@@ -2,7 +2,7 @@
 
 > `object`
 
-`http-kafka`-specific options for adapting `http` request-response streams to `kafka` topic streams.
+`http-kafka`-specific options.
 
 ```yaml
 options:
@@ -18,7 +18,7 @@ options:
 
 > `object`
 
-HTTP request header used to specify the idempotency key when adapting `http` request-response streams to `kafka` topic streams.
+HTTP request header used to specify the idempotency key.
 
 #### idempotency.header\*
 
@@ -30,13 +30,13 @@ HTTP request header name for idempotency key.
 
 > `object`
 
-Kafka request message headers injected when adapting `http` request-response streams to `kafka` topic streams.
+Kafka request message headers injected.
 
 #### correlation.headers\*
 
 > `object`
 
-Kafka request message reply to and correlation id header names injected when adapting `http` request-response streams to `kafka` topic streams.
+Kafka request message reply to and correlation id header names injected.
 
 #### headers.reply-to
 

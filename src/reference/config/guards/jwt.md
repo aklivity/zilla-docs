@@ -56,7 +56,7 @@ guards:
 
 > `object`
 
-`jwt`-specific options.
+The `jwt` specific options.
 
 ```yaml
 options:

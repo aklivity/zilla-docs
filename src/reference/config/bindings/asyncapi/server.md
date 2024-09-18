@@ -18,7 +18,7 @@ The asyncapi server binding creates composite of `tcp`, `tls`, and `mqtt` or `ht
 
 > `object`
 
-`server`-specific options.
+The `server` specific options.
 
 ```yaml
 specs:
@@ -37,7 +37,7 @@ specs:
 
 > `object`
 
-`kafka` binding specific options.
+The `kafka` binding specific options.
 
 #### kafka.topics
 
@@ -67,7 +67,7 @@ SASL credentials to use when connecting to `kafka` brokers.
 
 > `object`
 
-`mqtt-kafka` binding specific options.
+The `mqtt-kafka` binding specific options.
 
 #### mqtt-kafka.channels
 
@@ -117,7 +117,7 @@ messages: mqttMessages
 
 > `object`
 
-http specific options.
+The http specific options.
 
 #### http.authorization
 
@@ -139,7 +139,7 @@ authorization:
 
 > `object`
 
-MQTT specific options.
+The MQTT specific options.
 
 #### mqtt.authorization
 
@@ -161,7 +161,7 @@ authorization:
 
 > `object`
 
-`tls` specific options.
+The `tls` specific options.
 
 <!-- @include: ../.partials/options-tls.md -->
 

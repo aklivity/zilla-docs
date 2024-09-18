@@ -31,7 +31,7 @@ exporters:
 
 > `object`
 
-`otlp`-specific options.
+The `otlp` specific options.
 
 ```yaml
 options:

@@ -2,7 +2,7 @@
 
 > `object`
 
-`grpc-kafka`-specific options for adapting `grpc` request-response streams to `kafka` topic streams.
+The `grpc-kafka` specific options.
 
 ```yaml
 options:

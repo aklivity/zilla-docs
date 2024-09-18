@@ -2,7 +2,7 @@
 
 > `object`
 
-`mqtt-kafka`-specific options for configuring the `kafka` topics that the proxy will use to route mqtt messages and session states; and define server reference of the MQTT server in Zilla
+The `mqtt-kafka` specific options.
 
 #### options.server
 
@@ -71,7 +71,7 @@ options:
 
 > `object`
 
-MQTT `publish`-specific options.
+The `QTT `publish` specific options.
 
 #### publish.qosMax\*
 

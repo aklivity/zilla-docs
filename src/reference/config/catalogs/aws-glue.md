@@ -29,7 +29,7 @@ catalog:
 
 > `object`
 
-The `aws-glue`-specific options.
+The `aws-glue` specific options.
 
 #### options.registry\*
 

@@ -33,7 +33,7 @@ server:
 
 > `object`
 
-`filesystem`-specific options.
+The `filesystem` specific options.
 
 ```yaml
 options:

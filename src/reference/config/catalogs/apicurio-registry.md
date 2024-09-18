@@ -28,7 +28,7 @@ catalog:
 
 > `object`
 
-The `apicurio-registry`-specific options.
+The `apicurio-registry` specific options.
 
 #### options.url
 

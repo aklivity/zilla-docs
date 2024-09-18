@@ -18,7 +18,7 @@ The asyncapi proxy binding creates composite of `mqtt-kafka` binding with proxy 
 
 > `object`
 
-`proxy`-specific options.
+The `proxy` specific options.
 
 ```yaml
 specs:
@@ -37,7 +37,7 @@ specs:
 
 > `object`
 
-`kafka` binding specific options.
+The `kafka` binding specific options.
 
 #### kafka.topics
 
@@ -67,7 +67,7 @@ SASL credentials to use when connecting to `kafka` brokers.
 
 > `object`
 
-`mqtt-kafka` binding specific options.
+The `mqtt-kafka` binding specific options.
 
 #### mqtt-kafka.channels
 
@@ -117,7 +117,7 @@ messages: mqttMessages
 
 > `object`
 
-HTTP specific options.
+The HTTP specific options.
 
 #### http.authorization
 
@@ -139,7 +139,7 @@ authorization:
 
 > `object`
 
-MQTT specific options.
+The MQTT specific options.
 
 #### mqtt.authorization
 
@@ -161,7 +161,7 @@ authorization:
 
 > `object`
 
-TLS specific options.
+The TLS specific options.
 
 <!-- @include: ../.partials/options-tls.md -->
 

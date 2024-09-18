@@ -2,7 +2,7 @@
 
 > `object`
 
-`openapi-asyncapi`-specific options.
+The `openapi-asyncapi` specific options.
 
 ```yaml
 options:
@@ -37,7 +37,7 @@ Options for each configured OpenAPI spec.
 
 > `object` as map of named `object` properties
 
-Catalog specific options.
+The Catalog specific options.
 
 #### catalog.subject\*
 
@@ -61,7 +61,7 @@ Options for each configured AsyncAPI spec.
 
 > `object` as map of named `object` properties
 
-`catalog` catalog specific options.
+The `catalog` catalog specific options.
 
 <!-- markdownlint-disable MD024 -->
 #### catalog.subject\*

@@ -34,7 +34,7 @@ exporters:
 
 > `object`
 
-`aws`-specific options.
+The `aws` specific options.
 
 ```yaml
 options:

@@ -2,7 +2,7 @@
 
 > `object`
 
-`tcp`-specific options.
+The `tcp` specific options.
 
 ```yaml
 options:

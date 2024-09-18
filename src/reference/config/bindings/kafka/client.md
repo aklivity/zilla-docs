@@ -16,7 +16,7 @@ The kafka client binding
 
 > `object`
 
-`client`-specific options.
+The `client` specific options.
 
 ```yaml
 options:

@@ -2,7 +2,7 @@
 
 > `object`
 
-`sse`-specific options.
+The `sse` specific options.
 
 ```yaml
 options:
@@ -13,13 +13,13 @@ options:
 
 > `integer` | Default: `2000`
 
-Retry delay (ms)
+Retry delay in milliseconds.
 
 #### options.requests
 
 > `array` of `object`
 
-the `requests`-specific options.
+The `requests` specific options.
 
 #### requests[].path
 

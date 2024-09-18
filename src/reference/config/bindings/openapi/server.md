@@ -20,7 +20,7 @@ The openapi server binding
 
 > `object`
 
-`tls` specific options.
+The `tls` specific options.
 
 <!-- @include: ../.partials/options-tls.md -->
 <!-- @include: ../.partials/exit.md -->

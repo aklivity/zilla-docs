@@ -2,7 +2,7 @@
 
 > `object`
 
-The `schema-registry`-specific options.
+The `schema-registry` specific options.
 
 #### options.url
 

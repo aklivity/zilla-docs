@@ -29,7 +29,7 @@ exporters:
 
 > `object`
 
-`prometheus`-specific options.
+The `prometheus` specific options.
 
 ```yaml
 options:

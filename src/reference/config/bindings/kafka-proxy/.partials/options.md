@@ -3,7 +3,7 @@
 
 > `object`
 
-`kafka-proxy`-specific options.
+The `kafka-proxy` specific options.
 
 ```yaml
 options:

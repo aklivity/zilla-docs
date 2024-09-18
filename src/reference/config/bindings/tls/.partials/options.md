@@ -2,7 +2,7 @@
 
 > `object`
 
-`tls`-specific options.
+The `tls` specific options.
 
 ```yaml
 options:

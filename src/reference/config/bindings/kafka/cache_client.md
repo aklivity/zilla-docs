@@ -16,7 +16,7 @@ The kafka cache_client binding
 
 > `object`
 
-`kafka`-specific options.
+The `kafka` specific options.
 
 ```yaml
 options:
