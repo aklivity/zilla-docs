@@ -4,6 +4,8 @@ shortTitle: confluent-schema-registry
 icon: aky-zilla-plus
 category:
   - Catalog
+tags:
+  - confluent-schema-registry
 ---
 
 # confluent-schema-registry Catalog

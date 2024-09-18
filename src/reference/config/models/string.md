@@ -1,9 +1,10 @@
 ---
 redirectFrom: /reference/config/models/model-string.html
 shortTitle: string
-
 category:
   - Models
+tags:
+  - string
 ---
 
 # string Model

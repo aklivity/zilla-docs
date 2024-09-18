@@ -3,6 +3,8 @@ redirectFrom: /reference/config/catalogs/catalog-filesystem.html
 shortTitle: filesystem
 category:
   - Catalog
+tags:
+  - filesystem
 ---
 
 # filesystem Catalog

@@ -3,6 +3,8 @@ redirectFrom: /reference/config/catalogs/catalog-inline.html
 shortTitle: inline
 category:
   - Catalog
+tags:
+  - inline
 ---
 
 # inline Catalog

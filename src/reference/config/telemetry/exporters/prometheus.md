@@ -4,8 +4,9 @@ shortTitle: prometheus
 
 category:
   - Telemetry
-tag:
   - Exporters
+tag:
+  - prometheus
 ---
 
 # prometheus Exporter

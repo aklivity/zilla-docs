@@ -3,6 +3,8 @@ redirectFrom: /reference/config/models/model-protobuf.html
 shortTitle: protobuf
 category:
   - Models
+tags:
+  - protobuf
 ---
 
 # protobuf Model

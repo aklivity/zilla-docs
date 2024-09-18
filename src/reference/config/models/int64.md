@@ -2,6 +2,8 @@
 shortTitle: int64
 category:
   - Models
+tags:
+  - int64
 ---
 
 # int64 Model

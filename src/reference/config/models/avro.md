@@ -1,9 +1,10 @@
 ---
 redirectFrom: /reference/config/models/model-avro.html
 shortTitle: avro
-
 category:
   - Models
+tags:
+  - avro
 ---
 
 # avro model

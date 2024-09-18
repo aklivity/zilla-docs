@@ -4,8 +4,9 @@ shortTitle: stdout
 
 category:
   - Telemetry
-tag:
   - Exporters
+tag:
+  - stdout
 ---
 
 # stdout Exporter

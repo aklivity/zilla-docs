@@ -1,11 +1,11 @@
 ---
 redirectFrom: /reference/config/telemetry/exporters/exporter-otlp.html
 shortTitle: otlp
-
 category:
   - Telemetry
-tag:
   - Exporters
+tag:
+  - otlp
 ---
 
 # otlp Exporter

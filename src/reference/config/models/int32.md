@@ -3,9 +3,11 @@ redirectFrom: /reference/config/models/model-integer.html
 shortTitle: int32
 category:
   - Models
+tags:
+  - int32
 ---
 
-# integer Model
+# int32 Model
 
 Defines a model to enforce validation for int32 data.
 

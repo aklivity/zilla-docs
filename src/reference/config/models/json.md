@@ -1,9 +1,10 @@
 ---
 redirectFrom: /reference/config/models/model-json.html
 shortTitle: json
-
 category:
   - Models
+tags:
+  - json
 ---
 
 # json Model

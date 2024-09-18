@@ -1,9 +1,10 @@
 ---
 redirectFrom: /reference/config/catalogs/catalog-apicurio-registry.html
 shortTitle: apicurio-registry
-
 category:
   - Catalog
+tags:
+  - apicurio-registry
 ---
 
 # apicurio-registry Catalog

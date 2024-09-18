@@ -1,10 +1,11 @@
 ---
 redirectFrom: /reference/config/catalogs/catalog-aws-glue.html
 shortTitle: aws-glue
-
 icon: aky-zilla-plus
 category:
   - Catalog
+tags:
+  - aws-glue
 ---
 
 # aws-glue Catalog

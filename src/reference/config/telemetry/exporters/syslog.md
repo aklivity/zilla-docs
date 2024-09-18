@@ -5,8 +5,9 @@ shortTitle: syslog
 icon: aky-zilla-plus
 category:
   - Telemetry
-tag:
   - Exporters
+tag:
+  - syslog
 ---
 
 # syslog Exporter

@@ -2,6 +2,8 @@
 shortTitle: double
 category:
   - Models
+tags:
+  - double
 ---
 
 # double Model

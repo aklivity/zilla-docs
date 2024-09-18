@@ -3,6 +3,8 @@ redirectFrom: /reference/config/catalogs/catalog-schema-registry.html
 shortTitle: schema-registry
 category:
   - Catalog
+tags:
+  - schema-registry
 ---
 
 # schema-registry Catalog

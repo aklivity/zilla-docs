@@ -2,6 +2,8 @@
 shortTitle: float
 category:
   - Models
+tags:
+  - float
 ---
 
 # float Model

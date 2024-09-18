@@ -4,6 +4,8 @@ shortTitle: karapace-schema-registry
 
 category:
   - Catalog
+tags:
+  - karapace-schema-registry
 ---
 
 # karapace-schema-registry Catalog
