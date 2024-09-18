@@ -14,6 +14,8 @@ The openapi server binding
 
 <!-- @include: ../.partials/vault.md -->
 <!-- @include: ./.partials/options.md -->
+
+<!-- markdownlint-disable-next-line MD001 -->
 #### options.tls
 
 > `object`

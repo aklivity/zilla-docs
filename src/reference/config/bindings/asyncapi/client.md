@@ -55,12 +55,6 @@ Fetch offset to use for new consumers
 
 <!-- @include: ../.partials/options-kafka-topics-transforms.md -->
 
-#### transforms[].extract-headers
-
-> `object` as map of named `string` properties | Pattern: `^\\$\\{message\\..(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
-
-must read `${message.value.name-of-the-header}`
-
 #### kafka.sasl
 
 > `object`

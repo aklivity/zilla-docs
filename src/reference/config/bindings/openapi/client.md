@@ -14,6 +14,7 @@ The openapi client binding
 
 <!-- @include: ./.partials/options.md -->
 
+<!-- markdownlint-disable-next-line MD001 -->
 #### options.tls
 
 > `object`

@@ -80,7 +80,7 @@ A schema or type to validate the request content. Refer to the individual [model
 
 #### topics[].user-properties
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for user provided properties.
 

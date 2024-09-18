@@ -25,7 +25,7 @@ Content type of the HTTP request.
 
 #### requests[].headers
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for request headers.
 
@@ -43,7 +43,7 @@ Query parameters of the HTTP request.
 
 #### params.path
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for path
 
@@ -55,7 +55,7 @@ A schema or type to validate the path content. Refer to the individual [model](.
 
 #### params.query
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for query
 
@@ -99,7 +99,7 @@ Content type of the HTTP response.
 
 #### responses[].headers
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for response headers.
 

@@ -24,12 +24,12 @@ transforms:
 
 #### transforms[].extract-key
 
-> `string` | Pattern: `^\\$\\{message\\..(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
+> `string` | Pattern: `^\\$\\{message\\.(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
 
 Use a part of the Kafka message as the Kafka message key.
 
 #### transforms[].extract-headers
 
-> `object` as map of named `string` properties | Pattern: `^\\$\\{message\\..(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
+> `object` as map of named `string` properties | Pattern: `^\\$\\{message\\.(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$`
 
 Use a part of the Kafka message as a Kafka message header.

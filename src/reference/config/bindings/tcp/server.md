@@ -15,6 +15,7 @@ The tcp server binding
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 
+<!-- markdownlint-disable-next-line MD001 -->
 #### routes[].exit
 
 > `string`

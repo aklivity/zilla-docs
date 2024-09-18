@@ -151,11 +151,11 @@ const main = async () => {
                     props.push(...getObjProps(k, properties, [...(i.required || []), ...(required || [])]))
                 );
             var oneOfItems = i.oneOf?.filter(({ items }) => items?.length)
-                ?.reduce((a, b) => ([ ...a, ...b.items ]), []);
+                ?.reduce((a, b) => ([...a, ...b.items]), []);
             if (oneOfItems?.length) {
                 props.push(...getObjProps(`${k}[]`, oneOfItems.reduce((a, b) => ({ ...a, ...b.properties }), {}), []))
             }
-                
+
             i.additionalProperties?.oneOf?.filter(({ properties }) => !!properties)
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(k, properties, required))
@@ -250,29 +250,28 @@ const main = async () => {
             const { kind: _, ...properties } = a.properties;
             return {
                 ...o,
-                [a.properties?.kind?.not.const]: {},
+                [a.properties?.kind?.not.const]: { properties: {}, required: [] },
                 all: { ...o.all, ...a, properties }
             };
         }, { all: {} });
+    var getGlobalProps = (kind) => ({
+        ...bindings.properties,
+        ...(kindsGlobalIs[kind]?.properties || {}),
+        ...(kindsGlobalNot[kind]?.properties || kindsGlobalNot.all?.properties || {}),
+    });
+    var getGlobalReqs = (kind) => ([
+        ...bindings.required,
+        ...(kindsGlobalIs[kind]?.required || []),
+        ...(kindsGlobalNot[kind]?.required || kindsGlobalNot.all?.required || []),
+    ]);
     bindings.allOf?.forEach(({ if: fi, then }) => {
         var folder = `bindings.${fi.properties.type.const}`;
-        var globals = {
-            properties: {
-                ...(kindsGlobalIs[fi.properties.type.const]?.properties || {}),
-                ...(kindsGlobalNot[fi.properties.type.const]?.properties || kindsGlobalNot.all?.properties || {}),
-            },
-            required: [
-                ...(kindsGlobalIs[fi.properties.type.const]?.required || []),
-                ...(kindsGlobalNot[fi.properties.type.const]?.required || kindsGlobalNot.all?.required || []),
-            ],
-        }
         if (then.oneOf) {
             sections.push(...then.oneOf.map(({ properties, required, oneOf, anyOf, allOf }) => ({
                 folder,
                 name: properties.kind.const,
                 props: {
-                    ...bindings.properties,
-                    ...globals.properties,
+                    ...getGlobalProps(properties.kind.const),
                     ...(then.properties || {}),
                     ...(properties || {}),
                     options: getOptions(properties.kind.const, then, properties),
@@ -281,15 +280,14 @@ const main = async () => {
                     anyOf: [...(then.anyOf || []), ...(anyOf || [])],
                     oneOf: [...(then.oneOf || []), ...(oneOf || [])],
                 },
-                required: getRequired(properties.kind.const, then, [...(globals.required || []), ...(required || [])]),
+                required: getRequired(properties.kind.const, then, [...(getGlobalReqs(properties.kind.const) || []), ...(required || [])]),
             })));
         } else {
             sections.push({
                 folder,
                 name: then.properties.kind.enum[0],
                 props: {
-                    ...bindings.properties,
-                    ...globals.properties,
+                    ...getGlobalProps(then.properties.kind.enum[0]),
                     ...(then.properties || {}),
                     options: getOptions(then.properties.kind.enum[0], bindings, then.properties),
                     routes: getRoutes(then.properties.kind.enum[0], bindings, then),
@@ -297,11 +295,10 @@ const main = async () => {
                     anyOf: [...(then.anyOf || [])],
                     oneOf: [...(then.oneOf || [])],
                 },
-                required: [...(globals.required || []), ...(then.required || [])],
+                required: [...(getGlobalReqs(then.properties.kind.enum[0]) || []), ...(then.required || [])],
             });
         }
     })
-
 
     var exporterProps = schema.properties.telemetry.properties.exporters.patternProperties[Object.keys(schema.properties.telemetry.properties.exporters.patternProperties)[0]]
     sections.push(
