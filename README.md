@@ -197,24 +197,3 @@ Every page has an `Edit this page on GitHub` link at the bottom for you to check
 ## Copyright and license
 
 Copyright Aklivity, Inc. 2024, released under the [Apache 2.0 license](https://github.com/aklivity/zilla/blob/main/LICENSE).
-
-org.agrona.concurrent.AgentTerminationException: java.lang.NullPointerException: Cannot invoke "io.aklivity.zilla.runtime.binding.kafka.internal.types.KafkaEvaluation.ordinal()" because "evaluation" is null
-    at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.registry.EngineWorker.doWork(EngineWorker.java:849)
-    at org.agrona.core/org.agrona.concurrent.AgentRunner.doWork(AgentRunner.java:304)
-    at org.agrona.core/org.agrona.concurrent.AgentRunner.workLoop(AgentRunner.java:296)
-    at org.agrona.core/org.agrona.concurrent.AgentRunner.run(AgentRunner.java:162)
-    at java.base/java.lang.Thread.run(Thread.java:1570)
-Caused by: java.lang.NullPointerException: Cannot invoke "io.aklivity.zilla.runtime.binding.kafka.internal.types.KafkaEvaluation.ordinal()" because "evaluation" is null
-    at io.aklivity.zilla.runtime.binding.kafka@0.9.93/io.aklivity.zilla.runtime.binding.kafka.internal.cache.KafkaCacheCursorFactory.asCondition(KafkaCacheCursorFactory.java:1163)
-    at io.aklivity.zilla.runtime.binding.kafka@0.9.93/io.aklivity.zilla.runtime.binding.kafka.internal.stream.KafkaCacheClientFetchFactory.newStream(KafkaCacheClientFetchFactory.java:242)
-    at io.aklivity.zilla.runtime.binding.kafka@0.9.93/io.aklivity.zilla.runtime.binding.kafka.internal.stream.KafkaCacheClientFactory.newStream(KafkaCacheClientFactory.java:149)
-    at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.registry.EngineWorker.handleBeginInitial(EngineWorker.java:1584)
-    at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.registry.EngineWorker.handleDefaultReadInitial(EngineWorker.java:1348)
-    at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.registry.EngineWorker.handleReadInitial(EngineWorker.java:1288)
-    at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.registry.EngineWorker.handleRead(EngineWorker.java:1235)
-    at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.concurent.ManyToOneRingBuffer.read(ManyToOneRingBuffer.java:229)
-    at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.registry.EngineWorker.doWork(EngineWorker.java:843)
-    ... 4 more
-    Suppressed: java.lang.Exception: [engine/data#1]        [0x010100000000b79d] streams=[consumeAt=0x00549a60 (0x0000000284549a60), produceAt=0x009f31d8 (0x00000002849f31d8)]
-            at io.aklivity.zilla.runtime.engine@0.9.93/io.aklivity.zilla.runtime.engine.internal.registry.EngineWorker.doWork(EngineWorker.java:847)
-            ... 4 more
