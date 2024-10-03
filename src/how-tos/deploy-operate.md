@@ -176,13 +176,7 @@ Errors and misconfigured parts of the `zilla.yaml` file are detected by Zilla an
 
 This feature is demonstrated in the above Helm install command. Running a `helm update ...` with changes to the `zilla.yaml`, k8s will update the config map, which writes the new content into the running pods. Zilla will detect those file changes and load the new config.
 
-Zilla can load the `zilla.yaml` config from a remote source using the `zilla.engine.config.url` [Zilla property](../reference/config/zilla-cli.md#p-property). The auto reconfigure feature will still work when pulling the config remotely.
-
-The Zilla start command looks like this:
-
-```bash:no-line-numbers
-zilla start -P zilla.engine.config.url=http://example.com/zilla.yaml
-```
+Zilla can load the `zilla.yaml` config from a remote source using the `-c` or `--config` [CLI flag](../reference/config/zilla-cli.md#c-config). The auto reconfigure feature will still work when pulling the config remotely.
 
 ## Auto Scaling
 
