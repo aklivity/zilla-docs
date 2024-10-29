@@ -40,7 +40,7 @@ The AWS Glue Registry name to access schemas.
 
 #### options.max-age
 
-> `integer` | Default: `300`
+> `number` | Default: `300`
 
 Configures the time to live in `seconds` for the schema information retrieved against the latest version. The default is 300 seconds or 5 minutes.
 

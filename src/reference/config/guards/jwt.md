@@ -77,6 +77,12 @@ options:
       kid: "2011-04-29"
 ```
 
+#### options.identity
+
+> `string` | Default: `sub`
+
+The JWT claim name to use as the guarded identity.
+
 #### options.issuer
 
 > `string`

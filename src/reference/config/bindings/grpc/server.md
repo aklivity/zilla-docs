@@ -12,30 +12,7 @@ The grpc server binding adapts `http` request-response streams to `grpc` request
 
 ## Configuration (\* required)
 
-### catalog
-
-> `object` as map of named `array`
-
-To map defined catalog for schema retrieval based on catalog specific parameters.
-
-```yaml
-catalog:
-  my_catalog:
-    - subject: http
-```
-
-#### catalog[].subject\*
-
-> `string`
-
-Unique identifier for schema categorization in the catalog.
-
-#### catalog[].version
-
-> `string` | Default: `latest`
-
-Specific iteration or version of a registered schema in the defined catalog.
-
+<!-- @include: ../.partials/cataloged.md -->
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ./.partials/routes.md -->

@@ -258,6 +258,11 @@
                                     "challenge": {
                                         "title": "Challenge",
                                         "type": "integer"
+                                    },
+                                    "identity": {
+                                        "title": "Identity",
+                                        "type": "string",
+                                        "default": "sub"
                                     }
                                 },
                                 "additionalProperties": false
@@ -945,7 +950,7 @@
                                                         "extract-headers": {
                                                             "type": "object",
                                                             "patternProperties": {
-                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                                "^[a-zA-Z:]+[a-zA-Z0-9\\._\\-:]*$": {
                                                                     "type": "string",
                                                                     "pattern": "^\\$\\{message\\.(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
                                                                 }
@@ -967,7 +972,7 @@
                                                         "extract-headers": {
                                                             "type": "object",
                                                             "patternProperties": {
-                                                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                                "^[a-zA-Z:]+[a-zA-Z0-9\\._\\-:]*$": {
                                                                     "type": "string",
                                                                     "pattern": "^\\$\\{message\\.(key|value)\\.([A-Za-z_][A-Za-z0-9_]*)\\}$"
                                                                 }
@@ -1241,6 +1246,7 @@
                         "openapi",
                         "openapi-asyncapi",
                         "pgsql",
+                        "pgsql-kafka",
                         "proxy",
                         "risingwave",
                         "sse",
@@ -3746,6 +3752,34 @@
                     "if": {
                         "properties": {
                             "type": {
+                                "const": "pgsql-kafka"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "pgsql-kafka"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "proxy"
+                                ]
+                            },
+                            "vault": false,
+                            "options": false,
+                            "routes": false,
+                            "required": [
+                                "catalog",
+                                "exit"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
                                 "const": "proxy"
                             }
                         }
@@ -3931,6 +3965,31 @@
                                                 "$ref": "#/$defs/converter"
                                             }
                                         }
+                                    },
+                                    "udf": {
+                                        "title": "UDF",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "server": {
+                                                    "title": "Server",
+                                                    "type": "string",
+                                                    "pattern": "^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$"
+                                                },
+                                                "language": {
+                                                    "title": "Language",
+                                                    "type": "string",
+                                                    "default": "java",
+                                                    "enum": [
+                                                        "java",
+                                                        "python"
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        },
+                                        "minItems": 1
                                     }
                                 },
                                 "additionalProperties": false
