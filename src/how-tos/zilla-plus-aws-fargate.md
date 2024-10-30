@@ -51,6 +51,7 @@ COPY ./zilla.yaml /etc/zilla/zilla.yaml
 @tab zilla.yaml
 
 ```yaml
+---
 name: http-echo
 bindings:
   north_tcp_server:
@@ -59,17 +60,17 @@ bindings:
     options:
       host: 0.0.0.0
       port:
- - 7114
+        - 7114
     routes:
- - when:
- - port: 7114
+      - when:
+          - port: 7114
         exit: north_http_server
   north_http_server:
     type: http
     kind: server
     routes:
- - when:
- - headers:
+      - when:
+          - headers:
               :scheme: http
         exit: north_echo_server
   north_echo_server:
@@ -81,7 +82,9 @@ telemetry:
       type: stdout
 ```
 
-::: info Adding other files
+:::
+
+::: note Adding other files
 
 Any other files used in your `zilla.yaml` can be added to the container in the same directory as the `zilla.yaml` config.
 
