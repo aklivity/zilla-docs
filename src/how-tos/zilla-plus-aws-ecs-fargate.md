@@ -1,9 +1,9 @@
 ---
 icon: aky-zilla-plus
-description: This Guide will walk you through deploying a simple Zilla Plus service running on AWS Fargate. Zilla Plus is an enterprise-ready, Kafka-native edge, and service proxy. It is a flexible, secure, and reliable way of creating stateless, multi-protocol API entry points into your Kafka cluster for both native and non-native Kafka clients.
+description: This Guide will walk you through deploying a simple Zilla Plus service running on AWS ECS Fargate. Zilla Plus is an enterprise-ready, Kafka-native edge, and service proxy. It is a flexible, secure, and reliable way of creating stateless, multi-protocol API entry points into your Kafka cluster for both native and non-native Kafka clients.
 ---
 
-# Deploying Zilla Plus on AWS Fargate
+# Deploying Zilla Plus on AWS ECS Fargate
 
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
@@ -15,7 +15,7 @@ description: This Guide will walk you through deploying a simple Zilla Plus serv
 
 The [<ZillaPlus/>](https://aws.amazon.com/marketplace/pp/prodview-lqfqftufwpttm) is an enterprise-ready, Kafka-native edge, and service proxy. It is a flexible, secure, and reliable way of creating stateless, multi-protocol API entry points into your Kafka cluster for both native and non-native Kafka clients. With <ZillaPlus/>, you can create publicly reachable Kafka endpoints into a Kafka cluster. You can also expose topics inside your Kafka cluster via declaratively defined REST, SSE, gRPC, and MQTT APIs.
 
-This Guide will walk you through deploying your first <ZillaPlus/> service on AWS Fargate.
+This Guide will walk you through deploying your first <ZillaPlus/> service on AWS ECS Fargate.
 
 ## Prerequisites
 
@@ -118,9 +118,9 @@ docker tag zp-example/http-echo:v1 [your-registry-url]/zp-example/http-echo:v1
 docker push [your-registry-url]/zp-example/http-echo:v1
 ```
 
-## Create an AWS Fargate Task for your service
+## Create an AWS ECS Fargate Task for your service
 
-> This will create the AWS Fargate Task that will be used to deploy your service.
+> This will create the AWS ECS Fargate Task that will be used to deploy your service.
 
 - Create an IAM role for the Task. This role will be used by the running <ZillaPlus/> container.
 
@@ -212,7 +212,7 @@ AmazonECSTaskExecutionRolePolicy
 
 :::
 
-## Create a Service from your AWS Fargate Task
+## Create a Service from your AWS ECS Fargate Task
 
 > This will create a service based on the configuration in the Task.
 
@@ -246,4 +246,4 @@ Hello, world
 
 - In your Task logs, you will see a `BINDING_HTTP_REQUEST_ACCEPTED` log from the above request
 
-Congratulations! You have successfully deployed your first <ZillaPlus/> service using AWS Fargate.
+Congratulations! You have successfully deployed your first <ZillaPlus/> service using AWS ECS Fargate.

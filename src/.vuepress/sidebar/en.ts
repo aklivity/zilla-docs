@@ -386,9 +386,9 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "Zilla Plus on AWS Fargate",
+          text: "Zilla Plus on AWS ECS Fargate",
           icon: "aky-zilla-plus",
-          link: "how-tos/zilla-plus-aws-fargate.md",
+          link: "how-tos/zilla-plus-aws-ecs-fargate.md",
           children: [],
         },
         {
