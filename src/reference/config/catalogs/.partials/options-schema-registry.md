@@ -18,6 +18,6 @@ Schema context represents an independent scope in the Schema Registry.
 
 #### options.max-age
 
-> `number` | Default: `300`
+> `integer` | Default: `300`
 
 The maximum duration in seconds to keep a cached schema before fetching the schema again.

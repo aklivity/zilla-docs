@@ -111,7 +111,7 @@ Support `fetch` credentials mode `include`.
 
 #### access-control.max-age
 
-> `number`
+> `integer`
 
 Maximum cache age (in seconds) for allowed headers and methods.
 
