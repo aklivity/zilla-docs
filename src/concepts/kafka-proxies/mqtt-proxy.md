@@ -70,11 +70,11 @@ An MQTT client can Publish messages to any configured Kafka topics, marking spec
 
 ### Session Management
 
-MQTT connect, disconnect, and other session messages are maintained on the the log compacted [sessions](../../reference/config/bindings/mqtt-kafka/proxy.md#topics-sessions) Kafka topic. A message keyed by the MQTT client ID on the topic is used to track client subscriptions across client reconnects.
+MQTT connect, disconnect, and other session messages are maintained on the log compacted [sessions](../../reference/config/bindings/mqtt-kafka/proxy.md#topics-sessions) Kafka topic. A message keyed by the MQTT client ID on the topic is used to track client subscriptions across client reconnects.
 
 #### Kafka Consumer Groups for MQTT sessions
 
-A consumer group is created for each unique client ID used by an MQTT session with the format `zilla:<zilla namespace>-<binding name>-<MQTT client ID>`. Zilla minimizes the number of hearbeats required to approximately one per MQTT session expiry interval. When an MQTT session expires, perhaps because the MQTT client abruptly disconnected but did not reconnect, the corresponding consumer group also expires and the associated tracking state in the [sessions](../../reference/config/bindings/mqtt-kafka/proxy.md#topics-sessions) Kafka topic is cleaned up automatically.
+A consumer group is created for each unique client ID used by an MQTT session with the format `zilla:<zilla namespace>-<binding name>-<MQTT client ID>`. Zilla minimizes the number of heartbeats required to approximately one per MQTT session expiry interval. When an MQTT session expires, perhaps because the MQTT client abruptly disconnected but did not reconnect, the corresponding consumer group also expires and the associated tracking state in the [sessions](../../reference/config/bindings/mqtt-kafka/proxy.md#topics-sessions) Kafka topic is cleaned up automatically.
 
 ## Authorizing clients
 

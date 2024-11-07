@@ -79,6 +79,7 @@ EDAs
 enSidebar
 enum
 etag
+Fargate
 fas
 gitea
 Grafana

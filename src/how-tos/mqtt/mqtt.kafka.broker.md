@@ -125,9 +125,7 @@ This will configure Zilla for accepting all of the `mqtt` traffic. The [tcp](../
 <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#entrypoint -->
 ```
 
-::: right
-[More on binding-tcp](../../reference/config/bindings/tcp/README.md)
-:::
+> [More on binding-tcp](../../reference/config/bindings/tcp/README.md)
 
 A [ws](../../reference/config/bindings/tcp/) binding is added to handle any MQTT over WebSocket using the `mqtt` protocol. The [mqtt](../../reference/config/bindings/mqtt/README.md) binding then handles all of the MQTT message traffic that needs to go to Kafka.
 
@@ -135,10 +133,7 @@ A [ws](../../reference/config/bindings/tcp/) binding is added to handle any MQTT
 <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#server -->
 ```
 
-::: right
-[More on binding-mqtt](../../reference/config/bindings/mqtt/README.md)
-[More on binding-ws](../../reference/config/bindings/tcp/README.md)
-:::
+> [More on binding-mqtt](../../reference/config/bindings/mqtt/README.md) | [More on binding-ws](../../reference/config/bindings/tcp/README.md)
 
 ### Service definition
 
@@ -148,10 +143,7 @@ The service definition defines how the clients using this service will interact 
 <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#kafka_mapping -->
 ```
 
-::: right
-[More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/README.md)
-[More on topic data](../../concepts/kafka-proxies/mqtt-proxy.md#step-2-pub-sub-message-reflect-with-kafka)
-:::
+> [More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/README.md) | [More on topic data](../../concepts/kafka-proxies/mqtt-proxy.md#step-2-pub-sub-message-reflect-with-kafka)
 
 Additionally, a route is defined to capture any "device" messages and route them to a specific topic called `mqtt-devices`. Here Zilla enables routing different topic patterns into one Kafka topic using MQTT supported wildcards. All other messages will use the default `exit` and end up in the `mqtt-messages` topic.
 
@@ -159,10 +151,7 @@ Additionally, a route is defined to capture any "device" messages and route them
   <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#device_mapping -->
 ```
 
-::: right
-[More on When a route matches](../../concepts/bindings.md#when-a-route-matches)
-[More on mqtt-kafka binding routes](../../reference/config/bindings/mqtt-kafka/proxy.md#routes)
-:::
+> [More on When a route matches](../../concepts/bindings.md#when-a-route-matches) | [More on mqtt-kafka binding routes](../../reference/config/bindings/mqtt-kafka/proxy.md#routes)
 
 ### Add a Kafka sync layer
 
@@ -172,9 +161,7 @@ The Zilla [cache_client](../../reference/config/bindings/kafka/cache_client.md) 
 <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#kafka_sync -->
 ```
 
-::: right
-[More on kafka binding cache](../../reference/config/bindings/kafka/README.md#cache-behavior)
-:::
+> [More on kafka binding cache](../../reference/config/bindings/kafka/README.md#cache-behavior)
 
 ### Point to a Running Kafka instance
 
@@ -192,9 +179,7 @@ This will define the location and connection for Zilla to communicate with Kafka
 
 :::
 
-::: right
-[More on kafka cache_client binding](../../reference/config/bindings/kafka/cache_client.md)
-:::
+> [More on kafka cache_client binding](../../reference/config/bindings/kafka/cache_client.md)
 
 ### Start Zilla
 

@@ -41,7 +41,7 @@ The `kafka cache_client` binding can parse the message value, or body of the mes
 
 ### Enforcing a schema on Fetch
 
-The `kafka cache_server` can enforce a schema on messages Fetched from a topic. This will prevent any messages that are pruduced on a Kafka topic from getting cosumed by a client if that messages doesn't match to the specified schema.
+The `kafka cache_server` can enforce a schema on messages Fetched from a topic. This will prevent any messages that are produced on a Kafka topic from getting consumed by a client if that messages doesn't match to the specified schema.
 
 ```yaml
   south_kafka_cache_server:

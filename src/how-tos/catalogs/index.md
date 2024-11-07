@@ -18,7 +18,7 @@ catalogs:
           path: relative/path/to/local.file
 ```
 
-In some environments the local filesystem isn't accessible. Schema subjects can be definined inside of the Zilla config to keep all of the relevant model information in one place.
+In some environments the local filesystem isn't accessible. Schema subjects can be defined inside of the Zilla config to keep all of the relevant model information in one place.
 
 ```yaml
 catalogs:
