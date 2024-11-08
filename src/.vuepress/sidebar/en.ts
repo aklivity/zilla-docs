@@ -435,15 +435,15 @@ export const enSidebar = sidebar({
             },
             {
               text: "Add JWT auth to MQTT",
-              link: "https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt",
+              link: "https://github.com/aklivity/zilla-examples/tree/example-startup-compose/mqtt.jwt",
             },
             {
               text: "Add JWT auth to REST",
-              link: "https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt",
+              link: "https://github.com/aklivity/zilla-examples/tree/example-startup-compose/http.jwt",
             },
             {
               text: "Add JWT auth to SSE",
-              link: "https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt",
+              link: "https://github.com/aklivity/zilla-examples/tree/example-startup-compose/sse.jwt",
             },
           ],
         },
