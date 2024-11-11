@@ -19,10 +19,10 @@ catalogs:
 
 The simplest catalogs allow Zilla to access resources directly. The [filesystem](../reference/config/catalogs/filesystem.md) catalog will look for resources on the host filesystem. To embed a resource directly into the Zilla config yaml an [inline](../reference/config/catalogs/inline.md) catalog can be used to define any text based resource.
 
-> [Local Catalogs Guide](../how-tos/catalogs/index.md#local-catalogs) | [http.proxy.schema.inline example](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)
+> [Local Catalogs Guide](../how-tos/catalogs/index.md#local-catalogs) | [http.json.schema example](https://github.com/aklivity/zilla-examples/tree/example-startup-compose/http.json.schema)
 
 ## Remote Catalogs
 
 Zilla can reference remote configs stored in third-party services like Schema Registry. The [schema-registry](../reference/config/catalogs/schema-registry.md) and [apicurio-registry](../reference/config/catalogs/apicurio-registry.md) catalogs allow zilla to interact with those services through their admin APIs.
 
-> [Remote Catalogs Guide](../how-tos/catalogs/index.md#remote-catalogs) | [Apicurio in the Petstore REST Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore) | [http.kafka.karapace example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.karapace)
+> [Remote Catalogs Guide](../how-tos/catalogs/index.md#remote-catalogs) | [Apicurio in the Petstore REST Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore) | [http.kafka.avro.json example](https://github.com/aklivity/zilla-examples/tree/example-startup-compose/http.kafka.avro.json)
