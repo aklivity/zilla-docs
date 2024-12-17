@@ -66,7 +66,7 @@ export default hopeTheme({
       disableUserPersonalization: true,
       appId: "H6RNUBSB6E",
       indexName: "aklivity",
-      apiKey: "bae72797404a23ba5466230146919cae",
+      apiKey: "aaad765b377ba149769753806b181909",
       indexBase: `/${base}/`,
       searchParameters: {
         facetFilters: [`version:${versionKey}`, `product:${siteBase}`],
