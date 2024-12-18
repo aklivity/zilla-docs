@@ -105,6 +105,11 @@ jobs:
           path: ${{ env.DistDir }}
           key: ${{ env.DistDir }}-${{ hashFiles('deploy-versions.json') }}
 
+      - name: Check Dist Directory
+        run: |
+          echo "Checking contents of DistDir: $(pwd)/${{ env.DistDir }}"
+          ls -la "$(pwd)/${{ env.DistDir }}"
+
       - name: Upload cloudflare-pages artifact
         if: github.repository_owner == 'aklivity'
         uses: actions/upload-artifact@v4
