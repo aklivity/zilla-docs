@@ -28,6 +28,14 @@ The maximum duration in seconds to keep a cached schema before fetching the sche
 
 TLS configuration for connecting to secure Schema Registry. A configured `vault` is required to manage the keys and certificates necessary for TLS authentication.
 
+```yaml {2}
+tls:
+  trust:
+    - serverca
+  keys:
+    - client1
+```
+
 ##### options.tls.keys
 
 > `array` of `string`
@@ -51,6 +59,12 @@ Trust CA certificates. When the this property is not explicitly set it will be a
 > `object`
 
 Configures the credentials used to authenticate the user.
+
+```yaml {2}
+credentials:
+  headers:
+    authorization: Basic dXNlcjpzZWNyZXQ=
+```
 
 ##### options.credentials.headers
 
