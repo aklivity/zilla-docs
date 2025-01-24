@@ -44,7 +44,7 @@ A list of reference names for the Vault certificate.
 
 > `boolean`
 
-Trust CA certificates. When the this property is not explicitly set it will be automatically set to `true` if [options.trust](#options-trust) is `null`.
+Trust CA certificates. When the this property is not explicitly set it will be automatically set to `true` if [options.tls.trust](#options-tls-trust) is `null`.
 
 #### options.credentials
 
