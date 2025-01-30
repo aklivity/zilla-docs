@@ -15,7 +15,7 @@ Zilla is stateless, cloud-native, highly memory efficient, and supports various 
 ![Zilla Overview](/zilla-overview.png)
 
 ::: info Just want to build?
-Jump to the [quickstart](../how-tos/quickstart/index.md) guide.
+Jump to the [quickstart](./how-tos/quickstart/index.md) guide.
 :::
 
 ### Why Zilla?
