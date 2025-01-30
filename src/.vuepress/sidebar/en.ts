@@ -69,16 +69,6 @@ export const enSidebar = sidebar({
       children: "structure",
     },
     {
-      text: "Plugins",
-      children: [
-        {
-          text: "VS Code extension",
-          link: "vscode/README.md",
-          children: [],
-        },
-      ],
-    },
-    {
       text: "Zilla Manager",
       prefix: "manager/",
       children: [
@@ -202,6 +192,16 @@ export const enSidebar = sidebar({
   ],
   "/": [
     {
+      text: "Introduction",
+      children: [
+        {
+          text: "Overview",
+          link: "overview.md",
+          children: []
+        },
+      ]
+    },
+    {
       text: "Getting Started",
       children: [
         {
@@ -211,23 +211,18 @@ export const enSidebar = sidebar({
           children: [],
         },
         {
-          text: "What is Zilla?",
-          link: "concepts/what-is-zilla.md",
-          children: [],
-        },
-        {
           text: "Quickstart",
           link: "how-tos/quickstart/index.md",
           children: [],
         },
         {
-          text: "Bindings",
-          link: "concepts/bindings.md",
+          text: "Zilla Use Cases",
+          link: "concepts/use-cases.md",
           children: [],
         },
         {
-          text: "Bring Your Own Spec",
-          link: "concepts/spec-generation.md",
+          text: "VS Code extension",
+          link: "concepts/vscode/README.md",
           children: [],
         },
       ],

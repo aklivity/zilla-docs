@@ -23,12 +23,12 @@ html[data-theme="light"] #app {
 
 // make bash code blocks have $ prefix
 div.language-bash pre {
-    padding-left: 0.8rem;
-    code:before {
-      content: "$ ";
-      font-weight: bold;
-      margin-left: -1rem;
-    }
+  padding-left: 0.8rem;
+  code:before {
+    content: "$ ";
+    font-weight: bold;
+    margin-left: -1rem;
+  }
 }
 div.language-output {
   button.vp-copy-code-button {
@@ -201,4 +201,62 @@ sup {
     height: 0.8em;
     width: 0.8em;
   }
+}
+
+.overview_cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 0.75rem;
+}
+
+.overview_cards .vp-card {
+  flex: 0 1 calc((100% - 8rem) / 2); /* Adjust the divisor for number of cards per row */
+  display: flex !important;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  background: none !important;
+  box-shadow: none !important;
+
+  border-radius: 1rem;
+  border-style: solid;
+  border-width: 2px;
+
+  transition: all;
+  transition-duration: 200ms;
+
+  margin: 0 !important;
+}
+
+[data-theme="light"] .overview_cards .vp-card {
+  border-color: #38b7a7 !important;
+}
+
+[data-theme="dark"] .overview_cards .vp-card {
+  border-color: #1b343f !important;
+}
+
+[data-theme="light"] .overview_cards .vp-card:hover {
+  border-color: #1b343f !important;
+}
+
+[data-theme="dark"] .overview_cards .vp-card:hover {
+  border-color: #38b7a7 !important;
+}
+
+@media (max-width: 480px) {
+  .overview_cards .vp-card {
+    flex: 0 1 100%; /* Single column on mobile */
+  }
+}
+
+.overview_cards .vp-card-logo {
+  height: 1.5rem;
+  width: auto;
+  border-radius: 0% !important;
+}
+
+.overview_cards .vp-card hr {
+  display: none !important;
 }

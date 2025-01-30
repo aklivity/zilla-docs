@@ -54,6 +54,9 @@ export default hopeTheme({
   },
 
   plugins: {
+    components: {
+      components: ["VPCard"]
+    },
     catalog: {
       level: 1,
       locales: {
