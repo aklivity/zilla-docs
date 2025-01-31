@@ -240,6 +240,7 @@ export const enSidebar = sidebar({
           text: "Protocol",
           link: "concepts/protocol.md",
           prefix: "concepts/protocol/",
+          collapsible: true,
           children: [
             "filesystem/server.md"
           ],
