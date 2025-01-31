@@ -5,66 +5,67 @@ breadcrumb: false
 
 # Build and Visualize: The Zilla VS Code Extension
 
-The Zilla Visual Studio Code extension enables you to manage your Zilla config files easily in VS Code.
+The Zilla Visual Code Extension simplifies Zilla configuration files management and visualization directly within VS Code. The extension includes:
 
-## Introduction
+1. [**Zilla Diagram**](#zilla-diagram) provides a visual representation of your Zilla config similar to a network diagram. It displays all of the configured Zilla elements and how they connect.
+2. [**YAML IntelliSense**](#yaml-intellisense) helps you write and maintain your [zilla.yaml](../../reference/config/overview.md) config.
 
-The VS Code extension includes:
+## How to Install
 
-- [Zilla Diagram](#zilla-diagram), which provides a visual representation of your Zilla config similar to a network diagram. It displays all of the configured Zilla elements and how they connect.
-- [Yaml IntelliSense](#yaml-intellisense), which helps you write and maintain your [zilla.yaml](../../reference/config/overview.md) config.
+Search for the official Zilla extension on the **Extensions** tab in VS Code or visit the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=aklivity.zilla-vscode-ext).
 
-## Install the VS Code extension
+## Extension Features
 
-For installation and setup instructions, visit the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=aklivity.zilla-vscode-ext), or search for the official Zilla extension on the Extensions tab in VS Code.
+### Zilla Diagram
 
-## Using vscode.dev
+This feature provides an interactive visualization of your `zilla.yaml` configuration. To activate this, click the `Toggle Diagram View` ![Toggle Diagram View](./toggle.png) button in the top right corner.
 
-The Zilla extension can be installed on vscode.dev for those users who don't have it installed on their local environment.
+#### Features
 
-- Go to [vscode.dev](https://vscode.dev/)
-- Search for the `Zilla VSCode` extension and install it
-- Create a file called `zilla.yaml`
-- `Paste` your yaml and the extension will be able to render the diagram
-
-### Browsing GitHub repos
-
-- Go to [vscode.dev/github/aklivity/zilla-examples](https://vscode.dev/github/aklivity/zilla-examples) to open the `zilla-examples` repo in the browser.
-- Sign in to GitHub.
-- The Zilla extension will be in the `recommended extensions` section.
-- Now you can open any of the `zilla.yaml` files from the examples.
-
-![vscode.dev](./online_extension.png)
-
-## Zilla Diagram
-
-The extension will render the active `zilla.yaml` file when the `Toggle Diagram View` ![Toggle Diagram View](./toggle.png) button in the top right corner is pressed.
-
-- Clicking anywhere on the diagram will take your cursor to that location in the zilla.yaml file.
+- Clicking anywhere on the diagram will take your cursor to that location in the `zilla.yaml` file.
 - the `?` icon that appears on a clicked element will take you to the appropriate docs page
-
-![diagram](./diagram.png)
-
+  ![diagram](./diagram.png)
 - Missing connections and errors can be seen in the diagram view.
+  ![diagram error](./diagram_error.png)
 
-![diagram error](./diagram_error.png)
+#### Controls
 
-- The `Add` dropdown lets you create new elements in the zilla.yaml file.
+- The `Add` dropdown lets you create new elements in the `zilla.yaml` file.
 - The `Export` dropdown lets you download your diagram.
 - the View switch will toggle between side-by-side and top-bottom layouts.
 
 ![diagram controls](./diagram_controls.png)
 
-## Yaml IntelliSense
+### YAML IntelliSense
 
-- Property and Value validation highlighting
+The YAML IntelliSense feature enhances your editing experience with:
 
-![property highlight](./property_highlight.png)
+1. Property and Value validation highlighting
 
-![value highlight](./value_highlight.png)
+![Property Highlighting](./property_highlight.png)
 
-- Syntax and Context aware autocomplete
+![Value Highlighting](./value_highlight.png)
 
-![syntax autocomplete](./syntax_autocomplete.png)
+2. Syntax and Context aware autocomplete
 
-![context autocomplete](./context_autocomplete.png)
+![Syntax Autocomplete](./syntax_autocomplete.png)
+
+![Context Autocomplete](./context_autocomplete.png)
+
+## Zilla Extension with `vscode.dev`
+
+The Zilla extension can be installed on `vscode.dev` for users who don't have it installed on their local environment.
+
+1. Go to [vscode.dev](https://vscode.dev/)
+2. Search for the `Zilla VSCode` extension and install it
+3. Create a `zilla.yaml` file and paste your configuration.
+4. The extension will automatically render the diagram.
+
+### Browsing GitHub Repositories
+
+1. Navigate to [vscode.dev/github/aklivity/zilla-examples](https://vscode.dev/github/aklivity/zilla-examples) to open the `zilla-examples` repository.
+2. Sign in to your GitHub account.
+3. The Zilla extension will appear in the **Recommended Extensions** section.
+4. Open any `zilla.yaml` file from the examples to explore.
+
+![vscode.dev](./online_extension.png)
