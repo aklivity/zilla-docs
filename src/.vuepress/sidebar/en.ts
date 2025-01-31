@@ -221,7 +221,7 @@ export const enSidebar = sidebar({
           children: [],
         },
         {
-          text: "VS Code extension",
+          text: "VS Code Extension",
           link: "concepts/vscode/README.md",
           children: [],
         },
