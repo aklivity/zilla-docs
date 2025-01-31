@@ -6,9 +6,9 @@ breadcrumb: false
 
 # Build and Visualize: The Zilla VS Code Extension
 
-The Zilla Visual Code Extension simplifies Zilla configuration files management and visualization directly within VS Code. The extension includes:
+The Zilla Visual Code Extension simplifies Zilla configuration file management and visualization directly within VS Code. The extension includes:
 
-1. [**Zilla Diagram**](#zilla-diagram) provides a visual representation of your Zilla config similar to a network diagram. It displays all of the configured Zilla elements and how they connect.
+1. [**Zilla Diagram**](#zilla-diagram) visually represents your Zilla config, similar to a network diagram. It displays all of the configured Zilla elements and how they connect.
 2. [**YAML IntelliSense**](#yaml-intellisense) helps you write and maintain your [zilla.yaml](../../reference/config/overview.md) config.
 
 ## How to Install
@@ -25,9 +25,9 @@ This feature provides an interactive visualization of your `zilla.yaml` configur
 
 - Clicking anywhere on the diagram will take your cursor to that location in the `zilla.yaml` file.
 - the `?` icon that appears on a clicked element will take you to the appropriate docs page
-  ![diagram](./diagram.png)
+ ![diagram](./diagram.png)
 - Missing connections and errors can be seen in the diagram view.
-  ![diagram error](./diagram_error.png)
+ ![diagram error](./diagram_error.png)
 
 #### Controls
 
@@ -47,7 +47,7 @@ The YAML IntelliSense feature enhances your editing experience with:
 
 ![Value Highlighting](./value_highlight.png)
 
-2. Syntax and Context aware autocomplete
+2. Syntax and Context-aware autocomplete
 
 ![Syntax Autocomplete](./syntax_autocomplete.png)
 
@@ -67,6 +67,6 @@ The Zilla extension can be installed on `vscode.dev` for users who don't have it
 1. Navigate to [vscode.dev/github/aklivity/zilla-examples](https://vscode.dev/github/aklivity/zilla-examples) to open the `zilla-examples` repository.
 2. Sign in to your GitHub account.
 3. The Zilla extension will appear in the **Recommended Extensions** section.
-4. Open any `zilla.yaml` file from the examples to explore.
+4. Explore any `zilla.yaml` file from the examples.
 
 ![vscode.dev](./online_extension.png)

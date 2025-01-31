@@ -239,6 +239,7 @@ export const enSidebar = sidebar({
         {
           text: "Protocol",
           link: "concepts/protocol.md",
+          collapsible: true,
           children: [],
         }
       ],
