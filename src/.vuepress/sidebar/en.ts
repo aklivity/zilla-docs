@@ -228,6 +228,22 @@ export const enSidebar = sidebar({
       ],
     },
     {
+      text: "Core Concepts",
+      children: [
+        {
+          text: "-hidden-",
+          ariaLabel: "-hidden-",
+          link: "/",
+          children: [],
+        },
+        {
+          text: "Protocol",
+          link: "concepts/protocol.md",
+          children: [],
+        }
+      ],
+    },
+    {
       text: "Integration",
       children: [
         {

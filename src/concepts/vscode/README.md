@@ -1,5 +1,6 @@
 ---
 shortTitle: VS Code Extension
+redirectFrom: /reference/vscode
 breadcrumb: false
 ---
 
