@@ -239,7 +239,10 @@ export const enSidebar = sidebar({
         {
           text: "Protocol",
           link: "concepts/protocol.md",
-          children: [],
+          prefix: "concepts/protocol/",
+          children: [
+            "filesystem/server.md"
+          ],
         }
       ],
     },
