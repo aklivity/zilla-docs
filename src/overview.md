@@ -6,81 +6,27 @@ breadcrumb: false
 
 # Overview
 
-## Zilla: The Multi-Protocol Maestro
-
-Zilla is a multi-protocol edge and service proxy that helps streamline, secure, and manage event-driven architectures. It is meant to be deployed alongside event-driven applications and services to enforce authentication, validate schemas, gather metrics, and terminate TLS. Additionally, Zilla has advanced protocol meditation capabilities, particularly to and from Kafka.
-
-Zilla is stateless, cloud-native, highly memory efficient, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way). When deployed as an edge proxy, it scales horizontally to support millions of concurrently connected clients.
-
 ![Zilla Overview](/zilla-overview.png)
+
+Zilla is a multi-protocol edge and service proxy designed to streamline, secure, and manage event-driven architectures (EDAs). It addresses the challenge of EDAs, where services are decoupled and communicated via multiple protocols. It also simplifies EDAs by replacing custom code, Kafka Connect®, MQTT brokers, and other middleware reducing the DevOps burden and architectural complexity. It acts as an AsyncAPI Kafka gateway, offering advanced protocol mediation, particularly for Kafka.
+
+As a middleware, Zilla enforces authentication, validates schemas, gathers metrics, and terminates TLS. Additionally, Zilla is stateless, cloud-native, highly memory efficient, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way). When deployed as an edge proxy, it scales horizontally to support millions of concurrently connected clients.
+
+![With and Without Zilla](/before-after-zilla.svg)
 
 ::: info Just want to build?
 Jump to the [quickstart](./how-tos/quickstart/index.md) guide.
 :::
 
-### Why Zilla?
-
-Some of the hardest operational challenges inside distributed architectures relate to networking and observability. As a result, edge and service proxies are required to achieve resilient, transparent, and properly routed connectivity among distributed services.
-
-While solutions such as Envoy, HAProxy, NGINX, etc. can help unify a distributed data plane, they are designed for “mesh” deployments in which services are directly interconnected and communicate almost exclusively over HTTP. Inside event-driven architectures (EDAs) though, services are separated by an event/message broker, and multiple protocols are present. This decoupled and multi-protocol nature of EDAs presents a new class of networking, observability, and security challenges that the Zilla proxy is designed to address.
-
-### Zilla Benefits
-
-Zilla helps streamline, secure, and manage event-driven architectures. As an AnsycAPI Kafka gateway, it replaces custom code, Kafka Connect®, MQTT brokers, and other integration middleware. With Zilla, teams save time, reduce DevOps burden, and remove complexity from their architectures.
-
-#### Who Zilla is for?
+## Who Zilla is for?
 
 - **Data platform/Kafka integration engineers** who are tasked with reliably, securely, and accessibly exposing a Kafka cluster to internal and/or external teams.
 - **Application developers** who do not have Kafka expertise but want/need to build applications on top of real-time data streams.
 - **API architects** who want to drive business functionality via their AsyncAPI schemas.
 
-![With and Without Zilla](/before-after-zilla.svg)
-
-## Learn the Key Concepts
-
-### Protocol Support
-
-Zilla provides vast protocol support, including filesystem, gRPC, HTTP, Kafka, MQTT, SSE, TCP, TLS, dan Websocket (WS).
-
-### Proxy
-
-Inside Zilla, every protocol, whether it is TCP, TLS, HTTP, Kafka, gRPC, etc., is treated as a stream, so mapping between protocols simplifies to mapping protocol-specific metadata. Currently, we support proxying from and to Kafka, HTTP/2, SSE, MQTT, dan gRPC.
-
-### Data Governance
-
-For data governance, such as message schema and validation, Zilla utilize the concept of Catalog and Model.
-
-A catalog provides Zilla bindings with schemas, specs, and other files needed to implement the binding. For example, schema models are used to validate messages brokered by Zilla. Each configured [`catalog`](./reference/config/overview.md#catalogs) represents a resource for referencing versioned assets. Zilla supports importing catalogs from various sources, such as Apicurio Registry, Filesystem, Inline, Karapace Schema Registry, AWS Glue (<ZillaPlus/>), and Confluent Schema Registry (<ZillaPlus/>). These support make configuring Zilla more agnostic to specific API and Model design.
-
-A [`model`](./reference/config/models/) adds the type syntax or structure definitions that Zilla needs to deserialize the remaining message parts. Zilla supports several data type for data model, including Avro, JSON, Protobuf, `string`, `int32`, `int64`, `double`, and `float`. A model definition can include a reference to catalogs.
-
-### Monitoring & Observability
-
-Zilla captures telemetry data in `metrics`, `events`, and `logs`. The data can be accessed outside of Zilla by configuring `exporters` to chose how and where to see the telemetry data. Zilla exposes Prometheus metrics endpoint that can be collected by Prometheus collector and AWS Cloudwatch (<ZillaPlus/>). Zilla prints logs into the configured location between `stdout`, OpenTelemetry Protocol (OLTP), and `syslog` (<ZillaPlus/>).
-
-### Scalability
-
-Due to Zilla's stateless nature, Zilla instance can be scaled easily by increasing the amount of Zilla instances. Zilla autoscaled configuration can be achieved with K8s setup.
-
-### Security
-
-Zilla ensures security in several forms, such as Kafka connection, Guard, Vault, Threat Protection, and Resolvers.
-
-- For Kafka connection, Zilla support SASL (PLAIN and SCRAM) for authentication and TLS for encryption.
-- Zilla Guard represents a security checkpoint for one or more bindings and can be used to enforce authorization. This is implemented with supports for JWT-based authorization for REST, SSE, and MQTT endpoints/ services.
-- Zilla Vault represents a container for digital keys and certificates based on a specific implementation `type`, including filesystem, AWS ACM (<ZillaPlus/>), and AWS Secrets (<ZillaPlus/>).
-- Zilla provides threat protection support with the integration of AWS Shield Advanced (<ZillaPlus/>).
-- Resolvers are a variable syntax for executing Zilla runtime functions that insert dynamic values into the `zilla.yaml`. Zilla supports resolving variables from environment variables and AWS Secrets Manager (<ZillaPlus/>).
-
-### Bring Your Own Spec (Zilla Exclusive)
-
-Zilla can leverage standard API schema specifications to configure the settings that define common API interfaces, including OpenAPI and AsyncAPI specification. Zilla will use the details specified in the API spec with sensible defaults to reuse the existing design and reduce complexity.
-
 ## Zilla vs <ZillaPlus />
 
-Zilla is made available under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. Running Zilla in the cloud for any workload, whether production or not, is fine.
-
-A commercial version of Zilla (<ZillaPlus/> “Zilla Plus”) is available, which includes additional enterprise integrations and support. Secure Public Access is a <ZillaPlus/>-only supported use case. For more information, please visit the [<ZillaPlus/>](https://www.aklivity.io/products/zilla-plus) product page.
+Zilla is under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (<ZillaPlus/> “Zilla Plus”) is available, which includes additional enterprise integrations and support. For more information, please visit the [<ZillaPlus/>](https://www.aklivity.io/products/zilla-plus) product page.
 
 | Capability                                                             | <ZillaPlus/> for Enterprise          | Zilla Open Source       |
 | ---------------------------------------------------------------------- | ------------------------------------- | ----------------------- |
@@ -128,7 +74,7 @@ A commercial version of Zilla (<ZillaPlus/> “Zilla Plus”) is available, whic
   <VPCard
     title="Protocol"
     logo="/assets/icons/protocol.svg"
-    link="#"
+    link="./concepts/protocol.md"
   />
 
   <VPCard

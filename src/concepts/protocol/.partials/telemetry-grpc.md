@@ -14,4 +14,5 @@ Defines the desired telemetry for the binding.
 telemetry:
   metrics:
     - stream.*
+    - grpc.*
 ```

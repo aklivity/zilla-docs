@@ -242,7 +242,9 @@ export const enSidebar = sidebar({
           prefix: "concepts/protocol/",
           collapsible: true,
           children: [
-            "filesystem/server.md"
+            "filesystem/filesystem.md",
+            "grpc/grpc.md",
+            "http/http.md"
           ],
         }
       ],
