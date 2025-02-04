@@ -197,9 +197,9 @@ export const enSidebar = sidebar({
         {
           text: "Overview",
           link: "overview.md",
-          children: []
+          children: [],
         },
-      ]
+      ],
     },
     {
       text: "Getting Started",
@@ -242,11 +242,39 @@ export const enSidebar = sidebar({
           prefix: "concepts/protocol/",
           collapsible: true,
           children: [
-            "filesystem/filesystem.md",
-            "grpc/grpc.md",
-            "http/http.md"
+            {
+              text: "Filesystem",
+              collapsible: true,
+              children: ["filesystem/filesystem.md"],
+            },
+            {
+              text: "gRPC",
+              collapsible: true,
+              children: ["grpc/client.md", "grpc/server.md", "grpc/kafka.md"],
+            },
+            {
+              text: "HTTP",
+              collapsible: true,
+              children: [
+                "http/client.md",
+                "http/server.md",
+                "http/filesystem.md",
+                "http/kafka.md",
+              ],
+            },
+            {
+              text: "Kafka",
+              collapsible: true,
+              children: [
+                "kafka/client.md",
+                "kafka/cache_client.md",
+                "kafka/cache_server.md",
+                "kafka/proxy.md",
+                "kafka/remote_server.md",
+              ],
+            },
           ],
-        }
+        },
       ],
     },
     {
