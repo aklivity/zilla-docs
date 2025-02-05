@@ -263,6 +263,15 @@ export const enSidebar = sidebar({
               ],
             },
             {
+              text: "MQTT",
+              collapsible: true,
+              children: [
+                "mqtt/client.md",
+                "mqtt/server.md",
+                "mqtt/kafka_proxy.md",
+              ],
+            },
+            {
               text: "Kafka",
               collapsible: true,
               children: [
