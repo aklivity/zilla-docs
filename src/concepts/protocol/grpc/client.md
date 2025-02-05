@@ -14,7 +14,7 @@ The grpc client binding adapts `grpc` request-response streams to `http` request
 
 ::: tabs
 
-@tab routes
+@tab routes\*
 
 <!-- @include: ./.partials/routes.md -->
 

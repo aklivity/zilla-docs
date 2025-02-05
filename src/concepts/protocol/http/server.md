@@ -24,7 +24,7 @@ Conditional routes based on `http` request headers are used to route these appli
 
 <!-- @include: ./.partials/server-options.md -->
 
-@tab routes
+@tab routes\*
 
 <!-- @include: ./.partials/http-routes.md -->
 

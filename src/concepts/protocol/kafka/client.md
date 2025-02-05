@@ -16,19 +16,19 @@ Conditional routes based on `kafka` `topic` names are used to route these networ
 
 ::: tabs
 
-@tab Options
+@tab options
 
 <!-- @include: ./.partials/client-options.md -->
 
-@tab Routes
+@tab routes\*
 
 <!-- @include: ./.partials/routes.md -->
 
-@tab Exit
+@tab exit
 
 <!-- @include: ../.partials/exit.md -->
 
-@tab Telemetry
+@tab telemetry
 
 <!-- @include: ../.partials/telemetry.md -->
 

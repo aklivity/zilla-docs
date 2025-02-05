@@ -28,19 +28,19 @@ The `cache_client` also combine to provide a staging area when producing new mes
 
 ::: tabs
 
-@tab Option
+@tab options
 
 <!-- @include: ./.partials/cache-client-options.md -->
 
-@tab Routes
+@tab routes\*
 
 <!-- @include: ./.partials/routes.md -->
 
-@tab Exit
+@tab exit
 
 <!-- @include: ../.partials/exit.md -->
 
-@tab Telemetry
+@tab telemetry
 
 <!-- @include: ../.partials/telemetry.md -->
 

@@ -1,8 +1,8 @@
 ---
-shortTitle: remote_server
+shortTitle: gRPC Remote Server
 ---
 
-# kafka-grpc remote_server
+# Kafka gRPC Remote Server
 
 The kafka-grpc remote_server binding for adapting `kafka` topic streams to `grpc` request-response streams.
 
@@ -11,6 +11,10 @@ The kafka-grpc remote_server binding for adapting `kafka` topic streams to `grpc
 ```
 
 ## Configuration (\* required)
+
+::: tabs
+
+@tab entry\*
 
 ### entry\*
 
@@ -25,6 +29,16 @@ The name of the binding that will be the entrypoint for Kafka streams.
     entry: kafka_cache_client
 ```
 
-<!-- @include: ./.partials/options.md -->
-<!-- @include: ./.partials/routes.md -->
+@tab options
+
+<!-- @include: ./.partials/grpc-options.md -->
+
+@tab routes\*
+
+<!-- @include: ./.partials/grpc-routes.md -->
+
+@tab telemetry
+
 <!-- @include: ../.partials/telemetry-grpc.md -->
+
+:::

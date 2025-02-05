@@ -18,7 +18,7 @@ The http-kafka proxy binding for adapting `http` request-response streams to `ka
 
 <!-- @include: ./.partials/kafka-options.md -->
 
-@tab routes
+@tab routes\*
 
 <!-- @include: ./.partials/kafka-routes.md -->
 

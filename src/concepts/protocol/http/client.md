@@ -20,7 +20,7 @@ Conditional routes based on `http` request headers are used to route these netwo
 
 <!-- @include: ./.partials/client-options.md -->
 
-@tab routes
+@tab routes\*
 
 <!-- @include: ./.partials/http-routes.md -->
 

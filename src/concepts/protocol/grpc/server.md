@@ -18,7 +18,7 @@ The grpc server binding adapts `http` request-response streams to `grpc` request
 
 <!-- @include: ./.partials/catalog.md -->
 
-@tab routes
+@tab routes\*
 
 <!-- @include: ./.partials/routes.md -->
 

@@ -1,9 +1,9 @@
 ---
-shortTitle: proxy
+shortTitle: Proxy
 icon: aky-zilla-plus
 ---
 
-# kafka-proxy proxy
+# Kafka Proxy
 
 The kafka-proxy proxy binding for adapting `kafka` topic streams to `kafka` topic streams.
 
@@ -16,6 +16,18 @@ The kafka-proxy proxy binding for adapting `kafka` topic streams to `kafka` topi
 
 ## Configuration (\* required)
 
-<!-- @include: ./.partials/options.md -->
+::: tabs
+
+@tab options\*
+
+<!-- @include: ./.partials/proxy-options.md -->
+
+@tab exit
+
 <!-- @include: ../.partials/exit.md -->
+
+@tab telemetry
+
 <!-- @include: ../.partials/telemetry.md -->
+
+:::
