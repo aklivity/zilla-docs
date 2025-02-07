@@ -438,367 +438,210 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text:"Security",
-          prefix:"concepts/security",
+          text: "Security",
+          prefix: "concepts/security",
           collapsible: true,
           children: [
             {
-              "text": "Kafka",
-              "link": "kafka.md",
-              "prefix": "kafka/",
-              "collapsible": true,
-              "children": [
+              text: "Kafka",
+              link: "kafka.md",
+              prefix: "kafka/",
+              collapsible: true,
+              children: [
                 {
-                  "text": "SASL",
-                  "link": "sasl.md",
-                  "prefix": "sasl/",
-                  "collapsible": true,
-                  "children": [
-                    "plain.md",
-                    "scram.md"
-                  ]
+                  text: "SASL",
+                  link: "sasl.md",
+                  prefix: "sasl/",
+                  collapsible: true,
+                  children: ["plain.md", "scram.md"],
                 },
-                "ssl.md"
-              ]
+                "ssl.md",
+              ],
             },
             {
-              "text": "Guard",
-              "link": "guard.md",
-              "prefix": "guard/",
-              "collapsible": true,
-              "children": [
-                 {
-                  "text": "JWT",
-                  "link": "jwt.md",
-                  "prefix": "jwt/",
-                  "collapsible": true,
-                  "children": [
-                    "http.md",
-                    "sse.md",
-                    "mqtt.md"
-                  ]
-                }
-              ]
+              text: "Guard",
+              link: "guard.md",
+              prefix: "guard/",
+              collapsible: true,
+              children: [
+                {
+                  text: "JWT",
+                  link: "jwt.md",
+                  prefix: "jwt/",
+                  collapsible: true,
+                  children: ["http.md", "sse.md", "mqtt.md"],
+                },
+              ],
             },
             {
-              "text": "Vault",
-              "link": "vault.md",
-              "prefix": "vault/",
-              "collapsible": true,
-              "children": [
-                "filesystem.md",
-                "aws-acm.md",
-                "aws-secrets.md"
-              ]
+              text: "Vault",
+              link: "vault.md",
+              prefix: "vault/",
+              collapsible: true,
+              children: ["filesystem.md", "aws-acm.md", "aws-secrets.md"],
             },
             {
-              "text": "Threat Protection",
-              "link": "threat-protection.md",
-              "prefix": "threat-protection/",
-              "collapsible": true,
-              "children": [
-                "aws-shield.md"
-              ]
+              text: "Threat Protection",
+              link: "threat-protection.md",
+              prefix: "threat-protection/",
+              collapsible: true,
+              children: ["aws-shield.md"],
             },
             {
-              "text": "Resolvers",
-              "link": "resolvers.md",
-              "prefix": "resolvers/",
-              "collapsible": true,
-              "children": [
-                "environment-variables.md",
-                "aws-secrets-manager.md"
-              ]
+              text: "Resolvers",
+              link: "resolvers.md",
+              prefix: "resolvers/",
+              collapsible: true,
+              children: ["environment-variables.md", "aws-secrets-manager.md"],
             },
-          ]
+          ],
         },
         {
           text: "Bring Your Own Spec",
-          prefix:"concepts/bring-your-own-spec",
+          prefix: "concepts/bring-your-own-spec",
           collapsible: true,
-          children: [
-            "asyncapi.md",
-            "openapi.md",
-            "openapi-asyncapi.md",
-          ]
-        }
-      ],
-    },
-    {
-      text: "Integration",
-      children: [
-        {
-          text: "-hidden-",
-          ariaLabel: "-hidden-",
-          link: "/",
-          children: [],
-        },
-        {
-          text: "Connecting to Kafka",
-          collapsible: true,
-          prefix: "how-tos/connecting-to-kafka/",
-          link: "how-tos/connecting-to-kafka/apache-kafka.md",
-          children: [
-            "apache-kafka.md",
-            "aiven.md",
-            "amazon-msk.md",
-            "confluent-cloud.md",
-            "redpanda.md",
-          ],
-        },
-        {
-          text: "Catalogs",
-          collapsible: true,
-          link: "concepts/catalogs.md",
-          children: [
-            {
-              text: "Overview",
-              link: "concepts/catalogs.md",
-            },
-            "how-tos/catalogs/",
-          ],
-        },
-        {
-          text: "Models",
-          collapsible: true,
-          link: "concepts/models.md",
-          children: [
-            {
-              text: "Overview",
-              link: "concepts/models.md",
-            },
-            "how-tos/models/",
-          ],
+          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md"],
         },
       ],
     },
     {
-      text: "Kafka Proxying",
+      text: "Deployment",
       children: [
         {
-          text: "-hidden-",
-          ariaLabel: "-hidden-",
-          link: "/",
-          children: [],
-        },
-        {
-          text: "HTTP Kafka Proxy",
-          collapsible: true,
-          link: "concepts/kafka-proxies/http-proxy.md",
+          text: "Install Zilla",
+          prefix: "deployment/install-zilla",
           children: [
+            "homebrew.md",
+            "docker.md",
+            "helm.md",
+            "dynamic-loading-of-zilla-configuration.md",
             {
-              text: "Overview",
-              link: "concepts/kafka-proxies/http-proxy.md",
-            },
-            {
-              text: "Create a Simple CRUD API",
-              link: "tutorials/rest/rest-intro.md",
-            },
-            {
-              text: "Create a Simple SSE Stream",
-              link: "tutorials/sse/sse-intro.md",
-            },
-            {
-              text: "Run the TodoMVC CQRS Demo",
-              link: "https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs",
+              text: "Connecting to Kafka",
+              link: "connecting-to-kafka.md",
+              prefix: "connecting-to-kafka/",
+              collapsible: true,
+              children: [
+                "apache-kafka.md",
+                "aiven.md",
+                "amazon-msk.md",
+                "confluent-cloud.md",
+                "redpanda.md",
+              ],
             },
           ],
         },
         {
-          text: "MQTT Kafka Proxy",
+          text: "Zilla+ in Production",
+          prefix: "deployment/zilla-plus-in-production",
           collapsible: true,
-          link: "concepts/kafka-proxies/mqtt-proxy.md",
           children: [
+            "zilla-plus-on-aws-ecs-fargate.md",
+            "disaster-recovery.md",
+            "migration.md",
             {
-              text: "Overview",
-              link: "concepts/kafka-proxies/mqtt-proxy.md",
+              text: "Secure Public Access",
+              link: "secure-public-access.md",
+              prefix: "secure-public-access/",
+              collapsible: true,
+              children: [
+                {
+                  text: "Amazon MSK",
+                  link: "amazon-msk/amazon-msk.md",
+                  prefix: "amazon-msk/",
+                  collapsible: true,
+                  children: ["terraform.md", "cloudformation.md"],
+                },
+                "confluent-cloud.md",
+              ],
             },
             {
-              text: "Setup an MQTT Kafka broker",
-              link: "how-tos/mqtt/mqtt.kafka.broker.md",
+              text: "IOT Ingest and Control",
+              link: "iot-ingest-and-control.md",
+              prefix: "iot-ingest-and-control/",
+              collapsible: true,
+              children: ["amazon-msk.md", "confluent-cloud.md", "redpanda.md"],
             },
             {
-              text: "Run the Taxi Demo",
-              link: "https://github.com/aklivity/zilla-demos/tree/main/taxi",
-            },
-          ],
-        },
-        {
-          text: "gRPC Kafka Proxy",
-          collapsible: true,
-          link: "concepts/kafka-proxies/grpc-proxy.md",
-          children: [
-            {
-              text: "Overview",
-              link: "concepts/kafka-proxies/grpc-proxy.md",
-            },
-            {
-              text: "Expose a Simple gRPC Server",
-              link: "tutorials/grpc/grpc-intro.md",
+              text: "Web Streaming",
+              link: "web-streaming.md",
+              prefix: "web-streaming/",
+              collapsible: true,
+              children: [
+                {
+                  text: "Amazon MSK",
+                  link: "amazon-msk.md",
+                  prefix: "amazon-msk/",
+                  collapsible: true,
+                  children: ["terraform.md"],
+                },
+              ],
             },
             {
-              text: "Implement the Route Guide example",
-              link: "how-tos/grpc/grpc.route-guide.service.md",
+              text: "Other Resources",
+              link: "other-resources.md",
+              prefix: "other-resources/",
+              collapsible: true,
+              children: ["aws.md"],
             },
           ],
         },
       ],
     },
     {
-      text: "Deploy & Operate",
+      text: "Troubleshooting & Support",
+      prefix: "support",
       children: [
-        {
-          text: "-hidden-",
-          ariaLabel: "-hidden-",
-          link: "/",
-          children: [],
-        },
-        {
-          text: "Installing Zilla",
-          link: "how-tos/deploy-operate/index.md",
-          children: [],
-        },
-        {
-          text: "Telemetry Logs & Metrics",
-          collapsible: true,
-          link: "concepts/telemetry.md",
-          children: [
-            {
-              text: "Overview",
-              link: "concepts/telemetry.md",
-            },
-            {
-              text: "Add logs & metrics",
-              link: "tutorials/telemetry/telemetry-intro.md",
-            },
-            {
-              text: "Push to an OTLP Collector",
-              link: "how-tos/telemetry/opentelemetry-protocol.md",
-            },
-            {
-              text: "Auto scaling on K8s",
-              link: "how-tos/deploy-operate/autoscale-k8s.md",
-            },
-          ],
-        },
-        {
-          text: "Zilla Plus on AWS ECS Fargate",
-          icon: "aky-zilla-plus",
-          link: "how-tos/zilla-plus-aws-ecs-fargate.md",
-          children: [],
-        },
-        {
-          text: "Secure Public Access on AWS",
-          icon: "aky-zilla-plus",
-          link: "solutions/concepts/kafka-proxies/secure-public-access.md",
-          children: [],
-        },
-        {
-          text: "IoT Ingest and Control on AWS",
-          icon: "aky-zilla-plus",
-          link: "solutions/concepts/kafka-proxies/iot-ingest-control.md",
-          children: [],
-        },
-        {
-          text: "Web Streaming on AWS",
-          icon: "aky-zilla-plus",
-          link: "solutions/concepts/kafka-proxies/web-streaming.md",
-          children: [],
-        },
+        "troubleshooting-guides.md",
+        "community-support.md",
+        "enterprise-support.md",
       ],
     },
     {
-      text: "Security",
+      text: "Others",
       children: [
         {
-          text: "-hidden-",
-          ariaLabel: "-hidden-",
-          link: "/",
+          text: "FAQ",
+          link: "faq.md",
           children: [],
         },
         {
-          text: "Guards",
+          text: "Changelog",
+          prefix: "changelog",
           collapsible: true,
-          link: "concepts/guards.md",
+          children: ["zilla.md", "zilla-plus.md"],
+        },
+        {
+          text: "Glossary",
+          link: "glossary.md",
+          children: [],
+        },
+        {
+          text: "Tutorials",
+          prefix: "tutorials",
+          collapsible: true,
+          children: ["technical-support-articles.md", "how-to-guides.md"],
+        },
+        {
+          text: "Reference",
+          link: "/reference/config/overview.md",
+          children: []
+        },
+        {
+          text: "Community",
+          prefix: "community",
+          collapsible: true,
           children: [
-            {
-              text: "Overview",
-              link: "concepts/guards.md",
-            },
-            {
-              text: "Add JWT auth to MQTT",
-              link: "https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt",
-            },
-            {
-              text: "Add JWT auth to REST",
-              link: "https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt",
-            },
-            {
-              text: "Add JWT auth to SSE",
-              link: "https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt",
-            },
+            "github.md",
+            "slack.md",
+            "talk-to-the-experts.md",
+            "office-hours.md",
           ],
         },
         {
-          text: "Vaults",
+          text: "Contribute",
+          prefix: "contribute",
           collapsible: true,
-          link: "concepts/vaults.md",
-          children: [
-            {
-              text: "Overview",
-              link: "concepts/vaults.md",
-            },
-            {
-              text: "Server Encryption, TLS & SSL",
-              link: "concepts/ssl.md",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      text: "Reference",
-      prefix: "reference/",
-      children: [
-        {
-          text: "Vscode",
-          link: "vscode/",
-          children: [],
-        },
-        {
-          text: "Config Overview",
-          link: "config/overview.md",
-          children: [],
-        },
-        {
-          text: "Bindings",
-          link: "config/bindings/",
-          children: [],
-        },
-        {
-          text: "Catalogs",
-          link: "config/catalogs/",
-          children: [],
-        },
-        {
-          text: "Models",
-          link: "config/models/",
-          children: [],
-        },
-        {
-          text: "Guards",
-          link: "config/guards/",
-          children: [],
-        },
-        {
-          text: "Vaults",
-          link: "config/vaults/",
-          children: [],
-        },
-        {
-          text: "Telemetry",
-          link: "config/telemetry/",
-          children: [],
+          children: ["developer-guidelines.md"],
         },
       ],
     },
