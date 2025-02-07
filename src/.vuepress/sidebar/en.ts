@@ -241,7 +241,7 @@ export const enSidebar = sidebar({
           link: "concepts/protocol.md",
           collapsible: true,
           children: [],
-        }
+        },
       ],
     },
     {
