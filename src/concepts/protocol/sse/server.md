@@ -1,0 +1,5 @@
+---
+shortTitle: Server
+---
+
+# SSE Server

@@ -282,6 +282,38 @@ export const enSidebar = sidebar({
                 "kafka/remote_server.md",
               ],
             },
+            {
+              text: "SSE",
+              collapsible: true,
+              children: [
+                "sse/client.md",
+                "sse/proxy.md",
+                "sse/server.md",
+              ],
+            },
+            {
+              text: "TCP",
+              collapsible: true,
+              children: [
+                "tcp/client.md",
+                "tcp/server.md",
+              ],
+            },
+            {
+              text: "TLS",
+              collapsible: true,
+              children: [
+                "tls/tls.md",
+              ],
+            },
+            {
+              text: "WS",
+              collapsible: true,
+              children: [
+                "ws/client.md",
+                "ws/server.md",
+              ],
+            },
           ],
         },
       ],
