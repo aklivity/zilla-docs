@@ -285,37 +285,243 @@ export const enSidebar = sidebar({
             {
               text: "SSE",
               collapsible: true,
-              children: [
-                "sse/client.md",
-                "sse/proxy.md",
-                "sse/server.md",
-              ],
+              children: ["sse/client.md", "sse/proxy.md", "sse/server.md"],
             },
             {
               text: "TCP",
               collapsible: true,
-              children: [
-                "tcp/client.md",
-                "tcp/server.md",
-              ],
+              children: ["tcp/client.md", "tcp/server.md"],
             },
             {
               text: "TLS",
               collapsible: true,
-              children: [
-                "tls/tls.md",
-              ],
+              children: ["tls/tls.md"],
             },
             {
               text: "WS",
               collapsible: true,
+              children: ["ws/client.md", "ws/server.md"],
+            },
+          ],
+        },
+        {
+          text: "Proxy",
+          prefix: "concepts/proxy/",
+          collapsible: true,
+          children: [
+            {
+              text: "Kafka",
+              link: "kafka.md",
+              prefix: "kafka/",
+              collapsible: true,
+              children: ["kafka.md", "grpc.md"],
+            },
+            {
+              text: "HTTP",
+              link: "http.md",
+              prefix: "http/",
+              collapsible: true,
+              children: ["http.md", "kafka.md", "filesystem.md"],
+            },
+            {
+              text: "SSE",
+              link: "sse.md",
+              prefix: "sse/",
+              collapsible: true,
+              children: ["kafka.md", "sse.md"],
+            },
+            {
+              text: "MQTT",
+              link: "mqtt.md",
+              prefix: "mqtt/",
+              collapsible: true,
+              children: ["kafka.md", "mqtt.md"],
+            },
+            {
+              text: "gRPC",
+              link: "grpc.md",
+              prefix: "grpc/",
+              collapsible: true,
+              children: ["kafka.md", "grpc.md"],
+            },
+          ],
+        },
+        {
+          text: "Data Governance",
+          prefix: "concepts/data-governance",
+          collapsible: true,
+          children: [
+            {
+              text: "Catalog",
+              link: "catalog.md",
+              prefix: "catalog/",
+              collapsible: true,
               children: [
-                "ws/client.md",
-                "ws/server.md",
+                "apicurio-registry.md",
+                "filesystem.md",
+                "inline.md",
+                "karapace-schema-registry.md",
+                "aws-glue.md",
+                "confluent-schema-registry.md",
+              ],
+            },
+            {
+              text: "Model",
+              link: "model.md",
+              prefix: "model/",
+              collapsible: true,
+              children: [
+                {
+                  text: "Avro",
+                  link: "avro.md",
+                  prefix: "avro/",
+                  collapsible: true,
+                  children: ["json.md"],
+                },
+                {
+                  text: "JSON",
+                  link: "json.md",
+                  prefix: "json/",
+                  collapsible: true,
+                  children: ["avro.md", "protobuf.md"],
+                },
+                {
+                  text: "Protobuf",
+                  link: "protobuf.md",
+                  prefix: "protobuf/",
+                  collapsible: true,
+                  children: ["json.md"],
+                },
+                "string.md",
+                "int32.md",
+                "int64.md",
+                "double.md",
+                "float.md",
               ],
             },
           ],
         },
+        {
+          text: "Monitoring & Observability",
+          prefix: "concepts/monitoring-observability",
+          collapsible: true,
+          children: [
+            {
+              text: "Metrics",
+              link: "metrics.md",
+              prefix: "metrics/",
+              collapsible: true,
+              children: ["grpc.md", "http.md", "stream.md"],
+            },
+            {
+              text: "Exporters Logs and Metrics",
+              link: "exporters-logs-and-metrics.md",
+              prefix: "exporters-logs-and-metrics/",
+              collapsible: true,
+              children: [
+                "stdout.md",
+                "oltp.md",
+                "prometheus.md",
+                "aws-cloudwatch.md",
+                "syslog.md",
+              ],
+            },
+          ],
+        },
+        {
+          text: "Scalability",
+          prefix: "concepts/scalability",
+          collapsible: true,
+          children: [
+            "autoscale-zilla/autoscale-zilla-with-prometheus-metrics.md",
+            "autoscale-zilla/autoscale-zilla-with-aws-cloudwatch-metrics.md",
+          ],
+        },
+        {
+          text:"Security",
+          prefix:"concepts/security",
+          collapsible: true,
+          children: [
+            {
+              "text": "Kafka",
+              "link": "kafka.md",
+              "prefix": "kafka/",
+              "collapsible": true,
+              "children": [
+                {
+                  "text": "SASL",
+                  "link": "sasl.md",
+                  "prefix": "sasl/",
+                  "collapsible": true,
+                  "children": [
+                    "plain.md",
+                    "scram.md"
+                  ]
+                },
+                "ssl.md"
+              ]
+            },
+            {
+              "text": "Guard",
+              "link": "guard.md",
+              "prefix": "guard/",
+              "collapsible": true,
+              "children": [
+                 {
+                  "text": "JWT",
+                  "link": "jwt.md",
+                  "prefix": "jwt/",
+                  "collapsible": true,
+                  "children": [
+                    "http.md",
+                    "sse.md",
+                    "mqtt.md"
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Vault",
+              "link": "vault.md",
+              "prefix": "vault/",
+              "collapsible": true,
+              "children": [
+                "filesystem.md",
+                "aws-acm.md",
+                "aws-secrets.md"
+              ]
+            },
+            {
+              "text": "Threat Protection",
+              "link": "threat-protection.md",
+              "prefix": "threat-protection/",
+              "collapsible": true,
+              "children": [
+                "aws-shield.md"
+              ]
+            },
+            {
+              "text": "Resolvers",
+              "link": "resolvers.md",
+              "prefix": "resolvers/",
+              "collapsible": true,
+              "children": [
+                "environment-variables.md",
+                "aws-secrets-manager.md"
+              ]
+            },
+          ]
+        },
+        {
+          text: "Bring Your Own Spec",
+          prefix:"concepts/bring-your-own-spec",
+          collapsible: true,
+          children: [
+            "asyncapi.md",
+            "openapi.md",
+            "openapi-asyncapi.md",
+          ]
+        }
       ],
     },
     {
