@@ -10,6 +10,8 @@ The sse server binding converts inbound `http` request-response streams into `ss
 <!-- @include: ./.partials/server.yaml -->
 ```
 
+## Configuration (\* required)
+
 ::: tabs
 
 @tab options

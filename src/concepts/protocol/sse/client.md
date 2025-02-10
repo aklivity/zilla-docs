@@ -10,6 +10,8 @@ The sse client binding converts outbound `see` request-response streams into `ht
 <!-- @include: ./.partials/client.yaml -->
 ```
 
+## Configuration (\* required)
+
 ::: tabs
 
 @tab options

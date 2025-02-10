@@ -10,6 +10,8 @@ The sse-kafka proxy binding for adapting `sse` data streams to `kafka` data stre
 <!-- @include: ./.partials/proxy.yaml -->
 ```
 
+## Configuration (\* required)
+
 ::: tabs
 
 @tab routes
