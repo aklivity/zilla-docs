@@ -5,8 +5,8 @@
 | Property | Type | Description |
 | -- | -- | -- |
 | options.defaults |  `object` |  Defaults. | 
-| defaults.protocol |  `string` |  Subprotocol. | 
-| defaults.scheme |  `string` |  Scheme. | 
-| defaults.authority |  `string` |  Authority. | 
-| defaults.path |  `string` |  Path. | 
+| options.defaults.protocol |  `string` |  Subprotocol. | 
+| options.defaults.scheme |  `string` |  Scheme. | 
+| options.defaults.authority |  `string` |  Authority. | 
+| options.defaults.path |  `string` |  Path. | 
 
