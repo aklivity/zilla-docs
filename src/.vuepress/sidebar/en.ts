@@ -285,7 +285,7 @@ export const enSidebar = sidebar({
             {
               text: "SSE",
               collapsible: true,
-              children: ["sse/client.md", "sse/proxy.md", "sse/server.md"],
+              children: ["sse/client.md", "sse/server.md", "sse/proxy.md"],
             },
             {
               text: "TCP",
