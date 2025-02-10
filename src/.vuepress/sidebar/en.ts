@@ -291,11 +291,11 @@ export const enSidebar = sidebar({
               text: "TCP",
               collapsible: true,
               children: ["tcp/client.md", "tcp/server.md"],
-            },
+            },  
             {
               text: "TLS",
               collapsible: true,
-              children: ["tls/tls.md"],
+              children: ["tls/client.md", "tls/server.md", "tls/proxy.md"],
             },
             {
               text: "WS",
