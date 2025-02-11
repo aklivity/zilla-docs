@@ -27,12 +27,16 @@ In some environments the local filesystem isn't accessible. Schema subjects can 
 ```yaml
 <!-- @include: ./.partials/local-catalog-2.yaml -->
 ```
-            
+
+> [http.proxy.schema.inline example](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)
+
 ### Remote Catalogs
 Remote catalogs allow Zilla to fetch existing schemas stored in an external service. Zilla will pull and maintain an up to date version of the specified schema meaning the running Zilla doesn't need to be redeployed when new data models are pushed. Zilla can also reference specific versions.
 
-Registering remote catalogs is simple. Zilla needs to know the address for the registry and any relevant information about where the resources in the registry will be found. Once a remote catalog is registered the model configs will specify which resources and versions to fetch and use.
+Registering remote catalogs is simple. Zilla needs to know the address for the registry and any relevant information about where the resources in the registry will be found. Once a remote catalog is registered the [model configs](./model.md#structured-message-data) will specify which resources and versions to fetch and use.
 
 ```yaml
 <!-- @include: ./.partials/remote-catalog.yaml -->
 ```
+
+> [Apicurio in the Petstore REST Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore) | [http.kafka.karapace example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.karapace)
