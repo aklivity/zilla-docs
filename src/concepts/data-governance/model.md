@@ -19,7 +19,7 @@ encoding: utf_8
 > [Validating message keys](#validating-message-keys) | [http.proxy.schema.inline example](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)
 
 ### Schema Models
-Schema-based models will reference a [catalog](./catalog) to supply the binding with the configured model definition. Schemas referenced by their subject will fetch the latest version of that schema.
+Schema-based models will reference a [catalog](./catalog.md#catalog) to supply the binding with the configured model definition. Schemas referenced by their subject will fetch the latest version of that schema.
 
 - Fetch the latest schema by `subject`.
 
@@ -56,7 +56,7 @@ Adding structured types to the message data streams in Zilla.
 
 ### Adding models structure to Kafka messages
 
-The `kafka` `cache_client` and `cache_server` bindings are responsible for interacting with the messages stored on Kafka topics. This is where Zilla can implement any structured type definitions. The schema for the message can come from the Kafka topic's schema definition using the topic `strategy` or be a reference to a schema's `subject` or `id`. The [catalog](./catalog.md) definition will determine which methods are available when referencing schemas.
+The `kafka` `cache_client` and `cache_server` bindings are responsible for interacting with the messages stored on Kafka topics. This is where Zilla can implement any structured type definitions. The schema for the message can come from the Kafka topic's schema definition using the topic `strategy` or be a reference to a schema's `subject` or `id`. The [catalog](./catalog.md#catalog) definition will determine which methods are available when referencing schemas.
 
 #### Validating message keys
 The message key for a topic can be set to any primitive model type and Zilla will validate the key when a message is Produced on a topic.
