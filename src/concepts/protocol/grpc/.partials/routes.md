@@ -5,7 +5,7 @@
 | Property                        | Type                            | Description                                                                                                                         |
 | ------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | routes[].guarded                | `Map<string, string[]>`         | Roles required by named guard.                                                                                                      |
-| routes[].when                   | `object[]`                      | List of conditions (any match) to match this route. Read more: [When a route matches](../../../../../concepts/bindings.md#when-a-route-matches) |
+| routes[].when                   | `object[]`                      | List of conditions (any match) to match this route. Read more: [When a route matches](../../../protocol.md#when-a-route-matches) |
 | routes[].when[].method          | `string`                        | gRPC service method name, such as `example.EchoService/EchoUnary`, or service method pattern such as `example.EchoService/*`.       |
 | routes[].when[].metadata        | `Map<string, string \| object>` | Metadata header name value pairs (all match). Each metadata header value can be `string` or `object` with `base64` property.        |
 | routes[].when[].metadata.base64 | `string`                        | Base64 encoded value for binary metadata header.                                                                                    |

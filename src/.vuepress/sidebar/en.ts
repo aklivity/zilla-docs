@@ -546,7 +546,6 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Amazon MSK",
-                  link: "amazon-msk/amazon-msk.md",
                   prefix: "amazon-msk/",
                   collapsible: true,
                   children: ["terraform.md", "cloudformation.md"],
@@ -569,7 +568,6 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Amazon MSK",
-                  link: "amazon-msk.md",
                   prefix: "amazon-msk/",
                   collapsible: true,
                   children: ["terraform.md"],
@@ -578,7 +576,6 @@ export const enSidebar = sidebar({
             },
             {
               text: "Other Resources",
-              link: "other-resources.md",
               prefix: "other-resources/",
               collapsible: true,
               children: ["aws.md"],

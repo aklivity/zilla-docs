@@ -8,7 +8,7 @@ The http server binding decodes `HTTP/1.1` protocol or `HTTP/2` protocol on the 
 
 Cross-Origin Resource Sharing (CORS) is supported by specifying an access control policy of `cross-origin`. Further configuration allows for finer-grained access control including specific request origins, methods and headers allowed, and specific response headers exposed.
 
-Authorization is enforced by a [`guard`](../../../config/overview.md#guards) and the credentials can be extracted from a cookie, header or query parameter.
+Authorization is enforced by a `guard` and the credentials can be extracted from a cookie, header or query parameter.
 
 Conditional routes based on `http` request headers are used to route these application streams to an `exit` binding.
 
