@@ -1,0 +1,6 @@
+catalog:
+  type: aws-glue
+  options:
+    registry: zilla
+    max-age: 30
+    compression: zlib

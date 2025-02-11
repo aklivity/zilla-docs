@@ -1,0 +1,7 @@
+catalog:
+  type: apicurio-registry
+  options:
+    url: http://localhost:8080
+    group-id: schemas
+    use-id: globalId
+    id-encoding: default

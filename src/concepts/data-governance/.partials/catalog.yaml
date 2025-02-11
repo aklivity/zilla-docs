@@ -1,0 +1,9 @@
+name: zilla-namespace
+
+catalogs:
+  host_filesystem:
+    type: filesystem
+    options:
+      subjects:
+        petstore:
+          path: petstore.yaml

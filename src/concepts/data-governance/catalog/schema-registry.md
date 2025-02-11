@@ -1,24 +1,18 @@
 ---
-shortTitle: Karapace Schema Registry
+shortTitle: Schema Registry
 ---
 
-# Karapace Schema Registry
+# Schema Registry
 
 Defines a catalog with a schema pulled from a remote schema registry to enforce validation.
 
-Accepted `type` aliases: `karapace`
-
 ```yaml {2}
-<!-- @include: ./.partials/karaspace-schema-registry.yaml -->
+<!-- @include: ./.partials/schema-registry.yaml -->
 ```
 
 ## Configuration (\* required)
 
 ::: tabs
-
-@tab vault
-
-<!-- @include: ../../protocol/.partials/vault.md -->
 
 @tab options
 
