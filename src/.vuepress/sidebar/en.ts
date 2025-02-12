@@ -243,15 +243,13 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
-              text: "Filesystem",
+              text: "TCP",
               collapsible: true,
-              children: ["filesystem/filesystem.md"],
-            },
-            {
-              text: "gRPC",
-              collapsible: true,
-              children: ["grpc/client.md", "grpc/server.md", "grpc/kafka.md"],
-            },
+              children: [
+                "tcp/client.md", 
+                "tcp/server.md",
+              ],
+            },  
             {
               text: "HTTP",
               collapsible: true,
@@ -260,15 +258,6 @@ export const enSidebar = sidebar({
                 "http/server.md",
                 "http/filesystem.md",
                 "http/kafka.md",
-              ],
-            },
-            {
-              text: "MQTT",
-              collapsible: true,
-              children: [
-                "mqtt/client.md",
-                "mqtt/server.md",
-                "mqtt/kafka_proxy.md",
               ],
             },
             {
@@ -283,15 +272,29 @@ export const enSidebar = sidebar({
               ],
             },
             {
+              text: "gRPC",
+              collapsible: true,
+              children: ["grpc/client.md", "grpc/server.md", "grpc/kafka.md"],
+            },
+            {
+              text: "MQTT",
+              collapsible: true,
+              children: [
+                "mqtt/client.md",
+                "mqtt/server.md",
+                "mqtt/kafka_proxy.md",
+              ],
+            },
+            {
               text: "SSE",
               collapsible: true,
               children: ["sse/client.md", "sse/server.md", "sse/proxy.md"],
             },
             {
-              text: "TCP",
+              text: "Filesystem",
               collapsible: true,
-              children: ["tcp/client.md", "tcp/server.md"],
-            },  
+              children: ["filesystem/filesystem.md"],
+            },
             {
               text: "TLS",
               collapsible: true,
