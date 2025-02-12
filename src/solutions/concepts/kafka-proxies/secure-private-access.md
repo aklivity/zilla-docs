@@ -8,7 +8,7 @@ description: Securely access your Kafka cluster via the intranet.
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-The [<ZillaPlus/> Secure Private Access for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) enables authorized Kafka clients deployed across **cross-account VPCs and regions** to securely connect, publish messages, and subscribe to topics in your Amazon MSK Serverless cluster.
+The [<ZillaPlus/> Secure Private Access for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) enables authorized Kafka clients deployed across **cross-account VPCs** to securely connect, publish messages, and subscribe to topics in your Amazon MSK Serverless cluster.
 
 This setup establishes a fully private, secure, and scalable communication channel between Kafka clients and the Amazon MSK cluster by leveraging **<ZillaPlus/>** proxy.
 
@@ -18,7 +18,7 @@ This setup establishes a fully private, secure, and scalable communication chann
 
 ## Key Features
 
-- Seamless MSK Serverless Connectivity across **Cross-Account VPCs and regions**.
+- Seamless MSK Serverless Connectivity across **Cross-Account VPCs**.
 - **Custom Wildcard DNS** & Route 53 Hosted Zone Integration.
 - **Unified Domain Name** for Kafka clients, streamlining configuration.
 - **Eliminates** the need to **manually whitelist** each bootstrap endpoint to enable access.
@@ -28,23 +28,19 @@ This setup establishes a fully private, secure, and scalable communication chann
 
 ### Many-to-One Private Access
 
-Multiple Kafka clients from cross-account VPCs and regions securely connect to a single Amazon MSK Serverless cluster. This approach simplifies multi-tenant access and ensures a unified, private connectivity model.
+Multiple Kafka clients from cross-account VPCs securely connect to a single Amazon MSK Serverless cluster. This approach simplifies multi-tenant access and ensures a unified, private connectivity model.
 
 ![Many to One Private Access Overview](/many_to_one.png)
 
 ### One-to-Many Private Access
 
-Enables Kafka client to securely access multiple Amazon MSK Serverless clusters deployed across different VPCs and regions.
+Enables Kafka client to securely access multiple Amazon MSK Serverless clusters deployed across different VPCs.
 
 ![One to Many Private Access Overview](/one_to_many.png)
 
 You will need to choose a wildcard DNS pattern to use for intranet access to the brokers in your Kafka cluster. These wildcard DNS names must resolve to the IP address of the VPC Endpoint in the client VPC, which then routes traffic via the VPC Endpoint Service to the ZillaPlus Network Load Balancer (NLB).
 
 Additionally, the <ZillaPlus/> proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
-
-::: info
-Aklivity recommend using the format `*.<region>.<custom-domain>` for your custom wildcard DNS domain. This removes the need for additional client configuration, as the MSK Serverless cluster region can be directly inferred from the custom domain itself.
-:::
 
 ## Deploy with CDK
 
