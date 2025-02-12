@@ -156,8 +156,8 @@ export const enSidebar = sidebar({
           text: "Amazon MSK",
           children: [
             {
-              text: "Terraform",
-              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
+              text: "CDK",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access",
             },
           ],
         },
