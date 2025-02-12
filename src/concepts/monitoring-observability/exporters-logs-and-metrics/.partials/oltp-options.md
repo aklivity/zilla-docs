@@ -5,7 +5,7 @@
 | Property | Type | Description |
 | -- | -- | -- |
 | options.interval |  `number` | Default: `30` |  Interval in seconds to push data to the collector. | 
-| options.signals |  `array` of `enum` [ `metrics`, `logs` ] |  Specifies what signals should be exported. The default behavior is to export all supported signals. | 
+| options.signals |  `enum[]` [ `metrics`, `logs` ] |  Specifies what signals should be exported. The default behavior is to export all supported signals. | 
 | options.endpoint\* |  `object` |  Contains details for the OpenTelemetry Protocol collector endpoint. | 
 | options.endpoint.protocol |  `enum` [ `http` ] | Default: `http` |  Specifies the protocol to use for exporting data for exporting data to the [OTEL Collector](https://opentelemetry.io/docs/collector/). | 
 | options.endpoint.location\* |  `string` |  The URI for the collector endpoint. | 
