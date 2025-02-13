@@ -112,6 +112,10 @@ export const enSidebar = sidebar({
           link: "how-tos/amazon-msk/secure-public-access/production.md",
           children: [
             {
+              text: "CDK",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access",
+            },
+            {
               text: "Terraform",
               link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
             },
