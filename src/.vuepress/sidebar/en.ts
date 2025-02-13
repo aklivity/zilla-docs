@@ -144,6 +144,26 @@ export const enSidebar = sidebar({
       ],
     },
     {
+      text: "Secure Private Access",
+      icon: "aky-zilla-plus",
+      children: [
+        {
+          text: "Deployment Options",
+          link: "concepts/kafka-proxies/secure-private-access.md",
+          children: [],
+        },
+        {
+          text: "Amazon MSK",
+          children: [
+            {
+              text: "CDK",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access",
+            },
+          ],
+        },
+      ],
+    },
+    {
       text: "IoT Ingest and Control",
       icon: "aky-zilla-plus",
       children: [
@@ -399,6 +419,12 @@ export const enSidebar = sidebar({
           text: "Secure Public Access on AWS",
           icon: "aky-zilla-plus",
           link: "solutions/concepts/kafka-proxies/secure-public-access.md",
+          children: [],
+        },
+        {
+          text: "Secure Private Access on AWS",
+          icon: "aky-zilla-plus",
+          link: "solutions/concepts/kafka-proxies/secure-private-access.md",
           children: [],
         },
         {
