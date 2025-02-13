@@ -26,7 +26,11 @@ Authorization is enforced by a `guard` and the credentials can be extracted from
 
 :::
 
-In the above example, the HTTP Server receives an inbound TCP connection stream from the TCP Server binding. The HTTP Server binding decodes the HTTP request, converting it into a higher-level abstraction in Zilla. Some routing, transformation, validation, etc can be done here before the stream is continued into the next pipeline. After the HTTP request is decoded, it can be continued into different protocols, for example, HTTP Kafka Proxy, HTTP Filesystem Proxy, SSE, etc. HTTP Kafka Proxy and HTTP Filesystem Proxy bindings act as an adaptor from HTTP request into the corresponding protocol.
+In the above example, the HTTP Server receives an inbound TCP connection stream from the TCP Server binding. The HTTP Server binding decodes the HTTP request, converting it into a higher-level abstraction in Zilla. Some routing, transformation, validation, etc can be done here before the stream is continued into the next pipeline.
+
+1. HTTP Server receives inbound stream from TCP Server. It decodes the HTTP request.
+2. The decoded HTTP request is then converted into different protocols, such as HTTP Kafka Proxy, HTTP Filesystem Proxy, SSE, etc.
+3. The HTTP Kafka Proxy binding receives the HTTP stream and acts as an adaptor from the HTTP protocol to the Kafka protocol.
 
 ## Configuration (\* required)
 

@@ -22,7 +22,10 @@ The tcp server binding listens for inbound socket connections, producing higher 
 
 :::
 
-In the above example, a TCP Server acts as a server that accepts inbound socket connections. It can open one to many ports and can map each connection to different ports into different routes. A TCP server usually acts as an entry point from external connections. The connection will then be passed to the next exit, for example into an HTTP Server.
+In the above example, a TCP Server acts as a server that accepts inbound socket connections. It can open one to many ports and can map each connection to different ports into different routes. A TCP server usually acts as an entry point from external connections.
+
+1. Inbound TCP connection received by TCP Server.
+2. The connection will then be passed to the next exit, for example into an HTTP Server.
 
 ## Configuration (\* required)
 
