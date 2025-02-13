@@ -112,6 +112,10 @@ export const enSidebar = sidebar({
           link: "how-tos/amazon-msk/secure-public-access/production.md",
           children: [
             {
+              text: "CDK",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access",
+            },
+            {
               text: "Terraform",
               link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
             },
@@ -140,6 +144,26 @@ export const enSidebar = sidebar({
           text: "Confluent Cloud",
           link: "how-tos/confluent-cloud/secure-public-access.md",
           children: [],
+        },
+      ],
+    },
+    {
+      text: "Secure Private Access",
+      icon: "aky-zilla-plus",
+      children: [
+        {
+          text: "Deployment Options",
+          link: "concepts/kafka-proxies/secure-private-access.md",
+          children: [],
+        },
+        {
+          text: "Amazon MSK",
+          children: [
+            {
+              text: "CDK",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access",
+            },
+          ],
         },
       ],
     },
@@ -399,6 +423,12 @@ export const enSidebar = sidebar({
           text: "Secure Public Access on AWS",
           icon: "aky-zilla-plus",
           link: "solutions/concepts/kafka-proxies/secure-public-access.md",
+          children: [],
+        },
+        {
+          text: "Secure Private Access on AWS",
+          icon: "aky-zilla-plus",
+          link: "solutions/concepts/kafka-proxies/secure-private-access.md",
           children: [],
         },
         {

@@ -72,6 +72,7 @@ bindings:
               - topic: device/#
         with:
           messages: mqtt-devices
+        exit: north_kafka_cache_client
     #endregion device_mapping
 
   #region kafka_sync

@@ -24,4 +24,5 @@ catalog:
 
 ## Configuration (\* required)
 
+<!-- @include: ../bindings/.partials/vault.md -->
 <!-- @include: ./.partials/options-schema-registry.md -->
