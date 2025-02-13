@@ -25,6 +25,7 @@ This setup establishes a fully private, secure, and scalable communication chann
 - Seamless end-to-end **TLS** handshake.
 - **Auto-Scaling** <ZillaPlus/> Instances.
 - Deployed behind a **Network Load Balancer** for high availability and efficient request routing.
+- Integrates with **AWS Nitro Enclaves**, enabling automated certificate renewal.
 
 ### Many-to-One Private Access
 
