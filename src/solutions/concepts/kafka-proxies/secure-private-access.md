@@ -28,13 +28,13 @@ This setup establishes a fully private, secure, and scalable communication chann
 
 ### Many-to-One Private Access
 
-Multiple Kafka clients from cross-account VPCs securely connect to a single Amazon MSK Serverless cluster. This approach simplifies multi-tenant access and ensures a unified, private connectivity model.
+Multiple Kafka clients from different cross-account VPCs securely connect to a single Amazon MSK Serverless cluster. This approach simplifies multi-tenant access and ensures a unified, private connectivity model.
 
 ![Many to One Private Access Overview](/many_to_one.png)
 
 ### One-to-Many Private Access
 
-Enables Kafka client to securely access multiple Amazon MSK Serverless clusters deployed across different VPCs.
+Enables Kafka clients to securely access multiple Amazon MSK Serverless clusters deployed across different VPCs.
 
 ![One to Many Private Access Overview](/one_to_many.png)
 
@@ -44,4 +44,4 @@ Additionally, the <ZillaPlus/> proxy must also be configured with a TLS server c
 
 ## Deploy with CDK
 
-Follow the [Secure Private Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access) guide to generated or deploy a custom AWS CDK stack. This CDK-based deployment supports `SASL/SCRAM authentication`, `Mutual TLS (mTLS) authentication` or `Unauthorized access` to setup connectivity to your MSK Serverless cluster with a wildcard DNS pattern.
+Follow the [Secure Private Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access) guide to generate or deploy a custom AWS CDK stack.
