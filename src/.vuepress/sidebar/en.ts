@@ -496,6 +496,7 @@ export const enSidebar = sidebar({
         {
           text: "Install Zilla",
           prefix: "deployment/install-zilla",
+          collapsible: true,
           children: [
             "homebrew.md",
             "docker.md",

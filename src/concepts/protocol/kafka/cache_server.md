@@ -24,6 +24,23 @@ When the `kafka` `topic` is not compacted, then the binding can be configured to
 
 The `cache_server` also combine to provide a staging area when producing new messages as `kafka` requires exact message length up front when producing new messages and `kafka` does not support producing multiple messages in parallel over the same network connection.
 
+## Usage Example
+
+![Pipeline with Kafka Cache Server Example](../images/http-part2.png)
+
+::: details Full HTTP Proxy zilla.yaml Config
+
+```yaml
+<!-- @include: ../../../cookbooks/quickstart/http-zilla.yaml -->
+```
+
+:::
+
+In the above example, the Kafka Cache Server proactively `fetches` messages from Kafka and stores `cacheable` messages from Kafka. This caching mechanism can be used to reduce the load on the Kafka server.
+
+1. Kafka Cache Server connects to Kafka Client binding and proactively `fetch` messages from Kafka.
+2. When an inbound request stream is received from the Kafka Cache Client, it serves the requested messages.
+
 ## Configuration (\* required)
 
 ::: tabs
