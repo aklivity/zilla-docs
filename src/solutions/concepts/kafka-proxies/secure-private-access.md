@@ -8,7 +8,7 @@ description: Securely access your Kafka cluster via the intranet.
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-The [<ZillaPlus/> Secure Private Access for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) enables authorized Kafka clients deployed across **cross-account VPCs** to securely connect, publish messages, and subscribe to topics in your Amazon MSK Serverless cluster.
+The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Private Access proxy enables authorized Kafka clients deployed across **cross-account VPCs** to securely connect, publish messages, and subscribe to topics in your Amazon MSK Serverless cluster.
 
 This setup establishes a fully private, secure, and scalable communication channel between Kafka clients and the Amazon MSK cluster by leveraging **<ZillaPlus/>** proxy.
 
