@@ -1,0 +1,55 @@
+name: Filesystem-example
+bindings:
+  # Proxy service entrypoint
+  north_tcp_server:
+    type: tcp
+    kind: server
+    options:
+      host: 0.0.0.0
+      port:
+        - 443
+    routes:
+        - when:
+            - port: 443
+          exit: north_tls_server
+  north_tls_server:
+    type: tls
+    kind: server
+    vault: my_servers
+    options:
+      keys:
+        - my_server.com
+      sni:
+        - my_server.com
+      alpn:
+        - http/1.1
+        - h2
+    exit: north_http_server
+  north_http_server:
+    type: http
+    kind: server
+    options:
+      access-control:
+        policy: cross-origin
+    exit: north_http_filesystem_mapping
+
+  # UI html file server
+  north_http_filesystem_mapping:
+    type: http-filesystem
+    kind: proxy
+    routes:
+      - when:
+          - path: /{path}
+        with:
+          path: ${params.path}
+        exit: north_filesystem_server
+  north_filesystem_server:
+    type: filesystem
+    kind: server
+    options:
+      location: /var/www/
+
+telemetry:
+  exporters:
+    stdout_logs_exporter:
+      type: stdout
