@@ -31,7 +31,7 @@ This guide will help you gather the necessary AWS values required to configure a
 
 ## Step 1: Create an example MSK cluster (optional)
 
-If you don't have an existing MSK cluster you can use our example MSK deployment with basic configuration and Unauthorized access. Follow the instructions inside the [example-cluster](https://github.com/aklivity/zilla-plus-aws-templates/blob/main/amazon-msk/cdktf/example-cluster/README.md) folder to deploy the example MSK cluster. Note the `mskClusterName` from the outputs as you'll need this later. You will need to set the [MSK client auth method](#msk-related-variables) env var to `Unauthorized`.
+If you don't have an existing MSK cluster you can use our example MSK deployment with basic configuration and Unauthorized access. Follow the instructions inside the [example-cluster](https://github.com/aklivity/zilla-plus-aws-templates/blob/main/amazon-msk/cdktf/example-cluster/README.md) folder to deploy the example MSK cluster. Note the `mskClusterName` from the outputs as you'll need this later. You will need to set the [MSK client auth method](#step-2-set-the-required-cdktf-context-variables) env var to `Unauthorized`.
 
 ## Step 2: Set the required CDKTF context variables
 
@@ -173,7 +173,7 @@ Note down the ARN of the ACM Private Certificate Authority you want to use.
 
 ## Step 3: Configure the optional features (optional)
 
-These features all have default values and can be configured using cdk context variables. If you don't plan to configure any of these features you can skip this section and go to the [Deploy stack using Terraform](#deploy-stack-using-terraform) section.
+These features all have default values and can be configured using cdk context variables. If you don't plan to configure any of these features you can skip this section and go to the [Deploy stack using Terraform](#step-4-deploy-stack-using-terraform) section.
 
 ### Internet Gateway ID
 

@@ -20,7 +20,7 @@ Before creating an IoT Ingest and Control MQTT Broker to your Kafka cluster, you
 - a Kafka cluster configured for SASL/SCRAM authentication
 - a custom DNS wildcard domain, for this guide we will use `*.example.aklivity.io`
 - a TLS Server Certificate stored in Secrets Manager for your custom DNS wildcard domain
-- a Zilla Plus for Amazon MSK subscription, if you don't have one, visit the Proxy's Marketplace [Product Page]((https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44)) and `Subscribe` to the offering
+- a Zilla Plus for Amazon MSK subscription, if you don't have one, visit the Proxy's Marketplace [Product Page](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) and `Subscribe` to the offering
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the IoT Ingest and Control CloudFormation template.
@@ -393,4 +393,4 @@ Cloud-init v. 22.2.2 running 'init'...
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](../aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your <ZillaPlus/> proxy can be found in the [managing a cloudformation stack](../other-resources/aws.md#aws) section.
