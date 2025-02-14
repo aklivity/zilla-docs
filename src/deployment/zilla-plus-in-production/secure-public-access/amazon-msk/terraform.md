@@ -8,7 +8,7 @@ shortTitle: Terraform
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-This guide will help you gather the necessary AWS values required to configure and deploy Zilla Plus Secure Public Access using Cloud Development Kit for Terrafor (CDKTF). You can access the full guide [here](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access).
+This guide will help you gather the necessary AWS values required to configure and deploy Zilla Plus Secure Public Access using Cloud Development Kit for Terraform (CDKTF). You can access the full guide [here](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access).
 
 ## Prerequisites
 
@@ -29,15 +29,17 @@ This guide will help you gather the necessary AWS values required to configure a
        region                us-east-1              env    ['AWS_REGION', 'AWS_DEFAULT_REGION']
    ```
 
-## Create an example MSK cluster (optional)
+## Step 1: Create an example MSK cluster (optional)
 
 If you don't have an existing MSK cluster you can use our example MSK deployment with basic configuration and Unauthorized access. Follow the instructions inside the [example-cluster](https://github.com/aklivity/zilla-plus-aws-templates/blob/main/amazon-msk/cdktf/example-cluster/README.md) folder to deploy the example MSK cluster. Note the `mskClusterName` from the outputs as you'll need this later. You will need to set the [MSK client auth method](#msk-related-variables) env var to `Unauthorized`.
 
-## Required CDKTF Context Variables
+## Step 2: Set the required CDKTF context variables
 
 You can set these variables in your `context` in `cdktf.json` file under `zilla-plus` object.
 
-### `msk` related variables
+:::: details msk related variables
+
+**`msk` Related Variables**
 
 ```json
 "msk":
@@ -69,8 +71,11 @@ Set the desired client authentication method based on the MSK cluster setup, usi
 
 :::
 
+::::
 
-### `public` Zilla Plus variables
+:::: details public Zilla Plus variables
+
+**`public` Zilla Plus Variables**
 
 ```json
     "public":
@@ -138,9 +143,13 @@ This variable defines the initial number of Zilla Plus instances.
 
 :::
 
-### mTLS Specific Variables
+::::
 
-You only need to add these if you choose mTLS as client authentication method
+:::: details mTLS Specific Variables
+
+**mTLS Specific Variables**
+
+You only need to add these if you choose mTLS as client authentication method.
 
 ::: tabs
 
@@ -160,7 +169,9 @@ Note down the ARN of the ACM Private Certificate Authority you want to use.
 
 :::
 
-## Optional Features
+::::
+
+## Step 3: Configure the optional features (optional)
 
 These features all have default values and can be configured using cdk context variables. If you don't plan to configure any of these features you can skip this section and go to the [Deploy stack using Terraform](#deploy-stack-using-terraform) section.
 
@@ -269,181 +280,158 @@ aws ec2 describe-key-pairs --query 'KeyPairs[*].[KeyName]' --output table
 
 Note down the KeyPair name `KeyName` you want to use.
 
-## Deploy stack using Terraform
+## Step 4: Deploy stack using Terraform
 
-### Install Project Dependencies
+1. Install the node.js dependencies specified in the `package.json` file:
 
-Install the node.js dependencies specified in the `package.json` file:
+    ```bash
+    npm install
+    ```
 
-```bash
-npm install
-```
+2. Navigate to the CDKTF project directory and run the following command to generate the constructs for external providers:
 
-### Generate external Terraform Provider constructs
+    ```bash
+    npm run get
+    ```
 
-Navigate to the CDKTF project directory.
+3. Navigate to the CDKTF project directory and run the following command to synthesize the configuration:
 
-Run the following command to generate the constructs for external providers:
+    ```bash
+    npm run synth
+    ```
 
-```bash
-npm run get
-```
+    ::: info Note
+    This command will generate the necessary Terraform JSON configuration files in the cdktf.out directory.
+    :::
 
-### Synthesize the Terraform Configuration
+4. Initialize terraform, pply the plan, review the resources to be create, and confirm to deploy the resources:
 
-First, you need to synthesize the Terraform configuration from the CDKTF code.
+    ```bash
+    terraform -chdir=cdktf.out/stacks/secure-public-access init
+    terraform -chdir=cdktf.out/stacks/secure-public-access apply
+    ```
 
-Navigate to the CDKTF project directory.
+5. Configure Global DNS to ensures that any new Kafka brokers added to the cluster can still be reached via the Zilla proxy. When using a wildcard DNS name for your own domain, such as `*.example.aklivity.io` then the DNS entries are setup in your DNS provider. After deploying the stack, check the outputs, where you can find the NetworkLoadBalancer DNS.
 
-Run the following command to synthesize the configuration:
+    ```
+    NetworkLoadBalancerOutput = "network-load-balancer-******.elb.us-east-1.amazonaws.com"
+    ```
 
-```bash
-npm run synth
-```
+    Lookup the IP addresses of your load balancer using `nslookup` and the DNS of the NetworkLoadBalancer.
 
-This command will generate the necessary Terraform JSON configuration files in the cdktf.out directory.
+    ```bash
+    nslookup network-load-balancer-86334a80cbd16ec2.elb.us-east-2.amazonaws.com
+    ```
 
-### Run terraform init and apply
+    ::: info Note
+    For testing purposes you can edit your local /etc/hosts file instead of updating your DNS provider.
+    :::
 
-After synthesizing the configuration you can use `terraform` to deploy zilla.
+6. Install a Java runtime that can be used by the Kafka client, then install the Kafka Client:
 
-Initialize terraform.
+    ```bash
+    sudo yum install java-1.8.0
+    ```
 
-```bash
-terraform -chdir=cdktf.out/stacks/secure-public-access init
-```
+    ```bash
+    wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.13-2.8.0.tgz
+    tar -xzf kafka_2.13-2.8.0.tgz
+    cd kafka_2.13-2.8.0
+    ```
 
-Apply the plan, review the resources to be create, and confirm to deploy the resources:
+7. With the Kafka client now installed we are ready to configure it and point it at the Zilla proxy:
 
-```bash
-terraform -chdir=cdktf.out/stacks/secure-public-access apply
-```
+    ::::tabs
 
-### Configure Global DNS
+    @tab mTLS
 
-This ensures that any new Kafka brokers added to the cluster can still be reached via the Zilla proxy. When using a wildcard DNS name for your own domain, such as `*.example.aklivity.io` then the DNS entries are setup in your DNS provider. After deploying the stack, check the outputs, where you can find the NetworkLoadBalancer DNS.
+    If you configured Zilla Plus to use mTLS authentication method, we need to import the trusted client certificate and corresponding private key into the local key store used by the Kafka client when connecting to the Zilla proxy. Also first you need to create a client certificate.
 
-```
-NetworkLoadBalancerOutput = "network-load-balancer-******.elb.us-east-1.amazonaws.com"
-```
+    ##### Create client certificate
 
-Lookup the IP addresses of your load balancer using `nslookup` and the DNS of the NetworkLoadBalancer.
+    You can use the following script to create a client certificate signed by an AWS Private Certificate Authority and upload the client private key to AWS SecretsManager.
 
-```bash
-nslookup network-load-balancer-86334a80cbd16ec2.elb.us-east-2.amazonaws.com
-```
+    :::details create_client_certificate.sh
+    ```bash
+    <!-- @include: ./create_client_certificate.sh -->
+    ```
+    :::
 
-For testing purposes you can edit your local /etc/hosts file instead of updating your DNS provider.
+    ##### Import trusted client certificate
 
-### Install the Kafka Client
+    ```bash
+    openssl pkcs12 -export -in client-1.cert -inkey client-1.pkcs8.pem -out client-1.p12 -name client-1
+    keytool -importkeystore -destkeystore /tmp/kafka.client.keystore.jks -deststorepass generated -srckeystore client-1.p12 -srcstoretype PKCS12 -srcstorepass generated -alias client-1
+    ```
 
-First, we must install a Java runtime that can be used by the Kafka client.
+    In this example, we are importing a private key and certificate with Common Name client-1 signed by a private certificate authority. First the private key and signed certificate are converted into a p12 formatted key store.
 
-```bash
-sudo yum install java-1.8.0
-```
+    Then the key store is converted to /tmp/kafka.client.keystore.jks in JKS format. When prompted, use a consistent password for each command. We use the password generated to illustrate these steps.
 
-Now we are ready to install the Kafka client:
+    The Zilla proxy relies on TLS so we need to create a file called client.properties that tells the Kafka client to use SSL as the security protocol and to specify the key store containing authorized client certificates.
 
-```bash
-wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.13-2.8.0.tgz
-tar -xzf kafka_2.13-2.8.0.tgz
-cd kafka_2.13-2.8.0
-```
+    ##### client.properties
 
-### Configure the Kafka Client
+    ```text
+    security.protocol=SSL
+    ssl.keystore.location=/tmp/kafka.client.keystore.jks
+    ssl.keystore.password=generated
+    ```
 
-With the Kafka client now installed we are ready to configure it and point it at the Zilla proxy.
+    @tab SASL/SCRAM
 
-#### With mTLS
+    If you configured Zilla Plus to use SASL/SCRAM authentication method, Zilla proxy relies on encrypted SASL/SCRAM so we need to create a file called client.properties that tells the Kafka client to use SASL_SSL as the security protocol with SCRAM-SHA-512 encryption.
 
-If you configured Zilla Plus to use mTLS authentication method, we need to import the trusted client certificate and corresponding private key into the local key store used by the Kafka client when connecting to the Zilla proxy. Also first you need to create a client certificate.
+    Notice we used the default username and password, but you will need to replace those with your own credentials from the `AmazonMSK_*` secret you created.
 
-##### Create client certificate
+    ##### client.properties
 
-You can use the following script to create a client certificate signed by an AWS Private Certificate Authority and upload the client private key to AWS SecretsManager.
+    ```text
+    sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required username="alice" password="alice-secret";
+    security.protocol=SASL_SSL
+    sasl.mechanism=SCRAM-SHA-512
+    ```
 
-::: details create_client_certificate.sh
-```bash
-<!-- @include: ./create_client_certificate.sh -->
-```
-:::
+    @tab Unauthorized Access
 
+    ##### Trust the Private Certificate Authority
 
-##### Import trusted client certificate
+    Import the private CA certificate into your trust store.
 
-```bash
-openssl pkcs12 -export -in client-1.cert -inkey client-1.pkcs8.pem -out client-1.p12 -name client-1
-keytool -importkeystore -destkeystore /tmp/kafka.client.keystore.jks -deststorepass generated -srckeystore client-1.p12 -srcstoretype PKCS12 -srcstorepass generated -alias client-1
-```
+    ```bash
+    keytool -importcert -keystore /tmp/kafka.client.truststore.jks -storetype jks -storepass generated -alias pca -file Certificate.pem
+    ```
 
-In this example, we are importing a private key and certificate with Common Name client-1 signed by a private certificate authority. First the private key and signed certificate are converted into a p12 formatted key store.
+    ##### Configure the Kafka Client
 
-Then the key store is converted to /tmp/kafka.client.keystore.jks in JKS format. When prompted, use a consistent password for each command. We use the password generated to illustrate these steps.
+    The Zilla proxy relies on TLS so we need to create a file called client.properties that tells the Kafka client to use SSL as the security protocol and to trust your private certificate authority as the signer of the \*.aklivity.example.com certificate.
 
-The Zilla proxy relies on TLS so we need to create a file called client.properties that tells the Kafka client to use SSL as the security protocol and to specify the key store containing authorized client certificates.
+    ##### client.properties
 
-##### client.properties
+    ```text
+    security.protocol=SSL
+    ssl.truststore.location=/tmp/kafka.client.truststore.jks
+    ```
 
-```text
-security.protocol=SSL
-ssl.keystore.location=/tmp/kafka.client.keystore.jks
-ssl.keystore.password=generated
-```
+    ::::
 
-#### With SASL/SCRAM
+8. Test the Kafka Client to verifies internet connectivity to your MSK cluster via Zilla Plus for Amazon MSK. If using the wildcard DNS pattern `*.example.aklivity.io`, then we use the following as TLS bootstrap server names for the Kafka client:
 
-If you configured Zilla Plus to use SASL/SCRAM authentication method, Zilla proxy relies on encrypted SASL/SCRAM so we need to create a file called client.properties that tells the Kafka client to use SASL_SSL as the security protocol with SCRAM-SHA-512 encryption.
+    ```text
+    b-1.example.aklivity.io:9094,b-2.example.aklivity.io:9094
+    ```
 
-Notice we used the default username and password, but you will need to replace those with your own credentials from the `AmazonMSK_*` secret you created.
+    ::: info Note
+    Replace these TLS bootstrap server names accordingly for your own custom wildcard DNS pattern.
+    :::
 
-##### client.properties
+    ::: tabs
+    @tab Create a Topic
 
-```text
-sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required username="alice" password="alice-secret";
-security.protocol=SASL_SSL
-sasl.mechanism=SCRAM-SHA-512
-```
+    Use the Kafka client to create a topic called zilla-proxy-test, replacing `<tls-bootstrap-server-names>` in the command below with the TLS proxy names of your Zilla proxy:
 
-#### With Unauthorized Access
+    ```bash
+    bin/kafka-topics.sh --create --topic zilla-proxy-test --partitions 3 --replication-factor 2 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
+    ```
 
-##### Trust the Private Certificate Authority
-
-Import the private CA certificate into your trust store.
-
-```bash
-keytool -importcert -keystore /tmp/kafka.client.truststore.jks -storetype jks -storepass generated -alias pca -file Certificate.pem
-```
-
-##### Configure the Kafka Client
-
-The Zilla proxy relies on TLS so we need to create a file called client.properties that tells the Kafka client to use SSL as the security protocol and to trust your private certificate authority as the signer of the \*.aklivity.example.com certificate.
-
-##### client.properties
-
-```text
-security.protocol=SSL
-ssl.truststore.location=/tmp/kafka.client.truststore.jks
-```
-
-### Test the Kafka Client
-
-This verifies internet connectivity to your MSK cluster via Zilla Plus for Amazon MSK.
-
-We can now verify that the Kafka client can successfully communicate with your MSK cluster via the internet from your local development environment to create a topic, then publish and subscribe to the same topic.
-
-If using the wildcard DNS pattern `*.example.aklivity.io`, then we use the following as TLS bootstrap server names for the Kafka client:
-
-```text
-b-1.example.aklivity.io:9094,b-2.example.aklivity.io:9094
-```
-
-Replace these TLS bootstrap server names accordingly for your own custom wildcard DNS pattern.
-
-#### Create a Topic
-
-Use the Kafka client to create a topic called zilla-proxy-test, replacing `<tls-bootstrap-server-names>` in the command below with the TLS proxy names of your Zilla proxy:
-
-```bash
-bin/kafka-topics.sh --create --topic zilla-proxy-test --partitions 3 --replication-factor 2 --command-config client.properties --bootstrap-server <tls-bootstrap-server-names>
-```
+    :::
