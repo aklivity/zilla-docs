@@ -8,7 +8,7 @@ shortTitle: Terraform
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-This guide will help you gather the necessary AWS values required to configure and deploy Zilla Plus Secure Public Access using CDKTF. You can access the full guide [here](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access).
+This guide will help you gather the necessary AWS values required to configure and deploy Zilla Plus Secure Public Access using Cloud Development Kit for Terrafor (CDKTF). You can access the full guide [here](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access).
 
 ## Prerequisites
 

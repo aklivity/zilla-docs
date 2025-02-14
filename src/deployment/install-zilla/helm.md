@@ -6,15 +6,66 @@ shortTitle: Helm
 
 Go to the [Zilla artifacthub](https://artifacthub.io/packages/helm/zilla/zilla) page to learn more about installing Zilla using Helm.
 
+## Prerequisite
+
+- [Kubernetes](https://kubernetes.io/): Version `1.23.x` or higher
+- [Helm](https://helm.sh/): Version `3.8.x` or higher
+
+## Instructions
+
+### Step 1: Installing the Zilla Helm Chart
+
+Use the following command to install Zilla on your Kubernetes cluster:
+
 ```bash
-helm install zilla oci://ghcr.io/aklivity/charts/zilla --namespace zilla --create-namespace --wait \
---values values.yaml \
---set-file zilla\\.yaml=zilla.yaml
+helm install [RELEASE_NAME] oci://ghcr.io/aklivity/charts/zilla
 ```
 
-The Zilla configuration is in the `zilla.yaml` file, which is added to the Helm install using the `--set-file zilla\\.yaml=zilla.yaml` argument.
+Replace [RELEASE_NAME] with your preferred release name.
 
-## Mapping TCP ports through the official `ingress-nginx` ingress controller
+This will deploy Zilla with its default configuration.
+
+### Step 2: Verifying Installation
+
+Check if the Zilla pods are running by executing:
+
+```bash
+kubectl get pods
+```
+
+You should see a running Zilla pod in the list.
+
+### Additional Instructions
+
+#### Uninstalling Zilla
+
+If you need to remove Zilla, run the following command:
+
+```bash
+helm uninstall [RELEASE_NAME]
+```
+
+This will remove all Kubernetes components associated with the Zilla chart.
+
+#### Deploying with custom configuration
+
+Zilla specific configuration is in the `zilla.yaml` file which can be included in the helm install by adding `--set-file zilla\\.yaml=zilla.yaml` to your command.
+
+```bash
+helm install [RELEASE_NAME] oci://ghcr.io/aklivity/charts/zilla --set-file zilla\\.yaml=zilla.yaml
+```
+
+Additional files can be deployed to configmaps and secrets by adding e.g. `--set-file configMaps.proto.data.echo\\.proto=proto/echo.proto` and `--set-file secrets.tls.data.localhost\\.p12=tls/localhost.p12` to your command.
+
+```bash
+helm install [RELEASE_NAME] oci://ghcr.io/aklivity/charts/zilla \
+  --set-file configMaps.proto.data.echo\\.proto=proto/echo.proto \
+  --set-file secrets.tls.data.localhost\\.p12=tls/localhost.p12
+```
+
+See the [aklivity/zilla-examples](https://github.com/aklivity/zilla-examples) repository for examples.
+
+#### Mapping TCP ports through the official `ingress-nginx` ingress controller
 
 You can define your TCP ports to services mapping in a `tcp-services` ConfigMap. Official documentation on this method can be found in the [Exposing TCP and UDP services](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/) guide.
 
@@ -78,7 +129,7 @@ kubectl apply -f ingress-deploy.yaml
 
 The ingress controller will allow your ports to pass through, and you can configure which services should receive the requests made at those ports.
 
-## Adding files to the Zilla pod
+#### Adding files to the Zilla pod
 
 All local files referenced in a `zilla.yaml` config should be found in a location relative to the Zilla install location `/etc/zilla`. The best way to get your files into a pod is by using configmaps. Below you will find one option using configmaps and volume mounts to add your files into the Zilla pod.
 
@@ -119,7 +170,7 @@ volumes:
 
 :::
 
-## Get diagnostics from Zilla pods
+#### Get diagnostics from Zilla pods
 
 For every running Zilla pod you will need to first copy the `/var/run/zilla` directory to make sure no additional files are written while it is compressed then compress the full directory to make it easier to copy.
 

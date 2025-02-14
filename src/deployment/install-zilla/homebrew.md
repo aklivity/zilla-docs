@@ -6,17 +6,21 @@ shortTitle: Homebrew
 
 You can install Zilla using our [homebrew tap](https://github.com/aklivity/homebrew-tap), a Homebrew formulae that allows installation of zilla through the Homebrew package manager.
 
+## Prerequisite
+
+- [Homebrew](https://brew.sh/)
+
 ## Instructions
 
-Below are some instructions with output examples.
+### Step 1: Adding Aklivity third-party repository to Homebrew
 
-### Adding Aklivity third-party repository to Homebrew
+Add the Aklivity third-party repository (tap) to Homebrew. The tap allowing you to install packages maintained by Aklivity, including Zilla.
 
 ```bash
 brew tap aklivity/tap
 ```
 
-**Expected Output**
+**Expected Output Example**
 
 ```bash
 % brew tap aklivity/tap
@@ -27,13 +31,15 @@ Cloning into '/opt/homebrew/Library/Taps/aklivity/homebrew-tap'...
 Tapped 1 formula (14 files, 28.4KB).
 ```
 
-### Installing Zilla using Homebrew
+### Step 2: Installing Zilla using Homebrew
+
+Install Zilla from the Aklivity tap using Homebrew’s package management system.
 
 ```bash
 brew install zilla
 ```
 
-**Expected Output**
+**Expected Output Example**
 
 ```bash
 % brew install zilla
@@ -49,13 +55,23 @@ brew install zilla
 ==> Running `brew cleanup zilla`...
 ```
 
-### Listing all Zilla commands
+### Step 3: Running a `zilla.yaml` config
+
+Run a `zilla.yaml` config.
+
+```bash
+zilla start -ve -c ./zilla.yaml
+```
+
+### Additional Instructions
+
+#### Listing all Zilla commands
 
 ```bash
 zilla help
 ```
 
-**Expected Output**
+**Expected Output Example**
 
 ```bash
 % zilla help
@@ -70,13 +86,13 @@ Commands are:
 See 'zilla help <command>' for more information on a specific command.
 ```
 
-### Upgrading Zilla
+#### Upgrading Zilla
 
 ```bash
 brew upgrade zilla
 ```
 
-**Expected Output**
+**Expected Output Example**
 
 ```bash
 % brew upgrade zilla
@@ -93,21 +109,15 @@ aklivity/tap/zilla 0.9.78 -> 0.9.79
 ==> Running `brew cleanup zilla`...
 ```
 
-### Uninstalling Zilla
+#### Uninstalling Zilla
 
 ```bash
 brew uninstall zilla
 ```
 
-**Expected Output**
+**Expected Output Example**
 
 ```bash
 %  brew uninstall zilla
 Uninstalling /opt/homebrew/Cellar/zilla/0.9.79... (11,485 files, 250MB)
 ``` 
-
-### Running a `zilla.yaml` config
-
-```bash
-zilla start -ve -c ./zilla.yaml
-```
