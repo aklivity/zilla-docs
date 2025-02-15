@@ -21,6 +21,12 @@ The Secure Public Access Proxy lets authorized Kafka clients connect, publish me
 > [Amazon MSK Secure Public Access Proxy with Mutual TLS (mTLS) Guide](./secure-public-access/production-mutual-tls.md)
 > [Amazon MSK Secure Public Access Proxy with Unauthorized access Guide](./secure-public-access/development.md)
 
+## Secure Private Access
+
+The Secure Private Access proxy enables authorized Kafka clients deployed across **cross-account VPCs** to securely connect, publish messages, and subscribe to topics in your Amazon MSK Serverless cluster.
+
+> [Amazon MSK Secure Private Access Proxy](../../concepts/kafka-proxies/secure-private-access.md)
+
 ## Web Streaming
 
 The Web Streaming proxy lets Web clients publish, update, and stream messages to a Kafka topic in your Amazon MSK cluster.

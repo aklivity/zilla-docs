@@ -21,7 +21,7 @@ export default hopeTheme({
   favicon: "/favicon.ico",
 
   repo: "aklivity/zilla",
-  editLink: true,
+  editLink: false,
   contributors: false,
   lastUpdated: false,
   docsRepo,
