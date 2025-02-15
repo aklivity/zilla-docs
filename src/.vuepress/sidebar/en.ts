@@ -243,6 +243,11 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
+              text: "HTTP",
+              link: "http.md",
+              prefix: "concepts/protocol/",
+            },
+            {
               text: "TCP",
               collapsible: true,
               children: [
@@ -250,16 +255,6 @@ export const enSidebar = sidebar({
                 "tcp/server.md",
               ],
             },  
-            {
-              text: "HTTP",
-              collapsible: true,
-              children: [
-                "http/client.md",
-                "http/server.md",
-                "http/filesystem.md",
-                "http/kafka.md",
-              ],
-            },
             {
               text: "Kafka",
               collapsible: true,
