@@ -268,8 +268,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "gRPC",
-              collapsible: true,
-              children: ["grpc/client.md", "grpc/server.md", "grpc/kafka.md"],
+              link: "grpc.md",
+              prefix: "concepts/protocol/",
             },
             {
               text: "MQTT",

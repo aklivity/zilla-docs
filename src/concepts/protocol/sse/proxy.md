@@ -22,11 +22,11 @@ The sse-kafka proxy binding for adapting `sse` data streams to `kafka` data stre
 
 :::
 
-In the above example, the SSE-Kafka binding is an intermediary between SSE Server binding and Kafka Client (or Kafka Cache Client) binding. Some routing, transformation, data injection, etc can be done here before the stream is passed into the Kafka client.
+In the above example, the SSE-Kafka binding is an intermediary between SSE Server binding and Kafka Client binding. Some routing, transformation, data injection, etc can be done here before the stream is passed into the Kafka client.
 
 1. SSE Server sends the stream to SSE-Kafka binding.
 2. SSE Kafka performs the necessary transformation between the SSE stream and the Kafka stream.
-3. The transformed stream is then forwarded to Kafka Client (or Kafka Cache Client).
+3. The transformed stream is then forwarded to Kafka Client.
 
 ## Configuration (\* required)
 

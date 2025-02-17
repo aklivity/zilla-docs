@@ -22,11 +22,11 @@ The http-kafka proxy binding for adapting `http` request-response streams to `ka
 
 :::
 
-In the above example, the HTTP-Kafka binding is an intermediary between HTTP Server binding and Kafka Client (or Kafka Cache Client) binding. Some routing, transformation, data injection, etc can be done here before the stream is passed into the Kafka client.
+In the above example, the HTTP-Kafka binding is an intermediary between HTTP Server binding and Kafka Client binding. Some routing, transformation, data injection, etc can be done here before the stream is passed into the Kafka client.
 
 1. HTTP Server sends the stream to HTTP-Kafka binding.
 2. HTTP Kafka performs the necessary transformation between the HTTP stream and the Kafka stream.
-3. The transformed stream is then forwarded to Kafka Client (or Kafka Cache Client).
+3. The transformed stream is then forwarded to Kafka Client.
 
 ## Configuration (\* required)
 
