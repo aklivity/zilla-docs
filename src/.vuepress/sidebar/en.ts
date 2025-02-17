@@ -240,7 +240,13 @@ export const enSidebar = sidebar({
           text: "Protocol",
           link: "concepts/protocol.md",
           collapsible: true,
-          children: [],
+          children: [
+            {
+              text: "HTTP",
+              link: "http.md",
+              prefix: "concepts/protocol/",
+            }
+          ],
         },
         {
           text: "Proxy",

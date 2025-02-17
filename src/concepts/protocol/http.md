@@ -24,16 +24,11 @@ Zilla implements HyperText Transfer Protocol (HTTP) as a **first-class protocol 
 
 ```http
 GET /index.html HTTP/1.1
-```
-
-```http
 Host: app.domain.com
 User-Agent: Mozilla/5.0
 Content-Type: application/json
 Authorization: Bearer <token>
-```
 
-```json
 {
   "username": "john_doe",
   "password": "securepassword"
