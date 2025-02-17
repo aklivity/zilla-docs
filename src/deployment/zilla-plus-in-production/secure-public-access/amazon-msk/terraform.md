@@ -304,7 +304,7 @@ Note down the KeyPair name `KeyName` you want to use.
     This command will generate the necessary Terraform JSON configuration files in the cdktf.out directory.
     :::
 
-4. Initialize terraform, pply the plan, review the resources to be create, and confirm to deploy the resources:
+4. Initialize terraform, apply the plan, review the resources to be create, and confirm to deploy the resources:
 
     ```bash
     terraform -chdir=cdktf.out/stacks/secure-public-access init
