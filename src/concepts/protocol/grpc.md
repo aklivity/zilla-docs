@@ -87,7 +87,7 @@ gRPC encrypt data in transit by utilizing TLS integrated with HTTP/2. Zilla prov
 
 ### Authentication
 
-**Zilla natively supports [JWT-based authentication](https://docs.aklivity.io/zilla/latest/reference/config/guards/jwt.html)**, using a `guard` implementation that allows seamless validation and access control for protected resources.
+**Zilla natively supports [JWT-based authentication](../../reference/config/guards/jwt.md)**, using a `guard` implementation that allows seamless validation and access control for protected resources.
 
 **JWT** is a compact, URL-safe token used for authentication and authorization. It consists of three parts:
 
@@ -124,7 +124,7 @@ The server validates the token’s integrity and claims before granting access.
 
 Zilla enhances traditional gRPC workflows by integrating advanced validation, seamless protocol bridging, and dynamic access control.
 
-- **Data Governance**: Validate metadata, payloads, and request/response content with [Schema Registry](https://docs.aklivity.io/zilla/latest/reference/config/catalogs/) support.
+- **Data Governance**: Validate metadata, payloads, and request/response content with [Schema Registry](../../reference/config/catalogs/apicurio-registry.md) support.
 - **Protocol Mapping**: Enable effortless communication with Kafka through native Kafka Wire Protocol integration.
 - **Continuous Authorization**: Enforce continuous authorization with real-time Challenge events.
 
@@ -142,6 +142,6 @@ Zilla leverages gRPC Protocol to provide powerful proxying, event streaming, and
 
 ## Reference
 
-[grpc Binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/grpc/) The `grpc` support, with `server` or `client` behavior.
+[grpc Binding](../../reference/config/bindings/grpc/README.md) The `grpc` support, with `server` or `client` behavior.
 
-[grpc-kafka Binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/grpc-kafka/) The `proxy` kind `grpc-kafka` binding adapts gRPC request-response streams to Kafka topic streams.
+[grpc-kafka Binding](../../reference/config/bindings/grpc-kafka/README.md) The `proxy` kind `grpc-kafka` binding adapts gRPC request-response streams to Kafka topic streams.

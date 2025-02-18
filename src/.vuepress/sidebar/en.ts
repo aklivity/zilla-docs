@@ -247,6 +247,11 @@ export const enSidebar = sidebar({
               prefix: "concepts/protocol/",
             },
             {
+              text: "TCP",
+              link: "tcp.md",
+              prefix: "concepts/protocol/",
+            },  
+            {
               text: "gRPC",
               link: "grpc.md",
               prefix: "concepts/protocol/",
