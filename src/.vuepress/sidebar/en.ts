@@ -245,7 +245,12 @@ export const enSidebar = sidebar({
               text: "HTTP",
               link: "http.md",
               prefix: "concepts/protocol/",
-            }
+            },
+            {
+              text: "gRPC",
+              link: "grpc.md",
+              prefix: "concepts/protocol/",
+            },
           ],
         },
         {
