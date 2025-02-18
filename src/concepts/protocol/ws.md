@@ -68,6 +68,15 @@ Zilla provides support for [TLS bindings](https://docs.aklivity.io/zilla/latest/
 
 Zilla provides support for [JWT Guard](https://docs.aklivity.io/zilla/latest/reference/config/guards/jwt.html) to enable authentication and authorization using JSON Web Tokens (JWT), ensuring that only trusted clients can access protected resources by validating token integrity and claims.
 
+## Zilla: Beyond Standard TCP
+
+Zilla serves as an intelligent gateway for WebSocket (WS) connections, managing both inbound and outbound data streams.
+
+- **Dynamic Routing**: Routes WebSocket connections based on conditions like protocol and path, ensuring traffic is directed efficiently.
+- **Full-Duplex Communication**: Converts HTTP streams into WebSocket streams, enabling continuous two-way communication.
+- **Secure Connections**: Integrates TLS binding for encrypted WebSocket communication, ensuring data privacy.
+- **Data Governance**: Leverages [Schema Registry](../../reference/config/catalogs/apicurio-registry.md) for message validation, ensuring data integrity and consistent structure in WS communications.
+
 ## Zilla: WS Use Cases
 
 Zilla leverages the WebSocket protocol to provide powerful bidirectional communication, real-time event streaming, and secure data exchange, ensuring efficient and persistent connections between clients and servers.
@@ -78,4 +87,4 @@ Zilla leverages the WebSocket protocol to provide powerful bidirectional communi
 
 ## Reference
 
-[ws Binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/ws/)
+[ws Binding](../../reference/config/bindings/ws/README.md) The `ws` support, with `server` or `client` behavior.

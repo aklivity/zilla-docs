@@ -251,7 +251,7 @@ export const enSidebar = sidebar({
               text: "TCP",
               link: "tcp.md",
               prefix: "concepts/protocol/",
-            },  
+            }, 
             {
               text: "Kafka",
               link: "kafka.md",
@@ -284,8 +284,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "WS",
-              collapsible: true,
-              children: ["ws/client.md", "ws/server.md"],
+              link: "ws.md",
+              prefix: "concepts/protocol/",
             },
           ],
         },
