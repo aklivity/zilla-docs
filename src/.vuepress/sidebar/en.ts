@@ -250,11 +250,26 @@ export const enSidebar = sidebar({
               text: "TCP",
               link: "tcp.md",
               prefix: "concepts/protocol/",
-            },  
+            }, 
+            {
+              text: "Kafka",
+              link: "kafka.md",
+              prefix: "concepts/protocol/",
+            },
             {
               text: "gRPC",
               link: "grpc.md",
               prefix: "concepts/protocol/",
+            },
+            {
+              text: "MQTT",
+              link: "mqtt.md",
+              prefix: "concepts/protocol/",
+            },
+            {
+              text: "Filesystem",
+              collapsible: true,
+              children: ["filesystem/filesystem.md"],
             },
           ],
         },

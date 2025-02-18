@@ -86,6 +86,6 @@ Zilla leverages MQTT Protocol to provide efficient message brokering, real-time 
 
 ## Reference
 
-[mqtt binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/mqtt/) Defines a binding with `mqtt` protocol support, with `server` or `client` behavior.
+[mqtt binding](../../reference/config/bindings/mqtt/README.md) Defines a binding with `mqtt` protocol support, with `server` or `client` behavior.
 
-[mqtt-kafka binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/mqtt-kafka/) The `proxy` kind `mqtt-kafka` binding adapts MQTT topic streams to Kafka topic streams .
+[mqtt-kafka binding](../../reference/config/bindings/mqtt-kafka/README.md) The `proxy` kind `mqtt-kafka` binding adapts MQTT topic streams to Kafka topic streams .
