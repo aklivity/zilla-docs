@@ -254,14 +254,8 @@ export const enSidebar = sidebar({
             },  
             {
               text: "Kafka",
-              collapsible: true,
-              children: [
-                "kafka/client.md",
-                "kafka/cache_client.md",
-                "kafka/cache_server.md",
-                "kafka/proxy.md",
-                "kafka/remote_server.md",
-              ],
+              link: "kafka.md",
+              prefix: "concepts/protocol/",
             },
             {
               text: "gRPC",

@@ -7,13 +7,13 @@ description: HTTP Protocol in Zilla.
 
 ## Introduction
 
-Zilla implements HyperText Transfer Protocol (HTTP) as a **first-class protocol binding**, designed to seamlessly allow high-performance communication between clients and services in modern distributed systems. This enables Zilla to efficiently handle requests, real-time streaming, and secure data exchange, making it well-suited for APIs, event-driven architectures, and microservices.
+Zilla implements HyperText Transfer Protocol (HTTP) as a **first-class protocol binding**, designed to seamlessly allow high-performance communication between clients and services in modern distributed systems. This enables Zilla to efficiently handle requests, real-time streaming, and secure data exchange, making it well-suited for APIs, event-driven architectures, and microservices. HTTP is a protocol widely used for the web. With Zilla's HTTP support, it is possible for browsers, mobile applications, etc. to interact with Kafka through Zilla.
 
 ## HTTP Request-Response Flow
 
 ![HTTP Request-Response Flow](/http/aklivity_HTTP_request_response.png)
 
-1. **Request Initiation** – Client sends an HTTP request with headers, method, and optional body.
+1. **Request Initiation** – Client sends an HTTP request with method, path, headers, and optional body.
 2. **Processing** – Server handles the request, retrieves data, and prepares a response.
 3. **Response** – Server returns status, headers, and optional body.
 4. **Client Handling** – Client renders or processes the response.
@@ -23,15 +23,15 @@ Zilla implements HyperText Transfer Protocol (HTTP) as a **first-class protocol 
 ![HTTP Request Structure](/http/aklivity_HTTP_request.png)
 
 ```http
-GET /index.html HTTP/1.1
+POST /pets HTTP/1.1
 Host: app.domain.com
 User-Agent: Mozilla/5.0
 Content-Type: application/json
 Authorization: Bearer <token>
 
 {
-  "username": "john_doe",
-  "password": "securepassword"
+  "type": "cat",
+  "name": "Leo"
 }
 ```
 
@@ -41,20 +41,16 @@ Authorization: Bearer <token>
 
 ```http
 HTTP/1.1 200 OK
-```
-
-```http
 Content-Type: application/json
 Content-Length: 234
 Cache-Control: no-cache
-```
 
-```json
 {
-  "message": "Login successful",
-  "user": {
+  "message": "Success",
+  "pet": {
     "id": 101,
-    "name": "John Doe"
+    "type": "cat",
+    "name": "Leo"
   }
 }
 ```
@@ -80,7 +76,7 @@ Cache-Control: no-cache
 
 HTTPS (HTTP Secure) is an extension of HTTP that encrypts data using TLS. This prevents eavesdropping, tampering, and man-in-the-middle (MITM) attacks.
 
-Zilla provides support for HTTPS bindings to enforce TLS encryption and protect API communication by leveraging [**`TLS` binding**](https://docs.aklivity.io/zilla/latest/reference/config/bindings/tls/).
+Zilla provides support for HTTPS bindings to enforce TLS encryption and protect API communication by leveraging [**`TLS` binding**](../../reference/config/bindings/tls/README.md).
 
 #### TLS Handshake Process
 
@@ -94,7 +90,7 @@ Zilla provides support for HTTPS bindings to enforce TLS encryption and protect 
 
 HTTP is inherently **stateless**, meaning it does not store session information between requests. To manage authentication securely, **JSON Web Tokens (JWT)** are commonly used.
 
-**Zilla natively supports [JWT-based authentication](https://docs.aklivity.io/zilla/latest/reference/config/guards/jwt.html)**, using `guard` implementation allowing seamless validation and access control for protected resources.
+**Zilla natively supports [JWT-based authentication](../../reference/config/guards/jwt.md)**, using `guard` implementation allowing seamless validation and access control for protected resources.
 
 **JWT** is a compact, URL-safe token used for authentication and authorization. It consists of three parts:
 
@@ -114,7 +110,7 @@ The server validates the token’s integrity and claims before granting access.
 
 Zilla enhances traditional HTTP workflows by integrating advanced validation, seamless protocol bridging, and dynamic access control.
 
-- **Data Governance**: Validate headers, path parameters, query parameters, and request/response content with [Schema Registry](https://docs.aklivity.io/zilla/latest/reference/config/catalogs/) support.
+- **Data Governance**: Validate headers, path parameters, query parameters, and request/response content with [Schema Registry](../../reference/config/catalogs/apicurio-registry.md) support.
 - **Protocol Mapping**: Enable effortless communication with Kafka through native Kafka Wire Protocol integration.
 - **Continuous Authorization**: Enforce continuous authorization with real-time Challenge events.
 
@@ -135,8 +131,8 @@ Zilla leverages HTTP Protocol to provide powerful proxying, event streaming, and
 
 ## Reference
 
-[http Binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/http/) The `http` support, with `server` or `client` behavior.
+[http Binding](../../reference/config/bindings/http/README.md) The `http` support, with `server` or `client` behavior.
 
-[http-kafka Binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/http-kafka/) The `proxy` kind `http-kafka` binding adapts http request-response streams to kafka topic streams.
+[http-kafka Binding](../../reference/config/bindings/http-kafka/README.md) The `proxy` kind `http-kafka` binding adapts http request-response streams to kafka topic streams.
 
-[http-filesystem Binding](https://docs.aklivity.io/zilla/latest/reference/config/bindings/http-filesystem/) Binding with `http-filesystem` support, with `proxy` behavior.
+[http-filesystem Binding](../../reference/config/bindings/http-filesystem/README.md) Binding with `http-filesystem` support, with `proxy` behavior.
