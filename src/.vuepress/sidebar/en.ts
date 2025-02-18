@@ -249,11 +249,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "TCP",
-              collapsible: true,
-              children: [
-                "tcp/client.md", 
-                "tcp/server.md",
-              ],
+              link: "tcp.md",
+              prefix: "concepts/protocol/",
             },  
             {
               text: "Kafka",
@@ -273,12 +270,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "MQTT",
-              collapsible: true,
-              children: [
-                "mqtt/client.md",
-                "mqtt/server.md",
-                "mqtt/kafka_proxy.md",
-              ],
+              link: "mqtt.md",
+              prefix: "concepts/protocol/",
             },
             {
               text: "SSE",
