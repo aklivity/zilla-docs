@@ -99,8 +99,6 @@ Zilla leverages Kafka Protocol to provide powerful event streaming, data integra
   - [http.kafka.sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
 - **Kafka MQTT Proxy**
   - [mqtt.kafka.broker](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker)
-  - [Sync](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.sync)
-  - [Async](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.async)
 - **Kafka gRPC Proxy**
   - [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
   - [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
