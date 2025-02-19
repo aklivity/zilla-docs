@@ -271,6 +271,11 @@ export const enSidebar = sidebar({
               link: "filesystem.md",
               prefix: "concepts/protocol/",
             },
+            {
+              text: "WS",
+              link: "ws.md",
+              prefix: "concepts/protocol/",
+            },
           ],
         },
         {
