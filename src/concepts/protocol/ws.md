@@ -45,7 +45,7 @@ Here's a step-by-step explanation of how WebSocket works:
 
 ### WS Frame Structure
 
-![WS Frame Structure](./images/websocket-frame-sructure.png)
+![WS Frame Structure](./images/websocket-frame-structure.png)
 
 The WebSocket frame structure consists of several components:
 - **FIN (1 bit)** – Indicates if this is the final fragment (1 for final, 0 for more frames).

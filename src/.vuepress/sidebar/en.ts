@@ -279,8 +279,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "TLS",
-              collapsible: true,
-              children: ["tls/client.md", "tls/server.md", "tls/proxy.md"],
+              link: "tls.md",
+              prefix: "concepts/protocol/",
             },
             {
               text: "WS",
