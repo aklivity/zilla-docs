@@ -274,8 +274,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "Filesystem",
-              collapsible: true,
-              children: ["filesystem/filesystem.md"],
+              link: "filesystem.md",
+              prefix: "concepts/protocol/",
             },
             {
               text: "TLS",
