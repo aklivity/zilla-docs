@@ -62,11 +62,11 @@ The WebSocket frame structure consists of several components:
 
 WebSocket is a communication protocol that enables real-time, bidirectional data exchange between clients and servers. To ensure secure transmission, WebSocket can operate over TLS (Transport Layer Security) using WSS (WebSocket Secure), which encrypts data and protects against unauthorized interception, data tampering, and man-in-the-middle (MITM) attacks.
 
-Zilla provides support for [TLS bindings](https://docs.aklivity.io/zilla/latest/reference/config/bindings/tls/) to enforce secure communication between WebSocket clients and servers, ensuring that all messages are encrypted in transit and protected from unauthorized access or tampering.
+Zilla provides support for [TLS bindings](../../reference/config/bindings/tls/README.md) to enforce secure communication between WebSocket clients and servers, ensuring that all messages are encrypted in transit and protected from unauthorized access or tampering.
 
 ### JWT Guard
 
-Zilla provides support for [JWT Guard](https://docs.aklivity.io/zilla/latest/reference/config/guards/jwt.html) to enable authentication and authorization using JSON Web Tokens (JWT), ensuring that only trusted clients can access protected resources by validating token integrity and claims.
+Zilla provides support for [JWT Guard](../../reference/config/guards/jwt.md) to enable authentication and authorization using JSON Web Tokens (JWT), ensuring that only trusted clients can access protected resources by validating token integrity and claims.
 
 ## Zilla: Beyond Standard TCP
 

@@ -25,7 +25,7 @@ Zilla implements **Transmission Control Protocol (TCP)** as a **first-class prot
 
 TCP, a foundational transport protocol, ensures reliable data transmission but lacks built-in encryption, making it vulnerable to interception and tampering. Encrypting TCP traffic with TLS (Transport Layer Security) enhances security by preventing unauthorized access and protecting against threats like man-in-the-middle (MITM) attacks. By implementing TLS over TCP, applications can establish secure, encrypted communication channels while maintaining data integrity and authentication.
 
-Zilla provides [TLS bindings](https://docs.aklivity.io/zilla/latest/reference/config/bindings/tls/) to enforce secure communication over TCP, ensuring that all transmitted data is encrypted. By integrating TLS with Zilla, organizations can enhance security for various TCP-based applications, protecting sensitive information while maintaining reliable and efficient data exchange.
+Zilla provides [TLS bindings](../../reference/config/bindings/tls/README.md) to enforce secure communication over TCP, ensuring that all transmitted data is encrypted. By integrating TLS with Zilla, organizations can enhance security for various TCP-based applications, protecting sensitive information while maintaining reliable and efficient data exchange.
 
 ## Zilla: Beyond Standard TCP
 
@@ -48,5 +48,5 @@ Zilla also improves TCP performance but also enables its use for a wide range of
 
 ## Reference
 
-[tcp Binding](../../reference/config/bindings/tcp/README.md) The `tcp` support, with `server` or `client` behavior.
+[tcp binding](../../reference/config/bindings/tcp/README.md) The `tcp` support, with `server` or `client` behavior.
 

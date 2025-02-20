@@ -269,8 +269,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "SSE",
-              collapsible: true,
-              children: ["sse/client.md", "sse/server.md", "sse/proxy.md"],
+              link: "sse.md",
+              prefix: "concepts/protocol/",
             },
             {
               text: "Filesystem",
