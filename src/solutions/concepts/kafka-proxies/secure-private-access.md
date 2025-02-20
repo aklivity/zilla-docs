@@ -19,6 +19,7 @@ This setup establishes a fully private, secure, and scalable communication chann
 ## Key Features
 
 - Seamless MSK Serverless Connectivity across **Cross-Account VPCs**.
+- **No configuration** changes required to the MSK cluster.
 - **Custom Wildcard DNS** & Route 53 Hosted Zone Integration.
 - **Unified Domain Name** for Kafka clients, streamlining configuration.
 - **Eliminates** the need to **manually whitelist** each bootstrap endpoint to enable access.
