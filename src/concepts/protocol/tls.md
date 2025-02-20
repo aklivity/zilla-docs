@@ -28,7 +28,7 @@ TLS provides encryption, integrity, and authentication for network communication
 - **[Kafka](./kafka.md#encryption-with-ssltls)** - Kafka with TLS ensures encrypted communication between brokers and clients, preventing unauthorized access to message streams.
 - **[gRPC](./grpc.md#securing-grpc-with-tls)** - gRPC with TLS secures remote procedure calls by encrypting messages over HTTP/2 to maintain data confidentiality.
 - **[MQTT](./mqtt.md#securing-mqtt-with-tls)** - MQTTS is the secure version of MQTT, where TLS encrypts messages to protect IoT device communication.
-- **[SSE](/)** - SSE with TLS secures real-time server-sent events by encrypting data over an HTTPS connection.
+- **[SSE](./sse.md#securing-sse-with-tls)** - SSE with TLS secures real-time server-sent events by encrypting data over an HTTPS connection.
 - **[WS](./ws.md#securing-ws-with-tls)** - WSS is the secure version of WebSockets, where TLS encrypts bi-directional real-time communication between clients and servers.
 - **[TCP](./tcp.md#securing-tcp-with-tls)** - TCP with TLS (STARTTLS) upgrades unencrypted TCP connections to secure TLS-encrypted communication to protect transmitted data.
 - **[Filesystem](./filesystem.md#https)** - By utilizing HTTP and TLS binding, a TLS encryption can be enforced on the Filesystem bindings.
@@ -51,7 +51,7 @@ Zilla enhances TLS-based communication by providing secure proxying, traffic ref
     - [Echo](https://github.com/aklivity/zilla-examples/tree/main/tls.echo)
     - [Reflect](https://github.com/aklivity/zilla-examples/tree/main/tls.reflect)
 
-Zilla’s TLS implementation ensures secure communication across various protocols, supporting use cases such as encrypted microservices communication, secure IoT messaging, and private data exchange while seamlessly integrating with [other protocols](#securing-protocols-with-tls) such as HTTP and MQTT.
+Zilla's TLS implementation ensures secure communication across various protocols, supporting use cases such as encrypted microservices communication, secure IoT messaging, and private data exchange while seamlessly integrating with [other protocols](#securing-protocols-with-tls) such as HTTP and MQTT.
 
 ## Reference
 

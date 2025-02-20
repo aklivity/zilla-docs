@@ -62,10 +62,10 @@ MQTT operates on a publish-subscribe model and consists of the following key com
 
 MQTT is a lightweight messaging protocol widely used for IoT communication. To ensure secure data transmission, it is essential to encrypt MQTT traffic using TLS (Transport Layer Security). This prevents unauthorized interception, data tampering, and man-in-the-middle (MITM) attacks.
 
-Zilla provides support for [TLS bindings](https://docs.aklivity.io/zilla/latest/reference/config/bindings/tls/) to enforce secure communication between MQTT clients and brokers, ensuring that all messages are encrypted in transit.
+Zilla provides support for [TLS bindings](../../reference/config/bindings/tls/README.md) to enforce secure communication between MQTT clients and brokers, ensuring that all messages are encrypted in transit.
 
 ### JWT Guard
-A client connection to the MQTT server can be guarded by the [jwt](https://docs.aklivity.io/zilla/latest/reference/config/guards/jwt.html) guard supporting JWT access tokens, with fine-grained privileges enforced on publish or subscribe to MQTT topics.
+A client connection to the MQTT server can be guarded by the [jwt](../../reference/config/guards/jwt.md) guard supporting JWT access tokens, with fine-grained privileges enforced on publish or subscribe to MQTT topics.
 
 ## Zilla: Beyond Standard MQTT
 
