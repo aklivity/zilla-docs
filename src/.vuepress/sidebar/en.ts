@@ -158,6 +158,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Amazon MSK",
+          collapsible: true,
           children: [
             {
               text: "CDK",
@@ -178,8 +179,17 @@ export const enSidebar = sidebar({
         },
         {
           text: "Amazon MSK",
-          link: "how-tos/amazon-msk/iot-ingest-control.md",
-          children: [],
+          collapsible: true,
+          children: [
+            {
+              text: "CDK",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/iot-ingest-and-control",
+            },
+            {
+              text: "CloudFormation",
+              link: "how-tos/amazon-msk/iot-ingest-control.md"
+            }
+          ],
         },
         {
           text: "Confluent Cloud",
@@ -204,7 +214,12 @@ export const enSidebar = sidebar({
         },
         {
           text: "Amazon MSK",
+          collapsible: true,
           children: [
+            {
+              text: "CDK",
+              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming",
+            },
             {
               text: "Terraform",
               link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
