@@ -23,6 +23,18 @@ The <ZillaPlus/> proxy can securely expose any Kafka cluster with these deployme
 
 The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access proxy lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
 
+![Secure Public Access Overview](/secure_public_access.png)
+
+## Key Features
+
+- No modifications to the MSK cluster are required to enable a **custom bootstrap domain** over the internet.
+- **Custom Wildcard DNS** & Route 53 Hosted Zone Integration.
+- Seamless end-to-end **TLS** handshake.
+- Supports `IAM`, `SASL` and `mTLS` authentication via integrations with `AWS Secrets Manager` and `AWS Certificate Manager`.
+- **Auto-Scaling** <ZillaPlus/> Instances.
+- Deployed behind a **Network Load Balancer** for high availability and efficient request routing.
+- Integrates with **AWS Nitro Enclaves**, enabling automated certificate renewal.
+
 ### Deploy with CDK
 
 Follow the [Secure Public Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access) guide to generate or deploy a custom AWS CDK stack, enabling `IAM access control`, `SASL/SCRAM authentication`, `Mutual TLS (mTLS) authentication` or `Unauthorized access` to setup connectivity to your MSK cluster using a wildcard DNS pattern.
