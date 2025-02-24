@@ -313,7 +313,7 @@ export const enSidebar = sidebar({
               link: "sse.md",
               prefix: "sse/",
               collapsible: true,
-              children: ["kafka.md", "sse.md"],
+              children: ["sse.md", "kafka.md"],
             },
             {
               text: "MQTT",
