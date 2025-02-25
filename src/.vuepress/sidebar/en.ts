@@ -197,9 +197,9 @@ export const enSidebar = sidebar({
         {
           text: "Overview",
           link: "overview.md",
-          children: []
+          children: [],
         },
-      ]
+      ],
     },
     {
       text: "Getting Started",
@@ -251,7 +251,7 @@ export const enSidebar = sidebar({
               text: "TCP",
               link: "tcp.md",
               prefix: "concepts/protocol/",
-            }, 
+            },
             {
               text: "Kafka",
               link: "kafka.md",
@@ -423,90 +423,70 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text:"Security",
-          prefix:"concepts/security",
+          text: "Security",
+          prefix: "concepts/security",
           collapsible: true,
           children: [
             {
-              "text": "Kafka",
-              "link": "kafka.md",
-              "prefix": "kafka/",
-              "collapsible": true,
-              "children": [
+              text: "Kafka",
+              link: "kafka.md",
+              prefix: "kafka/",
+              collapsible: true,
+              children: [
                 {
-                  "text": "SASL",
-                  "link": "sasl.md",
-                  "prefix": "sasl/",
-                  "collapsible": true,
-                  "children": [
-                    "plain.md",
-                    "scram.md"
-                  ]
+                  text: "SASL",
+                  link: "sasl.md",
+                  prefix: "sasl/",
+                  collapsible: true,
+                  children: ["plain.md", "scram.md"],
                 },
-                "ssl.md"
-              ]
+                "ssl.md",
+              ],
             },
             {
-              "text": "Guard",
-              "link": "guard.md",
-              "prefix": "guard/",
-              "collapsible": true,
-              "children": [
-                 {
-                  "text": "JWT",
-                  "link": "jwt.md",
-                  "prefix": "jwt/",
-                  "collapsible": true,
-                  "children": [
-                    "http.md",
-                    "sse.md",
-                    "mqtt.md"
-                  ]
-                }
-              ]
+              text: "Guard",
+              link: "guard.md",
+              prefix: "guard/",
+              collapsible: true,
+              children: [
+                {
+                  text: "JWT",
+                  link: "jwt.md",
+                  prefix: "jwt/",
+                  collapsible: true,
+                  children: ["http.md", "sse.md", "mqtt.md"],
+                },
+              ],
             },
             {
-              "text": "Vault",
-              "link": "vault.md",
-              "prefix": "vault/",
-              "collapsible": true,
-              "children": [
-                "filesystem.md",
-                "aws-acm.md",
-                "aws-secrets.md"
-              ]
+              text: "Vault",
+              link: "vault.md",
+              prefix: "vault/",
+              collapsible: true,
+              children: ["filesystem.md", "aws-acm.md", "aws-secrets.md"],
             },
             {
-              "text": "Threat Protection",
-              "link": "threat-protection.md",
-              "prefix": "threat-protection/",
-              "collapsible": true,
-              "children": [
-                "aws-shield.md"
-              ]
+              text: "Threat Protection",
+              link: "threat-protection.md",
+              prefix: "threat-protection/",
+              collapsible: true,
+              children: ["aws-shield.md"],
             },
             {
-              "text": "Resolvers",
-              "link": "resolvers.md",
-              "prefix": "resolvers/",
-              "collapsible": true,
-              "children": [
-                "environment-variables.md",
-                "aws-secrets-manager.md"
-              ]
+              text: "Resolvers",
+              link: "resolvers.md",
+              prefix: "resolvers/",
+              collapsible: true,
+              children: ["environment-variables.md", "aws-secrets-manager.md"],
             },
-          ]
+          ],
         },
         {
           text: "Bring Your Own Spec",
-          prefix:"concepts/bring-your-own-spec",
+          prefix: "concepts/bring-your-own-spec",
           collapsible: true,
-          children: [
-            "asyncapi.md",
-            "openapi.md",
-            "openapi-asyncapi.md",
-          ]
-        }
+          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md"],
+        },
       ],
     },
     {
@@ -551,7 +531,6 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Amazon MSK",
-                  link: "amazon-msk/amazon-msk.md",
                   prefix: "amazon-msk/",
                   collapsible: true,
                   children: ["terraform.md", "cloudformation.md"],
@@ -574,7 +553,6 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Amazon MSK",
-                  link: "amazon-msk.md",
                   prefix: "amazon-msk/",
                   collapsible: true,
                   children: ["terraform.md"],
@@ -583,10 +561,17 @@ export const enSidebar = sidebar({
             },
             {
               text: "Other Resources",
-              link: "other-resources.md",
               prefix: "other-resources/",
               collapsible: true,
-              children: ["aws.md"],
+              children: [
+                {
+                  text: "AWS Services",
+                  link: "aws.md",
+                  prefix: "aws/",
+                  collapsible: true,
+                  children: [],
+                },
+              ],
             },
           ],
         },
@@ -629,7 +614,7 @@ export const enSidebar = sidebar({
         {
           text: "Reference",
           link: "/reference/config/overview.md",
-          children: []
+          children: [],
         },
         {
           text: "Community",
