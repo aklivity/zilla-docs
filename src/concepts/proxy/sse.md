@@ -11,6 +11,7 @@ Key Capabilities:
 - Continuous authentication validation.
 - Advanced Request Routing.
 - Schema validation for requests and responses.
+- Support loading specification from AsyncAPI configuration.
 
 Use Cases:
 
@@ -26,6 +27,7 @@ Key Capabilities:
 - Routes SSE requests into appropriate Kafka topic messages.
 - Message Filtering: Filters Kafka messages for targeted delivery.
 - Caching: Improves performance by caching frequently accessed data.
+- Support loading specification from AsyncAPI configuration.
 
 Use Cases:
 

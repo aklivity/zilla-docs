@@ -27,6 +27,7 @@ Key Capabilities:
 - Message Filtering: Filters Kafka messages for targeted delivery.
 - Idempotency: Guarantees no duplicate processing of messages.
 - Caching: Improves performance by caching frequently accessed data.
+- Support loading specification from AsyncAPI configuration.
 
 Use Cases:
 
