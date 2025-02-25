@@ -20,7 +20,6 @@ You will need to choose a wildcard DNS pattern to use for public internet access
 
 - Enable web clients to publish, update, and stream Kafka messages via **customizable REST and SSE APIs**.
 - **No configuration** changes required to your MSK cluster to enable seamless web access.
-- **Custom Wildcard DNS** & Route 53 Hosted Zone Integration.
 - Seamless end-to-end **TLS** handshake.
 - <ZillaPlus/> supports **Auto-Scaling** and are deployed behind a **Network Load Balancer** for optimal performance.
 - Integrates with **AWS Nitro Enclaves**, enabling automated certificate renewal.
