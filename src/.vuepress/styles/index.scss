@@ -260,3 +260,19 @@ sup {
 .overview_cards .vp-card hr {
   display: none !important;
 }
+
+.dark-only {
+    display: none;
+}
+
+html[data-theme="dark"] .dark-only {
+  display: block;
+}
+
+.light-only {
+  display: block;
+}
+
+html[data-theme="dark"] .light-only {
+  display: none;
+}
