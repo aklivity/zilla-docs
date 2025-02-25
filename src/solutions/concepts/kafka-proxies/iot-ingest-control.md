@@ -18,6 +18,18 @@ You will need to choose a wildcard DNS pattern to use for public internet access
 
 The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) IoT Ingest and Control Broker lets authorized Kafka clients connect, publish messages and subscribe to topics in your Confluent Cloud cluster via the internet.
 
+![MSK IoT Ingest and Control Overview](/iot_ingestion_control.png)
+
+## Key Features
+
+- Enable **IoT clients** to securely connect, publish messages, and subscribe to Kafka topics using **MQTT protocol**.
+- **No configuration** changes required to your MSK cluster to function as MQTT broker.
+- **Custom Wildcard DNS** & Route 53 Hosted Zone Integration.
+- Seamless end-to-end **TLS** handshake.
+- <ZillaPlus/> supports **Auto-Scaling** and are deployed behind a **Network Load Balancer** for optimal performance.
+- Integrates with **AWS Nitro Enclaves**, enabling automated certificate renewal.
+
+
 ### Deploy with CDK
 
 Follow the [IOT Ingest and Control deploy with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/iot-ingest-and-control) guide to generate or deploy a custom AWS CDK stack. This stack sets up an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io`.
