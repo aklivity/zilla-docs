@@ -1,0 +1,7 @@
+exporters:
+  syslog:
+    type: syslog
+    options:
+      host: syslog-server
+      port: 514
+      protocol: tcp

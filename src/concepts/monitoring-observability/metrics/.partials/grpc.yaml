@@ -1,0 +1,8 @@
+telemetry:
+  metrics:
+    - grpc.active.requests
+    - grpc.duration
+    - grpc.request.size
+    - grpc.response.size
+    - grpc.requests.per.rpc
+    - grpc.responses.per.rpc

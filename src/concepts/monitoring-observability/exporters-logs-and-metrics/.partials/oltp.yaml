@@ -1,0 +1,10 @@
+exporters:
+  otlp:
+    type: otlp
+    options:
+      interval: 30
+      signals:
+        - metrics
+      endpoint:
+        protocol: http
+        location: http://otlp-collector:4318

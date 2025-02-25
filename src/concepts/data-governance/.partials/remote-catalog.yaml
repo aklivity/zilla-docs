@@ -1,0 +1,11 @@
+catalogs:
+  my_schema_registry_catalog:
+    type: schema-registry
+    options:
+      url: ${{env.SCHEMA_REGISTRY_URL}}
+      context: default
+  my_apicurio_registry_catalog:
+    type: apicurio-registry
+    options:
+      url: ${{env.APICURIO_URL}}
+      group-id: my_group_id

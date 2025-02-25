@@ -1,0 +1,6 @@
+telemetry:
+  metrics:
+    - http.active.requests
+    - http.duration
+    - http.request.size
+    - http.response.size

@@ -1,0 +1,12 @@
+model: protobuf
+view: json
+catalog:
+  items-catalog:
+    - strategy: topic
+      version: latest
+      record: EchoMessage
+    - subject: items-snapshots
+      version: latest
+      record: EchoMessage
+    - id: 1
+      record: EchoMessage

@@ -1,0 +1,22 @@
+catalogs:
+  my_inline_catalog:
+    type: inline
+    options:
+      subjects:
+        my_avro_subject:
+          schema: |
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "status"
+              ]
+            }

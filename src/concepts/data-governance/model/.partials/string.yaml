@@ -1,0 +1,5 @@
+model: string
+encoding: utf_8
+minLength: 1
+maxLength: 100
+pattern: ^wait=\d+$

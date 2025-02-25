@@ -1,0 +1,7 @@
+catalogs:
+  my_host_filesystem_catalog:
+    type: filesystem
+    options:
+      subjects:
+        local_file:
+          path: relative/path/to/local.file

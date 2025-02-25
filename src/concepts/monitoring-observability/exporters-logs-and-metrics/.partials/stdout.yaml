@@ -1,0 +1,3 @@
+exporters:
+  stdout:
+    type: stdout
