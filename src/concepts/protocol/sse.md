@@ -19,11 +19,13 @@ Zilla implements **Server-Sent Events (SSE)** as a protocol binding, enabling re
 2. **Server Response** - The server accepts the incoming HTTP request and keeps the connection open. The response should have a `Content-Type` of `text/event-stream`. The server can then send messages to the client at any time by writing to this open connection.
 3. **Message Format** - The server sends messages in a specific format. Each message is a block of text terminated by a pair of newlines. A message can consist of one or more lines of text in the format `field: value`. The most common field is `data:`, which contains the actual content of the message. Other fields include `id:` for setting an event ID and `event:` for specifying an event type.
     Example of a server message:
+
     ```js
     id: 1
     event: update
     data: {"message": "This is an update"}
     ```
+
 4. **Client Handling** - On the client side, the `EventSource` object listens for messages from the server. It triggers an event for each message received. The client can listen for generic messages or specific event types.
 5. **Reconnection** - If the connection is lost, the `EventSource` object will automatically attempt to reconnect to the server. The server can suggest a delay before reconnection attempts by sending a `retry:` field in the message.
 6. **Connection Termination** - The client or server can terminate the connection. The client can close the connection by calling `eventSource.close()`. The server can end the connection by closing the HTTP response.
