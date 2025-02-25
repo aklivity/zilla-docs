@@ -25,8 +25,6 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 - Enable **IoT clients** to securely connect, publish messages, and subscribe to Kafka topics using **MQTT protocol**.
 - **No configuration** changes required to your MSK cluster to function as MQTT broker.
 - <ZillaPlus/> supports **Auto-Scaling** and are deployed behind a **Network Load Balancer** for optimal performance.
-- Integrates with **AWS Nitro Enclaves**, enabling automated certificate renewal.
-
 
 ### Deploy with CDK
 
