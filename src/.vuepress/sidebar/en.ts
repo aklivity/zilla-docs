@@ -239,6 +239,7 @@ export const enSidebar = sidebar({
         {
           text: "Protocol",
           link: "concepts/protocol.md",
+          prefix: "concepts/protocol/",
           collapsible: true,
           children: [
             {
@@ -267,8 +268,18 @@ export const enSidebar = sidebar({
               prefix: "concepts/protocol/",
             },
             {
+              text: "SSE",
+              link: "sse.md",
+              prefix: "concepts/protocol/",
+            },
+            {
               text: "Filesystem",
               link: "filesystem.md",
+              prefix: "concepts/protocol/",
+            },
+            {
+              text: "TLS",
+              link: "tls.md",
               prefix: "concepts/protocol/",
             },
             {
