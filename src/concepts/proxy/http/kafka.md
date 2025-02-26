@@ -56,11 +56,11 @@ Zilla has a modular config that includes the concept of a [Guard](../../security
 
 ## Use Cases
 
-### Event-Driven Web Applications
-Web applications often need real-time event updates. With an HTTP Kafka Proxy, web apps can push events to Kafka using `POST` requests and fetch events using `GET` or **Server-Sent Events (SSE)**. A common example is a **chat application**, where user messages are sent via HTTP and consumed from Kafka for real-time distribution.
-
 ### Simplifying REST API Integration with Kafka
-Many modern applications use REST APIs, but Kafka-based event-driven architectures require message brokers. An HTTP Kafka Proxy enables microservices to produce and consume Kafka messages over HTTP, eliminating the need for direct Kafka clients. This is especially useful when transitioning from REST-based systems to Kafka without significant refactoring.
+Many applications rely on REST APIs but need real-time data streaming. An HTTP Kafka Proxy enables seamless integration, allowing services to transition from REST to event-driven communication without significant architectural changes. One example of this is the [REST API Integration with Kafka tutorial](../../../tutorials/rest/rest-intro.md#crud-api-on-kafka), which demonstrates how to expose Kafka topics over REST, making it easier for applications to produce and consume messages without Kafka-specific clients.  
+
+### Event-Driven Web Applications  
+Web applications often require real-time event updates, such as notifications or live dashboards. By using an HTTP Kafka Proxy, these apps can send events via `POST` and consume them via `GET` or **Server-Sent Events (SSE)**, making real-time updates simpler. A great example is the [CQRS with Kafka and REST project](https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs), which showcases how Kafka can be used in a CQRS (Command Query Responsibility Segregation) pattern with a REST-based frontend.  
 
 ## Examples
 
