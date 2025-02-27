@@ -33,7 +33,7 @@ The Kafka Protocol is a binary protocol over TCP designed for high-throughput, l
 
 ### Kafka Message Structure
 
-![Kafka Message Structure](/kafka/kafka_message.png)
+![Kafka Message Structure](/kafka/kafka_message.png =400x)
 
 ```plaintext
 Message:
@@ -48,7 +48,7 @@ Message:
  Timestamp: 1633024800000
 ```
 
-## Supported Kafka Versions
+## Supported Kafka Distributions
 
 - Apache Kafka
 - Aiven Kafka
@@ -75,7 +75,7 @@ Kafka uses SSL/TLS to encrypt data between clients and brokers, preventing eaves
 Kafka supports multiple authentication methods to verify client identities, including:
 
 - **SSL/TLS Client Authentication**: Clients authenticate using SSL/TLS certificates.
-- **SASL (Simple Authentication and Security Layer)**: Supports mechanisms like PLAIN, SCRAM, LDAP, and GSSAPI (Kerberos).
+- **SASL (Simple Authentication and Security Layer)**: Supports only PLAIN and SCRAM mechanisms.
 
 Zilla’s native support for Kafka security ensures secure and efficient communication with Kafka clusters.
 
@@ -87,7 +87,6 @@ Zilla introduces cache layers that honor the Kafka caching configuration. It pro
 - **Data Governance**: Validate message schemas with [Schema Registry](../../reference/config/catalogs/apicurio-registry.md) support.
 - **Data Conversion**: Support data format conversion from one format to another.
 - **Protocol Mapping**: Enable effortless communication with HTTP, WebSocket, and MQTT through native protocol integration.
-- **Continuous Authorization**: Enforce continuous authorization with real-time Challenge events.
 
 ## Zilla: Kafka Use Cases
 

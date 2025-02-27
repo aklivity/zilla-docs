@@ -11,10 +11,12 @@ Zilla supports **MQTT (Message Queuing Telemetry Transport)** as a **protocol bi
 
 ## MQTT Communication Workflow
 
-![MQTT Communication Workflow](./images/mqtt-workflow.png)
+![MQTT Communication Workflow](./images/mqtt-workflow.png =400x)
 
 ### MQTT Components
+
 MQTT operates on a publish-subscribe model and consists of the following key components:
+
 1. **Broker**: The central server that receives, filters, and distributes messages between clients.
 2. **Publisher**: A client that sends messages to a specified topic on the broker.
 3. **Subscriber**: A client that listens for messages on a topic from the broker.
@@ -24,6 +26,7 @@ MQTT operates on a publish-subscribe model and consists of the following key com
 7. **Session**: The connection state maintained between a client and the broker, tracking subscriptions and queued messages.
 
 ### MQTT Connections
+
 1. **Connection Initiation**: The MQTT client sends a CONNECT packet to the broker, requesting a connection.
 2. **Connection Acknowledgment**: The broker responds with a CONNACK packet, either confirming or denying the connection request.
 3. **Session Establishment**: If the connection is accepted, a session is established between the client and the broker.
@@ -34,13 +37,13 @@ MQTT operates on a publish-subscribe model and consists of the following key com
 
 ### MQTT Packet Structure
 
-![MQTT Packet Structure](./images/mqtt-message.png)
+![MQTT Packet Structure](./images/mqtt-message.png =400x)
 
 1. **Fixed header** – The mandatory part of an MQTT packet that includes essential control information.
     - **Control field** – Specifies the MQTT packet type and flags for message handling.
     - **Remaining length** – Indicates the number of bytes following the fixed header, including the variable header and payload.
 2. **Variable header** – An optional section that contains additional information depending on the packet type, such as packet identifiers or topic names.
-3. **Payload** – The actual data being transmitted, which varies based on the packet type and may contain messages, topic filters, or authentication data.1. 
+3. **Payload** – The actual data being transmitted, which varies based on the packet type and may contain messages, topic filters, or authentication data.1.
 
 ## Supported Versions
 

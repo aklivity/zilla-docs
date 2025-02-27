@@ -14,10 +14,10 @@ Zilla implements **Transmission Control Protocol (TCP)** as a **first-class prot
 1. **Connection-Oriented Communication** - A TCP connection must be established before data transmission using a three-way handshake to ensures both parties are ready to communicate.
 2. **Reliable** - TCP guarantees that all sent data is received correctly and in order by using acknowledgments and retransmissions to handle packet loss or errors.
 3. **Flow Control** - TCP employs a sliding window mechanism to prevent overwhelming the receiver.
-4. **Congestion Control** - TCP dynamically adjusts the data transmission rate based on network conditions. 
+4. **Congestion Control** - TCP dynamically adjusts the data transmission rate based on network conditions.
 5. **Error Detection and Recovery** - TCP uses checksums to detect errors in transmitted data so that if an error is found, it triggers retransmission of the affected segment.
 
-![How TCP initiates Communication](./images/tcp-initiates-connection.png)
+![How TCP initiates Communication](./images/tcp-initiates-connection.png =350x)
 
 ## Security
 

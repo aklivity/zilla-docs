@@ -11,7 +11,7 @@ Zilla implements **Server-Sent Events (SSE)** as a protocol binding, enabling re
 
 ## SSE Workflow
 
-![SSE Workflow](./images/sse-workflow.png)
+![SSE Workflow](./images/sse-workflow.png =500x)
 
 ### How SSE Works
 

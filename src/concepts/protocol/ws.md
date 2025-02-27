@@ -9,13 +9,13 @@ description: WS Protocol in Zilla.
 
 Zilla implements **WebSockets (WS)** as a **protocol binding**, designed to enable full-duplex, low-latency communication between clients and servers in distributed environments. This empowers Zilla to support real-time, event-driven interactions, making it ideal for applications such as live notifications, collaborative tools, and interactive web experiences that demand persistent, high-performance connections.
 
-## WS Communication 
+## WS Communication
 
 The WebSocket protocol enables ongoing, full-duplex, bidirectional communication between a web client and a web server over an underlying TCP connection. The protocol is designed to allow clients and servers to communicate in realtime, allowing for efficient and responsive data transfer in web applications.
 
 ### WS Communication Workflow
 
-![WS Communication Workflow](./images/websocket-connection.png)
+![WS Communication Workflow](./images/websocket-connection.png =350x)
 
 Here's a step-by-step explanation of how WebSocket works:
 
@@ -31,7 +31,7 @@ Here's a step-by-step explanation of how WebSocket works:
     Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
     Sec-WebSocket-Version: 13
     ```
-    
+
     ```make Server Response
     HTTP/1.1 101 Switching Protocols
     Upgrade: websocket
@@ -45,15 +45,11 @@ Here's a step-by-step explanation of how WebSocket works:
 
 ### WS Frame Structure
 
-![WS Frame Structure](./images/websocket-frame-structure.png)
+![WS Frame Structure](./images/websocket-frame-structure.png =500x)
 
 The WebSocket frame structure consists of several components:
-- **FIN (1 bit)** – Indicates if this is the final fragment (1 for final, 0 for more frames).
-- **RSV1, RSV2, RSV3 (1 bit each)** – Reserved for extensions, usually set to 0.
-- **Opcode (4 bits)** – Defines the type of frame (e.g., 0x1 for text, 0x2 for binary, 0x8 for close).
-- **Mask (1 bit)** – Specifies if the payload is masked (1 for client-to-server, 0 for server-to-client).
-- **Payload Length (7, 16, or 64 bits)** – Defines the size of the payload (small values fit in 7 bits, larger require extra bytes).
-- **Masking Key (32 bits, optional)** – A key used to XOR the payload (only present if the mask bit is 1).
+
+- **Metadata Headers**—Information about the frame (FIN, RSV1, RSV2, RSV3, Opcode, Mask, Payload Length, and Masking Key).
 - **Payload Data (variable size)** – The actual message content, either text or binary.
 
 ## Security
@@ -81,7 +77,7 @@ Zilla serves as an intelligent gateway for WebSocket (WS) connections, managing 
 
 Zilla leverages the WebSocket protocol to provide powerful bidirectional communication, real-time event streaming, and secure data exchange, ensuring efficient and persistent connections between clients and servers.
 
-- **WS Proxy** 
+- **WS Proxy**
     - [Echo](https://github.com/aklivity/zilla-examples/tree/main/ws.echo)
     - [Reflect](https://github.com/aklivity/zilla-examples/tree/main/ws.reflect)
 
