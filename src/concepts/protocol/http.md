@@ -11,7 +11,7 @@ Zilla implements HyperText Transfer Protocol (HTTP) as a **first-class protocol 
 
 ## HTTP Request-Response Flow
 
-![HTTP Request-Response Flow](/http/aklivity_HTTP_request_response.png)
+![HTTP Request-Response Flow](/http/aklivity_HTTP_request_response.png =500x)
 
 1. **Request Initiation** – Client sends an HTTP request with method, path, headers, and optional body.
 2. **Processing** – Server handles the request, retrieves data, and prepares a response.
@@ -20,7 +20,7 @@ Zilla implements HyperText Transfer Protocol (HTTP) as a **first-class protocol 
 
 ### HTTP Request Structure
 
-![HTTP Request Structure](/http/aklivity_HTTP_request.png)
+![HTTP Request Structure](/http/aklivity_HTTP_request.png =500x)
 
 ```http
 POST /pets HTTP/1.1
@@ -37,7 +37,7 @@ Authorization: Bearer <token>
 
 ### HTTP Response Structure
 
-![HTTP Response Structure](/http/aklivity_HTTP_response.png)
+![HTTP Response Structure](/http/aklivity_HTTP_response.png =500x)
 
 ```http
 HTTP/1.1 200 OK
@@ -61,14 +61,15 @@ Cache-Control: no-cache
 - **HTTP/2** – Faster, multiplexed streams, header compression.
 - **HTTP/3** (On the Roadmap)
 
-### Differences Between HTTP/1.1 and HTTP/2
+### Differences Between HTTP/1.1, HTTP/2, and HTTP/3
 
-| Feature        | HTTP/1.1  | HTTP/2 |
-|---------------|----------|--------|
-| **Multiplexing** | Requests are handled sequentially (one at a time per connection). | Multiple requests are handled concurrently over a single connection. |
-| **Header Compression** | Headers are sent as plain text, making requests larger. | Uses **HPACK compression** to reduce header size. |
-| **Connection Reuse** | Persistent connections reduce latency but still handle one request per connection. | A single connection handles multiple streams efficiently. |
-| **Performance** | Slower due to request blocking. | Faster due to multiplexing and better resource prioritization. |
+| Feature                 | HTTP/1.1                                                                            | HTTP/2                                                                | HTTP/3                                                                                                       |
+| ----------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Multiplexing**        | Requests are handled sequentially (one at a time per connection).                   | Multiple requests are handled concurrently over a single connection.  | Multiple requests are handled concurrently over a single connection, using QUIC for improved performance     |
+| **Header Compression**  | Headers are sent as plain text, making requests larger.                             | Uses **HPACK compression** to reduce header size.                     | Uses **QPACK compression** (a variant of HPACK) to reduce header size.                                       |
+| **Connection Reuse**    | Persistent connections reduce latency but still handle one request per connection.  | A single connection handles multiple streams efficiently.             | Uses QUIC, which eliminates head-of-line blocking and improves connection reuse across different networks.   |
+| **Performance**         | Slower due to request blocking.                                                     | Faster due to multiplexing and better resource prioritization.        | Faster due to reduced latency, built-in encryption, and improved congestion control.                         |
+| **Transport Protocol**  | Relies on TCP.                                                                      | Relies on TCP.                                                        | Relies on QUIC, a connection-oriented over UDP                                                               |
 
 ## Security
 
@@ -100,9 +101,9 @@ HTTP is inherently **stateless**, meaning it does not store session information 
 
 During authentication, the client sends the token in the Authorization header with each request:
 
-   ```http
-   Authorization: Bearer <JWT-TOKEN>
-   ```
+```http
+Authorization: Bearer <JWT-TOKEN>
+```
 
 The server validates the token’s integrity and claims before granting access.
 
@@ -125,7 +126,7 @@ Zilla leverages HTTP Protocol to provide powerful proxying, event streaming, and
   - [Oneway](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.oneway)
   - [Sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
   - [Async](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
-- **HTTP Filesystem Proxy**
+- **Filesystem Proxy**
   - [Filesystem](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
   - [Config Server](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem.config.server)
 

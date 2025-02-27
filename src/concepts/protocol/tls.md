@@ -11,9 +11,9 @@ Zilla supports **Transport Layer Security (TLS)** as a **protocol binding**, pro
 
 ## TLS Key Features
 
-![TLS Handshake](./images/tls-initiation.png)
+![TLS Handshake](./images/tls-initiation.png =450x)
 
-1. **Encryption through TLS handshake** - The TLS handshake establishes a secure communication channel by negotiating encryption keys and cipher suites between the client and server.
+1. **TLS Handshake** - Establishes a secure connection by agreeing on encryption keys and methods between the client and server.
 2. **Certificate verification** - TLS ensures authenticity by verifying the server’s X.509 certificate against a trusted Certificate Authority (CA) to prevent man-in-the-middle attacks.
 3. **Server Name Indication (SNI) for Virtual Hosting** - SNI allows multiple TLS-protected domains to be hosted on the same IP address by specifying the desired hostname during the handshake.
 4. **Application-Layer Protocol Negotiation (ALPN) for Protocol Selection** - ALPN enables automatic selection of the appropriate application protocol (e.g., HTTP/2, MQTT) during the TLS handshake for seamless communication.

@@ -11,7 +11,7 @@ Zilla supports **gRPC (Google Remote Procedure Call)** as a **protocol binding**
 
 ## gRPC Request-Response Flow
 
-![gRPC Request-Response Flow](/grpc/grpc_request_response.png)
+![gRPC Request-Response Flow](/grpc/grpc_request_response.png =500x)
 
 1. **Client Stub Invocation**: The client calls a gRPC method via the client stub.
 2. **Message Encoding**: The client serializes the request using Protobuf.
@@ -24,7 +24,7 @@ Zilla supports **gRPC (Google Remote Procedure Call)** as a **protocol binding**
 
 ### gRPC Request Structure
 
-![gRPC Request Structure](/grpc/grpc_request.png)
+![gRPC Request Structure](/grpc/grpc_request.png =600x)
 
 ```protobuf
 syntax = "proto3";
@@ -49,7 +49,7 @@ Content-Type: application/grpc
 
 ### gRPC Response Structure
 
-![gRPC Response Structure](/grpc/grpc_response.png)
+![gRPC Response Structure](/grpc/grpc_response.png =600x)
 
 ```http
 HTTP/2 200 OK

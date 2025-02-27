@@ -11,7 +11,16 @@ Zilla implements the Filesystem protocol for providing access to local files and
 
 ## Supported Features
 
-1. Basic Filesystem operations (CREATE, UPDATE, DELETE).
+1. Basic Filesystem operations, such as:
+   - `CREATE_DIRECTORY`
+   - `CREATE_FILE`
+   - `DELETE_DIRECTORY`
+   - `DELETE_FILE`
+   - `READ_DIRECTORY`
+   - `READ_FILE`
+   - `READ_FILE_CHANGES`
+   - `READ_METADATA`
+   - `WRITE_FILE`
 2. Symbolic Links support.
 3. Robust routing capabilities.
 
@@ -27,11 +36,11 @@ By utilizing HTTP and [**`TLS` binding**](../../reference/config/bindings/tls/RE
 
 During authentication, the client sends the token in the Authorization header with each request. The server then validates the token’s integrity and claims before granting access.
 
-## Zilla: HTTP Filesystem Use Cases
+## Zilla: Filesystem Use Cases
 
 Zilla leverages Filesystem Protocol to provide powerful routing and serving files through Zilla.
 
-- **HTTP Filesystem Proxy**
+- **Filesystem Proxy**
   - [http.filesystem.config.server](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem.config.server)
   - [http.filesystem](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
 
