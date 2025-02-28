@@ -11,42 +11,72 @@ Kafka is a distributed event streaming platform widely used for building real-ti
 
 ## Kafka Protocol Overview
 
-The Kafka Protocol is a binary protocol over TCP designed for high-throughput, low-latency communication between Kafka clients and brokers. It supports various operations such as producing messages, consuming messages, and managing topics and partitions.
+The Kafka Protocol is a binary protocol over TCP designed for high-throughput, low-latency communication between Kafka clients and brokers and between Kafka brokers. Each message follows a structured format comprising headers and payload.
 
-### Key Concepts
+### Kafka Wire Protocol Message Structure
 
-- **Broker**: A Kafka server that stores data and serves clients.
-- **Topic**: A category or feed name to which messages are published.
-- **Partition**: A division of a topic, allowing for parallel processing and scalability.
-- **Producer**: A client that publishes messages on a topic.
-- **Consumer**: A client that subscribes to topics and processes the published messages.
-- **Consumer Group**: A group of consumers that work together to consume messages from a topic, ensuring each message is processed by only one consumer in the group.
+Kafka Wire Protocol headers include the following information:
 
-## Kafka Protocol Flow
+- **API Key**: To identify the request type (Produce, Fetch, etc).
+- **Version**: To ensure compatibility.
+- **Correlation ID** : To track requests.
+- **Client ID**: To identify the client.
 
-![Kafka Protocol Flow](/kafka/kafka_flow.png)
+The payload contains the actual message data or metadata relevant to the request.
 
-1. **Producer Sends Message** - A producer sends a message to a Kafka topic.
-2. **Broker Stores Message** – The Kafka broker stores the message in the appropriate topic partition.
-3. **Consumer Fetches Message** – A consumer (or consumer group) fetches the message from the topic partition.
-4. **Consumer Processes Message** – The consumer (or consumer group) processes the message and commits the offset.
+#### Produce API Message Structure
 
-### Kafka Message Structure
-
-![Kafka Message Structure](/kafka/kafka_message.png =400x)
+Request structure
 
 ```plaintext
-Message:
- Key: "user-123"
- Value: "{\"event\": \"login\", \"timestamp\": 1633024800}"
- Compression Type: "snappy"
- Headers:
- - "content-type: application/json"
- - "correlation-id: abcdef"
- Partition: 0
- Offset: 12345
- Timestamp: 1633024800000
+Produce Request (Version: 11) => transactional_id acks timeout_ms [topic_data] TAG_BUFFER
+ transactional_id => COMPACT_NULLABLE_STRING
+ acks => INT16
+ timeout_ms => INT32
+ topic_data => name [partition_data] TAG_BUFFER
+ name => COMPACT_STRING
+ partition_data => index records TAG_BUFFER
+ index => INT32
+ records => COMPACT_RECORDS
 ```
+
+Response structure
+
+```plaintext
+Produce Response (Version: 11) => [responses] throttle_time_ms TAG_BUFFER
+ responses => name [partition_responses] TAG_BUFFER
+ name => COMPACT_STRING
+ partition_responses => index error_code base_offset log_append_time_ms log_start_offset [record_errors] error_message TAG_BUFFER
+ index => INT32
+ error_code => INT16
+ base_offset => INT64
+ log_append_time_ms => INT64
+ log_start_offset => INT64
+ record_errors => batch_index batch_index_error_message TAG_BUFFER
+ batch_index => INT32
+ batch_index_error_message => COMPACT_NULLABLE_STRING
+ error_message => COMPACT_NULLABLE_STRING
+ throttle_time_ms => INT32
+```
+
+### Supported Kafka APIs
+
+Zilla supports the following Kafka API:
+
+- `Produce` (Key `0`)
+- `Fetch` (Key `1`)
+- `ListOffsets` (Key `2`)
+- `Metadata` (Key `3`)
+- `LeaderAndIsr` (Key `4`)
+- `OffsetCommit` (Key `8`)
+- `OffsetFetch` (Key `9`)
+- `FindCoordinator` (Key `10`)
+- `JoinGroup` (Key `11`)
+- `Heartbeat` (Key `12`)
+- `LeaveGroup` (Key `13`)
+- `SyncGroup` (Key `14`)
+- `InitProducerId` (Key `22`)
+- `DescribeConfigs` (Key `32`)
 
 ## Supported Kafka Distributions
 
@@ -81,7 +111,7 @@ Zilla’s native support for Kafka security ensures secure and efficient communi
 
 ## Zilla: Beyond Standard Kafka
 
-Zilla introduces cache layers that honor the Kafka caching configuration. It proactively fetch messages to keep the data fresh in preparation for new consumers. Zilla enhances traditional Kafka workflows supported by the following features:
+Zilla introduces cache layers that honor the Kafka caching configuration. It proactively fetches messages to keep the data fresh in preparation for new consumers. Zilla enhances traditional Kafka workflows supported by the following features:
 
 - **Advanced Filter**: Filter messages by message key, headers, or a combination of key and headers.
 - **Data Governance**: Validate message schemas with [Schema Registry](../../reference/config/catalogs/apicurio-registry.md) support.
