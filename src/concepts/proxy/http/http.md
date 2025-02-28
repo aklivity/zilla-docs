@@ -40,7 +40,7 @@ Zilla’s ability to route requests based on HTTP attributes allows it to functi
 
 ## Examples
 
-Try out HTTP Kafka examples:
+Try out HTTP proxy examples:
 
 - [http.proxy](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)
 - [http.proxy.schema.inline](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)
