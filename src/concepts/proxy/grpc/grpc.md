@@ -6,12 +6,12 @@ shortTitle: Proxy
 
 ## Overview
 
-Zilla's gRPC Proxy acts as an intermediary for managing, routing, and validating gRPC traffic between clients and backend services. It utilizes the [proxy binding](../../../reference/config/bindings/grpc/README.md) with server behavior to decode incoming Proxy v2 protocol streams, transforming them into higher-level application streams for efficient request handling. This enables seamless communication in microservices architectures by ensuring secure, scalable, and well-structured gRPC interactions. With built-in support for authentication, schema validation, and advanced request routing, Zilla simplifies the deployment of gRPC-based systems while enhancing performance and security.
+Zilla's gRPC Proxy serves as an intermediary, managing, routing, and validating gRPC traffic between clients and backend services. It utilizes the [grpc](../../../reference/config/bindings/grpc/README.md) binding to handle both server and client behaviors, effectively facilitating seamless communication in distributed systems.
 
 ## Key Capabilities
 
-### Proxy v2 Encoding and Decoding
-Zilla’s gRPC Proxy leverages Proxy v2 encoding and decoding to efficiently handle gRPC traffic. It transforms incoming Proxy v2 protocol streams into higher-level application streams, enabling seamless communication between clients and backend services. This ensures optimized request processing and protocol abstraction for simplified integration.
+### Inbound and Outbound gRPC Streams
+Zilla's gRPC Proxy manages both inbound and outbound gRPC streams, adapting HTTP request-response streams to gRPC request-response streams. The [server](../../../reference/config/bindings/grpc/server.md) kind grpc binding handles incoming client connections, supporting content types like `application/grpc+proto` and `application/grpc-web+proto`. Conversely, the [client](../../../reference/config/bindings/grpc/client.md) kind grpc binding manages outbound connections, adapting gRPC streams to HTTP request-response streams. 
 
 ### Authentication with TLS
 Zilla supports TLS authentication to secure gRPC communications. By encrypting data in transit and verifying client-server identities, it prevents unauthorized access and ensures data integrity. This enhances security in distributed systems where sensitive information is exchanged over gRPC connections.
