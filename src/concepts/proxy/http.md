@@ -43,4 +43,4 @@ Key Capabilities:
 
 - Configurable File Routing: Customizable paths for serving files.
 - Static File Serving: Efficiently delivers static content.
-- File Operations: Supports CREATE, UPDATE, and DELETE operations.
+- Filesystem operations support.

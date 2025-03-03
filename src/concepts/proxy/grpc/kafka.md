@@ -47,7 +47,6 @@ The [kafka-grpc](../../../reference/config/bindings/kafka-grpc/README.md) `remot
 
 The [grpc-kakfa](../../../reference/config/bindings/grpc-kafka/README.md) does not create consumer groups. Instead, the binding fetches messages from a topic the same way for all connected clients. Clients can filter messages received using filters like adding the desired Kafka message key in the `idempotency-key` header. The client can track and recover progress through the stream using [reliable delivery](#reliable-delivery).
 
-
 ## Use Cases
 
 ### Real-Time Event Processing
@@ -65,4 +64,3 @@ Try out gRPC Kafka examples:
 - [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
 - [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
 - [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
-

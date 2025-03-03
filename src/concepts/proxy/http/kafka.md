@@ -17,6 +17,7 @@ A developer has the freedom to define their own HTTP mapping to Kafka, with cont
 Zilla can map REST APIs to Kafka using the [http-kafka](../../../reference/config/bindings/http-kafka/README.md) binding in a [zilla.yaml](../../../reference/config/overview.md) config. Zilla routes REST urls using wildcard pattern matching and dynamic path params. Dynamic path matching and custom message routing from endpoints to Kafka topics help prevent API lock-in.
 
 Zilla groups HTTP methods into two capabilities:
+
 - **Produce**: Handles `POST`, `PUT`, `DELETE`, and `PATCH` to send messages to Kafka.
 - **Fetch**: Uses `GET` to retrieve messages from Kafka.
 
@@ -25,6 +26,7 @@ For asynchronous operations, a `PUT` request submits data, and a `GET` request r
 ### Correlated Request-Response
 
 Zilla handles HTTP requests and responses using Kafka topics, linking them with a `zilla:correlation-id` header.
+
 - **Synchronous (sync)**: The client sends a request, and the server waits for the corresponding response message before replying.
 - **Asynchronous (async)**: The client includes a `prefer: respond-async` header, gets a `202 Accepted` response with a location path, and later sends a GET request with `prefer: wait=N` to retrieve the response once it's available, avoiding constant polling.
 
@@ -57,10 +59,12 @@ Zilla has a modular config that includes the concept of a [Guard](../../security
 ## Use Cases
 
 ### Simplifying REST API Integration with Kafka
-Many applications rely on REST APIs but need real-time data streaming. An HTTP Kafka Proxy enables seamless integration, allowing services to transition from REST to event-driven communication without significant architectural changes. One example of this is the [REST API Integration with Kafka tutorial](../../../tutorials/rest/rest-intro.md#crud-api-on-kafka), which demonstrates how to expose Kafka topics over REST, making it easier for applications to produce and consume messages without Kafka-specific clients.  
 
-### Event-Driven Web Applications  
-Web applications often require real-time event updates, such as notifications or live dashboards. By using an HTTP Kafka Proxy, these apps can send events via `POST` and consume them via `GET` or **Server-Sent Events (SSE)**, making real-time updates simpler. A great example is the [CQRS with Kafka and REST project](https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs), which showcases how Kafka can be used in a CQRS (Command Query Responsibility Segregation) pattern with a REST-based frontend.  
+Many applications rely on REST APIs but need real-time data streaming. An HTTP Kafka Proxy enables seamless integration, allowing services to transition from REST to event-driven communication without significant architectural changes. One example of this is the [REST API Integration with Kafka tutorial](../../../tutorials/rest/rest-intro.md#crud-api-on-kafka), which demonstrates how to expose Kafka topics over REST, making it easier for applications to produce and consume messages without Kafka-specific clients.
+
+### Event-Driven Web Applications
+
+Web applications often require real-time event updates, such as notifications or live dashboards. By using an HTTP Kafka Proxy, these apps can send events via `POST` and consume them via `GET` or **Server-Sent Events (SSE)**, making real-time updates simpler. A great example is the [CQRS with Kafka and REST project](https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs), which showcases how Kafka can be used in a CQRS (Command Query Responsibility Segregation) pattern with a REST-based frontend.
 
 ## Examples
 
