@@ -34,6 +34,162 @@ By bridging Kafka with gRPC services, this binding allows event-driven architect
 
 ## Examples
 
-Try out gRPC-Kafka examples:
+![gRPC Proxy Pipeline Example](../images/kafka-grpc.png)
 
-- [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+Access the Kafka gRPC Proxy example files here: [Kafka gRPC Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+
+::: details Full Kafka gRPC Proxy zilla.yaml Config
+
+```yaml
+---
+name: example
+catalogs:
+  host_filesystem:
+    type: filesystem
+    options:
+      subjects:
+        echo:
+          path: proto/echo.proto
+vaults:
+  my_servers:
+    type: filesystem
+    options:
+      keys:
+        store: tls/localhost.p12
+        type: pkcs12
+        password: ${{env.KEYSTORE_PASSWORD}}
+bindings:
+  north_tcp_server:
+    type: tcp
+    kind: server
+    options:
+      host: 0.0.0.0
+      port:
+        - 7151
+        - 7153
+    routes:
+      - when:
+          - port: 7151
+        exit: north_http_server
+      - when:
+          - port: 7153
+        exit: north_tls_server
+  north_tls_server:
+    type: tls
+    kind: server
+    vault: my_servers
+    options:
+      keys:
+        - localhost
+      sni:
+        - localhost
+      alpn:
+        - h2
+    exit: north_http_server
+  north_http_server:
+    type: http
+    kind: server
+    options:
+      versions:
+        - h2
+      access-control:
+        policy: cross-origin
+    exit: north_grpc_server
+  north_grpc_server:
+    type: grpc
+    kind: server
+    catalog:
+      host_filesystem:
+        - subject: echo
+    routes:
+      - when:
+          - method: grpc.examples.echo.Echo/*
+        exit: north_grpc_kafka_mapping
+  north_grpc_kafka_mapping:
+    type: grpc-kafka
+    kind: proxy
+    routes:
+      - when:
+          - method: grpc.examples.echo.Echo/*
+        exit: north_kafka_cache_client
+        with:
+          capability: produce
+          topic: echo-requests
+          acks: leader_only
+          reply-to: echo-responses
+  north_kafka_cache_client:
+    type: kafka
+    kind: cache_client
+    exit: south_kafka_cache_server
+  south_kafka_cache_server:
+    type: kafka
+    kind: cache_server
+    exit: south_kafka_client
+  south_kafka_client:
+    type: kafka
+    kind: client
+    options:
+      servers:
+        - kafka:29092
+    exit: south_tcp_client
+  south_tcp_client:
+    type: tcp
+    kind: client
+  west_kafka_grpc_remote_server:
+    type: kafka-grpc
+    kind: remote_server
+    entry: north_kafka_cache_client
+    options:
+      acks: leader_only
+    routes:
+      - exit: west_grpc_client
+        when:
+          - topic: echo-requests
+            reply-to: echo-responses
+            method: grpc.examples.echo.Echo/*
+        with:
+          scheme: http
+          authority: ${{env.ECHO_SERVER_HOST}}:${{env.ECHO_SERVER_PORT}}
+  west_grpc_client:
+    type: grpc
+    kind: client
+    routes:
+      - exit: west_http_client
+        when:
+          - method: grpc.examples.echo.Echo/*
+  west_http_client:
+    type: http
+    kind: client
+    options:
+      versions:
+        - h2
+    exit: west_tcp_client
+  west_tcp_client:
+    type: tcp
+    kind: client
+    options:
+      host: ${{env.ECHO_SERVER_HOST}}
+      port: ${{env.ECHO_SERVER_PORT}}
+telemetry:
+  exporters:
+    stdout_logs_exporter:
+      type: stdout
+```
+
+:::
+
+The above configuration is an example of a Kafka-gRPC proxy. It listens on https port 7153 and uses Kafka as a proxy to talk to grpc-echo on TCP port 50051.
+
+The Kafka gRPC proxy can be constructed with four parts: the gRPC server, the gRPC client, the gRPC-Kafka adapter, and the Kafka client. When a gRPC request is made, it will publish the request into a Kafka request topic and will be picked up and made into a gRPC request to an external gRPC service. The response is then stored in a Kafka response topic.
+
+The gRPC server consists of the following bindings: TCP Server, TLS Server, HTTP Server, and gRPC server. A TCP Server is required to open a specific port and allows inbound connection. A TLS server is optional but can be used to perform TLS encryption for HTTPS. The data stream is then passed to an HTTP server, which is also passed to a gRPC server.
+
+The gRPC client consists of the following bindings: gRPC client, HTTP client, TLS client, and TCP client. A TCP client is required to allow outbound TCP connections. A TLS client is optional but can be used to encrypt connections to outbound connections. A gRPC client is used to perform a gRPC request, which is then passed into an HTTP client.
+
+::: note
+The gRPC server/ client binding needs HTTP server/ client bindings since gRPC is a protocol that runs over HTTP.
+:::
+
+The Kafka client consists of the following bindings: Kafka Cache Client, Kafka Cache Server, Kafka Client, and TCP Client. A TCP client is required to allow outbound TCP connections and a Kafka Client is used to connect to external Kafka services. Kafka Cache Client and Server are used for additional layers before direct connection to the Kafka client. These bindings add a caching layer and additional features to Kafka requests through Zilla.
+
+The gRPC-Kafka adapter is used to convert gRPC-based requests into Kafka-based requests.
