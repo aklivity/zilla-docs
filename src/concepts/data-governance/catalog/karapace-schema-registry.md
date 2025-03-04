@@ -1,0 +1,1 @@
+# Karapace Schema Registry
