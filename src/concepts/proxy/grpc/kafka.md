@@ -59,8 +59,131 @@ Many industries rely on high-throughput data streaming to process large volumes 
 
 ## Examples
 
-Try out gRPC Kafka examples:
+![gRPC Kafka Pipeline Example](../images/grpc-kafka.png)
 
-- [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
-- [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
+Access the gRPC Kafka example files here: [gRPC Kafka Repository](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
+
+::: details Full gRPC kafka zilla.yaml Config
+
+```yaml
+name: example
+catalogs:
+  host_filesystem:
+    type: filesystem
+    options:
+      subjects:
+        echo:
+          path: proto/echo.proto
+vaults:
+  my_servers:
+    type: filesystem
+    options:
+      keys:
+        store: tls/localhost.p12
+        type: pkcs12
+        password: ${{env.KEYSTORE_PASSWORD}}
+bindings:
+  north_tcp_server:
+    type: tcp
+    kind: server
+    options:
+      host: 0.0.0.0
+      port:
+        - 7151
+        - 7153
+    routes:
+      - when:
+          - port: 7151
+        exit: north_http_server
+      - when:
+          - port: 7153
+        exit: north_tls_server
+  north_tls_server:
+    type: tls
+    kind: server
+    vault: my_servers
+    options:
+      keys:
+        - localhost
+      sni:
+        - localhost
+      alpn:
+        - h2
+    exit: north_http_server
+  north_http_server:
+    type: http
+    kind: server
+    options:
+      versions:
+        - h2
+      access-control:
+        policy: cross-origin
+    exit: north_grpc_server
+  north_grpc_server:
+    type: grpc
+    kind: server
+    catalog:
+      host_filesystem:
+        - subject: echo
+    routes:
+      - when:
+          - method: grpc.examples.echo.Echo/*
+        exit: north_grpc_kafka_mapping
+  north_grpc_kafka_mapping:
+    type: grpc-kafka
+    kind: proxy
+    routes:
+      - when:
+          - method: grpc.examples.echo.Echo/*
+        exit: north_kafka_cache_client
+        with:
+          capability: produce
+          topic: echo-messages
+          acks: leader_only
+          reply-to: echo-messages
+  north_kafka_cache_client:
+    type: kafka
+    kind: cache_client
+    exit: south_kafka_cache_server
+  south_kafka_cache_server:
+    type: kafka
+    kind: cache_server
+    options:
+      bootstrap:
+        - echo-messages
+    exit: south_kafka_client
+  south_kafka_client:
+    type: kafka
+    kind: client
+    options:
+      servers:
+        - kafka:29092
+    exit: south_tcp_client
+  south_tcp_client:
+    type: tcp
+    kind: client
+telemetry:
+  exporters:
+    stdout_logs_exporter:
+      type: stdout
+```
+
+:::
+
+The above configuration is an example of a gRPC Kafka proxy. It listens on https port 7153 and will exchange grpc messages in protobuf format through the echo-messages topic in Kafka.
+
+The gRPC Kafka Proxy can be constructed with three parts: the gRPC server, the gRPC-Kafka adapter, and the Kafka client. When the gRPC server receives a request, the stream is passed into a gRPC-Kafka adapter and then converted into a Kafka request.
+
+The gRPC server consists of the following bindings: TCP Server, TLS Server, HTTP Server, and gRPC server. A TCP Server is required to open a specific port and allows inbound connection. A TLS server is optional but can be used to perform TLS encryption for HTTPS. The data stream is then passed to an HTTP server, which is also passed to a gRPC server.
+
+::: note
+The gRPC server binding needs HTTP server bindings since gRPC is a protocol that runs over HTTP.
+:::
+
+The Kafka client consists of the following bindings: Kafka Cache Client, Kafka Cache Server, Kafka Client, and TCP Client. A TCP client is required to allow outbound TCP connections and a Kafka Client is used to connect to external Kafka services. Kafka Cache Client and Server are used for additional layers before direct connection to the Kafka client. These bindings add a caching layer and additional features to Kafka requests through Zilla.
+
+The gRPC-Kafka adapter is used to convert gRPC-based requests into Kafka-based requests.
+
+**Other Examples**:
+
 - [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
