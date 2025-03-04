@@ -18,16 +18,6 @@ Zilla is a multi-protocol edge and service proxy designed to streamline, secure,
 
 As a middleware, Zilla enforces authentication, validates schemas, gathers metrics, and terminates TLS. Additionally, Zilla is stateless, cloud-native, highly memory efficient, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way). When deployed as an edge proxy, it scales horizontally to support millions of concurrently connected clients.
 
-::: info Just want to build?
-Jump to the [quickstart](./how-tos/quickstart/index.md) guide.
-:::
-
-## Who Zilla is for?
-
-- **Data platform/Kafka integration engineers** who are tasked with reliably, securely, and accessibly exposing a Kafka cluster to internal and/or external teams.
-- **Application developers** who do not have Kafka expertise but want/need to build applications on top of real-time data streams.
-- **API architects** who want to drive business functionality via their AsyncAPI schemas.
-
 ## Core Concepts
 
 <div class="overview_cards">
@@ -74,22 +64,16 @@ Jump to the [quickstart](./how-tos/quickstart/index.md) guide.
   />
 </div>
 
+## Who Zilla is for?
+
+- **Data platform/ Kafka engineers** who want to share Kafka cluster with other teams or who want to simplify event-streaming integration between various protocols.
+- **Application developers** who want to build applications on top of real-time data streams but do not have Kafka expertise.
+- **API architects** who want to build functionality via AsyncAPI schemas.
+
+::: info Just want to build?
+Jump to the [quickstart](./how-tos/quickstart/index.md) guide.
+:::
+
 ## Zilla vs <ZillaPlus />
 
 Zilla is under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (<ZillaPlus/> “Zilla Plus”) is available, which includes additional enterprise integrations and support. For more information, please visit the [<ZillaPlus/>](https://www.aklivity.io/products/zilla-plus) product page.
-
-| Capability                                                             | <ZillaPlus/> for Enterprise          | Zilla Open Source       |
-| ---------------------------------------------------------------------- | ------------------------------------- | ----------------------- |
-| Web Streaming \| HTTP+SEE to Kafka Proxying                            | ✅                                    | ✅                      |
-| IoT Ingest and Control \| MQTT to Kafka Proxying                       | ✅                                    | ✅                      |
-| Event Mesh \| gRPC to Kafka Proxying                                   | ✅                                    | ✅                      |
-| Secure Public Access \| for Amazon MSK and Confluent Cloud             | ✅                                    | -                       |
-| Security \| JWT auth, SSL/TLS via AWS PCA, secrets via Secrets Manager | ✅                                    | JWT client auth only    |
-| Logging \| Stdout, Syslog, AWS CloudWatch                              | ✅                                    | Stdout only             |
-| Monitoring \| Prometheus exporter                                      | ✅                                    | ✅                      |
-| Schema Registry Integrations \| Confluent SR, Karapace, AWS Glue       | ✅                                    | Karapace only           |
-| API Registry Support \| Apicurio                                       | ✅                                    | ✅                      |
-| AsyncAPI Support \| for validation and configuration                   | ✅                                    | ✅                      |
-| OpenAPI Support \| for validation and configuration                    | ✅                                    | ✅                      |
-| Deployment                                                             | CloudFormation, Terraform, K8s        | Homebrew, Docker, K8s   |
-| Support                                                                | Dedicated Enterprise support with SLA | Community Slack Channel |
