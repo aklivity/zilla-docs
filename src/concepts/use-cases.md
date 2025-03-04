@@ -14,58 +14,140 @@ Zilla enhances your existing services by adding metrics, logging, message valida
 
 ### For HTTP Services
 
-- **Metrics and Telemetry:** Gather metrics and telemetry data on inbound and outbound traffic.
-- **Client Authentication:** Implement JWT-based authentication.
-- **Schema Enforcement:** Enforce OpenAPI and AsyncAPI schema on requests.
+<div class="use_cases_cards">
+  <VPCard
+    title="HTTP Request Echo"
+    desc="A Zilla API gateway setup that echoes back received HTTP requests."
+    link="https://github.com/aklivity/zilla-examples/tree/main/http.echo"
+  />
+  <VPCard
+    title="Static File Server"
+    desc="A Zilla API gateway setup for serving static files over HTTP from a filesystem."
+    link="https://github.com/aklivity/zilla-examples/tree/main/http.filesystem"
+  />
+  <VPCard
+    title="HTTP Proxy Forwarding"
+    desc="A Zilla API gateway setup that forwards HTTP requests to an upstream server."
+    link="https://github.com/aklivity/zilla-examples/tree/main/http.proxy"
+  />
+  <VPCard
+    title="HTTP to Kafka CRUD"
+    desc="A Zilla API gateway setup enabling CRUD operations over HTTP with Kafka integration."
+    link="https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud"
+  />
+</div>
 
 ### For SSE Services
 
-- **Metrics and Telemetry:** Gather metrics and telemetry data on inbound and outbound traffic.
-- **Client Authentication:** Implement JWT-based authentication.
-- **Continuous Authorization:** Zilla supports Continuous Authorization, which gracefully re-authorizes a client on an SSE server's behalf without abruptly terminating message streams. For more information, read [this article](https://www.aklivity.io/post/a-primer-on-server-sent-events-sse#:~:text=Securing%20SSE%20with%20aklivity%20Zilla).
-- **Schema Enforcement:** Enforce AsyncAPI schema definition on outbound messages.
+<div class="use_cases_cards">
+  <VPCard
+    title="SSE Kafka Fanout"
+    desc="A Zilla API gateway setup that distributes Kafka messages to multiple SSE clients."
+    link="https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout"
+  />
+  <VPCard
+    title="SSE Proxy with JWT"
+    desc="A Zilla API gateway setup that proxies SSE traffic with JWT authentication."
+    link="https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt"
+  />
+</div>
 
 ### For MQTT Services
 
-- **Metrics and Telemetry:** Gather metrics and telemetry data on inbound and outbound traffic.
-- **Client Authentication:** Implement JWT-based authentication.
-- **Schema Enforcement:** Enforce AsyncAPI schema definition on outbound messages.
+<div class="use_cases_cards">
+  <VPCard
+    title="MQTT Kafka Broker"
+    desc="A Zilla API gateway setup acting as an MQTT broker with Kafka integration."
+    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker"
+  />
+  <VPCard
+    title="MQTT Kafka Broker with JWT"
+    desc="A Zilla API gateway setup that provides an MQTT broker with Kafka integration and JWT authentication."
+    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt"
+  />
+</div>
 
 ### For Kafka Services
 
-- **Metrics and Telemetry:** Gather metrics and telemetry data on inbound and outbound traffic on Kafka service in <ZillaPlus/>.
+<div class="use_cases_cards">
+  <VPCard
+    title="Kafka Broker"
+    desc="A Zilla API gateway setup that acts as a Kafka broker for managing message streams."
+    link="https://github.com/aklivity/zilla-examples/tree/main/kafka.broker"
+  />
+  <VPCard
+    title="HTTP to Kafka CRUD"
+    desc="A Zilla API gateway setup enabling CRUD operations over HTTP with Kafka integration."
+    link="https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud"
+  />
+  <VPCard
+    title="MQTT Kafka Broker"
+    desc="A Zilla API gateway setup acting as an MQTT broker with Kafka integration."
+    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker"
+  />
+  <VPCard
+    title="SSE Kafka Fanout"
+    desc="A Zilla API gateway setup that distributes Kafka messages to multiple SSE clients."
+    link="https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout"
+  />
+  <VPCard
+    title="gRPC Kafka Echo"
+    desc="A Zilla API gateway setup that echoes messages over Kafka using gRPC."
+    link="https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo"
+  />
+</div>
 
 ### For gRPC Services
 
-- **Metrics and Telemetry:** Gather metrics and telemetry data on inbound and outbound traffic.
-- **Schema Enforcement:** Enforce Protobuf schema definition on inbound messages.
+<div class="use_cases_cards">
+  <VPCard
+    title="gRPC Echo"
+    desc="A Zilla API gateway setup that echoes received gRPC requests."
+    link="https://github.com/aklivity/zilla-examples/tree/main/grpc.echo"
+  />
+  <VPCard
+    title="gRPC Proxy"
+    desc="A Zilla API gateway setup that forwards gRPC requests to an upstream server."
+    link="https://github.com/aklivity/zilla-examples/tree/main/grpc.proxy"
+  />
+  <VPCard
+    title="gRPC Kafka Echo"
+    desc="A Zilla API gateway setup that echoes messages over Kafka using gRPC."
+    link="https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo"
+  />
+</div>
 
 ## AsyncAPI Kafka Gateway
 
-Zilla can abstract Apache Kafka for web applications, IoT clients, and non-Kafka microservices. Key features include:
+Zilla abstracts Apache Kafka for web applications, IoT clients, and non-Kafka microservices by mapping OpenAPI and AsyncAPI definitions to Kafka. It natively supports the Kafka wire protocol without external dependencies, enabling secure, observable, and stateless API entry points over REST, SSE, MQTT, and gRPC. This flexibility allows Zilla to power various use cases:
 
-- **Protocol Mapping:** Zilla can use [OpenAPI](https://www.openapis.org/) and [AsyncAPI](https://www.asyncapi.com/) definitions to be mapped to Kafka, enabling Kafka topics to be exposed over user-defined REST, SSE, MQTT, and gRPC APIs.
-- **No External Dependencies:** Zilla has no external dependencies and does not rely on the Kafka Consumer/Producer API or Kafka Connect. Instead, it natively supports the Kafka wire protocol and uses novel protocol mapping techniques to establish stateless API entry points into Kafka.
-- **Security and Observability:** Enforce security, provide observability, and offload connections on the data path.
+- **Kafka Fan-Out (Data Broadcasting)** : Zilla enables Kafka to broadcast real-time data to millions of clients over SSE, MQTT, and gRPC. It offloads connections using a real-time cache synchronized with Kafka, ensuring efficient message distribution without overloading Kafka brokers.  
+- **Kafka Fan-In (Clickstream and Telemetry Ingestion)**: Zilla ingests high-volume data from HTTP, MQTT, and gRPC clients into Kafka for real-time processing. It pools connections, preventing excessive load on Kafka and ensuring seamless data collection from millions of devices.  
+- **IoT Ingestion and Control**: Zilla replaces traditional MQTT brokers by persisting MQTT messages and client states directly in Kafka. This allows IoT devices to interact with Kafka without intermediaries, making data accessible to Kafka consumers and stream processors.  
+- **Event Mesh**: Zilla connects REST and gRPC service meshes with event-driven architectures, enabling event sourcing, CQRS, and request-response over Kafka. This allows services to communicate asynchronously while integrating seamlessly with existing microservices.  
+- **Secure Public Access (Zilla Plus)**: Zilla routes Kafka client connections to privately networked Kafka brokers, allowing secure external and third-party access. It provides authentication and authorization mechanisms to control access while ensuring high availability and performance.  
 
-### Kafka Fan-Out to Web and IoT (Data Broadcasting)
+These are examples of Zilla API gateway implementations that utilize AsyncAPI to enable seamless communication across different protocols.
 
-Broadcast data from Kafka to millions of clients over SSE, MQTT, and gRPC. With Kafka and Zilla, real-time updates such as stock tickers, sports scores, logistics trackers, and push notifications can be reliably delivered to end users and systems at scale.
-
-Kafka is not designed to support many connected clients, so besides protocol mapping, Zilla also handles connection offloading by pushing data out of a real-time cache. This local cache is synchronized with Kafka for specific topics through several connections, independent of the number of connected clients. The cache also indexes message keys and headers upon retrieval from Kafka, supporting efficiently filtered reads from cached topics.
-
-### Kafka Fan-In from Web and IoT (Clickstream and Telemetry Ingestion)
-
-Ingest data into Kafka from millions of clients over HTTP, MQTT, and gRPC. With Kafka and Zilla, clickstream and telemetry data can be processed and responded to in real-time. Kafka is not designed to support many connected clients, so besides protocol mapping, Zilla also pools connections, ensuring the number of inbound connections is independent of the number of connected clients.
-
-### IoT Ingestion and Control
-
-Remove an MQTT broker from a Kafka-based EDA to streamline an IoT deployment. Zilla can persist MQTT messages and client states across pre-configured Kafka topics. Once these messages are in Kafka, they become readily available to Kafka clients, consumers, and stream processing pipelines. Zilla works bi-directionally to return data to MQTT clients from Kafka producers.
-
-### Event Mesh
-
-Interface REST or gRPC service meshes to an event-driven architecture for an event mesh deployment. Achieve CQRS, request-response over messaging, and event-sourcing design patterns.
-
-### Secure Public Access (Zilla Plus)
-
-Route connectivity between Kafka clients and privately networked Kafka brokers. With <ZillaPlus/>, external and third-party Kafka clients can securely connect, publish messages, and subscribe to topics in a remote, private cluster.
+<div class="use_cases_cards">
+  <VPCard
+    title="AsyncAPI HTTP to Kafka Proxy"
+    desc="A Zilla API gateway setup that proxies HTTP requests to Kafka using AsyncAPI."
+    link="https://github.com/aklivity/zilla-examples/tree/main/asyncapi.http.kafka.proxy"
+  />
+  <VPCard
+    title="AsyncAPI MQTT Proxy"
+    desc="A Zilla API gateway setup that proxies MQTT messages using AsyncAPI."
+    link="https://github.com/aklivity/zilla-examples/tree/main/asyncapi.mqtt.proxy"
+  />
+  <VPCard
+    title="AsyncAPI SSE Proxy"
+    desc="A Zilla API gateway setup that proxies Server-Sent Events (SSE) using AsyncAPI."
+    link="https://github.com/aklivity/zilla-examples/tree/main/asyncapi.sse.proxy"
+  />
+  <VPCard
+    title="OpenAPI to AsyncAPI Proxy"
+    desc="A Zilla API gateway setup that bridges OpenAPI and AsyncAPI protocols for seamless service integration."
+    link="https://github.com/aklivity/zilla-examples/tree/main/openapi.asyncapi.proxy"
+  />
+</div>
