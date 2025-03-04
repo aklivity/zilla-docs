@@ -276,3 +276,67 @@ html[data-theme="dark"] .dark-only {
 html[data-theme="dark"] .light-only {
   display: none;
 }
+
+
+.use_cases_cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 0.75rem;
+}
+
+.use_cases_cards .vp-card {
+  flex: 0 1 calc((100% - 8rem) / 2); /* Adjust the divisor for number of cards per row */
+  display: flex !important;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  background: none !important;
+  box-shadow: none !important;
+
+  border-radius: 1rem;
+  border-style: solid;
+  border-width: 2px;
+
+  transition: all;
+  transition-duration: 200ms;
+
+  margin: 0 !important;
+}
+
+[data-theme="light"] .use_cases_cards .vp-card {
+  border-color: #38b7a7 !important;
+}
+
+[data-theme="dark"] .use_cases_cards .vp-card {
+  border-color: #1b343f !important;
+}
+
+[data-theme="light"] .use_cases_cards .vp-card:hover {
+  border-color: #1b343f !important;
+}
+
+[data-theme="dark"] .use_cases_cards .vp-card:hover {
+  border-color: #38b7a7 !important;
+}
+
+@media (max-width: 480px) {
+  .use_cases_cards .vp-card {
+    flex: 0 1 100%; /* Single column on mobile */
+  }
+}
+
+.use_cases_cards .vp-card-logo {
+  height: 1.5rem;
+  width: auto;
+  border-radius: 0% !important;
+}
+
+.use_cases_cards .vp-card hr {
+  display: none !important;
+}
+
+.use_cases_cards .vp-card::after {
+  content: none !important;
+  display: none !important;
+}
