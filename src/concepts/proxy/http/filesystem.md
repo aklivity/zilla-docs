@@ -46,7 +46,96 @@ Zilla can be used as a straightforward file server, providing easy access to fil
 
 ## Examples
 
-Try out HTTP Filesystem examples:
+![HTTP Filesystem Pipeline Example](../images/http-filesystem.png)
 
-- [http.filesystem](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
+Access the HTTP Filesystem example files here: [HTTP Filesystem Repository](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
+
+::: details Full HTTP Filesystem zilla.yaml Config
+
+```yaml
+---
+name: example
+vaults:
+  my_servers:
+    type: filesystem
+    options:
+      keys:
+        store: tls/localhost.p12
+        type: pkcs12
+        password: ${{env.KEYSTORE_PASSWORD}}
+bindings:
+  north_tcp_server:
+    type: tcp
+    kind: server
+    options:
+      host: 0.0.0.0
+      port:
+        - 7114
+        - 7143
+    routes:
+        - when:
+            - port: 7114
+          exit: north_http_server
+        - when:
+            - port: 7143
+          exit: north_tls_server
+  north_tls_server:
+    type: tls
+    kind: server
+    vault: my_servers
+    options:
+      keys:
+        - localhost
+      sni:
+        - localhost
+      alpn:
+        - http/1.1
+        - h2
+    exit: north_http_server
+  north_http_server:
+    type: http
+    kind: server
+    routes:
+      - when:
+          - headers:
+              :scheme: http
+              :authority: localhost:7114
+          - headers:
+              :scheme: https
+              :authority: localhost:7143
+        exit: east_http_filesystem_mapping
+  east_http_filesystem_mapping:
+    type: http-filesystem
+    kind: proxy
+    routes:
+      - when:
+          - path: /{path}
+        exit: east_filesystem_server
+        with:
+          path: ${params.path}
+  east_filesystem_server:
+    type: filesystem
+    kind: server
+    options:
+      location: /var/www/
+telemetry:
+  exporters:
+    stdout_logs_exporter:
+      type: stdout
+```
+
+:::
+
+The above configuration is an example of an HTTP filesystem, where port 7114 is used for HTTP traffic, and port 7143 is used for HTTPS traffic with TLS encryption.
+
+The HTTP Filesystem consists of three main parts: the HTTP server, the HTTP-Filesystem proxy, and the Filesystem server. The configuration enables routing of HTTP requests from the HTTP server through an HTTP-Filesystem proxy, which maps requests to corresponding file paths and retrieves content from the Filesystem server.
+
+The HTTP server consists of the following bindings: TCP Server, TLS Server, and HTTP Server. The TCP server opens a specific port to allow inbound connections, and the TLS server (if enabled) provides encryption for HTTPS traffic. Once a secure connection is established, the data stream is passed to the HTTP server, which processes the incoming HTTP requests and routes them to the appropriate destinations.
+
+The HTTP-Filesystem proxy consists of the `http-filesystem` binding, which acts as an intermediary between the HTTP server and the filesystem server. It inspects incoming HTTP requests and maps them to corresponding filesystem paths. When a request is received, it extracts the path parameter and forwards it to the filesystem server, ensuring that files are served dynamically based on the requested URL structure.
+
+The Filesystem server consists of the `filesystem` binding, which directly handles file storage and retrieval. It is configured to serve files from the `/var/www/` directory, making it the final destination for requests that pass through the HTTP-Filesystem proxy. When a request reaches this server, it resolves the requested path and returns the corresponding file, enabling static content delivery.
+
+**Other Examples**:
+
 - [http.filesystem.config.server](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem.config.server)
