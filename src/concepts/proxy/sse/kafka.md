@@ -50,7 +50,147 @@ It enables efficient, scalable message delivery to multiple SSE clients, ensurin
 
 ## Examples
 
-Try out SSE-Kafka examples:
+![SSE Kafka Pipeline Example](../images/sse-kafka.png)
+
+Access the SSE Kafka example files here: [SSE Kafka Repository](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
+
+::: details Full SSE kafka zilla.yaml Config
+
+```yaml
+---
+name: example
+vaults:
+  my_servers:
+    type: filesystem
+    options:
+      keys:
+        store: tls/localhost.p12
+        type: pkcs12
+        password: ${{env.KEYSTORE_PASSWORD}}
+bindings:
+  north_tcp_server:
+    type: tcp
+    kind: server
+    options:
+      host: 0.0.0.0
+      port:
+        - 7143
+        - 7114
+    routes:
+      - when:
+          - port: 7143
+        exit: north_tls_server
+      - when:
+          - port: 7114
+        exit: north_http_server
+  north_tls_server:
+    type: tls
+    kind: server
+    vault: my_servers
+    options:
+      keys:
+        - localhost
+      sni:
+        - localhost
+      alpn:
+        - http/1.1
+        - h2
+    exit: north_http_server
+  north_http_server:
+    type: http
+    kind: server
+    options:
+      access-control:
+        policy: cross-origin
+    routes:
+      - when:
+          - headers:
+              :scheme: http
+              :authority: localhost:7114
+              :path: /events
+          - headers:
+              :scheme: https
+              :authority: localhost:7143
+              :path: /events
+        exit: north_sse_server
+      - when:
+          - headers:
+              :scheme: http
+              :authority: localhost:7114
+          - headers:
+              :scheme: https
+              :authority: localhost:7143
+        exit: east_http_filesystem_mapping
+  east_http_filesystem_mapping:
+    type: http-filesystem
+    kind: proxy
+    routes:
+      - exit: east_filesystem_server
+        when:
+          - path: /{path}
+        with:
+          path: ${params.path}
+  east_filesystem_server:
+    type: filesystem
+    kind: server
+    options:
+      location: /var/www/
+  north_sse_server:
+    type: sse
+    kind: server
+    exit: north_sse_kafka_mapping
+  north_sse_kafka_mapping:
+    type: sse-kafka
+    kind: proxy
+    routes:
+      - when:
+          - path: /{topic}
+        exit: north_kafka_cache_client
+        with:
+          topic: ${params.topic}
+  north_kafka_cache_client:
+    type: kafka
+    kind: cache_client
+    exit: south_kafka_cache_server
+  south_kafka_cache_server:
+    type: kafka
+    kind: cache_server
+    options:
+      bootstrap:
+        - events
+    exit: south_kafka_client
+  south_kafka_client:
+    type: kafka
+    kind: client
+    options:
+      servers:
+        - kafka:29092
+    exit: south_tcp_client
+  south_tcp_client:
+    type: tcp
+    kind: client
+telemetry:
+  exporters:
+    stdout_logs_exporter:
+      type: stdout
+```
+
+:::
+
+The above configuration is an example of an SSE Kafka. It listens on HTTP port 7114 or HTTPS port 7143 and will stream back whatever is published to the `events` topic in Kafka.
+
+The SSE Kafka Proxy can be constructed with three parts: the SSE server, the SSE-Kafka adapter, and the Kafka client. When the SSE server receives a request, the stream is passed into an SSE-Kafka adapter and then converted into a Kafka request.
+
+The SSE server consists of the following bindings: TCP Server, TLS Server, HTTP Server, and SSE server. A TCP Server is required to open a specific port and allow inbound connections. A TLS server is optional but can be used to perform TLS encryption for HTTPS. The data stream is then passed to an HTTP server, which is also passed to an SSE server.
+
+::: note
+Even though SSE is part of HTTP, it needs a separate binding layer on top of HTTP in Zilla.
+:::
+
+The Kafka client consists of the following bindings: Kafka Cache Client, Kafka Cache Server, Kafka Client, and TCP Client. A TCP client is required to allow outbound TCP connections and a Kafka Client is used to connect to external Kafka services. Kafka Cache Client and Server are used for additional layers before direct connection to the Kafka client. These bindings add a caching layer and additional features to Kafka requests through Zilla.
+
+The SSE-Kafka adapter is used to convert SSE-based requests into Kafka-based requests.
+
+**Other Examples**:
 
 - [asyncapi.sse.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.sse.kafka.proxy)
-- [sse.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
