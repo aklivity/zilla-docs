@@ -18,7 +18,7 @@ Zilla is a multi-protocol edge and service proxy designed to streamline, secure,
 
 As a middleware, Zilla enforces authentication, validates schemas, gathers metrics, and terminates TLS. Additionally, Zilla is stateless, cloud-native, highly memory efficient, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way). When deployed as an edge proxy, it scales horizontally to support millions of concurrently connected clients.
 
-## Core Concepts
+## Key Concepts
 
 <div class="overview_cards">
   <VPCard
@@ -74,6 +74,6 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
 Jump to the [quickstart](./how-tos/quickstart/index.md) guide.
 :::
 
-## Zilla vs <ZillaPlus />
+## Zilla vs Zilla Plus
 
 Zilla is under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (<ZillaPlus/> “Zilla Plus”) is available, which includes additional enterprise integrations and support. For more information, please visit the [<ZillaPlus/>](https://www.aklivity.io/products/zilla-plus) product page.
