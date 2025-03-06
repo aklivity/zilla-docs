@@ -9,11 +9,11 @@ breadcrumb: false
 Zilla is a multi-protocol edge and service proxy designed to streamline, secure, and manage event-driven architectures (EDAs). It addresses the challenge of EDAs, where services are decoupled and communicated via multiple protocols. It also simplifies EDAs by replacing custom code, Kafka Connect®, MQTT brokers, and other middleware reducing the DevOps burden and architectural complexity. It acts as an AsyncAPI Kafka gateway, offering advanced protocol mediation, particularly for Kafka.
 
 <div class="dark-only">
-  <img src="/assets/zilla-overview-new.gif" alt="Zilla Overview"/>
+  <img src="/assets/zilla-overview-new.gif" data-duration="2000" alt="Zilla Overview" class="freeze-after-play"/>
 </div>
 
 <div class="light-only">
-  <img src="/assets/zilla-overview-new-light.gif" alt="Zilla Overview"/>
+  <img src="/assets/zilla-overview-new-light.gif" data-duration="2000" alt="Zilla Overview" class="freeze-after-play"/>
 </div>
 
 As a middleware, Zilla enforces authentication, validates schemas, gathers metrics, and terminates TLS. Additionally, Zilla is stateless, cloud-native, highly memory efficient, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way). When deployed as an edge proxy, it scales horizontally to support millions of concurrently connected clients.
