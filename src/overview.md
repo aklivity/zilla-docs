@@ -71,7 +71,7 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
 - **API architects** who want to build functionality via AsyncAPI schemas.
 
 ::: info Just want to build?
-Jump to the [quickstart](./how-tos/quickstart/index.md) guide.
+Jump to the [quickstart](./getting-started/quickstart/index.md) guide.
 :::
 
 ## Zilla vs Zilla Plus
