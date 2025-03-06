@@ -167,7 +167,7 @@ Stream messages for a specific key published on a Kafka.
 :::
 
 ::: note Where to learn more
-[HTTP Kafka proxy Overview and Features](../concepts/kafka-proxies/http-proxy.md) | [Simple CRUD API Example](../tutorials/rest/rest-intro.md) | [Simple SSE Stream Example](../tutorials/sse/sse-intro.md) | [Petstore Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore)
+[HTTP Kafka proxy Overview and Features](../../concepts/kafka-proxies/http-proxy.md) | [Simple CRUD API Example](../../tutorials/rest/rest-intro.md) | [Simple SSE Stream Example](../../tutorials/sse/sse-intro.md) | [Petstore Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore)
 :::
 
 ## MQTT Kafka proxy
@@ -201,7 +201,7 @@ A Zilla MQTT broker is defined using three specific Kafka topics. The `messages`
 :::
 
 ::: note Where to learn more
-[Overview and Features](../concepts/kafka-proxies/http-proxy.md) | [Setup an MQTT Kafka broker](../how-tos/mqtt/mqtt.kafka.broker.md) | [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi)
+[Overview and Features](../../concepts/kafka-proxies/http-proxy.md) | [Setup an MQTT Kafka broker](../../how-tos/mqtt/mqtt.kafka.broker.md) | [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi)
 :::
 
 ## gRPC Kafka proxy
@@ -258,5 +258,5 @@ Zilla is routing all RouteGuide protobuf messages from any gRPC client to a gRPC
 :::
 
 ::: note Where to learn more
-[gRPC Kafka proxy Overview and Features](../concepts/kafka-proxies/http-proxy.md) | [Simple gRPC Server](../tutorials/grpc/grpc-intro.md) | [Full Route Guide example](../how-tos/grpc/grpc.route-guide.service.md)
+[gRPC Kafka proxy Overview and Features](../../concepts/kafka-proxies/http-proxy.md) | [Simple gRPC Server](../../tutorials/grpc/grpc-intro.md) | [Full Route Guide example](../../how-tos/grpc/grpc.route-guide.service.md)
 :::
