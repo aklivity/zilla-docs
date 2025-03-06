@@ -212,17 +212,17 @@ export const enSidebar = sidebar({
         },
         {
           text: "Quickstart",
-          link: "how-tos/quickstart/index.md",
+          link: "getting-started/quickstart/index.md",
           children: [],
         },
         {
           text: "Zilla Use Cases",
-          link: "concepts/use-cases.md",
+          link: "getting-started/use-cases.md",
           children: [],
         },
         {
           text: "VS Code Extension",
-          link: "concepts/vscode/README.md",
+          link: "getting-started/vscode/README.md",
           children: [],
         },
       ],
