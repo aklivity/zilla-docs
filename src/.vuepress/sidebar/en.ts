@@ -482,7 +482,7 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "Bring Your Own Spec",
+          text: "API Spec Integration",
           prefix: "concepts/bring-your-own-spec",
           collapsible: true,
           children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md"],
