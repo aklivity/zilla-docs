@@ -228,7 +228,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Core Concepts",
+      text: "Key Concepts",
       children: [
         {
           text: "-hidden-",
@@ -295,13 +295,6 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
-              text: "Kafka",
-              link: "kafka/README.md",
-              prefix: "kafka/",
-              collapsible: true,
-              children: ["kafka.md", "grpc.md"],
-            },
-            {
               text: "HTTP",
               link: "http/README.md",
               prefix: "http/",
@@ -316,6 +309,13 @@ export const enSidebar = sidebar({
               children: ["sse.md", "kafka.md"],
             },
             {
+              text: "gRPC",
+              link: "grpc/README.md",
+              prefix: "grpc/",
+              collapsible: true,
+              children: ["grpc.md", "kafka.md"],
+            },
+            {
               text: "MQTT",
               link: "mqtt/README.md",
               prefix: "mqtt/",
@@ -323,11 +323,11 @@ export const enSidebar = sidebar({
               children: ["mqtt.md", "kafka.md"],
             },
             {
-              text: "gRPC",
-              link: "grpc/README.md",
-              prefix: "grpc/",
+              text: "Kafka",
+              link: "kafka/README.md",
+              prefix: "kafka/",
               collapsible: true,
-              children: ["grpc.md", "kafka.md"],
+              children: ["kafka.md", "grpc.md"],
             },
           ],
         },
