@@ -358,21 +358,21 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Avro",
-                  link: "avro.md",
+                  link: "avro/README.md",
                   prefix: "avro/",
                   collapsible: true,
                   children: ["json.md"],
                 },
                 {
                   text: "JSON",
-                  link: "json.md",
+                  link: "json/README.md",
                   prefix: "json/",
                   collapsible: true,
                   children: ["avro.md", "protobuf.md"],
                 },
                 {
                   text: "Protobuf",
-                  link: "protobuf.md",
+                  link: "protobuf/README.md",
                   prefix: "protobuf/",
                   collapsible: true,
                   children: ["json.md"],
@@ -483,7 +483,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "API Spec Integration",
-          prefix: "concepts/bring-your-own-spec",
+          prefix: "concepts/api-spec-integration",
           collapsible: true,
           children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md"],
         },
