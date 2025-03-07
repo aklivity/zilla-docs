@@ -54,7 +54,7 @@ Zilla supports Cross-Origin Resource Sharing (CORS) and allows you to specify fi
 
 ### Authorization
 
-Zilla has a modular config that includes the concept of a [Guard](../../security/guard.md#guard) where you define your `guard` configuration and reference that `guard` to authorize a specific endpoint. JSON Web Token (JWT) authorization is supported with the [`jwt`](../../security/guard/jwt.md#jwt) Guard.
+Zilla has a modular config that includes the concept of a [Guard](../../security/guard/README.md#guard) where you define your `guard` configuration and reference that `guard` to authorize a specific endpoint. JSON Web Token (JWT) authorization is supported with the [`jwt`](../../security/guard/jwt/README.md#jwt) Guard.
 
 ## Use Cases
 

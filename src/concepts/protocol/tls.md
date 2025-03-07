@@ -33,7 +33,7 @@ TLS provides encryption, integrity, and authentication for network communication
 - **[TCP](./tcp.md#securing-tcp-with-tls)** - TCP with TLS (STARTTLS) upgrades unencrypted TCP connections to secure TLS-encrypted communication to protect transmitted data.
 - **[Filesystem](./filesystem.md#https)** - By utilizing HTTP and TLS binding, a TLS encryption can be enforced on the Filesystem bindings.
 
-Zilla also supports [vaults](../security/vault.md#vault) for secure key storage, such as a `filesystem` vault that stores PKCS#12 certificates used by the TLS binding to decrypt incoming traffic.
+Zilla also supports [vaults](../security/vault/README.md#vault) for secure key storage, such as a `filesystem` vault that stores PKCS#12 certificates used by the TLS binding to decrypt incoming traffic.
 
 ## Zilla: Beyond Standard TLS
 

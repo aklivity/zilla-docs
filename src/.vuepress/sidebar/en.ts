@@ -238,7 +238,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Protocol",
-          link: "concepts/protocol.md",
+          link: "concepts/protocol/README.md",
           prefix: "concepts/protocol/",
           collapsible: true,
           children: [
@@ -338,7 +338,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Catalog",
-              link: "catalog.md",
+              link: "catalog/README.md",
               prefix: "catalog/",
               collapsible: true,
               children: [
@@ -352,7 +352,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Model",
-              link: "model.md",
+              link: "model/README.md",
               prefix: "model/",
               collapsible: true,
               children: [
@@ -393,14 +393,14 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Metrics",
-              link: "metrics.md",
+              link: "metrics/README.md",
               prefix: "metrics/",
               collapsible: true,
               children: ["grpc.md", "http.md", "stream.md"],
             },
             {
               text: "Exporters Logs and Metrics",
-              link: "exporters-logs-and-metrics.md",
+              link: "exporters-logs-and-metrics/README.md",
               prefix: "exporters-logs-and-metrics/",
               collapsible: true,
               children: [
@@ -429,13 +429,13 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Kafka",
-              link: "kafka.md",
+              link: "kafka/README.md",
               prefix: "kafka/",
               collapsible: true,
               children: [
                 {
                   text: "SASL",
-                  link: "sasl.md",
+                  link: "sasl/README.md",
                   prefix: "sasl/",
                   collapsible: true,
                   children: ["plain.md", "scram.md"],
@@ -445,13 +445,13 @@ export const enSidebar = sidebar({
             },
             {
               text: "Guard",
-              link: "guard.md",
+              link: "guard/README.md",
               prefix: "guard/",
               collapsible: true,
               children: [
                 {
                   text: "JWT",
-                  link: "jwt.md",
+                  link: "jwt/README.md",
                   prefix: "jwt/",
                   collapsible: true,
                   children: ["http.md", "sse.md", "mqtt.md"],
@@ -460,21 +460,21 @@ export const enSidebar = sidebar({
             },
             {
               text: "Vault",
-              link: "vault.md",
+              link: "vault/README.md",
               prefix: "vault/",
               collapsible: true,
               children: ["filesystem.md", "aws-acm.md", "aws-secrets.md"],
             },
             {
               text: "Threat Protection",
-              link: "threat-protection.md",
+              link: "threat-protection/README.md",
               prefix: "threat-protection/",
               collapsible: true,
               children: ["aws-shield.md"],
             },
             {
               text: "Resolvers",
-              link: "resolvers.md",
+              link: "resolvers/README.md",
               prefix: "resolvers/",
               collapsible: true,
               children: ["environment-variables.md", "aws-secrets-manager.md"],

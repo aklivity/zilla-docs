@@ -16,15 +16,15 @@ Before we get through each protocol, let's discuss bindings first.
 
 ## Bindings
 
-A [`binding`](../reference/config/overview.md#bindings) represents a step in the pipeline as data streams are decoded, translated, or encoded according to a specific protocol `type.` Bindings are organized by behavioral type, supporting either encoding and decoding for a particular protocol or mapping between protocols.
+A [`binding`](../../reference/config/overview.md#bindings) represents a step in the pipeline as data streams are decoded, translated, or encoded according to a specific protocol `type.` Bindings are organized by behavioral type, supporting either encoding and decoding for a particular protocol or mapping between protocols.
 
 Bindings have a `kind`, indicating how they should behave.
 
 - **Server Bindings:** A `server` exists to decode a protocol on the inbound network stream, producing higher-level application streams for each request.
 - **Proxy Bindings:** A `proxy` handles translating or encoding behaviors between components.
 - **Client Bindings:** A `client` receives inbound application streams and encodes each as a network stream.
-- **Cache Client & Server Bindings:** A `cache_client` & `cache_server` combined provide a persistent cache of Kafka messages per topic partition, honoring the Kafka topic configuration for message expiration and compaction. Read more in the [kafka](../reference/config/bindings/kafka/README.md#cache-behavior) binding.
-- **Remote Server Bindings:** A `remote_server` exists to adapt a Kafka topic stream to a higher-level application stream. Read more in the [kafka-grpc](../reference/config/bindings/kafka-grpc/README.md) binding.
+- **Cache Client & Server Bindings:** A `cache_client` & `cache_server` combined provide a persistent cache of Kafka messages per topic partition, honoring the Kafka topic configuration for message expiration and compaction. Read more in the [kafka](../../reference/config/bindings/kafka/README.md#cache-behavior) binding.
+- **Remote Server Bindings:** A `remote_server` exists to adapt a Kafka topic stream to a higher-level application stream. Read more in the [kafka-grpc](../../reference/config/bindings/kafka-grpc/README.md) binding.
 
 ## The `zilla.yaml` Configuration
 
@@ -59,7 +59,7 @@ bindings:
     kind: server
 ```
 
-![Binding Pipeline](bindings-simple.png)
+![Binding Pipeline](../bindings-simple.png)
 
 ## Routes
 
@@ -93,11 +93,11 @@ A condition will attempt to match the target stream exactly against the configur
   - `client-123`
   - `client-*`
 
-[http-kafka]:../reference/config/bindings/http-kafka/proxy.md#routes
-[sse-kafka]:../reference/config/bindings/sse-kafka/proxy.md#routes
-[grpc-kafka]:../reference/config/bindings/grpc-kafka/proxy.md#routes
-[kafka-grpc]:../reference/config/bindings/kafka-grpc/remote_server.md#routes
-[mqtt-kafka]:../reference/config/bindings/mqtt-kafka/proxy.md#routes
+[http-kafka]:../../reference/config/bindings/http-kafka/proxy.md#routes
+[sse-kafka]:../../reference/config/bindings/sse-kafka/proxy.md#routes
+[grpc-kafka]:../../reference/config/bindings/grpc-kafka/proxy.md#routes
+[kafka-grpc]:../../reference/config/bindings/kafka-grpc/remote_server.md#routes
+[mqtt-kafka]:../../reference/config/bindings/mqtt-kafka/proxy.md#routes
 
 #### Dynamic path parameters
 
@@ -111,11 +111,11 @@ After the route logic matches, additional parameters are applied `with` the inbo
 
 Routes with the `fetch` capability map retrieval requests from a Kafka topic, supporting filtered or unfiltered retrieval of messages from the topic partitions, merged into a unified response. Filtering can apply to the Kafka message key, message headers, or a combination of both message key and headers.
 
-The [http-kafka](../reference/config/bindings/http-kafka/README.md) binding provides additional support for extracting parameter values from the inbound HTTP request path. Successful `200 OK` HTTP responses include an [ETag](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) header that can be used with [if-none-match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match) for subsequent conditional `GET` requests to check for updates. Rather than polling, HTTP requests can also include the `prefer wait=N` header to wait a maximum of `N` seconds before responding with `304 Not Modified` if not modified. When a new message arrives on the topic that would modify the response, all `prefer: wait=N` clients receive the response immediately with a corresponding new ETag.
+The [http-kafka](../../reference/config/bindings/http-kafka/README.md) binding provides additional support for extracting parameter values from the inbound HTTP request path. Successful `200 OK` HTTP responses include an [ETag](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) header that can be used with [if-none-match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match) for subsequent conditional `GET` requests to check for updates. Rather than polling, HTTP requests can also include the `prefer wait=N` header to wait a maximum of `N` seconds before responding with `304 Not Modified` if not modified. When a new message arrives on the topic that would modify the response, all `prefer: wait=N` clients receive the response immediately with a corresponding new ETag.
 
 #### Reliable message delivery
 
-With the [grpc-kafka](../reference/config/bindings/grpc-kafka/README.md) binding, using the fetch capability, reliable message delivery is achieved by capturing the value of the `reliability` `field` injected into each response stream message at the gRPC client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new gRPC request. This allows interrupted streams to pick up where they left off without missing messages in the response stream.
+With the [grpc-kafka](../../reference/config/bindings/grpc-kafka/README.md) binding, using the fetch capability, reliable message delivery is achieved by capturing the value of the `reliability` `field` injected into each response stream message at the gRPC client, and replaying the value via the `reliability` `metadata` header when reestablishing the stream with a new gRPC request. This allows interrupted streams to pick up where they left off without missing messages in the response stream.
 
 #### The Produce capability
 
@@ -123,14 +123,14 @@ Routes with the `produce` capability map any request-response network call to a 
 
 Requests with an `idempotency-key` header can be replayed and receive the same response. A Kafka consumer can detect and ignore potential duplicate requests because they will have the same `idempotency-key` and `zilla:correlation-id`.
 
-In the [http-kafka](../reference/config/bindings/http-kafka/README.md) binding, specifying `async` allows clients to include a `prefer: respond-async` header in the HTTP request to receive `202 Accepted` response with `location` response header.
+In the [http-kafka](../../reference/config/bindings/http-kafka/README.md) binding, specifying `async` allows clients to include a `prefer: respond-async` header in the HTTP request to receive `202 Accepted` response with `location` response header.
 
 A corresponding `routes[].when` object with a matching `GET` method and `location` path is also required for follow-up `GET` requests to return the same response as would have been returned if the `prefer: respond-async` request header had been omitted.
 
 ### Route Exit
 
-A route exists to direct a data stream to a desired exit point. This is the next binding needed to parse the stream data. Bindings like [tcp](../reference/config/bindings/tcp/README.md) are frequently used to route incoming streams to different exit points. Once a valid exit point is determined, messages can be sent to the correct `exit` destination.
+A route exists to direct a data stream to a desired exit point. This is the next binding needed to parse the stream data. Bindings like [tcp](../../reference/config/bindings/tcp/README.md) are frequently used to route incoming streams to different exit points. Once a valid exit point is determined, messages can be sent to the correct `exit` destination.
 
 ### Guarded Routes
 
-A route is considered `guarded` if a [guard](guards.md) is specified. The guard condition short circuits any other route conditions and evaluates if a stream is allowed to use the route. If the `guarded` check fails, route evaluation falls to the next defined route. Any guard can be configured, enabling different use cases when protecting data sent over a stream.
+A route is considered `guarded` if a [guard](../guards.md) is specified. The guard condition short circuits any other route conditions and evaluates if a stream is allowed to use the route. If the `guarded` check fails, route evaluation falls to the next defined route. Any guard can be configured, enabling different use cases when protecting data sent over a stream.

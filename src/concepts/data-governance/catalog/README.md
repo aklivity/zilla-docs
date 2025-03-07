@@ -71,7 +71,7 @@ catalogs:
 
 Remote catalogs allow Zilla to fetch existing schemas stored in an external service. Zilla will pull and maintain an up to date version of the specified schema meaning the running Zilla doesn't need to be redeployed when new data models are pushed. Zilla can also reference specific versions.
 
-Registering remote catalogs is simple. Zilla needs to know the address for the registry and any relevant information about where the resources in the registry will be found. Once a remote catalog is registered the [model configs](./model.md#structured-message-data) will specify which resources and versions to fetch and use.
+Registering remote catalogs is simple. Zilla needs to know the address for the registry and any relevant information about where the resources in the registry will be found. Once a remote catalog is registered the [model configs](../model/README.md#structured-message-data) will specify which resources and versions to fetch and use.
 
 ```yaml
 catalogs:
