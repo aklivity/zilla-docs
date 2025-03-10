@@ -14,6 +14,18 @@ By automating the configuration of a network load balancer and auto-scaling grou
 
 You will need to choose a wildcard DNS pattern to use for public internet access to the Web Streaming proxies. These wildcard DNS names must resolve to the public IP address(es) where the <ZillaPlus/> proxy is deployed. The <ZillaPlus/> proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
 
+![MSK Web Streaming Overview](/web_streaming.png)
+
+## Key Features
+
+- Enable web clients to publish, update, and stream Kafka messages via **customizable REST and SSE APIs**.
+- **No configuration** changes required to your MSK cluster to enable seamless web access.
+- <ZillaPlus/> supports **Auto-Scaling** and are deployed behind a **Network Load Balancer** for optimal performance.
+
+## Deploy with CDK
+
+Follow the [Web Streaming with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming) guide to generate or deploy a custom AWS CDK stack. This stack exposes a custom `REST` path and uses `SASL/SCRAM` authentication.
+
 ## Deployment with Terraform
 
 Follow the [Web Streaming with Terraform](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming) guide to generated or deploy a custom Terraform template using [CDKTF](https://developer.hashicorp.com/terraform/cdktf). This Terraform script can be configured to expose a custom REST path and uses `SASL/SCRAM` authentication.
