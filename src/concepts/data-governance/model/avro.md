@@ -4,7 +4,7 @@ shortTitle: Avro
 
 # Avro
 
-The `avro` model in Zilla defines structured data using [Apache Avro](https://avro.apache.org/) for serialization and deserialization in textual and binary formats. A `view` maps Avro-encoded messages to a structured format, while a `catalog` organizes schemas for consistency and reuse, ensuring proper data processing. 
+The `avro` model in Zilla defines structured data using [Apache Avro](https://avro.apache.org/) for serialization and deserialization in textual and binary formats. A `view` maps Avro-encoded messages to a structured format, while a `catalog` organizes schemas for consistency and reuse, ensuring proper data processing.
 
 ```yaml {1}
 <!-- @include: ./.partials/avro.yaml -->
