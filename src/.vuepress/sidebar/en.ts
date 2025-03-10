@@ -287,18 +287,13 @@ export const enSidebar = sidebar({
               prefix: "concepts/protocol/",
             },
             {
-              text: "TCP",
-              link: "tcp.md",
+              text: "gRPC",
+              link: "grpc.md",
               prefix: "concepts/protocol/",
             },
             {
               text: "Kafka",
               link: "kafka.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "gRPC",
-              link: "grpc.md",
               prefix: "concepts/protocol/",
             },
             {
@@ -309,21 +304,6 @@ export const enSidebar = sidebar({
             {
               text: "SSE",
               link: "sse.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "Filesystem",
-              link: "filesystem.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "TLS",
-              link: "tls.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "WS",
-              link: "ws.md",
               prefix: "concepts/protocol/",
             },
           ],

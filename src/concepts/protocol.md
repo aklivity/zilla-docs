@@ -2,15 +2,11 @@
 
 Zilla supports bindings between protocols. This characteristic lets you map streams from the gRPC server into SSE and much more. Currently, we support these protocols:
 
-- Filesystem
-- gRPC
 - HTTP
+- gRPC
 - Kafka
 - MQTT
 - SSE
-- TCP
-- TLS
-- WS
 
 Before we get through each protocol, let's discuss bindings first.
 
