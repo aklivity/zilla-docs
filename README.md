@@ -180,8 +180,6 @@ Description.
 
 We’d love to hear your feedback. Please file documentation issues only in the docs GitHub repository. You can file a new issue to suggest improvements or if you see any errors in the existing documentation.
 
-Every page has an `Edit this page on GitHub` link at the bottom for you to check the page source and report specific issues.
-
 ## Copyright and license
 
 Copyright Aklivity, Inc. 2024, released under the [Apache 2.0 license](https://github.com/aklivity/zilla/blob/main/LICENSE).
