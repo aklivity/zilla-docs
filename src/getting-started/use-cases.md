@@ -17,13 +17,13 @@ Zilla enhances your existing services by adding metrics, logging, message valida
 <div class="use_cases_cards">
   <VPCard
     logo="/assets/icons/proxy.svg"
-    title="HTTP Proxy Forwarding"
+    title="HTTP Proxy"
     desc="A Zilla API gateway setup that forwards HTTP requests to an upstream server."
     link="https://github.com/aklivity/zilla-examples/tree/main/http.proxy"
   />
   <VPCard
     logo="/assets/icons/connecting kafka.svg"
-    title="HTTP to Kafka CRUD"
+    title="HTTP Kafka CRUD"
     desc="A Zilla API gateway setup enabling CRUD operations over HTTP with Kafka integration."
     link="https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud"
   />
@@ -51,7 +51,7 @@ Zilla enhances your existing services by adding metrics, logging, message valida
 <div class="use_cases_cards">
   <VPCard
     logo="/assets/icons/data governance.svg"
-    title="MQTT Kafka Broker"
+    title="MQTT Kafka Proxy"
     desc="A Zilla API gateway setup acting as an MQTT broker with Kafka integration."
     link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker"
   />
@@ -109,13 +109,13 @@ Zilla enhances your existing services by adding metrics, logging, message valida
   />
   <VPCard
     logo="/assets/icons/connecting kafka.svg"
-    title="gRPC Kafka Echo"
-    desc="A Zilla API gateway setup that echoes messages over Kafka using gRPC."
-    link="https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo"
+    title="gRPC Kafka Proxy"
+    desc="A Zilla API gateway setup that proxy messages over Kafka using gRPC."
+    link="https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy"
   />
 </div>
 
-## AsyncAPI Kafka Gateway
+## AsyncAPI Proxy Gateway
 
 Zilla can leverage standard API schema specifications such as AsyncAPI and OpenAPI to configure the settings that define common API interfaces. Zilla will use the details specified to reuse existing designs and reduce complexity.
 

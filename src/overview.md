@@ -36,13 +36,13 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="Data Governance"
     logo="/assets/icons/data governance.svg"
-    link="#"
+    link="./concepts/data-governance/catalog/README.md"
   />
 
   <VPCard
     title="Monitoring & Observability"
     logo="/assets/icons/monitoring.svg"
-    link="#"
+    link="./concepts/monitoring-observability/metrics/README.md"
   />
 
   <VPCard
