@@ -67,18 +67,6 @@ Zilla enhances your existing services by adding metrics, logging, message valida
 
 <div class="use_cases_cards">
   <VPCard
-    logo="/assets/icons/connecting kafka.svg"
-    title="Kafka Broker"
-    desc="A Zilla API gateway setup that acts as a Kafka broker for managing message streams."
-    link="https://github.com/aklivity/zilla-examples/tree/main/kafka.broker"
-  />
-  <VPCard
-    logo="/assets/icons/proxy.svg"
-    title="HTTP Kafka CRUD"
-    desc="A Zilla API gateway setup enabling CRUD operations over HTTP with Kafka integration."
-    link="https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud"
-  />
-  <VPCard
     logo="/assets/icons/security.svg"
     title="Secure Public Access"
     desc="A secure Public Access Proxy allows authorized Kafka clients to connect to your Amazon MSK cluster or Confluent Cloud via the Internet."
