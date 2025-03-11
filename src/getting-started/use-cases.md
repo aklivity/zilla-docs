@@ -56,6 +56,12 @@ Zilla enhances your existing services by adding metrics, logging, message valida
     link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker"
   />
   <VPCard
+    logo="/assets/icons/proxy.svg"
+    title="MQTT Proxy with JWT"
+    desc="A Zilla setup that set up MQTT as a proxy with JWT authentication."
+    link="https://github.com/aklivity/zilla-examples/tree/example-startup-compose/mqtt.proxy.jwt"
+  />
+  <VPCard
     logo="/assets/icons/security.svg"
     title="MQTT Kafka Broker with JWT"
     desc="A Zilla API gateway setup that provides an MQTT broker with Kafka integration and JWT authentication."
