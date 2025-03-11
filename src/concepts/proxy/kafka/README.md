@@ -2,7 +2,10 @@
 
 Zilla offers support for the following Kafka Bindings: Kafka Proxy (<ZillaPlus/>) and Kafka gRPC. These bindings serve seamless integration, routing, and streamlined Kafka-based interactions. Here's an overview of each binding, its key capabilities, and use cases.
 
-## Kafka Proxy (<ZillaPlus/>)
+## Kafka Proxy
+
+[Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
+{.zilla-plus-badge .hint-container .info}
 
 Zilla's Kafka Proxy binding acts as an intermediary between external and internal Kafka streams. This binding is particularly useful for organizations that need to integrate external Kafka streams into their internal Kafka ecosystem without disrupting existing workflows.
 

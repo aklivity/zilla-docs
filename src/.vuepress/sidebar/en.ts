@@ -177,8 +177,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "CloudFormation",
-              link: "how-tos/amazon-msk/iot-ingest-control.md"
-            }
+              link: "how-tos/amazon-msk/iot-ingest-control.md",
+            },
           ],
         },
         {
@@ -321,18 +321,18 @@ export const enSidebar = sidebar({
               children: ["http.md", "kafka.md", "filesystem.md"],
             },
             {
-              text: "SSE",
-              link: "sse/README.md",
-              prefix: "sse/",
-              collapsible: true,
-              children: ["sse.md", "kafka.md"],
-            },
-            {
               text: "gRPC",
               link: "grpc/README.md",
               prefix: "grpc/",
               collapsible: true,
               children: ["grpc.md", "kafka.md"],
+            },
+            {
+              text: "Kafka",
+              link: "kafka/README.md",
+              prefix: "kafka/",
+              collapsible: true,
+              children: ["kafka.md", "grpc.md"],
             },
             {
               text: "MQTT",
@@ -342,11 +342,11 @@ export const enSidebar = sidebar({
               children: ["mqtt.md", "kafka.md"],
             },
             {
-              text: "Kafka",
-              link: "kafka/README.md",
-              prefix: "kafka/",
+              text: "SSE",
+              link: "sse/README.md",
+              prefix: "sse/",
               collapsible: true,
-              children: ["kafka.md", "grpc.md"],
+              children: ["sse.md", "kafka.md"],
             },
           ],
         },
@@ -390,6 +390,7 @@ export const enSidebar = sidebar({
         {
           text: "Monitoring & Observability",
           prefix: "concepts/monitoring-observability",
+          link: "concepts/monitoring-observability/README.md",
           collapsible: true,
           children: [
             {
