@@ -59,7 +59,7 @@ Zilla enhances your existing services by adding metrics, logging, message valida
     logo="/assets/icons/proxy.svg"
     title="MQTT Proxy with JWT"
     desc="A Zilla setup that set up MQTT as a proxy with JWT authentication."
-    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.proxy.jwt"
+    link="https://github.com/aklivity/zilla-examples/tree/example-startup-compose/mqtt.proxy.jwt"
   />
   <VPCard
     logo="/assets/icons/security.svg"
