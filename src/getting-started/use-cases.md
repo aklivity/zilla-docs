@@ -46,7 +46,7 @@ Zilla serves as a service proxy and an adapter between the supported protocols a
     logo="/assets/icons/proxy.svg"
     title="SSE Proxy with JWT"
     desc="A Zilla API gateway setup that proxies SSE traffic with JWT authentication."
-    link="https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt"
+    link="https://github.com/aklivity/zilla-examples/tree/main/sse.jwt"
   />
 </div>
 
@@ -63,7 +63,7 @@ Zilla serves as a service proxy and an adapter between the supported protocols a
     logo="/assets/icons/proxy.svg"
     title="MQTT Proxy with JWT"
     desc="A Zilla setup that set up MQTT as a proxy with JWT authentication."
-    link="https://github.com/aklivity/zilla-examples/tree/example-startup-compose/mqtt.proxy.jwt"
+    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.proxy.jwt"
   />
 </div>
 
@@ -159,6 +159,6 @@ Zilla supports standard API schema definitions like AsyncAPI and OpenAPI, simpli
     logo="/assets/icons/bring your own.svg"
     title="OpenAPI-AsyncAPI Proxy"
     desc="A Zilla API gateway setup that bridges OpenAPI and AsyncAPI protocols for seamless service integration."
-    link="https://github.com/aklivity/zilla-examples/tree/main/openapi.asyncapi.proxy"
+    link="https://github.com/aklivity/zilla-examples/tree/main/openapi.asyncapi.kafka.proxy"
   />
 </div>
