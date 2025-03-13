@@ -8,6 +8,8 @@ shortTitle: Proxy
 
 Zilla's gRPC Proxy serves as an intermediary, managing, routing, and validating gRPC traffic between clients and backend services. It utilizes the [grpc](../../../reference/config/bindings/grpc/README.md) binding to handle both server and client behaviors, effectively facilitating seamless communication in distributed systems.
 
+![Architecture Example](../images/gRPC%20Proxy.png)
+
 ## Key Capabilities
 
 ### Inbound and Outbound gRPC Streams

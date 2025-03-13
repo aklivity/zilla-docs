@@ -12,6 +12,8 @@ An MQTT server acts as a broker between publishers and subscribers. This require
 
 Zilla uses specific Kafka topics to store and route MQTT messages, meaning the Kafka architecture can be optimized for MQTT Pub/Sub. MQTT client subscribers and publishers will communicate with Zilla the same as any broker.
 
+![Architecture Example](../images/MQTT%20Kafka%20Proxy.png)
+
 ## Key Capabilities
 
 ### Pub/Sub with Kafka

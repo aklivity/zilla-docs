@@ -8,6 +8,8 @@ shortTitle: Filesystem
 
 The HTTP Filesystem binding transforms Zilla into a versatile web server, enabling file serving and management directly from the filesystem. It’s ideal for scenarios requiring lightweight, configurable file hosting. This capability makes Zilla a powerful tool for developers who need to quickly set up a file-serving infrastructure without the overhead of more complex systems.
 
+![Architecture Example](../images/HTTP%20Filesystem.png)
+
 ## Key Capabilities
 
 ### Configurable File Routing

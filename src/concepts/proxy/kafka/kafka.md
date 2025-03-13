@@ -11,6 +11,8 @@ shortTitle: Proxy – Zilla Plus
 
 Zilla's [`kafka-proxy`](../../../reference/config/bindings/kafka-proxy/README.md) serves as an intermediary between external clients and internal Kafka brokers, facilitating seamless communication across different network environments. This binding is particularly useful in scenarios where external clients need controlled access to internal Kafka infrastructures, such as in multi-cloud deployments or when integrating with third-party services.
 
+![Architecture Example](../images/Kafka%20Proxy.png)
+
 ## Key Capabilities
 
 ### Seamless Kafka Traffic Proxying

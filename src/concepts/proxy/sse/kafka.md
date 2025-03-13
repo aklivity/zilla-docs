@@ -8,6 +8,8 @@ shortTitle: Kafka
 
 Zilla's [SSE-Kafka Proxy](../../../reference/config/bindings/sse-kafka/README.md) provides a seamless binding between Server-Sent Events (SSE) and Kafka, enabling SSE APIs to interact with Kafka’s event-driven architecture. It simplifies integration by allowing SSE clients to consume Kafka messages over HTTP, ensuring efficient real-time streaming with reliability, scalability, and flexible message filtering.
 
+![Architecture Example](../images/SSE%20Kafka%20Proxy.png)
+
 ## Key Capabilities
 
 ### Protocol Adaptation

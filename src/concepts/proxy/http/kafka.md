@@ -10,6 +10,8 @@ The Zilla HTTP Kafka Proxy lets you configure application-centric REST APIs and 
 
 A developer has the freedom to define their own HTTP mapping to Kafka, with control over the topics, message key, message headers, and payload. Any HTTP client can interact with Kafka without navigating Kafka-specific paradigms.
 
+![Architecture Example](../images/HTTP%20Kafka%20Proxy.png)
+
 ## Key Capabilities
 
 ### Configurable Endpoints

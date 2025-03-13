@@ -8,6 +8,8 @@ shortTitle: Proxy
 
 Zilla's SSE Proxy serves as a bridge between clients and backend services by managing, routing, and validating SSE traffic. It leverages an SSE Server binding to handle incoming client connections and an SSE Client binding to forward events to backend services, effectively functioning as a proxy for real-time event streaming.
 
+![Architecture Example](../images/SSE%20Proxy.png)
+
 ## Key Capabilities
 
 ### Inbound and Outbound HTTP Streams

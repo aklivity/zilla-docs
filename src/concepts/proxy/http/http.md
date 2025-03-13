@@ -8,6 +8,8 @@ shortTitle: Proxy
 
 Zilla’s HTTP proxy provides a secure and efficient solution for managing API requests. It offers advanced capabilities, including fine-grained CORS control, authorization enforcement through guards, dynamic request routing, and strict request validation. By implementing CORS policies, Zilla allows controlled access from different origins while maintaining strict security measures. Its authorization guards ensure that only authenticated users can interact with protected resources. The proxy's dynamic routing functionality enables intelligent traffic management by evaluating HTTP headers to determine the appropriate destination.
 
+![Architecture Example](../images/HTTP%20Proxy.png)
+
 ## Key Capabilities
 
 ### Cross-Origin Resource Sharing (CORS)

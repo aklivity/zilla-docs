@@ -8,6 +8,8 @@ shortTitle: gRPC
 
 Zilla's [Kafka gRPC binding](../../../reference/config/bindings/kafka-grpc/README.md) acts as a bridge between Kafka streams and gRPC-based services, enabling seamless integration between event-driven messaging and request-response interactions. This binding is ideal for scenarios where Kafka topics need to communicate with remote gRPC services, such as microservices or external APIs, ensuring reliable message delivery, request correlation, and idempotent processing.
 
+![Architecture Example](../images/Kafka%20gRPC.png)
+
 ## Key Capabilities
 
 ### Receiving and Processing

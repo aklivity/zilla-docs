@@ -6,6 +6,8 @@ shortTitle: Proxy
 
 Zilla’s MQTT proxy provides a robust and scalable solution for managing MQTT message flows. It enables efficient publish-subscribe communication while enforcing secure authentication, advanced message routing, and schema validation. With support for JWT-based authentication, Zilla ensures that only authorized clients can connect and interact with the broker. Its dynamic topic-based routing optimizes message distribution, enhancing performance and scalability. Schema validation guarantees data integrity by ensuring that all messages conform to predefined structures. Additionally, Zilla integrates seamlessly with AsyncAPI specifications, allowing for standardized and declarative configuration of MQTT interactions in event-driven architectures.
 
+![Architecture Example](../images/MQTT%20Proxy.png)
+
 ## Key Capabilities
 
 ### Publish-Subscribe Model
