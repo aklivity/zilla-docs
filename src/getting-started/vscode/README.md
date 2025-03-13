@@ -1,5 +1,5 @@
 ---
-shortTitle: VS Code Extension
+shortTitle: Build and Visualize
 redirectFrom: /reference/vscode
 breadcrumb: false
 ---

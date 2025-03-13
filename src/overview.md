@@ -74,6 +74,6 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
 Jump to the [quickstart](./getting-started/quickstart/index.md) guide.
 :::
 
-## Zilla vs Zilla Plus
+## Zilla vs <ZillaPlus/> <span style="display:none">Zilla Plus</span>
 
 Zilla is under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (<ZillaPlus/> “Zilla Plus”) is available, which includes additional enterprise integrations and support. For more information, please visit the [<ZillaPlus/>](https://www.aklivity.io/products/zilla-plus) product page.
