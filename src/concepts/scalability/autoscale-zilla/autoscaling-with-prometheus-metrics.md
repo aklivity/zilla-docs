@@ -1,8 +1,8 @@
 ---
-shortTitle: Autoscale Zilla with Prometheus Metrics
+shortTitle: Autoscaling with Prometheus Metrics
 ---
 
-# Autoscale Zilla with Prometheus Metrics
+# Autoscaling with Prometheus Metrics
 
 In this guide, run zilla in kubernetes and autoscale the number of pods based on prometheus metrics. The Kubernetes horizontal pod autoscaler is set up to enable the zilla deployment to scale from 1 to 5 pods with the goal of an average load of 10 active connections per pod.
 

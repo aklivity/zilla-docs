@@ -424,11 +424,11 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Autoscaling with Prometheus Metrics",
-              link: "autoscale-zilla/autoscale-zilla-with-prometheus-metrics.md",
+              link: "autoscale-zilla/autoscaling-with-prometheus-metrics.md",
             },
             {
               text: "Autoscaling with AWS CloudWatch Metrics",
-              link: "autoscale-zilla/autoscale-zilla-with-aws-cloudwatch-metrics.md",
+              link: "autoscale-zilla/autoscaling-with-aws-cloudwatch-metrics.md",
             },
           ],
         },
