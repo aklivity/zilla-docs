@@ -262,7 +262,7 @@ sup {
 }
 
 .dark-only {
-    display: none;
+  display: none;
 }
 
 html[data-theme="dark"] .dark-only {
@@ -276,7 +276,6 @@ html[data-theme="dark"] .dark-only {
 html[data-theme="dark"] .light-only {
   display: none;
 }
-
 
 .use_cases_cards {
   display: flex;
@@ -339,4 +338,47 @@ html[data-theme="dark"] .light-only {
 .use_cases_cards .vp-card::after {
   content: none !important;
   display: none !important;
+}
+
+.vp-tabs {
+  border-radius: 0 !important;
+  border-color: rgba(0,0,0,0.25) !important;
+}
+
+[data-theme="dark"] .vp-tabs {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+
+.vp-tabs-nav {
+  border-radius: 0 !important;
+}
+
+.vp-tab-nav {
+  border-radius: 0 !important;
+}
+
+.vp-tab {
+  border-radius: 0 !important;
+}
+
+.vp-tab-nav.active {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.vp-tab-nav.active {
+  border-bottom: var(--vp-c-green-bg) 3px solid;
+  color: var(--vp-c-green-text) !important;
+}
+
+.vp-tab-nav::before {
+  right: 0% !important;
+}
+
+.vp-tab-nav::right {
+  left: 0% !important;
+}
+
+.vp-tab-nav.active::after, .vp-tab-nav.active::before {
+  background: rgba(0, 0, 0, 0) !important;
 }
