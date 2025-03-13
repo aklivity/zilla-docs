@@ -1,16 +1,20 @@
 ---
-shortTitle: Zilla Use Cases
-description: Zilla supports use cases as a service proxy for HTTP, SSE, MQTT, Kafka, and gRPC services and as an AsyncAPI Kafka gateway.
+shortTitle: Real-World Use Cases
+description: Zilla supports use cases as a service proxy for HTTP, SSE, MQTT, Kafka, and gRPC services and as an OpenAPI and AsyncAPI Kafka gateway.
 breadcrumb: false
 ---
 
 # Real-World Use Cases
 
-Zilla can be used as a service proxy (sidecar) or as an [AsyncAPI](https://www.asyncapi.com/) Kafka gateway.
+A collection of Zilla examples demonstrating its real-world use cases.
+
+::: info
+Explore all examples in the [zilla-examples](https://github.com/aklivity/zilla-examples/tree/main) repository.
+:::
 
 ## Service Proxy
 
-Zilla enhances your existing services by adding metrics, logging, message validation, and authentication. Here's how it works for different service protocols:
+Zilla serves as a service proxy and an adapter between the supported protocols and Kafka. Zilla supports HTTP, SSE, MQTT, gRPC, and Kafka protocols. Explore the examples below to learn how Zilla can be used for each protocol.
 
 ### For HTTP Services
 
@@ -53,19 +57,13 @@ Zilla enhances your existing services by adding metrics, logging, message valida
     logo="/assets/icons/data governance.svg"
     title="MQTT Kafka Proxy"
     desc="A Zilla API gateway setup acting as an MQTT broker with Kafka integration."
-    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker"
+    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.proxy"
   />
   <VPCard
     logo="/assets/icons/proxy.svg"
     title="MQTT Proxy with JWT"
     desc="A Zilla setup that set up MQTT as a proxy with JWT authentication."
     link="https://github.com/aklivity/zilla-examples/tree/example-startup-compose/mqtt.proxy.jwt"
-  />
-  <VPCard
-    logo="/assets/icons/security.svg"
-    title="MQTT Kafka Broker with JWT"
-    desc="A Zilla API gateway setup that provides an MQTT broker with Kafka integration and JWT authentication."
-    link="https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt"
   />
 </div>
 
@@ -117,11 +115,9 @@ Zilla enhances your existing services by adding metrics, logging, message valida
 
 ## AsyncAPI and OpenAPI Proxy Gateway
 
-Zilla can leverage standard API schema specifications such as AsyncAPI and OpenAPI to configure the settings that define common API interfaces. Zilla will use the details specified to reuse existing designs and reduce complexity.
+Zilla supports standard API schema definitions like AsyncAPI and OpenAPI, simplifying configuration by reusing existing schema. Explore the examples below to learn how Zilla integrates with AsyncAPI and OpenAPI.
 
 ### AsyncAPI Proxy Gateway
-
-These are examples of Zilla API gateway implementations that utilize AsyncAPI:
 
 <div class="use_cases_cards">
   <VPCard
@@ -151,8 +147,6 @@ These are examples of Zilla API gateway implementations that utilize AsyncAPI:
 </div>
 
 ### OpenAPI Proxy Gateway
-
-These are examples of Zilla API gateway implementations that utilize OpenAPI:
 
 <div class="use_cases_cards">
   <VPCard

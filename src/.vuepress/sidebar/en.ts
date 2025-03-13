@@ -255,12 +255,12 @@ export const enSidebar = sidebar({
           children: [],
         },
         {
-          text: "Zilla Use Cases",
+          text: "Real-World Use Cases",
           link: "getting-started/use-cases.md",
           children: [],
         },
         {
-          text: "VS Code Extension",
+          text: "Build and Visualize",
           link: "getting-started/vscode/README.md",
           children: [],
         },
@@ -375,27 +375,10 @@ export const enSidebar = sidebar({
               prefix: "model/",
               collapsible: true,
               children: [
-                {
-                  text: "Avro",
-                  link: "avro.md",
-                  prefix: "avro/",
-                  collapsible: true,
-                  children: ["json.md"],
-                },
-                {
-                  text: "JSON",
-                  link: "json.md",
-                  prefix: "json/",
-                  collapsible: true,
-                  children: ["avro.md", "protobuf.md"],
-                },
-                {
-                  text: "Protobuf",
-                  link: "protobuf.md",
-                  prefix: "protobuf/",
-                  collapsible: true,
-                  children: ["json.md"],
-                },
+                "avro.md",
+                "json.md",
+                "protobuf.md",
+                "boolean.md",
                 "string.md",
                 "int32.md",
                 "int64.md",
@@ -410,6 +393,7 @@ export const enSidebar = sidebar({
           prefix: "concepts/monitoring-observability",
           collapsible: true,
           children: [
+            "logs/README.md",
             {
               text: "Metrics",
               link: "metrics.md",
@@ -437,8 +421,14 @@ export const enSidebar = sidebar({
           prefix: "concepts/scalability",
           collapsible: true,
           children: [
-            "autoscale-zilla/autoscale-zilla-with-prometheus-metrics.md",
-            "autoscale-zilla/autoscale-zilla-with-aws-cloudwatch-metrics.md",
+            {
+              text: "Autoscaling with Prometheus Metrics",
+              link: "autoscale-zilla/autoscale-zilla-with-prometheus-metrics.md",
+            },
+            {
+              text: "Autoscaling with AWS CloudWatch Metrics",
+              link: "autoscale-zilla/autoscale-zilla-with-aws-cloudwatch-metrics.md",
+            },
           ],
         },
         {
@@ -540,7 +530,6 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             "zilla-plus-on-aws-ecs-fargate.md",
-            "disaster-recovery.md",
             "migration.md",
             {
               text: "Secure Public Access",
@@ -579,16 +568,22 @@ export const enSidebar = sidebar({
               ],
             },
             {
-              text: "Other Resources",
-              prefix: "other-resources/",
+              text: "Other",
+              prefix: "other/",
               collapsible: true,
               children: [
                 {
-                  text: "AWS Services",
-                  link: "aws.md",
-                  prefix: "aws/",
+                  text: "Resources",
+                  prefix: "resources/",
                   collapsible: true,
-                  children: [],
+                  children: [
+                    {
+                      text: "AWS Services",
+                      link: "aws.md",
+                      prefix: "aws/",
+                      children: [],
+                    },
+                  ],
                 },
               ],
             },
