@@ -48,7 +48,7 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="Scalability"
     logo="/assets/icons/scalability.svg"
-    link="./concepts/scalability/autoscale-zilla/autoscale-zilla-with-prometheus-metrics.md"
+    link="./concepts/scalability/autoscale-zilla/autoscaling-with-prometheus-metrics.md"
   />
 
   <VPCard
