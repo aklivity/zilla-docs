@@ -567,26 +567,6 @@ export const enSidebar = sidebar({
                 },
               ],
             },
-            {
-              text: "Other",
-              prefix: "other/",
-              collapsible: true,
-              children: [
-                {
-                  text: "Resources",
-                  prefix: "resources/",
-                  collapsible: true,
-                  children: [
-                    {
-                      text: "AWS Services",
-                      link: "aws.md",
-                      prefix: "aws/",
-                      children: [],
-                    },
-                  ],
-                },
-              ],
-            },
           ],
         },
       ],
@@ -603,6 +583,19 @@ export const enSidebar = sidebar({
     {
       text: "Others",
       children: [
+        {
+          text: "Resources",
+          prefix: "resources/",
+          collapsible: true,
+          children: [
+            {
+              text: "AWS Services",
+              link: "aws.md",
+              prefix: "aws/",
+              children: [],
+            },
+          ],
+        },
         {
           text: "FAQ",
           link: "faq.md",
