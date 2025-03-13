@@ -1,6 +1,5 @@
 ---
-shortTitle: AWS CloudWatch
-icon: aky-zilla-plus
+shortTitle: AWS CloudWatch – Zilla Plus
 ---
 
 # AWS CloudWatch

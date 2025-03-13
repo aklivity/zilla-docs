@@ -1,6 +1,5 @@
 ---
-shortTitle: AWS ACM
-icon: aky-zilla-plus
+shortTitle: AWS ACM – Zilla Plus
 category:
   - Vault
 ---

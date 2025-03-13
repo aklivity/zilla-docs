@@ -1,6 +1,5 @@
 ---
-shortTitle: syslog
-icon: aky-zilla-plus
+shortTitle: syslog – Zilla Plus
 ---
 
 # syslog

@@ -1,6 +1,5 @@
 ---
-shortTitle: AWS Glue
-icon: aky-zilla-plus
+shortTitle: AWS Glue – Zilla Plus
 ---
 
 # AWS Glue

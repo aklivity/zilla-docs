@@ -1,6 +1,5 @@
 ---
-shortTitle: Confluent Schema Registry
-icon: aky-zilla-plus
+shortTitle: Confluent Schema Registry – Zilla Plus
 ---
 
 # Confluent Schema Registry
