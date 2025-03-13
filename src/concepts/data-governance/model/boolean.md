@@ -1,5 +1,5 @@
 ---
-shortTitle: Avro
+shortTitle: Boolean
 ---
 
 # Boolean
