@@ -8,6 +8,8 @@ Exporters in Zilla determine how collected telemetry data, such as logs and metr
 
 Examples of Zilla exporters:
 
-- [**Prometheus Exporter**](./prometheus.md#prometheus): Exposes metrics via the `/metrics` endpoint for Prometheus to collect.
-- [**Stdout Exporter**](./stdout.md#stdout): Logs all events to standard output (`stdout`) for collection by log aggregators.
-- [**OpenTelemetry Protocol (OTLP) Exporter**](./oltp.md#oltp): Pushes logs and metrics telemetry data to OpenTelemetry-compatible backends.
+- [**Stdout Exporter**](./stdout.md): Logs all events to standard output (`stdout`) for collection by log aggregators.
+- [**OpenTelemetry Protocol (OTLP) Exporter**](./oltp.md): Pushes logs and metrics telemetry data to OpenTelemetry-compatible backends.
+- [**Prometheus Exporter**](./prometheus.md): Exposes metrics via the `/metrics` endpoint for Prometheus to collect.
+- [**AWS CloudWatch Exporter**](./aws-cloudwatch.md): Pushes logs and metrics telemetry data to Amazon CloudWatch.
+- [**Syslog Exporter**](./syslog.md): Pushes logs to a Syslog server.
