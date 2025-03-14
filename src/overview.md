@@ -24,13 +24,13 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="Protocol"
     logo="/assets/icons/protocol.svg"
-    link="./concepts/protocol.md"
+    link="./concepts/protocol/README.md"
   />
 
   <VPCard
     title="Proxy"
     logo="/assets/icons/proxy.svg"
-    link="#"
+    link="./concepts/proxy/http/README.md"
   />
 
   <VPCard
@@ -48,19 +48,19 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="Scalability"
     logo="/assets/icons/scalability.svg"
-    link="#"
+    link="./concepts/scalability/autoscale-zilla/autoscaling-with-prometheus-metrics.md"
   />
 
   <VPCard
     title="Security"
     logo="/assets/icons/security.svg"
-    link="#"
+    link="./concepts/security/kafka/README.md"
   />
 
   <VPCard
-    title="Bring Your Own Spec"
+    title="API Spec Integration"
     logo="/assets/icons/bring your own.svg"
-    link="#"
+    link="./concepts/api-spec-integration/asyncapi.md"
   />
 </div>
 
@@ -74,6 +74,6 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
 Jump to the [quickstart](./getting-started/quickstart/index.md) guide.
 :::
 
-## Zilla vs <ZillaPlus/> <span style="display:none">Zilla Plus</span>
+## Zilla vs Zilla Plus
 
-Zilla is under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (<ZillaPlus/> “Zilla Plus”) is available, which includes additional enterprise integrations and support. For more information, please visit the [<ZillaPlus/>](https://www.aklivity.io/products/zilla-plus) product page.
+Zilla is under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (“Zilla Plus”) is available, which includes additional enterprise integrations and support. For more information, please visit the [<ZillaPlus/>](https://www.aklivity.io/products/zilla-plus) product page.

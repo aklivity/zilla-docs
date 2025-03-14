@@ -1,0 +1,8 @@
+exporters:
+  prometheus:
+    type: prometheus
+    options:
+      endpoints:
+        - scheme: http
+          port: 7190
+          path: /metrics

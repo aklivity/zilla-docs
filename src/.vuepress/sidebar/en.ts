@@ -177,8 +177,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "CloudFormation",
-              link: "how-tos/amazon-msk/iot-ingest-control.md"
-            }
+              link: "how-tos/amazon-msk/iot-ingest-control.md",
+            },
           ],
         },
         {
@@ -277,7 +277,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Protocol",
-          link: "concepts/protocol.md",
+          link: "concepts/protocol/README.md",
           prefix: "concepts/protocol/",
           collapsible: true,
           children: [
@@ -315,17 +315,10 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "HTTP",
-              link: "http.md",
+              link: "http/README.md",
               prefix: "http/",
               collapsible: true,
               children: ["http.md", "kafka.md", "filesystem.md"],
-            },
-            {
-              text: "SSE",
-              link: "sse.md",
-              prefix: "sse/",
-              collapsible: true,
-              children: ["sse.md", "kafka.md"],
             },
             {
               text: "gRPC",
@@ -335,18 +328,25 @@ export const enSidebar = sidebar({
               children: ["grpc.md", "kafka.md"],
             },
             {
-              text: "MQTT",
-              link: "mqtt.md",
-              prefix: "mqtt/",
-              collapsible: true,
-              children: ["kafka.md", "mqtt.md"],
-            },
-            {
               text: "Kafka",
               link: "kafka/README.md",
               prefix: "kafka/",
               collapsible: true,
               children: ["kafka.md", "grpc.md"],
+            },
+            {
+              text: "MQTT",
+              link: "mqtt/README.md",
+              prefix: "mqtt/",
+              collapsible: true,
+              children: ["mqtt.md", "kafka.md"],
+            },
+            {
+              text: "SSE",
+              link: "sse/README.md",
+              prefix: "sse/",
+              collapsible: true,
+              children: ["sse.md", "kafka.md"],
             },
           ],
         },
@@ -357,7 +357,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Catalog",
-              link: "catalog.md",
+              link: "catalog/README.md",
               prefix: "catalog/",
               collapsible: true,
               children: [
@@ -371,7 +371,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Model",
-              link: "model.md",
+              link: "model/README.md",
               prefix: "model/",
               collapsible: true,
               children: [
@@ -391,19 +391,20 @@ export const enSidebar = sidebar({
         {
           text: "Monitoring & Observability",
           prefix: "concepts/monitoring-observability",
+          link: "concepts/monitoring-observability/README.md",
           collapsible: true,
           children: [
             "logs/README.md",
             {
               text: "Metrics",
-              link: "metrics.md",
+              link: "metrics/README.md",
               prefix: "metrics/",
               collapsible: true,
               children: ["grpc.md", "http.md", "stream.md"],
             },
             {
               text: "Exporters Logs and Metrics",
-              link: "exporters-logs-and-metrics.md",
+              link: "exporters-logs-and-metrics/README.md",
               prefix: "exporters-logs-and-metrics/",
               collapsible: true,
               children: [
@@ -423,11 +424,11 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Autoscaling with Prometheus Metrics",
-              link: "autoscale-zilla/autoscale-zilla-with-prometheus-metrics.md",
+              link: "autoscale-zilla/autoscaling-with-prometheus-metrics.md",
             },
             {
               text: "Autoscaling with AWS CloudWatch Metrics",
-              link: "autoscale-zilla/autoscale-zilla-with-aws-cloudwatch-metrics.md",
+              link: "autoscale-zilla/autoscaling-with-aws-cloudwatch-metrics.md",
             },
           ],
         },
@@ -438,13 +439,13 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Kafka",
-              link: "kafka.md",
+              link: "kafka/README.md",
               prefix: "kafka/",
               collapsible: true,
               children: [
                 {
                   text: "SASL",
-                  link: "sasl.md",
+                  link: "sasl/README.md",
                   prefix: "sasl/",
                   collapsible: true,
                   children: ["plain.md", "scram.md"],
@@ -454,13 +455,13 @@ export const enSidebar = sidebar({
             },
             {
               text: "Guard",
-              link: "guard.md",
+              link: "guard/README.md",
               prefix: "guard/",
               collapsible: true,
               children: [
                 {
                   text: "JWT",
-                  link: "jwt.md",
+                  link: "jwt/README.md",
                   prefix: "jwt/",
                   collapsible: true,
                   children: ["http.md", "sse.md", "mqtt.md"],
@@ -469,21 +470,21 @@ export const enSidebar = sidebar({
             },
             {
               text: "Vault",
-              link: "vault.md",
+              link: "vault/README.md",
               prefix: "vault/",
               collapsible: true,
               children: ["filesystem.md", "aws-acm.md", "aws-secrets.md"],
             },
             {
               text: "Threat Protection",
-              link: "threat-protection.md",
+              link: "threat-protection/README.md",
               prefix: "threat-protection/",
               collapsible: true,
               children: ["aws-shield.md"],
             },
             {
               text: "Resolvers",
-              link: "resolvers.md",
+              link: "resolvers/README.md",
               prefix: "resolvers/",
               collapsible: true,
               children: ["environment-variables.md", "aws-secrets-manager.md"],
@@ -492,7 +493,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "API Spec Integration",
-          prefix: "concepts/bring-your-own-spec",
+          prefix: "concepts/api-spec-integration",
           collapsible: true,
           children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md"],
         },

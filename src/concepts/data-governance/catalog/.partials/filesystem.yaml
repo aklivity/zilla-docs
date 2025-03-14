@@ -1,0 +1,7 @@
+catalogs:
+  my_catalog:
+    type: filesystem
+    options:
+      subjects:
+        my_local_file:
+          path: path/to/local_file.txt
