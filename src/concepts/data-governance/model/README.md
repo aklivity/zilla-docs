@@ -17,7 +17,7 @@ model: string
 encoding: utf_8
 ```
 
-> [Validating message keys](#validating-message-keys) | [http.proxy.schema.inline example](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)
+> [Validating message keys](#validating-message-keys)
 
 ### Schema Models
 
@@ -50,7 +50,7 @@ Schema-based models will reference a [catalog](../catalog/README.md#catalog) to 
         - id: 42
     ```
 
-> [Validating a new message](#validating-a-new-message) | [Expose a different model format](#expose-a-different-model-format) | [http.kafka.karapace example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.karapace)
+> [Validating a new message](#validating-a-new-message) | [Expose a different model format](#expose-a-different-model-format)
 
 ## Structured Message data
 

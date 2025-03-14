@@ -65,8 +65,6 @@ catalogs:
             }
 ```
 
-> [http.proxy.schema.inline example](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)
-
 ### Remote Catalogs
 
 Remote catalogs allow Zilla to fetch existing schemas stored in an external service. Zilla will pull and maintain an up to date version of the specified schema meaning the running Zilla doesn't need to be redeployed when new data models are pushed. Zilla can also reference specific versions.
@@ -87,4 +85,4 @@ catalogs:
       group-id: my_group_id
 ```
 
-> [Apicurio in the Petstore REST Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore) | [http.kafka.karapace example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.karapace)
+> [Apicurio in the Petstore REST Demo](https://github.com/aklivity/zilla-demos/tree/main/petstore)
