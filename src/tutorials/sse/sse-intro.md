@@ -72,4 +72,4 @@ Go deeper into this concept with the [sse.kafka.fanout](https://github.com/akliv
 Try out the other SSE examples:
 
 - [sse.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
-- [sse.proxy.jwt](https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt)
+- [sse.jwt](https://github.com/aklivity/zilla-examples/tree/main/sse.jwt)
