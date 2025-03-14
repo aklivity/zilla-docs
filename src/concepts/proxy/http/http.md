@@ -44,7 +44,7 @@ Zilla’s ability to route requests based on HTTP attributes allows it to functi
 
 ![HTTP Proxy Pipeline Example](../images/http-proxy.png)
 
-Access the HTTP Proxy example files here: [HTTP Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
+Access the HTTP Proxy example files here: [HTTP Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)
 
 ::: details Full HTTP Proxy zilla.yaml Config
 
@@ -137,7 +137,3 @@ The HTTP Proxy consists of two main parts: the HTTP server and the HTTP client. 
 The HTTP server consists of the following bindings: TCP Server, TLS Server, and HTTP Server. The TCP Server opens port 7143 and allows inbound TCP connections. Once a connection is established, the data stream is passed to the TLS Server, where TLS encryption is applied, enabling secure HTTPS communication. The encrypted data is then forwarded to the HTTP Server that processes HTTP requests and applies routing rules.
 
 The HTTP client consists of the following bindings: HTTP Client, TLS Client, and TCP Client. The HTTP Client is responsible for forwarding the HTTP request to the external service. If encryption is required, the TLS Client ensures that the outgoing request is secured before sending it over the network. Finally, the TCP Client establishes a connection to the target server on port 443, where the request is delivered, and the response follows the same path back to the original requester.
-
-**Other Examples**:
-
-- [http.proxy.schema.inline](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)

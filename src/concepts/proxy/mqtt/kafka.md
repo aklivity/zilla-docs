@@ -54,33 +54,13 @@ IoT devices frequently generate real-time data that needs to be processed and di
 
 ![MQTT Kafka Pipeline Example](../images/mqtt-kafka.png)
 
-Access the MQTT Kafka example files here: [MQTT Kafka Repository](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt)
+Access the MQTT Kafka example files here: [MQTT Kafka Repository](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.proxy)
 
 ::: details Full MQTT kafka zilla.yaml Config
 
 ```yaml
 ---
-name: example
-vaults:
-  my_servers:
-    type: filesystem
-    options:
-      keys:
-        store: tls/localhost.p12
-        type: pkcs12
-        password: ${{env.KEYSTORE_PASSWORD}}
-guards:
-  authn_jwt:
-    type: jwt
-    options:
-      issuer: https://auth.example.com
-      audience: https://api.example.com
-      keys:
-        - kty: RSA
-          n: qqEu50hX+43Bx4W1UYWnAVKwFm+vDbP0kuIOSLVNa+HKQdHTf+3Sei5UCnkskn796izA29D0DdCy3ET9oaKRHIJyKbqFl0rv6f516QzOoXKC6N01sXBHBE/ovs0wwDvlaW+gFGPgkzdcfUlyrWLDnLV7LcuQymhTND2uH0oR3wJnNENN/OFgM1KGPPDOe19YsIKdLqARgxrhZVsh06OurEviZTXOBFI5r+yac7haDwOQhLHXNv+Y9MNvxs5QLWPFIM3bNUWfYrJnLrs4hGJS+y/KDM9Si+HL30QAFXy4YNO33J8DHjZ7ddG5n8/FqplOKvRtUgjcKWlxoGY4VdVaDQ==
-          e: AQAB
-          alg: RS256
-          kid: example
+name: zilla-mqtt-kafka-proxy
 bindings:
   north_tcp_server:
     type: tcp
@@ -89,38 +69,14 @@ bindings:
       host: 0.0.0.0
       port:
         - 7183
-        - 7883
     routes:
-        - when:
-            - port: 7183
-          exit: north_mqtt_server
-        - when:
-            - port: 7883
-          exit: north_tls_server
-  north_tls_server:
-    type: tls
-    kind: server
-    vault: my_servers
-    options:
-      keys:
-        - localhost
-      sni:
-        - localhost
-    exit: north_mqtt_server
+      - when:
+          - port: 7183
+        exit: north_mqtt_server
   north_mqtt_server:
     type: mqtt
     kind: server
-    options:
-      authorization:
-        authn_jwt:
-          credentials:
-            connect:
-              username: Bearer {credentials}
-    routes:
-      - guarded:
-          authn_jwt:
-            - mqtt:stream
-        exit: north_mqtt_kafka_mapping
+    exit: north_mqtt_kafka_mapping
   north_mqtt_kafka_mapping:
     type: mqtt-kafka
     kind: proxy
@@ -129,6 +85,19 @@ bindings:
         sessions: mqtt-sessions
         messages: mqtt-messages
         retained: mqtt-retained
+      clients:
+        - place/{identity}/#
+    routes:
+      - when:
+          - publish:
+              - topic: place/+/device/#
+              - topic: device/#
+          - subscribe:
+              - topic: place/+/device/#
+              - topic: device/#
+        with:
+          messages: mqtt-devices
+        exit: north_kafka_cache_client
     exit: north_kafka_cache_client
   north_kafka_cache_client:
     type: kafka
@@ -141,13 +110,14 @@ bindings:
       bootstrap:
         - mqtt-messages
         - mqtt-retained
+        - mqtt-devices
     exit: south_kafka_client
   south_kafka_client:
     type: kafka
     kind: client
     options:
       servers:
-        - kafka:29092
+        -  ${{env.KAFKA_BOOTSTRAP_SERVER}}
     exit: south_tcp_client
   south_tcp_client:
     type: tcp
@@ -160,16 +130,12 @@ telemetry:
 
 :::
 
-The above configuration is an example of an MQTT Kafka. It listens on mqtt port 7183 and mqtts port 7883 and will forward mqtt publish messages from an authorized mqtt client to Kafka, delivering to all authorized mqtt clients subscribed to the same topic.
+The above configuration is an example of an MQTT Kafka. It listens on mqtt port 7183 and will forward mqtt publish messages from mqtt client to Kafka, delivering to all mqtt clients subscribed to the same topic.
 
 The MQTT Kafka Proxy can be constructed with three parts: the MQTT server, the MQTT-Kafka adapter, and the Kafka client. When the MQTT server receives a request, the stream is passed into an MQTT-Kafka adapter and then converted into a Kafka request.
 
-The MQTT server consists of the following bindings: TCP Server, TLS Server, and MQTT server. A TCP Server is required to open a specific port and allow inbound connections. A TLS server is optional but can be used to perform TLS encryption for MQTTS. The data stream is then passed to the MQTT server.
+The MQTT server consists of the following bindings: TCP Server, TLS Server (Optional), and MQTT server. A TCP Server is required to open a specific port and allow inbound connections. A TLS server is optional but can be used to perform TLS encryption for MQTTS. The data stream is then passed to the MQTT server.
 
 The Kafka client consists of the following bindings: Kafka Cache Client, Kafka Cache Server, Kafka Client, and TCP Client. A TCP client is required to allow outbound TCP connections and a Kafka Client is used to connect to external Kafka services. Kafka Cache Client and Server are used for additional layers before direct connection to the Kafka client. These bindings add a caching layer and additional features to Kafka requests through Zilla.
 
 The MQTT-Kafka adapter is used to convert MQTT-based requests into Kafka-based requests.
-
-**Other Examples**:
-
-- [mqtt.kafka.broker](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker)

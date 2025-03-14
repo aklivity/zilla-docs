@@ -137,7 +137,3 @@ The HTTP server consists of the following bindings: TCP Server, TLS Server, and 
 The HTTP-Filesystem proxy consists of the `http-filesystem` binding, which acts as an intermediary between the HTTP server and the filesystem server. It inspects incoming HTTP requests and maps them to corresponding filesystem paths. When a request is received, it extracts the path parameter and forwards it to the filesystem server, ensuring that files are served dynamically based on the requested URL structure.
 
 The Filesystem server consists of the `filesystem` binding, which directly handles file storage and retrieval. It is configured to serve files from the `/var/www/` directory, making it the final destination for requests that pass through the HTTP-Filesystem proxy. When a request reaches this server, it resolves the requested path and returns the corresponding file, enabling static content delivery.
-
-**Other Examples**:
-
-- [http.filesystem.config.server](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem.config.server)

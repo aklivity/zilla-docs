@@ -46,7 +46,7 @@ In multi-tenant architectures, Zilla enables event isolation and access control 
 
 ![SSE Proxy Pipeline Example](../images/sse-proxy.png)
 
-Access the SSE Proxy example files here: [SSE Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt)
+Access the SSE Proxy example files here: [SSE Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/sse.jwt)
 
 ::: details Full SSE Proxy zilla.yaml Config
 
@@ -86,8 +86,12 @@ bindings:
     kind: server
     options:
       host: 0.0.0.0
-      port: 7143
-    exit: north_tls_server
+      port:
+        - 7143
+    routes:
+      - when:
+          - port: 7143
+        exit: north_tls_server
   north_tls_server:
     type: tls
     kind: server
@@ -119,13 +123,11 @@ bindings:
       - when:
           - headers:
               :scheme: https
-              :authority: localhost:7143
               :path: /events
         exit: north_sse_server
       - when:
           - headers:
               :scheme: https
-              :authority: localhost:7143
         exit: east_http_filesystem_mapping
   east_http_filesystem_mapping:
     type: http-filesystem
