@@ -1,24 +1,6 @@
 # TLS
 
-Zilla supports multiple options for securing Kafka connections: **plaintext**, **TLS/SSL**, and **mTLS**.
-
-## Plaintext Kafka
-
-To connect to Kafka using the **PLAINTEXT** protocol, define a Kafka client binding that connects directly to a TCP client:
-
-```yaml zilla.yaml
-bindings:
-  south_kafka_client:
-    type: kafka
-    kind: client
-    options:
-      servers:
-        - ${{env.KAFKA_BOOTSTRAP_SERVER}}
-    exit: south_tcp_client
-  south_tcp_client:
-    type: tcp
-    kind: client
-```
+Zilla supports multiple options for securing Kafka connections: **TLS/SSL**, and **mTLS**.
 
 ## Kafka Over TLS/SSL
 

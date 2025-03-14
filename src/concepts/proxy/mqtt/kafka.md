@@ -173,5 +173,3 @@ The MQTT-Kafka adapter is used to convert MQTT-based requests into Kafka-based r
 **Other Examples**:
 
 - [mqtt.kafka.broker](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker)
-- [asyncapi.mqtt.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.mqtt.kafka.proxy)
-- [asyncapi.mqtt.proxy](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.mqtt.proxy)
