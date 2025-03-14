@@ -504,14 +504,18 @@ export const enSidebar = sidebar({
         {
           text: "Install Zilla",
           prefix: "deployment/install-zilla",
+          collapsible: true,
+          children: ["homebrew.md", "docker.md", "helm.md"],
+        },
+        {
+          text: "Configure Zilla",
+          prefix: "deployment/configure-zilla",
+          collapsible: true,
           children: [
-            "homebrew.md",
-            "docker.md",
-            "helm.md",
             "dynamic-loading-of-zilla-configuration.md",
             {
               text: "Connecting to Kafka",
-              link: "connecting-to-kafka.md",
+              link: "connecting-to-kafka/README.md",
               prefix: "connecting-to-kafka/",
               collapsible: true,
               children: [
@@ -525,7 +529,12 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "Zilla+ in Production",
+          text: "Zilla to Zilla Plus Upgrade",
+          prefix: "deployment/zilla-to-zilla-plus-upgrade",
+          link: "deployment/zilla-to-zilla-plus-upgrade/README.md",
+        },
+        {
+          text: "Zilla Plus in Production",
           prefix: "deployment/zilla-plus-in-production",
           collapsible: true,
           children: [
@@ -533,7 +542,7 @@ export const enSidebar = sidebar({
             "migration.md",
             {
               text: "Secure Public Access",
-              link: "secure-public-access.md",
+              link: "secure-public-access/README.md",
               prefix: "secure-public-access/",
               collapsible: true,
               children: [
@@ -548,14 +557,14 @@ export const enSidebar = sidebar({
             },
             {
               text: "IOT Ingest and Control",
-              link: "iot-ingest-and-control.md",
+              link: "iot-ingest-and-control/README.md",
               prefix: "iot-ingest-and-control/",
               collapsible: true,
               children: ["amazon-msk.md", "confluent-cloud.md", "redpanda.md"],
             },
             {
               text: "Web Streaming",
-              link: "web-streaming.md",
+              link: "web-streaming/README.md",
               prefix: "web-streaming/",
               collapsible: true,
               children: [
