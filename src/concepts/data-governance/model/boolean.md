@@ -1,0 +1,5 @@
+---
+shortTitle: Boolean
+---
+
+# Boolean

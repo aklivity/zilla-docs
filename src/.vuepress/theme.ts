@@ -21,7 +21,7 @@ export default hopeTheme({
   favicon: "/favicon.ico",
 
   repo: "aklivity/zilla",
-  editLink: true,
+  editLink: false,
   contributors: false,
   lastUpdated: false,
   docsRepo,
@@ -45,7 +45,7 @@ export default hopeTheme({
 
       displayFooter: true,
       footer: `<span style="display:flex;align-items:center"><a href="https://www.aklivity.io"><img class="logo" alt="aklivity"></a> <a href="https://github.com/aklivity/zilla"><i class="fa-brands fa-github" style="font-size:22px;padding-right:6px"></i></a> <a href="https://www.linkedin.com/company/aklivity/"><i class="fa-brands fa-linkedin" style="font-size:22px;padding-right:6px"></i></a> <a href="https://www.aklivity.io/slack"><i class="fa-brands fa-slack" style="font-size:25px;padding-right:6px"></i></a> <a href="https://www.twitter.com/aklivityinc"><i class="fa-brands fa-twitter" style="font-size:22px"></i></a></span>`,
-      copyright: "© aklivity, inc. 2023-2024",
+      copyright: "© aklivity, inc. 2023-2025",
 
       metaLocales: {
         editLink: "Edit this page on GitHub",
@@ -54,6 +54,9 @@ export default hopeTheme({
   },
 
   plugins: {
+    components: {
+      components: ["VPCard"]
+    },
     catalog: {
       level: 1,
       locales: {
