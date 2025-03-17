@@ -76,4 +76,4 @@ Go deeper into this concept with the [Running an MQTT Kafka broker](../../how-to
 Try out more MQTT examples:
 
 - [Running an MQTT Kafka broker](../../how-tos/mqtt/mqtt.kafka.broker.md)
-- [mqtt.kafka.broker.jwt](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt)
+- [mqtt.jwt](https://github.com/aklivity/zilla-examples/tree/example-startup-compose/mqtt.jwt)

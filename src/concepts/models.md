@@ -11,7 +11,7 @@ model: string
 encoding: utf_8
 ```
 
-> [Validating message keys](../how-tos/models/index.md#validating-message-keys) | [http.proxy.schema.inline example](https://github.com/aklivity/zilla-examples/tree/main/http.proxy.schema.inline)
+> [Validating message keys](../how-tos/models/index.md#validating-message-keys) | [http.json.schema example](https://github.com/aklivity/zilla-examples/tree/example-startup-compose/http.json.schema)
 
 ## Schema Models
 
@@ -44,4 +44,4 @@ Schema-based models will reference a [catalog](./catalogs.md) to supply the bind
      - id: 42
  ```
 
-> [Validating a new message](../how-tos/models/index.md#validating-a-new-message) | [Expose a different model format](../how-tos/models/index.md#expose-a-different-model-format) | [http.kafka.karapace example](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.karapace)
+> [Validating a new message](../how-tos/models/index.md#validating-a-new-message) | [Expose a different model format](../how-tos/models/index.md#expose-a-different-model-format) | [http.kafka.avro.json example](https://github.com/aklivity/zilla-examples/tree/example-startup-compose/http.kafka.avro.json)
