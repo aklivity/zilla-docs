@@ -1,90 +1,6 @@
 import { sidebar } from "vuepress-theme-hope";
 
 export const enSidebar = sidebar({
-  "/reference/": [
-    {
-      text: "Zilla Runtime",
-      prefix: "config/",
-      children: [
-        {
-          text: "CLI (zilla)",
-          link: "zilla-cli.md",
-          children: [],
-        },
-        {
-          text: "Zilla Config Overview",
-          link: "overview.md",
-          children: [],
-        },
-        {
-          text: "Resolvers",
-          link: "resolvers.md",
-          children: [],
-        },
-      ],
-    },
-    {
-      text: "Bindings",
-      prefix: "config/bindings/",
-      children: "structure",
-    },
-    {
-      text: "Catalogs",
-      prefix: "config/catalogs/",
-      children: "structure",
-    },
-    {
-      text: "Guards",
-      prefix: "config/guards/",
-      children: "structure",
-    },
-    {
-      text: "Models",
-      prefix: "config/models/",
-      children: "structure",
-    },
-    {
-      text: "Telemetry",
-      prefix: "config/telemetry/",
-      children: [
-        {
-          text: "Events",
-          link: "events.md",
-        },
-        {
-          text: "Metrics",
-          prefix: "metrics/",
-          children: "structure",
-        },
-        {
-          text: "Exporters",
-          prefix: "exporters/",
-          children: "structure",
-        },
-      ],
-    },
-    {
-      text: "Vaults",
-      prefix: "config/vaults/",
-      children: "structure",
-    },
-    {
-      text: "Zilla Manager",
-      prefix: "manager/",
-      children: [
-        {
-          text: "CLI (zpm)",
-          link: "zpm-cli.md",
-          children: [],
-        },
-        {
-          text: "zpm Config Overview",
-          link: "overview.md",
-          children: [],
-        },
-      ],
-    },
-  ],
   "/solutions/": [
     {
       text: "Secure Public Access",
@@ -630,8 +546,233 @@ export const enSidebar = sidebar({
         },
         {
           text: "Reference",
-          link: "/reference/config/overview.md",
-          children: [],
+          prefix: "reference/",
+          collapsible: true,
+          children: [
+            {
+              text: "Zilla Runtime",
+              prefix: "config/",
+              collapsible: true,
+              children: [
+                {
+                  text: "CLI (zilla)",
+                  link: "zilla-cli.md",
+                  children: [],
+                },
+                {
+                  text: "Zilla Config Overview",
+                  link: "overview.md",
+                  children: [],
+                },
+                {
+                  text: "Resolvers",
+                  link: "resolvers.md",
+                  children: [],
+                },
+              ],
+            },
+            {
+              text: "Bindings",
+              prefix: "config/bindings/",
+              collapsible: true,
+              children: [
+                {
+                  text: "AMQP",
+                  prefix: "amqp",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "AsyncAPI",
+                  prefix: "asyncapi",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "Echo",
+                  prefix: "echo",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "Fan",
+                  prefix: "fan",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "Filesystem",
+                  prefix: "filesystem",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "gRPC-Kafka",
+                  prefix: "grpc-kafka",
+                  collapsible: true,
+                  children: "structure",
+                },
+
+                {
+                  text: "HTTP-Filesystem",
+                  prefix: "http-filesystem",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "HTTP-Kafka",
+                  prefix: "http-kafka",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "Kafka",
+                  prefix: "kafka",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "Kafka-gRPC",
+                  prefix: "kafka-grpc",
+                  collapsible: true,
+                  children: "structure",
+                },
+
+                {
+                  text: "Kafka-Proxy",
+                  prefix: "kafka-proxy",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "MQTT",
+                  prefix: "mqtt",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "MQTT-Kafka",
+                  prefix: "mqtt-kafka",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "OpenAPI",
+                  prefix: "openapi",
+                  collapsible: true,
+                  children: "structure",
+                },
+
+                {
+                  text: "OpenAPI-AsyncAPI",
+                  prefix: "openapi-asyncapi",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "Proxy",
+                  prefix: "proxy",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "SSE",
+                  prefix: "sse",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "SSE-Kafka",
+                  prefix: "sse-kafka",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "TCP",
+                  prefix: "tcp",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "TLS",
+                  prefix: "tls",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "WS",
+                  prefix: "ws",
+                  collapsible: true,
+                  children: "structure",
+                },
+              ],
+            },
+            {
+              text: "Catalogs",
+              prefix: "config/catalogs/",
+              collapsible: true,
+              children: "structure",
+            },
+            {
+              text: "Guards",
+              prefix: "config/guards/",
+              collapsible: true,
+              children: "structure",
+            },
+            {
+              text: "Models",
+              prefix: "config/models/",
+              collapsible: true,
+              children: "structure",
+            },
+            {
+              text: "Telemetry",
+              prefix: "config/telemetry/",
+              collapsible: true,
+              children: [
+                {
+                  text: "Events",
+                  link: "events.md",
+                  collapsible: true,
+                },
+                {
+                  text: "Metrics",
+                  prefix: "metrics/",
+                  collapsible: true,
+                  children: "structure",
+                },
+                {
+                  text: "Exporters",
+                  prefix: "exporters/",
+                  collapsible: true,
+                  children: "structure",
+                },
+              ],
+            },
+            {
+              text: "Vaults",
+              prefix: "config/vaults/",
+              children: "structure",
+              collapsible: true,
+            },
+            {
+              text: "Zilla Manager",
+              prefix: "manager/",
+              collapsible: true,
+              children: [
+                {
+                  text: "CLI (zpm)",
+                  link: "zpm-cli.md",
+                  children: [],
+                },
+                {
+                  text: "zpm Config Overview",
+                  link: "overview.md",
+                  children: [],
+                },
+              ],
+            },
+          ],
         },
         {
           text: "Community",
