@@ -1,7 +1,6 @@
 ---
 redirectFrom: /reference/config/catalogs/catalog-aws-glue.html
-shortTitle: aws-glue
-icon: aky-zilla-plus
+shortTitle: aws-glue – Zilla Plus
 category:
   - Catalog
 tags:

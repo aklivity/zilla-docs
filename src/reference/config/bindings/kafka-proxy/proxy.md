@@ -1,6 +1,5 @@
 ---
-shortTitle: proxy
-icon: aky-zilla-plus
+shortTitle: proxy – Zilla Plus
 ---
 
 # kafka-proxy proxy

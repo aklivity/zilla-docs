@@ -1,7 +1,6 @@
 ---
 redirectFrom: /reference/config/catalogs/catalog-confluent-schema-registry.html
-shortTitle: confluent-schema-registry
-icon: aky-zilla-plus
+shortTitle: confluent-schema-registry – Zilla Plus
 category:
   - Catalog
 tags:
