@@ -34,7 +34,7 @@ Before setting up internet access to your Confluent Cloud Cluster, you will need
 - permission to modify global DNS records for a custom domain
 
 ::: tip
-Check out the [Troubleshooting](../other-resources/aws.md#aws) guide if you run into any issues.
+Check out the [Troubleshooting](../../../solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
 :::
 
 ### Create the Confluent Cloud Cluster in AWS with PrivateLink
@@ -144,7 +144,7 @@ Add the `my-zilla-proxy-sg` security group to your VPC Endpoint by finding your 
 
 > This creates an IAM security role to enable the required AWS services for the Zilla Plus proxies.
 
-Follow the [Create IAM Role](../other-resources/aws.md#aws) guide to create an IAM security role with the following parameters:
+Follow the [Create IAM Role](../../../solutions/how-tos/aws-services/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
 ::: code-tabs
 
@@ -218,7 +218,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 We need a TLS Server Certificate for your custom DNS wildcard domain that can be trusted by a Kafka Client from anywhere.
 
-Follow the [Create Server Certificate (LetsEncrypt)](../other-resources/aws.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
+Follow the [Create Server Certificate (LetsEncrypt)](../../../solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the Secure Public Access CloudFormation template.
@@ -274,9 +274,9 @@ Click `Launch` to complete the `Create stack` wizard with the following details:
     - Configuration Reference
       1. Follow the steps in the [Test Connectivity to Confluent Cloud](https://docs.confluent.io/cloud/current/networking/testing.html#test-connectivity-to-ccloud) docs to get your clusters Bootstrap server URL.
       2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
-      3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](../other-resources/aws.md#aws) guide. Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
+      3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](../../../solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide. Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
       4. Replace with your own custom wildcard DNS pattern.
-      5. Follow the [Create Key Pair](../other-resources/aws.md#aws) guide to create a new key pair to access EC2 instances via SSH.
+      5. Follow the [Create Key Pair](../../../solutions/how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
 3. Use the default configuration for the stack options.
 
@@ -542,6 +542,6 @@ To verify that we have successfully enabled public internet connectivity to our 
 
 ::: info Monitor the Zilla Plus proxy
 
-Follow the [Monitoring the Zilla Plus proxy](../other-resources/aws.md#aws) instructions
+Follow the [Monitoring the Zilla Plus proxy](../../../solutions/how-tos/aws-services/manage-cloudformation-stack.md) instructions
 
 :::

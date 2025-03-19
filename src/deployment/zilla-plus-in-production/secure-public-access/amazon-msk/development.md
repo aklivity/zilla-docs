@@ -39,7 +39,7 @@ Before setting up internet access to your MSK Cluster, you will need the followi
 - permission to modify local DNS resolution files, such as `/etc/hosts` on MacOS
 
 ::: tip
-Check out the [Troubleshooting](../../aws-services/troubleshooting.md) guide if you run into any issues.
+Check out the [Troubleshooting](../../../../solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
 :::
 
 ### Create the MSK Cluster
@@ -48,7 +48,7 @@ Check out the [Troubleshooting](../../aws-services/troubleshooting.md) guide if 
 
 An MSK cluster is needed for secure remote access via the internet. You can skip this step if you have already created an MSK cluster with equivalent configuration.
 
-Follow the [Create MSK Cluster](../../aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
+Follow the [Create MSK Cluster](../../../../solutions/how-tos/aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
 
 - Cluster Name: `my-msk-cluster`
 - Access control methods: `Unauthenticated access`
@@ -112,7 +112,7 @@ Add this Inbound Rule to allow the Zilla Plus proxies to communicate with the MS
 
 > This creates an IAM security role to enable the required AWS services for the Zilla Plus proxies.
 
-Follow the [Create IAM Role](../../aws-services/create-iam-role.md) guide to create an IAM security role with the following parameters:
+Follow the [Create IAM Role](../../../../solutions/how-tos/aws-services/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
 ::: code-tabs
 
@@ -188,7 +188,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 We need a TLS Server Certificate for the wildcard domain `*.aklivity.example.com` that can be trusted by a Kafka Client.
 
-Follow the [Create Server Certificate](../../aws-services/create-server-certificate-acm.md) guide to create a new TLS Server Certificate for the example wildcard domain `*.aklivity.example.com`.
+Follow the [Create Server Certificate](../../../../solutions/how-tos/aws-services/create-server-certificate-acm.md) guide to create a new TLS Server Certificate for the example wildcard domain `*.aklivity.example.com`.
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the Secure Public Access CloudFormation template.
@@ -248,10 +248,10 @@ Parameters:
   - Public Port: `9094`
   - Key pair for SSH access: `my-key-pair` *4
 - *Configuration Reference
-  1. Follow the [Lookup MSK Server Names](../../aws-services/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
+  1. Follow the [Lookup MSK Server Names](../../../../solutions/how-tos/aws-services/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
   2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
-  3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate](../../aws-services/create-server-certificate-acm.md#store-the-encrypted-secret) guide.
-  4. Follow the [Create Key Pair](../../aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
+  3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate](../../../../solutions/how-tos/aws-services/create-server-certificate-acm.md) guide.
+  4. Follow the [Create Key Pair](../../../../solutions/how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
 ### Step 3. Configure stack options: `(use defaults)`
 
@@ -392,7 +392,7 @@ keytool -importcert -keystore /tmp/kafka.client.truststore.jks -storetype jks -s
 ```
 
 ::: info
-When you followed the [Create Certificate Authority](../../aws-services/create-certificate-authority-acm.md) guide, you exported the private CA certificate to a file called `Certificate.pem`.
+When you followed the [Create Certificate Authority](../../../../solutions/how-tos/aws-services/create-certificate-authority-acm.md) guide, you exported the private CA certificate to a file called `Certificate.pem`.
 :::
 
 ### Configure the Kafka Client
@@ -498,4 +498,4 @@ b-1.aklivity.example.com:9094,b-2.aklivity.example.com:9094,b-3.aklivity.example
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](../../aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](../../../../solutions/how-tos/aws-services/manage-cloudformation-stack.md) section.
