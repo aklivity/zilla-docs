@@ -380,7 +380,20 @@ export const enSidebar = sidebar({
                   link: "jwt/README.md",
                   prefix: "jwt/",
                   collapsible: true,
-                  children: ["http.md", "sse.md", "mqtt.md"],
+                  children: [
+                    {
+                      text: "HTTP",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt",
+                    },
+                    {
+                      text: "SSE",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt",
+                    },
+                    {
+                      text: "MQTT",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt",
+                    },
+                  ],
                 },
               ],
             },
@@ -391,13 +404,13 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: ["filesystem.md", "aws-acm.md", "aws-secrets.md"],
             },
-            {
-              text: "Threat Protection",
-              link: "threat-protection/README.md",
-              prefix: "threat-protection/",
-              collapsible: true,
-              children: ["aws-shield.md"],
-            },
+            // {
+            //   text: "Threat Protection",
+            //   link: "threat-protection/README.md",
+            //   prefix: "threat-protection/",
+            //   collapsible: true,
+            //   children: ["aws-shield.md"],
+            // },
             {
               text: "Resolvers",
               link: "resolvers/README.md",
@@ -449,6 +462,7 @@ export const enSidebar = sidebar({
           text: "Zilla to Zilla Plus Upgrade",
           prefix: "deployment/zilla-to-zilla-plus-upgrade",
           link: "deployment/zilla-to-zilla-plus-upgrade/README.md",
+          children: [],
         },
         {
           text: "Zilla Plus in Production",
@@ -525,9 +539,21 @@ export const enSidebar = sidebar({
       text: "Troubleshooting & Support",
       prefix: "support",
       children: [
-        "troubleshooting-guides.md",
-        "community-support.md",
-        "enterprise-support.md",
+        {
+          text: "Troubleshooting Guides",
+          link: "troubleshooting-guides.md",
+          children: [],
+        },
+        {
+          text: "Community Support",
+          link: "community-support.md",
+          children: [],
+        },
+        {
+          text: "Enterprise Support - Zilla Plus",
+          link: "enterprise-support.md",
+          children: [],
+        },
       ],
     },
     {
