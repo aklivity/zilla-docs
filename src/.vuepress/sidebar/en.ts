@@ -380,7 +380,20 @@ export const enSidebar = sidebar({
                   link: "jwt/README.md",
                   prefix: "jwt/",
                   collapsible: true,
-                  children: ["http.md", "sse.md", "mqtt.md"],
+                  children: [
+                    {
+                      text: "HTTP",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt",
+                    },
+                    {
+                      text: "SSE",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt",
+                    },
+                    {
+                      text: "MQTT",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt",
+                    },
+                  ],
                 },
               ],
             },
@@ -391,13 +404,13 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: ["filesystem.md", "aws-acm.md", "aws-secrets.md"],
             },
-            {
-              text: "Threat Protection",
-              link: "threat-protection/README.md",
-              prefix: "threat-protection/",
-              collapsible: true,
-              children: ["aws-shield.md"],
-            },
+            // {
+            //   text: "Threat Protection",
+            //   link: "threat-protection/README.md",
+            //   prefix: "threat-protection/",
+            //   collapsible: true,
+            //   children: ["aws-shield.md"],
+            // },
             {
               text: "Resolvers",
               link: "resolvers/README.md",
@@ -449,6 +462,7 @@ export const enSidebar = sidebar({
           text: "Zilla to Zilla Plus Upgrade",
           prefix: "deployment/zilla-to-zilla-plus-upgrade",
           link: "deployment/zilla-to-zilla-plus-upgrade/README.md",
+          children: [],
         },
         {
           text: "Zilla Plus in Production",
@@ -462,16 +476,21 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: [
                 {
+                  text: "Deployment Options",
+                  link: "README.md",
+                  children: [],
+                },
+                {
                   text: "Amazon MSK",
                   prefix: "amazon-msk/",
                   collapsible: true,
                   children: [
                     {
-                      text: "CDK",
+                      text: "CDK – Zilla Plus",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access",
                     },
                     {
-                      text: "Terraform",
+                      text: "Terraform – Zilla Plus",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
                     },
                     {
@@ -479,15 +498,15 @@ export const enSidebar = sidebar({
                       collapsible: true,
                       children: [
                         {
-                          text: "with SASL/SCRAM",
+                          text: "with SASL/SCRAM – Zilla Plus",
                           link: "production.md",
                         },
                         {
-                          text: "with Mutual TLS (mTLS)",
+                          text: "with Mutual TLS (mTLS) – Zilla Plus",
                           link: "production-mutual-tls.md",
                         },
                         {
-                          text: "with Unauthorized access",
+                          text: "with Unauthorized access – Zilla Plus",
                           link: "development.md",
                         },
                       ],
@@ -498,22 +517,73 @@ export const enSidebar = sidebar({
               ],
             },
             {
-              text: "IOT Ingest and Control",
-              prefix: "iot-ingest-and-control/",
+              text: "Secure Private Access",
               collapsible: true,
-              children: ["amazon-msk.md", "confluent-cloud.md", "redpanda.md"],
+              children: [
+                {
+                  text: "Deployment Options",
+                  link: "secure-private-access/README.md",
+                  children: [],
+                },
+                {
+                  text: "Amazon MSK",
+                  collapsible: true,
+                  children: [
+                    {
+                      text: "CDK – Zilla Plus",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access",
+                    },
+                  ],
+                },
+              ],
             },
             {
-              text: "Web Streaming",
-              link: "web-streaming/README.md",
-              prefix: "web-streaming/",
+              text: "IOT Ingest and Control",
+              prefix: "iot-ingest-and-control/",
               collapsible: true,
               children: [
                 {
                   text: "Amazon MSK",
+                  collapsible: true,
+                  children: [
+                    {
+                      text: "CDK – Zilla Plus",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/iot-ingest-and-control",
+                    },
+                    {
+                      text: "CloudFormation – Zilla Plus",
+                      link: "amazon-msk.md",
+                    },
+                  ],
+                },
+                "confluent-cloud.md",
+                "redpanda.md",
+              ],
+            },
+            {
+              text: "Web Streaming",
+              prefix: "web-streaming/",
+              collapsible: true,
+              children: [
+                {
+                  text: "Deployment Options",
+                  link: "README.md",
+                  children: [],
+                },
+                {
+                  text: "Amazon MSK",
                   prefix: "amazon-msk/",
                   collapsible: true,
-                  children: ["terraform.md"],
+                  children: [
+                    {
+                      text: "CDK – Zilla Plus",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming",
+                    },
+                    {
+                      text: "Terraform – Zilla Plus",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
+                    },
+                  ],
                 },
               ],
             },
@@ -525,9 +595,21 @@ export const enSidebar = sidebar({
       text: "Troubleshooting & Support",
       prefix: "support",
       children: [
-        "troubleshooting-guides.md",
-        "community-support.md",
-        "enterprise-support.md",
+        {
+          text: "Troubleshooting Guides",
+          link: "troubleshooting-guides.md",
+          children: [],
+        },
+        {
+          text: "Community Support",
+          link: "community-support.md",
+          children: [],
+        },
+        {
+          text: "Enterprise Support - Zilla Plus",
+          link: "enterprise-support.md",
+          children: [],
+        },
       ],
     },
     {

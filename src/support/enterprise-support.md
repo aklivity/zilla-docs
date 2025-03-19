@@ -2,7 +2,7 @@
 shortTitle: Enterprise Support - Zilla Plus
 ---
 
-# Enterprise Support for Zilla-Plus
+# Enterprise Support for Zilla Plus
 
 Aklivity provides enterprise support for Zilla-Plus, ensuring seamless operations with timely response and expert assistance. Our support plans are designed to meet the needs of businesses of all sizes, from mission-critical deployments to predictable, high-quality assistance.
 
