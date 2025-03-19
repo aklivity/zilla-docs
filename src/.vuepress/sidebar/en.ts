@@ -456,10 +456,8 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             "zilla-plus-on-aws-ecs-fargate.md",
-            "migration.md",
             {
               text: "Secure Public Access",
-              link: "secure-public-access/README.md",
               prefix: "secure-public-access/",
               collapsible: true,
               children: [
@@ -467,14 +465,40 @@ export const enSidebar = sidebar({
                   text: "Amazon MSK",
                   prefix: "amazon-msk/",
                   collapsible: true,
-                  children: ["terraform.md", "cloudformation.md"],
+                  children: [
+                    {
+                      text: "CDK",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access",
+                    },
+                    {
+                      text: "Terraform",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
+                    },
+                    {
+                      text: "CloudFormation",
+                      collapsible: true,
+                      children: [
+                        {
+                          text: "with SASL/SCRAM",
+                          link: "production.md",
+                        },
+                        {
+                          text: "with Mutual TLS (mTLS)",
+                          link: "production-mutual-tls.md",
+                        },
+                        {
+                          text: "with Unauthorized access",
+                          link: "development.md",
+                        },
+                      ],
+                    },
+                  ],
                 },
                 "confluent-cloud.md",
               ],
             },
             {
               text: "IOT Ingest and Control",
-              link: "iot-ingest-and-control/README.md",
               prefix: "iot-ingest-and-control/",
               collapsible: true,
               children: ["amazon-msk.md", "confluent-cloud.md", "redpanda.md"],
