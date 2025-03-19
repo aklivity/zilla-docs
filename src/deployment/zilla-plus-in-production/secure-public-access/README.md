@@ -46,20 +46,16 @@ Follow the [Secure Public Access with Terraform](https://github.com/aklivity/zil
 
 #### SASL/SCRAM authentication
 
-Follow the [Secure Public Access via SASL/SCRAM authentication](../../how-tos/amazon-msk/secure-public-access/production.md) guide to setup connectivity to your MSK cluster using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
+Follow the [Secure Public Access via SASL/SCRAM authentication](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/production.md) guide to setup connectivity to your MSK cluster using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
 
 #### Mutual TLS (mTLS) authentication
 
-Follow the [Secure Public Access via mTLS](../../how-tos/amazon-msk/secure-public-access/production-mutual-tls.md) guide to setup connectivity to your MSK cluster using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
+Follow the [Secure Public Access via mTLS](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/production-mutual-tls.md) guide to setup connectivity to your MSK cluster using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.
 
 #### Unauthorized access
 
-Follow the [Secure Public Access via Unauthorized access](../../how-tos/amazon-msk/secure-public-access/development.md) guide to setup connectivity to your MSK cluster using a locally trusted TLS server certificate with the example wildcard DNS pattern `*.aklivity.example.com`.
+Follow the [Secure Public Access via Unauthorized access](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/development.md) guide to setup connectivity to your MSK cluster using a locally trusted TLS server certificate with the example wildcard DNS pattern `*.aklivity.example.com`.
 
 ## Confluent Cloud
 
 The [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodview-eblxkinsqbaks) Secure Public Access proxy lets authorized Kafka clients connect, publish messages and subscribe to topics in your Confluent Cloud cluster via the internet.
-
-### Deploy with CloudFormation
-
-Follow the [Secure Public Access via SASL/SCRAM authentication](../../how-tos/confluent-cloud/secure-public-access.md) guide to setup connectivity to your MSK cluster using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io` to illustrate the steps.

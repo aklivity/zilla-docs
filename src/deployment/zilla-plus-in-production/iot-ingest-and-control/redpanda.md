@@ -26,7 +26,11 @@ Note the server certificate secret ARN as we will need to reference it from the 
 
 Make sure you have selected the desired region, ex: `US East (N. Virginia) us-east-1`.
 
+<<<<<<< HEAD
 If you need help creating a TLS Server Certificate you can follow the [Create Server Certificate with LetsEncrypt](../../../solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide. Use your own custom DNS wildcard domain in place of the example domain `*.example.aklivity.io`.
+=======
+If you need help creating a TLS Server Certificate you can follow the [Create Server Certificate with LetsEncrypt](/solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide. Use your own custom DNS wildcard domain in place of the example domain `*.example.aklivity.io`.
+>>>>>>> 30905bb (fix broken links)
 :::
 
 ### AWS services used
@@ -40,7 +44,11 @@ If you need help creating a TLS Server Certificate you can follow the [Create Se
 Default [AWS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) are recommended.
 
 ::: tip
+<<<<<<< HEAD
 Check out the [Troubleshooting](../../../solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
+=======
+Check out the [Troubleshooting](/solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
+>>>>>>> 30905bb (fix broken links)
 :::
 
 ## Step 1: Create the Redpanda cluster
@@ -260,7 +268,11 @@ Click `Launch` to complete the `Create stack` wizard with the following details:
       2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
       3. Replace with your own custom wildcard DNS pattern mentioned in the [Prerequisites](#prerequisites) of this guide.
       4. This is the ARN of the created secret for the signed certificate's private key mentioned in the [Prerequisites](#prerequisites) of this guide.
+<<<<<<< HEAD
       5. Follow the [Create Key Pair](../../../solutions/how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
+=======
+      5. Follow the [Create Key Pair](/solutions/how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
+>>>>>>> 30905bb (fix broken links)
 
 3. Use the default configuration for the stack options.
 
@@ -401,5 +413,5 @@ Cloud-init v. 22.2.2 running 'init'...
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](../../../solutions/how-tos/aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Redpanda](https://aws.amazon.com/marketplace/pp/prodview-sj4kquyndubiu) IoT Ingest and Control MQTT Broker. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](/solutions/how-tos/aws-services/manage-cloudformation-stack.md) section.
 

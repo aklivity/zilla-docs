@@ -383,15 +383,15 @@ export const enSidebar = sidebar({
                   children: [
                     {
                       text: "HTTP",
-                      link: "https://github.com/aklivity/zilla-examples/tree/main/http.echo.jwt",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/http.proxy.jwt",
                     },
                     {
                       text: "SSE",
-                      link: "https://github.com/aklivity/zilla-examples/tree/main/sse.proxy.jwt",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/sse.jwt ",
                     },
                     {
                       text: "MQTT",
-                      link: "https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.broker.jwt",
+                      link: "https://github.com/aklivity/zilla-examples/tree/main/mqtt.proxy.jwt",
                     },
                   ],
                 },

@@ -39,7 +39,7 @@ Before setting up internet access to your MSK Cluster, you will need the followi
 - permission to modify global DNS records for a custom domain
 
 ::: tip
-Check out the [Troubleshooting](../../../../solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
+Check out the [Troubleshooting](/solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
 :::
 
 ### Create the MSK Cluster
@@ -48,7 +48,7 @@ Check out the [Troubleshooting](../../../../solutions/how-tos/aws-services/troub
 
 An MSK cluster is needed for secure remote access via the internet. You can skip this step if you have already created an MSK cluster with equivalent configuration.
 
-Follow the [Create MSK Cluster](../../../../solutions/how-tos/aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
+Follow the [Create MSK Cluster](/solutions/how-tos/aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
 
 - Cluster Name: `my-msk-cluster`
 - Access control methods: `SASL/SCRAM authentication`
@@ -116,7 +116,7 @@ Add this Inbound Rule to allow the Zilla Plus proxies to communicate with the MS
 
 > This creates an IAM security role to enable the required AWS services for the Zilla Plus proxies.
 
-Follow the [Create IAM Role](../../../../solutions/how-tos/aws-services/create-iam-role.md) guide to create an IAM security role with the following parameters:
+Follow the [Create IAM Role](/solutions/how-tos/aws-services/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
 ::: code-tabs
 
@@ -192,7 +192,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 We need a TLS Server Certificate for your custom DNS wildcard domain that can be trusted by a Kafka Client from anywhere.
 
-Follow the [Create Server Certificate (LetsEncrypt)](../../../../solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
+Follow the [Create Server Certificate (LetsEncrypt)](/solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the Secure Public Access CloudFormation template.
@@ -248,11 +248,11 @@ Parameters:
   - Public Port: `9096`
   - Key pair for SSH access: `my-key-pair` *5
 - *Configuration Reference
-  1. Follow the [Lookup MSK Server Names](../../../../solutions/how-tos/aws-services/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
+  1. Follow the [Lookup MSK Server Names](/solutions/how-tos/aws-services/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
   2. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
-  3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](../../../../solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide.
+  3. This is the ARN of the created secret for the signed certificate's private key that was returned in the last step of the [Create Server Certificate (LetsEncrypt)](/solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide.
   4. Replace with your own custom wildcard DNS pattern.
-  5. Follow the [Create Key Pair](../../../../solutions/how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
+  5. Follow the [Create Key Pair](/solutions/how-tos/aws-services/create-key-pair.md) guide to create a new key pair to access EC2 instances via SSH.
 
 ### Step 3. Configure stack options: `(use defaults)`
 
@@ -447,4 +447,4 @@ Replace these TLS bootstrap server names accordingly for your own custom wildcar
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](../../../../solutions/how-tos/aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](/solutions/how-tos/aws-services/manage-cloudformation-stack.md) section.
