@@ -486,11 +486,11 @@ export const enSidebar = sidebar({
                   collapsible: true,
                   children: [
                     {
-                      text: "CDK – Zilla Plus",
+                      text: "CDK",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access",
                     },
                     {
-                      text: "Terraform – Zilla Plus",
+                      text: "Terraform",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
                     },
                     {
@@ -498,15 +498,15 @@ export const enSidebar = sidebar({
                       collapsible: true,
                       children: [
                         {
-                          text: "with SASL/SCRAM – Zilla Plus",
+                          text: "with SASL/SCRAM",
                           link: "production.md",
                         },
                         {
-                          text: "with Mutual TLS (mTLS) – Zilla Plus",
+                          text: "with Mutual TLS (mTLS)",
                           link: "production-mutual-tls.md",
                         },
                         {
-                          text: "with Unauthorized access – Zilla Plus",
+                          text: "with Unauthorized access",
                           link: "development.md",
                         },
                       ],
@@ -530,7 +530,7 @@ export const enSidebar = sidebar({
                   collapsible: true,
                   children: [
                     {
-                      text: "CDK – Zilla Plus",
+                      text: "CDK",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access",
                     },
                   ],
@@ -547,11 +547,11 @@ export const enSidebar = sidebar({
                   collapsible: true,
                   children: [
                     {
-                      text: "CDK – Zilla Plus",
+                      text: "CDK",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/iot-ingest-and-control",
                     },
                     {
-                      text: "CloudFormation – Zilla Plus",
+                      text: "CloudFormation",
                       link: "amazon-msk.md",
                     },
                   ],
@@ -576,11 +576,11 @@ export const enSidebar = sidebar({
                   collapsible: true,
                   children: [
                     {
-                      text: "CDK – Zilla Plus",
+                      text: "CDK",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming",
                     },
                     {
-                      text: "Terraform – Zilla Plus",
+                      text: "Terraform",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
                     },
                   ],

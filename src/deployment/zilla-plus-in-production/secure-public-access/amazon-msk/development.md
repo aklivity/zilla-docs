@@ -1,5 +1,5 @@
 ---
-shortTitle: with Unauthorized Access – Zilla Plus
+shortTitle: with Unauthorized Access
 description: Setup connectivity to your Unauthorized access Amazon MSK cluster via the internet.
 ---
 

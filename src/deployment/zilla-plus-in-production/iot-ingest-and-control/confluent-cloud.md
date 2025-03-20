@@ -1,5 +1,5 @@
 ---
-shortTitle: Confluent Cloud – Zilla Plus
+shortTitle: Confluent Cloud
 description: Set up an IoT Ingest and Control MQTT Broker that lets clients publish messages and subscribe to topics proxied to Kafka topics in your Confluent Cloud cluster.
 ---
 

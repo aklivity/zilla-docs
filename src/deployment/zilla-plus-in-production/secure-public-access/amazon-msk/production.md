@@ -1,5 +1,5 @@
 ---
-shortTitle: with SASL/SCRAM – Zilla Plus
+shortTitle: with SASL/SCRAM
 description: Setup connectivity to your SASL/SCRAM Amazon MSK cluster from anywhere on the internet.
 ---
 

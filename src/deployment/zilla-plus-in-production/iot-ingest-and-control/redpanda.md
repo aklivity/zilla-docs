@@ -1,5 +1,5 @@
 ---
-shortTitle: Redpanda – Zilla Plus
+shortTitle: Redpanda
 description: Set up an IoT Ingest and Control MQTT Broker that lets clients publish messages and subscribe to topics proxied to Kafka topics in your Redpanda cluster.
 ---
 

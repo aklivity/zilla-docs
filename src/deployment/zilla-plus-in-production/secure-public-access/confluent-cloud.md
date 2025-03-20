@@ -1,5 +1,5 @@
 ---
-shortTitle: Confluent Cloud – Zilla Plus
+shortTitle: Confluent Cloud
 ---
 
 # Secure Public Access with Confluent Cloud

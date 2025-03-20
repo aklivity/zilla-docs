@@ -1,5 +1,5 @@
 ---
-shortTitle: Amazon MSK – Zilla Plus
+shortTitle: Amazon MSK
 description: The IoT Ingest and Control MQTT Broker that lets clients publish messages and subscribe to topics proxied to Kafka topics in your Amazon MSK cluster.
 ---
 

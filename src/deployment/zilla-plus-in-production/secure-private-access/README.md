@@ -1,5 +1,5 @@
 ---
-sidebarTitle: Deployment Options – Zilla Plus
+sidebarTitle: Deployment Options
 description: Securely access your Kafka cluster via the intranet.
 ---
 

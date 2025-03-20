@@ -1,5 +1,5 @@
 ---
-shortTitle: with Mutual TLS (mTLS) – Zilla Plus
+shortTitle: with Mutual TLS (mTLS)
 description: Setup mutual authentication to your mTLS Amazon MSK cluster from anywhere on the internet.
 ---
 
