@@ -338,14 +338,7 @@ export const enSidebar = sidebar({
           prefix: "concepts/scalability",
           collapsible: true,
           children: [
-            {
-              text: "Autoscaling with Prometheus Metrics",
-              link: "autoscale-zilla/autoscaling-with-prometheus-metrics.md",
-            },
-            {
-              text: "Autoscaling with AWS CloudWatch Metrics",
-              link: "autoscale-zilla/autoscaling-with-aws-cloudwatch-metrics.md",
-            },
+            "autoscaling.md"
           ],
         },
         {
@@ -442,7 +435,7 @@ export const enSidebar = sidebar({
           prefix: "deployment/configure-zilla",
           collapsible: true,
           children: [
-            "dynamic-loading-of-zilla-configuration.md",
+            "auto-reconfigure.md",
             {
               text: "Connecting to Kafka",
               link: "connecting-to-kafka/README.md",
@@ -457,6 +450,11 @@ export const enSidebar = sidebar({
               ],
             },
           ],
+        },
+        {
+          text:"Incubator Features",
+          link: "deployment/incubator-features/README.md",
+          children: []
         },
         {
           text: "Zilla to Zilla Plus Upgrade",
@@ -599,6 +597,11 @@ export const enSidebar = sidebar({
           text: "Troubleshooting Guides",
           link: "troubleshooting-guides.md",
           children: [],
+        },
+        {
+          text:"Collect Diagnostic",
+          link:"collect-diagnostic.md",
+          children: []
         },
         {
           text: "Community Support",
