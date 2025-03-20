@@ -133,6 +133,12 @@ To `stop` the Docker Compose stack, use:
 docker compose --project-directory http.kafka.crud down
 ```
 
-::: info
-Explore all examples in the [zilla-examples](https://github.com/aklivity/zilla-examples/tree/main) repository.
+## Explore More
+
+::: info Checkout gRPC Kafka Proxy
+[grpc.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.proxy)
+:::
+
+::: info Checkout MQTT Kafka Proxy
+[mqtt.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/mqtt.kafka.proxy)
 :::
