@@ -1,8 +1,6 @@
 ---
 redirectFrom: /reference/config/telemetry/exporters/exporter-syslog.html
-shortTitle: syslog
-
-icon: aky-zilla-plus
+shortTitle: syslog – Zilla Plus
 category:
   - Telemetry
   - Exporters
