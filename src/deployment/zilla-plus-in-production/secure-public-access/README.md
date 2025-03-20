@@ -27,7 +27,7 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 ## Key Features
 
 - No modifications to the MSK cluster are required to enable a **custom bootstrap domain** over the internet.
-- **Custom Wildcard DNS** & Route 53 Hosted Zone Integration.
+- Custom **Wildcard** DNS.
 - Seamless end-to-end **TLS** handshake.
 - Supports `IAM`, `SASL` and `mTLS` authentication via integrations with `AWS Secrets Manager` and `AWS Certificate Manager`.
 - **Auto-Scaling** Zilla Plus Instances.
