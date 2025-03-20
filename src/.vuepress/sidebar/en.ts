@@ -397,13 +397,6 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: ["filesystem.md", "aws-acm.md", "aws-secrets.md"],
             },
-            // {
-            //   text: "Threat Protection",
-            //   link: "threat-protection/README.md",
-            //   prefix: "threat-protection/",
-            //   collapsible: true,
-            //   children: ["aws-shield.md"],
-            // },
             {
               text: "Resolvers",
               link: "resolvers/README.md",
@@ -435,7 +428,16 @@ export const enSidebar = sidebar({
           prefix: "deployment/configure-zilla",
           collapsible: true,
           children: [
-            "auto-reconfigure.md",
+            {
+              text:"Auto Reconfigure",
+              link: "auto-reconfigure.md",
+              children: []
+            },
+            {
+              text:"Incubator Features",
+              link: "incubator-features/README.md",
+              children: []
+            },
             {
               text: "Connecting to Kafka",
               link: "connecting-to-kafka/README.md",
@@ -450,11 +452,6 @@ export const enSidebar = sidebar({
               ],
             },
           ],
-        },
-        {
-          text:"Incubator Features",
-          link: "deployment/incubator-features/README.md",
-          children: []
         },
         {
           text: "Zilla to Zilla Plus Upgrade",
@@ -590,18 +587,21 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Troubleshooting & Support",
+      text: "Support",
       prefix: "support",
       children: [
         {
           text: "Troubleshooting Guides",
           link: "troubleshooting-guides.md",
-          children: [],
-        },
-        {
-          text:"Collect Diagnostic",
-          link:"collect-diagnostic.md",
-          children: []
+          collapsible: true,
+          children:
+            [
+              {
+                text:"Collect Diagnostic",
+                link:"collect-diagnostic.md",
+                children: []
+              }
+            ],
         },
         {
           text: "Community Support",
@@ -609,7 +609,7 @@ export const enSidebar = sidebar({
           children: [],
         },
         {
-          text: "Enterprise Support - Zilla Plus",
+          text: "Enterprise Support",
           link: "enterprise-support.md",
           children: [],
         },

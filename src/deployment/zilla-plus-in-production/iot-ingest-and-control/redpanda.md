@@ -44,11 +44,7 @@ If you need help creating a TLS Server Certificate you can follow the [Create Se
 Default [AWS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) are recommended.
 
 ::: tip
-<<<<<<< HEAD
-Check out the [Troubleshooting](../../../solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
-=======
 Check out the [Troubleshooting](/solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
->>>>>>> 30905bb (fix broken links)
 :::
 
 ## Step 1: Create the Redpanda cluster
