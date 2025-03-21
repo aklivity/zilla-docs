@@ -437,6 +437,11 @@ export const enSidebar = sidebar({
                 },
               ],
             },
+            {
+              text: "Virtual Cluster",
+              link: "virtual-cluster/README.md",
+              children: [],
+            },
             "zilla-plus-on-aws-ecs-fargate.md",
           ],
         },
