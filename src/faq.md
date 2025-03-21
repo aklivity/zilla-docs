@@ -13,7 +13,7 @@ Currently Zilla supports the following protocols:
 - [MQTT](/concepts/protocol/mqtt.md)
 - [Server Sent Events (SSE)](/concepts/protocol/sse.md)
 
-Other than that, Zilla also supports the following bindings: [Filesystem binding](/reference/config/bindings/filesystem/README.md), [Websocket binding](/reference/config/bindings/filesystem/ws.md), [AsyncAPI binding](/concepts/api-spec-integration/asyncapi.md), and [OpenAPI binding](/concepts/api-spec-integration/openapi.md).
+Other than that, Zilla also supports the following bindings: [Filesystem binding](/reference/config/bindings/filesystem/README.md), [Websocket binding](/reference/config/bindings/ws/README.md), [AsyncAPI binding](/concepts/api-spec-integration/asyncapi.md), and [OpenAPI binding](/concepts/api-spec-integration/openapi.md).
 
 </details>
 
@@ -48,7 +48,7 @@ Read [Real-World Use Cases](/getting-started/use-cases.md) for project examples 
 <details>
     <summary><strong>How do I upgrade from Zilla to Zilla Plus?</strong></summary>
 
-Refer to [this article](/deployment/zilla-to-zilla-plus-upgrade.md) for upgrading from Zilla to Zilla plus.
+Refer to [this article](/deployment/zilla-to-zilla-plus-upgrade/README.md) for upgrading from Zilla to Zilla plus.
 </details>
 
 <details>

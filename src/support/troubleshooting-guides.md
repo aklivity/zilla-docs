@@ -21,7 +21,7 @@ The CloudFormation stack will timeout if the launched instances are unable to ca
 
 This can occur if the target VPC has no attached Internet Gateway, or if the main Route Table for the VPC has not been updated to add a default route to the Internet Gateway.
 
-Make sure to [attach the Internet Gateway](./create-vpc.md#attach-the-internet-gateway) and [route to the Internet Gateway](./create-vpc.md#route-to-the-internet-gateway), then try again.
+Make sure to [attach the Internet Gateway](/solutions/how-tos/aws-services/create-vpc.md#attach-the-internet-gateway) and [route to the Internet Gateway](/solutions/how-tos/aws-services/create-vpc.md#route-to-the-internet-gateway), then try again.
 
 ## Why does my SSH client reject access to the Zilla proxy instances?
 
@@ -39,7 +39,7 @@ The SSH client will timeout if some or all of the network traffic is being dropp
 
 This can occur if the target VPC has no attached Internet Gateway, or if the main Route Table for the VPC has not been updated to add a default route to the Internet Gateway.
 
-Make sure to [attach the Internet Gateway](./create-vpc.md#attach-the-internet-gateway) and [route to the Internet Gateway](./create-vpc.md#route-to-the-internet-gateway), then try again.
+Make sure to [attach the Internet Gateway](/solutions/how-tos/aws-services/create-vpc.md#attach-the-internet-gateway) and [route to the Internet Gateway](/solutions/how-tos/aws-services/create-vpc.md#route-to-the-internet-gateway), then try again.
 
 ## Why does the `zilla-plus` service keep restarting on the Zilla proxy instances?
 
@@ -48,9 +48,9 @@ This can occur if the IAM Role associated with your Zilla proxies has insufficie
 Check the policies attached to your Zilla proxy instance IAM Role based on the deployment type, then try again.
 
 - Zilla proxy
-  - [via SASL/SCRAM](../amazon-msk/secure-public-access/development.md#create-the-zilla-proxy-iam-security-role)
-  - [via mTLS](../amazon-msk/secure-public-access/production.md#create-the-zilla-proxy-iam-security-role)
-  - [via Unauthorized access)](../amazon-msk/secure-public-access/production-mutual-tls.md#create-the-zilla-proxy-iam-security-role)
+  - [via SASL/SCRAM](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/production.md#create-the-zilla-proxy-iam-security-role)
+  - [via mTLS](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/production-mutual-tls.md#create-the-zilla-proxy-iam-security-role)
+  - [via Unauthorized access](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/development.md#create-the-zilla-proxy-iam-security-role)
 
 ## Why does my Kafka Client fail to connect via Zilla proxy?
 
@@ -82,7 +82,7 @@ openssl s_client \
 -key client.key.pem
 ```
 
-Note: if you followed [Create Server Certificate](./create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](./create-server-certificate-letsencrypt.md), then you will need to [Export the CA Certificate](./create-certificate-authority-acm.md#export-the-ca-certificate) and have `openssl` trust the exported CA certificate.
+Note: if you followed [Create Server Certificate](/solutions/how-tos/aws-services/create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](/solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md), then you will need to [Export the CA Certificate](/solutions/how-tos/aws-services/create-certificate-authority-acm.md#export-the-ca-certificate) and have `openssl` trust the exported CA certificate.
 
 ```bash
 openssl s_client \
@@ -116,7 +116,7 @@ kcat \
 -X ssl.key.location=client.key.pem
 ```
 
-Note: if you followed [Create Server Certificate](./create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](./create-server-certificate-letsencrypt.md), then you will need to [Export the CA Certificate](./create-certificate-authority-acm.md#export-the-ca-certificate) and have `kcat` trust the exported CA certificate.
+Note: if you followed [Create Server Certificate](/solutions/how-tos/aws-services/create-server-certificate-acm.md) to create the server certificate instead of [Create Server Certificate (LetsEncrypt)](/solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md), then you will need to [Export the CA Certificate](/solutions/how-tos/aws-services/create-certificate-authority-acm.md#export-the-ca-certificate) and have `kcat` trust the exported CA certificate.
 
 ```bash
 kcat \
