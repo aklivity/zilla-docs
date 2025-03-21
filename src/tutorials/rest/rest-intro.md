@@ -6,7 +6,7 @@ description: Running these Zilla samples will implement a simple CRUD API featur
 
 Get started with Zilla by deploying our Docker Compose stack. Before proceeding, you should have [Docker Compose](https://docs.docker.com/compose/gettingstarted/) installed.
 
-Running this Zilla sample will create a simple API using the [Zilla REST Kafka proxy](../../concepts/kafka-proxies/http-proxy.md) to expose common entity CRUD endpoints with the entity data being stored on Kafka topics. Leveraging Kafka's `cleanup.policy=compact` feature, Zilla enables a standard REST backend architecture with Kafka as the storage layer. Adding an `Idempotency-Key` header during creation will set the message `key` and act as the `ID` for the record. A UUID is generated if no key is sent.
+Running this Zilla sample will create a simple API using the [Zilla REST Kafka proxy](/concepts/proxy/http/kafka.md) to expose common entity CRUD endpoints with the entity data being stored on Kafka topics. Leveraging Kafka's `cleanup.policy=compact` feature, Zilla enables a standard REST backend architecture with Kafka as the storage layer. Adding an `Idempotency-Key` header during creation will set the message `key` and act as the `ID` for the record. A UUID is generated if no key is sent.
 
 - **GET** - Fetches all items on the topic or Fetch one item by its key using `/:key`.
 - **POST** - Create a new item with the `Idempotency-Key` header setting the key.

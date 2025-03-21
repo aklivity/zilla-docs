@@ -1,5 +1,4 @@
 ---
-redirectFrom: /solutions/how-tos/amazon-msk/secure-public-access/overview.html
 description: Securely access your Kafka cluster via the internet.
 ---
 
