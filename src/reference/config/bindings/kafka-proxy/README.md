@@ -3,7 +3,7 @@ redirectFrom: /reference/config/bindings/binding-kafka-proxy.html
 dir:
   collapsible: false
   link: true
-shortTitle: kafka-proxy – Zilla Plus
+shortTitle: kafka-proxy
 category:
   - Binding
 tag:

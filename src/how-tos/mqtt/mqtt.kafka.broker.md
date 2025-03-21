@@ -17,15 +17,9 @@ Specifically, you will:
 
 ## Tl;Dr
 
-Download and run the Zilla `mqtt.kafka.broker` cookbook using this install script. It will start Zilla and everything you need for this guide.
+Download and run the Zilla `mqtt.kafka.broker` cookbook. It will start Zilla and everything you need for this guide.
 
-```bash
-wget -qO- https://raw.githubusercontent.com/aklivity/zilla-examples/main/startup.sh | sh -s -- mqtt.kafka.broker
-```
-
-::: note
-Alternatively, download [mqtt.kafka.broker](https://github.com/aklivity/zilla-docs/releases/latest/download/mqtt.kafka.broker.tar.gz) and follow the `README` yourself.
-:::
+Download [mqtt.kafka.broker](https://github.com/aklivity/zilla-docs/releases/latest/download/mqtt.kafka.broker.tar.gz) and follow the `README` yourself.
 
 ### Prerequisites
 
@@ -46,7 +40,7 @@ Optional:
 
 ### Check the Kafka topics
 
-Run the docker command under the `Verify the Kafka topics created` section of the script output. Verify these topics are listed. Read more on the data in these topics in [the overview.](../../concepts/kafka-proxies/mqtt-proxy.md#step-2-pub-sub-message-reflect-with-kafka)
+Run the docker command under the `Verify the Kafka topics created` section of the script output. Verify these topics are listed. Read more on the data in these topics in [the overview.](/concepts/proxy/mqtt/kafka.md)
 
 ```output:no-line-numbers
 mqtt-messages
@@ -143,7 +137,7 @@ The service definition defines how the clients using this service will interact 
 <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#kafka_mapping -->
 ```
 
-> [More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/README.md) | [More on topic data](../../concepts/kafka-proxies/mqtt-proxy.md#step-2-pub-sub-message-reflect-with-kafka)
+> [More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/README.md) | [More on topic data](/concepts/proxy/mqtt/kafka.md#pub-sub-with-kafka)
 
 Additionally, a route is defined to capture any "device" messages and route them to a specific topic called `mqtt-devices`. Here Zilla enables routing different topic patterns into one Kafka topic using MQTT supported wildcards. All other messages will use the default `exit` and end up in the `mqtt-messages` topic.
 
@@ -183,7 +177,7 @@ This will define the location and connection for Zilla to communicate with Kafka
 
 ### Start Zilla
 
-With your `zilla.yaml` config, follow the [Zilla install instructions](../deploy-operate/index.md) using your method of choice. Set the necessary `KAFKA_BOOTSTRAP_SERVER` environment variable to your running Kafka instance.
+With your `zilla.yaml` config, follow the [Zilla install instructions](/deployment/install-zilla/homebrew.md) using your method of choice. Set the necessary `KAFKA_BOOTSTRAP_SERVER` environment variable to your running Kafka instance.
 
 ### Adding TLS
 

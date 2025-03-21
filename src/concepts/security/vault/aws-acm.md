@@ -1,5 +1,5 @@
 ---
-shortTitle: AWS ACM – Zilla Plus
+shortTitle: AWS ACM
 category:
   - Vault
 ---

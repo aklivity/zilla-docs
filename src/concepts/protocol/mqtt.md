@@ -83,7 +83,7 @@ Zilla enhances traditional MQTT workflows by integrating advanced validation, se
 Zilla leverages MQTT Protocol to provide efficient message brokering, real-time event streaming, and reliable device communication.
 
 - **MQTT Kafka Proxy**
-  - [MQTT Kafka Proxy](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.proxy)
+  - [MQTT Kafka Proxy](https://github.com/aklivity/zilla/tree/develop/examples/mqtt.kafka.proxy)
   - [Taxi Demo](https://github.com/aklivity/zilla-demos/tree/main/taxi)
 
 ## Reference

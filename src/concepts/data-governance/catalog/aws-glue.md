@@ -1,5 +1,5 @@
 ---
-shortTitle: AWS Glue – Zilla Plus
+shortTitle: AWS Glue
 ---
 
 # AWS Glue

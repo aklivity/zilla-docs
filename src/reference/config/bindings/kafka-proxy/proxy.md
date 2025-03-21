@@ -1,5 +1,5 @@
 ---
-shortTitle: proxy – Zilla Plus
+shortTitle: proxy
 ---
 
 # kafka-proxy proxy

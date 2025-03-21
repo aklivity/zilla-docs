@@ -1,5 +1,5 @@
 ---
-shortTitle: syslog – Zilla Plus
+shortTitle: syslog
 ---
 
 # syslog

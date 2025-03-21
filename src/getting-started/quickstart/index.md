@@ -11,7 +11,7 @@ In this guide, you will see how Zilla operates as HTTP Kafka Proxy that exposes 
 
 ## Prerequisites
 
-- docker compose
+- [Docker Compose](https://docs.docker.com/compose/gettingstarted/)
 
 ## Running Zilla Locally
 
@@ -135,10 +135,10 @@ docker compose --project-directory http.kafka.crud down
 
 ## Explore More
 
-::: info Checkout gRPC Kafka Proxy
+::: info Checkout other examples
 [grpc.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.proxy)
-:::
 
-::: info Checkout MQTT Kafka Proxy
 [mqtt.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/mqtt.kafka.proxy)
+
+[Zilla examples](https://github.com/aklivity/zilla/tree/develop/examples)
 :::

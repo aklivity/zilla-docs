@@ -1,6 +1,6 @@
 ---
 redirectFrom: /reference/config/telemetry/exporters/exporter-aws-cloudwatch.html
-shortTitle: aws-cloudwatch – Zilla Plus
+shortTitle: aws-cloudwatch
 category:
   - Telemetry
   - Exporters

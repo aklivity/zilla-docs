@@ -1,5 +1,5 @@
 ---
-shortTitle: Zilla Plus on AWS ECS Fargate
+shortTitle: AWS ECS Fargate
 ---
 
 # Deploying Zilla Plus on AWS ECS Fargate

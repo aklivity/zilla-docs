@@ -44,7 +44,7 @@ Zilla’s ability to route requests based on HTTP attributes allows it to functi
 
 ![HTTP Proxy Pipeline Example](../images/http-proxy.png)
 
-Access the HTTP Proxy example files here: [HTTP Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)
+Access the HTTP Proxy example files here: [HTTP Proxy Repository](https://github.com/aklivity/zilla/tree/develop/examples/http.proxy)
 
 ::: details Full HTTP Proxy zilla.yaml Config
 

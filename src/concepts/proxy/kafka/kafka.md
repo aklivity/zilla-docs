@@ -1,5 +1,5 @@
 ---
-shortTitle: Proxy – Zilla Plus
+shortTitle: Proxy
 ---
 
 # Kafka Proxy

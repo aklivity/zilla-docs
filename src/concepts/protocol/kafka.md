@@ -123,19 +123,19 @@ Zilla introduces cache layers that honor the Kafka caching configuration. It pro
 Zilla leverages Kafka Protocol to provide powerful event streaming, data integration, and secure communication.
 
 - **Kafka HTTP Proxy**
-  - [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud)
-  - [http.kafka.async](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
-  - [http.kafka.sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
+  - [http.kafka.crud](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.crud)
+  - [http.kafka.async](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.async)
+  - [http.kafka.sync](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.sync)
 - **Kafka MQTT Proxy**
-  - [mqtt.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.proxy)
+  - [mqtt.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/mqtt.kafka.proxy)
 - **Kafka gRPC Proxy**
-  - [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
-  - [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
-  - [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+  - [grpc.kafka.echo](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.echo)
+  - [grpc.kafka.fanout](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.fanout)
+  - [grpc.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.proxy)
 - **AsyncAPI**
-  - [asyncapi.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.http.kafka.proxy)
+  - [asyncapi.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/asyncapi.http.kafka.proxy)
 - **SSE**
-  - [sse.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
+  - [sse.kafka.fanout](https://github.com/aklivity/zilla/tree/develop/examples/sse.kafka.fanout)
 
 ## Reference
 

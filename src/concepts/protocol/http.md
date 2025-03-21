@@ -120,13 +120,13 @@ Zilla enhances traditional HTTP workflows by integrating advanced validation, se
 Zilla leverages HTTP Protocol to provide powerful proxying, event streaming, and secure filesystem access.
 
 - **HTTP Proxy**
-  - [Proxy](https://github.com/aklivity/zilla-examples/tree/main/http.proxy)
+  - [Proxy](https://github.com/aklivity/zilla/tree/develop/examples/http.proxy)
 - **HTTP Kafka Proxy**
-  - [Oneway](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.oneway)
-  - [Sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
-  - [Async](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
+  - [Oneway](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.oneway)
+  - [Sync](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.sync)
+  - [Async](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.async)
 - **Filesystem Proxy**
-  - [Filesystem](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
+  - [Filesystem](https://github.com/aklivity/zilla/tree/develop/examples/http.filesystem)
 
 ## Reference
 

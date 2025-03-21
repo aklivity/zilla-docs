@@ -41,8 +41,8 @@ Zilla acts as a smart gateway that manages both incoming and outgoing TCP connec
 Zilla leverages the power of the TCP protocol to enhance communication and provide efficient proxying and reflection services.
 
 - **TCP Proxy**
-    - [Echo](https://github.com/aklivity/zilla-examples/tree/main/tcp.echo)
-    - [Reflect](https://github.com/aklivity/zilla-examples/tree/main/tcp.reflect)
+    - [Echo](https://github.com/aklivity/zilla/tree/develop/examples/tcp.echo)
+    - [Reflect](https://github.com/aklivity/zilla/tree/develop/examples/tcp.reflect)
 
 Zilla also improves TCP performance but also enables its use for a wide range of protocols, including [HTTP](./http.md#http-protocol), [Kafka](./kafka.md#kafka-protocol), [gRPC](./grpc.md#grpc-protocol), [MQTT](./mqtt.md#mqtt-protocol), [TLS](./tls.md#tls-protocol), and [WebSockets (WS)](./ws.md#ws-protocol).
 

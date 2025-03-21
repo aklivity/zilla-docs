@@ -1,5 +1,5 @@
 ---
-shortTitle: OpenAPI-AsyncAPI
+shortTitle: OpenAPI to AsyncAPI
 ---
 
 # OpenAPI-AsyncAPI

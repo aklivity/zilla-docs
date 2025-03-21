@@ -103,4 +103,4 @@ bindings:
 
 ## Amazon MSK Over mTLS
 
-**mTLS** ensures mutual authentication by verifying both parties' private keys and TLS certificates. For detailed steps on authenticating to Amazon MSK with mTLS, refer to [this guide](../../../solutions/how-tos/amazon-msk/secure-public-access/production-mutual-tls.md).
+**mTLS** ensures mutual authentication by verifying both parties' private keys and TLS certificates. For detailed steps on authenticating to Amazon MSK with mTLS, refer to [this guide](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/production-mutual-tls.md).

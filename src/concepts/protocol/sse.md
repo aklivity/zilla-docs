@@ -56,8 +56,8 @@ Zilla provides support for [JWT Guard](../../reference/config/guards/jwt.md) to 
 Zilla serves as an intelligent gateway for SSE, seamlessly bridging real-time event streams between Kafka, HTTP, and SSE clients while ensuring security, reliability, and efficiency.
 
 - **Bridging SSE with Kafka**: Zilla’s SSE-Kafka binding allows direct streaming of Kafka events to SSE clients, enabling real-time data delivery from a high-throughput event store.
-- **Message Filtering**: Zilla enables [fine-grained message filtering](../../concepts/kafka-proxies/http-proxy.md#message-filtering) for SSE streams, allowing clients to receive only relevant events based on predefined criteria, reducing unnecessary data transfer and improving efficiency.
-- **Reliable Delivery**: Zilla ensures [reliable event delivery](../../concepts/kafka-proxies/http-proxy.md#reliable-delivery) to SSE clients by leveraging Kafka’s durability and replayability, preventing message loss and enabling clients to reconnect and resume streams from where they left off.
+- **Message Filtering**: Zilla enables [fine-grained message filtering](/concepts/proxy/sse/kafka.md#message-filtering) for SSE streams, allowing clients to receive only relevant events based on predefined criteria, reducing unnecessary data transfer and improving efficiency.
+- **Reliable Delivery**: Zilla ensures [reliable event delivery](/concepts/proxy/sse/kafka.md#reliable-delivery) to SSE clients by leveraging Kafka’s durability and replayability, preventing message loss and enabling clients to reconnect and resume streams from where they left off.
 - **Schema Validation**: Zilla integrates with [schema registries](../../reference/config/catalogs/apicurio-registry.md), ensuring SSE messages conform to predefined formats, improving data consistency and preventing malformed data from propagating.
 - **Security and Access Control**: Zilla enhances SSE security with JWT authentication, role-based access control (RBAC), and token validation, ensuring that only authorized clients can subscribe to event streams.
 
@@ -66,10 +66,10 @@ Zilla serves as an intelligent gateway for SSE, seamlessly bridging real-time ev
 Zilla leverages the Server-Sent Events (SSE) protocol to enable efficient unidirectional communication, real-time event streaming, and secure data delivery, ensuring scalable and reliable connections between Kafka, HTTP, and SSE clients.
 
 - **SSE Proxy**
-    - [SSE with JWT](https://github.com/aklivity/zilla-examples/tree/main/sse.jwt)
+    - [SSE with JWT](https://github.com/aklivity/zilla/tree/develop/examples/sse.proxy.jwt)
 - **SSE Kafka Proxy**
     - [Simple Stream](../../tutorials/sse/sse-intro.md)
-    - [Fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
+    - [Fanout](https://github.com/aklivity/zilla/tree/develop/examples/sse.kafka.fanout)
     - [TodoMVC CQRS Demo](https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs)
 
 ## Reference

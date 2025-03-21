@@ -133,12 +133,12 @@ Zilla enhances traditional gRPC workflows by integrating advanced validation, se
 Zilla leverages gRPC Protocol to provide powerful proxying, event streaming, and secure communication.
 
 - **gRPC Proxy**
-  - [Echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.echo)
-  - [Proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.proxy)
+  - [Echo](https://github.com/aklivity/zilla/tree/develop/examples/grpc.echo)
+  - [Proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.proxy)
 - **gRPC Kafka Proxy**
-  - [Echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
-  - [Fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
-  - [Proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+  - [Echo](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.echo)
+  - [Fanout](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.fanout)
+  - [Proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.proxy)
 
 ## Reference
 

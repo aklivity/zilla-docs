@@ -46,7 +46,7 @@ In multi-tenant architectures, Zilla enables event isolation and access control 
 
 ![SSE Proxy Pipeline Example](../images/sse-proxy.png)
 
-Access the SSE Proxy example files here: [SSE Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/sse.jwt)
+Access the SSE Proxy example files here: [SSE Proxy Repository](https://github.com/aklivity/zilla/tree/develop/examples/sse.proxy.jwt)
 
 ::: details Full SSE Proxy zilla.yaml Config
 

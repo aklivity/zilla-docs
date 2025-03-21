@@ -1,5 +1,4 @@
 ---
-redirectFrom: /solutions/how-tos/amazon-msk/secure-public-access/overview.html
 description: Securely access your Kafka cluster via the internet.
 ---
 
@@ -54,7 +53,7 @@ Follow the [Secure Public Access via mTLS](/deployment/zilla-plus-in-production/
 
 #### Unauthorized access
 
-Follow the [Secure Public Access via Unauthorized access](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/development.md) guide to setup connectivity to your MSK cluster using a locally trusted TLS server certificate with the example wildcard DNS pattern `*.aklivity.example.com`.
+Follow the [Secure Public Access via Unauthorized access](/deployment/zilla-plus-in-production/secure-public-access/amazon-msk/development.md) guide to setup connectivity to your MSK cluster using a locally trusted TLS server certificate with the example wildcard DNS pattern `*.example.aklivity.io`.
 
 ## Confluent Cloud
 

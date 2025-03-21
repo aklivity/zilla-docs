@@ -56,15 +56,15 @@ docker-compose down
 ```
 
 ::: tip See more of what Zilla can do
-Go deeper into this concept with the [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo) example.
+Go deeper into this concept with the [grpc.kafka.echo](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.echo) example.
 :::
 
 ## Going Deeper
 
 Try out more gRPC examples:
 
-- [grpc.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.echo)
-- [grpc.kafka.echo](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
-- [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
-- [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
-- [grpc.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.proxy)
+- [grpc.echo](https://github.com/aklivity/zilla/tree/develop/examples/grpc.echo)
+- [grpc.kafka.echo](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.echo)
+- [grpc.kafka.fanout](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.fanout)
+- [grpc.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.proxy)
+- [grpc.proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.proxy)
