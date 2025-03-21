@@ -40,14 +40,14 @@ Before setting up internet access to your MSK Cluster, you will need the followi
 - permission to generate client certificates signed by a private certificate authority
 
 ::: tip
-Check out the [Troubleshooting](/solutions/how-tos/aws-services/troubleshooting.md) guide if you run into any issues.
+Check out the [Troubleshooting](/support/troubleshooting-guides.md) guide if you run into any issues.
 :::
 
 ### Create Certificate Authority for mTLS
 
 > This creates a new private certificate authority in ACM.
 
-Follow the [Create Certificate Authority](/solutions/how-tos/aws-services/create-certificate-authority-acm.md) to create a private certificate authority to verify TLS client authentication.
+Follow the [Create Certificate Authority](/resources/aws/create-certificate-authority-acm.md) to create a private certificate authority to verify TLS client authentication.
 
 - Distinguished Name
   ::: code-tabs
@@ -66,7 +66,7 @@ Follow the [Create Certificate Authority](/solutions/how-tos/aws-services/create
 
 An MSK cluster is needed for secure remote access via the internet. You can skip this step if you have already created an MSK cluster with equivalent configuration.
 
-Follow the [Create MSK Cluster](/solutions/how-tos/aws-services/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
+Follow the [Create MSK Cluster](/resources/aws/create-msk-cluster.md) guide to setup the a new MSK cluster. We will use the below resource names to reference the AWS resources needed in this guide.
 
 - Cluster Name: `my-msk-cluster`
 - Access control methods: `TLS client certificates`
@@ -78,7 +78,7 @@ Follow the [Create MSK Cluster](/solutions/how-tos/aws-services/create-msk-clust
 
 #### Create Client Certificate for mTLS
 
-This allows an authorized Kafka client to connect directly to your MSK cluster with Mutual TLS (mTLS). Follow the [Create Client Certificate](/solutions/how-tos/aws-services/create-client-certificate-acm.md) to create a private certificate authority.
+This allows an authorized Kafka client to connect directly to your MSK cluster with Mutual TLS (mTLS). Follow the [Create Client Certificate](/resources/aws/create-client-certificate-acm.md) to create a private certificate authority.
 
 You can create additional client certificates for each different authorized client identity that will connect via the internet to your Zilla Plus proxy deployment.
 
@@ -142,7 +142,7 @@ Add this Inbound Rule to allow the Zilla Plus proxies to communicate with the MS
 
 > This creates an IAM security role to enable the required AWS services for the Zilla Plus proxies.
 
-Follow the [Create IAM Role](/solutions/how-tos/aws-services/create-iam-role.md) guide to create an IAM security role with the following parameters:
+Follow the [Create IAM Role](/resources/aws/create-iam-role.md) guide to create an IAM security role with the following parameters:
 
 ::: code-tabs
 
@@ -220,7 +220,7 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 We need a Public TLS Server Certificate for your custom DNS wildcard domain that can be trusted by a Kafka Client from anywhere.
 
-Follow the [Create Server Certificate (LetsEncrypt)](/solutions/how-tos/aws-services/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
+Follow the [Create Server Certificate (LetsEncrypt)](/resources/aws/create-server-certificate-letsencrypt.md) guide to create a new TLS Server Certificate. Use your own custom wildcard DNS domain in place of the example wildcard domain `*.example.aklivity.io`.
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the Secure Public Access CloudFormation template.
@@ -278,11 +278,11 @@ Parameters:
   - Public Certificate Authority: `<private certificate authority ARN>` *2
   - Key pair for SSH access: `my-key-pair` *5
 - *Configuration Reference
-  1. Follow the [Lookup MSK Server Names](/solutions/how-tos/aws-services/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
+  1. Follow the [Lookup MSK Server Names](/resources/aws/lookup-msk-server-names.md) guide to discover the wildcard DNS pattern for your MSK cluster.
   2. These can be the same Private Certificate Authority that authorizes existing clients connecting directly to MSK, allowing existing trusted client certificates to connect via Zilla Plus proxy.
   3. Consider the network throughput characteristics of the AWS instance type as that will impact the upper bound on network performance.
   4. Replace with your own custom wildcard DNS pattern.
-  5. Follow the [Create Key Pair](/solutions/how-tos/aws-services/create-key-pair.md) guide to create a new key pair used when launching EC2 instances with SSH access.
+  5. Follow the [Create Key Pair](/resources/aws/create-key-pair.md) guide to create a new key pair used when launching EC2 instances with SSH access.
 
 ### Step 3. Configure stack options: `(use defaults)`
 
@@ -490,4 +490,4 @@ Replace these TLS bootstrap server names accordingly for your own custom wildcar
 
 ## Conclusion
 
-You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](/solutions/how-tos/aws-services/manage-cloudformation-stack.md) section.
+You have successfully deployed the [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access. Instructions on how to Monitor and Upgrade your Zilla Plus proxy can be found in the [managing a cloudformation stack](/resources/aws/manage-cloudformation-stack.md) section.
