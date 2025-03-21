@@ -42,7 +42,7 @@ Zilla simplifies service-to-service communication in distributed architectures b
 
 ![gRPC Proxy Pipeline Example](../images/grpc-proxy.png)
 
-Access the gRPC Proxy example files here: [gRPC Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/grpc.proxy)
+Access the gRPC Proxy example files here: [gRPC Proxy Repository](https://github.com/aklivity/zilla/tree/develop/examples/grpc.proxy)
 
 ::: details Full gRPC Proxy zilla.yaml Config
 

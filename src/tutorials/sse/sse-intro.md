@@ -64,12 +64,12 @@ docker-compose down
 ```
 
 ::: tip See more of what Zilla can do
-Go deeper into this concept with the [sse.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout) example.
+Go deeper into this concept with the [sse.kafka.fanout](https://github.com/aklivity/zilla/tree/develop/examples/sse.kafka.fanout) example.
 :::
 
 ## Going Deeper
 
 Try out the other SSE examples:
 
-- [sse.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
-- [sse.jwt](https://github.com/aklivity/zilla-examples/tree/main/sse.jwt)
+- [sse.kafka.fanout](https://github.com/aklivity/zilla/tree/develop/examples/sse.kafka.fanout)
+- [sse.proxy.jwt](https://github.com/aklivity/zilla/tree/develop/examples/sse.proxy.jwt)

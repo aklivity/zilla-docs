@@ -41,7 +41,7 @@ During authentication, the client sends the token in the Authorization header wi
 Zilla leverages Filesystem Protocol to provide powerful routing and serving files through Zilla.
 
 - **Filesystem Proxy**
-  - [http.filesystem](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
+  - [http.filesystem](https://github.com/aklivity/zilla/tree/develop/examples/http.filesystem)
 
 ## Reference
 

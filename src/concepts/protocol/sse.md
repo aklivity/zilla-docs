@@ -66,10 +66,10 @@ Zilla serves as an intelligent gateway for SSE, seamlessly bridging real-time ev
 Zilla leverages the Server-Sent Events (SSE) protocol to enable efficient unidirectional communication, real-time event streaming, and secure data delivery, ensuring scalable and reliable connections between Kafka, HTTP, and SSE clients.
 
 - **SSE Proxy**
-    - [SSE with JWT](https://github.com/aklivity/zilla-examples/tree/main/sse.jwt)
+    - [SSE with JWT](https://github.com/aklivity/zilla/tree/develop/examples/sse.proxy.jwt)
 - **SSE Kafka Proxy**
     - [Simple Stream](../../tutorials/sse/sse-intro.md)
-    - [Fanout](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
+    - [Fanout](https://github.com/aklivity/zilla/tree/develop/examples/sse.kafka.fanout)
     - [TodoMVC CQRS Demo](https://github.com/aklivity/zilla-demos/tree/main/todo-mvc-cqrs)
 
 ## Reference

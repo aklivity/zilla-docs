@@ -54,7 +54,7 @@ IoT devices frequently generate real-time data that needs to be processed and di
 
 ![MQTT Kafka Pipeline Example](../images/mqtt-kafka.png)
 
-Access the MQTT Kafka example files here: [MQTT Kafka Repository](https://github.com/aklivity/zilla-examples/tree/main/mqtt.kafka.proxy)
+Access the MQTT Kafka example files here: [MQTT Kafka Repository](https://github.com/aklivity/zilla/tree/develop/examples/mqtt.kafka.proxy)
 
 ::: details Full MQTT kafka zilla.yaml Config
 

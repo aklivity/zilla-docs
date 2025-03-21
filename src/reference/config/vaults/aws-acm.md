@@ -1,6 +1,6 @@
 ---
 redirectFrom: /reference/config/vaults/vault-aws.html
-shortTitle: aws-acm – Zilla Plus
+shortTitle: aws-acm
 category:
   - Vault
 ---

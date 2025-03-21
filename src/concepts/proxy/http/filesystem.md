@@ -50,7 +50,7 @@ Zilla can be used as a straightforward file server, providing easy access to fil
 
 ![HTTP Filesystem Pipeline Example](../images/http-filesystem.png)
 
-Access the HTTP Filesystem example files here: [HTTP Filesystem Repository](https://github.com/aklivity/zilla-examples/tree/main/http.filesystem)
+Access the HTTP Filesystem example files here: [HTTP Filesystem Repository](https://github.com/aklivity/zilla/tree/develop/examples/http.filesystem)
 
 ::: details Full HTTP Filesystem zilla.yaml Config
 

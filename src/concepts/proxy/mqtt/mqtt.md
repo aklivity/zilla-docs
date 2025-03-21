@@ -44,7 +44,7 @@ A cloud-based IoT platform serves multiple enterprises, each requiring isolated 
 
 ![MQTT Proxy Pipeline Example](../images/mqtt-proxy.png)
 
-Access the MQTT Proxy example files here: [MQTT Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/mqtt.proxy.jwt)
+Access the MQTT Proxy example files here: [MQTT Proxy Repository](https://github.com/aklivity/zilla/tree/develop/examples/mqtt.proxy.jwt)
 
 ::: details Full MQTT Proxy zilla.yaml Config
 

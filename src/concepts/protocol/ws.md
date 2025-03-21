@@ -78,8 +78,8 @@ Zilla serves as an intelligent gateway for WebSocket (WS) connections, managing 
 Zilla leverages the WebSocket protocol to provide powerful bidirectional communication, real-time event streaming, and secure data exchange, ensuring efficient and persistent connections between clients and servers.
 
 - **WS Proxy**
-    - [Echo](https://github.com/aklivity/zilla-examples/tree/main/ws.echo)
-    - [Reflect](https://github.com/aklivity/zilla-examples/tree/main/ws.reflect)
+    - [Echo](https://github.com/aklivity/zilla/tree/develop/examples/ws.echo)
+    - [Reflect](https://github.com/aklivity/zilla/tree/develop/examples/ws.reflect)
 
 ## Reference
 

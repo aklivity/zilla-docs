@@ -54,7 +54,7 @@ It enables efficient, scalable message delivery to multiple SSE clients, ensurin
 
 ![SSE Kafka Pipeline Example](../images/sse-kafka.png)
 
-Access the SSE Kafka example files here: [SSE Kafka Repository](https://github.com/aklivity/zilla-examples/tree/main/sse.kafka.fanout)
+Access the SSE Kafka example files here: [SSE Kafka Repository](https://github.com/aklivity/zilla/tree/develop/examples/sse.kafka.fanout)
 
 ::: details Full SSE kafka zilla.yaml Config
 
@@ -195,4 +195,4 @@ The SSE-Kafka adapter is used to convert SSE-based requests into Kafka-based req
 
 **Other Examples**:
 
-- [asyncapi.sse.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.sse.kafka.proxy)
+- [asyncapi.sse.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/asyncapi.sse.kafka.proxy)

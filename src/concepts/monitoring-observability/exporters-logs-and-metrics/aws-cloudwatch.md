@@ -1,5 +1,5 @@
 ---
-shortTitle: AWS CloudWatch – Zilla Plus
+shortTitle: AWS CloudWatch
 ---
 
 # AWS CloudWatch

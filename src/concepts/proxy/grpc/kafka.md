@@ -63,7 +63,7 @@ Many industries rely on high-throughput data streaming to process large volumes 
 
 ![gRPC Kafka Pipeline Example](../images/grpc-kafka.png)
 
-Access the gRPC Kafka example files here: [gRPC Kafka Repository](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.echo)
+Access the gRPC Kafka example files here: [gRPC Kafka Repository](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.echo)
 
 ::: details Full gRPC kafka zilla.yaml Config
 
@@ -188,4 +188,4 @@ The gRPC-Kafka adapter is used to convert gRPC-based requests into Kafka-based r
 
 **Other Examples**:
 
-- [grpc.kafka.fanout](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.fanout)
+- [grpc.kafka.fanout](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.fanout)

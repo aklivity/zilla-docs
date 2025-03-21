@@ -29,11 +29,11 @@ If you deployed the Zilla Plus for Amazon MSK, then you should already have a Cl
 
 ### Create a Client Certificate
 
-Follow the [Create Client Certificate guide](../../../solutions/how-tos/aws-services/create-client-certificate-acm.md). Upon completion you will have created a client certificate inside ACM and should have a local `client-1.key.pem` file containing the client certificate's RSA key as well as the `ARN` of the certificate.
+Follow the [Create Client Certificate guide](../../../resources/aws/create-client-certificate-acm.md). Upon completion you will have created a client certificate inside ACM and should have a local `client-1.key.pem` file containing the client certificate's RSA key as well as the `ARN` of the certificate.
 
 ### Export Client and CA Certificates
 
-First, you will export the Client Certificate to a local file called `client.cert`. To do this you will need the `ARN` of the client certificate as well as of the [certificate authority](../../../solutions/how-tos/aws-services/create-certificate-authority-acm.md) used to issue the certificate, and run the following command:
+First, you will export the Client Certificate to a local file called `client.cert`. To do this you will need the `ARN` of the client certificate as well as of the [certificate authority](../../../resources/aws/create-certificate-authority-acm.md) used to issue the certificate, and run the following command:
 
 ```bash
 aws acm-pca get-certificate --certificate-authority-arn CERTIFICATE_AUTHORITY_ARN \

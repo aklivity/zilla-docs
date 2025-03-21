@@ -1,5 +1,5 @@
 ---
-shortTitle: AWS Secrets – Zilla Plus
+shortTitle: AWS Secrets
 category:
   - Vault
 ---

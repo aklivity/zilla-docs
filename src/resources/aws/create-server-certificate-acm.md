@@ -18,7 +18,7 @@ Note the ARN of the private certificate authority.
 
 ## Generate the RSA key
 
-We need to create a new key that will be used with the certificate, and store the key in `pkcs8` format. In this example we will be creating the key for a wildcard certificate with `*.aklivity.example.com` as the common name.
+We need to create a new key that will be used with the certificate, and store the key in `pkcs8` format. In this example we will be creating the key for a wildcard certificate with `*.example.aklivity.io` as the common name.
 
 ```bash
 openssl genrsa -out wildcard.aklivity.example.com.key.pem 4096
@@ -46,7 +46,7 @@ State or Province Name (full name) []:California
 Locality Name (eg, city) []:Palo Alto
 Organization Name (eg, company) []:Aklivity
 Organizational Unit Name (eg, section) []:Development
-Common Name (eg, fully qualified host name) []:*.aklivity.example.com
+Common Name (eg, fully qualified host name) []:*.example.aklivity.io
 Email Address []:
 
 Please enter the following 'extra' attributes

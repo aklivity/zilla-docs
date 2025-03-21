@@ -10,18 +10,18 @@ Upgrading from Zilla to Zilla-Plus is a seamless process, thanks to its self-con
 
 Before proceeding with the upgrade, ensure you have:
 
-- A Zilla-Plus subscription on the Amazon Marketplace
+- A Subscription to the [Zilla Plus product on Amazon Marketplace](https://aws.amazon.com/marketplace/pp/prodview-lqfqftufwpttm)
 
 ## Supported Deployment Options
 
 Zilla-Plus supports multiple deployment methods:
 
-- EC2 (AMI)
+- **EC2** (AMI)
 
     - CDK
     - CDKTF
 
-- ECS Fargate (Docker Image)
+- **ECS Fargate** (Docker Image)
 
 To simplify deployment, we have curated templates for the following use cases:
 

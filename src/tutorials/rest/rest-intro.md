@@ -62,15 +62,15 @@ docker-compose down
 ```
 
 ::: tip See more of what Zilla can do
-Go deeper into this concept with the [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud) example.
+Go deeper into this concept with the [http.kafka.crud](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.crud) example.
 :::
 
 ## Going Deeper
 
 Try out more HTTP Kafka examples:
 
-- [http.kafka.async](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
-- [http.kafka.cache](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.cache)
-- [http.kafka.crud](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud)
-- [http.kafka.oneway](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.oneway)
-- [http.kafka.sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
+- [http.kafka.async](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.async)
+- [http.kafka.cache](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.cache)
+- [http.kafka.crud](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.crud)
+- [http.kafka.oneway](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.oneway)
+- [http.kafka.sync](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.sync)

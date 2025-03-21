@@ -38,7 +38,7 @@ By bridging Kafka with gRPC services, this binding allows event-driven architect
 
 ![gRPC Proxy Pipeline Example](../images/kafka-grpc.png)
 
-Access the Kafka gRPC Proxy example files here: [Kafka gRPC Proxy Repository](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy)
+Access the Kafka gRPC Proxy example files here: [Kafka gRPC Proxy Repository](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.proxy)
 
 ::: details Full Kafka gRPC Proxy zilla.yaml Config
 

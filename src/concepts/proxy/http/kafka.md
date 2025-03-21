@@ -72,7 +72,7 @@ Web applications often require real-time event updates, such as notifications or
 
 ![HTTP Kafka Pipeline Example](../images/http-kafka.png)
 
-Access the HTTP Kafka example files here: [HTTP Kafka CRUD Repository](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.crud)
+Access the HTTP Kafka example files here: [HTTP Kafka CRUD Repository](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.crud)
 
 ::: details Full HTTP Kafka CRUD zilla.yaml Config
 
@@ -223,7 +223,7 @@ This proxy enables CRUD (Create, Read, Update, Delete) operations through HTTP r
 
 **Other Examples**:
 
-- [http.kafka.async](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.async)
-- [http.kafka.cache](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.cache)
-- [http.kafka.oneway](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.oneway)
-- [http.kafka.sync](https://github.com/aklivity/zilla-examples/tree/main/http.kafka.sync)
+- [http.kafka.async](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.async)
+- [http.kafka.cache](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.cache)
+- [http.kafka.oneway](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.oneway)
+- [http.kafka.sync](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.sync)

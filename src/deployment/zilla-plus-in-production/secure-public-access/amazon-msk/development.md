@@ -15,7 +15,7 @@ description: Setup connectivity to your Unauthorized access Amazon MSK cluster v
 
 The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-jshnzslazfm44) Secure Public Access proxy lets authorized Kafka clients connect, publish messages and subscribe to topics in your Amazon MSK cluster via the internet.
 
-In this guide we will deploy the Zilla Plus for Amazon MSK Secure Public Access proxy and verify locally trusted public internet connectivity to your MSK cluster from a Kafka client, using the wildcard domain `*.aklivity.example.com`.
+In this guide we will deploy the Zilla Plus for Amazon MSK Secure Public Access proxy and verify locally trusted public internet connectivity to your MSK cluster from a Kafka client, using the wildcard domain `*.example.aklivity.io`.
 
 ### AWS services used
 
@@ -186,9 +186,9 @@ To get started, visit the Proxy's Marketplace [Product Page](https://aws.amazon.
 
 ## Create the Server Certificate
 
-We need a TLS Server Certificate for the wildcard domain `*.aklivity.example.com` that can be trusted by a Kafka Client.
+We need a TLS Server Certificate for the wildcard domain `*.example.aklivity.io` that can be trusted by a Kafka Client.
 
-Follow the [Create Server Certificate](/solutions/how-tos/aws-services/create-server-certificate-acm.md) guide to create a new TLS Server Certificate for the example wildcard domain `*.aklivity.example.com`.
+Follow the [Create Server Certificate](/solutions/how-tos/aws-services/create-server-certificate-acm.md) guide to create a new TLS Server Certificate for the example wildcard domain `*.example.aklivity.io`.
 
 ::: info
 Note the server certificate secret ARN as we will need to reference it from the Secure Public Access CloudFormation template.
@@ -244,7 +244,7 @@ Parameters:
   - Role: `aklivity-zilla-proxy`
   - Security Groups: `my-zilla-proxy`
   - Secrets Manager Secret ARN: `<TLS certificate private key secret ARN>` *3
-  - Public Wildcard DNS: `*.aklivity.example.com`
+  - Public Wildcard DNS: `*.example.aklivity.io`
   - Public Port: `9094`
   - Key pair for SSH access: `my-key-pair` *4
 - *Configuration Reference
@@ -399,7 +399,7 @@ When you followed the [Create Certificate Authority](/solutions/how-tos/aws-serv
 
 With the Kaka client now installed we are ready to configure it and point it at the Zilla Plus proxy.
 
-The Zilla Plus proxy relies on TLS so we need to create a file called `client.properties` that tells the Kafka client to use SSL as the security protocol and to trust your private certificate authority as the signer of the `*.aklivity.example.com` certificate.
+The Zilla Plus proxy relies on TLS so we need to create a file called `client.properties` that tells the Kafka client to use SSL as the security protocol and to trust your private certificate authority as the signer of the `*.example.aklivity.io` certificate.
 
 ::: code-tabs
 
@@ -414,7 +414,7 @@ ssl.truststore.location=/tmp/kafka.client.truststore.jks
 
 ### Configure Local DNS
 
-When using an example wildcard DNS such as `*.aklivity.example.com` then the DNS entries are setup locally.
+When using an example wildcard DNS such as `*.example.aklivity.io` then the DNS entries are setup locally.
 
 Navigate to the [CloudFormation console.](https://console.aws.amazon.com/cloudformation) Then select the `my-zilla-proxy` stack to show the details.
 

@@ -6,7 +6,7 @@ shortTitle: AsyncAPI
 
 Zilla implements Event-Driven APIs defined in the [asyncapi](#asyncapi-client) binding. A Kafka proxy is defined using the [asyncapi](#asyncapi-proxy) `proxy` binding. The Kafka configuration is defined with an [asyncapi](#asyncapi-client) `client` binding.
 
-> [Taxi Hailing demo](https://github.com/aklivity/zilla-demos/tree/main/taxi) | [asyncapi.http.kafka.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.http.kafka.proxy) | [asyncapi.mqtt.kafka.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.mqtt.kafka.proxy) | [asyncapi.sse.kafka.proxy example](https://github.com/aklivity/zilla-examples/tree/main/asyncapi.sse.kafka.proxy)
+> [Taxi Hailing demo](https://github.com/aklivity/zilla-demos/tree/main/taxi) | [asyncapi.http.kafka.proxy example](https://github.com/aklivity/zilla/tree/develop/examples/asyncapi.http.kafka.proxy) | [asyncapi.mqtt.kafka.proxy example](https://github.com/aklivity/zilla/tree/develop/examples/asyncapi.mqtt.kafka.proxy) | [asyncapi.sse.kafka.proxy example](https://github.com/aklivity/zilla/tree/develop/examples/asyncapi.sse.kafka.proxy)
 
 ## AsyncAPI Client
 

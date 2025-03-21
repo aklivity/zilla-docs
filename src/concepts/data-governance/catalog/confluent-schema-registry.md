@@ -1,5 +1,5 @@
 ---
-shortTitle: Confluent Schema Registry – Zilla Plus
+shortTitle: Confluent Schema Registry
 ---
 
 # Confluent Schema Registry

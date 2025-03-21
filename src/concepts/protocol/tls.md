@@ -48,8 +48,8 @@ Zilla strengthens TLS-based communication by optimizing security, routing, and p
 Zilla enhances TLS-based communication by providing secure proxying, traffic reflection, and optimized data transmission in distributed environments.
 
 - **TLS Proxy**
-    - [Echo](https://github.com/aklivity/zilla-examples/tree/main/tls.echo)
-    - [Reflect](https://github.com/aklivity/zilla-examples/tree/main/tls.reflect)
+    - [Echo](https://github.com/aklivity/zilla/tree/develop/examples/tls.echo)
+    - [Reflect](https://github.com/aklivity/zilla/tree/develop/examples/tls.reflect)
 
 Zilla's TLS implementation ensures secure communication across various protocols, supporting use cases such as encrypted microservices communication, secure IoT messaging, and private data exchange while seamlessly integrating with [other protocols](#securing-protocols-with-tls) such as HTTP and MQTT.
 
