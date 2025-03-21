@@ -25,10 +25,10 @@ Zilla-Plus supports multiple deployment methods:
 
 To simplify deployment, we have curated templates for the following use cases:
 
-- [Web Streaming](../../solutions/concepts/kafka-proxies/web-streaming.md)
-- [IoT Ingest and Control](../../solutions/concepts/kafka-proxies/iot-ingest-control.md)
-- [Secure Private Access](../../solutions/concepts/kafka-proxies/secure-private-access.md)
-- [Secure Public Access](../../solutions/concepts/kafka-proxies/secure-public-access.md)
+- [Web Streaming](/deployment/zilla-plus-in-production/web-streaming/README.md)
+- [IoT Ingest and Control](/deployment/zilla-plus-in-production/iot-ingest-and-control/README.md)
+- [Secure Private Access](/deployment/zilla-plus-in-production/secure-private-access/README.md)
+- [Secure Public Access](/deployment/zilla-plus-in-production/secure-public-access/README.md)
 
 However, if you have a specific use-case implemented on Zilla using custom `zilla.yaml` or want to use your existing `zilla` setup, you can upgrade Zilla service to Zilla-plus on AWS ECS Fargate.
 

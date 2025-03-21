@@ -348,15 +348,15 @@ export const enSidebar = sidebar({
                       collapsible: true,
                       children: [
                         {
-                          text: "with SASL/SCRAM",
+                          text: "SASL/SCRAM",
                           link: "production.md",
                         },
                         {
-                          text: "with Mutual TLS (mTLS)",
+                          text: "Mutual TLS (mTLS)",
                           link: "production-mutual-tls.md",
                         },
                         {
-                          text: "with Unauthorized access",
+                          text: "Unauthorized access",
                           link: "development.md",
                         },
                       ],
