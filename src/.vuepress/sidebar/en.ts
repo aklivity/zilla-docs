@@ -1,146 +1,92 @@
 import { sidebar } from "vuepress-theme-hope";
 
 export const enSidebar = sidebar({
-  "/solutions/": [
+  "/solutions/how-tos/aws-services/": [
     {
-      text: "Secure Public Access",
-      icon: "aky-zilla-plus",
+      text: "AWS Resources",
+      children: "structure",
+    },
+  ],
+  "/reference/": [
+    {
+      text: "Zilla Runtime",
+      prefix: "config/",
       children: [
         {
-          text: "Deployment Options",
-          link: "concepts/kafka-proxies/secure-public-access.md",
+          text: "CLI (zilla)",
+          link: "zilla-cli.md",
           children: [],
         },
         {
-          text: "Amazon MSK",
-          collapsible: true,
-          prefix: "how-tos/amazon-msk/secure-public-access/",
-          link: "how-tos/amazon-msk/secure-public-access/production.md",
-          children: [
-            {
-              text: "CDK",
-              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access",
-            },
-            {
-              text: "Terraform",
-              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/secure-public-access",
-            },
-            {
-              text: "CloudFormation",
-              collapsible: true,
-              link: "production.md",
-              children: [
-                {
-                  text: "with SASL/SCRAM",
-                  link: "production.md",
-                },
-                {
-                  text: "with Mutual TLS (mTLS)",
-                  link: "production-mutual-tls.md",
-                },
-                {
-                  text: "with Unauthorized access",
-                  link: "development.md",
-                },
-              ],
-            },
-          ],
+          text: "Zilla Config Overview",
+          link: "overview.md",
+          children: [],
         },
         {
-          text: "Confluent Cloud",
-          link: "how-tos/confluent-cloud/secure-public-access.md",
+          text: "Resolvers",
+          link: "resolvers.md",
           children: [],
         },
       ],
     },
     {
-      text: "Secure Private Access",
-      icon: "aky-zilla-plus",
-      children: [
-        {
-          text: "Deployment Options",
-          link: "concepts/kafka-proxies/secure-private-access.md",
-          children: [],
-        },
-        {
-          text: "Amazon MSK",
-          collapsible: true,
-          children: [
-            {
-              text: "CDK",
-              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access",
-            },
-          ],
-        },
-      ],
+      text: "Bindings",
+      prefix: "config/bindings/",
+      children: "structure",
     },
     {
-      text: "IoT Ingest and Control",
-      icon: "aky-zilla-plus",
-      children: [
-        {
-          text: "Deployment Options",
-          link: "concepts/kafka-proxies/iot-ingest-control.md",
-          children: [],
-        },
-        {
-          text: "Amazon MSK",
-          collapsible: true,
-          children: [
-            {
-              text: "CDK",
-              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/iot-ingest-and-control",
-            },
-            {
-              text: "CloudFormation",
-              link: "how-tos/amazon-msk/iot-ingest-control.md",
-            },
-          ],
-        },
-        {
-          text: "Confluent Cloud",
-          link: "how-tos/confluent-cloud/iot-ingest-control.md",
-          children: [],
-        },
-        {
-          text: "Redpanda",
-          link: "how-tos/redpanda/iot-ingest-control.md",
-          children: [],
-        },
-      ],
+      text: "Catalogs",
+      prefix: "config/catalogs/",
+      children: "structure",
     },
     {
-      text: "Web Streaming",
-      icon: "aky-zilla-plus",
-      children: [
-        {
-          text: "Deployment Options",
-          link: "concepts/kafka-proxies/web-streaming.md",
-          children: [],
-        },
-        {
-          text: "Amazon MSK",
-          collapsible: true,
-          children: [
-            {
-              text: "CDK",
-              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming",
-            },
-            {
-              text: "Terraform",
-              link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
-            },
-          ],
-        },
-      ],
+      text: "Guards",
+      prefix: "config/guards/",
+      children: "structure",
     },
     {
-      text: "Other Resources",
+      text: "Models",
+      prefix: "config/models/",
+      children: "structure",
+    },
+    {
+      text: "Telemetry",
+      prefix: "config/telemetry/",
       children: [
         {
-          text: "AWS",
-          prefix: "how-tos/aws-services/",
+          text: "Events",
+          link: "events.md",
+        },
+        {
+          text: "Metrics",
+          prefix: "metrics/",
           children: "structure",
+        },
+        {
+          text: "Exporters",
+          prefix: "exporters/",
+          children: "structure",
+        },
+      ],
+    },
+    {
+      text: "Vaults",
+      prefix: "config/vaults/",
+      children: "structure",
+    },
+    {
+      text: "Zilla Manager",
+      prefix: "manager/",
+      children: [
+        {
+          text: "CLI (zpm)",
+          link: "zpm-cli.md",
+          children: [],
+        },
+        {
+          text: "zpm Config Overview",
+          link: "overview.md",
+          children: [],
         },
       ],
     },
@@ -337,9 +283,7 @@ export const enSidebar = sidebar({
           text: "Scalability",
           prefix: "concepts/scalability",
           collapsible: true,
-          children: [
-            "autoscaling.md"
-          ],
+          children: ["autoscaling.md"],
         },
         {
           text: "Security",
@@ -429,14 +373,14 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
-              text:"Auto Reconfigure",
+              text: "Auto Reconfigure",
               link: "auto-reconfigure.md",
-              children: []
+              children: [],
             },
             {
-              text:"Incubator Features",
+              text: "Incubator Features",
               link: "incubator-features/README.md",
-              children: []
+              children: [],
             },
             {
               text: "Connecting to Kafka",
@@ -594,14 +538,13 @@ export const enSidebar = sidebar({
           text: "Troubleshooting Guides",
           link: "troubleshooting-guides.md",
           collapsible: true,
-          children:
-            [
-              {
-                text:"Collect Diagnostic",
-                link:"collect-diagnostic.md",
-                children: []
-              }
-            ],
+          children: [
+            {
+              text: "Collect Diagnostic",
+              link: "collect-diagnostic.md",
+              children: [],
+            },
+          ],
         },
         {
           text: "Community Support",
@@ -620,13 +563,11 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Resources",
-          prefix: "resources/",
           collapsible: true,
           children: [
             {
               text: "AWS Services",
-              link: "aws.md",
-              prefix: "aws/",
+              link: "/solutions/how-tos/aws-services/create-msk-cluster.md",
               children: [],
             },
           ],
@@ -638,9 +579,8 @@ export const enSidebar = sidebar({
         },
         {
           text: "Changelog",
-          prefix: "changelog",
-          collapsible: true,
-          children: ["zilla.md", "zilla-plus.md"],
+          link: "https://github.com/aklivity/zilla/releases",
+          children: [],
         },
         {
           text: "Glossary",
@@ -660,226 +600,43 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Zilla Runtime",
-              prefix: "config/",
-              collapsible: true,
-              children: [
-                {
-                  text: "CLI (zilla)",
-                  link: "zilla-cli.md",
-                  children: [],
-                },
-                {
-                  text: "Zilla Config Overview",
-                  link: "overview.md",
-                  children: [],
-                },
-                {
-                  text: "Resolvers",
-                  link: "resolvers.md",
-                  children: [],
-                },
-              ],
+              link: "/reference/config/overview.md",
+              children: [],
             },
             {
               text: "Bindings",
-              prefix: "config/bindings/",
-              collapsible: true,
-              children: [
-                {
-                  text: "AMQP",
-                  prefix: "amqp",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "AsyncAPI",
-                  prefix: "asyncapi",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "Echo",
-                  prefix: "echo",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "Fan",
-                  prefix: "fan",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "Filesystem",
-                  prefix: "filesystem",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "gRPC-Kafka",
-                  prefix: "grpc-kafka",
-                  collapsible: true,
-                  children: "structure",
-                },
-
-                {
-                  text: "HTTP-Filesystem",
-                  prefix: "http-filesystem",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "HTTP-Kafka",
-                  prefix: "http-kafka",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "Kafka",
-                  prefix: "kafka",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "Kafka-gRPC",
-                  prefix: "kafka-grpc",
-                  collapsible: true,
-                  children: "structure",
-                },
-
-                {
-                  text: "Kafka-Proxy",
-                  prefix: "kafka-proxy",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "MQTT",
-                  prefix: "mqtt",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "MQTT-Kafka",
-                  prefix: "mqtt-kafka",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "OpenAPI",
-                  prefix: "openapi",
-                  collapsible: true,
-                  children: "structure",
-                },
-
-                {
-                  text: "OpenAPI-AsyncAPI",
-                  prefix: "openapi-asyncapi",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "Proxy",
-                  prefix: "proxy",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "SSE",
-                  prefix: "sse",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "SSE-Kafka",
-                  prefix: "sse-kafka",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "TCP",
-                  prefix: "tcp",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "TLS",
-                  prefix: "tls",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "WS",
-                  prefix: "ws",
-                  collapsible: true,
-                  children: "structure",
-                },
-              ],
+              link: "/reference/config/bindings/amqp/README.md",
+              children: [],
             },
             {
               text: "Catalogs",
-              prefix: "config/catalogs/",
-              collapsible: true,
-              children: "structure",
+              link: "/reference/config/catalogs/apicurio-registry.md",
+              children: [],
             },
             {
               text: "Guards",
-              prefix: "config/guards/",
-              collapsible: true,
-              children: "structure",
+              link: "/reference/config/guards/jwt.md",
+              children: [],
             },
             {
               text: "Models",
-              prefix: "config/models/",
-              collapsible: true,
-              children: "structure",
+              link: "/reference/config/models/avro.md",
+              children: [],
             },
             {
               text: "Telemetry",
-              prefix: "config/telemetry/",
-              collapsible: true,
-              children: [
-                {
-                  text: "Events",
-                  link: "events.md",
-                  collapsible: true,
-                },
-                {
-                  text: "Metrics",
-                  prefix: "metrics/",
-                  collapsible: true,
-                  children: "structure",
-                },
-                {
-                  text: "Exporters",
-                  prefix: "exporters/",
-                  collapsible: true,
-                  children: "structure",
-                },
-              ],
+              link: "/reference/config/telemetry/events.md",
+              children: [],
             },
             {
               text: "Vaults",
-              prefix: "config/vaults/",
-              children: "structure",
-              collapsible: true,
+              link: "/reference/config/vaults/aws-acm.md",
+              children: [],
             },
             {
               text: "Zilla Manager",
-              prefix: "manager/",
-              collapsible: true,
-              children: [
-                {
-                  text: "CLI (zpm)",
-                  link: "zpm-cli.md",
-                  children: [],
-                },
-                {
-                  text: "zpm Config Overview",
-                  link: "overview.md",
-                  children: [],
-                },
-              ],
+              link: "/reference/manager/zpm-cli.md",
+              children: [],
             },
           ],
         },
@@ -888,9 +645,18 @@ export const enSidebar = sidebar({
           prefix: "community",
           collapsible: true,
           children: [
-            "github.md",
-            "slack.md",
-            "talk-to-the-experts.md",
+            {
+              text: "Github",
+              link: "https://github.com/aklivity/zilla",
+            },
+            {
+              text: "Slack",
+              link: "https://www.aklivity.io/slack",
+            },
+            {
+              text: "Talk to the Experts",
+              link: "https://www.aklivity.io/support",
+            },
             "office-hours.md",
           ],
         },
@@ -898,7 +664,12 @@ export const enSidebar = sidebar({
           text: "Contribute",
           prefix: "contribute",
           collapsible: true,
-          children: ["developer-guidelines.md"],
+          children: [
+            {
+              text: "Developer Guidelines",
+              link: "https://github.com/aklivity/zilla/blob/develop/.github/CONTRIBUTING.md",
+            },
+          ],
         },
       ],
     },
