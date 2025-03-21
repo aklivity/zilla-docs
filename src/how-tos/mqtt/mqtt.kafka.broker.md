@@ -137,7 +137,7 @@ The service definition defines how the clients using this service will interact 
 <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#kafka_mapping -->
 ```
 
-> [More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/README.md) | [More on topic data](../../concepts/kafka-proxies/mqtt-proxy.md#step-2-pub-sub-message-reflect-with-kafka)
+> [More on binding-mqtt-kafka](../../reference/config/bindings/mqtt-kafka/README.md) | [More on topic data](/concepts/proxy/mqtt/kafka.md#pub-sub-with-kafka)
 
 Additionally, a route is defined to capture any "device" messages and route them to a specific topic called `mqtt-devices`. Here Zilla enables routing different topic patterns into one Kafka topic using MQTT supported wildcards. All other messages will use the default `exit` and end up in the `mqtt-messages` topic.
 
