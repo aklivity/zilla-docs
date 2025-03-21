@@ -74,25 +74,25 @@ Zilla serves as a service proxy and an adapter between the supported protocols a
     logo="/assets/icons/security.svg"
     title="Secure Public Access"
     desc="A secure Public Access Proxy allows authorized Kafka clients to connect to your Amazon MSK cluster or Confluent Cloud via the Internet."
-    link="../solutions/concepts/kafka-proxies/secure-public-access.md"
+    link="/deployment/zilla-plus-in-production/secure-public-access/README.md"
   />
   <VPCard
     logo="/assets/icons/changelog.svg"
     title="Secure Private Access"
     desc="A secure Private Access Proxy allows authorized Kafka clients to connect to your Amazon MSK cluster from different VPCs."
-    link="../solutions/concepts/kafka-proxies/secure-private-access.md"
+    link="/deployment/zilla-plus-in-production/secure-private-access/README.md"
   />
   <VPCard
     logo="/assets/icons/scalability.svg"
     title="IoT Ingest and Control"
     desc="The IoT Ingest and Control Broker lets authorized Kafka clients connect, publish messages, and subscribe to topics via the internet."
-    link="../solutions/concepts/kafka-proxies/iot-ingest-control.md"
+    link="/deployment/zilla-plus-in-production/iot-ingest-and-control/README.md"
   />
   <VPCard
     logo="/assets/icons/use cases.svg"
     title="Amazon MSK Web Streaming"
     desc="Expose your Amazon MSK cluster to the internet via REST and SSE API."
-    link="../solutions/concepts/kafka-proxies/iot-ingest-control.md"
+    link="/deployment/zilla-plus-in-production/web-streaming/README.md"
   />
 </div>
 

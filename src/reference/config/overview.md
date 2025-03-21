@@ -70,7 +70,7 @@ Vaults can be used by specific protocol bindings, such as `tls`, to negotiate sh
 
 ### catalogs
 
-> `object` as map of named [`catalog`](../../concepts/catalogs.md) properties
+> `object` as map of named [`catalog`](../../concepts/data-governance/catalog/README.md) properties
 
 Each configured `catalog` represent a catalog of schemas of various format based on a specific implementation `type`.
 

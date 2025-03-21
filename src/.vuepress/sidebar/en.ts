@@ -266,7 +266,7 @@ export const enSidebar = sidebar({
           text: "API Specifications",
           prefix: "concepts/api-spec-integration",
           collapsible: true,
-          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md"],
+          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
         },
       ],
     },
