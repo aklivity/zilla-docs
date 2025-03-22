@@ -19,6 +19,7 @@ This feature is enabled by **Zilla Plus**, which provides advanced Kafka proxy c
 - **Backwards Compatibility**: If no pattern is specified, virtual clusters are disabled.
 
 ## Virtual Cluster Mechanisms
+
 ### Virtual Topics
 - A virtual topic is mapped to a system topic (`one-to-one` mapping).
 - Virtual partitions can map to system partitions (`one-to-one` or `many-to-one`).
