@@ -60,7 +60,7 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="API Specifications"
     logo="/assets/icons/bring your own.svg"
-    link="./concepts/api-spec-integration/asyncapi.md"
+    link="./concepts/api-specifications/asyncapi.md"
   />
 </div>
 
