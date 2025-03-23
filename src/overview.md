@@ -48,7 +48,7 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="Scalability"
     logo="/assets/icons/scalability.svg"
-    link="./concepts/scalability/autoscale-zilla/autoscaling-with-prometheus-metrics.md"
+    link="/concepts/scalability/autoscaling.md"
   />
 
   <VPCard
@@ -60,7 +60,7 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="API Specifications"
     logo="/assets/icons/bring your own.svg"
-    link="./concepts/api-spec-integration/asyncapi.md"
+    link="./concepts/api-specifications/asyncapi.md"
   />
 </div>
 

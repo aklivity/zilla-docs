@@ -145,7 +145,7 @@ Additionally, a route is defined to capture any "device" messages and route them
   <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#device_mapping -->
 ```
 
-> [More on When a route matches](../../concepts/bindings.md#when-a-route-matches) | [More on mqtt-kafka binding routes](../../reference/config/bindings/mqtt-kafka/proxy.md#routes)
+> [More on When a route matches](/concepts/protocol/README.md#when-a-route-matches) | [More on mqtt-kafka binding routes](../../reference/config/bindings/mqtt-kafka/proxy.md#routes)
 
 ### Add a Kafka sync layer
 
@@ -181,7 +181,7 @@ With your `zilla.yaml` config, follow the [Zilla install instructions](/deployme
 
 ### Adding TLS
 
-You can add TLS to this MQTT broker by adding a vault and tls binding as described in the [Server Encryption](../../concepts/bindings.md#server-encryption-tls-ssl) section.
+You can add TLS to this MQTT broker by adding a vault and tls binding as described in the [Server Encryption](/concepts/protocol/README.md#server-encryption-tls-ssl) section.
 
 ## Remove the running containers
 
