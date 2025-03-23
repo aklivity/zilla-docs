@@ -129,4 +129,4 @@ A route exists to direct a data stream to a desired exit point. This is the next
 
 ### Guarded Routes
 
-A route is considered `guarded` if a [guard](../guards.md) is specified. The guard condition short circuits any other route conditions and evaluates if a stream is allowed to use the route. If the `guarded` check fails, route evaluation falls to the next defined route. Any guard can be configured, enabling different use cases when protecting data sent over a stream.
+A route is considered `guarded` if a [guard](/concepts/security/guard/README.md) is specified. The guard condition short circuits any other route conditions and evaluates if a stream is allowed to use the route. If the `guarded` check fails, route evaluation falls to the next defined route. Any guard can be configured, enabling different use cases when protecting data sent over a stream.
