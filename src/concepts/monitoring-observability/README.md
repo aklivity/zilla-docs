@@ -19,7 +19,7 @@ telemetry:
 
 ### Events
 
-[Events](../../reference/config/telemetry/events.md) in Zilla signal important activities and collect relevant information along with them. Primarily they are useful when troubleshooting common issues like model validation or failed secure access, but they provide more observability with the HTTP access information. The easiest way to see logged events in Zilla is to add the [stdout](./exporters-logs-and-metrics/stdout.md) exporter to your `zilla.yaml` config.
+[Events](/concepts/monitoring-observability/logs/README.md) in Zilla signal important activities and collect relevant information along with them. Primarily they are useful when troubleshooting common issues like model validation or failed secure access, but they provide more observability with the HTTP access information. The easiest way to see logged events in Zilla is to add the [stdout](./exporters-logs-and-metrics/stdout.md) exporter to your `zilla.yaml` config.
 
 ## Exporters
 
