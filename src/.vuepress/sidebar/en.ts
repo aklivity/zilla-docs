@@ -392,7 +392,13 @@ export const enSidebar = sidebar({
           link: "concepts/monitoring-observability/README.md",
           collapsible: true,
           children: [
-            "logs/README.md",
+            {
+              text: "Logs",
+              link: "logs/README.md",
+              prefix: "logs/",
+              collapsible: true,
+              children: ["binding.md", "catalog.md", "guard.md", "model.md", "vault.md"],
+            },
             {
               text: "Metrics",
               link: "metrics/README.md",
@@ -618,6 +624,11 @@ export const enSidebar = sidebar({
               prefix: "iot-ingest-and-control/",
               collapsible: true,
               children: [
+                {
+                  text: "Deployment Options",
+                  link: "README.md",
+                  children: [],
+                },
                 {
                   text: "Amazon MSK",
                   collapsible: true,
