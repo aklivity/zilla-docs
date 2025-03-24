@@ -18,7 +18,7 @@ Zilla supports granular control over Cross-Origin Resource Sharing (CORS) by spe
 
 ### Authorization Through Guard Enforcement
 
-Zilla implements a [guard](../../../reference/config/overview.html#guards) mechanism to enforce authorization rules before processing requests and the credentials can be extracted from a cookie, header or query parameter. This ensures that only authenticated and authorized users can access protected resources.
+Zilla implements a [guard](../../../reference/config/overview.md#guards) mechanism to enforce authorization rules before processing requests and the credentials can be extracted from a cookie, header or query parameter. This ensures that only authenticated and authorized users can access protected resources.
 
 ### Dynamic Routing Based on HTTP Requests
 

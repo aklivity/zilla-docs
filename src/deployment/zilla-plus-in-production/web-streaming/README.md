@@ -19,18 +19,6 @@ You will need to choose a wildcard DNS pattern to use for public internet access
 
 - Enable web clients to publish, update, and stream Kafka messages via **customizable REST and SSE APIs**.
 - **No configuration** changes required to your MSK cluster to enable seamless web access.
-- Zilla Plus supports **Auto-Scaling** and are deployed behind a **Network Load Balancer** for optimal performance.
-
-## Deploy with CDK
-
-Follow the [Web Streaming with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming) guide to generate or deploy a custom AWS CDK stack. This stack exposes a custom `REST` path and uses `SASL/SCRAM` authentication.
-
-![MSK Web Streaming Overview](/web_streaming.png)
-
-## Key Features
-
-- Enable web clients to publish, update, and stream Kafka messages via **customizable REST and SSE APIs**.
-- **No configuration** changes required to your MSK cluster to enable seamless web access.
 - <ZillaPlus/> supports **Auto-Scaling** and are deployed behind a **Network Load Balancer** for optimal performance.
 
 ## Deploy with CDK

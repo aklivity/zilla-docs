@@ -5,4 +5,3 @@ src/.vuepress/.cache/
 src/.vuepress/.temp/
 .idea/
 src/cookbooks/quickstart/live-demo-deploy/.env
-test-zilla.yaml
