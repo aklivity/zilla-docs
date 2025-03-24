@@ -76,4 +76,4 @@ Jump to the [quickstart](./getting-started/quickstart/index.md) guide.
 
 ## Zilla Community Edition vs Zilla Plus Enterprise Edition
 
-**Zilla CE** is under the Aklivity Community License. This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (“**Zilla Plus EE**”) is available, which includes additional enterprise integrations and support. For more information, please visit the [Zilla Plus EE](https://www.aklivity.io/products/zilla-plus) product page.
+**Zilla CE** is under the [Aklivity Community License](https://github.com/aklivity/zilla/blob/develop/LICENSE-AklivityCommunity). This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (“**Zilla Plus EE**”) is available, which includes additional enterprise integrations and support. For more information, please visit the [Zilla Plus EE](https://www.aklivity.io/products/zilla-plus) product page.
