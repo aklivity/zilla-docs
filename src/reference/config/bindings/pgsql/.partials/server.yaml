@@ -1,0 +1,4 @@
+  pgsql_server:
+    type: pgsql
+    kind: server
+    exit: risingwave_proxy
