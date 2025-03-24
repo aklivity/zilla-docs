@@ -63,7 +63,7 @@ helm install [RELEASE_NAME] oci://ghcr.io/aklivity/charts/zilla \
   --set-file secrets.tls.data.localhost\\.p12=tls/localhost.p12
 ```
 
-See the [aklivity/zilla-examples](https://github.com/aklivity/zilla-examples) repository for examples.
+See the [aklivity/zilla/examples](https://github.com/aklivity/zilla/tree/develop/examples) repository for examples.
 
 #### Mapping TCP ports through the official `ingress-nginx` ingress controller
 

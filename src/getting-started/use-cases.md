@@ -9,7 +9,7 @@ breadcrumb: false
 A collection of Zilla examples demonstrating its real-world use cases.
 
 ::: info
-Explore all examples in the [zilla-examples](https://github.com/aklivity/zilla/tree/develop/examples) repository.
+Explore all examples in the [zilla/examples](https://github.com/aklivity/zilla/tree/develop/examples) repository.
 :::
 
 ## Service Proxy

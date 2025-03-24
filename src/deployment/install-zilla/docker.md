@@ -19,7 +19,7 @@ Zilla requires a zilla.yaml configuration file.
 - Create a zilla.yaml file in your working directory.
 - Define your desired configuration inside the file.
 
-See the [aklivity/zilla-examples](https://github.com/aklivity/zilla-examples) repository for examples.
+See the [aklivity/zilla/examples](https://github.com/aklivity/zilla/tree/develop/examples) repository for examples.
 
 ### Step 2: Running Zilla in a Docker container
 

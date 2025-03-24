@@ -48,7 +48,7 @@ bindings:
 
 :::
 
-As usual, you need to define the host and port and flush the data to the network. For the full working config please take a look at the [http.kafka.cache example](https://github.com/aklivity/zilla-examples/blob/main/http.kafka.cache/).
+As usual, you need to define the host and port and flush the data to the network. For the full working config please take a look at the [http.kafka.cache example](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.cache).
 
 ### Kafka over TLS/SSL
 
@@ -126,15 +126,9 @@ bindings:
 
 However, if the `Kafka` cluster is secured by a TLS server certificate that is signed by a private certificate authority then you need to add a `vault` [config](../../../concepts/security/vault/filesystem.md#filesystem) to provide access to certificates needed by the TLS client binding.
 
-To test the above config you Download and run the Zilla `http.kafka.sasl.scram` cookbook using this install script. It will start Zilla and Kafka.
+To test the above config you Download and run the Zilla `http.kafka.sasl.scram` cookbook. It will start Zilla and Kafka.
 
-```bash
-wget -qO- https://raw.githubusercontent.com/aklivity/zilla-examples/main/startup.sh | sh -s -- http.kafka.sasl.scram
-```
-
-::: note
-Alternatively, download [http.kafka.sasl.scram](https://github.com/aklivity/zilla-docs/releases/latest/download/http.kafka.sasl.scram.tar.gz) and follow the `README` yourself.
-:::
+Download [http.kafka.sasl.scram](https://github.com/aklivity/zilla-docs/releases/latest/download/http.kafka.sasl.scram.tar.gz) and follow the `README` yourself.
 
 ### Kafka over TLS/SSL using client certificates
 
@@ -267,12 +261,6 @@ bindings:
 
 :::
 
-To test the above SASL config you Download and run the Zilla `http.kafka.sasl.scram` cookbook using this install script. It will start Zilla and Kafka.
+To test the above SASL config you Download and run the Zilla `http.kafka.sasl.scram` cookbook. It will start Zilla and Kafka.
 
-```bash
-wget -qO- https://raw.githubusercontent.com/aklivity/zilla-examples/main/startup.sh | sh -s -- http.kafka.sasl.scram
-```
-
-::: note
-Alternatively, download [http.kafka.sasl.scram](https://github.com/aklivity/zilla-docs/releases/latest/download/http.kafka.sasl.scram.tar.gz) and follow the `README` yourself.
-:::
+Download [http.kafka.sasl.scram](https://github.com/aklivity/zilla-docs/releases/latest/download/http.kafka.sasl.scram.tar.gz) and follow the `README` yourself.

@@ -58,12 +58,6 @@ bindings:
 SNI adds the domain name to the TLS handshake process so that the Zilla process reaches the right domain name and receives the correct SSL certificate.
 :::
 
-To test the above config you Download and run the Zilla `http.redpanda.sasl.scram` cookbook using this install script. It will start Zilla and Kafka.
+To test the above config you Download and run the Zilla `http.redpanda.sasl.scram` cookbook. It will start Zilla and Redpanda.
 
-```bash
-wget -qO- https://raw.githubusercontent.com/aklivity/zilla-examples/main/startup.sh | sh -s -- http.redpanda.sasl.scram
-```
-
-::: note
-Alternatively, download [http.redpanda.sasl.scram](https://github.com/aklivity/zilla-docs/releases/latest/download/http.redpanda.sasl.scram.tar.gz) and follow the `README` yourself.
-:::
+Download [http.redpanda.sasl.scram](https://github.com/aklivity/zilla-docs/releases/latest/download/http.redpanda.sasl.scram.tar.gz) and follow the `README` yourself.

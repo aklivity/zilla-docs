@@ -64,7 +64,7 @@ The Zilla extension can be installed on `vscode.dev` for users who don't have it
 
 ### Browsing GitHub Repositories
 
-1. Navigate to [vscode.dev/github/aklivity/zilla-examples](https://vscode.dev/github/aklivity/zilla-examples) to open the `zilla-examples` repository.
+1. Navigate to [vscode.dev/github/aklivity/zilla/examples](https://vscode.dev/github.com/aklivity/zilla/tree/develop/examples) to open the `zilla/examples` repository.
 2. Sign in to your GitHub account.
 3. The Zilla extension will appear in the **Recommended Extensions** section.
 4. Explore any `zilla.yaml` file from the examples.
