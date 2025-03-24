@@ -94,7 +94,7 @@ export default hopeTheme({
           if (file.startsWith("@partials"))
             return file.replace(
               "@partials",
-              path.resolve(__dirname, "../deployment/zilla-plus-in-production/_partials")
+              path.resolve(__dirname, "../deployment/zilla-plus-in-production/.partials")
             );
           return file;
         },
