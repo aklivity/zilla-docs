@@ -54,5 +54,5 @@ Our expert support team is strategically distributed across multiple time zones,
 
 To ensure you remain up to date with the latest features and security updates, Zilla-Plus version upgrade notifications will be communicated through:
 
-- The dedicated Slack channel
+- Dedicated Slack channel
 - Email notifications

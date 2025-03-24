@@ -48,12 +48,23 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "gRPC",
+          prefix: "grpc",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "gRPC-Kafka",
           prefix: "grpc-kafka",
           collapsible: true,
           children: "structure",
         },
-
+        {
+          text: "HTTP",
+          prefix: "http",
+          collapsible: true,
+          children: "structure",
+        },
         {
           text: "HTTP-Filesystem",
           prefix: "http-filesystem",
@@ -111,8 +122,26 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "PgSQL",
+          prefix: "pgsql",
+          collapsible: true,
+          children: "structure",
+        },
+        {
+          text: "PgSQL-Kafka",
+          prefix: "pgsql-kafka",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "Proxy",
           prefix: "proxy",
+          collapsible: true,
+          children: "structure",
+        },
+        {
+          text: "Risingwave",
+          prefix: "risingwave",
           collapsible: true,
           children: "structure",
         },
@@ -374,6 +403,7 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: [
                 "avro.md",
+                "boolean.md",
                 "json.md",
                 "protobuf.md",
                 "boolean.md",
