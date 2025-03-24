@@ -1,3 +1,3 @@
 <template>
-Zilla<sup><FontIcon icon="fa fa-plus"/></sup>
+Zilla Plus
 </template>

@@ -1,0 +1,5 @@
+catalog:
+  type: confluent-schema-registry
+  options:
+    url: http://reg.example.com:8081
+    context: default

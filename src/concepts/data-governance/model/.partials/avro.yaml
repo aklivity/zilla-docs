@@ -1,0 +1,9 @@
+model: avro
+view: json
+catalog:
+  items-catalog:
+    - strategy: topic
+      version: latest
+    - subject: items-snapshots
+      version: latest
+    - id: 1

@@ -1,0 +1,24 @@
+  risingwave_proxy:
+    type: risingwave
+    kind: proxy
+    options:
+      udf:
+        - server: http://localhost:8815
+        - server: http://localhost:8816
+          language: python
+      kafka:
+        properties:
+          bootstrap.server: localhost:9092
+        format:
+          model: json
+          catalog:
+            catalog0:
+              - strategy: topic
+    routes:
+      - exit: south_pgsql_client
+        when:
+          - commands:
+              - "CREATE TOPIC"
+              - "ALTER TOPIC"
+              - "DROP TOPIC"
+    exit: pgsql_client

@@ -8,15 +8,9 @@ In this guide, run zilla in kubernetes and autoscale the number of pods based on
 
 ## Tl;Dr
 
-Download and run the Zilla `kubernetes.prometheus.autoscale` cookbook using this install script. It will start Zilla and everything you need for this guide.
+Setup Zilla and all required components for this guide by running the `kubernetes.prometheus.autoscale` cookbook.
 
-```bash
-wget -qO- https://raw.githubusercontent.com/aklivity/zilla-examples/main/startup.sh | sh -s -- kubernetes.prometheus.autoscale
-```
-
-::: note
-Alternatively, download [kubernetes.prometheus.autoscale](https://github.com/aklivity/zilla-docs/releases/latest/download/kubernetes.prometheus.autoscale.tar.gz) and follow the `README` yourself.
-:::
+Download the latest [kubernetes.prometheus.autoscale](https://github.com/aklivity/zilla-docs/releases/latest/download/kubernetes.prometheus.autoscale.tar.gz) and follow the instructions in the `README`.
 
 ### Prerequisites
 

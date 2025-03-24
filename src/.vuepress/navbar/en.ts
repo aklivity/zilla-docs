@@ -10,16 +10,27 @@ const versionLinks = <{ text: string; link: string }[]>versions.map((o) => ({
 
 export const enNavbar = navbar([
   {
-    text: "Get Started",
-    icon: "fas fa-play",
-    activeMatch: '^\/(concepts|how\-tos|tutorials)',
-    link: "/how-tos/quickstart/index.md",
-  },
-  {
     text: "Solutions",
     icon: "fas fa-shapes",
     activeMatch: '/solutions',
-    link: "/solutions/concepts/kafka-proxies/secure-public-access.md",
+    "children": [
+        {
+          "text": "Secure Public Access",
+          "link": "/deployment/zilla-plus-in-production/secure-public-access/README.md"
+        },
+        {
+          "text": "Secure Private Access",
+          "link": "/deployment/zilla-plus-in-production/secure-private-access/README.md"
+        },
+        {
+          "text": "IoT Ingest & Control",
+          "link": "/deployment/zilla-plus-in-production/iot-ingest-and-control/README.md"
+        },
+        {
+          "text": "Web Streaming",
+          "link": "/deployment/zilla-plus-in-production/web-streaming/README.md"
+        }
+      ]
   },
   {
     text: "Reference",

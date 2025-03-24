@@ -1,7 +1,6 @@
 ---
 redirectFrom: /reference/config/vaults/vault-aws.html
 shortTitle: aws-acm
-icon: aky-zilla-plus
 category:
   - Vault
 ---

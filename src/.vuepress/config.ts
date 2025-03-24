@@ -8,6 +8,7 @@ import { base, siteBase, dest, versionKey } from "./env.js";
 const __dirname = getDirname(import.meta.url);
 
 export default defineUserConfig({
+  clientConfigFile: path.resolve(__dirname, "./client.ts"),
   pagePatterns: ["**/*.md", "!.vuepress", "!node_modules", "!**/_partials"],
   base: `/${base}/`,
   dest,
