@@ -29,6 +29,10 @@ export const enNavbar = navbar([
         {
           "text": "Web Streaming",
           "link": "/deployment/zilla-plus-in-production/web-streaming/README.md"
+        },
+        {
+          "text": "Virtual Cluster",
+          "link": "/deployment/zilla-plus-in-production/virtual-cluster/README.md"
         }
       ]
   },
