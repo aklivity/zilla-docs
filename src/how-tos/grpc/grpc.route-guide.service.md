@@ -266,7 +266,7 @@ Using a [tcp server](../../reference/config/bindings/tcp/server.md)  binding we 
 
 ### Connecting to Kafka
 
-A gRPC server can connect to Kafka the same as any other binding in Zilla. [See the docs](../connecting-to-kafka/apache-kafka.md) on the different connection options.
+A gRPC server can connect to Kafka the same as any other binding in Zilla. [See the docs](/deployment/configure-zilla/connecting-to-kafka/apache-kafka.md) on the different connection options.
 
 ```yaml
   kafka_cache_client:
@@ -291,4 +291,4 @@ A gRPC server can connect to Kafka the same as any other binding in Zilla. [See 
 
 ## Try it out
 
-Go check out the [grpc.kafka.proxy](https://github.com/aklivity/zilla-examples/tree/main/grpc.kafka.proxy) example for a full implementation of an EchoService.
+Go check out the [grpc.kafka.proxy](https://github.com/aklivity/zilla/tree/develop/examples/grpc.kafka.proxy) example for a full implementation of an EchoService.

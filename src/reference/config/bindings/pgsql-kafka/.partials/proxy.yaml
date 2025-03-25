@@ -1,0 +1,7 @@
+  pgsql_kafka_proxy:
+    type: pgsql-kafka
+    kind: proxy
+    catalog:
+      catalog0:
+        - strategy: topic
+    exit: kafka_client

@@ -1,6 +1,5 @@
 ---
 shortTitle: aws-secrets
-icon: aky-zilla-plus
 category:
   - Vault
 ---

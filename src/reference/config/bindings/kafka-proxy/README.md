@@ -4,7 +4,6 @@ dir:
   collapsible: false
   link: true
 shortTitle: kafka-proxy
-icon: aky-zilla-plus
 category:
   - Binding
 tag:

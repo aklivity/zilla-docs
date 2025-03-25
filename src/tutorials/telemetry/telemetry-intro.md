@@ -76,7 +76,7 @@ http_response_size_bytes_sum{namespace="Metrics-example",binding="http_server"} 
 
 ## Going Deeper
 
-Try out the other [Zilla examples](https://github.com/aklivity/zilla-examples).
+Try out the other [Zilla examples](https://github.com/aklivity/zilla/tree/develop/examples).
 
 Check out our other guides:
 

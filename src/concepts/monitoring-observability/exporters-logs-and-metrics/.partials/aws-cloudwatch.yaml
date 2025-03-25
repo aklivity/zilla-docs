@@ -1,0 +1,10 @@
+exporters:
+  aws_cloudwatch:
+    type: aws-cloudwatch
+    options:
+      metrics:
+        namespace: zilla-metrics
+        interval: 20
+      logs:
+        group: zilla-log-group
+        stream: zilla-log-stream

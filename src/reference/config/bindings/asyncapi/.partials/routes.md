@@ -40,7 +40,7 @@ routes:
 > `array` of `object`
 
 List of conditions to match this route when adapting `asyncapi` MQTT streams to `asyncapi` Kafka streams.
-Read more: [When a route matches](../../../../../concepts/bindings.md#when-a-route-matches)
+Read more: [When a route matches](/concepts/protocol/README.md#route-matches)
 
 #### when[].api-id
 

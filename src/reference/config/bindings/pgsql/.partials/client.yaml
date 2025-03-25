@@ -1,0 +1,4 @@
+pgsql_client:
+  type: pgsql
+  kind: client
+  exit: pgsql_tcp_client
