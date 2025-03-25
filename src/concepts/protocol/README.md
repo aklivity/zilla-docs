@@ -32,7 +32,7 @@ A `client` receives inbound application streams and encodes each as a network st
 
 #### Cache Client & Server Bindings
 
-A `cache_client` & `cache_server` combine to provide a persistent cache of Kafka messages per topic partition, honoring the Kafka topic configuration for message expiration and compaction. Read more in the [kafka](../reference/config/bindings/kafka/README.md#cache-behavior) binding.
+A `cache_client` & `cache_server` combine to provide a persistent cache of Kafka messages per topic partition, honoring the Kafka topic configuration for message expiration and compaction. Read more in the [kafka](/reference/config/bindings/kafka/README.md#cache-behavior) binding.
 
 #### Remote Server Bindings
 
