@@ -14,7 +14,7 @@ Zilla uses specific Kafka topics to store and route MQTT messages, meaning the K
 
 ![Architecture Example](../images/MQTT%20Kafka%20Proxy.png)
 
-### An MQTT Broker
+### MQTT Broker
 
 A Zilla MQTT server can manage client sessions and broker all traffic, adhering to the official [MQTT protocol](https://mqtt.org/mqtt-specification/).
 
