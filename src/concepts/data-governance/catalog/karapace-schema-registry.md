@@ -19,7 +19,7 @@ Karapace Schema Registry is an open-source schema registry that enables seamless
 
 ### Validating Kafka Messages with Karapace Schema Registry
 
-The `http.kafka.karapace` example demonstrates how Zilla can integrate with the Karapace schema registry to validate Kafka messages. This setup ensures that all Kafka producers and consumers adhere to predefined schemas, enhancing data reliability and governance.
+The [`http.kafka.avro.json`](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.avro.json) example demonstrates how Zilla can integrate with the Karapace schema registry to validate Kafka messages. This setup ensures that all Kafka producers and consumers adhere to predefined schemas, enhancing data reliability and governance.
 
 ## Configuration (\* required)
 

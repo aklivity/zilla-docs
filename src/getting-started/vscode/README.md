@@ -4,11 +4,11 @@ redirectFrom: /reference/vscode
 breadcrumb: false
 ---
 
-# Build and Visualize: The Zilla VS Code Extension
+# Zilla VS Code Extension
 
 The Zilla Visual Code Extension simplifies Zilla configuration file management and visualization directly within VS Code. The extension includes:
 
-1. [**Zilla Diagram**](#zilla-diagram) visually represents your Zilla config, similar to a network diagram. It displays all of the configured Zilla elements and how they connect.
+1. [**Zilla Diagram**](#zilla-diagram) VS Code extension visualizes your Zilla config, similar to a network diagram. It displays all of the configured Zilla elements and how they connect.
 2. [**YAML IntelliSense**](#yaml-intellisense) helps you write and maintain your [zilla.yaml](../../reference/config/overview.md) config.
 
 ## How to Install

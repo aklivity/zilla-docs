@@ -113,7 +113,6 @@ Zilla enhances traditional HTTP workflows by integrating advanced validation, se
 
 - **Data Governance**: Validate headers, path parameters, query parameters, and request/response content with [Schema Registry](../../reference/config/catalogs/apicurio-registry.md) support.
 - **Protocol Mapping**: Enable effortless communication with Kafka through native Kafka Wire Protocol integration.
-- **Continuous Authorization**: Enforce continuous authorization with real-time Challenge events.
 
 ## Zilla: HTTP Use Cases
 

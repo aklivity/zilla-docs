@@ -6,7 +6,7 @@ breadcrumb: false
 
 # Overview
 
-Zilla is a multi-protocol edge and service proxy designed to streamline, secure, and manage event-driven architectures (EDAs). It addresses the challenge of EDAs, where services are decoupled and communicated via multiple protocols. It also simplifies EDAs by replacing custom code, Kafka Connect®, MQTT brokers, and other middleware reducing the DevOps burden and architectural complexity. It acts as an AsyncAPI Kafka gateway, offering advanced protocol mediation, particularly for Kafka.
+Zilla is a multi-protocol edge and service proxy designed to streamline, secure, and manage event-driven architectures (EDAs). It addresses the challenge of EDAs, where services are decoupled and communicate via multiple protocols. Zilla also simplifies EDAs by replacing custom code, Kafka Connect®, MQTT brokers, and other middleware, reducing the DevOps burden and architectural complexity. Zilla acts as an AsyncAPI Kafka gateway, offering advanced protocol mediation, particularly for Kafka.
 
 <div class="dark-only">
   <img src="/assets/zilla-overview-new.gif" data-duration="2000" alt="Zilla Overview" class="freeze-after-play"/>
@@ -16,7 +16,7 @@ Zilla is a multi-protocol edge and service proxy designed to streamline, secure,
   <img src="/assets/zilla-overview-new-light.gif" data-duration="2000" alt="Zilla Overview" class="freeze-after-play"/>
 </div>
 
-As a middleware, Zilla enforces authentication, validates schemas, gathers metrics, and terminates TLS. Additionally, Zilla is stateless, cloud-native, highly memory efficient, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way). When deployed as an edge proxy, it scales horizontally to support millions of concurrently connected clients.
+As a middleware infrastructure, Zilla enforces authentication, validates schemas, gathers metrics, and terminates TLS. Additionally, Zilla is stateless, cloud-native, highly memory efficient, and supports various network and application protocols, including HTTP, Kafka, SSE, MQTT, gRPC, and WebSocket (additional protocols are on the way). When deployed as an edge proxy, Zilla scales horizontally to support millions of concurrently connected clients.
 
 ## Key Concepts
 
@@ -30,7 +30,7 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
   <VPCard
     title="Proxy"
     logo="/assets/icons/proxy.svg"
-    link="./concepts/proxy/http/README.md"
+    link="./concepts/proxy/README.md"
   />
 
   <VPCard
@@ -66,9 +66,9 @@ As a middleware, Zilla enforces authentication, validates schemas, gathers metri
 
 ## Who Zilla is for?
 
-- **Data platform/ Kafka engineers** who want to share Kafka cluster with other teams or who want to simplify event-streaming integration between various protocols.
+- **Data platform and Kafka engineers** who want to share Kafka clusters with other teams or who want to simplify event-streaming integration between various protocols.
 - **Application developers** who want to build applications on top of real-time data streams but do not have Kafka expertise.
-- **API architects** who want to build functionality via AsyncAPI schemas.
+- **API architects** who want to build functionality via OpenAPI and AsyncAPI schemas.
 
 ::: info Just want to build?
 Jump to the [quickstart](./getting-started/quickstart/index.md) guide.
@@ -76,4 +76,4 @@ Jump to the [quickstart](./getting-started/quickstart/index.md) guide.
 
 ## Zilla Community Edition vs Zilla Plus Enterprise Edition
 
-**Zilla CE** is under the [Aklivity Community License](https://github.com/aklivity/zilla/blob/develop/LICENSE-AklivityCommunity). This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (“**Zilla Plus EE**”) is available, which includes additional enterprise integrations and support. For more information, please visit the [Zilla Plus EE](https://www.aklivity.io/products/zilla-plus) product page.
+**Zilla CE** is available under the [Aklivity Community License](https://github.com/aklivity/zilla/blob/develop/LICENSE-AklivityCommunity). This open-source license gives the freedom to deploy, modify, and run Zilla as needed, as long as it is not turned into a standalone commercialized “Zilla-as-a-service” offering. A commercial version of Zilla (“**Zilla Plus EE**”) is available, which includes additional enterprise integrations and support. For more information, please visit the [Zilla Plus EE](https://www.aklivity.io/products/zilla-plus) product page.

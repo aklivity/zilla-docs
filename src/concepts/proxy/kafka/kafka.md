@@ -33,7 +33,7 @@ To ensure secure communication, `kafka-proxy` can integrate with TLS encryption 
 
 ## Use Cases
 
-### Proxying Kafka Stream Between On-Premise and Cloud-Based Kafka Services
+### Kafka Stream Proxy Between On-Prem and Cloud
 
 Organizations operating hybrid cloud environments often need to stream Kafka messages between on-premise clusters and cloud-based services like Confluent Cloud or AWS MSK. The `kafka-proxy` binding facilitates seamless communication by acting as an intermediary, ensuring secure and reliable message forwarding without exposing internal brokers directly. This setup enables businesses to migrate workloads to the cloud, implement disaster recovery strategies, or integrate cloud-based analytics platforms while maintaining a consistent Kafka architecture.
 

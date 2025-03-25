@@ -145,7 +145,7 @@ Additionally, a route is defined to capture any "device" messages and route them
   <!-- @include: ../../cookbooks/mqtt.kafka.broker/zilla.yaml#device_mapping -->
 ```
 
-> [More on When a route matches](/concepts/protocol/README.md#when-a-route-matches) | [More on mqtt-kafka binding routes](../../reference/config/bindings/mqtt-kafka/proxy.md#routes)
+> [More on When a route matches](/concepts/protocol/README.md#route-matches) | [More on mqtt-kafka binding routes](../../reference/config/bindings/mqtt-kafka/proxy.md#routes)
 
 ### Add a Kafka sync layer
 
