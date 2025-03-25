@@ -153,7 +153,7 @@ Zilla supports standard API schema definitions like AsyncAPI and OpenAPI, simpli
     logo="/assets/icons/proxy.svg"
     title="OpenAPI Proxy"
     desc="A Zilla API gateway that proxies HTTP requests based on predefined OpenAPI specification."
-    link="https://github.com/aklivity/zilla/tree/develop/examples/asyncapi.http.kafka.proxy"
+    link="https://github.com/aklivity/zilla/tree/develop/examples/openapi.proxy"
   />
   <VPCard
     logo="/assets/icons/bring your own.svg"

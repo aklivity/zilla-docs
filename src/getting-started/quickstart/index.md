@@ -41,7 +41,7 @@ The key components this script will set:
 
 - Configured Zilla instance
 - Kafka Cluster and topics
-- Kafka UI at `http://localhost:8080/ui/clusters/local/all-topics` for browsing topics & messages
+- Kafka UI at [`http://localhost:8080/ui/clusters/local/all-topics`](http://localhost:8080/ui/clusters/local/all-topics) for browsing topics & messages
 
 ![](demo.gif)
 
@@ -71,7 +71,7 @@ Create a new message.
       <!-- @include: zilla.yaml#rest_create -->
 ```
 
-@tab Read:all
+@tab Read:many
 
 Fetch all messages on the topic.
 
@@ -83,7 +83,7 @@ Fetch all messages on the topic.
       <!-- @include: zilla.yaml#rest_retrieve_all -->
 ```
 
-@tab Read:key
+@tab Read:one
 
 Fetch one message by its key.
 

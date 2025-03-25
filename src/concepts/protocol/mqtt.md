@@ -76,7 +76,6 @@ Zilla enhances traditional MQTT workflows by integrating advanced validation, se
 
 - **Data Governance**: Validate MQTT topics, payloads, and headers with [Schema Registry](https://docs.aklivity.io/zilla/latest/reference/config/catalogs/) support.
 - **Protocol Mapping**: Enable seamless pub/sub communication with Kafka through native Kafka Wire Protocol integration.
-- **Continuous Authorization**: Enforce continuous authorization with real-time Challenge events to secure message exchanges.
 
 ## Zilla: MQTT Use Cases
 

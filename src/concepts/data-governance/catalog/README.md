@@ -4,7 +4,9 @@ shortTitle: Catalog
 
 # Catalog
 
-Each configured `catalog` represents a resource for referencing versioned assets. Catalogs make configuring Zilla more agnostic to specific API and Model design. A catalog provides Zilla bindings with schemas, specs, and other files needed to implement the binding. For example, schema models are used to validate messages brokered by Zilla.
+Each configured `catalog` represents a resource for referencing versioned assets. Catalogs make configuring Zilla more agnostic to specific API and Model design.
+
+A catalog provides Zilla bindings with schemas, specs, and other files needed to implement the binding. For example, schema models are used to validate messages proxied by Zilla.
 
 ```yaml
 name: zilla-namespace
@@ -26,7 +28,7 @@ A registered catalog is a namespace scoped item in a zilla config that can be re
 
 Local catalogs are used to quickly bootstrap a Zilla config or package a standard schema that doesn't change often with a Zilla install.
 
-A simple way to reference a file in Zilla is from the local filesystem. Adding files to a Zilla pod relative to the Zilla install directory.
+A simple way to reference a file in Zilla is from the local filesystem. Adding files to Zilla's runtime environment relative to the Zilla install directory.
 
 ```yaml
 catalogs:

@@ -18,10 +18,10 @@ Zilla can be the gRPC server, routing a service method's request and response me
 
 Zilla supports all four [gRPC service method definitions](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition). Zilla enables seamless integration between gRPC services and Kafka by translating gRPC calls into Kafka messages. Each gRPC method maps to a specific Kafka topic, where:
 
-- Unary RPCs translate to a request-response model using Kafka topics.
-- Server streaming RPCs publish messages to a Kafka topic that clients can consume.
-- Client streaming RPCs allow messages to be sent continuously to Kafka topics.
-- Bidirectional streaming RPCs map to multiple Kafka topics for both sending and receiving messages.
+- **Unary RPCs** translate to a request-response model using Kafka topics.
+- **Server streaming RPCs** publish messages to a Kafka topic that clients can consume.
+- **Client streaming RPCs** allow messages to be sent continuously to Kafka topics.
+- **Bidirectional streaming RPCs** map to multiple Kafka topics for both sending and receiving messages.
 
 ### Correlated Request-Response
 

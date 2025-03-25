@@ -14,6 +14,46 @@ Zilla uses specific Kafka topics to store and route MQTT messages, meaning the K
 
 ![Architecture Example](../images/MQTT%20Kafka%20Proxy.png)
 
+### MQTT Broker
+
+A Zilla MQTT server can manage client sessions and broker all traffic, adhering to the official [MQTT protocol](https://mqtt.org/mqtt-specification/).
+
+#### Protocol versions
+
+An MQTT client can use either the [MQTT v5.0](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html) and [MQTT v3.1.1](https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html) specifications.
+
+#### QOS
+
+An MQTT client can use any Quality of Service flag.
+
+- **QoS 0** - At most once
+- **QoS 1** - At least once
+- **QoS 2** - Exactly once
+
+#### MQTT over WebSocket
+
+The [tcp](/reference/config/bindings/tcp/README.md) binding defines the ports Zilla will accept traffic for both MQTT and WebSocket connections. Zilla natively handles WebSockets and can manage the MQTT protocol over an active connection.
+
+#### Last Will and Testament
+
+An MQTT client can specify a last will and testament (LWT) message and topic that is delivered when the client disconnects abruptly and fails to reconnect before session timeout.
+
+#### Correlated request-response
+
+An MQTT client can use the v5 request-response paradigm to send messages with a response topic and correlated data. A requesting MQTT client can send a message on one topic and receive a response on another, while a responding MQTT client or any Kafka workflow can handle the message's journey.
+
+#### Reconnect
+
+An MQTT client reconnecting with the same client-id, even to a different Zilla instance, will automatically remain subscribed to MQTT topics previously subscribed while previously connected.
+
+#### Session takeover
+
+An MQTT client connecting with the same client-id, even to a different Zilla instance, will automatically disconnect the original MQTT client and take over the session.
+
+#### Redirect
+
+An MQTT client can be redirected to a specific Zilla instance, sharding client session state across Zilla instances without needing to replicate every client's session state on each Zilla instance.
+
 ## Key Capabilities
 
 ### Pub/Sub with Kafka

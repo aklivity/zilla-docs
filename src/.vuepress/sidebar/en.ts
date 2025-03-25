@@ -271,12 +271,6 @@ export const enSidebar = sidebar({
       text: "Getting Started",
       children: [
         {
-          text: "-hidden-",
-          ariaLabel: "-hidden-",
-          link: "/",
-          children: [],
-        },
-        {
           text: "Quickstart",
           link: "getting-started/quickstart/index.md",
           children: [],
@@ -296,12 +290,6 @@ export const enSidebar = sidebar({
     {
       text: "Key Concepts",
       children: [
-        {
-          text: "-hidden-",
-          ariaLabel: "-hidden-",
-          link: "/",
-          children: [],
-        },
         {
           text: "Protocol",
           link: "concepts/protocol/README.md",
@@ -337,6 +325,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Proxy",
+          link: "concepts/proxy/README.md",
           prefix: "concepts/proxy/",
           collapsible: true,
           children: [

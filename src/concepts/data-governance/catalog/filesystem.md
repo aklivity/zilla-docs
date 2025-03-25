@@ -19,7 +19,7 @@ A Filesystem Catalog is a method for storing and retrieving schemas, API definit
 
 ### Validating API Traffic with an HTTP Proxy
 
-The `http.proxy.schema.inline` example demonstrates how Zilla can act as an HTTP proxy that validates requests and responses against predefined JSON Schemas stored in the filesystem. This ensures that all API traffic conforms to expected formats, preventing invalid data from reaching backend services and improving API reliability.
+The [`http.kafka.proto.json`](https://github.com/aklivity/zilla/tree/develop/examples/http.kafka.proto.json) example showcases how Zilla enables sending a protobuf object as JSON to a REST endpoint, where it is validated and converted to protobuf before being produced onto Kafka.
 
 ## Configuration (\* required)
 

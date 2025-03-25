@@ -60,6 +60,7 @@ Zilla serves as an intelligent gateway for SSE, seamlessly bridging real-time ev
 - **Reliable Delivery**: Zilla ensures [reliable event delivery](/concepts/proxy/sse/kafka.md#reliable-delivery) to SSE clients by leveraging Kafka’s durability and replayability, preventing message loss and enabling clients to reconnect and resume streams from where they left off.
 - **Schema Validation**: Zilla integrates with [schema registries](../../reference/config/catalogs/apicurio-registry.md), ensuring SSE messages conform to predefined formats, improving data consistency and preventing malformed data from propagating.
 - **Security and Access Control**: Zilla enhances SSE security with JWT authentication, role-based access control (RBAC), and token validation, ensuring that only authorized clients can subscribe to event streams.
+- **Continuous Authorization**: Enforce continuous authorization with real-time Challenge events.
 
 ## Zilla: SSE Use Cases
 

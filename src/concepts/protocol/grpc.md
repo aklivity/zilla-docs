@@ -126,7 +126,6 @@ Zilla enhances traditional gRPC workflows by integrating advanced validation, se
 
 - **Data Governance**: Validate metadata, payloads, and request/response content with [Schema Registry](../../reference/config/catalogs/apicurio-registry.md) support.
 - **Protocol Mapping**: Enable effortless communication with Kafka through native Kafka Wire Protocol integration.
-- **Continuous Authorization**: Enforce continuous authorization with real-time Challenge events.
 
 ## Zilla: gRPC Use Cases
 
