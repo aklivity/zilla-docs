@@ -1,3 +1,8 @@
+---
+shortTitle: Virtual Clusters
+description: Virtual Clusters in Zilla allow for the logical segregation of a single Kafka cluster.
+---
+
 # Virtual Clusters
 
 [Available in Zilla Plus](https://www.aklivity.io/products/zilla-plus)
