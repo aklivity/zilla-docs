@@ -38,7 +38,7 @@ This feature is enabled by **Zilla Plus**, which provides advanced Kafka proxy c
 
 ### Virtual Cluster Quotas
 - Virtual cluster quotas are directly mapped to system client quotas (`one-to-one`).
-- Client IDs are prefixed with the virtual cluster name following the pattern `<cluster_name>:<clientId>`, to enforce quotas.
+- Client IDs are prefixed with the virtual cluster name following the pattern `<cluster_name>.<clientId>`, to enforce quotas.
 - Clients without a defined Client ID are assigned the virtual cluster name `<cluster_name>`, ensuring that quotas are applied at the virtual cluster level.
 
 ## Configuration
