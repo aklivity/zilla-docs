@@ -52,7 +52,7 @@ An MQTT client identifier, allowing the usage of wildcards.
 
 > `array` of `object`
 
-Array of MQTT topic names for publish capability.
+Array of MQTT topic configs for publish capability.
 
 #### publish[].topic
 
@@ -60,17 +60,47 @@ Array of MQTT topic names for publish capability.
 
 The MQTT topic to match on that supports standard MQTT wildcards `/+/`, `/#`.
 
+Also, supports embedded parameters (e.g., `{id}`) for dynamic topic matching.
+
+#### publish[].params
+
+> `object` as map of named `string`
+
+Enforce validation of topic embedded parameters.
+
+```yaml
+publish:
+  - topic: device/{id}
+    params:
+      id: ${guarded['jwt'].identity}
+```
+
 #### when[].subscribe
 
 > `array` of `object`
 
-Array of MQTT topic names for subscribe capability.
+Array of MQTT topic configs for subscribe capability.
 
 #### subscribe[].topic
 
 > `string`
 
 The MQTT topic to match on that supports standard MQTT wildcards `/+/`, `/#`.
+
+Also, supports embedded parameters (e.g., `{id}`) for dynamic topic matching.
+
+#### subscribe[].params
+
+> `object` as map of named `string`
+
+Enforce validation of topic embedded parameters.
+
+```yaml
+subscribe:
+  - topic: device/{id}
+    params:
+      id: ${guarded['jwt'].identity}
+```
 
 #### routes[].exit
 
