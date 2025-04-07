@@ -45,6 +45,7 @@ Named events from Zilla that can be exported and logged.
 - [CATALOG\_SCHEMA\_REGISTRY\_UNRETRIEVABLE\_SCHEMA\_ID](#catalog-schema-registry-unretrievable-schema-id)
 - [CATALOG\_SCHEMA\_REGISTRY\_UNRETRIEVABLE\_SCHEMA\_SUBJECT\_VERSION\_STALE\_SCHEMA](#catalog-schema-registry-unretrievable-schema-subject-version-stale-schema)
 - [CATALOG\_SCHEMA\_REGISTRY\_UNRETRIEVABLE\_SCHEMA\_SUBJECT\_VERSION](#catalog-schema-registry-unretrievable-schema-subject-version)
+- [GUARD_AZURE_AD_AUTHORIZATION_FAILED](#guard-azure-ad-authorization-failed)
 - [GUARD\_JWT\_AUTHORIZATION\_FAILED](#guard-jwt-authorization-failed)
 - [MODEL\_AVRO\_VALIDATION\_FAILED](#model-avro-validation-failed)
 - [MODEL\_CORE\_VALIDATION\_FAILED](#model-core-validation-failed)
@@ -187,6 +188,10 @@ Fetching the registry schema by version was unsuccessful, but an previously fetc
 ### CATALOG_SCHEMA_REGISTRY_UNRETRIEVABLE_SCHEMA_SUBJECT_VERSION
 
 Fetching the registry schema by version was unsuccessful.
+
+### GUARD_AZURE_AD_AUTHORIZATION_FAILED
+
+A client failed authorization for a Azure AD Guarded route.
 
 ### GUARD_JWT_AUTHORIZATION_FAILED
 

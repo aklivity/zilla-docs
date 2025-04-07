@@ -495,6 +495,10 @@ export const enSidebar = sidebar({
                     },
                   ],
                 },
+                {
+                  text: "Azure AD",
+                  link: "azure-ad/README.md"
+                },
               ],
             },
             {
