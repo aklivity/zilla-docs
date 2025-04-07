@@ -4,6 +4,9 @@ shortTitle: Azure AD
 
 # Azure AD
 
+[Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
+{.zilla-plus-badge .hint-container .info}
+
 The **Azure AD** guard in Zilla provides authentication and access control by verifying `Access Token`. It ensures the integrity of tokens using public `keys`, allowing only authorized subjects with valid roles to access protected resources.
 
 To prevent unauthorized token reuse, the Azure AD guard enforces constraints on both:
@@ -63,3 +66,7 @@ The `azure-ad` specific options.
 | options.challenge | `integer`                     | Challenge period (seconds). |
 
 :::
+
+## Reference
+
+[`azure-ad` Guard](/reference/config/guards/azure-ad.md)
