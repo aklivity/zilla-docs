@@ -55,11 +55,11 @@ guards:
 
 The `azure-ad` specific options.
 
-| Property          | Type                             | Description                 |
-|-------------------|----------------------------------|-----------------------------|
-| options.issuer    | `string`              | Default: `organizations`               |
-| options.audience  | `string`                         | Audience claim.             |
-| options.version   | `enum` [ `v1.0`, `v2.0` ] | Default: `v2.0`             |
-| options.challenge | `integer`                        | Challenge period (seconds). |
+| Property          | Type                          | Description                 |
+|-------------------|-------------------------------|-----------------------------|
+| options.issuer    | `string`                      | Default: `organizations`    |
+| options.audience  | `string`                      | Audience claim.             |
+| options.version   | `enum` [ `v1.0`, `v2.0` ]     | Default: `v2.0`             |
+| options.challenge | `integer`                     | Challenge period (seconds). |
 
 :::
