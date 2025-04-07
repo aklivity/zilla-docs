@@ -9,6 +9,9 @@ tag:
 
 # azure-ad Guard
 
+[Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
+{.zilla-plus-badge .hint-container .info}
+
 Defines a guard with `Azure AD` support.
 
 The `azure-ad` guard uses public keys to verify the integrity of `access tokens` when identifying authorized subjects and their associated roles scope. The token issuer and audience can also be constrained to prevent access tokens from other applications from being reused inappropriately.
