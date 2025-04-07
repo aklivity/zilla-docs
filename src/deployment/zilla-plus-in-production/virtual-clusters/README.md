@@ -1,4 +1,9 @@
-# Virtual Cluster
+---
+shortTitle: Virtual Clusters
+description: Virtual Clusters in Zilla allow for the logical segregation of a single Kafka cluster.
+---
+
+# Virtual Clusters
 
 [Available in Zilla Plus](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
@@ -12,10 +17,12 @@ This feature is enabled by **Zilla Plus**, which provides advanced Kafka proxy c
 
 ## Key Features
 - **Multiple Virtual Clusters Over a Single System Cluster**: One or more virtual clusters can be defined over a single system cluster.
+- **Stateless Architecture**: Eliminating the need for managing custom metadata.
 - **Virtual Topics**: Topics are created following the pattern `<cluster_name>.<topic_name>`.
 - **Virtual Consumer Groups**: Consumer groups follow the same pattern as topics, ensuring segmentation.
 - **Virtual Partitions**: Supports mapping virtual topic partitions to system topic partitions.
 - **Access Control**: Virtual ACLs are mapped to system ACLs.
+- **Client Quotas**: Ensures quotas are applied per virtual cluster, as per configured limit.
 - **Backwards Compatibility**: If no pattern is specified, virtual clusters are disabled.
 
 ## Virtual Cluster Mechanisms
@@ -29,6 +36,11 @@ This feature is enabled by **Zilla Plus**, which provides advanced Kafka proxy c
 
 ### Virtual Access Control Lists (ACLs)
 - Each virtual ACL is mapped directly to a system ACL (`one-to-one`).
+
+### Virtual Cluster Quotas
+- Virtual cluster quotas are directly mapped to system client quotas (`one-to-one`).
+- Client IDs are prefixed with the virtual cluster name following the pattern `<cluster_name>.<clientId>`, to enforce quotas.
+- Clients without a defined Client ID are assigned the virtual cluster name `<cluster_name>`, ensuring that quotas are applied at the virtual cluster level.
 
 ## Configuration
 A virtual cluster is defined using a configuration structure like the example below:

@@ -31,8 +31,8 @@ export const enNavbar = navbar([
           "link": "/deployment/zilla-plus-in-production/web-streaming/README.md"
         },
         {
-          "text": "Virtual Cluster",
-          "link": "/deployment/zilla-plus-in-production/virtual-cluster/README.md"
+          "text": "Virtual Clusters",
+          "link": "/deployment/zilla-plus-in-production/virtual-clusters/README.md"
         }
       ]
   },
