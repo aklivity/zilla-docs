@@ -17,7 +17,7 @@ This feature is enabled by **Zilla Plus**, which provides advanced Kafka proxy c
 
 ## Key Features
 - **Multiple Virtual Clusters Over a Single System Cluster**: One or more virtual clusters can be defined over a single system cluster.
-- **Stateless Architecture**: Zilla’s implementation of Virtual Cluster is stateless, eliminating the need for managing custom metadata.
+- **Stateless Architecture**: Eliminating the need for managing custom metadata.
 - **Virtual Topics**: Topics are created following the pattern `<cluster_name>.<topic_name>`.
 - **Virtual Consumer Groups**: Consumer groups follow the same pattern as topics, ensuring segmentation.
 - **Virtual Partitions**: Supports mapping virtual topic partitions to system topic partitions.
