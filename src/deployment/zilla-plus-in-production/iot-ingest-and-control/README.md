@@ -27,7 +27,7 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 
 ### Deploy with CDK
 
-Follow the [IOT Ingest and Control deploy with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/iot-ingest-and-control) guide to generate or deploy a custom AWS CDK stack. This stack sets up an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io`.
+Follow the [IOT Ingest and Control deploy with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.IotIngestAndControl.md) guide to generate or deploy a custom AWS CDK stack. This stack sets up an MQTT broker using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io`.
 
 ### Deploy with CloudFormation
 
@@ -36,6 +36,10 @@ Follow the [Amazon MSK IoT Ingest and Control](/deployment/zilla-plus-in-product
 ## Confluent Cloud
 
 The [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodview-eblxkinsqbaks) IoT Ingest and Control Broker lets authorized Kafka clients connect, publish messages and subscribe to topics in your Confluent Cloud cluster via the internet.
+
+### Deploy with CDK
+
+Follow the [IOT Ingest and Control deploy with CDK](https://github.com/aklivity/zilla-plus-aws-templates/blob/main/confluent-cloud/cdk/README.IotIngestAndControl.md) guide to generate or deploy a custom CDK stack.
 
 ### Deploy with CloudFormation
 

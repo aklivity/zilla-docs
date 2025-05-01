@@ -35,7 +35,7 @@ The [Zilla Plus for Amazon MSK](https://aws.amazon.com/marketplace/pp/prodview-j
 
 ### Deploy with CDK
 
-Follow the [Secure Public Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access) guide to generate or deploy a custom AWS CDK stack, enabling `IAM access control`, `SASL/SCRAM authentication`, `Mutual TLS (mTLS) authentication` or `Unauthorized access` to setup connectivity to your MSK cluster using a wildcard DNS pattern.
+Follow the [Secure Public Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.SecurePublicAccess.md) guide to generate or deploy a custom AWS CDK stack, enabling `IAM access control`, `SASL/SCRAM authentication`, `Mutual TLS (mTLS) authentication` or `Unauthorized access` to setup connectivity to your MSK cluster using a wildcard DNS pattern.
 
 ### Deploy with Terraform
 
@@ -58,3 +58,11 @@ Follow the [Secure Public Access via Unauthorized access](/deployment/zilla-plus
 ## Confluent Cloud
 
 The [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodview-eblxkinsqbaks) Secure Public Access proxy lets authorized Kafka clients connect, publish messages and subscribe to topics in your Confluent Cloud cluster via the internet.
+
+### Deploy with CDK
+
+Follow the [Secure Public Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/blob/main/confluent-cloud/cdk/README.SecurePublicAccess.md) guide to generate or deploy a custom CDK stack.
+
+### Deploy with CloudFormation
+
+Follow the [Secure Public Access](/deployment/zilla-plus-in-production/secure-public-access/confluent-cloud.md) guide to set up connectivity to your Confluent Cloud using a globally trusted TLS server certificate with a wildcard DNS pattern `*.example.aklivity.io`.
