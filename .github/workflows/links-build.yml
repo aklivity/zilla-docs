@@ -31,7 +31,7 @@ jobs:
         run: pnpm link-checker
 
       - name: Link Checker
-        uses: lycheeverse/lychee-action@v1.8.0
+        uses: lycheeverse/lychee-action@v2.4.0
         with:
           fail: true
           args: --exclude-mail --base="src/.vuepress/dist" src/.vuepress/dist
