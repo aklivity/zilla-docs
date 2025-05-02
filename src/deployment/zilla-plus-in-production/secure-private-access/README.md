@@ -45,7 +45,9 @@ Enables Kafka clients to securely access multiple Amazon MSK Serverless clusters
 
 Zilla Plus supports secure private access to Amazon MSK Serverless over a custom domain, using AWS Client VPN.
 
-This allows users to securely connect to MSK Serverless clusters from outside the VPC without exposing the clusters to the public internet.
+This allows on-premises users to securely connect to MSK Serverless clusters from outside the VPC without exposing the clusters to the public internet.
+
+After deployment, set up an AWS Client VPN Endpoint attached to the client VPC so that on-premises clients can connect via AWS Client VPN and access the MSK Serverless clusters.
 
 ![Secure Private Access via AWS Client VPN](/private_access_client_vpn.png)
 
