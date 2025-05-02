@@ -635,11 +635,12 @@ export const enSidebar = sidebar({
             },
             {
               text: "Secure Private Access",
+              prefix: "secure-private-access/",
               collapsible: true,
               children: [
                 {
                   text: "Deployment Options",
-                  link: "secure-private-access/README.md",
+                  link: "README.md",
                   children: [],
                 },
                 {
