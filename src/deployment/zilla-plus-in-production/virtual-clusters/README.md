@@ -75,7 +75,7 @@ To deploy [Zilla Plus](https://www.aklivity.io/products/zilla-plus) on AWS ECS w
 
 ::: info
 
-[`zilla.yaml`](https://github.com/aklivity/zilla-plus-aws-templates/blob/main/amazon-msk/cdk/secure-public-access/zilla.yaml.mustache) template for getting started.
+[`zilla.yaml`](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/lib/templates/SecureAccess/zilla.yaml.mustache) template for getting started.
 
 :::
 

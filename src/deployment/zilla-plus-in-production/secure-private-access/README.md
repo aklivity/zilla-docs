@@ -27,6 +27,7 @@ This setup establishes a fully private, secure, and scalable communication chann
 - **Auto-Scaling** Zilla Plus Instances.
 - Deployed behind a **Network Load Balancer** for high availability and efficient request routing.
 - Integrates with **AWS Nitro Enclaves**, enabling automated certificate renewal.
+- Supports Secure access from on-premises or remote devices via **AWS Client VPN**.
 
 ### Many-to-One Private Access
 
@@ -40,10 +41,20 @@ Enables Kafka clients to securely access multiple Amazon MSK Serverless clusters
 
 ![One to Many Private Access Overview](/one_to_many.png)
 
+### Secure Private Access via AWS Client VPN
+
+Zilla Plus supports secure private access to Amazon MSK Serverless over a custom domain, using AWS Client VPN.
+
+This allows on-premises users to securely connect to MSK Serverless clusters from outside the VPC without exposing the clusters to the public internet.
+
+After deployment, set up an AWS Client VPN Endpoint attached to the client VPC so that on-premises clients can connect via AWS Client VPN and access the MSK Serverless clusters.
+
+![Secure Private Access via AWS Client VPN](/private_access_client_vpn.png)
+
 You will need to choose a wildcard DNS pattern to use for intranet access to the brokers in your Kafka cluster. These wildcard DNS names must resolve to the IP address of the VPC Endpoint in the client VPC, which then routes traffic via the VPC Endpoint Service to the ZillaPlus Network Load Balancer (NLB).
 
 Additionally, the Zilla Plus proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
 
 ## Deploy with CDK
 
-Follow the [Secure Private Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access) guide to generate or deploy a custom AWS CDK stack.
+Follow the [Secure Private Access with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.SecurePrivateAccess.md) guide to generate or deploy a custom AWS CDK stack.
