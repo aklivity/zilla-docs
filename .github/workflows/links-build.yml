@@ -35,5 +35,6 @@ jobs:
         with:
           fail: true
           args: --exclude-mail --base="src/.vuepress/dist" src/.vuepress/dist
+          token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
