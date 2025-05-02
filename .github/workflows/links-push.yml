@@ -15,4 +15,4 @@ jobs:
           fail: true
           args: --exclude-mail src
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
