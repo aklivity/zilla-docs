@@ -23,8 +23,16 @@ You will need to choose a wildcard DNS pattern to use for public internet access
 
 ## Deploy with CDK
 
-Follow the [Web Streaming with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming) guide to generate or deploy a custom AWS CDK stack. This stack exposes a custom `REST` path and uses `SASL/SCRAM` authentication.
+Follow the [Web Streaming with CDK](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.WebStreaming.md) guide to generate or deploy a custom AWS CDK stack. This stack exposes a custom `REST` path and uses `SASL/SCRAM` authentication.
 
 ## Deployment with Terraform
 
 Follow the [Web Streaming with Terraform](https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming) guide to generated or deploy a custom Terraform template using [CDKTF](https://developer.hashicorp.com/terraform/cdktf). This Terraform script can be configured to expose a custom REST path and uses `SASL/SCRAM` authentication.
+
+## Confluent Cloud
+
+The [Zilla Plus for Confluent Cloud](https://aws.amazon.com/marketplace/pp/prodview-eblxkinsqbaks) Web Streaming proxy enables authorized Kafka clients to publish, update, and stream messages to a Kafka topic in your Confluent Cloud cluster.
+
+### Deploy with CDK
+
+Follow the [Web Streaming with CDK](https://github.com/aklivity/zilla-plus-aws-templates/blob/main/confluent-cloud/cdk/README.WebStreaming.md) guide to generate or deploy a custom CDK stack.

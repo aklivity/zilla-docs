@@ -591,7 +591,7 @@ export const enSidebar = sidebar({
                   children: [
                     {
                       text: "CDK",
-                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-public-access",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.SecurePublicAccess.md",
                     },
                     {
                       text: "Terraform",
@@ -617,16 +617,30 @@ export const enSidebar = sidebar({
                     },
                   ],
                 },
-                "confluent-cloud.md",
+                {
+                  text: "Confluent Cloud",
+                  collapsible: true,
+                  children: [
+                    {
+                      text: "CDK",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/confluent-cloud/cdk/README.SecurePublicAccess.md",
+                    },
+                    {
+                      text: "CloudFormation",
+                      link: "confluent-cloud.md",
+                    },
+                  ],
+                },
               ],
             },
             {
               text: "Secure Private Access",
+              prefix: "secure-private-access/",
               collapsible: true,
               children: [
                 {
                   text: "Deployment Options",
-                  link: "secure-private-access/README.md",
+                  link: "README.md",
                   children: [],
                 },
                 {
@@ -635,7 +649,7 @@ export const enSidebar = sidebar({
                   children: [
                     {
                       text: "CDK",
-                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/secure-private-access",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.SecurePrivateAccess.md",
                     },
                   ],
                 },
@@ -657,7 +671,7 @@ export const enSidebar = sidebar({
                   children: [
                     {
                       text: "CDK",
-                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/iot-ingest-and-control",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.IotIngestAndControl.md",
                     },
                     {
                       text: "CloudFormation",
@@ -665,7 +679,20 @@ export const enSidebar = sidebar({
                     },
                   ],
                 },
-                "confluent-cloud.md",
+                {
+                  text: "Confluent Cloud",
+                  collapsible: true,
+                  children: [
+                    {
+                      text: "CDK",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/confluent-cloud/cdk/README.IotIngestAndControl.md",
+                    },
+                    {
+                      text: "CloudFormation",
+                      link: "confluent-cloud.md",
+                    },
+                  ],
+                },
                 "redpanda.md",
               ],
             },
@@ -686,11 +713,22 @@ export const enSidebar = sidebar({
                   children: [
                     {
                       text: "CDK",
-                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/web-streaming",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdk/README.WebStreaming.md",
                     },
                     {
                       text: "Terraform",
                       link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/amazon-msk/cdktf/web-streaming",
+                    },
+                  ],
+                },
+                {
+                  text: "Confluent Cloud",
+                  prefix: "confluent-cloud/",
+                  collapsible: true,
+                  children: [
+                    {
+                      text: "CDK",
+                      link: "https://github.com/aklivity/zilla-plus-aws-templates/tree/main/confluent-cloud/cdk/README.WebStreaming.md",
                     },
                   ],
                 },
