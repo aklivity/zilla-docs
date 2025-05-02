@@ -35,25 +35,27 @@ Multiple Kafka clients from different cross-account VPCs securely connect to a s
 
 ![Many to One Private Access Overview](/many_to_one.png)
 
+<!-- @include: @partials/secure-private-access/wildcard-dns.md  -->
+
 ### One-to-Many Private Access
 
 Enables Kafka clients to securely access multiple Amazon MSK Serverless clusters deployed across different VPCs.
 
 ![One to Many Private Access Overview](/one_to_many.png)
 
-### Secure Private Access via AWS Client VPN
+<!-- @include: @partials/secure-private-access/wildcard-dns.md  -->
+
+### Connecting via AWS Client VPN
 
 Zilla Plus supports secure private access to Amazon MSK Serverless over a custom domain, using AWS Client VPN.
 
 This allows on-premises users to securely connect to MSK Serverless clusters from outside the VPC without exposing the clusters to the public internet.
 
-After deployment, set up an AWS Client VPN Endpoint attached to the client VPC so that on-premises clients can connect via AWS Client VPN and access the MSK Serverless clusters.
-
 ![Secure Private Access via AWS Client VPN](/private_access_client_vpn.png)
 
-You will need to choose a wildcard DNS pattern to use for intranet access to the brokers in your Kafka cluster. These wildcard DNS names must resolve to the IP address of the VPC Endpoint in the client VPC, which then routes traffic via the VPC Endpoint Service to the ZillaPlus Network Load Balancer (NLB).
+<!-- @include: @partials/secure-private-access/wildcard-dns.md  -->
 
-Additionally, the Zilla Plus proxy must also be configured with a TLS server certificate representing the same wildcard DNS pattern.
+After deployment, set up an **AWS Client VPN Endpoint** attached to the client VPC so that on-premises clients can connect via AWS Client VPN and access the MSK Serverless clusters.
 
 ## Deploy with CDK
 
