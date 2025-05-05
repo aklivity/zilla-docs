@@ -1,0 +1,69 @@
+#cloud-config
+
+write_files:
+  - path: /etc/zilla/zilla.yaml
+    #region config_init
+    content: |
+      name: public
+      vaults:
+        secure:
+          type: aws-secrets
+      bindings:
+        tcp_server:
+          type: tcp
+          kind: server
+          options:
+            host: 0.0.0.0
+            port: {{ EXTERNAL_PORT }}
+          exit: tls_server
+        tls_server:
+          type: tls
+          kind: server
+          vault: secure
+          options:
+            keys:
+            - {{ EXTERNAL_KEY }}
+          routes:
+          - exit: kafka_proxy
+            when:
+            - authority: "{{ EXTERNAL_AUTHORITY }}"
+        kafka_proxy:
+          type: kafka-proxy
+          kind: proxy
+          options:
+            external:
+              host: "{{ EXTERNAL_HOST }}"
+              port: {{ EXTERNAL_PORT }}
+            internal:
+              host: "{{ INTERNAL_HOST }}"
+              port: {{ INTERNAL_PORT }}
+          exit: tls_client
+        tls_client:
+          type: tls
+          kind: client
+          vault: secure
+          options:
+            trustcacerts: true
+          exit: tcp_client
+        tcp_client:
+          type: tcp
+          kind: client
+          options:
+            host: "*"
+            port: {{ INTERNAL_PORT }}
+          routes:
+          - when:
+            - authority: "{{ INTERNAL_AUTHORITY }}"
+      telemetry:
+        exporters:
+          logs:
+            type: stdout
+    #endregion config_init
+
+#region services_init
+runcmd:
+  - systemctl enable amazon-ssm-agent
+  - systemctl start amazon-ssm-agent
+  - systemctl enable zilla-plus
+  - systemctl start zilla-plus
+#endregion services_init
