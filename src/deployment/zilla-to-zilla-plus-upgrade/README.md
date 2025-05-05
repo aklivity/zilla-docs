@@ -47,7 +47,7 @@ To use your custom` zilla.yaml`, you can pass the configuration as `user data` d
 - Expand `Advanced details`.
 - Add your `zilla.yaml` under the `User data` section using cloud-config.
 
-Refer to the full guide: [Deploying Zilla Plus via AWS AMI](/deployment/zilla-plus-in-production/zilla-plus-via-aws-ami/README.me)
+Refer to the full guide: [Deploying Zilla Plus via AWS AMI](/deployment/zilla-plus-in-production/zilla-plus-via-aws-ami/README.md)
 
 ### AWS ECS Fargate
 
