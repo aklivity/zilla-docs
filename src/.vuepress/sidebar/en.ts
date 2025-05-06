@@ -736,10 +736,17 @@ export const enSidebar = sidebar({
             },
             {
               text: "Virtual Clusters",
+              prefix: "virtual-clusters/",
               link: "virtual-clusters/README.md",
               children: [],
             },
             "zilla-plus-on-aws-ecs-fargate.md",
+            {
+              text: "AWS AMI",
+              prefix: "zilla-plus-via-aws-ami/",
+              link: "zilla-plus-via-aws-ami/README.md",
+              children: [],
+            },
           ],
         },
       ],
