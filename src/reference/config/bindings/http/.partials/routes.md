@@ -26,6 +26,23 @@ routes:
         - read:items
 ```
 
+##### Dynamic guarded routes
+
+Dynamic guarded routes allow roles to be evaluated at runtime based on the incoming HTTP request.
+
+```yaml
+routes:
+  - guarded:
+      my_guard:
+        - ${method}${path}
+```
+
+> `${method}` Replaced with the request method (_e.g.,_ `GET`, `POST`)
+
+> `${path}` Replaced with the request path (_e.g.,_ `/items`, `/users/123`)
+
+A combination of both static and dynamic guarded routes is supported.
+
 #### routes[].when
 
 > `array` of `object`
