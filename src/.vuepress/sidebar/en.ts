@@ -498,6 +498,10 @@ export const enSidebar = sidebar({
                   text: "Azure AD",
                   link: "azure-ad/README.md"
                 },
+                {
+                  text: "AWS Lambda",
+                  link: "aws-lambda/README.md"
+                },
               ],
             },
             {
