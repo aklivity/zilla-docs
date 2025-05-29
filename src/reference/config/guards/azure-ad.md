@@ -80,3 +80,9 @@ Azure AD version.
 > `integer`
 
 Challenge period (seconds).
+
+#### options.identity
+
+> `string` | Default: `sub`
+
+Claim to extract the user's identity from the token.
