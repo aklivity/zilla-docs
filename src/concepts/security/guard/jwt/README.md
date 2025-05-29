@@ -57,19 +57,24 @@ guards:
 
 The `jwt` specific options.
 
-| Property | Type | Description |
-| -- | -- | -- |
-| options.issuer |  `string` |  Issuer claim. |
-| options.audience |  `string` | Audience claim. |
-| options.challenge |  `integer` | Challenge period (seconds). |
-| options.keys |  `string`, `object[]` | If not specified, the JWT vault derives the key location from the issuer's `.well-known/jwks.json`. It can also be set as a URI string or a list of objects with supported key values. |
-| options.keys.kty |  `string` | Key type, e.g. "RSA" , "EC". |
-| options.keys.kid |  `string` | Key ID. |
-| options.keys.n |  `string` | "RSA" modulus. |
-| options.keys.e |  `string` | "RSA" exponent. |
-| options.keys.alg |  `string` | "RSA" algorithm, e.g. "RS256". |
-| options.keys.crv |  `string` | "EC" curve name. |
-| options.keys.x |  `string` | "EC" point X coordinate. |
-| options.keys.y |  `string` | "EC" point Y coordinate. |
+| Property          | Type                   | Description                                                                                                                                                                            |
+|-------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| options.issuer    | `string`               | Issuer claim.                                                                                                                                                                          |
+| options.audience  | `string`               | Audience claim.                                                                                                                                                                        |
+| options.challenge | `integer`              | Challenge period (seconds).                                                                                                                                                            |
+| options.identity  | `string`               | Default: `sub`                                                                                                                                                                         |
+| options.keys      | `string`, `object[]`   | If not specified, the JWT vault derives the key location from the issuer's `.well-known/jwks.json`. It can also be set as a URI string or a list of objects with supported key values. |
+| options.keys.kty  | `string`               | Key type, e.g. "RSA" , "EC".                                                                                                                                                           |
+| options.keys.kid  | `string`               | Key ID.                                                                                                                                                                                |
+| options.keys.n    | `string`               | "RSA" modulus.                                                                                                                                                                         |
+| options.keys.e    | `string`               | "RSA" exponent.                                                                                                                                                                        |
+| options.keys.alg  | `string`               | "RSA" algorithm, e.g. "RS256".                                                                                                                                                         |
+| options.keys.crv  | `string`               | "EC" curve name.                                                                                                                                                                       |
+| options.keys.x    | `string`               | "EC" point X coordinate.                                                                                                                                                               |
+| options.keys.y    | `string`               | "EC" point Y coordinate.                                                                                                                                                               |
 
 :::
+
+## Reference
+
+[`jwt` Guard](/reference/config/guards/jwt.md)
