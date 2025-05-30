@@ -86,3 +86,9 @@ Challenge period (seconds).
 > `string` | Default: `sub`
 
 Claim to extract the user's identity from the token.
+
+#### options.guarded
+
+> `string` | Default: `scp`
+
+Claim to check for access control.

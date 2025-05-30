@@ -65,6 +65,7 @@ The `azure-ad` specific options.
 | options.version   | `enum` [ `v1.0`, `v2.0` ] | Default: `v2.0`             |
 | options.challenge | `integer`                 | Challenge period (seconds). |
 | options.identity  | `string`                  | Default: `sub`              |
+| options.guarded   | `string`                  | Default: `scp`              |
 
 :::
 
