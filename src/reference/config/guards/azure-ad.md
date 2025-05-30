@@ -87,8 +87,8 @@ Challenge period (seconds).
 
 Claim to extract the user's identity from the token.
 
-#### options.guarded
+#### options.roles
 
-> `string` | Default: `scp`
+> `string` | Default: `roles`
 
-Claim to check for access control.
+Claim to check for authorized roles.
