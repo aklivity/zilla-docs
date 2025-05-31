@@ -86,3 +86,9 @@ Challenge period (seconds).
 > `string` | Default: `sub`
 
 Claim to extract the user's identity from the token.
+
+#### options.roles
+
+> `string` | Default: `roles`
+
+Claim to check for authorized roles.
