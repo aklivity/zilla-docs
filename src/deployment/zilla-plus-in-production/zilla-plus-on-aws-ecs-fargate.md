@@ -29,8 +29,13 @@ This Guide will walk you through deploying your first Zilla Plus service on AWS 
     - Fulfillment option: `Zilla Plus`
     - Software version: `Select the most recently released version`
   - Click `Continue to Launch`
-    - Copy and run the `aws` login command from the Container images section to confirm you can pull the Zilla Plus container image.
-    - Note the image name `709825985650.dkr.ecr.us-east-1.amazonaws.com/aklivity/zilla-plus-ecr:<version>` and one of the version tags stored in the `CONTAINER_IMAGES` variable, which will be used later.
+  - Copy and run the `aws` login command from the Container images section to confirm access to the Zilla Plus image.
+
+    :::: note
+
+    Note the image name `709825985650.dkr.ecr.us-east-1.amazonaws.com/aklivity/zilla-plus-ecr:<version>` and one of the version tags stored in the `CONTAINER_IMAGES` variable, which will be used later.
+
+    ::::
 
 ## Create SSM Parameter for Zilla Config
 
