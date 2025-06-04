@@ -138,15 +138,13 @@ Create an IAM role for the Task. This role will be used by the running Zilla Plu
 
 ::: tabs
 
-@tab Task role
-
-Name:
+@tab Name
 
 ```text
 ecsTaskRole
 ```
 
-Policies:
+@tab Policies
 
 ```text
 AWSMarketplaceMeteringFullAccess
@@ -161,15 +159,13 @@ If you used the Amazon ECR as your image repository, create a role with the `Ama
 
 ::: tabs
 
-@tab Task execution role
-
-Name:
+@tab Name
 
 ```text
 ecsTaskExecutionRole
 ```
 
-Policies:
+@tab Policies
 
 ```text
 AmazonECSTaskExecutionRolePolicy
