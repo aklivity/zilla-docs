@@ -16,7 +16,25 @@ Note: this requires AWS Nitro Enclaves for ACM to be enabled on the instance whe
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
+The [revocation](#options-revocation) option is used to specify the certificate revocation checking method.
+
 ```yaml {2}
 server:
   type: aws-acm
+  options:
+    revocation: crl
 ```
+
+## Configuration (\* required)
+
+### options
+
+> `object`
+
+The `aws-acm` specific options.
+
+#### options.revocation
+
+> `enum` [ `crl`, `none` ] | Default `none`
+
+Certificate revocation checking method.
