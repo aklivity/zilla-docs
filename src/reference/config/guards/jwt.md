@@ -89,6 +89,12 @@ Issuer claim.
 
 Audience claim.
 
+#### options.roles
+
+> `string` | Default: `scope`
+
+Claim to check for authorized roles. Can be separated by `.` to specify sub field for example `realm_access.roles`
+
 #### options.challenge
 
 > `integer`
