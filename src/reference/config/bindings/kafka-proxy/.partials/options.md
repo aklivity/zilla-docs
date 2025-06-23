@@ -7,6 +7,7 @@ The `kafka-proxy` specific options.
 
 ```yaml
 options:
+  cluster-id: development
   external:
     host: kafka-#.external.net
     port: 9093
@@ -14,6 +15,12 @@ options:
     host: b-#.kafka.internal.net
     port: 9094
 ```
+
+#### options.clusterId
+
+> `string`
+
+Specifies the cluster id for virtual cluster configuration.
 
 #### options.external\*
 
