@@ -13,7 +13,7 @@ This is typically combined with a [tls](../bindings/tls/README.md) binding `vaul
 [Available in <ZillaPlus/>](https://www.aklivity.io/products/zilla-plus)
 {.zilla-plus-badge .hint-container .info}
 
-The [revocation](#options-revocation) option is used to specify the certificate revocation checking method.
+The [revocation](#options-revocation) option is used to specify the certificate revocation method.
 
 ```yaml {2}
 server:
@@ -34,4 +34,4 @@ The `aws-secret` specific options.
 
 > `enum` [ `crl`, `none` ] | Default `none`
 
-Certificate revocation checking method.
+Certificate revocation method.
