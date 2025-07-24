@@ -291,79 +291,23 @@ export const enSidebar = sidebar({
       text: "Key Concepts",
       children: [
         {
-          text: "Protocol",
-          link: "concepts/protocol/README.md",
-          prefix: "concepts/protocol/",
+          text: "API Specifications",
+          prefix: "concepts/api-specifications",
           collapsible: true,
-          children: [
-            {
-              text: "HTTP",
-              link: "http.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "gRPC",
-              link: "grpc.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "Kafka",
-              link: "kafka.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "MQTT",
-              link: "mqtt.md",
-              prefix: "concepts/protocol/",
-            },
-            {
-              text: "SSE",
-              link: "sse.md",
-              prefix: "concepts/protocol/",
-            },
-          ],
+          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
         },
         {
-          text: "Proxy",
-          link: "concepts/proxy/README.md",
-          prefix: "concepts/proxy/",
+          text: "Benchmark",
+          link: "concepts/benchmark/README.md",
+          prefix: "concepts/benchmark",
           collapsible: true,
-          children: [
+          children:
+          [
             {
-              text: "HTTP",
-              link: "http/README.md",
-              prefix: "http/",
-              collapsible: true,
-              children: ["http.md", "kafka.md", "filesystem.md"],
-            },
-            {
-              text: "gRPC",
-              link: "grpc/README.md",
-              prefix: "grpc/",
-              collapsible: true,
-              children: ["grpc.md", "kafka.md"],
-            },
-            {
-              text: "Kafka",
+              text: "Kafka Proxy",
+              prefix: "kafka",
               link: "kafka/README.md",
-              prefix: "kafka/",
-              collapsible: true,
-              children: ["kafka.md", "grpc.md"],
-            },
-            {
-              text: "MQTT",
-              link: "mqtt/README.md",
-              prefix: "mqtt/",
-              collapsible: true,
-              children: ["mqtt.md", "kafka.md"],
-            },
-            {
-              text: "SSE",
-              link: "sse/README.md",
-              prefix: "sse/",
-              collapsible: true,
-              children: ["sse.md", "kafka.md"],
-            },
+            }
           ],
         },
         {
@@ -436,6 +380,82 @@ export const enSidebar = sidebar({
                 "aws-cloudwatch.md",
                 "syslog.md",
               ],
+            },
+          ],
+        },
+        {
+          text: "Protocol",
+          link: "concepts/protocol/README.md",
+          prefix: "concepts/protocol/",
+          collapsible: true,
+          children: [
+            {
+              text: "HTTP",
+              link: "http.md",
+              prefix: "concepts/protocol/",
+            },
+            {
+              text: "gRPC",
+              link: "grpc.md",
+              prefix: "concepts/protocol/",
+            },
+            {
+              text: "Kafka",
+              link: "kafka.md",
+              prefix: "concepts/protocol/",
+            },
+            {
+              text: "MQTT",
+              link: "mqtt.md",
+              prefix: "concepts/protocol/",
+            },
+            {
+              text: "SSE",
+              link: "sse.md",
+              prefix: "concepts/protocol/",
+            },
+          ],
+        },
+        {
+          text: "Proxy",
+          link: "concepts/proxy/README.md",
+          prefix: "concepts/proxy/",
+          collapsible: true,
+          children: [
+            {
+              text: "HTTP",
+              link: "http/README.md",
+              prefix: "http/",
+              collapsible: true,
+              children: ["http.md", "kafka.md", "filesystem.md"],
+            },
+            {
+              text: "gRPC",
+              link: "grpc/README.md",
+              prefix: "grpc/",
+              collapsible: true,
+              children: ["grpc.md", "kafka.md"],
+            },
+            {
+              text: "Kafka",
+              link: "kafka/README.md",
+              prefix: "kafka/",
+              collapsible: true,
+              children: ["kafka.md", "grpc.md"],
+            },
+            {
+              text: "MQTT",
+              link: "mqtt/README.md",
+              prefix: "mqtt/",
+              collapsible: true,
+              children: ["mqtt.md", "kafka.md"],
+            },
+            {
+              text: "SSE",
+              link: "sse/README.md",
+              prefix: "sse/",
+              collapsible: true,
+              children: ["sse.md", "kafka.md"],
             },
           ],
         },
@@ -520,12 +540,6 @@ export const enSidebar = sidebar({
             },
           ],
         },
-        {
-          text: "API Specifications",
-          prefix: "concepts/api-specifications",
-          collapsible: true,
-          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
-        },
       ],
     },
     {
@@ -549,6 +563,7 @@ export const enSidebar = sidebar({
             },
             {
               text:"Incubator Features",
+              prefix: "incubator-features/",
               link: "incubator-features/README.md",
               children: []
             },
