@@ -30,7 +30,7 @@ For this benchmarking, we use Confluent-style workloads across the following dep
 
 ## Run Benchmark
 
-Clone the Aklivity fork of OpenMessaging Benchmark (OMB):
+Clone the Aklivity OpenMessaging Benchmark (OMB) repository:
 
 ```bash
 git clone https://github.com/aklivity/openmessaging-benchmark.git
