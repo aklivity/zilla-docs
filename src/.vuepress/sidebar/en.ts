@@ -291,99 +291,6 @@ export const enSidebar = sidebar({
       text: "Key Concepts",
       children: [
         {
-          text: "API Specifications",
-          prefix: "concepts/api-specifications",
-          collapsible: true,
-          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
-        },
-        {
-          text: "Benchmark",
-          link: "concepts/benchmark/README.md",
-          prefix: "concepts/benchmark",
-          collapsible: true,
-          children:
-          [
-            {
-              text: "Kafka Proxy",
-              prefix: "kafka",
-              link: "kafka/README.md",
-            }
-          ],
-        },
-        {
-          text: "Data Governance",
-          prefix: "concepts/data-governance",
-          collapsible: true,
-          children: [
-            {
-              text: "Catalog",
-              link: "catalog/README.md",
-              prefix: "catalog/",
-              collapsible: true,
-              children: [
-                "apicurio-registry.md",
-                "filesystem.md",
-                "inline.md",
-                "karapace-schema-registry.md",
-                "aws-glue.md",
-                "confluent-schema-registry.md",
-              ],
-            },
-            {
-              text: "Model",
-              link: "model/README.md",
-              prefix: "model/",
-              collapsible: true,
-              children: [
-                "avro.md",
-                "boolean.md",
-                "double.md",
-                "float.md",
-                "int32.md",
-                "int64.md",
-                "json.md",
-                "protobuf.md",
-                "string.md",
-              ],
-            },
-          ],
-        },
-        {
-          text: "Monitoring & Observability",
-          prefix: "concepts/monitoring-observability",
-          link: "concepts/monitoring-observability/README.md",
-          collapsible: true,
-          children: [
-            {
-              text: "Logs",
-              link: "logs/README.md",
-              prefix: "logs/",
-              collapsible: true,
-              children: ["binding.md", "catalog.md", "guard.md", "model.md", "vault.md"],
-            },
-            {
-              text: "Metrics",
-              link: "metrics/README.md",
-              prefix: "metrics/",
-              collapsible: true,
-              children: ["grpc.md", "http.md", "stream.md"],
-            },
-            {
-              text: "Exporters Logs and Metrics",
-              link: "exporters-logs-and-metrics/README.md",
-              prefix: "exporters-logs-and-metrics/",
-              collapsible: true,
-              children: [
-                "stdout.md",
-                "oltp.md",
-                "prometheus.md",
-                "aws-cloudwatch.md",
-                "syslog.md",
-              ],
-            },
-          ],
-        },
-        {
           text: "Protocol",
           link: "concepts/protocol/README.md",
           prefix: "concepts/protocol/",
@@ -456,6 +363,79 @@ export const enSidebar = sidebar({
               prefix: "sse/",
               collapsible: true,
               children: ["sse.md", "kafka.md"],
+            },
+          ],
+        },
+        {
+          text: "Data Governance",
+          prefix: "concepts/data-governance",
+          collapsible: true,
+          children: [
+            {
+              text: "Catalog",
+              link: "catalog/README.md",
+              prefix: "catalog/",
+              collapsible: true,
+              children: [
+                "apicurio-registry.md",
+                "filesystem.md",
+                "inline.md",
+                "karapace-schema-registry.md",
+                "aws-glue.md",
+                "confluent-schema-registry.md",
+              ],
+            },
+            {
+              text: "Model",
+              link: "model/README.md",
+              prefix: "model/",
+              collapsible: true,
+              children: [
+                "avro.md",
+                "boolean.md",
+                "double.md",
+                "float.md",
+                "int32.md",
+                "int64.md",
+                "json.md",
+                "protobuf.md",
+                "string.md",
+              ],
+            },
+          ],
+        },
+        {
+          text: "Monitoring & Observability",
+          prefix: "concepts/monitoring-observability",
+          link: "concepts/monitoring-observability/README.md",
+          collapsible: true,
+          children: [
+            {
+              text: "Logs",
+              link: "logs/README.md",
+              prefix: "logs/",
+              collapsible: true,
+              children: ["binding.md", "catalog.md", "guard.md", "model.md", "vault.md"],
+            },
+            {
+              text: "Metrics",
+              link: "metrics/README.md",
+              prefix: "metrics/",
+              collapsible: true,
+              children: ["grpc.md", "http.md", "stream.md"],
+            },
+            {
+              text: "Exporters Logs and Metrics",
+              link: "exporters-logs-and-metrics/README.md",
+              prefix: "exporters-logs-and-metrics/",
+              collapsible: true,
+              children: [
+                "stdout.md",
+                "oltp.md",
+                "prometheus.md",
+                "aws-cloudwatch.md",
+                "syslog.md",
+              ],
             },
           ],
         },
@@ -540,6 +520,32 @@ export const enSidebar = sidebar({
             },
           ],
         },
+        {
+          text: "API Specifications",
+          prefix: "concepts/api-specifications",
+          collapsible: true,
+          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
+        },
+        {
+          text: "Performance",
+          prefix: "concepts/performance",
+          collapsible: true,
+          children: [
+            {
+              text:"Benchmarks",
+              link: "benchmarks/README.md",
+              prefix: "benchmarks/",
+              collapsible: true,
+              children: [
+                {
+                  text: "Kafka Proxy",
+                  prefix: "kafka/",
+                  link: "kafka/README.md",
+                }
+              ]
+            }
+          ],
+        }
       ],
     },
     {

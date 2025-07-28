@@ -1,8 +1,8 @@
 ---
-shortTitle: benchmark
+shortTitle: benchmarks
 ---
 
-# Benchmark
+# Benchmarks
 
 In this section explore performance benchmarks for Zilla across different protocols and deployment scenarios.
 
