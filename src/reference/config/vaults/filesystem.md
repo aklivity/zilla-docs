@@ -17,6 +17,8 @@ The [trust](#options-trust) option is used to verify identity of the remote peer
 
 The [signers](#options-signers) option is used to challenge for mutual authentication in a TLS handshake.
 
+The [revocation](#options-revocation) option is used to specify the certificate revocation method.
+
 ```yaml {2}
 server:
   type: filesystem
@@ -25,6 +27,7 @@ server:
       store: localhost.p12
       type: pkcs12
       password: ${{env.KEYS_PASSWORD}}
+    revocation: crl
 ```
 
 ## Configuration (\* required)
@@ -114,3 +117,9 @@ Keystore type.
 > `string`
 
 Keystore password.
+
+#### options.revocation
+
+> `enum` [ `crl`, `none` ] | Default `none`
+
+Certificate revocation method.

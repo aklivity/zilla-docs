@@ -526,6 +526,26 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
         },
+        {
+          text: "Performance",
+          prefix: "concepts/performance",
+          collapsible: true,
+          children: [
+            {
+              text:"Benchmarks",
+              link: "benchmarks/README.md",
+              prefix: "benchmarks/",
+              collapsible: true,
+              children: [
+                {
+                  text: "Kafka Proxy",
+                  prefix: "kafka/",
+                  link: "kafka/README.md",
+                }
+              ]
+            }
+          ],
+        }
       ],
     },
     {
@@ -549,6 +569,7 @@ export const enSidebar = sidebar({
             },
             {
               text:"Incubator Features",
+              prefix: "incubator-features/",
               link: "incubator-features/README.md",
               children: []
             },
