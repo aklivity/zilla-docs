@@ -164,11 +164,19 @@ List of criteria (any match) to this filter. Kafka filters for matched route whe
 
 The filter criteria for the Kafka message key.
 
+Supports dynamic parameter substitution using the following pattern:
+
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
+
 #### filters[].headers
 
 > `object` as map of named `string` properties
 
 The filter criteria for the Kafka message headers.
+
+Supports dynamic parameter substitution using the following pattern:
+
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### with.capability: produce\*
 
@@ -211,11 +219,19 @@ Kafka acknowledgment mode
 
 The Kafka message key to include with each message.
 
+Supports dynamic parameter substitution using the following pattern:
+
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
+
 #### with.overrides
 
 > `object` as map of named `string` properties
 
 The Kafka message headers to inject with each message.
+
+Supports dynamic parameter substitution using the following pattern:
+
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### with.reply-to\*
 

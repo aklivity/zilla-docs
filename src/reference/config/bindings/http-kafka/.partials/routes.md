@@ -179,7 +179,10 @@ with:
 
 > `string`
 
-Topic name, optionally referencing path parameter such as `${params.topic}`.
+Kafka topic name. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.topic}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### with.filters
 
@@ -191,13 +194,19 @@ List of criteria (any match) to this filter. Kafka filters for matched route whe
 
 > `string`
 
-Message key, optionally referencing path parameter such as `${params.key}`.
+Message key. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.key}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### filters[].headers
 
 > `object` as map of named `string` properties
 
-Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
+Message headers. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.headerX}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### with.merge
 
@@ -265,7 +274,11 @@ with:
 
 > `string`
 
-Kafka topic name, optionally referencing path parameter such as `${params.topic}`.
+Kafka topic name. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.topic}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
+
 <!-- markdownlint-enable MD024 -->
 
 #### with.acks
@@ -278,7 +291,10 @@ Kafka acknowledgement mode
 
 > `string`
 
-Kafka message key, optionally referencing path parameter such as `${params.id}`.
+Kafka message key. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.id}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### with.overrides
 
