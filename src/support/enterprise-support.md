@@ -18,16 +18,16 @@ We offer two levels of support tailored to your business requirements:
 
 ### Gold Support
 
-- **Availability**: 12x7 support
+- **Availability**: 12x5 support
 - **Service Level Agreement (SLA)**: 8-hour response time
 - **Best suited for**: Businesses requiring timely support with predictable coverage
 
 ## Support Channels, Updates, and Support Hours
 
-| Levels / Programs | Support Channels / Access | Updates and Releases | Assistance Hours for Service Requests and Product Defect Fixes |
-| --- | --- | --- | --- |
-| Platinum Level | Aklivity Global Support System via chat, email, phone, and self-service web portal ([https://www.aklivity.io/request-submission](https://www.aklivity.io/request-submission)) | Updates, fixes, security alerts, major product and technology releases, general maintenance releases, selected functionality releases, and documentation updates | 24 hours a day, 7 days a week |
-| Gold Level | Same as above | Same as above | 12 hours a day (one of two time periods available), 7 days a week |
+| Levels / Programs | Support Channels / Access                                                                                                                                                     | Updates and Releases                                                                                                                                             | Assistance Hours for Service Requests and Product Defect Fixes    |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| Platinum Level    | Aklivity Global Support System via chat, email, phone, and self-service web portal ([https://www.aklivity.io/request-submission](https://www.aklivity.io/request-submission)) | Updates, fixes, security alerts, major product and technology releases, general maintenance releases, selected functionality releases, and documentation updates | 24 hours a day, 7 days a week                                     |
+| Gold Level        | Same as above                                                                                                                                                                 | Same as above                                                                                                                                                    | 12 hours a day (one of two time periods available), 5 days a week |
 
 ## Service Request Priorities and SLAs
 
