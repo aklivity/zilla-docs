@@ -87,7 +87,10 @@ Kafka parameters used when adapting `sse` data streams to `kafka` data streams.
 
 > `string`
 
-Topic name, optionally referencing path parameter such as `${params.topic}`.
+Kafka topic name. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.topic}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### with.filters
 
@@ -101,13 +104,19 @@ List of criteria (any match). All specified headers and key must match for the c
 
 > `string`
 
-Message key, optionally referencing path parameter such as `${params.key}`.
+Message key. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.key}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### filters[].headers
 
 > `object` as map of named `string` properties
 
-Message headers, with value optionally referencing path parameter such as `${params.headerX}`.
+Message headers. Supports dynamic parameter substitution using the following patterns:
+
+- `${params.headerX}` – Substitutes a path parameter.
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### with.event
 

@@ -103,3 +103,12 @@ with:
 > `string`
 
 Kafka topic to use for the route.
+
+```yaml
+with:
+  messages: sensors.${params.sensorId}
+```
+
+Supports dynamic parameter substitution using the following pattern:
+
+- `${params.sensorId}` – Substitutes a path parameter.

@@ -75,6 +75,10 @@ publish:
       id: ${guarded['jwt'].identity}
 ```
 
+Supports dynamic parameter substitution using the following pattern:
+
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
+
 #### when[].subscribe
 
 > `array` of `object`
@@ -101,6 +105,10 @@ subscribe:
     params:
       id: ${guarded['jwt'].identity}
 ```
+
+Supports dynamic parameter substitution using the following pattern:
+
+- `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
 #### routes[].exit
 
