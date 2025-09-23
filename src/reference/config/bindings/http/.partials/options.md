@@ -7,13 +7,13 @@ Options to configure typed validations for request fields.
 
 #### requests[].content
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for the request content.
 
 #### content.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the request content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
@@ -25,7 +25,7 @@ Content type of the HTTP request.
 
 #### requests[].headers
 
-> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
+> `object` as map of named `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for request headers.
 
@@ -43,25 +43,25 @@ Query parameters of the HTTP request.
 
 #### params.path
 
-> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
+> `object` as map of named `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for path
 
 #### path.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the path content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
 #### params.query
 
-> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
+> `object` as map of named `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for query
 
 #### query.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the query content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
@@ -79,14 +79,14 @@ Options to configure typed validations for response fields.
 
 #### responses[].content
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for the response content.
 
 <!-- markdownlint-disable MD024 -->
 #### content.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the response content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 <!-- markdownlint-enable MD024 -->
@@ -99,7 +99,7 @@ Content type of the HTTP response.
 
 #### responses[].headers
 
-> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
+> `object` as map of named `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for response headers.
 
@@ -112,7 +112,7 @@ headers:
 
 #### headers.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the headers content. Refer to the individual [model](../../../models/) docs for type specific implementation.
 

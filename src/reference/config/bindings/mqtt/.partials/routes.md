@@ -56,7 +56,7 @@ Array of MQTT topic configs for publish capability.
 
 #### publish[].topic
 
-> `string`
+> `string` | Pattern: `^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$`
 
 The MQTT topic to match on that supports standard MQTT wildcards `/+/`, `/#`.
 
@@ -64,7 +64,7 @@ Also, supports embedded parameters (e.g., `{id}`) for dynamic topic matching.
 
 #### publish[].params
 
-> `object` as map of named `string`
+> `object` as map of named `string` properties | Pattern: `^[a-zA-Z0-9{}\\[\\]\\.\\$']*$`
 
 Enforce validation of topic embedded parameters.
 
@@ -87,7 +87,7 @@ Array of MQTT topic configs for subscribe capability.
 
 #### subscribe[].topic
 
-> `string`
+> `string` | Pattern: `^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$`
 
 The MQTT topic to match on that supports standard MQTT wildcards `/+/`, `/#`.
 
@@ -95,7 +95,7 @@ Also, supports embedded parameters (e.g., `{id}`) for dynamic topic matching.
 
 #### subscribe[].params
 
-> `object` as map of named `string`
+> `object` as map of named `string` properties | Pattern: `^[a-zA-Z0-9{}\\[\\]\\.\\$']*$`
 
 Enforce validation of topic embedded parameters.
 

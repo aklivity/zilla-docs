@@ -15,4 +15,14 @@ The risingwave proxy binding for adapting `risingwave` request-response streams.
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 
-<!-- @include: ../.partials/exit.md -->
+### exit\*
+
+> `string`
+
+Default exit binding when no conditional routes are viable.
+
+```yaml
+exit: server
+```
+
+<!-- @include: ../.partials/telemetry.md -->

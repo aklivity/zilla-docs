@@ -233,7 +233,7 @@ Supports dynamic parameter substitution using the following pattern:
 
 - `${guarded['jwt'].identity}` – Substitutes a guarded identity value.
 
-#### with.reply-to\*
+#### with.reply-to
 
 > `string`
 

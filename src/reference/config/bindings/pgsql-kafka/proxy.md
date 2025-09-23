@@ -21,3 +21,4 @@ The pgsql-kafka proxy binding for adapting `pgsql` request-response streams to `
 ```yaml
 exit: pgsql_tcp_client
 ```
+<!-- @include: ../.partials/telemetry.md -->

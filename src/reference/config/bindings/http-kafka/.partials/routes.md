@@ -76,9 +76,7 @@ routes:
         - read:items
 ```
 
-##### Dynamic guarded routes
-
-Dynamic guarded routes allow roles to be evaluated at runtime based on the incoming HTTP request.
+**Dynamic guarded routes**: Allow roles to be evaluated at runtime based on the incoming HTTP request.
 
 ```yaml
 routes:
@@ -307,6 +305,12 @@ Kafka message headers, with values optionally referencing path parameter.
 > `string`
 
 Kafka reply-to topic name.
+
+#### with.correlation-id
+
+> `string`
+
+Correlation-Id Kafka Header.
 
 #### with.async
 

@@ -68,19 +68,19 @@ Topic name.
 
 #### topics[].content
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for content
 
 #### content.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the request content. Refer to the individual [model](../../models/) docs for type specific implementation.
 
 #### topics[].user-properties
 
-> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
+> `object` as map of named `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for user provided properties.
 
@@ -93,7 +93,7 @@ user-properties:
 
 #### user-properties.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the user-properties content. Refer to the individual [model](../../models/) docs for type specific implementation.
 
