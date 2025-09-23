@@ -60,7 +60,3 @@ Definition specifying data structure and format in detail.
 > `string` | Default: `latest`
 
 Specific iteration or version of a registered schema.
-
-### vault
-
-> `string`
