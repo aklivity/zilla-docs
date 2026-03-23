@@ -21,7 +21,7 @@ Defines a binding with `kafka` protocol support, with `cache_client`, `cache_ser
 
 The `cache_client` and `cache_server` kinds combine to provide a persistent cache of `kafka` messages per `topic` `partition` honoring the `kafka` `topic` configuration for message expiration and compaction. Messages ordering is guaranteed per `partition` and messages are merged into a unified stream for the `topic` spanning all `partitions`.
 
-The `cache_server` kind supports proactive `fetch` of messages to keep the cache fresh in preparation for new consumers. This is enabled by configuring a list of `bootstrap` topics for the binding.
+The `cache_server` kind supports proactive `fetch` of messages to keep the cache fresh in preparation for new consumers. This is enabled by configuring a list of `bootstrap` topics for the binding. When using bootstrap, the Zilla service principal requires `DESCRIBE` and `READ` ACLs on each bootstrapped topic.
 
 The `cache_client` kind supports filtering by `kafka` message key, headers or a combination of key and headers.
 

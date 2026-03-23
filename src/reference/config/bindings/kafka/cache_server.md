@@ -34,6 +34,16 @@ options:
 
 Topics to bootstrap in cache server even when no clients.
 
+::: info Kafka ACL Requirements
+When using `bootstrap`, the Zilla service principal must have the following ACLs on each bootstrapped topic:
+
+| Operation  | Resource Type | Description                                                |
+|------------|---------------|------------------------------------------------------------|
+| `DESCRIBE` | `Topic`       | Required to fetch topic metadata and partition information |
+| `READ`     | `Topic`       | Required to fetch messages from the topic                  |
+:::
+
+
 #### options.topics
 
 > `array` of `object`
