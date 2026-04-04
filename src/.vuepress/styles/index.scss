@@ -1,8 +1,31 @@
 // Dark theme settings
+html[data-theme="dark"] {
+  --bg-color: #0a0b0f;
+  --bg-color-secondary: #15161d;
+  --bg-color-tertiary: #1a1b24;
+}
+
+// Set --content-width large so the sidebar stays pinned left on wide screens
+// (the sidebar-space clamp resolves to sidebar-width when content-width > viewport)
+:root {
+  --content-width: 1600px;
+}
+
 html[data-theme="dark"] #app {
-  --border-color: #0e5c49;
+  --border-color: #1a2a22;
+  --card-bg: rgba(13, 155, 118, 0.06);
+  --card-border: rgba(13, 155, 118, 0.18);
+  --card-border-hover: rgba(52, 211, 153, 0.55);
+  --card-shadow-hover: 0 4px 20px rgba(13, 155, 118, 0.12);
+  // Callout tints — all three references use ~8% opacity
+  --hint-bg-info: rgba(59, 130, 246, 0.09);
+  --hint-bg-tip: rgba(13, 155, 118, 0.09);
+  --hint-bg-warning: rgba(245, 158, 11, 0.09);
+  --hint-bg-danger: rgba(239, 68, 68, 0.09);
+  --hint-bg-important: rgba(139, 92, 246, 0.09);
+
   .vp-sidebar {
-    scrollbar-color: #274b41 #333;
+    scrollbar-color: #1a2a22 transparent;
   }
   .vp-footer img.logo {
     content: url("/footer-logo-white.webp");
@@ -11,99 +34,262 @@ html[data-theme="dark"] #app {
 
 // Light theme settings
 html[data-theme="light"] #app {
-  --border-color: #55877a;
+  --border-color: #e3ebe7;           // soft neutral green-gray, not saturated
+  --card-bg: rgba(13, 155, 118, 0.05);
+  --card-border: rgba(13, 155, 118, 0.28);
+  --card-border-hover: #0d9b76;
+  --card-shadow-hover: 0 4px 20px rgba(13, 155, 118, 0.12);
+  --hint-bg-info: rgba(59, 130, 246, 0.07);
+  --hint-bg-tip: rgba(13, 155, 118, 0.07);
+  --hint-bg-warning: rgba(245, 158, 11, 0.07);
+  --hint-bg-danger: rgba(239, 68, 68, 0.07);
+  --hint-bg-important: rgba(139, 92, 246, 0.07);
 
   .vp-sidebar {
-    scrollbar-color: #a9d4c9 #e4e6e5;
+    scrollbar-color: #a9d4c9 #e8f0ee;
   }
   .vp-footer img.logo {
     content: url("/footer-logo.webp");
   }
 }
 
-// make bash code blocks have $ prefix
-div.language-bash pre {
-  padding-left: 0.8rem;
-  code:before {
-    content: "$ ";
-    font-weight: bold;
-    margin-left: -1rem;
-  }
-}
-div.language-output {
-  button.vp-copy-code-button {
-    display: none;
-  }
-}
+// ============================================================
+// TYPOGRAPHY
+// ============================================================
 
-// remove table borders
-table.no-boarder {
-  td,
-  th,
-  tr {
-    padding: 0.5em;
-    border: none !important;
-    background: none !important;
-  }
-}
-// remove table header
-table.no-head {
-  thead {
-    display: none !important;
-  }
-}
-
-// remove extra list margins
-ul li p {
-  margin: 0px;
-}
-
-// don't hyphenate word breaks
 p {
+  line-height: 1.75;
+  // None of the reference sites hyphenate mid-word.
   -webkit-hyphens: none !important;
   -moz-hyphens: none !important;
   -ms-hyphens: none !important;
   hyphens: none !important;
 }
 
-// Increase H tag headers font weight
+// Remove ghost spacing from <p> wrappers inside list items.
+ul li p {
+  margin: 0;
+}
+
+// Heading weight hierarchy — all three references use clear weight steps.
+// H1: 700 (page title); H2: 650 (major sections); H3: 600; H4+: 500.
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-weight: 600;
+}
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+// Anchor links inside headings match the heading's weight.
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-weight: 800;
   a {
-    font-weight: 800;
+    font-weight: inherit;
   }
 }
 
-// Header
-// full width search
-.vp-navbar-center {
-  div {
+// ============================================================
+// VISIBILITY HELPERS
+// ============================================================
+
+.dark-only {
+  display: none;
+}
+html[data-theme="dark"] .dark-only {
+  display: block;
+}
+.light-only {
+  display: block;
+}
+html[data-theme="dark"] .light-only {
+  display: none;
+}
+
+// ============================================================
+// NAVBAR
+// ============================================================
+
+.vp-navbar {
+  border-bottom: 1px solid var(--border-color);
+  transition: border-color 300ms ease, background 300ms ease;
+
+  // Glass-morphism effect matching reference design
+  html[data-theme="dark"] & {
+    background: rgba(10, 11, 15, 0.85) !important;
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border-bottom-color: #1a2a22;
+  }
+}
+
+// Full-width search: lets the DocSearch bar fill the center slot.
+.vp-navbar-center div {
+  width: 100%;
+  button.DocSearch {
     width: 100%;
-    button.DocSearch {
-      width: 100%;
+  }
+}
+
+// Navbar brand — logo text + divider + "Docs" badge (matches reference header-left)
+.vp-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+
+  // Vertical divider between logo and badge
+  &::before {
+    content: '';
+    width: 1px;
+    height: 20px;
+    background: var(--border-color, rgba(255,255,255,0.1));
+    margin: 0 2px;
+    flex-shrink: 0;
+  }
+
+  // "Docs" badge
+  &::after {
+    content: "Docs";
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #34d399;
+    background: rgba(13, 155, 118, 0.12);
+    border: 1px solid rgba(13, 155, 118, 0.22);
+    padding: 4px 10px;
+    border-radius: 6px;
+    line-height: 1;
+  }
+}
+
+// Navbar links — 13.5px, muted color, hover gets subtle bg (matches reference header-link)
+.vp-navbar-end {
+  .vp-nav-link,
+  .vp-dropdown-title {
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--text-color-lighter, #8b8fa7) !important;
+    padding: 6px 12px !important;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: var(--text-color) !important;
+      background: rgba(255, 255, 255, 0.04);
     }
   }
 }
-// Footer
+
+// Footer logo
 .vp-footer img.logo {
   padding-right: 25px;
 }
 
-// === Improve sidebar visual hierarchy ===
-// size only first level headers
-.vp-sidebar-group:not(.vp-sidebar-group .vp-sidebar-group) {
-  margin-left: 1rem;
-  & > .vp-sidebar-header {
-    border-bottom: solid thin var(--border-color);
-    border-radius: 0;
-    .vp-sidebar-title {
-      font-size: 1.2em;
+@media (min-width: 1280px) {
+  #toc {
+    position: fixed !important;
+    inset-inline-start: auto !important;
+    right: 1.5rem;
+    top: calc(var(--navbar-height, 3.5rem) + 2rem);
+    width: 13rem;
+    max-height: calc(100vh - var(--navbar-height, 3.5rem) - 4rem);
+    overflow-y: auto;
+    border-radius: 8px;
+    background: rgba(13, 155, 118, 0.04) !important;
+    border: 1px solid rgba(13, 155, 118, 0.08);
+    padding: 0.75rem 0.5rem;
+
+    .vp-toc-header {
+      font-size: 0.65rem;
       font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-color-lighter, #5c6080);
+      padding: 0 0 0.75rem 0.5rem;
+      opacity: 0.7;
+    }
+
+    // TOC link base style — left-border indicator (matches reference)
+    .vp-toc-link {
+      display: block;
+      font-size: 12.5px;
+      padding: 5px 0 5px 14px;
+      border-radius: 0;
+      color: rgba(160, 170, 180, 0.6);
+      transition: color 0.2s, border-left-color 0.2s;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 0;
+      line-height: 1.5;
+      text-decoration: none;
+
+      &:hover {
+        color: rgba(200, 210, 220, 0.85);
+        border-left-color: rgba(160, 170, 180, 0.35);
+        background: none;
+        text-decoration: none;
+      }
+    }
+
+    // Active TOC item — green left border + green text (matches reference active state)
+    .vp-toc-item.active > .vp-toc-link,
+    .vp-toc-link.active {
+      color: #34d399 !important;
+      border-left-color: #0d9b76 !important;
+      background: none;
+      font-weight: 500;
+    }
+  }
+}
+
+// ============================================================
+// SIDEBAR
+// ============================================================
+
+// Dark mode sidebar background
+html[data-theme="dark"] .vp-sidebar {
+  background: #0e0f14 !important;
+  border-right-color: #1a2a22 !important;
+}
+
+// Remove only the sidebar container's own padding — nested .vp-sidebar-links
+// keep their theme margin-left: 0.75em which provides child indentation.
+.vp-sidebar {
+  padding-left: 0 !important;
+}
+
+// Top-level group header = section label (Introduction, Getting Started, …)
+// Rendered as muted small-caps label, NOT a clickable item
+.vp-sidebar-group:not(.vp-sidebar-group .vp-sidebar-group) {
+  margin-left: 0;
+
+  & > .vp-sidebar-header {
+    border-bottom: none;
+    border-radius: 0;
+    padding: 0.75rem 1rem 0.35rem 1.5rem;
+
+    .vp-sidebar-title {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-color-lighter, #5c6080);
+      opacity: 0.7;
     }
   }
 }
@@ -114,47 +300,596 @@ h6 {
   display: none !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--code-highlight-bg-color);
-}
-
 .vp-sidebar {
   .vp-sidebar-links {
-    margin-left: 0rem;
+    // Do NOT set margin-left: 0 here — the theme's nested .vp-sidebar-links
+    // uses margin-left: 0.75em to indent children. Only the root list has margin: 0.
+
+    // Nested group headers (collapsible items with children: Design APIs, Deployment, …)
+    // — same size and style as leaf links, NOT bold
     .vp-sidebar-group > .vp-sidebar-header {
-      padding: 0.25rem 0rem;
-      margin-left: 0rem;
-      font-weight: 600;
-    }
-    .vp-sidebar-title {
-      font-weight: 500;
-    }
-    .vp-sidebar-links {
-      .vp-sidebar-link {
-        padding-right: 0rem !important;
-        margin-left: 0rem;
+      padding: 0.4rem 1rem 0.4rem 1.5rem;
+
+      .vp-sidebar-title {
+        font-size: 0.844rem;   // matches leaf link font-size
+        font-weight: 400;      // unbold
+        color: #a8b0be;
       }
-      .vp-sidebar-links {
-        .vp-sidebar-group {
-          padding: 0.25rem 0.5rem;
-        }
-        .vp-sidebar-link {
-          padding: 0.25rem 0.5rem;
-        }
+    }
+
+    // Leaf sidebar links — match flex layout and font-size of group headers
+    .vp-sidebar-link {
+      display: flex !important;
+      align-items: center;
+      margin-left: 0;
+      width: 100% !important;
+      padding: 0.4rem 1rem 0.4rem 1.5rem !important;
+      border-radius: 0;
+      border-left: 2px solid transparent;
+      font-size: 0.844rem;
+      font-weight: 400;
+      color: #a8b0be;
+      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.025);
+        color: var(--text-color);
       }
+
+      &.active {
+        color: #34d399;
+        background: rgba(13, 155, 118, 0.08);
+        font-weight: 500;
+        border-left-color: #0d9b76;
+        box-shadow: none;
+      }
+    }
+  }
+
+  // Normalize icon (.icon class) identically in both links and group headers
+  .vp-sidebar-link,
+  .vp-sidebar-header {
+    font-size: 0.844rem !important;   // neutralise the header's default 1.1em
+
+    .icon {
+      font-size: 0.875rem !important;
+      width: 1rem;
+      flex-shrink: 0;
+      margin-inline-end: 0.4rem;
+      opacity: 0.5;
+      transition: opacity 140ms ease, color 140ms ease;
+    }
+
+    &:hover .icon {
+      opacity: 1;
+    }
+  }
+
+  .vp-sidebar-link.active .icon {
+    opacity: 1;
+    color: #34d399;
+  }
+}
+
+div.language-bash pre {
+  padding-left: 0.8rem;
+  code::before {
+    content: "$ ";
+    font-weight: bold;
+    margin-left: -1rem;
+  }
+}
+
+// Output blocks — no copy button (not runnable code).
+div.language-output {
+  button.vp-copy-code-button {
+    display: none;
+  }
+}
+
+// Rounded corners — consistent with all three reference frameworks.
+div[class*="language-"] {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+%hint-base {
+  padding: 0.9rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-left-width: 4px;
+  border-left-style: solid;
+  margin: 1.25rem 0;
+
+  // Title row
+  .hint-container-title,
+  .markdown-alert-title {
+    font-weight: 700;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0;
+    margin-bottom: 0.45rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// --- VuePress hint containers (:::info, :::tip, :::warning, etc.) ---
+
+.hint-container {
+  @extend %hint-base;
+}
+
+.hint-container.info,
+.hint-container.note {
+  background: var(--hint-bg-info);
+  border-left-color: #3b82f6;
+  border-color: rgba(59, 130, 246, 0.2);
+  .hint-container-title {
+    color: #3b82f6;
+  }
+}
+
+.hint-container.tip {
+  background: var(--hint-bg-tip);
+  border-left-color: var(--theme-color);
+  border-color: rgba(13, 155, 118, 0.2);
+  .hint-container-title {
+    color: var(--theme-color);
+  }
+}
+
+.hint-container.warning,
+.hint-container.caution {
+  background: var(--hint-bg-warning);
+  border-left-color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.2);
+  .hint-container-title {
+    color: #f59e0b;
+  }
+}
+
+.hint-container.danger {
+  background: var(--hint-bg-danger);
+  border-left-color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.2);
+  .hint-container-title {
+    color: #ef4444;
+  }
+}
+
+.hint-container.important {
+  background: var(--hint-bg-important);
+  border-left-color: #8b5cf6;
+  border-color: rgba(139, 92, 246, 0.2);
+  .hint-container-title {
+    color: #8b5cf6;
+  }
+}
+
+.markdown-alert {
+  @extend %hint-base;
+}
+
+.markdown-alert.markdown-alert-note {
+  background: var(--hint-bg-info);
+  border-left-color: #3b82f6;
+  border-color: rgba(59, 130, 246, 0.2);
+  .markdown-alert-title {
+    color: #3b82f6;
+  }
+}
+
+.markdown-alert.markdown-alert-tip {
+  background: var(--hint-bg-tip);
+  border-left-color: var(--theme-color);
+  border-color: rgba(13, 155, 118, 0.2);
+  .markdown-alert-title {
+    color: var(--theme-color);
+  }
+}
+
+.markdown-alert.markdown-alert-important {
+  background: var(--hint-bg-important);
+  border-left-color: #8b5cf6;
+  border-color: rgba(139, 92, 246, 0.2);
+  .markdown-alert-title {
+    color: #8b5cf6;
+  }
+}
+
+.markdown-alert.markdown-alert-warning {
+  background: var(--hint-bg-warning);
+  border-left-color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.2);
+  .markdown-alert-title {
+    color: #f59e0b;
+  }
+}
+
+.markdown-alert.markdown-alert-caution {
+  background: var(--hint-bg-danger);
+  border-left-color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.2);
+  .markdown-alert-title {
+    color: #ef4444;
+  }
+}
+
+// Borderless variant
+table.no-boarder {
+  td,
+  th,
+  tr {
+    padding: 0.5em;
+    border: none !important;
+    background: none !important;
+  }
+}
+
+// Headless variant
+table.no-head thead {
+  display: none !important;
+}
+
+// Shared card shell — applied to .vp-card (which is the <a> tag)
+@mixin card-shell {
+  background: var(--card-bg) !important;
+  box-shadow: none !important;
+  border-radius: 10px;
+  border: 1.5px solid var(--card-border);
+  margin: 0 !important;
+  text-decoration: none !important;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+
+  &:hover {
+    border-color: var(--card-border-hover) !important;
+    box-shadow: var(--card-shadow-hover) !important;
+  }
+}
+
+// overview_cards — compact horizontal tiles (icon + title inline).
+// 4-column grid so 8 cards land on two even rows with no orphan space.
+.overview_cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+
+  .vp-card {
+    @include card-shell;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem !important;
+  }
+
+  .vp-card-logo {
+    height: 1.5rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 0 !important;
+  }
+
+  // Remove default padding/margin that the theme sets on the content wrapper
+  .vp-card-content {
+    flex: 1;
+    min-width: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .vp-card-title {
+    font-weight: 600;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // Divider and empty desc are structural artifacts — hide both
+  .vp-card hr {
+    display: none !important;
+  }
+  .vp-card-desc {
+    display: none !important;
+  }
+
+  // 2-column on tablet
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  // 1-column on mobile
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// use_cases_cards — 2-column vertical cards (logo + title + desc stacked).
+.use_cases_cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-top: 0.75rem;
+
+  .vp-card {
+    @include card-shell;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem;
+    padding: 1.1rem 1.25rem !important;
+  }
+
+  .vp-card-logo {
+    height: 1.5rem;
+    width: auto;
+    border-radius: 0 !important;
+  }
+
+  .vp-card-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  .vp-card-title {
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  .vp-card hr {
+    display: none !important;
+  }
+
+  // Hide desc only when truly empty — if a desc is provided it should show
+  .vp-card-desc:empty {
+    display: none !important;
+  }
+
+  .vp-card::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// TABS
+// ============================================================
+
+.vp-tabs {
+  border-radius: 0 !important;
+  border-color: var(--border-color) !important;
+}
+
+.vp-tabs-nav,
+.vp-tab-nav,
+.vp-tab {
+  border-radius: 0 !important;
+}
+
+.vp-tab-nav {
+  transition: color 140ms ease;
+
+  &.active {
+    background: transparent !important;
+    color: var(--theme-color) !important;
+    border-bottom: 2px solid var(--theme-color);
+
+    &::after,
+    &::before {
+      background: transparent !important;
+    }
+  }
+
+  &::before {
+    right: 0 !important;
+  }
+}
+
+// ============================================================
+// WHAT'S NEW STRIP
+// ============================================================
+
+.zp-whats-new {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 0.25rem;
+
+  a {
+    color: var(--theme-color) !important;
+    text-decoration: none !important;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline !important;
     }
   }
 }
 
-// Zilla plus icon indicator
-.vp-sidebar-link,
-.vp-sidebar-header {
-  display: flex !important;
-  flex-direction: row;
-  span.icon {
-    order: 2;
-    margin-left: auto;
+.zp-whats-new-badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--theme-color);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+// ============================================================
+// SEARCH HINT
+// ============================================================
+
+.zp-search-hint {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.45;
+  line-height: 1;
+
+  kbd {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-family-code, monospace);
+    font-size: 0.75rem;
+    background: var(--card-bg);
+    line-height: 1.5;
   }
+}
+
+// ============================================================
+// INTENT CARDS (What Do You Want to Do?)
+// ============================================================
+
+.zp-intents {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  .vp-card {
+    @include card-shell;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 1.25rem !important;
+    gap: 0 !important;
+  }
+
+  .vp-card-logo {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+    border-radius: 0 !important;
+    margin-bottom: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .vp-card-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  .vp-card-title {
+    font-size: 0.975rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+  }
+
+  .vp-card hr {
+    display: none !important;
+  }
+
+  .vp-card-desc {
+    display: block !important;
+    font-size: 0.825rem;
+    line-height: 1.6;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// COMMUNITY LINKS
+// ============================================================
+
+.zp-community {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.zp-community-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-color) !important;
+  text-decoration: none !important;
+  transition: border-color 140ms ease, color 140ms ease;
+
+  &:hover {
+    border-color: var(--theme-color);
+    color: var(--theme-color) !important;
+  }
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+// ============================================================
+// ICONS & ACCENT HELPERS
+// ============================================================
+
+sup span.icon {
+  color: var(--theme-color);
+}
+
+.blue-accent {
+  color: #3ba9bf !important;
+}
+
+.zp-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--theme-color);
+  margin: 2.5rem 0 0.5rem;
+  opacity: 0.9;
+
+  & + p,
+  & + h1,
+  & + h2,
+  & + h3 {
+    margin-top: 0;
+  }
+}
+
+.zp-license-note {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.825rem;
+  opacity: 0.55;
+  line-height: 1.6;
 }
 
 // Zilla plus container styles
@@ -186,13 +921,6 @@ h6 {
   }
 }
 
-// set supper plus icons to the theme color
-sup {
-  span.icon {
-    color: var(--theme-color);
-  }
-}
-
 // === ICONS ===
 .aky-zilla-plus {
   &::after {
@@ -203,186 +931,1180 @@ sup {
   }
 }
 
-.blue-accent {
-  color: #3BA9BF !important;
-}
+.zp-hero {
+  padding: 3.5rem 0 2rem;
+  margin-bottom: 0;
+  position: relative;
 
-.overview_cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-top: 0.75rem;
-}
+  // Subtle radial glow behind the hero — mirrors aklivity.io's dark hero bg
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 10% 50%, rgba(13, 155, 118, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-.overview_cards .vp-card {
-  flex: 0 1 calc((100% - 8rem) / 2); /* Adjust the divisor for number of cards per row */
-  display: flex !important;
-  flex-direction: column;
-  align-items: start;
-  gap: 1rem;
-  background: none !important;
-  box-shadow: none !important;
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
-  border-radius: 1rem;
-  border-style: solid;
-  border-width: 2px;
+  .zp-hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--theme-color);
+    margin: 0 0 1rem;
+    opacity: 0.9;
+  }
 
-  transition: all;
-  transition-duration: 200ms;
+  .zp-hero-title {
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin: 0 0 1.25rem;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
 
-  margin: 0 !important;
-}
+  .zp-hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color-lighter, #7a8a85);
+    max-width: 540px;
+    margin: 0 0 2rem;
+  }
 
-[data-theme="light"] .overview_cards .vp-card {
-  border-color: #38b7a7 !important;
-}
-
-[data-theme="dark"] .overview_cards .vp-card {
-  border-color: #1b343f !important;
-}
-
-[data-theme="light"] .overview_cards .vp-card:hover {
-  border-color: #1b343f !important;
-}
-
-[data-theme="dark"] .overview_cards .vp-card:hover {
-  border-color: #38b7a7 !important;
-}
-
-@media (max-width: 480px) {
-  .overview_cards .vp-card {
-    flex: 0 1 100%; /* Single column on mobile */
+  .zp-hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
   }
 }
 
-.overview_cards .vp-card-logo {
-  height: 1.5rem;
-  width: auto;
-  border-radius: 0% !important;
-}
+// Primary CTA — filled brand color
+.zp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.4rem;
+  background: var(--theme-color);
+  color: #fff !important;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.925rem;
+  text-decoration: none !important;
+  border: 1.5px solid transparent;
+  transition: background 140ms ease, transform 140ms ease;
 
-.overview_cards .vp-card hr {
-  display: none !important;
-}
-
-.dark-only {
-  display: none;
-}
-
-html[data-theme="dark"] .dark-only {
-  display: block;
-}
-
-.light-only {
-  display: block;
-}
-
-html[data-theme="dark"] .light-only {
-  display: none;
-}
-
-.use_cases_cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-top: 0.75rem;
-}
-
-.use_cases_cards .vp-card {
-  flex: 0 1 calc((100% - 8rem) / 2); /* Adjust the divisor for number of cards per row */
-  display: flex !important;
-  flex-direction: column;
-  align-items: start;
-  gap: 1rem;
-  background: none !important;
-  box-shadow: none !important;
-
-  border-radius: 1rem;
-  border-style: solid;
-  border-width: 2px;
-
-  transition: all;
-  transition-duration: 200ms;
-
-  margin: 0 !important;
-}
-
-[data-theme="light"] .use_cases_cards .vp-card {
-  border-color: #38b7a7 !important;
-}
-
-[data-theme="dark"] .use_cases_cards .vp-card {
-  border-color: #1b343f !important;
-}
-
-[data-theme="light"] .use_cases_cards .vp-card:hover {
-  border-color: #1b343f !important;
-}
-
-[data-theme="dark"] .use_cases_cards .vp-card:hover {
-  border-color: #38b7a7 !important;
-}
-
-@media (max-width: 480px) {
-  .use_cases_cards .vp-card {
-    flex: 0 1 100%; /* Single column on mobile */
+  &:hover {
+    background: #0b8a67;
+    transform: translateY(-1px);
   }
 }
 
-.use_cases_cards .vp-card-logo {
-  height: 1.5rem;
-  width: auto;
-  border-radius: 0% !important;
+// Secondary CTA — ghost style
+.zp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.4rem;
+  background: transparent;
+  color: var(--text-color) !important;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.925rem;
+  text-decoration: none !important;
+  border: 1.5px solid var(--border-color);
+  transition: border-color 140ms ease, transform 140ms ease;
+
+  &:hover {
+    border-color: var(--theme-color);
+    color: var(--theme-color) !important;
+    transform: translateY(-1px);
+  }
 }
 
-.use_cases_cards .vp-card hr {
-  display: none !important;
+// ============================================================
+// BENEFITS STRIP  (4-card row — aklivity.io key benefits)
+// ============================================================
+
+.zp-benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin: 1.5rem 0 2rem;
+  border: 1.5px solid var(--card-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-border); // gap color via background on container
 }
 
-.use_cases_cards .vp-card::after {
-  content: none !important;
-  display: none !important;
+.zp-benefit {
+  background: var(--card-bg);
+  padding: 1.25rem 1.4rem;
+  transition: background 160ms ease;
+
+  &:hover {
+    background: rgba(13, 155, 118, 0.08);
+  }
+
+  .zp-benefit-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--theme-color);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 0.825rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.75;
+  }
 }
 
-.vp-tabs {
-  border-radius: 0 !important;
-  border-color: rgba(0,0,0,0.25) !important;
+@media (max-width: 860px) {
+  .zp-benefits {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-[data-theme="dark"] .vp-tabs {
-  background-color: rgba(255, 255, 255, 0.25) !important;
+@media (max-width: 480px) {
+  .zp-benefits {
+    grid-template-columns: 1fr;
+  }
 }
 
+// ============================================================
+// CAPABILITIES GRID  (3×2 — aklivity.io capabilities section)
+// ============================================================
 
-.vp-tabs-nav {
-  border-radius: 0 !important;
+.zp-capabilities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 0.75rem;
+  margin-bottom: 2rem;
 }
 
-.vp-tab-nav {
-  border-radius: 0 !important;
+.zp-cap {
+  background: var(--card-bg);
+  border: 1.5px solid var(--card-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.4rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+
+  &:hover {
+    border-color: var(--card-border-hover);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .zp-cap-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--theme-color);
+    margin-bottom: 0.45rem;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 0.825rem;
+    line-height: 1.65;
+    margin: 0;
+    opacity: 0.75;
+  }
 }
 
-.vp-tab {
-  border-radius: 0 !important;
+@media (max-width: 860px) {
+  .zp-capabilities {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.vp-tab-nav.active {
-  background-color: rgba(0, 0, 0, 0) !important;
+@media (max-width: 480px) {
+  .zp-capabilities {
+    grid-template-columns: 1fr;
+  }
 }
 
-.vp-tab-nav.active {
-  border-bottom: var(--vp-c-green-bg) 3px solid;
-  color: var(--vp-c-green-text) !important;
+// ============================================================
+// FEATURE CARDS
+// ============================================================
+
+// Dark mode: very subtly lifted off the near-black page bg
+html[data-theme="dark"] .feature_cards .vp-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+html[data-theme="dark"] .feature_cards .vp-card:hover {
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 0 0 1px var(--theme-color), 0 8px 32px rgba(13, 155, 118, 0.12) !important;
 }
 
-.vp-tab-nav::before {
-  right: 0% !important;
+// Light mode: white card on light-gray page
+html[data-theme="light"] .feature_cards .vp-card {
+  background: #ffffff !important;
+  border-color: #e5e8e6 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+}
+html[data-theme="light"] .feature_cards .vp-card:hover {
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 4px 20px rgba(13, 155, 118, 0.1) !important;
 }
 
-.vp-tab-nav::right {
-  left: 0% !important;
+.feature_cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+  margin-bottom: 2.5rem;
+
+  .vp-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
+    padding: 1.5rem !important;
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+    margin: 0 !important;
+    text-decoration: none !important;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .vp-card-logo {
+    width: 2.25rem;
+    height: 2.25rem;
+    object-fit: contain;
+    border-radius: 0 !important;
+    margin-bottom: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .vp-card-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  .vp-card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .vp-card hr {
+    display: none !important;
+  }
+
+  .vp-card-desc {
+    display: block !important;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    opacity: 0.72;
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.vp-tab-nav.active::after, .vp-tab-nav.active::before {
-  background: rgba(0, 0, 0, 0) !important;
+// ============================================================
+// ARCHITECTURE — PILLAR GRID (Why Zilla Platform)
+// ============================================================
+
+.zp-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.zp-pillar {
+  background: var(--card-bg);
+  border: 1.5px solid var(--card-border);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+
+  &:hover {
+    border-color: var(--card-border-hover);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .zp-pillar-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--theme-color);
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.82;
+  }
+}
+
+@media (max-width: 720px) {
+  .zp-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// ARCHITECTURE — PIPELINE STEPS (How It Works)
+// ============================================================
+
+.zp-pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding-top: 0;
+  margin-bottom: 2rem;
+  border: 1.5px solid var(--card-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.zp-step {
+  padding: 1.1rem 1.25rem;
+  border-right: 1.5px solid var(--card-border);
+  background: var(--card-bg);
+  transition: filter 180ms ease;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  .zp-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: rgba(13, 155, 118, 0.15);
+    border: 1.5px solid var(--theme-color);
+    color: var(--theme-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .zp-step-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    margin: 0;
+    opacity: 0.78;
+  }
+}
+
+@media (max-width: 720px) {
+  .zp-pipeline {
+    grid-template-columns: repeat(2, 1fr);
+
+    .zp-step:nth-child(2) {
+      border-right: none;
+    }
+    .zp-step:nth-child(3) {
+      border-top: 1.5px solid var(--card-border);
+      border-right: 1.5px solid var(--card-border);
+    }
+    .zp-step:nth-child(4) {
+      border-top: 1.5px solid var(--card-border);
+      border-right: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .zp-pipeline {
+    grid-template-columns: 1fr;
+
+    .zp-step {
+      border-right: none !important;
+      border-top: 1.5px solid var(--card-border);
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+  }
+}
+
+// ============================================================
+// ARCHITECTURE — AUDIENCE CARDS (Who It's For)
+// ============================================================
+
+.zp-audience {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 0.75rem;
+  margin-bottom: 1.5rem;
+
+  .vp-card {
+    @include card-shell;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
+    padding: 1.1rem 1.25rem !important;
+  }
+
+  .vp-card-logo {
+    width: 1.75rem;
+    height: 1.75rem;
+    object-fit: contain;
+    border-radius: 0 !important;
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .vp-card-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  .vp-card-title {
+    font-size: 0.925rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+  }
+
+  .vp-card hr {
+    display: none !important;
+  }
+
+  .vp-card-desc {
+    display: block !important;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    opacity: 0.75;
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// LICENSE BLOCK
+// ============================================================
+
+.zp-license {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--card-border);
+  background: var(--card-bg);
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.zp-license-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0 0 0.3rem !important;
+}
+
+.zp-license-text {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  opacity: 0.75;
+  margin: 0 !important;
+}
+
+.zp-license-body {
+  flex: 1;
+  min-width: 0;
+}
+
+// ============================================================
+// SCROLLBAR
+// ============================================================
+
+::-webkit-scrollbar-thumb {
+  background: var(--code-highlight-bg-color);
+  border-radius: 4px;
+}
+
+// ============================================================
+// PAGE LAYOUT — left-aligned, wider content matching reference
+// ============================================================
+
+// Override the wrapper mixin (margin: 0 auto, max-width: 740px).
+// #app prefix gives enough specificity to win over the theme stylesheet.
+#app .theme-hope-content:not(.custom) {
+  margin-left: 0;
+  margin-right: auto;
+  max-width: 960px;
+  padding: 0 3.5rem 5rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.5rem 3rem;
+  }
+}
+
+// ============================================================
+// LANDING PAGE  (lp-* classes — used in src/README.md)
+// ============================================================
+
+// ── Hero ──────────────────────────────────────────────────
+
+.lp-hero {
+  position: relative;
+  // Break out of the wrapper's horizontal padding, then re-add it
+  margin: 0 -3.5rem 0;
+  padding: 4rem 3.5rem 3.5rem;
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    margin: 0 -1.5rem 0;
+    padding: 2.5rem 1.5rem 2.5rem;
+  }
+
+  // Radial glow top-right (indigo)
+  &::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(13, 155, 118, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  // Radial glow bottom-left (green)
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -50px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.lp-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #34d399;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: #0d9b76;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+}
+
+.lp-title {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  margin: 0 0 1rem;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+
+  // Gradient text — works in both dark and light modes
+  background: linear-gradient(135deg, var(--text-color, #e8eaf0) 0%, var(--text-color-lighter, #8b8fa7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lp-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-color-lighter, #8b8fa7);
+  max-width: 600px;
+  margin: 0 0 2rem;
+}
+
+.lp-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.lp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.4rem;
+  background: #0d9b76;
+  color: #fff !important;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none !important;
+  border: 1.5px solid transparent;
+  box-shadow: 0 0 20px rgba(13, 155, 118, 0.25);
+  transition: background 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+
+  &:hover {
+    background: #34d399;
+    box-shadow: 0 0 30px rgba(13, 155, 118, 0.35);
+    transform: translateY(-1px);
+  }
+}
+
+.lp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.4rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-color) !important;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none !important;
+  border: 1.5px solid var(--border-color);
+  transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+}
+
+// ── Release bar ───────────────────────────────────────────
+
+.lp-release-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  background: rgba(13, 155, 118, 0.06);
+  border: 1px solid rgba(13, 155, 118, 0.18);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: var(--text-color-lighter, #8b8fa7);
+
+  a {
+    color: #34d399 !important;
+    text-decoration: none !important;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.lp-badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #0d9b76;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+// ── Section labels ────────────────────────────────────────
+
+// Used on the landing page: both the explicit div class and h2 headings
+// (h2 headings are used so VuePress picks them up for the TOC)
+.lp-section-label,
+.theme-hope-content h2.lp-section-heading {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-color-lighter, #5c6080);
+  margin: 0 0 1.25rem;
+  opacity: 0.75;
+}
+
+// Landing page h2 section headings — styled as muted uppercase labels
+// pageClass: landing is set in README.md frontmatter to scope these styles
+.landing .theme-hope-content h2 {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  color: rgba(160, 170, 180, 0.75) !important;
+  border-bottom: none !important;
+  margin: 2.5rem 0 1rem !important;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+
+  .header-anchor {
+    display: none;
+  }
+}
+
+// ── Concept cards grid ────────────────────────────────────
+
+.lp-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.lp-concept-card {
+  position: relative;
+  background: var(--bg-color-secondary, #15161d);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none !important;
+  overflow: hidden;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  display: block;
+
+  // Top-border accent line on hover (uses per-card --c-accent)
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--c-accent, #0d9b76), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  &:hover {
+    background: var(--bg-color-tertiary, #1a1b24);
+    border-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .lp-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 0.375rem;
+    letter-spacing: -0.01em;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: var(--text-color-lighter, #5c6080);
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+// Colored icon background (uses per-card --c-bg, --c-text)
+.lp-ci {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  background: var(--c-bg, rgba(13, 155, 118, 0.1));
+  color: var(--c-text, #34d399);
+  margin-bottom: 0.875rem;
+}
+
+.lp-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 1.25rem;
+  color: var(--text-color-lighter, #5c6080);
+  font-size: 0.875rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+// ── Solution cards grid ───────────────────────────────────
+
+.lp-solution-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.lp-solution-card {
+  background: var(--bg-color-secondary, #15161d);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+
+  &:hover {
+    background: var(--bg-color-tertiary, #1a1b24);
+    border-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+    letter-spacing: -0.01em;
+    margin: 0;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  p {
+    font-size: 0.825rem;
+    color: var(--text-color-lighter, #8b8fa7);
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.lp-solution-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+// Solution icon box (uses inline style for bg/color)
+.lp-si {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.lp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: auto;
+}
+
+.lp-tag {
+  font-size: 0.675rem;
+  color: var(--text-color-lighter, #5c6080);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-family: var(--font-family-code, monospace);
+}
+
+// ── Who cards grid ────────────────────────────────────────
+
+.lp-who-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lp-who-card {
+  background: var(--bg-color-secondary, #15161d);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  p {
+    font-size: 0.825rem;
+    color: var(--text-color-lighter, #8b8fa7);
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.lp-who-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 8px;
+  background: rgba(13, 155, 118, 0.1);
+  border: 1px solid rgba(13, 155, 118, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #34d399;
+  font-size: 0.9rem;
+}
+
+// ── License card ─────────────────────────────────────────
+
+.lp-license-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.75rem 2rem;
+  background: var(--bg-color-secondary, #15161d);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  p {
+    font-size: 0.875rem;
+    color: var(--text-color-lighter, #8b8fa7);
+    line-height: 1.65;
+    margin: 0.4rem 0 0;
+
+    &:first-of-type {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.lp-license-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.lp-license-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+  margin: 0;
+}
+
+// ── Editions comparison ───────────────────────────────────
+
+.lp-editions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lp-edition {
+  position: relative;
+  background: var(--bg-color-secondary, #15161d);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.75rem;
+  overflow: hidden;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.625rem;
+    color: var(--text-color);
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  > p {
+    font-size: 0.85rem;
+    color: var(--text-color-lighter, #8b8fa7);
+    line-height: 1.6;
+    margin: 0 0 1.25rem;
+  }
+}
+
+// Enterprise card: indigo border + top accent line
+.lp-edition-pro {
+  border-color: rgba(13, 155, 118, 0.3);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #0d9b76, #34d399);
+  }
+}
+
+.lp-edition-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-color-lighter, #5c6080);
+  margin: 0 0 0.5rem;
+}
+
+.lp-edition-label-pro {
+  color: #34d399;
+}
+
+.lp-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  li {
+    font-size: 0.825rem;
+    color: var(--text-color-lighter, #8b8fa7);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+}
+
+.lp-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-color-lighter, #5c6080);
+}
+
+.lp-check-pro {
+  background: rgba(13, 155, 118, 0.15);
+  color: #34d399;
+}
+
+.lp-edition-cta {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+
+  &.lp-btn-primary {
+    background: #0d9b76;
+    color: #fff !important;
+    border: 1.5px solid transparent;
+
+    &:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+  }
+
+  &.lp-btn-secondary {
+    background: transparent;
+    color: var(--text-color) !important;
+    border: 1.5px solid var(--border-color);
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────
+
+@media (max-width: 720px) {
+  .lp-concept-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .lp-solution-grid {
+    grid-template-columns: 1fr;
+  }
 }
