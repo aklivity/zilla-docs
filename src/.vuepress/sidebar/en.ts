@@ -303,7 +303,7 @@ export const enSidebar = sidebar({
         {
           text: "Overview",
           icon: "fa-solid fa-circle-dot",
-          link: "overview.md",
+          link: "README.md",
 
         },
       ],
@@ -508,7 +508,7 @@ export const enSidebar = sidebar({
           prefix: "concepts/scalability",
           collapsible: true,
           children: [
-            "autoscaling.md"
+            "autoscaling/README.md"
           ],
         },
         {
@@ -601,7 +601,7 @@ export const enSidebar = sidebar({
           icon: "fa-solid fa-code",
           prefix: "concepts/api-specifications",
           collapsible: true,
-          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
+          children: ["asyncapi/README.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
         },
         {
           text: "Performance",
@@ -636,7 +636,7 @@ export const enSidebar = sidebar({
           icon: "fa-solid fa-download",
           prefix: "deployment/install-zilla",
           collapsible: true,
-          children: ["homebrew.md", "docker.md", "helm.md"],
+          children: ["homebrew.md", "docker.md", "helm/README.md"],
         },
         {
           text: "Configure Zilla",
