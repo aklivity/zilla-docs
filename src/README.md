@@ -1,5 +1,5 @@
 ---
-title: Zilla
+title: Zilla Gateway
 description: Zilla is a multi-protocol edge and service proxy that helps streamline, secure, and manage event-driven architectures.
 breadcrumb: false
 pageClass: landing
@@ -7,7 +7,7 @@ pageClass: landing
 
 <p class="lp-eyebrow">Documentation</p>
 <h1 class="lp-title">Multi-Protocol Edge &amp; Service Proxy<br>for Event-Driven Architectures</h1>
-<p class="lp-subtitle">Zilla replaces custom code, Kafka Connect, and MQTT brokers with a stateless, cloud-native gateway that handles protocol mediation, auth, schema validation, and TLS — all in one place.</p>
+<p class="lp-subtitle">Zilla replaces custom code, Kafka Connect, and MQTT brokers with a stateless, cloud-native gateway that handles protocol mediation, auth, schema validation, and TLS all in one place.</p>
 <div class="lp-actions">
   <a href="./getting-started/quickstart/" class="lp-btn-primary"><span>▸</span> Get Started</a>
   <a href="./concepts/protocol/" class="lp-btn-secondary"><span>⟨⟩</span> Explore Concepts</a>
@@ -19,7 +19,7 @@ pageClass: landing
   <a class="lp-concept-card" href="./concepts/protocol/" style="--c-accent:#0d9b76;--c-bg:rgba(13,155,118,0.1);--c-text:#34d399;">
     <div class="lp-ci"><i class="fa-solid fa-right-left"></i></div>
     <h3>Protocol</h3>
-    <p>HTTP, Kafka, MQTT, gRPC, SSE, and WebSocket — all in one proxy.</p>
+    <p>HTTP, Kafka, MQTT, gRPC, SSE, and WebSocket all in one proxy.</p>
     <span class="lp-arrow">→</span>
   </a>
   <a class="lp-concept-card" href="./concepts/proxy/" style="--c-accent:#22d3ee;--c-bg:rgba(34,211,238,0.1);--c-text:#22d3ee;">
@@ -43,7 +43,7 @@ pageClass: landing
   <a class="lp-concept-card" href="./concepts/security/kafka/" style="--c-accent:#fb7185;--c-bg:rgba(251,113,133,0.1);--c-text:#fb7185;">
     <div class="lp-ci"><i class="fa-solid fa-shield-halved"></i></div>
     <h3>Security</h3>
-    <p>JWT guards, TLS termination, vaults, and Kafka SASL — built in.</p>
+    <p>JWT guards, TLS termination, vaults, and Kafka SASL built in.</p>
     <span class="lp-arrow">→</span>
   </a>
   <a class="lp-concept-card" href="./concepts/api-specifications/asyncapi/" style="--c-accent:#a78bfa;--c-bg:rgba(167,139,250,0.1);--c-text:#a78bfa;">
@@ -55,7 +55,7 @@ pageClass: landing
   <a class="lp-concept-card" href="./concepts/scalability/autoscaling/" style="--c-accent:#2dd4bf;--c-bg:rgba(45,212,191,0.1);--c-text:#2dd4bf;">
     <div class="lp-ci"><i class="fa-solid fa-expand"></i></div>
     <h3>Scalability</h3>
-    <p>Stateless and cloud-native — scale to millions of concurrent clients.</p>
+    <p>Stateless and cloud-native scale to millions of concurrent clients.</p>
     <span class="lp-arrow">→</span>
   </a>
   <a class="lp-concept-card" href="./concepts/performance/benchmarks/" style="--c-accent:#0d9b76;--c-bg:rgba(13,155,118,0.07);--c-text:#34d399;">
@@ -86,7 +86,7 @@ pageClass: landing
       <div class="lp-si" style="background:rgba(13,155,118,0.12);color:#34d399;"><i class="fa-solid fa-wifi"></i></div>
       <h3>MQTT ↔ Kafka IoT Bridge</h3>
     </div>
-    <p>Connect IoT devices over MQTT directly to Kafka. No separate broker required — Zilla mediates the protocol natively.</p>
+    <p>Connect IoT devices over MQTT directly to Kafka. No separate broker required Zilla mediates the protocol natively.</p>
     <div class="lp-tags">
       <span class="lp-tag">MQTT</span>
       <span class="lp-tag">IoT</span>
@@ -122,7 +122,7 @@ pageClass: landing
       <div class="lp-si" style="background:rgba(52,211,153,0.1);color:#34d399;"><i class="fa-solid fa-shield-halved"></i></div>
       <h3>Secure Private Access</h3>
     </div>
-    <p>Give internal services private, authenticated access to Kafka clusters across VPCs and accounts — without exposing brokers to the public internet.</p>
+    <p>Give internal services private, authenticated access to Kafka clusters across VPCs and accounts without exposing brokers to the public internet.</p>
     <div class="lp-tags">
       <span class="lp-tag">Private</span>
       <span class="lp-tag">VPC</span>
@@ -134,7 +134,7 @@ pageClass: landing
       <div class="lp-si" style="background:rgba(251,191,36,0.1);color:#fbbf24;"><i class="fa-solid fa-object-group"></i></div>
       <h3>Virtual Clusters</h3>
     </div>
-    <p>Partition a single Kafka cluster into isolated virtual clusters — each with its own namespace, access controls, and topic routing.</p>
+    <p>Partition a single Kafka cluster into isolated virtual clusters each with its own namespace, access controls, and topic routing.</p>
     <div class="lp-tags">
       <span class="lp-tag">Kafka</span>
       <span class="lp-tag">Multi-tenant</span>
@@ -156,12 +156,12 @@ Configure Zilla declaratively to mediate protocols, enforce policies, and proxy 
   <div class="zp-step">
     <span class="zp-step-num">2</span>
     <span class="zp-step-title">Deploy</span>
-    <p>Run Zilla via Docker, Helm, or directly — stateless and cloud-native from the start.</p>
+    <p>Run Zilla via Docker, Helm, or directly stateless and cloud-native from the start.</p>
   </div>
   <div class="zp-step">
     <span class="zp-step-num">3</span>
     <span class="zp-step-title">Connect</span>
-    <p>Clients connect over HTTP, MQTT, gRPC, SSE, or WebSocket — Zilla translates to Kafka.</p>
+    <p>Clients connect over HTTP, MQTT, gRPC, SSE, or WebSocket Zilla translates to Kafka.</p>
   </div>
   <div class="zp-step">
     <span class="zp-step-num">4</span>
@@ -181,7 +181,7 @@ Configure Zilla declaratively to mediate protocols, enforce policies, and proxy 
   <div class="lp-who-card">
     <div class="lp-who-icon"><i class="fa-solid fa-code"></i></div>
     <h3>Application Developers</h3>
-    <p>Build on real-time data streams using familiar protocols — HTTP, MQTT, gRPC — no Kafka expertise required.</p>
+    <p>Build on real-time data streams using familiar protocols HTTP, MQTT, gRPC no Kafka expertise required.</p>
   </div>
   <div class="lp-who-card">
     <div class="lp-who-icon"><i class="fa-solid fa-file-code"></i></div>
