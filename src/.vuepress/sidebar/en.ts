@@ -263,19 +263,6 @@ export const enSidebar = sidebar({
       children: "structure",
     },
     {
-      text: "Plugins",
-      icon: "fa-solid fa-puzzle-piece",
-      collapsible: true,
-      children: [
-        {
-          text: "VS Code extension",
-          icon: "fa-solid fa-code",
-          link: "vscode/README.md",
-
-        },
-      ],
-    },
-    {
       text: "Manager",
       icon: "fa-solid fa-toolbox",
       prefix: "manager/",
@@ -304,7 +291,11 @@ export const enSidebar = sidebar({
           text: "Overview",
           icon: "fa-solid fa-circle-dot",
           link: "README.md",
-
+        },
+        {
+          text: "Architecture",
+          icon: "fa-solid fa-diagram-project",
+          link: "concepts/architecture/README.md",
         },
       ],
     },

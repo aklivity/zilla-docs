@@ -1135,6 +1135,67 @@ sup span.icon {
 }
 
 // ============================================================
+// MODULE TABLE  (architecture page)
+// ============================================================
+
+.zp-module-table {
+  margin: 1rem 0 2rem;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1.5px solid var(--card-border);
+    border-radius: 10px;
+    overflow: hidden;
+
+    thead tr {
+      background: var(--card-bg);
+    }
+
+    th {
+      padding: 0.65rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--theme-color);
+      border-bottom: 1.5px solid var(--card-border);
+      text-align: left;
+    }
+
+    td {
+      padding: 0.7rem 1.1rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--card-border);
+      vertical-align: middle;
+
+      &:first-child {
+        white-space: nowrap;
+        font-weight: 600;
+        width: 8rem;
+      }
+
+      &:last-child code {
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+    }
+
+    tbody tr {
+      transition: background 140ms ease;
+
+      &:last-child td {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: var(--card-bg);
+      }
+    }
+  }
+}
+
+// ============================================================
 // FEATURE CARDS
 // ============================================================
 

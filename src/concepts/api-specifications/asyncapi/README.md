@@ -13,7 +13,7 @@ Zilla implements Event-Driven APIs defined in the [asyncapi](#asyncapi-client) b
 The asyncapi client binding creates composite of `kafka` or `mqtt` or `http`, and `tls`, `tcp` bindings with client kind and adapts AsyncAPI streams to Kafka/MQTT/HTTP streams.
 
 ```yaml {3}
-<!-- @include: ./.partials/asyncapi-client.yaml -->
+<!-- @include: ./../.partials/asyncapi-client.yaml -->
 ```
 
 ### AsyncAPI Client Configuration (\* required)
@@ -22,19 +22,19 @@ The asyncapi client binding creates composite of `kafka` or `mqtt` or `http`, an
 
 @tab vault
 
-<!-- @include: ./.partials/vault.md -->
+<!-- @include: ./../.partials/vault.md -->
 
 @tab options
 
-<!-- @include: ./.partials/asyncapi-options.md -->
+<!-- @include: ./../.partials/asyncapi-options.md -->
 
 @tab routes
 
-<!-- @include: ./.partials/asyncapi-routes.md -->
+<!-- @include: ./../.partials/asyncapi-routes.md -->
 
 @tab telemetry
 
-<!-- @include: ./.partials/telemetry.md -->
+<!-- @include: ./../.partials/telemetry.md -->
 
 :::
 
@@ -43,7 +43,7 @@ The asyncapi client binding creates composite of `kafka` or `mqtt` or `http`, an
 The asyncapi proxy binding creates composite of `mqtt-kafka` binding with proxy kind mapping MQTT streams to Kafka streams.
 
 ```yaml
-<!-- @include: ./.partials/asyncapi-proxy.yaml -->
+<!-- @include: ./../.partials/asyncapi-proxy.yaml -->
 ```
 
 ### AsyncAPI Proxy Configuration (\* required)
@@ -52,23 +52,23 @@ The asyncapi proxy binding creates composite of `mqtt-kafka` binding with proxy 
 
 @tab vault
 
-<!-- @include: ./.partials/vault.md -->
+<!-- @include: ./../.partials/vault.md -->
 
 @tab options
 
-<!-- @include: ./.partials/asyncapi-options.md -->
+<!-- @include: ./../.partials/asyncapi-options.md -->
 
 @tab routes
 
-<!-- @include: ./.partials/asyncapi-routes-with-exit.md -->
+<!-- @include: ./../.partials/asyncapi-routes-with-exit.md -->
 
 @tab exit
 
-<!-- @include: ./.partials/exit.md -->
+<!-- @include: ./../.partials/exit.md -->
 
 @tab telemetry
 
-<!-- @include: ./.partials/telemetry.md -->
+<!-- @include: ./../.partials/telemetry.md -->
 
 :::
 
@@ -77,7 +77,7 @@ The asyncapi proxy binding creates composite of `mqtt-kafka` binding with proxy 
 The asyncapi server binding creates composite of `tcp`, `tls`, and `mqtt` or `http` bindings with server kind and adapts MQTT/HTTP streams to AsyncAPI streams.
 
 ```yaml
-<!-- @include: ./.partials/asyncapi-server.yaml -->
+<!-- @include: ./../.partials/asyncapi-server.yaml -->
 ```
 
 ### AsyncAPI Server Configuration (\* required)
@@ -86,22 +86,22 @@ The asyncapi server binding creates composite of `tcp`, `tls`, and `mqtt` or `ht
 
 @tab vault
 
-<!-- @include: ./.partials/vault.md -->
+<!-- @include: ./../.partials/vault.md -->
 
 @tab options
 
-<!-- @include: ./.partials/asyncapi-options.md -->
+<!-- @include: ./../.partials/asyncapi-options.md -->
 
 @tab routes
 
-<!-- @include: ./.partials/asyncapi-routes-with-exit.md -->
+<!-- @include: ./../.partials/asyncapi-routes-with-exit.md -->
 
 @tab exit
 
-<!-- @include: ./.partials/exit.md -->
+<!-- @include: ./../.partials/exit.md -->
 
 @tab telemetry
 
-<!-- @include: ./.partials/telemetry.md -->
+<!-- @include: ./../.partials/telemetry.md -->
 
 :::
