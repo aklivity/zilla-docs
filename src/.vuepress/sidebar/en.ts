@@ -4,87 +4,100 @@ export const enSidebar = sidebar({
 "/reference/": [
     {
       text: "Config Overview",
+      icon: "fa-solid fa-file-lines",
       link: "config/overview.md",
-      children: [],
     },
     {
       text: "CLI",
+      icon: "fa-solid fa-terminal",
       link: "config/zilla-cli.md",
-      children: [],
     },
     {
       text: "Bindings",
+      icon: "fa-solid fa-plug",
       prefix: "config/bindings/",
       collapsible: true,
       children: [
         {
           text: "AMQP",
+          icon: "fa-solid fa-envelope",
           prefix: "amqp",
           collapsible: true,
           children: "structure",
         },
         {
           text: "AsyncAPI",
+          icon: "fa-solid fa-right-left",
           prefix: "asyncapi",
           collapsible: true,
           children: "structure",
         },
         {
           text: "Echo",
+          icon: "fa-solid fa-rotate",
           prefix: "echo",
           collapsible: true,
           children: "structure",
         },
         {
           text: "Fan",
+          icon: "fa-solid fa-fan",
           prefix: "fan",
           collapsible: true,
           children: "structure",
         },
         {
           text: "Filesystem",
+          icon: "fa-solid fa-folder-open",
           prefix: "filesystem",
           collapsible: true,
           children: "structure",
         },
         {
           text: "gRPC",
+          icon: "fa-solid fa-bolt",
           prefix: "grpc",
           collapsible: true,
           children: "structure",
         },
         {
           text: "gRPC-Kafka",
+          icon: "fa-solid fa-bolt",
           prefix: "grpc-kafka",
           collapsible: true,
           children: "structure",
         },
         {
           text: "HTTP",
+          icon: "fa-solid fa-globe",
           prefix: "http",
           collapsible: true,
           children: "structure",
         },
         {
           text: "HTTP-Filesystem",
+          icon: "fa-solid fa-globe",
           prefix: "http-filesystem",
           collapsible: true,
           children: "structure",
         },
         {
           text: "HTTP-Kafka",
+          icon: "fa-solid fa-globe",
           prefix: "http-kafka",
           collapsible: true,
           children: "structure",
         },
         {
           text: "Kafka",
+          icon: "fa-solid fa-database",
           prefix: "kafka",
           collapsible: true,
           children: "structure",
         },
         {
           text: "Kafka-gRPC",
+          icon: "fa-solid fa-database",
           prefix: "kafka-grpc",
           collapsible: true,
           children: "structure",
@@ -92,24 +105,28 @@ export const enSidebar = sidebar({
 
         {
           text: "Kafka-Proxy",
+          icon: "fa-solid fa-database",
           prefix: "kafka-proxy",
           collapsible: true,
           children: "structure",
         },
         {
           text: "MQTT",
+          icon: "fa-solid fa-wifi",
           prefix: "mqtt",
           collapsible: true,
           children: "structure",
         },
         {
           text: "MQTT-Kafka",
+          icon: "fa-solid fa-wifi",
           prefix: "mqtt-kafka",
           collapsible: true,
           children: "structure",
         },
         {
           text: "OpenAPI",
+          icon: "fa-solid fa-code",
           prefix: "openapi",
           collapsible: true,
           children: "structure",
@@ -117,60 +134,70 @@ export const enSidebar = sidebar({
 
         {
           text: "OpenAPI-AsyncAPI",
+          icon: "fa-solid fa-code",
           prefix: "openapi-asyncapi",
           collapsible: true,
           children: "structure",
         },
         {
           text: "PgSQL",
+          icon: "fa-solid fa-table",
           prefix: "pgsql",
           collapsible: true,
           children: "structure",
         },
         {
           text: "PgSQL-Kafka",
+          icon: "fa-solid fa-table",
           prefix: "pgsql-kafka",
           collapsible: true,
           children: "structure",
         },
         {
           text: "Proxy",
+          icon: "fa-solid fa-arrows-left-right",
           prefix: "proxy",
           collapsible: true,
           children: "structure",
         },
         {
           text: "Risingwave",
+          icon: "fa-solid fa-wave-square",
           prefix: "risingwave",
           collapsible: true,
           children: "structure",
         },
         {
           text: "SSE",
+          icon: "fa-solid fa-tower-broadcast",
           prefix: "sse",
           collapsible: true,
           children: "structure",
         },
         {
           text: "SSE-Kafka",
+          icon: "fa-solid fa-tower-broadcast",
           prefix: "sse-kafka",
           collapsible: true,
           children: "structure",
         },
         {
           text: "TCP",
+          icon: "fa-solid fa-network-wired",
           prefix: "tcp",
           collapsible: true,
           children: "structure",
         },
         {
           text: "TLS",
+          icon: "fa-solid fa-certificate",
           prefix: "tls",
           collapsible: true,
           children: "structure",
         },
         {
           text: "WS",
+          icon: "fa-solid fa-plug",
           prefix: "ws",
           collapsible: true,
           children: "structure",
@@ -179,43 +206,50 @@ export const enSidebar = sidebar({
     },
     {
       text: "Catalogs",
+      icon: "fa-solid fa-book-open",
       prefix: "config/catalogs/",
       collapsible: true,
       children: "structure",
     },
     {
       text: "Guards",
+      icon: "fa-solid fa-shield-halved",
       prefix: "config/guards/",
       collapsible: true,
       children: "structure",
     },
     {
       text: "Models",
+      icon: "fa-solid fa-shapes",
       prefix: "config/models/",
       collapsible: true,
       children: "structure",
     },
     {
       text: "Resolvers",
+      icon: "fa-solid fa-wand-magic-sparkles",
       link: "config/resolvers.md",
-      children: [],
     },
     {
       text: "Telemetry",
+      icon: "fa-solid fa-chart-line",
       prefix: "config/telemetry/",
       collapsible: true,
       children: [
         {
           text: "Events",
+          icon: "fa-solid fa-bell",
           link: "events.md",
         },
         {
           text: "Metrics",
+          icon: "fa-solid fa-gauge",
           prefix: "metrics/",
           children: "structure",
         },
         {
           text: "Exporters",
+          icon: "fa-solid fa-arrow-up-from-bracket",
           prefix: "exporters/",
           children: "structure",
         },
@@ -223,35 +257,28 @@ export const enSidebar = sidebar({
     },
     {
       text: "Vaults",
+      icon: "fa-solid fa-vault",
       prefix: "config/vaults/",
       collapsible: true,
       children: "structure",
     },
     {
-      text: "Plugins",
-      collapsible: true,
-      children: [
-        {
-          text: "VS Code extension",
-          link: "vscode/README.md",
-          children: [],
-        },
-      ],
-    },
-    {
       text: "Manager",
+      icon: "fa-solid fa-toolbox",
       prefix: "manager/",
       collapsible: true,
       children: [
         {
           text: "CLI (zpm)",
+          icon: "fa-solid fa-terminal",
           link: "zpm-cli.md",
-          children: [],
+
         },
         {
           text: "zpm Config Overview",
+          icon: "fa-solid fa-file-lines",
           link: "overview.md",
-          children: [],
+
         },
       ],
     },
@@ -262,8 +289,13 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Overview",
-          link: "overview.md",
-          children: [],
+          icon: "fa-solid fa-circle-dot",
+          link: "README.md",
+        },
+        {
+          text: "Architecture",
+          icon: "fa-solid fa-diagram-project",
+          link: "concepts/architecture/README.md",
         },
       ],
     },
@@ -272,18 +304,21 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Quickstart",
+          icon: "fa-solid fa-rocket",
           link: "getting-started/quickstart/index.md",
-          children: [],
+
         },
         {
           text: "Real-World Use Cases",
+          icon: "fa-solid fa-lightbulb",
           link: "getting-started/use-cases.md",
-          children: [],
+
         },
         {
           text: "Build and Visualize",
+          icon: "fa-solid fa-wand-magic-sparkles",
           link: "getting-started/vscode/README.md",
-          children: [],
+
         },
       ],
     },
@@ -292,32 +327,38 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Protocol",
+          icon: "fa-solid fa-right-left",
           link: "concepts/protocol/README.md",
           prefix: "concepts/protocol/",
           collapsible: true,
           children: [
             {
               text: "HTTP",
+              icon: "fa-solid fa-globe",
               link: "http.md",
               prefix: "concepts/protocol/",
             },
             {
               text: "gRPC",
+              icon: "fa-solid fa-bolt",
               link: "grpc.md",
               prefix: "concepts/protocol/",
             },
             {
               text: "Kafka",
+              icon: "fa-solid fa-database",
               link: "kafka.md",
               prefix: "concepts/protocol/",
             },
             {
               text: "MQTT",
+              icon: "fa-solid fa-wifi",
               link: "mqtt.md",
               prefix: "concepts/protocol/",
             },
             {
               text: "SSE",
+              icon: "fa-solid fa-tower-broadcast",
               link: "sse.md",
               prefix: "concepts/protocol/",
             },
@@ -325,12 +366,14 @@ export const enSidebar = sidebar({
         },
         {
           text: "Proxy",
+          icon: "fa-solid fa-arrows-left-right",
           link: "concepts/proxy/README.md",
           prefix: "concepts/proxy/",
           collapsible: true,
           children: [
             {
               text: "HTTP",
+              icon: "fa-solid fa-globe",
               link: "http/README.md",
               prefix: "http/",
               collapsible: true,
@@ -338,6 +381,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "gRPC",
+              icon: "fa-solid fa-bolt",
               link: "grpc/README.md",
               prefix: "grpc/",
               collapsible: true,
@@ -345,6 +389,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Kafka",
+              icon: "fa-solid fa-database",
               link: "kafka/README.md",
               prefix: "kafka/",
               collapsible: true,
@@ -352,6 +397,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "MQTT",
+              icon: "fa-solid fa-wifi",
               link: "mqtt/README.md",
               prefix: "mqtt/",
               collapsible: true,
@@ -359,6 +405,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "SSE",
+              icon: "fa-solid fa-tower-broadcast",
               link: "sse/README.md",
               prefix: "sse/",
               collapsible: true,
@@ -368,11 +415,13 @@ export const enSidebar = sidebar({
         },
         {
           text: "Data Governance",
+          icon: "fa-solid fa-scale-balanced",
           prefix: "concepts/data-governance",
           collapsible: true,
           children: [
             {
               text: "Catalog",
+              icon: "fa-solid fa-book-open",
               link: "catalog/README.md",
               prefix: "catalog/",
               collapsible: true,
@@ -387,6 +436,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Model",
+              icon: "fa-solid fa-shapes",
               link: "model/README.md",
               prefix: "model/",
               collapsible: true,
@@ -406,12 +456,14 @@ export const enSidebar = sidebar({
         },
         {
           text: "Monitoring & Observability",
+          icon: "fa-solid fa-chart-line",
           prefix: "concepts/monitoring-observability",
           link: "concepts/monitoring-observability/README.md",
           collapsible: true,
           children: [
             {
               text: "Logs",
+              icon: "fa-solid fa-scroll",
               link: "logs/README.md",
               prefix: "logs/",
               collapsible: true,
@@ -419,6 +471,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Metrics",
+              icon: "fa-solid fa-gauge",
               link: "metrics/README.md",
               prefix: "metrics/",
               collapsible: true,
@@ -426,6 +479,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Exporters Logs and Metrics",
+              icon: "fa-solid fa-arrow-up-from-bracket",
               link: "exporters-logs-and-metrics/README.md",
               prefix: "exporters-logs-and-metrics/",
               collapsible: true,
@@ -441,25 +495,29 @@ export const enSidebar = sidebar({
         },
         {
           text: "Scalability",
+          icon: "fa-solid fa-expand",
           prefix: "concepts/scalability",
           collapsible: true,
           children: [
-            "autoscaling.md"
+            "autoscaling/README.md"
           ],
         },
         {
           text: "Security",
+          icon: "fa-solid fa-shield-halved",
           prefix: "concepts/security",
           collapsible: true,
           children: [
             {
               text: "Kafka",
+              icon: "fa-solid fa-database",
               link: "kafka/README.md",
               prefix: "kafka/",
               collapsible: true,
               children: [
                 {
                   text: "SASL",
+                  icon: "fa-solid fa-key",
                   link: "sasl/README.md",
                   prefix: "sasl/",
                   collapsible: true,
@@ -470,42 +528,50 @@ export const enSidebar = sidebar({
             },
             {
               text: "Guard",
+              icon: "fa-solid fa-lock",
               link: "guard/README.md",
               prefix: "guard/",
               collapsible: true,
               children: [
                 {
                   text: "JWT",
+                  icon: "fa-solid fa-id-badge",
                   link: "jwt/README.md",
                   prefix: "jwt/",
                   collapsible: true,
                   children: [
                     {
                       text: "HTTP",
+                      icon: "fa-solid fa-globe",
                       link: "https://github.com/aklivity/zilla/tree/develop/examples/http.proxy.jwt",
                     },
                     {
                       text: "SSE",
+                      icon: "fa-solid fa-tower-broadcast",
                       link: "https://github.com/aklivity/zilla/tree/develop/examples/sse.proxy.jwt ",
                     },
                     {
                       text: "MQTT",
+                      icon: "fa-solid fa-wifi",
                       link: "https://github.com/aklivity/zilla/tree/develop/examples/mqtt.proxy.jwt",
                     },
                   ],
                 },
                 {
                   text: "Azure AD",
+                  icon: "fa-brands fa-microsoft",
                   link: "azure-ad/README.md"
                 },
                 {
                   text: "AWS Lambda",
+                  icon: "fa-brands fa-aws",
                   link: "aws-lambda/README.md"
                 },
               ],
             },
             {
               text: "Vault",
+              icon: "fa-solid fa-vault",
               link: "vault/README.md",
               prefix: "vault/",
               collapsible: true,
@@ -513,6 +579,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Resolvers",
+              icon: "fa-solid fa-wand-magic-sparkles",
               link: "resolvers/README.md",
               prefix: "resolvers/",
               collapsible: true,
@@ -522,23 +589,27 @@ export const enSidebar = sidebar({
         },
         {
           text: "API Specifications",
+          icon: "fa-solid fa-code",
           prefix: "concepts/api-specifications",
           collapsible: true,
-          children: ["asyncapi.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
+          children: ["asyncapi/README.md", "openapi.md", "openapi-asyncapi.md", "protobuf.md"],
         },
         {
           text: "Performance",
+          icon: "fa-solid fa-gauge-high",
           prefix: "concepts/performance",
           collapsible: true,
           children: [
             {
               text:"Benchmarks",
+              icon: "fa-solid fa-stopwatch",
               link: "benchmarks/README.md",
               prefix: "benchmarks/",
               collapsible: true,
               children: [
                 {
                   text: "Kafka Proxy",
+                  icon: "fa-solid fa-database",
                   prefix: "kafka/",
                   link: "kafka/README.md",
                 }
@@ -553,28 +624,33 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Install Zilla",
+          icon: "fa-solid fa-download",
           prefix: "deployment/install-zilla",
           collapsible: true,
-          children: ["homebrew.md", "docker.md", "helm.md"],
+          children: ["homebrew.md", "docker.md", "helm/README.md"],
         },
         {
           text: "Configure Zilla",
+          icon: "fa-solid fa-gear",
           prefix: "deployment/configure-zilla",
           collapsible: true,
           children: [
             {
               text:"Auto Reconfigure",
+              icon: "fa-solid fa-rotate",
               link: "auto-reconfigure.md",
-              children: []
+    
             },
             {
               text:"Incubator Features",
+              icon: "fa-solid fa-flask",
               prefix: "incubator-features/",
               link: "incubator-features/README.md",
-              children: []
+    
             },
             {
               text: "Connecting to Kafka",
+              icon: "fa-solid fa-plug",
               link: "connecting-to-kafka/README.md",
               prefix: "connecting-to-kafka/",
               collapsible: true,
@@ -590,27 +666,31 @@ export const enSidebar = sidebar({
         },
         {
           text: "Zilla to Zilla Plus Upgrade",
+          icon: "fa-solid fa-arrow-up",
           prefix: "deployment/zilla-to-zilla-plus-upgrade",
           link: "deployment/zilla-to-zilla-plus-upgrade/README.md",
-          children: [],
+
         },
         {
           text: "Zilla Plus in Production",
+          icon: "fa-solid fa-server",
           prefix: "deployment/zilla-plus-in-production",
           collapsible: true,
           children: [
             {
               text: "Secure Public Access",
+              icon: "fa-solid fa-lock-open",
               prefix: "secure-public-access/",
               collapsible: true,
               children: [
                 {
                   text: "Deployment Options",
                   link: "README.md",
-                  children: [],
+    
                 },
                 {
                   text: "Amazon MSK",
+                  icon: "fa-brands fa-aws",
                   prefix: "amazon-msk/",
                   collapsible: true,
                   children: [
@@ -660,16 +740,18 @@ export const enSidebar = sidebar({
             },
             {
               text: "Secure Private Access",
+              icon: "fa-solid fa-lock",
               prefix: "secure-private-access/",
               collapsible: true,
               children: [
                 {
                   text: "Deployment Options",
                   link: "README.md",
-                  children: [],
+    
                 },
                 {
                   text: "Amazon MSK",
+                  icon: "fa-brands fa-aws",
                   collapsible: true,
                   children: [
                     {
@@ -682,16 +764,18 @@ export const enSidebar = sidebar({
             },
             {
               text: "IoT Ingest and Control",
+              icon: "fa-solid fa-microchip",
               prefix: "iot-ingest-and-control/",
               collapsible: true,
               children: [
                 {
                   text: "Deployment Options",
                   link: "README.md",
-                  children: [],
+    
                 },
                 {
                   text: "Amazon MSK",
+                  icon: "fa-brands fa-aws",
                   collapsible: true,
                   children: [
                     {
@@ -723,16 +807,18 @@ export const enSidebar = sidebar({
             },
             {
               text: "Web Streaming",
+              icon: "fa-solid fa-signal",
               prefix: "web-streaming/",
               collapsible: true,
               children: [
                 {
                   text: "Deployment Options",
                   link: "README.md",
-                  children: [],
+    
                 },
                 {
                   text: "Amazon MSK",
+                  icon: "fa-brands fa-aws",
                   prefix: "amazon-msk/",
                   collapsible: true,
                   children: [
@@ -761,16 +847,23 @@ export const enSidebar = sidebar({
             },
             {
               text: "Virtual Clusters",
+              icon: "fa-solid fa-object-group",
               prefix: "virtual-clusters/",
               link: "virtual-clusters/README.md",
-              children: [],
+
             },
-            "zilla-plus-on-aws-ecs-fargate.md",
+            {
+              text: "AWS ECS Fargate",
+              icon: "fa-brands fa-aws",
+              link: "zilla-plus-on-aws-ecs-fargate.md",
+
+            },
             {
               text: "AWS AMI",
+              icon: "fa-brands fa-aws",
               prefix: "zilla-plus-via-aws-ami/",
               link: "zilla-plus-via-aws-ami/README.md",
-              children: [],
+
             },
           ],
         },
@@ -782,26 +875,30 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Troubleshooting Guides",
+          icon: "fa-solid fa-triangle-exclamation",
           link: "troubleshooting-guides.md",
           collapsible: true,
           children:
             [
               {
                 text:"Collect Diagnostic",
+                icon: "fa-solid fa-stethoscope",
                 link:"collect-diagnostic.md",
-                children: []
+      
               }
             ],
         },
         {
           text: "Community Support",
+          icon: "fa-solid fa-people-group",
           link: "community-support.md",
-          children: [],
+
         },
         {
           text: "Enterprise Support",
+          icon: "fa-solid fa-building",
           link: "enterprise-support.md",
-          children: [],
+
         },
       ],
     },
@@ -810,62 +907,73 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Resources",
+          icon: "fa-solid fa-box-archive",
           prefix: "resources/",
           collapsible: true,
           children: [
             {
               text: "AWS",
+              icon: "fa-brands fa-aws",
               link: "aws/index.md",
               prefix: "aws/",
-              children: [],
+
             },
           ],
         },
         {
           text: "Tutorials",
+          icon: "fa-solid fa-graduation-cap",
           prefix: "tutorials",
           collapsible: true,
           children: [ "how-to-guides.md" ],
         },
         {
           text: "Reference",
+          icon: "fa-solid fa-book",
           prefix: "reference/",
           collapsible: true,
           children: [
             {
               text: "Config Overview",
+              icon: "fa-solid fa-file-lines",
               link: "config/overview.md",
-              children: [],
+
             },
             {
               text: "Bindings",
+              icon: "fa-solid fa-plug",
               link: "config/bindings/",
-              children: [],
+
             },
             {
               text: "Catalogs",
+              icon: "fa-solid fa-book-open",
               link: "config/catalogs/",
-              children: [],
+
             },
             {
               text: "Models",
+              icon: "fa-solid fa-shapes",
               link: "config/models/",
-              children: [],
+
             },
             {
               text: "Guards",
+              icon: "fa-solid fa-shield-halved",
               link: "config/guards/",
-              children: [],
+
             },
             {
               text: "Vaults",
+              icon: "fa-solid fa-vault",
               link: "config/vaults/",
-              children: [],
+
             },
             {
               text: "Telemetry",
+              icon: "fa-solid fa-chart-line",
               link: "config/telemetry/",
-              children: [],
+
             },
           ],
         },

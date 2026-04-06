@@ -4,7 +4,7 @@ shortTitle: OpenAPI to AsyncAPI
 
 # OpenAPI-AsyncAPI
 
-The Zilla config uses many of the same parameters as the public and open-source interface definition languages [OpenAPI](https://www.openapis.org/) and [AsyncAPI](https://www.asyncapi.com/). Services and tools are available to describe your existing APIs and infrastructure using OpenAPI and AsyncAPI definitions. These specs enable more consistent documentation, versioning, and code generation. Using the [openapi](./openapi.md#openapi-client) and [asyncapi](./asyncapi.md#asyncapi-client) bindings enables the use of existing interface specs to configure Zilla.
+The Zilla config uses many of the same parameters as the public and open-source interface definition languages [OpenAPI](https://www.openapis.org/) and [AsyncAPI](https://www.asyncapi.com/). Services and tools are available to describe your existing APIs and infrastructure using OpenAPI and AsyncAPI definitions. These specs enable more consistent documentation, versioning, and code generation. Using the [openapi](./openapi.md#openapi-client) and [asyncapi](./asyncapi/#asyncapi-client) bindings enables the use of existing interface specs to configure Zilla.
 
 Zilla leverages the interface definitions in these specs to generate the necessary `zilla.yaml` config to implement the defined services. Zilla doesn't generate code that needs to be maintained. Instead, it generates the underlying configuration necessary to implement a functioning interface. Both standard and complex use cases are implemented easily with Zilla.
 

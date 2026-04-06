@@ -4,7 +4,7 @@ shortTitle: Docker
 
 # Running Zilla via Docker
 
-You can run your `zilla.yaml` config inside a container. If you want to deploy on Kubernetes, use our [helm chart](./helm.md#deploying-zilla-via-helm).
+You can run your `zilla.yaml` config inside a container. If you want to deploy on Kubernetes, use our [helm chart](./helm/#deploying-zilla-via-helm).
 
 ## Prerequisite
 

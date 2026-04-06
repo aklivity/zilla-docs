@@ -28,11 +28,12 @@ export default hopeTheme({
   docsDir: "src",
   docsBranch,
   pure: true,
+  darkmode: "enable",
 
   navbarLayout: {
     start: ["Brand"],
     center: ["Search"],
-    end: ["Links", "Repo", "Outlook"],
+    end: ["Links", "Outlook"],
   },
 
   pageInfo: ["Category", "Tag"],
@@ -44,8 +45,22 @@ export default hopeTheme({
       headerDepth: 3,
 
       displayFooter: true,
-      footer: `<span style="display:flex;align-items:center"><a href="https://www.aklivity.io"><img class="logo" alt="aklivity"></a> <a href="https://github.com/aklivity/zilla"><i class="fa-brands fa-github" style="font-size:22px;padding-right:6px"></i></a> <a href="https://www.linkedin.com/company/aklivity/"><i class="fa-brands fa-linkedin" style="font-size:22px;padding-right:6px"></i></a> <a href="https://www.aklivity.io/slack"><i class="fa-brands fa-slack" style="font-size:25px;padding-right:6px"></i></a> <a href="https://www.twitter.com/aklivityinc"><i class="fa-brands fa-twitter" style="font-size:22px"></i></a></span>`,
-      copyright: "© aklivity, inc. 2023-2025",
+      footer: `
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://www.aklivity.io">
+          <img class="logo" alt="aklivity">
+        </a>
+        <a href="https://www.linkedin.com/company/aklivity/">
+          <i class="fa-brands fa-linkedin" style="font-size:22px"></i>
+        </a>
+        <a href="https://www.aklivity.io/slack">
+          <i class="fa-brands fa-slack" style="font-size:25px"></i>
+        </a>
+        <a href="https://www.twitter.com/aklivityinc">
+          <i class="fa-brands fa-twitter" style="font-size:22px"></i>
+        </a>
+      </span>`,
+      copyright: "© aklivity, inc. 2023-2026",
 
       metaLocales: {
         editLink: "Edit this page on GitHub",

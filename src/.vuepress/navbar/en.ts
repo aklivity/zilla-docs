@@ -42,6 +42,6 @@ export const enNavbar = navbar([
     activeMatch: '/reference',
     link: "/reference/config/overview.md",
   },
-  { text: "version", icon: "fas fa-list-ol", children: versionLinks },
+  { text: "Platform", icon: "fas fa-cubes", link: "https://docs.aklivity.io/zilla-platform/latest/" },
   { text: "aklivity", icon: "fas fa-globe", link: "https://www.aklivity.io/" },
 ]);
