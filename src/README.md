@@ -206,7 +206,7 @@ Configure Zilla declaratively to mediate protocols, enforce policies, and proxy 
       <li><span class="lp-check lp-check-pro">✓</span> HTTP, MQTT, gRPC, SSE, WebSocket</li>
       <li><span class="lp-check lp-check-pro">✓</span> AsyncAPI &amp; OpenAPI spec-driven config</li>
       <li><span class="lp-check lp-check-pro">✓</span> JWT guards, TLS, schema validation</li>
-      <li><span class="lp-check lp-check-pro">✓</span> Prometheus, OTLP, CloudWatch exporters</li>
+      <li><span class="lp-check lp-check-pro">✓</span> Prometheus, OTLP exporters</li>
       <li><span class="lp-check lp-check-pro">✓</span> Kubernetes &amp; Helm support</li>
     </ul>
     <a href="./getting-started/quickstart/" class="lp-edition-cta lp-btn-secondary">Get Started →</a>
