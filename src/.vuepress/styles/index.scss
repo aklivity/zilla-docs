@@ -1811,9 +1811,9 @@ html[data-theme="light"] .feature_cards .vp-card:hover {
   }
 
   h3 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--c-text, #34d399);
     margin: 0 0 0.375rem;
     letter-spacing: -0.01em;
     border-bottom: none !important;
@@ -1821,8 +1821,8 @@ html[data-theme="light"] .feature_cards .vp-card:hover {
   }
 
   p {
-    font-size: 0.8rem;
-    color: var(--text-color-lighter, #5c6080);
+    font-size: 0.825rem;
+    color: var(--text-color-muted, #c8cde8);
     line-height: 1.5;
     margin: 0;
   }
