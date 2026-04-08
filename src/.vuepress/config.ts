@@ -16,12 +16,13 @@ export default defineUserConfig({
   locales: {
     "/": {
       lang: "en-US",
-      title: "Documentation",
       description:
         "The official documentation for the aklivity/zilla open-source project",
     },
   },
   head: [
+    // Force dark mode before first paint to prevent light-theme flash in new browsers
+    ["script", {}, `document.documentElement.setAttribute('data-theme','dark');`],
     ["meta", { name: "docsearch:product", content: siteBase }],
     ["meta", { name: "docsearch:version", content: versionKey }],
     [
