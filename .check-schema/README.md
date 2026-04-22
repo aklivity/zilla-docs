@@ -21,11 +21,10 @@ brew install gsed
 ```
 
 ```bash
-CONTAINER_ID=$(docker run -d --rm -e ZILLA_INCUBATOR_ENABLED=true ghcr.io/aklivity/zilla:develop-SNAPSHOT start -v -Pzilla.engine.verbose.schema.plain);
-sleep 5;
+CONTAINER_ID=$(docker run -d -e ZILLA_INCUBATOR_ENABLED=true ghcr.io/aklivity/zilla-plus:latest start -v -Pzilla.engine.verbose.schema.plain);
+docker wait $CONTAINER_ID;
 docker logs $CONTAINER_ID > ./.check-schema/zilla-schema.json 2>&1;
-docker stop $CONTAINER_ID;
+docker rm $CONTAINER_ID;
 
-gsed -i '1,2d' ./.check-schema/zilla-schema.json;
-gsed -i '$d' ./.check-schema/zilla-schema.json;
+gsed -i '1,4d' ./.check-schema/zilla-schema.json;
 ```

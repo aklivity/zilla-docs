@@ -56,6 +56,16 @@
             },
             "additionalProperties": false
         },
+        "stores": {
+            "title": "Stores",
+            "type": "object",
+            "patternProperties": {
+                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                    "$ref": "#/$defs/store"
+                }
+            },
+            "additionalProperties": false
+        },
         "catalogs": {
             "title": "Catalogs",
             "type": "object",
@@ -122,7 +132,18 @@
                             "type": {
                                 "const": "aws-acm"
                             },
-                            "options": false
+                            "options": {
+                                "properties": {
+                                    "revocation": {
+                                        "title": "Revocation Method",
+                                        "type": "string",
+                                        "enum": [
+                                            "crl"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
                         }
                     }
                 },
@@ -145,7 +166,32 @@
                                     "aws"
                                 ]
                             },
-                            "options": false
+                            "options": {
+                                "properties": {
+                                    "revocation": {
+                                        "title": "Revocation Method",
+                                        "type": "string",
+                                        "enum": [
+                                            "crl"
+                                        ]
+                                    },
+                                    "aliases": {
+                                        "title": "Aliases",
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "tags": {
+                                        "title": "Tags",
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
                         }
                     }
                 },
@@ -214,6 +260,13 @@
                                             }
                                         },
                                         "additionalProperties": false
+                                    },
+                                    "revocation": {
+                                        "title": "Revocation Method",
+                                        "type": "string",
+                                        "enum": [
+                                            "crl"
+                                        ]
                                     }
                                 },
                                 "additionalProperties": false
@@ -230,6 +283,10 @@
                     "title": "Type",
                     "type": "string",
                     "enum": [
+                        "api-keys",
+                        "aws-lambda",
+                        "azure-ad",
+                        "identity",
                         "jwt"
                     ]
                 },
@@ -243,6 +300,221 @@
                 "type"
             ],
             "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "api-keys"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "api-keys"
+                            },
+                            "options": {
+                                "properties": {
+                                    "authorization": {
+                                        "title": "Authorization",
+                                        "type": "object",
+                                        "properties": {
+                                            "format": {
+                                                "title": "Format",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "keys": {
+                                        "title": "Keys",
+                                        "type": "string"
+                                    },
+                                    "interval": {
+                                        "title": "Poll interval",
+                                        "type": "integer",
+                                        "default": 300,
+                                        "minimum": 0
+                                    },
+                                    "credentials": {
+                                        "title": "Credentials",
+                                        "type": "object",
+                                        "properties": {
+                                            "headers": {
+                                                "title": "Headers",
+                                                "type": "object",
+                                                "additionalProperties": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "attributes": {
+                                        "type": "object",
+                                        "patternProperties": {
+                                            "^[a-zA-Z]+[a-zA-Z0-9._-]*$": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "keys"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "options"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "aws-lambda"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "aws-lambda"
+                            },
+                            "options": {
+                                "properties": {
+                                    "region": {
+                                        "title": "Region",
+                                        "type": "string"
+                                    },
+                                    "account-id": {
+                                        "title": "Account ID",
+                                        "type": "string"
+                                    },
+                                    "api-id": {
+                                        "title": "API ID",
+                                        "type": "string"
+                                    },
+                                    "stage": {
+                                        "title": "Stage",
+                                        "type": "string"
+                                    },
+                                    "function": {
+                                        "title": "Function Name",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "title": "Type",
+                                        "enum": [
+                                            "token"
+                                        ]
+                                    },
+                                    "max-age": {
+                                        "title": "Max Age",
+                                        "type": "integer",
+                                        "default": 300,
+                                        "minimum": 0,
+                                        "maximum": 3600
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "api-id",
+                                    "stage",
+                                    "function",
+                                    "type"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "options"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "azure-ad"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "azure-ad"
+                            },
+                            "options": {
+                                "properties": {
+                                    "issuer": {
+                                        "title": "Issuer",
+                                        "type": "string",
+                                        "default": "organizations"
+                                    },
+                                    "audience": {
+                                        "title": "Audience",
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "title": "Version",
+                                        "enum": [
+                                            "v1.0",
+                                            "v2.0"
+                                        ],
+                                        "default": "v2.0"
+                                    },
+                                    "challenge": {
+                                        "title": "Challenge",
+                                        "type": "integer"
+                                    },
+                                    "identity": {
+                                        "title": "Identity",
+                                        "type": "string",
+                                        "default": "sub"
+                                    },
+                                    "roles": {
+                                        "title": "Roles",
+                                        "type": "string",
+                                        "default": "roles"
+                                    },
+                                    "attributes": {
+                                        "type": "object",
+                                        "patternProperties": {
+                                            "^[a-zA-Z]+[a-zA-Z0-9._-]*$": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "options"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "identity"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "identity"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
                 {
                     "if": {
                         "properties": {
@@ -265,6 +537,11 @@
                                     "audience": {
                                         "title": "Audience",
                                         "type": "string"
+                                    },
+                                    "roles": {
+                                        "title": "Roles",
+                                        "type": "string",
+                                        "default": "scope"
                                     },
                                     "keys": {
                                         "title": "Keys",
@@ -306,6 +583,15 @@
                                         "title": "Identity",
                                         "type": "string",
                                         "default": "sub"
+                                    },
+                                    "attributes": {
+                                        "type": "object",
+                                        "patternProperties": {
+                                            "^[a-zA-Z]+[a-zA-Z0-9._-]*$": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false
                                     }
                                 },
                                 "additionalProperties": false
@@ -316,6 +602,27 @@
                         ]
                     }
                 }
+            ]
+        },
+        "store": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "title": "Type",
+                    "type": "string",
+                    "enum": [
+                    ]
+                },
+                "options": {
+                    "title": "Options",
+                    "type": "object"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type"
+            ],
+            "allOf": [
             ]
         },
         "telemetry": {
@@ -333,6 +640,10 @@
                         "http.response.size",
                         "http.active.requests",
                         "http.duration",
+                        "kafka.request.bytes",
+                        "kafka.response.bytes",
+                        "kafka.response.codes",
+                        "kafka.request.duration",
                         "stream.active.received",
                         "stream.active.sent",
                         "stream.opens.received",
@@ -361,6 +672,10 @@
                             "stdout",
                             "syslog"
                         ]
+                    },
+                    "vault": {
+                        "title": "Vault",
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -451,6 +766,7 @@
                                 "type": {
                                     "const": "otlp"
                                 },
+                                "vault": true,
                                 "options": {
                                     "properties": {
                                         "interval": {
@@ -478,7 +794,8 @@
                                                     "default": "http"
                                                 },
                                                 "location": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "pattern": "^https?://"
                                                 },
                                                 "overrides": {
                                                     "type": "object",
@@ -498,12 +815,70 @@
                                                 "location"
                                             ],
                                             "additionalProperties": false
+                                        },
+                                        "tls": {
+                                            "title": "TLS",
+                                            "type": "object",
+                                            "properties": {
+                                                "keys": {
+                                                    "title": "Vault Keys",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "trust": {
+                                                    "title": "Vault Certificates",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "trustcacerts": {
+                                                    "title": "Trust CA Certificates",
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        },
+                                        "credentials": {
+                                            "title": "Credentials",
+                                            "type": "object",
+                                            "properties": {
+                                                "headers": {
+                                                    "title": "Headers",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "authorization": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                }
+                                            },
+                                            "additionalProperties": false
                                         }
                                     },
                                     "required": [
                                         "endpoint"
                                     ],
-                                    "additionalProperties": false
+                                    "additionalProperties": false,
+                                    "if": {
+                                        "properties": {
+                                            "endpoint": {
+                                                "properties": {
+                                                    "location": {
+                                                        "pattern": "^http://"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "tls": false
+                                        }
+                                    }
                                 },
                                 "additionalProperties": false
                             },
@@ -660,6 +1035,10 @@
                         "schema-registry"
                     ]
                 },
+                "vault": {
+                    "title": "Vault",
+                    "type": "string"
+                },
                 "options": {
                     "title": "Options",
                     "type": "object"
@@ -689,6 +1068,7 @@
                                     "apicurio"
                                 ]
                             },
+                            "vault": false,
                             "options": {
                                 "properties": {
                                     "url": {
@@ -716,7 +1096,7 @@
                                     },
                                     "max-age": {
                                         "title": "Max Age",
-                                        "type": "number",
+                                        "type": "integer",
                                         "default": 300
                                     }
                                 },
@@ -795,6 +1175,7 @@
                             "type": {
                                 "const": "filesystem"
                             },
+                            "vault": false,
                             "options": {
                                 "properties": {
                                     "subjects": {
@@ -835,6 +1216,7 @@
                             "type": {
                                 "const": "inline"
                             },
+                            "vault": false,
                             "options": {
                                 "properties": {
                                     "subjects": {
@@ -905,6 +1287,7 @@
                             "type": {
                                 "const": "schema-registry"
                             },
+                            "vault": true,
                             "options": {
                                 "$ref": "#/$defs/options/catalog/schema-registry"
                             }
@@ -993,7 +1376,14 @@
                                                 "type": "object",
                                                 "additionalProperties": {
                                                     "type": "string",
-                                                    "pattern": ".*\\{credentials\\}.*"
+                                                    "anyOf": [
+                                                        {
+                                                            "pattern": ".*\\{credentials\\}.*"
+                                                        },
+                                                        {
+                                                            "pattern": ".*\\{username\\}.*\\{password\\}.*"
+                                                        }
+                                                    ]
                                                 }
                                             },
                                             "query": {
@@ -1422,7 +1812,8 @@
                     "type": "object",
                     "properties": {
                         "url": {
-                            "type": "string"
+                            "type": "string",
+                            "pattern": "^https?://"
                         },
                         "context": {
                             "type": "string",
@@ -1430,12 +1821,103 @@
                         },
                         "max-age": {
                             "title": "Max Age",
-                            "type": "number",
+                            "type": "integer",
                             "default": 300
+                        },
+                        "tls": {
+                            "title": "TLS",
+                            "type": "object",
+                            "properties": {
+                                "keys": {
+                                    "title": "Vault Keys",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "trust": {
+                                    "title": "Vault Certificates",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "trustcacerts": {
+                                    "title": "Trust CA Certificates",
+                                    "type": "boolean"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "credentials": {
+                            "title": "Credentials",
+                            "type": "object",
+                            "properties": {
+                                "headers": {
+                                    "title": "Headers",
+                                    "type": "object",
+                                    "properties": {
+                                        "authorization": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
                         }
                     },
-                    "additionalProperties": false
+                    "additionalProperties": false,
+                    "if": {
+                        "properties": {
+                            "url": {
+                                "pattern": "^http://"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "tls": false
+                        }
+                    }
                 }
+            },
+            "topic-configs": {
+                "type": "object",
+                "patternProperties": {
+                    "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "min": {
+                                        "type": "integer"
+                                    },
+                                    "max": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "enum": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false
             }
         },
         "binding": {
@@ -1484,6 +1966,9 @@
                         "pgsql-kafka",
                         "proxy",
                         "risingwave",
+                        "schema-registry",
+                        "smux",
+                        "socks",
                         "sse",
                         "sse-kafka",
                         "tcp",
@@ -1497,6 +1982,7 @@
                         "client",
                         "server",
                         "proxy",
+                        "remote_client",
                         "remote_server",
                         "cache_client",
                         "cache_server"
@@ -1553,6 +2039,14 @@
                     "properties": {
                         "metrics": {
                             "type": "array"
+                        },
+                        "attributes": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 },
@@ -1575,6 +2069,17 @@
                 {
                     "properties": {
                         "kind": {
+                            "const": "remote_client"
+                        },
+                        "exit": false
+                    },
+                    "required": [
+                        "entry"
+                    ]
+                },
+                {
+                    "properties": {
+                        "kind": {
                             "const": "remote_server"
                         }
                     },
@@ -1586,7 +2091,10 @@
                     "properties": {
                         "kind": {
                             "not": {
-                                "const": "remote_server"
+                                "enum": [
+                                    "remote_client",
+                                    "remote_server"
+                                ]
                             }
                         },
                         "entry": false
@@ -2351,10 +2859,7 @@
                                                             "type": "string"
                                                         }
                                                     },
-                                                    "additionalProperties": false,
-                                                    "required": [
-                                                        "reply-to"
-                                                    ]
+                                                    "additionalProperties": false
                                                 }
                                             ],
                                             "required": [
@@ -2475,7 +2980,7 @@
                                                     },
                                                     "max-age": {
                                                         "title": "Max Age",
-                                                        "type": "number"
+                                                        "type": "integer"
                                                     },
                                                     "expose": {
                                                         "title": "Expose",
@@ -2765,6 +3270,16 @@
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
+                                                    "method": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "GET",
+                                                            "PUT",
+                                                            "POST",
+                                                            "DELETE",
+                                                            "HEAD"
+                                                        ]
+                                                    },
                                                     "path": {
                                                         "title": "Path",
                                                         "type": "string"
@@ -2776,13 +3291,32 @@
                                         "with": {
                                             "properties": {
                                                 "path": {
-                                                    "title": "Topic",
+                                                    "title": "Path",
+                                                    "type": "string"
+                                                },
+                                                "directory": {
+                                                    "title": "Directory",
                                                     "type": "string"
                                                 }
                                             },
                                             "additionalProperties": false,
-                                            "required": [
-                                                "path"
+                                            "anyOf": [
+                                                {
+                                                    "required": [
+                                                        "path"
+                                                    ]
+                                                },
+                                                {
+                                                    "required": [
+                                                        "directory"
+                                                    ]
+                                                },
+                                                {
+                                                    "required": [
+                                                        "path",
+                                                        "directory"
+                                                    ]
+                                                }
                                             ]
                                         }
                                     }
@@ -3002,6 +3536,10 @@
                                                         },
                                                         "reply-to": {
                                                             "title": "Reply-To",
+                                                            "type": "string"
+                                                        },
+                                                        "correlation-id": {
+                                                            "title": "Correlation-Id Kafka Header",
                                                             "type": "string"
                                                         },
                                                         "async": {
@@ -3355,18 +3893,69 @@
                             },
                             "vault": false,
                             "options": {
+                                "not": {
+                                    "required": [
+                                        "cluster-id",
+                                        "clusters"
+                                    ]
+                                },
                                 "properties": {
+                                    "cluster-id": {
+                                        "title": "Cluster ID",
+                                        "type": "string"
+                                    },
+                                    "clusters": {
+                                        "title": "Clusters",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "pattern": "^[a-zA-Z0-9_-]*\\*?$"
+                                        },
+                                        "deprecated": true
+                                    },
                                     "external": {
                                         "type": "object",
                                         "properties": {
                                             "host": {
                                                 "title": "Host",
                                                 "type": "string",
-                                                "pattern": "^[^:]+(?::(\\d+)\\+)?$"
+                                                "pattern": "^[^:]+(?:-({[^}]+}|[^.]+))?(?::(\\d+)\\+)?$"
                                             },
                                             "port": {
                                                 "title": "Port",
                                                 "type": "integer"
+                                            },
+                                            "default": {
+                                                "title": "Default",
+                                                "type": "string",
+                                                "pattern": "^[^:]+$"
+                                            },
+                                            "authorization": {
+                                                "title": "Authorizations",
+                                                "type": "object",
+                                                "patternProperties": {
+                                                    "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                        "title": "Authorization",
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "credentials": {
+                                                                "title": "Credentials",
+                                                                "type": "string"
+                                                            },
+                                                            "mechanism": {
+                                                                "title": "Mechanism",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "plain"
+                                                                ]
+                                                            }
+                                                        },
+                                                        "additionalProperties": false,
+                                                        "required": [
+                                                            "credentials"
+                                                        ]
+                                                    }
+                                                }
                                             }
                                         },
                                         "required": [
@@ -3391,6 +3980,96 @@
                                                 "title": "Default",
                                                 "type": "string",
                                                 "pattern": "^[^:]+$"
+                                            },
+                                            "authorization": {
+                                                "title": "Authorizations",
+                                                "type": "object",
+                                                "properties": {
+                                                    "credentials": {
+                                                        "title": "Credentials",
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "mechanism": {
+                                                                "title": "Mechanism",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "plain",
+                                                                    "scram-sha-256",
+                                                                    "scram-sha-512"
+                                                                ]
+                                                            }
+                                                        },
+                                                        "oneOf": [
+                                                            {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "mechanism": {
+                                                                        "const": "plain"
+                                                                    },
+                                                                    "username": {
+                                                                        "title": "Username",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "password": {
+                                                                        "title": "Password",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "mechanism",
+                                                                    "username",
+                                                                    "password"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "mechanism": {
+                                                                        "const": "scram-sha-256"
+                                                                    },
+                                                                    "username": {
+                                                                        "title": "Username",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "password": {
+                                                                        "title": "Password",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "mechanism",
+                                                                    "username",
+                                                                    "password"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "mechanism": {
+                                                                        "const": "scram-sha-512"
+                                                                    },
+                                                                    "username": {
+                                                                        "title": "Username",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "password": {
+                                                                        "title": "Password",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "mechanism",
+                                                                    "username",
+                                                                    "password"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "additionalProperties": false,
+                                                "required": [
+                                                    "credentials"
+                                                ]
                                             }
                                         },
                                         "required": [
@@ -3398,6 +4077,182 @@
                                             "port"
                                         ],
                                         "additionalProperties": false
+                                    },
+                                    "topics": {
+                                        "title": "Topics",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "key": {
+                                                    "$ref": "#/$defs/validator"
+                                                },
+                                                "value": {
+                                                    "$ref": "#/$defs/validator"
+                                                },
+                                                "limit": {
+                                                    "type": "string"
+                                                },
+                                                "constraints": {
+                                                    "title": "Constraints",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "additionalProperties": false,
+                                                        "properties": {
+                                                            "mode": {
+                                                                "title": "Mode",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "enforce",
+                                                                    "warn"
+                                                                ],
+                                                                "default": "enforce"
+                                                            },
+                                                            "regex": {
+                                                                "title": "Topic Name Regex",
+                                                                "type": "string"
+                                                            },
+                                                            "partitions": {
+                                                                "type": "object",
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "min": {
+                                                                        "type": "integer",
+                                                                        "minimum": 1
+                                                                    },
+                                                                    "max": {
+                                                                        "type": "integer",
+                                                                        "minimum": 1
+                                                                    }
+                                                                }
+                                                            },
+                                                            "replicas": {
+                                                                "type": "object",
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "min": {
+                                                                        "type": "integer",
+                                                                        "minimum": 1
+                                                                    },
+                                                                    "max": {
+                                                                        "type": "integer",
+                                                                        "minimum": 1
+                                                                    }
+                                                                }
+                                                            },
+                                                            "configs": {
+                                                                "$ref": "#/$defs/options/topic-configs"
+                                                            },
+                                                            "deletion": {
+                                                                "title": "Deletion",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "protected"
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "limits": {
+                                        "title": "Limits",
+                                        "type": "object",
+                                        "patternProperties": {
+                                            "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                "title": "Limit",
+                                                "type": "object",
+                                                "properties": {
+                                                    "produce": {
+                                                        "title": "Produce",
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "bytes": {
+                                                                "title": "Bytes",
+                                                                "type": "string",
+                                                                "pattern": "^[0-9]+(\\.[0-9]+)?\\s*(B|kB|KB|MB|mB|GB|gB|TB|tB|b|kb|Kb|mb|Mb|gb|Gb|tb|Tb)/s$",
+                                                                "description": "Data rate, e.g. '1kB/s', '10 MB/s'. Case-insensitive, allows optional decimals."
+                                                            }
+                                                        },
+                                                        "additionalProperties": false
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "constraints": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "mode": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "enforce",
+                                                        "warn"
+                                                    ]
+                                                },
+                                                "client_id": {
+                                                    "type": "string",
+                                                    "pattern": "^[a-zA-Z0-9_-]*\\*?$"
+                                                },
+                                                "api_versions": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "min": {
+                                                            "type": "object",
+                                                            "additionalProperties": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "max": {
+                                                            "type": "object",
+                                                            "additionalProperties": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "cooldown": {
+                                                    "type": "string"
+                                                },
+                                                "configs": {
+                                                    "$ref": "#/$defs/options/topic-configs"
+                                                },
+                                                "producer": {
+                                                    "title": "Producer",
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "idempotent"
+                                                    ]
+                                                },
+                                                "compression": {
+                                                    "title": "Compression",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "none",
+                                                            "gzip",
+                                                            "snappy",
+                                                            "lz4",
+                                                            "zstd"
+                                                        ]
+                                                    },
+                                                    "uniqueItems": true
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        }
                                     }
                                 },
                                 "additionalProperties": false,
@@ -3406,11 +4261,83 @@
                                     "external"
                                 ]
                             },
-                            "routes": false
+                            "routes": {
+                                "title": "Routes",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "when": {
+                                            "title": "When",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "anyOf": [
+                                                    {
+                                                        "properties": {
+                                                            "topic": {
+                                                                "title": "Topic",
+                                                                "type": "string"
+                                                            },
+                                                            "api": {
+                                                                "title": "Api keys",
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "produce",
+                                                                        "fetch",
+                                                                        "metadata",
+                                                                        "offset_commit",
+                                                                        "offset_fetch",
+                                                                        "find_coordinator",
+                                                                        "list_offsets",
+                                                                        "sasl_handshake",
+                                                                        "api_versions",
+                                                                        "join_group",
+                                                                        "heartbeat",
+                                                                        "leave_group",
+                                                                        "sync_group",
+                                                                        "init_producer_id",
+                                                                        "add_partitions_to_transaction",
+                                                                        "add_offsets_to_transaction",
+                                                                        "end_transaction",
+                                                                        "write_transaction_markers",
+                                                                        "transaction_offset_commit",
+                                                                        "sasl_authenticate",
+                                                                        "create_topics",
+                                                                        "alter_configs",
+                                                                        "incremental_alter_configs",
+                                                                        "create_partitions",
+                                                                        "delete_topics"
+                                                                    ],
+                                                                    "additionalProperties": false
+                                                                }
+                                                            }
+                                                        },
+                                                        "additionalProperties": false
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         },
                         "required": [
-                            "options",
-                            "exit"
+                            "options"
+                        ],
+                        "anyOf": [
+                            {
+                                "required": [
+                                    "exit"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "routes"
+                                ]
+                            }
                         ]
                     }
                 },
@@ -3472,7 +4399,18 @@
                                                                 "topic": {
                                                                     "title": "Topic",
                                                                     "type": "string",
-                                                                    "pattern": "^(\\/?([\\w{}-]*|\\+)(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?)$"
+                                                                    "pattern": "^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$"
+                                                                },
+                                                                "params": {
+                                                                    "title": "Params",
+                                                                    "type": "object",
+                                                                    "additionalProperties": false,
+                                                                    "patternProperties": {
+                                                                        "^[a-zA-Z0-9]+$": {
+                                                                            "type": "string",
+                                                                            "pattern": "^[a-zA-Z0-9{}\\[\\]\\.\\$']*$"
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -3487,7 +4425,18 @@
                                                                 "topic": {
                                                                     "title": "Topic",
                                                                     "type": "string",
-                                                                    "pattern": "^(\\/?([\\w{}-]*|\\+)(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?)$"
+                                                                    "pattern": "^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$"
+                                                                },
+                                                                "params": {
+                                                                    "title": "Params",
+                                                                    "type": "object",
+                                                                    "additionalProperties": false,
+                                                                    "patternProperties": {
+                                                                        "^[a-zA-Z0-9]+$": {
+                                                                            "type": "string",
+                                                                            "pattern": "^[a-zA-Z0-9{}\\[\\]\\.\\$']*$"
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -3689,7 +4638,7 @@
                                                                         "topic": {
                                                                             "title": "Topic",
                                                                             "type": "string",
-                                                                            "pattern": "^(\\/?([\\w{}-]*|\\+)(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?)$"
+                                                                            "pattern": "^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$"
                                                                         }
                                                                     },
                                                                     "additionalProperties": false
@@ -3709,7 +4658,7 @@
                                                                         "topic": {
                                                                             "title": "Topic",
                                                                             "type": "string",
-                                                                            "pattern": "^(\\/?([\\w{}-]*|\\+)(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}-]*|\\+))*(\\/#)?)$"
+                                                                            "pattern": "^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$"
                                                                         }
                                                                     },
                                                                     "additionalProperties": false
@@ -4328,6 +5277,7 @@
                                                             "type": "string",
                                                             "enum": [
                                                                 "CREATE TOPIC",
+                                                                "ALTER TOPIC",
                                                                 "DROP TOPIC"
                                                             ]
                                                         }
@@ -4342,6 +5292,376 @@
                         },
                         "required": [
                             "exit"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "schema-registry"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "schema-registry"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "proxy"
+                                ]
+                            },
+                            "vault": false,
+                            "options": {
+                                "properties": {
+                                    "oneOf": [
+                                        {
+                                            "cluster-id": {
+                                                "title": "Cluster ID",
+                                                "type": "string",
+                                                "minLength": 1
+                                            },
+                                            "external": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "endpoint": {
+                                                        "title": "Endpoint",
+                                                        "type": "string",
+                                                        "pattern": "^(https?)://[^:/]+(:\\d+)?(/.*)?$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "endpoint"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "internal": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "endpoint": {
+                                                        "title": "Endpoint",
+                                                        "type": "string",
+                                                        "pattern": "^(https?)://[^:/]+(:\\d+)?(/.*)?$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "endpoint"
+                                                ],
+                                                "additionalProperties": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                "additionalProperties": false
+                            },
+                            "routes": {
+                                "title": "Routes",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "when": false,
+                                        "with": false
+                                    },
+                                    "required": [
+                                        "exit"
+                                    ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 1
+                            }
+                        },
+                        "required": [
+                            "options"
+                        ],
+                        "anyOf": [
+                            {
+                                "required": [
+                                    "exit"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "routes"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "smux"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "smux"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "client",
+                                    "server"
+                                ]
+                            },
+                            "vault": false
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "socks"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "socks"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "client",
+                                    "server",
+                                    "remote_server",
+                                    "remote_client"
+                                ]
+                            },
+                            "vault": false
+                        },
+                        "allOf": [
+                            {
+                                "if": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "client"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "client"
+                                        },
+                                        "options": {
+                                            "type": "object",
+                                            "properties": {
+                                                "address": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "routes": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "when": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "connect": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "server"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "server"
+                                        },
+                                        "options": {
+                                            "type": "object",
+                                            "properties": {
+                                                "authorization": {
+                                                    "type": "object",
+                                                    "patternProperties": {
+                                                        "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "credentials": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        }
+                                                    },
+                                                    "maxProperties": 1
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        },
+                                        "routes": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "when": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "connect": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "kind": {
+                                            "enum": [
+                                                "remote_server",
+                                                "remote_client"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "properties": {
+                                        "kind": {
+                                            "enum": [
+                                                "remote_server",
+                                                "remote_client"
+                                            ]
+                                        },
+                                        "routes": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "when": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "bind": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "additionalProperties": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "remote_client"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "remote_client"
+                                        }
+                                    },
+                                    "anyOf": [
+                                        {
+                                            "properties": {
+                                                "options": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "address": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "routes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "exit": false
+                                                        },
+                                                        "required": [
+                                                            "when"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "routes"
+                                            ]
+                                        },
+                                        {
+                                            "required": [
+                                                "exit"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "remote_server"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "properties": {
+                                        "kind": {
+                                            "const": "remote_server"
+                                        }
+                                    },
+                                    "anyOf": [
+                                        {
+                                            "properties": {
+                                                "routes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "required": [
+                                                            "when",
+                                                            "exit"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "routes"
+                                            ]
+                                        },
+                                        {
+                                            "required": [
+                                                "exit"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
                         ]
                     }
                 },
@@ -4949,6 +6269,7 @@
                 "type": "string",
                 "enum": [
                     "avro",
+                    "boolean",
                     "double",
                     "float",
                     "int32",
@@ -5053,6 +6374,23 @@
                             "required": [
                                 "catalog"
                             ],
+                            "additionalProperties": false
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "model": {
+                                    "const": "boolean"
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "model": {
+                                    "const": "boolean"
+                                }
+                            },
                             "additionalProperties": false
                         }
                     },
@@ -5414,6 +6752,8 @@
             "types": {
                 "type": "string",
                 "enum": [
+                    "avro",
+                    "boolean",
                     "double",
                     "float",
                     "int32",
@@ -5433,6 +6773,105 @@
                     "model"
                 ],
                 "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "model": {
+                                    "const": "avro"
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "model": {
+                                    "const": "avro"
+                                },
+                                "catalog": {
+                                    "title": "Catalog",
+                                    "type": "object",
+                                    "patternProperties": {
+                                        "^[a-zA-Z]+[a-zA-Z0-9\\._\\-]*$": {
+                                            "type": "array",
+                                            "items": {
+                                                "oneOf": [
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "id"
+                                                        ],
+                                                        "additionalProperties": false
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "strategy": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "topic",
+                                                                    "encoded"
+                                                                ]
+                                                            },
+                                                            "version": {
+                                                                "type": "string",
+                                                                "default": "latest"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "strategy"
+                                                        ],
+                                                        "additionalProperties": false
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "subject": {
+                                                                "type": "string"
+                                                            },
+                                                            "version": {
+                                                                "type": "string",
+                                                                "default": "latest"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "subject"
+                                                        ],
+                                                        "additionalProperties": false
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "maxProperties": 1
+                                }
+                            },
+                            "required": [
+                                "catalog"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "model": {
+                                    "const": "boolean"
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "model": {
+                                    "const": "boolean"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
                     {
                         "if": {
                             "properties": {
@@ -5600,7 +7039,8 @@
                                                             "strategy": {
                                                                 "type": "string",
                                                                 "enum": [
-                                                                    "topic"
+                                                                    "topic",
+                                                                    "encoded"
                                                                 ]
                                                             },
                                                             "version": {
