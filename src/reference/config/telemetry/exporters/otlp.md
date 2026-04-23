@@ -91,3 +91,4 @@ The `logs` signal endpoint URI.
 > `string` | Default: `/v1/metrics`
 
 The `metrics` signal endpoint URI.
+

@@ -50,13 +50,7 @@ exporters:
 
 ## Configuration (\* required)
 
-### vault
-
-> `string`
-
-Vault name. Only applicable if the protocol is `tls`.
-
-### options*
+### options
 
 > `object`
 
@@ -85,33 +79,20 @@ options:
     - syslog
 ```
 
-#### options.host*
+#### options.host\*
 
 > `string`
 
 The hostname of the syslog server.
 
-#### options.port*
+#### options.port\*
 
 > `integer`
 
 The port of the syslog server.
 
-#### options.protocol*
+#### options.protocol\*
 
-> `enum` [ `tcp`, `udp`, `tls` ] | Default: `tcp`
+> `enum` [ `udp`, `tcp`, `tls` ]
 
-The protocol to use to communicate with the syslog server. Valid values are: `tcp`, `udp`, `tls`.
-
-#### options.trust
-
-> `array` of `string`
-
-Keys in the vault referenced on the binding (e.g. a filesystem vault for a local pkcs12 keystore
-or an AWS vault for remote pem format certificates stored in AWS secrets manager). Only valid if the protocol is `tls`.
-
-#### options.trustcacerts
-
-> `boolean`
-
-Specifies if the CA certs should be trusted. Only valid if the protocol is `tls`.
+The protocol to use to communicate with the syslog server.

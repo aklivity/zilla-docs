@@ -18,3 +18,4 @@ exporters:
   stdout:
     type: stdout
 ```
+
