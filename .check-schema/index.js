@@ -199,7 +199,7 @@ const main = async () => {
             } else if (i.const) {
                 props.push([`${path}: ${i.const}`, req, "`const`", getExtraProps(i)]);
             } else if (i.enum?.length) {
-                i.enum.forEach((e) => props.push([`${path}: ${e}`, req, type, getExtraProps(i)]));
+                props.push([path, req, type, getExtraProps(i)]);
             } else if (i.oneOf) {
                 props.push([
                     path,
