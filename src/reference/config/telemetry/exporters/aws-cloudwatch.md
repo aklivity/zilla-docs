@@ -30,7 +30,13 @@ exporters:
 
 ## Configuration (\* required)
 
-### options
+### vault
+
+> `string`
+
+Vault name.
+
+### options\*
 
 > `object`
 
@@ -62,11 +68,11 @@ To avoid conflicts with Amazon Web Services service namespaces, you should not s
 
 #### metrics.interval
 
-> `integer` | Default: `30`
+> `number` | Default: `30`
 
 Interval in seconds to push data to the Amazon CloudWatch.
 
-#### options.logs
+#### options.logs\*
 
 > `object`
 

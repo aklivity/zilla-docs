@@ -161,6 +161,10 @@ const main = async () => {
                     props.push(...getObjProps(k, properties, required))
                 );
 
+            if (i.then?.properties && Object.keys(i.then.properties).length) {
+                props.push(...getObjProps(k, i.then.properties, i.then.required));
+            }
+
             //collect
             if (!i) return
             var req = !!reqKeys?.includes(k);
@@ -307,7 +311,7 @@ const main = async () => {
             name: fi.properties.type.const,
             props: {
                 ...(exporterProps?.properties || {}),
-                ...(then.properties || {}),
+                ...Object.fromEntries(Object.entries(then.properties || {}).filter(([, v]) => v !== true)),
                 anyOf: [...(then.anyOf || [])],
             },
             required: [...(exporterProps?.required || []), ...(then.required || [])],

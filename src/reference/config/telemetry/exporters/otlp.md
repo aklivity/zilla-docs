@@ -27,6 +27,12 @@ exporters:
 
 ## Configuration (\* required)
 
+### vault
+
+> `string`
+
+Vault name.
+
 ### options\*
 
 > `object`
@@ -70,7 +76,7 @@ Specifies the protocol to use for exporting data for exporting data to the [OTEL
 
 #### endpoint.location\*
 
-> `string`
+> `string` | Pattern: `^https?://`
 
 The URI for the collector endpoint.
 
@@ -91,3 +97,47 @@ The `logs` signal endpoint URI.
 > `string` | Default: `/v1/metrics`
 
 The `metrics` signal endpoint URI.
+
+### options.tls
+
+> `object`
+
+TLS configuration for the endpoint connection.
+
+#### tls.trust
+
+> `array` of `string`
+
+Keys in the vault referenced on the binding (e.g. a filesystem vault for a local pkcs12 keystore
+or an AWS vault for remote pem format certificates stored in AWS secrets manager).
+
+#### tls.keys
+
+> `array` of `string`
+
+Keys in the vault referenced on the binding for client certificate authentication.
+
+#### tls.trustcacerts
+
+> `boolean`
+
+Specifies if the CA certs should be trusted.
+
+### options.credentials
+
+> `object`
+
+Credentials configuration for the endpoint connection.
+
+#### credentials.headers
+
+> `object`
+
+Map of header name to header value.
+
+#### headers.authorization
+
+> `string`
+
+The value for the `Authorization` header.
+

@@ -26,6 +26,12 @@ exporters:
 
 ## Configuration (\* required)
 
+### vault
+
+> `string`
+
+Vault name.
+
 ### options
 
 > `object`
