@@ -19,3 +19,11 @@ exporters:
     type: stdout
 ```
 
+## Configuration (\* required)
+
+### vault
+
+> `string`
+
+Vault name.
+
