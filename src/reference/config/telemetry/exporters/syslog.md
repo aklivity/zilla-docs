@@ -107,7 +107,8 @@ The protocol to use to communicate with the syslog server.
 
 > `array` of `string`
 
-Keys in the vault referenced on the exporter. Only valid if the protocol is `tls`.
+Keys in the vault referenced on the binding (e.g. a filesystem vault for a local pkcs12 keystore
+or an AWS vault for remote pem format certificates stored in AWS secrets manager). Only valid if the protocol is `tls`.
 
 #### options.trustcacerts
 
