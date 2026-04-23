@@ -1,34 +1,3 @@
-
-### catalog
-
-> `object` as map of named `array`
-
-To map defined catalog for schema retrieval based on catalog specific parameters.
-
-#### catalog[].id\*
-
-> `integer`
-
-Define specific schema id to refer from catalog.
-
-#### catalog[].strategy\*
-
-> `enum` [ `topic` ]
-
-To determine the subject based on the specified strategy.
-
-#### catalog[].version
-
-> `string` | Default: `latest`
-
-Specific iteration or version of a registered schema in the defined catalog.
-
-#### catalog[].subject\*
-
-> `string`
-
-Unique identifier for schema categorization in the catalog.
-
 ### options\*
 
 > `object`
@@ -194,7 +163,7 @@ Enforce validation for key.
 
 > `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the topic's key.
+A schema or type to validate the topic's key. Refer to the individual [model](../../models/) docs for type specific implementation.
 
 #### topics[].value
 
@@ -206,7 +175,37 @@ Enforce validation for value.
 
 > `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the topic's value.
+A schema or type to validate the topic's value. Refer to the individual [model](../../models/) docs for type specific implementation.
+
+##### catalog
+
+> `object` as map of named `array`
+
+To map defined catalog for schema retrieval based on catalog specific parameters. Required when `model` is `avro`, `json`, or `protobuf`.
+
+###### catalog[].id\*
+
+> `integer`
+
+Define specific schema id to refer from catalog.
+
+###### catalog[].strategy\*
+
+> `enum` [ `topic` ]
+
+To determine the subject based on the specified strategy.
+
+###### catalog[].version
+
+> `string` | Default: `latest`
+
+Specific iteration or version of a registered schema in the defined catalog.
+
+###### catalog[].subject\*
+
+> `string`
+
+Unique identifier for schema categorization in the catalog.
 
 #### topics[].limit
 
