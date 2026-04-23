@@ -179,4 +179,5 @@ routes:
     exit: asyncapi_client
 ```
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

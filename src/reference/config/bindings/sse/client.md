@@ -15,4 +15,5 @@ The sse client binding converts outbound `see` request-response streams into `ht
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

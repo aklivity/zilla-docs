@@ -19,3 +19,5 @@ The pgsql `client` binding receives inbound application streams and route throug
 ```yaml
 exit: pgsql_tcp_client
 ```
+<!-- @include: ../.partials/entry.md -->
+<!-- @include: ../.partials/telemetry.md -->

@@ -16,4 +16,5 @@ Behaves as a web server when combined with `tcp,` `tls`, `http` and `filesystem`
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

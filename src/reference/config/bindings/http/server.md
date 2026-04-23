@@ -149,4 +149,5 @@ authorization:
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

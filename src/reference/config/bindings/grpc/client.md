@@ -14,4 +14,5 @@ The grpc client binding adapts `grpc` request-response streams to `http` request
 
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ./.partials/routes.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-grpc.md -->

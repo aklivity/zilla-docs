@@ -1,6 +1,6 @@
-### routes\*
+### routes
 
-> `array` of `object`
+> `array`
 
 Conditional `risingwave` specific routes.
 
@@ -18,7 +18,7 @@ routes:
 
 #### routes[].when
 
-> `array` of `object`
+> `array`
 
 List of conditions (any match) to match this route when adapting `risingwave` request-response streams.
 Read more: [When a route matches](/concepts/protocol/README.md#route-matches)
@@ -32,9 +32,13 @@ routes:
 
 #### when[].commands
 
-> `array` of `string`
+> `array` of `enum` [ `CREATE TOPIC`, `ALTER TOPIC`, `DROP TOPIC` ]
 
-> `enum` [ `CREATE TOPIC`, `ALTER TOPIC`, `DROP TOPIC` ]
+#### routes[].guarded
+
+> `object` as map of named `array` of `string`
+
+List of roles required by each named guard to authorize this route.
 
 #### routes[].exit
 

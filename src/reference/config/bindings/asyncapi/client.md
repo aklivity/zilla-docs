@@ -166,4 +166,5 @@ The TLS specific options.
 <!-- @include: ../.partials/options-tls.md -->
 
 <!-- @include: ./.partials/routes.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

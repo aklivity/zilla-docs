@@ -12,7 +12,7 @@ The pgsql-kafka proxy binding for adapting `pgsql` request-response streams to `
 
 ## Configuration (\* required)
 
-<!-- @include: ./.partials/cataloged.md -->
+<!-- @include: ../.partials/cataloged.md -->
 
 ### exit
 
@@ -21,3 +21,5 @@ The pgsql-kafka proxy binding for adapting `pgsql` request-response streams to `
 ```yaml
 exit: pgsql_tcp_client
 ```
+<!-- @include: ../.partials/entry.md -->
+<!-- @include: ../.partials/telemetry.md -->

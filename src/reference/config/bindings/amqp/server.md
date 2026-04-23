@@ -18,4 +18,5 @@ Read how to [enable incubator features](/deployment/configure-zilla/incubator-fe
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

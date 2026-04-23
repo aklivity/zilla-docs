@@ -12,7 +12,15 @@ The risingwave proxy binding for adapting `risingwave` request-response streams.
 
 ## Configuration (\* required)
 
+<!-- @include: ../.partials/cataloged.md -->
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 
-<!-- @include: ../.partials/exit.md -->
+### exit\*
+
+> `string`
+
+Default exit binding when no conditional routes are viable.
+
+<!-- @include: ../.partials/entry.md -->
+<!-- @include: ../.partials/telemetry.md -->

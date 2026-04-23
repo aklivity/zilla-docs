@@ -14,4 +14,5 @@ The tcp client binding receives inbound application streams and initiates outbou
 
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

@@ -15,4 +15,5 @@ The mqtt-kafka proxy binding for adapting MQTT topic streams to Kafka topic stre
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

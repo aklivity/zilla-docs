@@ -13,4 +13,5 @@ The filesystem server binding provides access to files and directories on the lo
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

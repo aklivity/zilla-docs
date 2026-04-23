@@ -15,4 +15,5 @@ The tls proxy binding detects `ClientHello` `server_name` extension to provide T
 <!-- @include: ../.partials/vault.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

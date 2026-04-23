@@ -15,4 +15,5 @@ The sse server binding converts inbound `http` request-response streams into `ss
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

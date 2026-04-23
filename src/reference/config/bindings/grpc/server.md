@@ -24,6 +24,18 @@ catalog:
     - subject: http
 ```
 
+#### catalog[].id\*
+
+> `integer`
+
+Define specific schema id to refer from catalog.
+
+#### catalog[].strategy\*
+
+> `enum` [ `topic` ]
+
+To determine the subject based on the specified strategy.
+
 #### catalog[].subject\*
 
 > `string`
@@ -39,4 +51,5 @@ Specific iteration or version of a registered schema in the defined catalog.
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ./.partials/routes.md -->
+<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-grpc.md -->
