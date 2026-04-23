@@ -50,6 +50,12 @@ exporters:
 
 ## Configuration (\* required)
 
+### vault
+
+> `string`
+
+Vault name. Only applicable if the protocol is `tls`.
+
 ### options
 
 > `object`
@@ -96,3 +102,15 @@ The port of the syslog server.
 > `enum` [ `udp`, `tcp`, `tls` ]
 
 The protocol to use to communicate with the syslog server.
+
+#### options.trust
+
+> `array` of `string`
+
+Keys in the vault referenced on the exporter. Only valid if the protocol is `tls`.
+
+#### options.trustcacerts
+
+> `boolean`
+
+Specifies if the CA certs should be trusted. Only valid if the protocol is `tls`.
