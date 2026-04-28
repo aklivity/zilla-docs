@@ -117,18 +117,6 @@ Authentication mechanism.
 
 Plain authentication mechanism.
 
-#### credentials.username\*
-
-> `string`
-
-Username for authentication.
-
-#### credentials.password\*
-
-> `string`
-
-Password for authentication.
-
 #### credentials.mechanism: scram-sha-256\*
 
 > `const`
@@ -140,6 +128,18 @@ SCRAM-SHA-256 authentication mechanism.
 > `const`
 
 SCRAM-SHA-512 authentication mechanism.
+
+#### credentials.username\*
+
+> `string`
+
+Username for authentication.
+
+#### credentials.password\*
+
+> `string`
+
+Password for authentication.
 
 #### options.topics
 
@@ -163,7 +163,7 @@ Enforce validation for key.
 
 > `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the topic's key. Refer to the individual [model](../../models/) docs for type specific implementation.
+A schema or type to validate the topic's key. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
 #### topics[].value
 
@@ -175,13 +175,13 @@ Enforce validation for value.
 
 > `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
-A schema or type to validate the topic's value. Refer to the individual [model](../../models/) docs for type specific implementation.
+A schema or type to validate the topic's value. Refer to the individual [model](../../../models/) docs for type specific implementation.
 
 ##### catalog
 
 > `object` as map of named `array`
 
-To map defined catalog for schema retrieval based on catalog specific parameters. Required when `model` is `avro`, `json`, or `protobuf`.
+Catalog for schema retrieval. Required when `model` is `avro`, `json`, or `protobuf`. Applies to both key and value models.
 
 ###### catalog[].id\*
 
