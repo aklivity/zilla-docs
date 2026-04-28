@@ -111,24 +111,6 @@ Authorization configuration for internal connections.
 
 Authentication mechanism.
 
-#### credentials.mechanism: plain\*
-
-> `const`
-
-Plain authentication mechanism.
-
-#### credentials.mechanism: scram-sha-256\*
-
-> `const`
-
-SCRAM-SHA-256 authentication mechanism.
-
-#### credentials.mechanism: scram-sha-512\*
-
-> `const`
-
-SCRAM-SHA-512 authentication mechanism.
-
 #### credentials.username\*
 
 > `string`
