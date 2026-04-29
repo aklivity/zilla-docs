@@ -310,8 +310,13 @@ const main = async () => {
             })));
         } else {
             sections.push(...then.properties.kind.enum.map(kind => {
-                const kindThen = then.allOf?.find(({ if: fi }) => fi?.properties?.kind?.const === kind)?.then;
-                const kindProps = kindThen?.properties || {};
+                const matchingThens = then.allOf
+                    ?.filter(({ if: fi }) =>
+                        fi?.properties?.kind?.const === kind ||
+                        fi?.properties?.kind?.enum?.includes(kind))
+                    .map(e => e.then) || [];
+                const kindProps = matchingThens.reduce((acc, t) => ({ ...acc, ...(t?.properties || {}) }), {});
+                const kindThen = matchingThens.find(t => t?.required?.length > 0);
                 return {
                     folder,
                     name: kind,

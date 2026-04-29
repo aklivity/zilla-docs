@@ -1,0 +1,8 @@
+socks_remote_server:
+  type: socks
+  kind: remote_server
+  entry: socks_server
+  routes:
+    - exit: app_server
+      when:
+        - bind: 0.0.0.0:0

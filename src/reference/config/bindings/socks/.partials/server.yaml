@@ -1,0 +1,4 @@
+socks_server:
+  type: socks
+  kind: server
+  exit: tcp_client

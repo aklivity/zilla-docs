@@ -1,0 +1,7 @@
+socks_remote_client:
+  type: socks
+  kind: remote_client
+  entry: socks_client
+  routes:
+    - when:
+        - bind: 0.0.0.0:0

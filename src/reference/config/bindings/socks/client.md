@@ -8,7 +8,6 @@ The socks client binding encodes outbound application streams as SOCKS5 proxy co
 
 ## Configuration (\* required)
 
-<!-- @include: ../.partials/cataloged.md -->
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
