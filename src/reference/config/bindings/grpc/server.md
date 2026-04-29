@@ -24,6 +24,18 @@ catalog:
     - subject: http
 ```
 
+#### catalog[].id\*
+
+> `integer`
+
+Define specific schema id to refer from catalog.
+
+#### catalog[].strategy\*
+
+> `enum` [ `topic` ]
+
+To determine the subject based on the specified strategy.
+
 #### catalog[].subject\*
 
 > `string`

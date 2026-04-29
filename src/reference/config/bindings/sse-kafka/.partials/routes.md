@@ -28,8 +28,6 @@ routes:
         - read:items
 ```
 
-##### Dynamic guarded routes
-
 Dynamic guarded routes allow roles to be evaluated at runtime based on the incoming request.
 
 ```yaml

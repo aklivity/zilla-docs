@@ -76,8 +76,6 @@ routes:
         - read:items
 ```
 
-##### Dynamic guarded routes
-
 Dynamic guarded routes allow roles to be evaluated at runtime based on the incoming HTTP request.
 
 ```yaml
@@ -315,3 +313,9 @@ Kafka reply-to topic name.
 Allows an HTTP response to be retrieved asynchronously.
 
 A `location: <path>` property can be used to define the path where an async result can be fetched, with the `<path>` value optionally referencing route path parameters or the `${correlationId}`.
+
+#### with.correlation-id
+
+> `string`
+
+Correlation ID for request-response correlation.

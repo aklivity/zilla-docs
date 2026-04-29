@@ -146,10 +146,25 @@ const main = async () => {
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(`${k}[]`, properties, required))
                 );
-            i.oneOf?.filter(({ properties }) => !!properties)
-                .forEach(({ properties, required }) =>
-                    props.push(...getObjProps(k, properties, [...(i.required || []), ...(required || [])]))
+            var filteredOneOf = i.oneOf?.filter(({ properties }) => !!properties) || [];
+            if (filteredOneOf.length > 0) {
+                var allKeys = [...new Set(filteredOneOf.flatMap(v => Object.keys(v.properties || {})))];
+                var discKeys = allKeys.filter(pk =>
+                    filteredOneOf.every(v => v.properties?.[pk]?.const !== undefined) &&
+                    new Set(filteredOneOf.map(v => v.properties?.[pk]?.const)).size > 1
                 );
+                var nonDiscSig = v => Object.keys(v.properties || {}).filter(pk => !discKeys.includes(pk)).sort().join(',');
+                var allSameStructure = discKeys.length > 0 && filteredOneOf.every(v => nonDiscSig(v) === nonDiscSig(filteredOneOf[0]));
+                if (allSameStructure) {
+                    var commonProps = Object.fromEntries(Object.entries(filteredOneOf[0].properties || {}).filter(([pk]) => !discKeys.includes(pk)));
+                    var commonReq = (filteredOneOf[0].required || []).filter(r => !discKeys.includes(r));
+                    props.push(...getObjProps(k, commonProps, [...(i.required || []), ...commonReq]));
+                } else {
+                    filteredOneOf.forEach(({ properties, required }) =>
+                        props.push(...getObjProps(k, properties, [...(i.required || []), ...(required || [])]))
+                    );
+                }
+            }
             var oneOfItems = i.oneOf?.filter(({ items }) => items?.length)
                 ?.reduce((a, b) => ([...a, ...b.items]), []);
             if (oneOfItems?.length) {
@@ -222,6 +237,7 @@ const main = async () => {
         guard: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
         vault: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
         catalog: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
+        store: schema.properties.stores.patternProperties[Object.keys(schema.properties.stores.patternProperties)[0]],
     }).map(([section, props]) =>
         props?.allOf?.map(({ if: fi, then }) => ({
             folder: `${section}s`,

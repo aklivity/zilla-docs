@@ -45,6 +45,12 @@ routes:
 
 Path with optional embedded parameter names, such as `/{path}`.
 
+#### when[].method
+
+> `enum` [ `GET`, `PUT`, `POST`, `DELETE`, `HEAD` ]
+
+HTTP method to match.
+
 #### routes[].exit
 
 > `string`
@@ -69,3 +75,9 @@ Filesystem parameters used when adapting `http` data streams into `filesystem` d
 > `string`
 
 Topic name, optionally referencing path parameter such as `${params.path}`.
+
+#### with.directory\*
+
+> `string`
+
+Directory path for the response.
