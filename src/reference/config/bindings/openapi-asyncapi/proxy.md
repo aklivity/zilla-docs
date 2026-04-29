@@ -15,5 +15,4 @@ The openapi-asyncapi proxy binding for adapting `openapi` operations to `asyncap
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

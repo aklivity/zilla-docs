@@ -14,5 +14,4 @@ The proxy client binding receives inbound application streams and encodes each a
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

@@ -14,5 +14,4 @@ The http-kafka proxy binding for adapting `http` request-response streams to `ka
 
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-http.md -->

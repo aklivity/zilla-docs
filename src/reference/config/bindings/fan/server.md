@@ -22,5 +22,4 @@ Default exit binding. When the `exit` is an `echo` server binding, the combinati
 exit: echo_server
 ```
 
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

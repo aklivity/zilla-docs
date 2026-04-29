@@ -14,5 +14,4 @@ The ws server binding converts inbound `http` request-response streams into `ws`
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

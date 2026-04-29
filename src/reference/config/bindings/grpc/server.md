@@ -51,5 +51,4 @@ Specific iteration or version of a registered schema in the defined catalog.
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ./.partials/routes.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-grpc.md -->

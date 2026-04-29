@@ -99,5 +99,4 @@ A schema or type to validate the user-properties content. Refer to the individua
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

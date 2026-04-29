@@ -23,5 +23,4 @@ The `tls` specific options.
 
 <!-- @include: ../.partials/options-tls.md -->
 <!-- @include: ../.partials/vault.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->

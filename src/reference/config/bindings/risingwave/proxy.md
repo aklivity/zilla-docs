@@ -22,5 +22,4 @@ The risingwave proxy binding for adapting `risingwave` request-response streams.
 
 Default exit binding when no conditional routes are viable.
 
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry.md -->
