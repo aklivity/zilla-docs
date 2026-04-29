@@ -237,6 +237,7 @@ const main = async () => {
         guard: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
         vault: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
         catalog: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
+        store: schema.properties.stores.patternProperties[Object.keys(schema.properties.stores.patternProperties)[0]],
     }).map(([section, props]) =>
         props?.allOf?.map(({ if: fi, then }) => ({
             folder: `${section}s`,
