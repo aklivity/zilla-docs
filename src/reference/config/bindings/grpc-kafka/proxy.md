@@ -14,5 +14,4 @@ The grpc-kafka proxy binding adapts `grpc` request-response streams to `kafka` t
 
 <!-- @include: ./.partials/options.md -->
 <!-- @include: ./.partials/routes.md -->
-<!-- @include: ../.partials/entry.md -->
 <!-- @include: ../.partials/telemetry-grpc.md -->
