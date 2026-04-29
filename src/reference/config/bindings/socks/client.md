@@ -1,0 +1,21 @@
+---
+shortTitle: client
+---
+
+# socks client
+
+The socks client binding encodes outbound application streams as SOCKS5 proxy connections to a remote server.
+
+## Configuration (\* required)
+
+<!-- @include: ./.partials/options.md -->
+<!-- @include: ./.partials/routes.md -->
+<!-- @include: ../.partials/exit.md -->
+
+<!-- @include: ../.partials/telemetry.md -->
+
+### telemetry.attributes
+
+> `object` as map of named `string` properties
+
+Telemetry attributes for this binding.
