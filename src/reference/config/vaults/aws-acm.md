@@ -35,6 +35,6 @@ The `aws-acm` specific options.
 
 #### options.revocation
 
-> `enum` [ `crl`, `none` ] | Default `none`
+> `enum` [ `crl` ]
 
 Certificate revocation method.

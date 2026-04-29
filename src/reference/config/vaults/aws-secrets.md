@@ -32,6 +32,18 @@ The `aws-secret` specific options.
 
 #### options.revocation
 
-> `enum` [ `crl`, `none` ] | Default `none`
+> `enum` [ `crl` ]
 
 Certificate revocation method.
+
+#### options.aliases
+
+> `object` as map of named `string` properties
+
+Map of alias names to AWS secret ARNs.
+
+#### options.tags
+
+> `object` as map of named `string` properties
+
+AWS resource tags to apply when creating secrets.
