@@ -107,6 +107,12 @@ Challenge period (seconds).
 
 Claim to extract the user's identity from the token.
 
+#### options.attributes
+
+> `object` as map of named `string` properties
+
+Additional claims to extract from the token as named attributes.
+
 #### options.keys
 
 > `string`, `array` of `object`
