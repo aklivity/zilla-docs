@@ -13,7 +13,7 @@ tag:
 
 Defines a guard with `API Keys` support.
 
-The `api-keys` guard validates requests by matching extracted credentials against a list of API keys fetched from a remote URL. The credential is extracted from the request using the configured `authorization.format` pattern. The keys file is polled periodically and optional HTTP headers can be sent when fetching the file.
+The `api-keys` guard authorizes requests by extracting a key ID and token from the credential string using the `authorization.format` pattern and verifying both against a remotely fetched JSON keys file. The keys file is polled periodically.
 
 ```yaml {2}
 guards:
@@ -22,11 +22,11 @@ guards:
     options:
       authorization:
         format: "{username}:{password}"
-      keys: https://platform.example.com/keys.json
+      keys: https://example.com/keys.json
       interval: 300
       credentials:
         headers:
-          authorization: "Bearer ${{env.PLATFORM_TOKEN}}"
+          authorization: "Bearer token-123"
       attributes:
         identity: sub
         plan_id: plan.id
@@ -44,11 +44,11 @@ The `api-keys` specific options.
 options:
   authorization:
     format: "{username}:{password}"
-  keys: https://platform.example.com/keys.json
+  keys: https://example.com/keys.json
   interval: 300
   credentials:
     headers:
-      authorization: "Bearer ${{env.PLATFORM_TOKEN}}"
+      authorization: "Bearer token-123"
   attributes:
     identity: sub
     plan_id: plan.id
@@ -64,7 +64,7 @@ Defines how to extract the API key from the incoming credential string.
 
 > `string`
 
-Pattern used to parse the credential string. Use `{username}` as the placeholder for the API key value and `{password}` for any accompanying secret.
+Pattern used to parse the credential string.
 
 ```yaml
 options:
@@ -80,7 +80,7 @@ URL of the JSON file listing the valid API keys. The file is fetched on startup 
 
 ```yaml
 options:
-  keys: https://platform.example.com/keys.json
+  keys: https://example.com/keys.json
 ```
 
 #### options.interval
@@ -110,7 +110,7 @@ HTTP headers sent with each request to the keys URL, for example to pass an auth
 options:
   credentials:
     headers:
-      authorization: "Bearer ${{env.PLATFORM_TOKEN}}"
+      authorization: "Bearer token-123"
 ```
 
 #### options.attributes
