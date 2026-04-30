@@ -12,7 +12,7 @@ tag:
 
 # schema-registry Binding
 
-Defines a binding with `schema-registry` protocol support, with `proxy` behavior. The `schema-registry` binding proxies Schema Registry API requests from an external endpoint to an internal schema registry, optionally filtering by cluster ID.
+Defines a binding with `schema-registry` protocol support, with `proxy` behavior. The `schema-registry` binding proxies Schema Registry API requests from an external endpoint to an internal schema registry, optionally using a cluster ID as a namespace prefix on subject names.
 
 ## proxy
 

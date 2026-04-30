@@ -4,7 +4,7 @@ shortTitle: proxy
 
 # schema-registry proxy
 
-The schema-registry proxy binding receives inbound Schema Registry API requests on the external endpoint and forwards them to the internal schema registry endpoint, optionally filtering by cluster ID.
+The schema-registry proxy binding receives inbound Schema Registry API requests on the external endpoint and forwards them to the internal schema registry endpoint. When a `cluster-id` is configured, it is used as a namespace prefix on subject names to isolate schemas per cluster.
 
 ```yaml {3}
 <!-- @include: ./.partials/proxy.yaml -->
@@ -12,53 +12,17 @@ The schema-registry proxy binding receives inbound Schema Registry API requests 
 
 ## Configuration (\* required)
 
-### catalog
-
-> `object` as map of named `array`
-
-To map defined catalog for schema retrieval based on catalog specific parameters.
-
-```yaml
-catalog:
-  my_catalog:
-    - subject: http
-```
-
-#### catalog[].id\*
-
-> `integer`
-
-Define specific schema id to refer from catalog.
-
-#### catalog[].strategy\*
-
-> `enum` [ `topic` ]
-
-To determine the subject based on the specified strategy.
-
-#### catalog[].subject\*
-
-> `string`
-
-Unique identifier for schema categorization in the catalog.
-
-#### catalog[].version
-
-> `string` | Default: `latest`
-
-Specific iteration or version of a registered schema in the defined catalog.
-
 ### options\*
 
 > `object`
 
 The `schema-registry` proxy specific options.
 
-| Property              | Type     | Required | Description                                                                          |
-|-----------------------|----------|----------|--------------------------------------------------------------------------------------|
-| `cluster-id`          | `string` | no       | Cluster ID used to filter schema registry requests to a specific cluster's schemas.  |
-| `external.endpoint`   | `string` | yes      | URL of the external-facing schema registry endpoint.                                 |
-| `internal.endpoint`   | `string` | yes      | URL of the internal schema registry endpoint.                                        |
+| Property            | Type     | Required | Description                                                                                                                                                                                   |
+|---------------------|----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `cluster-id`        | `string` | no       | Namespace prefix applied to subject names when forwarding to the internal registry. External subject `foo` is resolved as `{cluster-id}.foo` internally; the prefix is stripped on responses. |
+| `external.endpoint` | `string` | yes      | URL of the external-facing schema registry endpoint.                                                                                                                                          |
+| `internal.endpoint` | `string` | yes      | URL of the internal schema registry endpoint.                                                                                                                                                 |
 
 ```yaml
 options:
