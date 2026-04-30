@@ -1,0 +1,4 @@
+smux_server:
+  type: smux
+  kind: server
+  exit: app_server

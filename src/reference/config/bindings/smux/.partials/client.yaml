@@ -1,0 +1,4 @@
+smux_client:
+  type: smux
+  kind: client
+  exit: net_client

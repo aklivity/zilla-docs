@@ -182,6 +182,13 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "Smux",
+          icon: "fa-solid fa-shuffle",
+          prefix: "smux",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "Socks",
           icon: "fa-solid fa-socks",
           prefix: "socks",
