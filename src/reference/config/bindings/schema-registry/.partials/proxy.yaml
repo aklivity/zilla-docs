@@ -1,0 +1,9 @@
+schema_registry_proxy:
+  type: schema-registry
+  kind: proxy
+  options:
+    external:
+      endpoint: https://schema-registry.external.net:8082
+    internal:
+      endpoint: http://schema-registry.internal.net:8081
+  exit: tcp_client

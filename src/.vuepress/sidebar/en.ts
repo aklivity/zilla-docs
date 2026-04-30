@@ -168,6 +168,13 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "Schema-Registry",
+          icon: "fa-solid fa-layer-group",
+          prefix: "schema-registry",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "SSE",
           icon: "fa-solid fa-tower-broadcast",
           prefix: "sse",
