@@ -510,7 +510,8 @@
                         "properties": {
                             "type": {
                                 "const": "identity"
-                            }
+                            },
+                            "options": false
                         },
                         "additionalProperties": false
                     }
