@@ -277,6 +277,13 @@ export const enSidebar = sidebar({
       ],
     },
     {
+      text: "Stores",
+      icon: "fa-solid fa-database",
+      prefix: "config/stores/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
       text: "Vaults",
       icon: "fa-solid fa-vault",
       prefix: "config/vaults/",
@@ -982,6 +989,12 @@ export const enSidebar = sidebar({
               text: "Guards",
               icon: "fa-solid fa-shield-halved",
               link: "config/guards/",
+
+            },
+            {
+              text: "Stores",
+              icon: "fa-solid fa-database",
+              link: "config/stores/",
 
             },
             {

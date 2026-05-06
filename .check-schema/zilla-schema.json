@@ -290,6 +290,10 @@
                         "jwt"
                     ]
                 },
+                "store": {
+                    "title": "Store",
+                    "type": "string"
+                },
                 "options": {
                     "title": "Options",
                     "type": "object"
@@ -612,6 +616,8 @@
                     "title": "Type",
                     "type": "string",
                     "enum": [
+                        "hazelcast",
+                        "memory",
                         "redis"
                     ]
                 },
@@ -625,6 +631,100 @@
                 "type"
             ],
             "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "hazelcast"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "hazelcast"
+                            },
+                            "options": {
+                                "properties": {
+                                    "cluster": {
+                                        "title": "Cluster Name",
+                                        "type": "string"
+                                    },
+                                    "addresses": {
+                                        "title": "Member Addresses",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "minItems": 1
+                                    },
+                                    "aws": {
+                                        "title": "AWS EC2 Discovery",
+                                        "type": "object",
+                                        "properties": {
+                                            "region": {
+                                                "title": "AWS Region",
+                                                "type": "string"
+                                            },
+                                            "tag-key": {
+                                                "title": "EC2 Tag Key",
+                                                "type": "string"
+                                            },
+                                            "tag-value": {
+                                                "title": "EC2 Tag Value",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "kubernetes": {
+                                        "title": "Kubernetes Discovery",
+                                        "type": "object",
+                                        "properties": {
+                                            "namespace": {
+                                                "title": "Kubernetes Namespace",
+                                                "type": "string"
+                                            },
+                                            "service-name": {
+                                                "title": "Kubernetes Service Name",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    },
+                                    "default-ttl": {
+                                        "title": "Default TTL",
+                                        "type": "string",
+                                        "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+(\\.\\d+)?S)?$"
+                                    }
+                                },
+                                "required": [
+                                    "cluster"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "options"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "memory"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "memory"
+                            }
+                        }
+                    }
+                },
                 {
                     "if": {
                         "properties": {
@@ -2029,6 +2129,7 @@
                         "kafka",
                         "kafka-grpc",
                         "kafka-proxy",
+                        "mcp",
                         "mqtt",
                         "mqtt-kafka",
                         "openapi",
@@ -4013,6 +4114,16 @@
                                                 "type": "string",
                                                 "pattern": "^[^:]+$"
                                             },
+                                            "radix": {
+                                                "title": "Radix",
+                                                "type": "integer",
+                                                "enum": [
+                                                    10,
+                                                    16,
+                                                    36
+                                                ],
+                                                "default": 16
+                                            },
                                             "authorization": {
                                                 "title": "Authorizations",
                                                 "type": "object",
@@ -4063,6 +4174,16 @@
                                                 "title": "Default",
                                                 "type": "string",
                                                 "pattern": "^[^:]+$"
+                                            },
+                                            "radix": {
+                                                "title": "Radix",
+                                                "type": "integer",
+                                                "enum": [
+                                                    10,
+                                                    16,
+                                                    36
+                                                ],
+                                                "default": 16
                                             },
                                             "authorization": {
                                                 "title": "Authorizations",
@@ -4422,6 +4543,110 @@
                                 ]
                             }
                         ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "mcp"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "type": {
+                                "const": "mcp"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "server",
+                                    "client",
+                                    "proxy"
+                                ]
+                            },
+                            "entry": false,
+                            "options": {
+                                "properties": {
+                                    "prompts": {
+                                        "title": "Local Prompts",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "title": "Prompt Name",
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "title": "Prompt Description",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "name"
+                                            ],
+                                            "additionalProperties": false
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "routes": {
+                                "title": "Routes",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "when": {
+                                            "title": "When",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "toolkit": {
+                                                        "title": "Toolkit",
+                                                        "type": "string"
+                                                    },
+                                                    "capability": {
+                                                        "title": "Capability",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "tools",
+                                                                "prompts",
+                                                                "resources"
+                                                            ]
+                                                        },
+                                                        "minItems": 1,
+                                                        "uniqueItems": true
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "with": {
+                                            "title": "With",
+                                            "type": "object",
+                                            "properties": {
+                                                "headers": {
+                                                    "title": "Headers",
+                                                    "type": "object",
+                                                    "patternProperties": {
+                                                        "^(?!(:method|content-type|mcp-))[A-Za-z0-9:-]+$": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 {
