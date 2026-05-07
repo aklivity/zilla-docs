@@ -20,3 +20,7 @@ guards:
   my_identity_guard:
     type: identity
 ```
+
+## Configuration (\* required)
+
+<!-- @include: ./.partials/store.md -->
