@@ -51,6 +51,12 @@ Port number for external Kafka broker.
 
 Default external hostname.
 
+#### external.radix
+
+> `enum` [ `10`, `16`, `36` ] | Default: `16`
+
+Radix used to encode the broker number in the external hostname pattern.
+
 #### external.authorization
 
 > `object` as map of named `object` properties
@@ -98,6 +104,12 @@ Port number for internal Kafka broker.
 > `string` | Pattern: `^[^:]+$`
 
 Default internal hostname.
+
+#### internal.radix
+
+> `enum` [ `10`, `16`, `36` ] | Default: `16`
+
+Radix used to encode the broker number in the internal hostname pattern.
 
 #### internal.authorization
 
