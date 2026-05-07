@@ -1,0 +1,10 @@
+mcp_proxy:
+  type: mcp
+  kind: proxy
+  routes:
+    - exit: app1
+      when:
+        - toolkit: bluesky
+    - exit: app2
+      when:
+        - toolkit: quartz

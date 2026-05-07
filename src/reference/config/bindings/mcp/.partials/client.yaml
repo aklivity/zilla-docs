@@ -1,0 +1,4 @@
+mcp_client:
+  type: mcp
+  kind: client
+  exit: net_client

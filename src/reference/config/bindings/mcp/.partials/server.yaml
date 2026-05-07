@@ -1,0 +1,4 @@
+mcp_server:
+  type: mcp
+  kind: server
+  exit: mcp_client
