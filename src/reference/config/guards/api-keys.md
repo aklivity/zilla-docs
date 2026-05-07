@@ -34,6 +34,8 @@ guards:
 
 ## Configuration (\* required)
 
+<!-- @include: ./.partials/store.md -->
+
 ### options\*
 
 > `object`
