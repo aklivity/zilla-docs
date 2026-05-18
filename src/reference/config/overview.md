@@ -62,7 +62,7 @@ Bindings are chained from client-facing to server-facing, i.e. the order in whic
 A typical HTTP-Kafka stack looks like:
 
 ```text
-tcp server → tls server → http server → http-kafka proxy → kafka cache_client → kafka cache_server → kafka client
+tcp server → tls server → http server → http-kafka proxy → kafka cache_client → kafka cache_server → kafka client → tls client → tcp client
 ```
 
 #### Protocol Bindings
