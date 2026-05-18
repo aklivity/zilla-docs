@@ -57,7 +57,9 @@ Unconditional `exit` binding acting as a default if none of the conditional rout
 
 #### Typical Pipeline Order
 
-Bindings are chained from outermost to innermost. A typical HTTP-Kafka stack looks like:
+Bindings are chained from client-facing to server-facing, i.e. the order in which a client would encounter them as protocols flow through the pipeline.
+
+A typical HTTP-Kafka stack looks like:
 
 ```text
 tcp server → tls server → http server → http-kafka proxy → kafka cache_client → kafka cache_server → kafka client
