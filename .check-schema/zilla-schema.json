@@ -721,7 +721,8 @@
                         "properties": {
                             "type": {
                                 "const": "memory"
-                            }
+                            },
+                            "options": false
                         }
                     }
                 },
