@@ -13,6 +13,7 @@ The mcp client binding forwards outbound MCP requests to an upstream MCP server.
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
+<!-- @include: ./.partials/options-authorization.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

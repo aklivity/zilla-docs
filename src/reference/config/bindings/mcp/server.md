@@ -13,6 +13,7 @@ The mcp server binding accepts inbound MCP client connections and exposes locall
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
+<!-- @include: ./.partials/options-authorization.md -->
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

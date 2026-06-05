@@ -13,6 +13,7 @@ The mcp proxy binding routes inbound MCP requests to upstream MCP servers based 
 ## Configuration (\* required)
 
 <!-- @include: ./.partials/options.md -->
-<!-- @include: ./.partials/routes.md -->
+<!-- @include: ./.partials/options-cache.md -->
+<!-- @include: ./.partials/routes-proxy.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->

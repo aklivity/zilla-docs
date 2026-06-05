@@ -1,4 +1,11 @@
 mcp_server:
   type: mcp
   kind: server
+  options:
+    prompts:
+      - name: my_prompt
+        description: A helpful prompt.
+    authorization:
+      my_jwt_guard:
+        credentials: scope
   exit: mcp_client

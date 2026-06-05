@@ -1,10 +1,19 @@
 mcp_proxy:
   type: mcp
   kind: proxy
+  options:
+    cache:
+      store: my_redis_store
+      ttl: 5m
   routes:
     - exit: app1
       when:
         - toolkit: bluesky
+          capability:
+            - tools
+      with:
+        headers:
+          x-api-key: secret
     - exit: app2
       when:
         - toolkit: quartz

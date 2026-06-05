@@ -11,6 +11,12 @@ Conditional `mcp` specific routes.
 List of conditions (any match) to match this route.
 Read more: [When a route matches](/concepts/protocol/README.md#route-matches)
 
+#### when[].toolkit\*
+
+> `string`
+
+Toolkit name to match.
+
 #### when[].capability
 
 > `array` of `enum` [ `tools`, `prompts`, `resources` ]
@@ -51,11 +57,8 @@ Next binding when following this route.
 routes:
   - exit: app1
     when:
-      - capability:
-          - tools
+      - toolkit: bluesky
   - exit: app2
     when:
-      - capability:
-          - prompts
-          - resources
+      - toolkit: quartz
 ```
