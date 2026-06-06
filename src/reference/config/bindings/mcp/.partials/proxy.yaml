@@ -11,6 +11,8 @@ mcp_proxy:
         - toolkit: bluesky
           capability:
             - tools
+          tools:
+            - post_*
       with:
         headers:
           x-api-key: secret
