@@ -6,7 +6,7 @@ Cache configuration for upstream MCP responses, backed by a referenced store bin
 
 ```yaml
 cache:
-  store: my_store
+  store: my_memory_store
   ttl: 5m
   authorization:
     my_jwt_guard:
