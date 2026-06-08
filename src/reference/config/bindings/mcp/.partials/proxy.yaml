@@ -3,7 +3,7 @@ mcp_proxy:
   kind: proxy
   options:
     cache:
-      store: my_redis_store
+      store: my_store
       ttl: 5m
   routes:
     - exit: app1
