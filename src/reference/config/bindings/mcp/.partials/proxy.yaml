@@ -13,9 +13,6 @@ mcp_proxy:
             - tools
           tools:
             - post_*
-      with:
-        headers:
-          x-api-key: secret
     - exit: app2
       when:
         - toolkit: quartz

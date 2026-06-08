@@ -47,12 +47,6 @@ Glob patterns of resource URIs to expose, where `*` matches any sequence of char
 
 Route with override configuration.
 
-#### with.headers
-
-> `object` as map of named `string` properties
-
-HTTP headers to add or override when forwarding requests.
-
 #### with.cache
 
 > `object`

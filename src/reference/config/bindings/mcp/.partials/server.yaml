@@ -2,9 +2,8 @@ mcp_server:
   type: mcp
   kind: server
   options:
-    prompts:
-      - name: my_prompt
-        description: A helpful prompt.
+    elicitation:
+      callback: auth/callback
     authorization:
       my_jwt_guard:
         credentials: scope

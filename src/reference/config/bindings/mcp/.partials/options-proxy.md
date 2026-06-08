@@ -1,17 +1,21 @@
+### options
+
+> `object`
+
+The `proxy` kind `mcp` specific options.
+
+```yaml
+options:
+  cache:
+    store: my_store
+    ttl: 5m
+```
+
 #### options.cache
 
 > `object`
 
 Cache configuration for upstream MCP responses, backed by a referenced store binding.
-
-```yaml
-cache:
-  store: my_store
-  ttl: 5m
-  authorization:
-    my_jwt_guard:
-      credentials: scope
-```
 
 #### cache.store\*
 
