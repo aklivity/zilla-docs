@@ -109,7 +109,7 @@ Converter validating the `tools/call` `arguments` before the upstream `http` req
 
 Model name used to convert and validate the value, such as `json`.
 
-#### input.catalog\*
+#### input.catalog
 
 > `object` as map of named `array`
 

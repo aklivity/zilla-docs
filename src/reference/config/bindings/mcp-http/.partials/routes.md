@@ -71,7 +71,7 @@ Tool name to match, referencing an entry in [`options.tools`](#options-tools).
 
 Resource name to match, referencing an entry in [`options.resources`](#options-resources).
 
-#### routes[].with\*
+#### routes[].with
 
 > `object`
 
