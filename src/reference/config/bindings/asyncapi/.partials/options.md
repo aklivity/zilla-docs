@@ -107,3 +107,15 @@ Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`
 > `object` as map of named `string` properties
 
 Named query parameter value pattern with `{credentials}`.
+
+#### options.mqtt
+
+> `object`
+
+The mqtt specific options applied to the generated [mqtt](../../mqtt/server.md) server, using the same shape as the mqtt binding `options`.
+
+#### mqtt.store
+
+> `string`
+
+The name of a configured [store](../../../stores/memory.md) used to coordinate MQTT session ownership for the generated mqtt server. When omitted, a default store is generated for the server; reference an external or cluster-wide store to share session ownership across Zilla instances.
