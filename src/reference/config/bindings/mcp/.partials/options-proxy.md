@@ -40,3 +40,9 @@ Authorization by a named guard used when refreshing cached entries.
 > `string`
 
 Credentials used by the named guard when refreshing cached entries.
+
+#### options.tools
+
+> `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+
+Validation model applied to `tools/call` request arguments. Refer to the individual [model](../../../models/) docs for type specific implementation.
