@@ -1,4 +1,10 @@
 mcp_server:
   type: mcp
   kind: server
+  options:
+    elicitation:
+      callback: auth/callback
+    authorization:
+      my_jwt_guard:
+        credentials: scope
   exit: mcp_client

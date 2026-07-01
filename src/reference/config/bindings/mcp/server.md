@@ -4,7 +4,7 @@ shortTitle: server
 
 # mcp server
 
-The mcp server binding accepts inbound MCP client connections and exposes locally defined prompts alongside any capabilities routed to upstream MCP servers.
+The mcp server binding accepts inbound MCP client connections, handling authorization and elicitation before forwarding to the exit binding.
 
 ```yaml {3}
 <!-- @include: ./.partials/server.yaml -->
@@ -12,7 +12,7 @@ The mcp server binding accepts inbound MCP client connections and exposes locall
 
 ## Configuration (\* required)
 
-<!-- @include: ./.partials/options.md -->
-<!-- @include: ./.partials/routes.md -->
+<!-- @include: ./.partials/options-server.md -->
+<!-- @include: ./.partials/options-authorization.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->
