@@ -118,6 +118,13 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "MCP-HTTP",
+          icon: "fa-solid fa-robot",
+          prefix: "mcp-http",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "MQTT",
           icon: "fa-solid fa-wifi",
           prefix: "mqtt",
