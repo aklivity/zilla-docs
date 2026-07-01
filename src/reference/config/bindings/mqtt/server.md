@@ -12,7 +12,7 @@ The mqtt server binding decodes the MQTT protocol on the inbound network stream,
 
 ## Configuration (\* required)
 
-### options
+### options\*
 
 > `object`
 
@@ -20,6 +20,7 @@ The `server` specific options.
 
 ```yaml
 options:
+  store: my_store
   authorization:
     my_jwt_guard:
       credentials:
@@ -31,6 +32,17 @@ options:
 ```
 
 <!-- @include: ./.partials/options.md -->
+
+#### options.store\*
+
+> `string`
+
+The name of a configured [store](../../stores/memory.md) used to coordinate MQTT session ownership across connections and Zilla instances. Required for the `server` kind.
+
+```yaml
+options:
+  store: my_store
+```
 
 #### options.authorization
 

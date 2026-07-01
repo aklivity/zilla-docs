@@ -2,6 +2,7 @@
     type: mqtt
     kind: server
     options:
+      store: my_store
       authorization:
         my_jwt_guard:
           credentials:
