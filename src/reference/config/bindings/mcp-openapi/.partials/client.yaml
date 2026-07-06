@@ -24,3 +24,6 @@ mcp_openapi_client:
       with:
         spec: github
         operation: read_order
+    - with:
+        spec: github
+        tag: issues

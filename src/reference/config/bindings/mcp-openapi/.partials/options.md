@@ -67,13 +67,13 @@ Maps each OpenAPI `securityScheme` name declared by the specification to the nam
 
 > `object` as map of named `object`
 
-Overrides for MCP tools generated from routed OpenAPI operations. The named key is the tool name, matching either a route's [`when[].tool`](#whentool) or, when a route declares no `when`, the routed [`operation`](#with-operation) id.
+Overrides for MCP tools generated from routed OpenAPI operations. The named key is the tool name — either an explicit route's [`when[].tool`](#when-tool), or the automatic name assigned to a bulk-selected operation (see [`routes`](#routes)).
 
 #### tools.description
 
 > `string`
 
-Tool description surfaced to MCP clients by `tools/list`, overriding the OpenAPI operation summary.
+Tool description surfaced to MCP clients by `tools/list`, overriding the OpenAPI operation's own `description`, which is itself the fallback before the operation id.
 
 #### tools.schemas
 
