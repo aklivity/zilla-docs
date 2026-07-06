@@ -4,7 +4,7 @@ shortTitle: proxy
 
 # mcp-http proxy
 
-The `mcp_http` proxy binding accepts `mcp` streams and produces `http` streams, terminating `tools/list`, `resources/list`, and `prompts/list` from configuration, expanding `tools/call` and `resources/read` into upstream `http` requests, and rendering `prompts/get` from configured message templates.
+The `mcp_http` proxy binding accepts `mcp` streams and produces `http` streams, terminating `tools/list` and `resources/list` from configuration, and expanding `tools/call` and `resources/read` into upstream `http` requests.
 
 ```yaml {3}
 <!-- @include: ./.partials/proxy.yaml -->

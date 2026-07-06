@@ -9,7 +9,7 @@ tag:
 
 # mcp-http Binding
 
-The `proxy` kind `mcp_http` binding accepts `mcp` streams and produces `http` streams. It terminates `tools/list`, `resources/list`, and `prompts/list` from configuration, expands `tools/call` and `resources/read` into upstream `http` requests, and renders `prompts/get` from configured message templates.
+The `proxy` kind `mcp_http` binding accepts `mcp` streams and produces `http` streams. It terminates `tools/list` and `resources/list` from configuration, and expands `tools/call` and `resources/read` into upstream `http` requests.
 
 ## proxy
 

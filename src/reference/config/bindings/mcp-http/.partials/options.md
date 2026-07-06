@@ -40,16 +40,6 @@ options:
             my_catalog:
               - subject: order_result
                 version: latest
-  prompts:
-    summarize:
-      description: Summarize a document about a topic
-      arguments:
-        - name: topic
-          description: The topic to summarize
-          required: true
-      messages:
-        - role: user
-          text: "Please summarize the document about ${args.topic}."
 ```
 
 #### options.authorization
@@ -170,57 +160,3 @@ JSON schema converter for the resource.
 
 Converter validating and projecting the upstream `http` response, surfaced as the resource `contents`. Uses the same shape as [`schemas.input`](#schemas-input).
 <!-- markdownlint-enable MD024 -->
-
-#### options.prompts
-
-> `object` as map of named `object`
-
-MCP prompts served locally by this binding. The named key is the prompt name surfaced to MCP clients by `prompts/list` and matched by `prompts/get`. A `prompts/get` request renders the messages locally with no upstream `http` request.
-
-#### prompts.description
-
-> `string`
-
-Prompt description surfaced to MCP clients by `prompts/list`.
-
-#### prompts.arguments
-
-> `array` of `object`
-
-Arguments accepted by the prompt, surfaced to MCP clients by `prompts/list` and supplied on `prompts/get`.
-
-#### arguments[].name\*
-
-> `string`
-
-Argument name, referenced from a message template as `${args.name}`.
-
-#### arguments[].description
-
-> `string`
-
-Argument description surfaced to MCP clients.
-
-#### arguments[].required
-
-> `boolean` | Default: `false`
-
-Whether the argument must be supplied on `prompts/get`.
-
-#### prompts.messages\*
-
-> `array` of `object`
-
-Message templates rendered and returned by `prompts/get`.
-
-#### messages[].role\*
-
-> `enum` [ `user`, `assistant` ]
-
-Role of the rendered message.
-
-#### messages[].text\*
-
-> `string`
-
-Message text template. Supports `${args.x}` interpolation, where `x` references a prompt argument supplied on `prompts/get`.
