@@ -98,8 +98,34 @@ with:
 
 HTTP request headers for the upstream request, including the pseudo-headers `:method`, `:scheme`, `:authority`, and `:path`. Values support interpolation.
 
-- `${args.x}` Replaced with property `x` of the `tools/call` arguments.
+- `${args.x}` Replaced with property `x` of the `tools/call` arguments. `x` may be dotted to reference a nested property, such as `${args.repository.owner}`.
 - `${params.x}` Replaced with capture `x` from the matched resource [`uri`](#resources-uri).
+
+Every header other than `:path` is omitted from the upstream request entirely when a referenced property or capture is absent, rather than being sent with an empty value.
+
+The `:path` pseudo-header resolves differently: a referenced property or capture that is absent resolves to an empty string rather than omitting the header, since `:path` is always required. To omit an individual query parameter instead, mark its fragment as optional with `${?args.x=name}` (or `${?params.x=name}`) in place of a literal `name=${args.x}` pair — the whole `name=value` fragment, including its separator, is dropped when `x` is absent.
+
+```yaml
+with:
+  headers:
+    ":method": GET
+    ":scheme": https
+    ":authority": api.github.com
+    ":path": /items?q=${args.q}&${?args.limit=limit}
+```
+
+#### with.cookies
+
+> `object` as map of named `string`
+
+Cookie name/value pairs aggregated into a single `Cookie` header on the upstream request. Values support the same `${args.x}` and `${params.x}` interpolation as [`with.headers`](#with-headers). A cookie whose referenced property or capture is absent is dropped from the aggregate on its own; the `Cookie` header itself is omitted only when every configured cookie is absent.
+
+```yaml
+with:
+  cookies:
+    session: ${args.sessionId}
+    locale: ${params.locale}
+```
 
 #### with.query
 
@@ -129,7 +155,7 @@ with:
 
 > `object` as map of named `string`
 
-Explicit request body, mapping each body property to an interpolated value. Supports `${args.x}` interpolation, where `x` references a property of the `tools/call` arguments. Use a template to rename or restructure arguments before dispatch.
+Explicit request body, mapping each body property to an interpolated value. Supports `${args.x}` interpolation, where `x` references a property of the `tools/call` arguments; `x` may be dotted to reference a nested property, such as `${args.pr.branch}`. Use a template to rename or restructure arguments, including flattening nested arguments, before dispatch.
 
 ```yaml
 with:

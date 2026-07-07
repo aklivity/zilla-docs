@@ -127,19 +127,19 @@ Converter validating and projecting the upstream `http` response, surfaced as th
 
 > `object` as map of named `object`
 
-MCP resources terminated by this binding and expanded into `http` requests. The named key is the resource name surfaced to MCP clients by `resources/list` and matched by `resources/read`.
+MCP resources terminated by this binding and expanded into `http` requests. The named key is the resource name surfaced to MCP clients by `resources/list` or `resources/templates/list`, and matched by `resources/read`.
 
 #### resources.uri\*
 
 > `string`
 
-Resource URI template surfaced by `resources/list`, with optional embedded capture names, such as `order://{orderId}`. Captured values are referenced from a route as `${params.x}`.
+Resource URI, with optional embedded capture names, such as `order://{orderId}`. A URI with no captures is a concrete resource surfaced by `resources/list`; a URI with one or more captures is a resource template surfaced by `resources/templates/list` instead. Captured values are referenced from a route as `${params.x}`.
 
 #### resources.description
 
 > `string`
 
-Resource description surfaced to MCP clients by `resources/list`.
+Resource description surfaced to MCP clients by `resources/list` or `resources/templates/list`.
 
 #### resources.mimeType
 
