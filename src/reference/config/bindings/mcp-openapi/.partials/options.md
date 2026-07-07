@@ -18,13 +18,22 @@ options:
   tools:
     create_pr:
       description: Create a pull request to merge one branch into another.
-      schemas:
-        output:
-          model: json
-          catalog:
-            my_catalog:
-              - subject: create_pr_result
-                version: latest
+      summary: "Created pull request #${result.number}"
+      input:
+        model: json
+        catalog:
+          my_catalog:
+            - subject: create_pr_input
+              version: latest
+      output:
+        model: json
+        catalog:
+          my_catalog:
+            - subject: create_pr_result
+              version: latest
+  resources:
+    read_order:
+      description: Read a customer order by id.
 ```
 
 #### options.specs
@@ -75,25 +84,34 @@ Overrides for MCP tools generated from routed OpenAPI operations. The named key 
 
 Tool description surfaced to MCP clients by `tools/list`, overriding the OpenAPI operation's own `description`, which is itself the fallback before the operation id.
 
-#### tools.schemas
+#### tools.summary
+
+> `string`
+
+Result summary template surfaced as the tool-call text result, overriding the OpenAPI operation's own `summary`, which is itself the fallback before a generic literal naming the operation. Supports `${result.x}` interpolation, where `x` references a property of the upstream JSON response.
+
+#### tools.input
 
 > `object`
 
-JSON schema converter override for the tool.
+Model overriding the schema generated from the OpenAPI operation's parameters and request body, used to validate the `tools/call` `arguments` before the upstream `http` request is dispatched.
 
-#### schemas.output
+```yaml
+input:
+  model: json
+  catalog:
+    my_catalog:
+      - subject: create_pr_input
+        version: latest
+```
 
-> `object`
-
-Converter validating and projecting the upstream `http` response, surfaced as the tool-call `structuredContent`, overriding the schema generated from the OpenAPI operation's success response. A converter binds a `model` to a registered `catalog` subject.
-
-#### output.model\*
+#### input.model\*
 
 > `string`
 
 Model name used to convert and validate the value, such as `json`.
 
-#### output.catalog
+#### input.catalog
 
 > `object` as map of named `array`
 
@@ -110,3 +128,27 @@ Subject name identifying the schema in the named catalog.
 > `string` | Default: `latest`
 
 Specific version of the registered schema.
+
+#### tools.output
+
+> `object`
+
+Model overriding the schema generated from the OpenAPI operation's success response, surfaced as the tool-call `structuredContent`. Uses the same shape as [`tools.input`](#tools-input).
+
+#### options.resources
+
+> `object` as map of named `object`
+
+Overrides for MCP resources generated from routed OpenAPI operations. The named key is the resource identifier used by a route's [`when[].resource`](#when-resource) — not the URI ultimately surfaced by `resources/list`, which is derived from the OpenAPI path.
+
+#### resources.description
+
+> `string`
+
+Resource description surfaced to MCP clients by `resources/list`, overriding the OpenAPI operation's own `description`, which is itself the fallback before the operation id.
+
+#### resources.output
+
+> `object`
+
+Model overriding the schema generated from the OpenAPI operation's success response, surfaced as the resource `contents`. Uses the same shape as [`tools.input`](#tools-input).

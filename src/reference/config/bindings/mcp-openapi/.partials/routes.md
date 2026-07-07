@@ -52,7 +52,11 @@ Tool name surfaced to MCP clients by `tools/list` and matched by `tools/call`, n
 
 > `string`
 
-Resource name surfaced to MCP clients by `resources/list` and matched by `resources/read`, naming the explicit OpenAPI operation routed by [`with.operation`](#with-operation). Not allowed on a bulk route.
+Resource identifier matched by `resources/read`, naming the explicit OpenAPI operation routed by [`with.operation`](#with-operation). Not allowed on a bulk route.
+
+::: info Resource vs. resource template
+An operation whose OpenAPI path contains a `{param}` capture is surfaced as a resource template through `resources/templates/list`. Otherwise it is a concrete resource surfaced through `resources/list`, with any query parameters appended to its URI as an RFC 6570 `{?name1,name2}` suffix rather than disqualifying it from being concrete.
+:::
 
 #### when[].capability
 
@@ -98,3 +102,34 @@ Exact OpenAPI `operationId` to route, or a `*` glob pattern matching many operat
 > `string`
 
 OpenAPI tag to bulk-select every operation carrying it, within the named [`spec`](#with-spec). Cannot be combined with [`operation`](#with-operation).
+
+#### with.params
+
+> `object` as map of named `string`
+
+Rebinds an OpenAPI path, query, header, or cookie parameter to a different expression than its default `${args.name}` (tool) or `${params.name}` (resource) passthrough. The named key is the OpenAPI parameter name; the value is the replacement expression, with or without the surrounding `${ }`. Applies to every operation matched by the route, so it works the same on a bulk route as on an explicit one.
+
+```yaml
+with:
+  spec: github
+  operation: create_pr
+  params:
+    owner: ${args.repository.owner}
+    repo: ${args.repository.name}
+```
+
+#### with.body
+
+> `object` as map of named `string`
+
+Explicit upstream request body, mapping each body property to an interpolated value, in place of the schema generated from the OpenAPI operation's request body. Supports `${args.x}` interpolation, where `x` references a property of the `tools/call` arguments. Use a template to rename or restructure arguments before dispatch.
+
+```yaml
+with:
+  spec: github
+  operation: create_pr
+  body:
+    title: ${args.title}
+    head: ${args.pr.branch}
+    base: ${args.pr.target}
+```
