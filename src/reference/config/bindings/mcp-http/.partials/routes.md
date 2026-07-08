@@ -36,28 +36,43 @@ routes:
 
 > `object` as map of named `array` of `string`
 
-Roles required by the named guard. When a guarded route matches, the MCP session must be authorized for the listed roles, otherwise the stream is rejected.
+Roles required by the named guard. When a route with [`with`](#routes-with) matches, the MCP session must be authorized for the listed roles on every applicable route, otherwise the stream is rejected.
+
+A route may omit both [`when`](#routes-when) and `with` to act as a guard-only layer, applying its `guarded` roles globally across every tool and resource rather than mapping to an upstream request. Combine a global guard-only layer with a route-specific one by giving the guard-only layer a single `when` condition instead of omitting `when`. Roles from every applicable layer — the matched mapping route plus any global or scoped guard-only layers — must all authorize.
 
 ```yaml
 routes:
   - guarded:
       my_guard:
+        - read
+  - when:
+      - tool: create_pr
+    exit: http_client
+    guarded:
+      my_guard:
         - pr:write
+    with:
+      headers:
+        ":method": POST
+        ":scheme": https
+        ":authority": api.github.com
+        ":path": /repos/${args.owner}/${args.repo}/pulls
 ```
 
 #### routes[].when
 
 > `array` of `object`
 
-List of conditions (any match) to match this route.
+At most one condition to match this route. A route with [`with`](#routes-with) requires exactly one `when` condition, mapping one tool or resource to an upstream request; a route without `with` may omit `when` entirely to guard every tool and resource, or give exactly one condition to scope the guard to a single tool or resource.
 Read more: [When a route matches](/concepts/protocol/README.md#route-matches)
 
 ```yaml
 routes:
   - when:
       - tool: create_pr
-      - resource: order
 ```
+
+Each condition specifies exactly one of `tool` or `resource`, never both.
 
 #### when[].tool
 
