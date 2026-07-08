@@ -2,7 +2,7 @@
 
 > `object` as map of named `object` properties
 
-Authorization by a named guard, used to validate inbound MCP requests. When configured, every request must carry an `Authorization` header matching the [`credentials`](#authorization-credentials) template, otherwise the session is rejected with a `401` response and a `WWW-Authenticate` challenge.
+Authorization by a named guard, used to validate inbound MCP requests. A request with no `Authorization` header is admitted as unauthorized, matching how an unauthenticated request reaches an unguarded route elsewhere in Zilla; a request whose `Authorization` header is present but does not match the [`credentials`](#authorization-credentials) template, or whose extracted credentials the guard rejects, is rejected outright with a `401` response and a `WWW-Authenticate` challenge.
 
 ```yaml
 authorization:

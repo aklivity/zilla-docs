@@ -41,6 +41,79 @@ Authorization by a named guard used when refreshing cached entries.
 
 Credentials used by the named guard when refreshing cached entries.
 
+#### cache.tools
+
+> `object`
+
+Tool-related cache configuration.
+
+#### tools.search
+
+> `object`
+
+Agent-callable tool search over cached tools, ranked by relevance to a natural language query. Injects a synthetic tool into `tools/list` responses that answers matching `tools/call` requests directly from the cache instead of routing to an upstream MCP server.
+
+```yaml
+tools:
+  search:
+    tool: zilla__search_tools
+```
+
+#### search.tool\*
+
+> `string`
+
+Name of the synthetic tool injected into `tools/list`, callable with a `query` argument to search cached tools by relevance.
+
+#### search.limit
+
+> `integer` | Default: `5`
+
+Maximum number of matching tools returned, further capped by any `max_results` argument in the request.
+
+#### search.fields
+
+> `array` of `enum` [ `name`, `description`, `output-schema` ] | Default: `[ name, description ]`
+
+Tool fields indexed for ranking.
+
+#### search.weights
+
+> `object` as map of named `number`
+
+Per-field weight multiplier applied to term frequency during ranking. Keys reference entries in [`fields`](#search-fields).
+
+#### search.type
+
+> `enum` [ `keyword` ]
+
+Shorthand for a single ranking backend with no backend-specific fields. Mutually exclusive with [`index`](#search-index).
+
+```yaml
+search:
+  tool: zilla__search_tools
+  type: keyword
+```
+
+#### search.index
+
+> `array` of `object`
+
+One or more ranking backends, fused by reciprocal rank when more than one is configured. Mutually exclusive with [`type`](#search-type).
+
+```yaml
+search:
+  tool: zilla__search_tools
+  index:
+    - type: keyword
+```
+
+#### index[].type\*
+
+> `enum` [ `keyword` ]
+
+Ranking backend. Only `keyword` (BM25 ranking over the configured fields) is available.
+
 #### options.tools
 
 > `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
