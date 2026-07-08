@@ -9,8 +9,6 @@ mcp_proxy:
     - exit: app1
       when:
         - toolkit: bluesky
-          capability:
-            - tools
           tools:
             - post_*
     - exit: app2
