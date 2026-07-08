@@ -56,7 +56,7 @@ options:
 
 > `object` as map of named `object`
 
-Guard credentials to inject into the upstream `http` request. The named key references a [guard](../../guards/README.md) defined elsewhere in the configuration. At most one guard may be referenced.
+Guard credentials to inject into the upstream `http` request. The named key references a [guard](/concepts/security/guard/README.md) defined elsewhere in the configuration. At most one guard may be referenced.
 
 #### authorization.credentials
 
