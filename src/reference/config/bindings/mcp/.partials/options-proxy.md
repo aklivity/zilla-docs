@@ -51,19 +51,23 @@ Tool-related cache configuration.
 
 > `object`
 
-Agent-callable tool search over cached tools, ranked by relevance to a natural language query. Injects a synthetic tool into `tools/list` responses that answers matching `tools/call` requests directly from the cache instead of routing to an upstream MCP server.
+Agent-callable tool search over cached tools. Injects three synthetic tools into `tools/list` responses, each answering its `tools/call` requests directly from the cache instead of routing to an upstream MCP server:
+
+- `search_tools` ranks cached tools by relevance to a natural-language `query` argument and returns name and description matches.
+- `describe_tool` resolves the full cached definition, including input and output schema, of a tool named exactly as returned by `search_tools`.
+- `execute_tool` invokes a tool by name exactly as `tools/call` would, once its schema is known via `describe_tool`.
 
 ```yaml
 tools:
   search:
-    tool: zilla__search_tools
+    toolkit: zilla
 ```
 
-#### search.tool\*
+#### search.toolkit
 
 > `string`
 
-Name of the synthetic tool injected into `tools/list`, callable with a `query` argument to search cached tools by relevance.
+Optional `toolkit__` prefix applied to the three synthetic tool names (`search_tools`, `describe_tool`, `execute_tool`), matching the naming convention used for proxied tools. When omitted, the tools are exposed unprefixed.
 
 #### search.limit
 
@@ -91,7 +95,7 @@ Shorthand for a single ranking backend with no backend-specific fields. Mutually
 
 ```yaml
 search:
-  tool: zilla__search_tools
+  toolkit: zilla
   type: keyword
 ```
 
@@ -103,7 +107,7 @@ One or more ranking backends, fused by reciprocal rank when more than one is con
 
 ```yaml
 search:
-  tool: zilla__search_tools
+  toolkit: zilla
   index:
     - type: keyword
 ```
