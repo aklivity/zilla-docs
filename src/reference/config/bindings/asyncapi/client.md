@@ -4,7 +4,7 @@ shortTitle: client
 
 # asyncapi client
 
-The asyncapi client binding creates composite of `kafka` or `mqtt` or `http`, and `tls`, `tcp` bindings with client kind and adapts AsyncAPI streams to Kafka/MQTT/HTTP streams.
+The asyncapi client binding creates composite of `kafka` or `mqtt` or `http` or `sse`, and `tls`, `tcp` bindings with client kind and adapts AsyncAPI streams to Kafka/MQTT/HTTP/SSE streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->
@@ -24,7 +24,7 @@ The `client` specific options.
 specs:
   http_api:
     servers:
-      - name: plain
+      - host: localhost:8080
     catalog:
       my_catalog:
         subject: petstore
@@ -65,15 +65,15 @@ SASL credentials to use when connecting to `kafka` brokers.
 
 ### options.mqtt-kafka
 
-> `object`
+> `object` | Default: below
 
 The `mqtt-kafka` binding specific options.
 
 #### mqtt-kafka.channels
 
-> `object`
+> `object` | Default: below
 
-AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping.
+AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping. When `mqtt-kafka` is omitted, the channels default as shown below.
 
 ```yaml
 mqtt-kafka:
@@ -85,7 +85,7 @@ mqtt-kafka:
 
 #### channels.sessions
 
-> `string`
+> `string` | Default: `mqttSessions`
 
 AsyncAPI Kafka sessions channel.
 
@@ -95,7 +95,7 @@ sessions: mqttSessions
 
 #### channels.retained
 
-> `string`
+> `string` | Default: `mqttRetained`
 
 AsyncAPI Kafka retained channel.
 
@@ -105,7 +105,7 @@ retained: mqttRetained
 
 #### channels.messages
 
-> `string`
+> `string` | Default: `mqttMessages`
 
 AsyncAPI Kafka messages channel.
 

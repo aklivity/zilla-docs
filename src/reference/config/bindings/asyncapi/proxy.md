@@ -4,7 +4,7 @@ shortTitle: proxy
 
 # asyncapi proxy
 
-The asyncapi proxy binding creates composite of `mqtt-kafka` binding with proxy kind mapping MQTT streams to Kafka streams.
+The asyncapi proxy binding creates composite of `http-kafka`, `sse-kafka`, or `mqtt-kafka` bindings with proxy kind mapping HTTP/SSE/MQTT streams to Kafka streams.
 
 ```yaml
 <!-- @include: ./.partials/proxy.yaml -->
@@ -24,7 +24,7 @@ The `proxy` specific options.
 specs:
   http_api:
     servers:
-      - name: plain
+      - host: localhost:8080
     catalog:
       my_catalog:
         subject: petstore
@@ -65,15 +65,15 @@ SASL credentials to use when connecting to `kafka` brokers.
 
 ### options.mqtt-kafka
 
-> `object`
+> `object` | Default: below
 
 The `mqtt-kafka` binding specific options.
 
 #### mqtt-kafka.channels
 
-> `object`
+> `object` | Default: below
 
-AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping.
+AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping. When `mqtt-kafka` is omitted, the channels default as shown below.
 
 ```yaml
 mqtt-kafka:
@@ -85,7 +85,7 @@ mqtt-kafka:
 
 #### channels.sessions
 
-> `string`
+> `string` | Default: `mqttSessions`
 
 AsyncAPI Kafka sessions channel.
 
@@ -95,7 +95,7 @@ sessions: mqttSessions
 
 #### channels.retained
 
-> `string`
+> `string` | Default: `mqttRetained`
 
 AsyncAPI Kafka retained channel.
 
@@ -105,7 +105,7 @@ retained: mqttRetained
 
 #### channels.messages
 
-> `string`
+> `string` | Default: `mqttMessages`
 
 AsyncAPI Kafka messages channel.
 

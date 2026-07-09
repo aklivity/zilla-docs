@@ -48,7 +48,7 @@ The servers to match from the schema that are used when defining endpoints.
 
 #### servers[].url
 
-> `string` | Pattern: `^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$`
+> `string`
 
 The server url to match in openapi spec
 
