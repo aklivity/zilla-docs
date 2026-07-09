@@ -114,6 +114,33 @@ search:
 
 Ranking backend. Only `keyword` (BM25 ranking over the configured fields) is available.
 
+#### tools.eager
+
+> `object`
+
+Eager/cold partitioning of cached tools in `tools/list` responses, applied after per-session scope filtering. Cold tools are annotated `defer_loading: true` when no [tool search](#tools-search) is configured, or omitted from `tools/list` entirely — reachable only through search results — when one is.
+
+```yaml
+tools:
+  eager:
+    policy: explicit
+    match:
+      - github__list_repos
+      - "slack__*"
+```
+
+#### eager.policy
+
+> `enum` [ `none`, `all`, `explicit` ] | Default: `none`
+
+Which cached tools are eager. `none` marks every tool cold, `all` marks every tool eager, and `explicit` marks only tools matching [`match`](#eager-match) eager.
+
+#### eager.match
+
+> `array` of `string`
+
+Glob patterns of tool names admitted to the eager set, where `*` matches any sequence of characters. Required when `policy` is `explicit`; not allowed for any other policy.
+
 #### options.tools
 
 > `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`

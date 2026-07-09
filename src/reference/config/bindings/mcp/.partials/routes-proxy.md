@@ -64,7 +64,7 @@ Cache override configuration for this route.
 
 > `string`
 
-Credentials used by the named guard when populating the cache for this route.
+Credentials used by the named guard when populating the cache for this route. When omitted, falls back to [`options.cache.authorization`](#cache-authorization)'s credentials.
 
 #### routes[].exit
 
