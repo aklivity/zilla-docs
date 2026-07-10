@@ -28,6 +28,19 @@ routes:
 Routes are evaluated in order, and the first route to claim an operation removes it from consideration by every later route. A bulk-selected operation not given an explicit name is named after its `operationId` converted to `snake_case`, falling back to a slug of its method and path when the id is absent or already taken, then a numeric suffix on any further collision.
 :::
 
+#### routes[].guarded
+
+> `object` as map of named `array` of `string`
+
+Additional roles required by the named guard, independent of any guard already resolved from the OpenAPI operation's own `security` requirement (see [`specs.security`](#specs-security)). Roles for the same guard are unioned into one entry; roles naming a different guard add a separate entry that must also authorize.
+
+```yaml
+routes:
+  - guarded:
+      my_guard:
+        - pr:write
+```
+
 #### routes[].when
 
 > `array` of `object`
