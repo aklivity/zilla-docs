@@ -40,6 +40,34 @@ Subject name used when storing the catalog artifact.
 
 Catalog artifact version to use.
 
+#### specs.overlay
+
+> `object` as map of named `object` properties
+
+An [OpenAPI Overlay Specification](https://spec.openapis.org/overlay/v1.0.0.html) document,
+resolved the same way as `catalog`, whose actions are applied to the spec document before it
+is parsed. Use this to patch a spec that comes from a source you cannot edit directly, such as
+a schema registry.
+
+```yaml
+overlay:
+  my_catalog:
+    subject: petstore-overlay
+    version: latest
+```
+
+#### overlay.subject\*
+
+> `string`
+
+Subject name used when storing the overlay artifact.
+
+#### overlay.version
+
+> `string` | Default: `latest`
+
+Overlay artifact version to use.
+
 #### specs.servers
 
 > `array` of `object`
