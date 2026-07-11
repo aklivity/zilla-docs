@@ -4,11 +4,8 @@
     options:
       specs:
         my-kafka-api-spec:
+          server: kafka://localhost:9092
           catalog:
             my_catalog:
               subject: petstore
               version: latest
-      tcp:
-        host: localhost
-        port:
-          - 9092

@@ -22,11 +22,23 @@ Subject name used when storing the catalog artifact.
 
 Specific iteration or version of a registered schema in the defined catalog.
 
+#### specs.server
+
+> `string`
+
+Deployment-target URL override for every server declared in the spec document. Composes as a path-prefix on top of each document-declared server, rather than replacing it outright.
+
+```yaml
+specs:
+  mqtt_api:
+    server: mqtt://broker.internal:1883
+```
+
 #### specs.servers
 
 > `array` of `object`
 
-The servers to match from the schema that are used when defining endpoints.
+Additional servers to match from the schema that are used when defining endpoints.
 
 #### servers[].url
 
@@ -46,23 +58,18 @@ The server to match based on the server's `host` in an asyncapi `3.x` spec only.
 
 The server pathname to match based on the server's `pathname` in an asyncapi `3.x` spec only.
 
-#### options.tcp
+#### specs.security
 
-> `object`
+> `object` as map of named `string` properties
 
-TCP options to connect to an external client.
+Maps each AsyncAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
 
-#### tcp.host
-
-> `string`
-
-Hostname or IP address.
-
-#### tcp.port
-
-> `integer`, `string`, `array`
-
-Port number(s), including port number ranges.
+```yaml
+specs:
+  mqtt_api:
+    security:
+      bearerAuth: my_jwt_guard
+```
 
 #### options.http
 

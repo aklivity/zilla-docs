@@ -22,6 +22,43 @@ options:
 
 The `specs` specific options.
 
+#### specs.server
+
+> `string`
+
+Deployment-target URL override for every server declared in the spec document. Composes as a path-prefix on top of each document-declared server, rather than replacing it outright.
+
+```yaml
+specs:
+  petstore:
+    server: http://backend.internal:9090
+```
+
+#### specs.servers
+
+> `array` of `object`
+
+Additional servers to match from the schema that are used when defining endpoints. When omitted, every server declared in the spec document is used.
+
+#### servers[].url
+
+> `string`
+
+The server url to match in openapi spec
+
+#### specs.security
+
+> `object` as map of named `string` properties
+
+Maps each OpenAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
+
+```yaml
+specs:
+  petstore:
+    security:
+      bearerAuth: my_jwt_guard
+```
+
 #### specs.catalog
 
 > `object` as map of named `object` properties
@@ -39,18 +76,6 @@ Subject name used when storing the catalog artifact.
 > `string` | Default: `latest`
 
 Catalog artifact version to use.
-
-#### specs.servers
-
-> `array` of `object`
-
-The servers to match from the schema that are used when defining endpoints.
-
-#### servers[].url
-
-> `string`
-
-The server url to match in openapi spec
 
 #### options.http
 

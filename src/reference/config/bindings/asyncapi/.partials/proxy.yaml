@@ -20,16 +20,16 @@
           messages: mqttMessages
     routes:
       - when:
-          - api-id: my-mqtt-api-spec
-            operation-id: sendEvents
+          - spec: my-mqtt-api-spec
+            operation: sendEvents
         exit: asyncapi_client
         with:
-          api-id: my-kafka-api-spec
-          operation-id: toSensorData
+          spec: my-kafka-api-spec
+          operation: toSensorData
       - when:
-          - api-id: my-mqtt-api-spec
-            operation-id: receiveEvents
+          - spec: my-mqtt-api-spec
+            operation: receiveEvents
         exit: asyncapi_client
         with:
-          api-id: my-kafka-api-spec
-          operation-id: onSensorData
+          spec: my-kafka-api-spec
+          operation: onSensorData

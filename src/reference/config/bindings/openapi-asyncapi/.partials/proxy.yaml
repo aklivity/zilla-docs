@@ -17,7 +17,7 @@
                   version: latest
     routes:
       - when:
-          - api-id: my-openapi-spec
+          - spec: my-openapi-spec
         exit: asyncapi_client
         with:
-          api-id: my-asyncapi-spec
+          spec: my-asyncapi-spec

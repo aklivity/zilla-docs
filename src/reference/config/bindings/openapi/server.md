@@ -23,5 +23,6 @@ The openapi server binding creates composite of `tcp`, `tls`, and `http` binding
 The `tls` specific options.
 
 <!-- @include: ../.partials/options-tls.md -->
+<!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/exit.md -->
 <!-- @include: ../.partials/telemetry.md -->
