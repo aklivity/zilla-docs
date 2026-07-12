@@ -34,30 +34,6 @@ specs:
     server: mqtt://broker.internal:1883
 ```
 
-#### specs.servers
-
-> `array` of `object`
-
-Additional servers to match from the schema that are used when defining endpoints.
-
-#### servers[].url
-
-> `string` | Pattern: `^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$`
-
-The server to match based on the server's `url` in an asyncapi `2.x` spec only.
-
-#### servers[].host
-
-> `string` | Pattern: `^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$`
-
-The server to match based on the server's `host` in an asyncapi `3.x` spec only.
-
-#### servers[].pathname
-
-> `string`
-
-The server pathname to match based on the server's `pathname` in an asyncapi `3.x` spec only.
-
 #### specs.security
 
 > `object` as map of named `string` properties
@@ -70,6 +46,49 @@ specs:
     security:
       bearerAuth: my_jwt_guard
 ```
+
+#### specs.store
+
+> `string`
+
+The name of a configured [store](../../../stores/memory.md) used to coordinate MQTT session ownership for the generated mqtt server. When omitted, a default store is generated for the server; reference an external or cluster-wide store to share session ownership across Zilla instances.
+
+```yaml
+specs:
+  mqtt_api:
+    store: mqtt_sessions
+```
+
+#### specs.overlay
+
+> `object` as map of named `object` properties
+
+Applies an [OpenAPI Overlay Specification](https://github.com/OAI/Overlay-Specification) document, stored as a catalog artifact, to the base spec document before it is used. A single overlay may be configured per spec.
+
+```yaml
+specs:
+  mqtt_api:
+    catalog:
+      my_catalog:
+        subject: smartylighting
+        version: latest
+    overlay:
+      my_catalog:
+        subject: smartylighting-overlay
+        version: latest
+```
+
+#### overlay.subject\*
+
+> `string`
+
+Subject name used when storing the overlay artifact.
+
+#### overlay.version
+
+> `string` | Default: `latest`
+
+Overlay artifact version to use.
 
 #### options.http
 
@@ -120,9 +139,3 @@ Named query parameter value pattern with `{credentials}`.
 > `object`
 
 The mqtt specific options applied to the generated [mqtt](../../mqtt/server.md) server, using the same shape as the mqtt binding `options`.
-
-#### mqtt.store
-
-> `string`
-
-The name of a configured [store](../../../stores/memory.md) used to coordinate MQTT session ownership for the generated mqtt server. When omitted, a default store is generated for the server; reference an external or cluster-wide store to share session ownership across Zilla instances.

@@ -23,8 +23,7 @@ The `server` specific options.
 ```yaml
 specs:
   http_api:
-    servers:
-      - host: localhost:8080
+    server: http://localhost:8080
     catalog:
       my_catalog:
         subject: petstore
@@ -59,58 +58,35 @@ Fetch offset to use for new consumers
 
 > `object`
 
-SASL credentials to use when connecting to `kafka` brokers.
+SASL credentials to use when connecting to `kafka` brokers. Deprecated in favor of `kafka.authorization`.
 
 <!-- @include: ../.partials/options-kafka-sasl.md -->
 
-### options.mqtt-kafka
+#### kafka.authorization
 
-> `object` | Default: below
+> `object` as map of named `object` properties
 
-The `mqtt-kafka` binding specific options.
-
-#### mqtt-kafka.channels
-
-> `object` | Default: below
-
-AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping. When `mqtt-kafka` is omitted, the channels default as shown below.
+Credentials to use when connecting to `kafka` brokers, keyed by an arbitrary name. At most one named entry may be configured.
 
 ```yaml
-mqtt-kafka:
-  channels:
-    sessions: mqttSessions
-    retained: mqttRetained
-    messages: mqttMessages
+authorization:
+  broker0:
+    credentials:
+      mechanism: scram-sha-256
+      username: my-username
+      password: my-password
 ```
 
-#### channels.sessions
+<!-- @include: ../.partials/options-kafka-authorization.md -->
 
-> `string` | Default: `mqttSessions`
-
-AsyncAPI Kafka sessions channel.
+For the `mqtt-kafka` mapping, the Kafka topic role of each `mqtt-kafka` channel (`sessions`, `messages`, `retained`) is declared directly in the AsyncAPI spec document via that channel's `x-zilla-mqtt-kafka` binding, rather than as a `zilla.yaml` option:
 
 ```yaml
-sessions: mqttSessions
-```
-
-#### channels.retained
-
-> `string` | Default: `mqttRetained`
-
-AsyncAPI Kafka retained channel.
-
-```yaml
-retained: mqttRetained
-```
-
-#### channels.messages
-
-> `string` | Default: `mqttMessages`
-
-AsyncAPI Kafka messages channel.
-
-```yaml
-messages: mqttMessages
+channels:
+  mqttSessions:
+    address: mqtt-sessions
+    x-zilla-mqtt-kafka:
+      role: sessions
 ```
 
 ### options.http

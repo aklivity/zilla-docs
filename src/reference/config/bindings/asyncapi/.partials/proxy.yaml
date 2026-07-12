@@ -13,11 +13,6 @@
             my_catalog:
               subject: kafka-streetlights
               version: latest
-      mqtt-kafka:
-        channels:
-          sessions: mqttSessions
-          retained: mqttRetained
-          messages: mqttMessages
     routes:
       - when:
           - spec: my-mqtt-api-spec

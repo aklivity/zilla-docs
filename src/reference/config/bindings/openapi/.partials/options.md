@@ -8,8 +8,6 @@ The `openapi` specific options.
 options:
     specs:
       petstore:
-        servers:
-          - url: http://localhost:9090
         catalog:
           my_catalog:
             subject: petstore
@@ -33,18 +31,6 @@ specs:
   petstore:
     server: http://backend.internal:9090
 ```
-
-#### specs.servers
-
-> `array` of `object`
-
-Additional servers to match from the schema that are used when defining endpoints. When omitted, every server declared in the spec document is used.
-
-#### servers[].url
-
-> `string`
-
-The server url to match in openapi spec
 
 #### specs.security
 
@@ -76,6 +62,37 @@ Subject name used when storing the catalog artifact.
 > `string` | Default: `latest`
 
 Catalog artifact version to use.
+
+#### specs.overlay
+
+> `object` as map of named `object` properties
+
+Applies an [OpenAPI Overlay Specification](https://github.com/OAI/Overlay-Specification) document, stored as a catalog artifact, to the base spec document before it is used. A single overlay may be configured per spec.
+
+```yaml
+specs:
+  petstore:
+    catalog:
+      my_catalog:
+        subject: petstore
+        version: latest
+    overlay:
+      my_catalog:
+        subject: petstore-overlay
+        version: latest
+```
+
+#### overlay.subject\*
+
+> `string`
+
+Subject name used when storing the overlay artifact.
+
+#### overlay.version
+
+> `string` | Default: `latest`
+
+Overlay artifact version to use.
 
 #### options.http
 
@@ -120,21 +137,3 @@ Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`
 > `object` as map of named `string` properties
 
 Named query parameter value pattern with `{credentials}`.
-
-#### options.tcp
-
-> `object`
-
-TCP options to connect to an external client.
-
-#### tcp.host
-
-> `string`
-
-Hostname or IP address.
-
-#### tcp.port
-
-> `integer`, `string`, `array`
-
-Port number(s), including port number ranges.

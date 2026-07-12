@@ -47,6 +47,24 @@ OpenAPI spec label that matches the resolved specification for the `openapi` bin
 
 OpenAPI operationId that matches from the `openapi` binding request stream.
 
+#### when[].tag
+
+> `string`
+
+Matches when the resolved OpenAPI operation declares this tag.
+
+#### when[].servers
+
+> `array` of `object`
+
+Matches when the resolved OpenAPI server for the request is one of these servers.
+
+#### servers[].url
+
+> `string`
+
+Server url to match.
+
 #### routes[].exit
 
 > `string`
