@@ -8,6 +8,8 @@ The `openapi` specific options.
 options:
     specs:
       petstore:
+        servers:
+          - http://localhost:9090
         catalog:
           my_catalog:
             subject: petstore
@@ -20,23 +22,24 @@ options:
 
 The `specs` specific options.
 
-#### specs.server
+#### specs.servers\*
 
-> `string`
+> `array` of `string`
 
-Deployment-target URL override for every server declared in the spec document. Composes as a path-prefix on top of each document-declared server, rather than replacing it outright.
+Deployment-target URLs for the spec, independent of the servers declared in the spec document itself. At least one is required.
 
 ```yaml
 specs:
   petstore:
-    server: http://backend.internal:9090
+    servers:
+      - http://backend.internal:9090
 ```
 
 #### specs.security
 
-> `object` as map of named `string` properties
+> `object` as map of named `string` properties, at most one entry
 
-Maps each OpenAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
+Maps an OpenAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite, and to synthesize the matching credential-extraction pattern for the generated `http` binding from the scheme's own declared type — an `http`/`bearer` scheme extracts an `Authorization: Bearer {credentials}` header; an `apiKey` scheme extracts from whichever `header`, `query`, or `cookie` location and parameter name the scheme declares. No separate authorization configuration is needed.
 
 ```yaml
 specs:
@@ -93,47 +96,3 @@ Subject name used when storing the overlay artifact.
 > `string` | Default: `latest`
 
 Overlay artifact version to use.
-
-#### options.http
-
-> `object`
-
-The http specific options.
-
-#### http.authorization
-
-> `object` as map of named `object` properties
-
-Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
-
-```yaml
-authorization:
-  my_jwt_guard:
-    credentials:
-      headers:
-        authorization: Bearer {credentials}
-```
-
-#### authorization.credentials\*
-
-> `object`
-
-Defines how to extract credentials from the HTTP request.
-
-#### credentials.cookies
-
-> `object` as map of named `string` properties
-
-Named cookie value pattern with `{credentials}`.
-
-#### credentials.headers
-
-> `object` as map of named `string` properties
-
-Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
-
-#### credentials.query\*
-
-> `object` as map of named `string` properties
-
-Named query parameter value pattern with `{credentials}`.

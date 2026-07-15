@@ -53,9 +53,9 @@ Catalog artifact version to use.
 
 #### openapi.security
 
-> `object` as map of named `string` properties
+> `object` as map of named `string` properties, at most one entry
 
-Maps each OpenAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
+Maps an OpenAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
 
 ```yaml
 specs:
@@ -120,20 +120,6 @@ Subject name used when storing the catalog artifact.
 
 Catalog artifact version to use.
 <!-- markdownlint-enable MD024 -->
-
-#### asyncapi.security
-
-> `object` as map of named `string` properties
-
-Maps each AsyncAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
-
-```yaml
-specs:
-  asyncapi:
-    my-asyncapi-spec:
-      security:
-        bearerAuth: my_jwt_guard
-```
 
 #### asyncapi.overlay
 

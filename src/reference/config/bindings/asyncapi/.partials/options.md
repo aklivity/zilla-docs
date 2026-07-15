@@ -22,23 +22,28 @@ Subject name used when storing the catalog artifact.
 
 Specific iteration or version of a registered schema in the defined catalog.
 
-#### specs.server
+#### specs.servers\*
 
-> `string`
+> `array` of `string`
 
-Deployment-target URL override for every server declared in the spec document. Composes as a path-prefix on top of each document-declared server, rather than replacing it outright.
+Deployment-target URLs for the spec, independent of the servers declared in the spec document itself. At least one is required.
 
 ```yaml
 specs:
   mqtt_api:
-    server: mqtt://broker.internal:1883
+    servers:
+      - mqtt://broker.internal:1883
 ```
 
 #### specs.security
 
 > `object` as map of named `string` properties
 
-Maps each AsyncAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
+Maps AsyncAPI `securitySchemes` names declared in the spec document to guards defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite, and to synthesize the matching credential-extraction pattern for whichever protocol binding is generated (`http`, `mqtt`, or `kafka`), from each scheme's own declared type — no separate authorization configuration is needed:
+
+- An `http`/`bearer` or `httpApiKey` scheme synthesizes HTTP `Authorization` header, query parameter, or cookie extraction, matching the scheme's declared location.
+- A generic `apiKey` scheme with `in: user` or `in: password` synthesizes the MQTT CONNECT username/password extraction — declare one scheme per property, both mapped to the same guard, to supply both.
+- A `plain`, `scramSha256`, or `scramSha512` scheme synthesizes Kafka SASL credentials using the matching mechanism.
 
 ```yaml
 specs:
@@ -89,53 +94,3 @@ Subject name used when storing the overlay artifact.
 > `string` | Default: `latest`
 
 Overlay artifact version to use.
-
-#### options.http
-
-> `object`
-
-The http specific options.
-
-#### http.authorization
-
-> `object` as map of named `object` properties
-
-Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
-
-```yaml
-authorization:
-  jwt:
-    credentials:
-      headers:
-        authorization: Bearer {credentials}
-```
-
-#### authorization.credentials\*
-
-> `object`
-
-Defines how to extract credentials from the HTTP request.
-
-#### credentials.cookies
-
-> `object` as map of named `string` properties
-
-Named cookie value pattern with `{credentials}`.
-
-#### credentials.headers
-
-> `object` as map of named `string` properties
-
-Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
-
-#### credentials.query\*
-
-> `object` as map of named `string` properties
-
-Named query parameter value pattern with `{credentials}`.
-
-#### options.mqtt
-
-> `object`
-
-The mqtt specific options applied to the generated [mqtt](../../mqtt/server.md) server, using the same shape as the mqtt binding `options`.

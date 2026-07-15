@@ -4,7 +4,8 @@
     options:
       specs:
         petstore:
-          server: http://localhost:9090
+          servers:
+            - http://localhost:9090
           catalog:
             my_catalog:
               subject: petstore

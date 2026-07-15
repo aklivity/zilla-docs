@@ -4,11 +4,15 @@
     options:
       specs:
         my-mqtt-api-spec:
+          servers:
+            - mqtt://localhost:1883
           catalog:
             my_catalog:
               subject: mqtt-streetlights
               version: latest
         my-kafka-api-spec:
+          servers:
+            - kafka://localhost:9092
           catalog:
             my_catalog:
               subject: kafka-streetlights
