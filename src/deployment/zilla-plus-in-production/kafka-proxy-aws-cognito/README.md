@@ -38,7 +38,7 @@ This guide deploys that pattern as a Zilla Plus service on AWS ECS Fargate.
 
 ## Zilla Configuration
 
-Point `internal` at your Kafka cluster's per-broker hostname pattern, not a single bootstrap connection string (`#` stands in for the broker number, matching the per-broker names returned in Metadata responses), and configure an [`aws-secrets`](/reference/config/vaults/aws-secrets.md) vault referencing your real certificate's secret ARN. Add whatever internal auth your cluster requires: SASL/SCRAM or `plain` via `internal.authorization.credentials`, or mutual TLS via the `internal` vault. See [`kafka-proxy`](/reference/config/bindings/kafka-proxy/README.md) for the full set of options:
+Point `internal` at your Kafka cluster's per-broker hostname pattern, not a single bootstrap connection string (`#` stands in for the broker number, matching the per-broker names returned in Metadata responses), and configure an [`aws-secrets`](/reference/config/vaults/aws-secrets.md) vault referencing your real certificate's secret ARN.
 
 ```yaml {3-9,25-38}
 ---
