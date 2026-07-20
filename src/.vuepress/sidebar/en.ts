@@ -900,7 +900,7 @@ export const enSidebar = sidebar({
 
             },
             {
-              text: "Per-Client Topic Routing",
+              text: "Dynamic Topic Aliases",
               icon: "fa-solid fa-diagram-project",
               prefix: "kafka-proxy-aws-cognito/",
               link: "kafka-proxy-aws-cognito/README.md",
