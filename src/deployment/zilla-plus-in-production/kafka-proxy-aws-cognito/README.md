@@ -169,13 +169,7 @@ Use the same [`ecsTaskRole`/`ecsTaskExecutionRole`](../zilla-plus-on-aws-ecs-far
 
 ## Provision Each Client's Kafka Topic
 
-With `auto.create.topics.enable` disabled, each client's dedicated internal topic (`messages-<client_id>`) must exist before that client can produce or fetch. Provision it as part of onboarding the client, the same time you create their Cognito app client:
-
-```bash
-kafka-topics.sh --bootstrap-server <your-msk-bootstrap-broker> \
-  --create --if-not-exists --topic "messages-<client_id>" \
-  --partitions 1 --replication-factor 3
-```
+Using the `client_id` noted when you created their Cognito app client, create each client's dedicated topic (`messages-<client_id>`) when onboarding the client, from somewhere with network access to the MSK cluster, or via the [Amazon MSK console](https://console.aws.amazon.com/msk/)'s Topics tab.
 
 ## Verify
 
@@ -206,15 +200,25 @@ echo "hello from client A" | kafka-console-producer.sh \
   --producer.config client.properties \
   --producer-property sasl.oauthbearer.token.endpoint.url="https://<your-domain>.auth.<region>.amazoncognito.com/oauth2/token" \
   --producer-property sasl.jaas.config="org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required clientId=\"<client-a-id>\" clientSecret=\"<client-a-secret>\" scope=\"<resource-server>/<scope>\";"
+
+echo "hello from client B" | kafka-console-producer.sh \
+  --bootstrap-server <your-deployed-endpoint>:9094 \
+  --topic messages \
+  --producer.config client.properties \
+  --producer-property sasl.oauthbearer.token.endpoint.url="https://<your-domain>.auth.<region>.amazoncognito.com/oauth2/token" \
+  --producer-property sasl.jaas.config="org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required clientId=\"<client-b-id>\" clientSecret=\"<client-b-secret>\" scope=\"<resource-server>/<scope>\";"
 ```
 
-Connecting directly to the internal broker (bypassing Zilla) confirms each client's message landed in its own dedicated topic, suffixed with that client's Cognito `client_id`:
+Fetch the same external `messages` topic back through Zilla's external listener, once per client, using each client's own credentials:
 
 ```bash
 kafka-console-consumer.sh \
-  --bootstrap-server <your-msk-bootstrap-broker> \
-  --topic "messages-<client-a-id>" \
-  --from-beginning --timeout-ms 15000
+  --bootstrap-server <your-deployed-endpoint>:9094 \
+  --topic messages \
+  --partition 0 --from-beginning --timeout-ms 15000 \
+  --consumer.config client.properties \
+  --consumer-property sasl.oauthbearer.token.endpoint.url="https://<your-domain>.auth.<region>.amazoncognito.com/oauth2/token" \
+  --consumer-property sasl.jaas.config="org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required clientId=\"<client-a-id>\" clientSecret=\"<client-a-secret>\" scope=\"<resource-server>/<scope>\";"
 ```
 
-Confirm two different clients' messages land in two different internal topics, and that neither client can address the other's internal topic externally. Both only ever address the same external `messages` topic name, with the rewrite happening entirely inside Zilla, keyed off the identity established during the SASL/OAUTHBEARER handshake.
+Confirm client A's fetch returns only `hello from client A`, and repeating with client B's credentials returns only `hello from client B`. Both clients address the same external `messages` topic name; Zilla rewrites each to its own dedicated internal topic based on the identity established during the SASL/OAUTHBEARER handshake, so neither client ever sees the other's message.

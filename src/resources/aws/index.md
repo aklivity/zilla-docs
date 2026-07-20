@@ -9,6 +9,9 @@
 ## Identity & Access Management
 - [Create IAM Role](create-iam-role.md)
 
+## Amazon Cognito
+- [Provision an AWS Cognito User Pool](provision-aws-cognito-user-pool.md)
+
 ## Compute & Networking
 - [Create Key Pair](create-key-pair.md)
 - [Create VPC](create-vpc.md)
