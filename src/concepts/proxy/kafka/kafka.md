@@ -31,9 +31,9 @@ The `kafka-proxy` binding enables dynamic routing by forwarding Kafka messages t
 
 To ensure secure communication, `kafka-proxy` integrates with TLS encryption and terminates external client authentication over SASL, supporting both `PLAIN` and `OAUTHBEARER` mechanisms. Pairing `OAUTHBEARER` with a [guard](/concepts/security/guard/README.md), such as [`jwt`](/reference/config/guards/jwt.md) or [`aws-cognito`](/concepts/security/guard/aws-cognito/README.md), lets external clients authenticate with a bearer token instead of static credentials, and makes the guard's verified identity available to routing.
 
-### Per-Client Topic Aliasing
+### Dynamic Topic Aliasing
 
-A topic's `alias` property rewrites the internal topic name per authenticated client, substituting the identity established by a guard during the external SASL handshake (`${guarded['<guard-name>'].identity}`). This lets many external clients address the same external topic name while each is transparently isolated to its own internal topic, with no per-client configuration in `zilla.yaml`.
+A topic's `alias` property rewrites the internal topic name dynamically, substituting the identity or attributes established by a guard during the external SASL handshake (`${guarded['<guard-name>'].identity}` or `${guarded['<guard-name>'].attributes.<name>}`). A common use is per-client topic isolation: many external clients address the same external topic name while each is transparently routed to its own internal topic, with no per-client configuration in `zilla.yaml`.
 
 ## Use Cases
 
@@ -47,4 +47,4 @@ Enterprises handling sensitive data, such as financial transactions or personal 
 
 ### Multi-Tenant Topic Isolation by Client Identity
 
-SaaS platforms that expose a single external Kafka topic name to many customers can isolate each customer's data automatically instead of provisioning per-customer configuration. Pairing a guard's per-client identity, such as one established via [`aws-cognito`](/concepts/security/guard/aws-cognito/README.md), with a topic's `alias` template maps every customer to their own dedicated internal topic based on the identity established during their SASL handshake.
+Platforms that expose a single external Kafka topic name to many different clients, whether internal teams, partners, or end customers, can isolate each client's data automatically instead of provisioning per-client configuration. Pairing a guard's per-client identity, such as one established via [`aws-cognito`](/concepts/security/guard/aws-cognito/README.md), with a topic's `alias` template maps every client to their own dedicated internal topic based on the identity established during their SASL handshake.

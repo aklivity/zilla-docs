@@ -10,7 +10,7 @@ description: Deploy per-client Kafka topic routing with AWS Cognito on AWS ECS F
 
 ## Overview
 
-Multi-tenant SaaS platforms often need many external Kafka clients to address the same external topic name, while keeping each client's data in its own dedicated internal topic. The [`kafka-proxy`](/reference/config/bindings/kafka-proxy/README.md) binding does this with no per-client configuration in `zilla.yaml`: external clients authenticate over `SASL_SSL`/`OAUTHBEARER` with a JWT from an [`aws-cognito`](/reference/config/guards/aws-cognito.md) guard, and a `topics[].alias` template rewrites the internal topic name using the identity established during that handshake.
+Platforms with many different external Kafka clients, whether internal teams, partners, or end customers, often need each to address the same external topic name, while keeping each client's data in its own dedicated internal topic. The [`kafka-proxy`](/reference/config/bindings/kafka-proxy/README.md) binding does this with no per-client configuration in `zilla.yaml`: external clients authenticate over `SASL_SSL`/`OAUTHBEARER` with a JWT from an [`aws-cognito`](/reference/config/guards/aws-cognito.md) guard, and a `topics[].alias` template rewrites the internal topic name using the identity established during that handshake.
 
 This guide deploys that pattern as a Zilla Plus service on AWS ECS Fargate.
 

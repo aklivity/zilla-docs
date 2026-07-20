@@ -22,7 +22,7 @@ Zilla's Kafka Proxy binding acts as an intermediary between external and interna
 
 - Proxy Kafka stream from on-premise Kafka clusters to cloud-based Kafka services (e.g., Confluent Cloud, AWS MSK) or vice versa.
 - Isolate sensitive data streams by proxying them through another intermediary.
-- Isolate each customer's data on a shared external topic name by routing to a per-client internal topic, based on identity from an external guard such as [`aws-cognito`](/concepts/security/guard/aws-cognito/README.md).
+- Isolate each client's data on the same external topic name by routing to a per-client internal topic, based on identity from an external guard such as [`aws-cognito`](/concepts/security/guard/aws-cognito/README.md).
 
 ## [Kafka gRPC](./grpc.md)
 
