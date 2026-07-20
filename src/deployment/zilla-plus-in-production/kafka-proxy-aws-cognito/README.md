@@ -20,8 +20,7 @@ This guide deploys that pattern as a Zilla Plus service on AWS ECS Fargate.
 - An Amazon ECR repository or another container repository
 - A subscription to the Zilla Plus [product on Amazon Marketplace](https://aws.amazon.com/marketplace/pp/prodview-lqfqftufwpttm)
 - An AWS Cognito user pool with a resource server (defining a custom scope) and one `client_credentials` app client per external client. See [Provision an AWS Cognito User Pool](/resources/aws/provision-aws-cognito-user-pool.md)
-- A Kafka cluster (e.g. Amazon MSK) reachable from the ECS task, with `auto.create.topics.enable` disabled in production so each client's dedicated topic is provisioned deliberately, the same way each client's Cognito app client is
-- Credentials for whatever internal auth mechanism your cluster requires (e.g. SASL/SCRAM via an `AmazonMSK_*` secret in AWS Secrets Manager, `plain`, or mutual TLS)
+- A OAuthBearer enabled Kafka cluster reachable from the ECS task, with `auto.create.topics.enable` disabled in production so each client's dedicated topic is provisioned deliberately, the same way each client's Cognito app client is
 - A TLS certificate for the external listener, stored in [AWS Secrets Manager](/reference/config/vaults/aws-secrets.md), read via the `aws-secrets` vault
 
 ## Subscribe via AWS Marketplace
@@ -39,7 +38,7 @@ This guide deploys that pattern as a Zilla Plus service on AWS ECS Fargate.
 
 ## Zilla Configuration
 
-Point `internal` at your Kafka cluster's per-broker hostname pattern, not its bootstrap connection string (for Amazon MSK this is typically `b-#.<cluster-endpoint>`, matching the per-broker names returned in Metadata responses), and configure an [`aws-secrets`](/reference/config/vaults/aws-secrets.md) vault referencing your real certificate's secret ARN. Add whatever internal auth your cluster requires: SASL/SCRAM or `plain` via `internal.authorization.credentials`, or mutual TLS via the `internal` vault. See [`kafka-proxy`](/reference/config/bindings/kafka-proxy/README.md) for the full set of options:
+Point `internal` at your Kafka cluster's per-broker hostname pattern, not a single bootstrap connection string (`#` stands in for the broker number, matching the per-broker names returned in Metadata responses), and configure an [`aws-secrets`](/reference/config/vaults/aws-secrets.md) vault referencing your real certificate's secret ARN.
 
 ```yaml {3-9,25-38}
 ---
@@ -82,6 +81,9 @@ bindings:
     type: kafka-proxy
     kind: proxy
     options:
+      topics:
+        - name: messages
+          alias: "messages-${guarded['cognito0'].identity}"
       external:
         authorization:
           cognito0:
@@ -90,12 +92,9 @@ bindings:
         default: kafka.external.net
         port: 9094
       internal:
-        host: b-#.<cluster-name>.<cluster-suffix>.kafka.<region>.amazonaws.com
-        default: boot-<broker-id>.<cluster-name>.<cluster-suffix>.kafka.<region>.amazonaws.com
-        port: 9096
-      topics:
-        - name: messages
-          alias: "messages-${guarded['cognito0'].identity}"
+        host: b-#.<your-kafka-cluster-endpoint>
+        default: <your-kafka-cluster-default-endpoint>
+        port: <your-kafka-cluster-port>
     routes:
       - when:
           - topic: messages
@@ -178,7 +177,7 @@ SSMGetParameters
       ],
       "Resource": [
         "<your-certificate-secret-arn>",
-        "<your-msk-sasl-credentials-secret-arn>"
+        "<your-kafka-cluster-credentials-secret-arn>"
       ]
     }
   ]
@@ -231,9 +230,9 @@ SSMGetParameters
 
 ## Task Definition
 
-Set `ZILLA_INCUBATOR_ENABLED=true`, and expose port `9094` for the external SASL/OAUTHBEARER listener:
+Set `COGNITO_USER_POOL_ARN` (read by the `${{env.COGNITO_USER_POOL_ARN}}` resolver in `zilla.yaml`), and expose port `9094` for the external SASL/OAUTHBEARER listener:
 
-```json {8-14,19-24}
+```json {8-15,17-26}
 {
   "family": "zilla-plus-kafka-proxy-aws-cognito",
   "networkMode": "awsvpc",
@@ -252,8 +251,8 @@ Set `ZILLA_INCUBATOR_ENABLED=true`, and expose port `9094` for the external SASL
       "essential": true,
       "environment": [
         {
-          "name": "ZILLA_INCUBATOR_ENABLED",
-          "value": "true"
+          "name": "COGNITO_USER_POOL_ARN",
+          "value": "<your-cognito-user-pool-arn>"
         }
       ],
       "secrets": [
@@ -313,13 +312,13 @@ Once the service has started with all tasks succeeding, you'll see the Zilla Plu
 
 ## Networking
 
-- Open port `9094` on the task's security group, not `7114`.
+- Open port `9094` on the task's security group.
 - The task needs outbound internet access (a public IP or a NAT gateway) to reach Cognito's public discovery and JWKS endpoints. `guard-aws-cognito` validates tokens against Cognito's public keys and doesn't need AWS credentials or IAM permissions to do so.
-- The task's security group needs to reach your Kafka cluster's broker ports. For Amazon MSK, this means allowing the task's security group in the MSK cluster's security group.
+- The task's security group needs to reach your Kafka cluster's broker ports.
 
 ## Provision Each Client's Kafka Topic
 
-Using the `client_id` noted when you created their Cognito app client, create each client's dedicated topic (`messages-<client_id>`) when onboarding the client, from somewhere with network access to the MSK cluster, or via the [Amazon MSK console](https://console.aws.amazon.com/msk/)'s Topics tab.
+Using the `client_id` noted when you created their Cognito app client, create each client's dedicated topic (`messages-<client_id>`) when onboarding the client.
 
 ## Verify
 
@@ -338,8 +337,11 @@ Kafka's built-in `OAuthBearerLoginCallbackHandler` performs this same `client_cr
 security.protocol=SASL_SSL
 sasl.mechanism=OAUTHBEARER
 sasl.login.callback.handler.class=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler
-ssl.truststore.location=<path-to-a-truststore-trusting-your-tls-certificate>
 ```
+
+::: tip
+As the TLS certificate is signed by a globally trusted certificate authority, there's no need to configure `ssl.truststore.location` to override the trusted certificate authorities.
+:::
 
 Then produce through the task's public IP or NLB DNS name on port `9094`, once per client:
 
