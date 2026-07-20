@@ -82,6 +82,9 @@ bindings:
     type: kafka-proxy
     kind: proxy
     options:
+      topics:
+        - name: messages
+          alias: "messages-${guarded['cognito0'].identity}"
       external:
         authorization:
           cognito0:
@@ -90,12 +93,12 @@ bindings:
         default: kafka.external.net
         port: 9094
       internal:
+        authorization:
+        cognito0:
+          mechanism: oauthbearer
         host: b-#.<cluster-name>.<cluster-suffix>.kafka.<region>.amazonaws.com
         default: boot-<broker-id>.<cluster-name>.<cluster-suffix>.kafka.<region>.amazonaws.com
         port: 9096
-      topics:
-        - name: messages
-          alias: "messages-${guarded['cognito0'].identity}"
     routes:
       - when:
           - topic: messages
@@ -231,9 +234,9 @@ SSMGetParameters
 
 ## Task Definition
 
-Set `ZILLA_INCUBATOR_ENABLED=true`, and expose port `9094` for the external SASL/OAUTHBEARER listener:
+Set `COGNITO_USER_POOL_ARN` (read by the `${{env.COGNITO_USER_POOL_ARN}}` resolver in `zilla.yaml`), and expose port `9094` for the external SASL/OAUTHBEARER listener:
 
-```json {8-14,19-24}
+```json {8-15,17-26}
 {
   "family": "zilla-plus-kafka-proxy-aws-cognito",
   "networkMode": "awsvpc",
@@ -252,8 +255,8 @@ Set `ZILLA_INCUBATOR_ENABLED=true`, and expose port `9094` for the external SASL
       "essential": true,
       "environment": [
         {
-          "name": "ZILLA_INCUBATOR_ENABLED",
-          "value": "true"
+          "name": "COGNITO_USER_POOL_ARN",
+          "value": "<your-cognito-user-pool-arn>"
         }
       ],
       "secrets": [
@@ -338,8 +341,11 @@ Kafka's built-in `OAuthBearerLoginCallbackHandler` performs this same `client_cr
 security.protocol=SASL_SSL
 sasl.mechanism=OAUTHBEARER
 sasl.login.callback.handler.class=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler
-ssl.truststore.location=<path-to-a-truststore-trusting-your-tls-certificate>
 ```
+
+::: tip
+As the TLS certificate is signed by a globally trusted certificate authority, there's no need to configure `ssl.truststore.location` to override the trusted certificate authorities.
+:::
 
 Then produce through the task's public IP or NLB DNS name on port `9094`, once per client:
 
