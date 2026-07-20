@@ -43,6 +43,8 @@ guards:
 
 ## Configuration (\* required)
 
+<!-- @include: ./.partials/store.md -->
+
 ### options\*
 
 > `object`
@@ -92,3 +94,9 @@ Claim to extract the user's identity from the token.
 > `string` | Default: `roles`
 
 Claim to check for authorized roles.
+
+#### options.attributes
+
+> `object` as map of named `string` properties
+
+Additional claims to extract from the token as named attributes.

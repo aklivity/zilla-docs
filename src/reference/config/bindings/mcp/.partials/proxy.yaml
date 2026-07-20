@@ -1,0 +1,18 @@
+mcp_proxy:
+  type: mcp
+  kind: proxy
+  options:
+    cache:
+      store: my_store
+      ttl: 5m
+  routes:
+    - exit: app1
+      when:
+        - toolkit: bluesky
+          capability:
+            - tools
+          tools:
+            - post_*
+    - exit: app2
+      when:
+        - toolkit: quartz

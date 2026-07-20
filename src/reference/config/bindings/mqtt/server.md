@@ -12,7 +12,7 @@ The mqtt server binding decodes the MQTT protocol on the inbound network stream,
 
 ## Configuration (\* required)
 
-### options
+### options\*
 
 > `object`
 
@@ -20,6 +20,7 @@ The `server` specific options.
 
 ```yaml
 options:
+  store: my_store
   authorization:
     my_jwt_guard:
       credentials:
@@ -31,6 +32,17 @@ options:
 ```
 
 <!-- @include: ./.partials/options.md -->
+
+#### options.store\*
+
+> `string`
+
+The name of a configured [store](../../stores/memory.md) used to coordinate MQTT session ownership across connections and Zilla instances. Required for the `server` kind.
+
+```yaml
+options:
+  store: my_store
+```
 
 #### options.authorization
 
@@ -68,19 +80,19 @@ Topic name.
 
 #### topics[].content
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
+> `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object`
 
 Enforce validation for content
 
 #### content.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the request content. Refer to the individual [model](../../models/) docs for type specific implementation.
 
 #### topics[].user-properties
 
-> `object` as map of named `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
+> `object` as map of named `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ], `object` as map of named `object` properties
 
 Enforce validation for user provided properties.
 
@@ -93,7 +105,7 @@ user-properties:
 
 #### user-properties.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `string` ]
 
 A schema or type to validate the user-properties content. Refer to the individual [model](../../models/) docs for type specific implementation.
 

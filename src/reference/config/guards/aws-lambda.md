@@ -31,6 +31,8 @@ guards:
 
 ## Configuration (\* required)
 
+<!-- @include: ./.partials/store.md -->
+
 ### options\*
 
 > `object`
@@ -89,7 +91,7 @@ Type of Lambda authorizer.
 
 #### options.max-age
 
-> `integer` | Default: `300` | Minimum: `0` (`disabled`) | Maximum: `3600`
+> `integer` | Default: `300` Maximum: `3600`
 
-Configures the time to live in `seconds` for the cached authorization results. The default is `300` seconds or `5` minutes.
+Configures the time to live in `seconds` for the cached authorization results. The default is `300` seconds or `5` minutes. Set to `0` to disable caching.
 

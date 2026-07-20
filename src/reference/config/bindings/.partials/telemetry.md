@@ -15,3 +15,9 @@ telemetry:
   metrics:
     - stream.*
 ```
+
+#### telemetry.attributes
+
+> `object` as map of named `string` properties
+
+Telemetry attributes to add to the binding metrics.

@@ -1,0 +1,6 @@
+mcp_client:
+  type: mcp
+  kind: client
+  options:
+    server: https://upstream.example.com/mcp
+  exit: net_client

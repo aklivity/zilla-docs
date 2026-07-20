@@ -35,6 +35,7 @@ const main = async () => {
     function getOptions(name, parent, childProps) {
         var anyOfProps = parent.anyOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.options)).map(({ properties }) => (properties?.options?.properties));
         var oneOfProps = parent.oneOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.options)).map(({ properties }) => (properties?.options?.properties));
+        var allOfProps = parent.allOf?.filter(({ if: fi, then }) => (fi?.properties?.kind?.const === name || fi?.properties?.kind?.enum?.includes(name)) && then?.properties?.options).map(({ then }) => then.properties.options.properties);
         return (childProps?.options !== false && parent?.properties?.options !== false ? {
             ...parent?.properties?.options,
             ...childProps?.options,
@@ -42,6 +43,7 @@ const main = async () => {
                 ...(parent?.properties?.options?.properties || {}),
                 ...(anyOfProps?.[0] || {}),
                 ...(oneOfProps?.[0] || {}),
+                ...(allOfProps?.[0] || {}),
                 ...(childProps?.options?.properties || {}),
             }
         } : {});
@@ -50,6 +52,7 @@ const main = async () => {
     function getRoutes(name, root, parent, childProps) {
         var anyOfProps = parent.anyOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.routes)).map(({ properties }) => (properties?.routes?.items?.properties));
         var oneOfProps = parent.oneOf?.filter(({ properties }) => ((properties?.kind.const) === name && properties?.routes)).map(({ properties }) => (properties?.routes?.items?.properties));
+        var allOfProps = parent.allOf?.filter(({ if: fi, then }) => (fi?.properties?.kind?.const === name || fi?.properties?.kind?.enum?.includes(name)) && then?.properties?.routes).map(({ then }) => then.properties.routes.items.properties);
         return (parent?.properties?.routes !== false ? {
             ...parent?.properties?.routes,
             items: {
@@ -60,6 +63,7 @@ const main = async () => {
                     ...(childProps?.routes?.items?.properties || {}),
                     ...(anyOfProps?.[0] || {}),
                     ...(oneOfProps?.[0] || {}),
+                    ...(allOfProps?.[0] || {}),
                 }
             }
         } : {});
@@ -146,10 +150,25 @@ const main = async () => {
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(`${k}[]`, properties, required))
                 );
-            i.oneOf?.filter(({ properties }) => !!properties)
-                .forEach(({ properties, required }) =>
-                    props.push(...getObjProps(k, properties, [...(i.required || []), ...(required || [])]))
+            var filteredOneOf = i.oneOf?.filter(({ properties }) => !!properties) || [];
+            if (filteredOneOf.length > 0) {
+                var allKeys = [...new Set(filteredOneOf.flatMap(v => Object.keys(v.properties || {})))];
+                var discKeys = allKeys.filter(pk =>
+                    filteredOneOf.every(v => v.properties?.[pk]?.const !== undefined) &&
+                    new Set(filteredOneOf.map(v => v.properties?.[pk]?.const)).size > 1
                 );
+                var nonDiscSig = v => Object.keys(v.properties || {}).filter(pk => !discKeys.includes(pk)).sort().join(',');
+                var allSameStructure = discKeys.length > 0 && filteredOneOf.every(v => nonDiscSig(v) === nonDiscSig(filteredOneOf[0]));
+                if (allSameStructure) {
+                    var commonProps = Object.fromEntries(Object.entries(filteredOneOf[0].properties || {}).filter(([pk]) => !discKeys.includes(pk)));
+                    var commonReq = (filteredOneOf[0].required || []).filter(r => !discKeys.includes(r));
+                    props.push(...getObjProps(k, commonProps, [...(i.required || []), ...commonReq]));
+                } else {
+                    filteredOneOf.forEach(({ properties, required }) =>
+                        props.push(...getObjProps(k, properties, [...(i.required || []), ...(required || [])]))
+                    );
+                }
+            }
             var oneOfItems = i.oneOf?.filter(({ items }) => items?.length)
                 ?.reduce((a, b) => ([...a, ...b.items]), []);
             if (oneOfItems?.length) {
@@ -160,6 +179,10 @@ const main = async () => {
                 .forEach(({ properties, required }) =>
                     props.push(...getObjProps(k, properties, required))
                 );
+
+            if (i.then?.properties && Object.keys(i.then.properties).length) {
+                props.push(...getObjProps(k, i.then.properties, i.then.required));
+            }
 
             //collect
             if (!i) return
@@ -195,7 +218,7 @@ const main = async () => {
             } else if (i.const) {
                 props.push([`${path}: ${i.const}`, req, "`const`", getExtraProps(i)]);
             } else if (i.enum?.length) {
-                i.enum.forEach((e) => props.push([`${path}: ${e}`, req, type, getExtraProps(i)]));
+                props.push([path, req, type, getExtraProps(i)]);
             } else if (i.oneOf) {
                 props.push([
                     path,
@@ -218,6 +241,7 @@ const main = async () => {
         guard: schema.properties.guards.patternProperties[Object.keys(schema.properties.guards.patternProperties)[0]],
         vault: schema.properties.vaults.patternProperties[Object.keys(schema.properties.vaults.patternProperties)[0]],
         catalog: schema.properties.catalogs.patternProperties[Object.keys(schema.properties.catalogs.patternProperties)[0]],
+        store: schema.properties.stores.patternProperties[Object.keys(schema.properties.stores.patternProperties)[0]],
     }).map(([section, props]) =>
         props?.allOf?.map(({ if: fi, then }) => ({
             folder: `${section}s`,
@@ -244,13 +268,15 @@ const main = async () => {
                 [a.properties?.kind?.const]: { ...a, properties }
             };
         }, {})
-    var kindsGlobalNot = bindings.anyOf?.filter(({ properties }) => (properties?.kind?.not?.const))
+    var kindsGlobalNot = bindings.anyOf?.filter(({ properties }) => (properties?.kind?.not?.const || properties?.kind?.not?.enum))
         .reduce((o, a) => {
             // eslint-disable-next-line no-unused-vars
             const { kind: _, ...properties } = a.properties;
+            const notConst = a.properties?.kind?.not?.const;
+            const notKinds = notConst ? [notConst] : (a.properties?.kind?.not?.enum || []);
             return {
                 ...o,
-                [a.properties?.kind?.not.const]: { properties: {}, required: [] },
+                ...Object.fromEntries(notKinds.map(k => [k, { properties: {}, required: [] }])),
                 all: { ...o.all, ...a, properties }
             };
         }, { all: {} });
@@ -283,20 +309,30 @@ const main = async () => {
                 required: getRequired(properties.kind.const, then, [...(getGlobalReqs(properties.kind.const) || []), ...(required || [])]),
             })));
         } else {
-            sections.push({
-                folder,
-                name: then.properties.kind.enum[0],
-                props: {
-                    ...getGlobalProps(then.properties.kind.enum[0]),
-                    ...(then.properties || {}),
-                    options: getOptions(then.properties.kind.enum[0], bindings, then.properties),
-                    routes: getRoutes(then.properties.kind.enum[0], bindings, then),
-                    allOf: [...(then.allOf || [])],
-                    anyOf: [...(then.anyOf || [])],
-                    oneOf: [...(then.oneOf || [])],
-                },
-                required: [...(getGlobalReqs(then.properties.kind.enum[0]) || []), ...(then.required || [])],
-            });
+            sections.push(...then.properties.kind.enum.map(kind => {
+                const matchingThens = then.allOf
+                    ?.filter(({ if: fi }) =>
+                        fi?.properties?.kind?.const === kind ||
+                        fi?.properties?.kind?.enum?.includes(kind))
+                    .map(e => e.then) || [];
+                const kindProps = matchingThens.reduce((acc, t) => ({ ...acc, ...(t?.properties || {}) }), {});
+                const kindThen = matchingThens.find(t => t?.required?.length > 0);
+                return {
+                    folder,
+                    name: kind,
+                    props: {
+                        ...getGlobalProps(kind),
+                        ...(then.properties || {}),
+                        ...(kindProps || {}),
+                        options: getOptions(kind, then, kindProps),
+                        routes: getRoutes(kind, bindings, then, kindProps),
+                        allOf: [...(then.allOf || [])],
+                        anyOf: [...(then.anyOf || [])],
+                        oneOf: [...(then.oneOf || [])],
+                    },
+                    required: [...(getGlobalReqs(kind) || []), ...(then.required || []), ...(kindThen?.required || [])],
+                };
+            }));
         }
     })
 
@@ -307,7 +343,7 @@ const main = async () => {
             name: fi.properties.type.const,
             props: {
                 ...(exporterProps?.properties || {}),
-                ...(then.properties || {}),
+                ...Object.fromEntries(Object.entries(then.properties || {}).filter(([, v]) => v !== true)),
                 anyOf: [...(then.anyOf || [])],
             },
             required: [...(exporterProps?.required || []), ...(then.required || [])],

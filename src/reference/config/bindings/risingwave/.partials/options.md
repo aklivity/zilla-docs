@@ -22,19 +22,19 @@ options:
 
 #### options.udf
 
-> `object` as map of named `array`
+> `array` of `object`
 
 Define UDF server
 
 ##### udf[].server
 
-> `string`
+> `string` | Pattern: `^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$`
 
 UDF Server location
 
 ##### udf[].language
 
-> `string` | Default: `java`
+> `enum` [ `java`, `python` ] | Default: `java`
 
 UDF language
 
@@ -48,7 +48,7 @@ Kafka properties and message formatting
 
 > `object`
 
-###### kafka.properties.bootstrap.server
+###### properties.bootstrap.server
 
 > `string`
 
@@ -56,48 +56,10 @@ Kafka bootstrap server
 
 ##### kafka.format
 
-> `object`
+> `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ], `object`
 
-###### kafka.format.model
+###### format.model\*
 
-> `enum` [ `double`, `float`, `int32`, `int64`, `json`, `string` ]
+> `enum` [ `avro`, `boolean`, `double`, `float`, `int32`, `int64`, `json`, `protobuf`, `string` ]
 
 A schema or type to validate the request content. Refer to the individual [model](../../../models/) docs for type specific implementation.
-
-##### kafka.format.catalog\*
-
-> `object` as map of named `array`
-
-To map defined catalog for schema retrieval based on catalog specific parameters. Any of the possible combination can be configured.
-
-> `id`
------
-> `strategy`
-> `version`
------
-> `subject`
-> `version`
-
-###### catalog[].id\*
-
-> `integer`
-
-Define specific schema id to refer from catalog.
-
-###### catalog[].version
-
-> `string` | Default: `latest`
-
-Specific iteration or version of a registered schema in the defined catalog.
-
-###### catalog[].strategy\*
-
-> `enum` [ `topic` ]
-
-To determine the subject based on the specified strategy
-
-###### catalog[].subject\*
-
-> `string`
-
-Unique identifier for schema categorization in the catalog.

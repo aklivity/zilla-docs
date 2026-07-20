@@ -111,6 +111,20 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "MCP",
+          icon: "fa-solid fa-robot",
+          prefix: "mcp",
+          collapsible: true,
+          children: "structure",
+        },
+        {
+          text: "MCP-HTTP",
+          icon: "fa-solid fa-robot",
+          prefix: "mcp-http",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "MQTT",
           icon: "fa-solid fa-wifi",
           prefix: "mqtt",
@@ -168,6 +182,13 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "Schema-Registry",
+          icon: "fa-solid fa-layer-group",
+          prefix: "schema-registry",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "SSE",
           icon: "fa-solid fa-tower-broadcast",
           prefix: "sse",
@@ -178,6 +199,20 @@ export const enSidebar = sidebar({
           text: "SSE-Kafka",
           icon: "fa-solid fa-tower-broadcast",
           prefix: "sse-kafka",
+          collapsible: true,
+          children: "structure",
+        },
+        {
+          text: "Smux",
+          icon: "fa-solid fa-shuffle",
+          prefix: "smux",
+          collapsible: true,
+          children: "structure",
+        },
+        {
+          text: "Socks",
+          icon: "fa-solid fa-socks",
+          prefix: "socks",
           collapsible: true,
           children: "structure",
         },
@@ -256,6 +291,13 @@ export const enSidebar = sidebar({
       ],
     },
     {
+      text: "Stores",
+      icon: "fa-solid fa-database",
+      prefix: "config/stores/",
+      collapsible: true,
+      children: "structure",
+    },
+    {
       text: "Vaults",
       icon: "fa-solid fa-vault",
       prefix: "config/vaults/",
@@ -309,7 +351,7 @@ export const enSidebar = sidebar({
 
         },
         {
-          text: "Real-World Use Cases",
+          text: "Use Cases",
           icon: "fa-solid fa-lightbulb",
           link: "getting-started/use-cases.md",
 
@@ -566,6 +608,11 @@ export const enSidebar = sidebar({
                   text: "AWS Lambda",
                   icon: "fa-brands fa-aws",
                   link: "aws-lambda/README.md"
+                },
+                {
+                  text: "AWS Cognito",
+                  icon: "fa-brands fa-aws",
+                  link: "aws-cognito/README.md"
                 },
               ],
             },
@@ -853,6 +900,13 @@ export const enSidebar = sidebar({
 
             },
             {
+              text: "Dynamic Topic Aliases",
+              icon: "fa-solid fa-diagram-project",
+              prefix: "kafka-proxy-aws-cognito/",
+              link: "kafka-proxy-aws-cognito/README.md",
+
+            },
+            {
               text: "AWS ECS Fargate",
               icon: "fa-brands fa-aws",
               link: "zilla-plus-on-aws-ecs-fargate.md",
@@ -899,6 +953,18 @@ export const enSidebar = sidebar({
           icon: "fa-solid fa-building",
           link: "enterprise-support.md",
 
+        },
+      ],
+    },
+    {
+      text: "Releases",
+      prefix: "/releases/",
+      link: "/releases/README.md",
+      children: [
+        {
+          text: "1.x",
+          icon: "fa-solid fa-code-branch",
+          link: "1.x/README.md",
         },
       ],
     },
@@ -961,6 +1027,12 @@ export const enSidebar = sidebar({
               text: "Guards",
               icon: "fa-solid fa-shield-halved",
               link: "config/guards/",
+
+            },
+            {
+              text: "Stores",
+              icon: "fa-solid fa-database",
+              link: "config/stores/",
 
             },
             {

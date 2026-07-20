@@ -59,7 +59,7 @@ Array of MQTT topic filters matching topic names for publish.
 
 #### publish[].topic
 
-> `string`
+> `string` | Pattern: `^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$`
 
 MQTT topic filter pattern.
 
@@ -77,7 +77,7 @@ Array of MQTT topic filters matching topic names for subscribe.
 
 #### subscribe[].topic
 
-> `string`
+> `string` | Pattern: `^(\\/?([\\w{}\\.-]*|\\+)(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?|#|\\/|\\$SYS(\\/((?![-_])[\\w{}\\.-]*|\\+))*(\\/#)?)$`
 
 MQTT topic filter pattern.
 

@@ -56,7 +56,7 @@ exporters:
 
 Vault name. Only applicable if the protocol is `tls`.
 
-### options*
+### options
 
 > `object`
 
@@ -85,23 +85,23 @@ options:
     - syslog
 ```
 
-#### options.host*
+#### options.host\*
 
 > `string`
 
 The hostname of the syslog server.
 
-#### options.port*
+#### options.port\*
 
 > `integer`
 
 The port of the syslog server.
 
-#### options.protocol*
+#### options.protocol\*
 
-> `enum` [ `tcp`, `udp`, `tls` ] | Default: `tcp`
+> `enum` [ `udp`, `tcp`, `tls` ]
 
-The protocol to use to communicate with the syslog server. Valid values are: `tcp`, `udp`, `tls`.
+The protocol to use to communicate with the syslog server.
 
 #### options.trust
 

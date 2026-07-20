@@ -1,0 +1,6 @@
+socks_client:
+  type: socks
+  kind: client
+  options:
+    address: proxy.example.com:1080
+  exit: tcp_client

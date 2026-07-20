@@ -120,6 +120,6 @@ Keystore password.
 
 #### options.revocation
 
-> `enum` [ `crl`, `none` ] | Default `none`
+> `enum` [ `crl` ]
 
 Certificate revocation method.

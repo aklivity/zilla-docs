@@ -19,3 +19,5 @@ The pgsql server binding receives inbound network stream, producing higher level
 ```yaml
 exit: risingwave_proxy
 ```
+
+<!-- @include: ../.partials/telemetry.md -->

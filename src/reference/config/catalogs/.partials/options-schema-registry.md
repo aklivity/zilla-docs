@@ -6,7 +6,7 @@ The `schema-registry` specific options.
 
 #### options.url
 
-> `string`
+> `string` | Pattern: `^https?://`
 
 Schema Registry URL to access schemas via API calls.
 
@@ -36,23 +36,23 @@ tls:
     - client1
 ```
 
-##### options.tls.keys
+#### tls.keys
 
 > `array` of `string`
 
 A list of reference names for the Vault key.
 
-##### options.tls.trust
+#### tls.trust
 
 > `array` of `string`
 
 A list of reference names for the Vault certificate.
 
-##### options.tls.trustcacerts
+#### tls.trustcacerts
 
 > `boolean`
 
-Trust CA certificates. When the this property is not explicitly set it will be automatically set to `true` if [options.tls.trust](#options-tls-trust) is `null`.
+Trust CA certificates. When the this property is not explicitly set it will be automatically set to `true` if [tls.trust](#tls-trust) is `null`.
 
 #### options.credentials
 
@@ -66,13 +66,13 @@ credentials:
     authorization: Basic dXNlcjpzZWNyZXQ=
 ```
 
-##### options.credentials.headers
+#### credentials.headers
 
 > `object`
 
 Authentication headers to be included in requests to the Schema Registry.
 
-###### options.credentials.headers.authorization
+##### headers.authorization
 
 > `string`
 
