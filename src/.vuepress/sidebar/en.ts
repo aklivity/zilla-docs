@@ -945,6 +945,18 @@ export const enSidebar = sidebar({
       ],
     },
     {
+      text: "Releases",
+      prefix: "/releases/",
+      link: "/releases/README.md",
+      children: [
+        {
+          text: "1.x",
+          icon: "fa-solid fa-code-branch",
+          link: "1.x/README.md",
+        },
+      ],
+    },
+    {
       text: "Others",
       children: [
         {
