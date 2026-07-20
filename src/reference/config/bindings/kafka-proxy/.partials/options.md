@@ -145,7 +145,19 @@ Topic configuration list.
 
 > `string`
 
-Topic name.
+Topic name, as observed by the external client.
+
+#### topics[].alias
+
+> `string`
+
+Template for the internal topic name. Supports `${topic}` to reference the topic's own `name`, along with identity and attribute placeholders such as `${guarded['my_guard'].identity}` and `${guarded['my_guard'].attributes.my_attribute}`. When omitted, the existing rules apply, either cluster-id prefixed or match the external name.
+
+```yaml
+topics:
+  - name: messages
+    alias: "${topic}-${guarded['my_guard'].identity}"
+```
 
 #### topics[].key
 
