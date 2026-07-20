@@ -31,6 +31,9 @@ Kafka proxy endpoint used by external clients.
 external:
   host: kafka-#.external.net
   port: 9093
+  authorization:
+    cognito0:
+      mechanism: oauthbearer
 ```
 
 #### external.host\*
@@ -61,19 +64,35 @@ Radix used to encode the broker number in the external hostname pattern.
 
 > `object` as map of named `object` properties
 
-Authorization configuration for external connections.
-
-#### authorization.credentials\*
-
-> `object`
-
-Credentials configuration for authorization.
+Authorization configuration for external connections, keyed by guard name. Each named entry authenticates the external SASL handshake against that guard.
 
 #### authorization.mechanism
 
-> `enum` [ `plain` ]
+> `enum` [ `plain`, `oauthbearer` ]
 
 Authorization mechanism.
+
+- `plain`: extracts `authzid`/`authcid`/`passwd` from a SASL/PLAIN initial response and substitutes them into the `credentials` template before authorizing with the guard.
+- `oauthbearer`: parses an RFC 7628 SASL/OAUTHBEARER initial response and extracts the bearer token, substituting it into the `credentials` template before authorizing with the guard. On rejection, the client receives an RFC 7628 §3.7 error response instead of an immediate SASL failure.
+
+#### authorization.credentials
+
+> `string` | Default: `"Bearer {credentials}"` when `mechanism` is `oauthbearer`
+
+Template used to build the credentials string passed to the guard.
+
+- For `plain`, `{username}` and `{password}` are substituted from the SASL/PLAIN initial response's `authcid`/`passwd`. Required.
+- For `oauthbearer`, `{credentials}` is substituted from the extracted bearer token. Optional.
+
+```yaml
+external:
+  authorization:
+    test0:
+      mechanism: plain
+      credentials: "{username}:{password}"
+    cognito0:
+      mechanism: oauthbearer
+```
 
 #### options.internal\*
 

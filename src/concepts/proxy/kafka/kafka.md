@@ -29,7 +29,11 @@ The `kafka-proxy` binding enables dynamic routing by forwarding Kafka messages t
 
 ### Security and Access Control
 
-To ensure secure communication, `kafka-proxy` can integrate with TLS encryption and authentication. This prevents unauthorized access and ensures data confidentiality.
+To ensure secure communication, `kafka-proxy` integrates with TLS encryption and terminates external client authentication over SASL, supporting both `PLAIN` and `OAUTHBEARER` mechanisms. Pairing `OAUTHBEARER` with a [guard](/concepts/security/guard/README.md), such as [`jwt`](/reference/config/guards/jwt.md) or [`aws-cognito`](/concepts/security/guard/aws-cognito/README.md), lets external clients authenticate with a bearer token instead of static credentials, and makes the guard's verified identity available to routing.
+
+### Per-Client Topic Aliasing
+
+A topic's `alias` property rewrites the internal topic name per authenticated client, substituting the identity established by a guard during the external SASL handshake (`${guarded['<guard-name>'].identity}`). This lets many external clients address the same external topic name while each is transparently isolated to its own internal topic, with no per-client configuration in `zilla.yaml`.
 
 ## Use Cases
 
@@ -40,3 +44,7 @@ Organizations operating hybrid cloud environments often need to stream Kafka mes
 ### Isolating Sensitive Data Streams via an Intermediary
 
 Enterprises handling sensitive data, such as financial transactions or personal records, must enforce strict security controls when exposing Kafka streams. The `kafka-proxy` binding helps by routing sensitive data through an intermediary, adding an extra layer of protection before messages reach their destination. This isolation ensures that external clients or less-trusted environments only interact with the proxy while internal brokers remain hidden. Additionally, security policies such as encryption, authentication, and access control can be enforced at the proxy level to comply with data protection regulations.
+
+### Multi-Tenant Topic Isolation by Client Identity
+
+SaaS platforms that expose a single external Kafka topic name to many customers can isolate each customer's data automatically instead of provisioning per-customer configuration. Pairing a guard's per-client identity, such as one established via [`aws-cognito`](/concepts/security/guard/aws-cognito/README.md), with a topic's `alias` template maps every customer to their own dedicated internal topic based on the identity established during their SASL handshake.
