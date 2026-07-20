@@ -351,7 +351,7 @@ export const enSidebar = sidebar({
 
         },
         {
-          text: "Real-World Use Cases",
+          text: "Use Cases",
           icon: "fa-solid fa-lightbulb",
           link: "getting-started/use-cases.md",
 
@@ -608,6 +608,11 @@ export const enSidebar = sidebar({
                   text: "AWS Lambda",
                   icon: "fa-brands fa-aws",
                   link: "aws-lambda/README.md"
+                },
+                {
+                  text: "AWS Cognito",
+                  icon: "fa-brands fa-aws",
+                  link: "aws-cognito/README.md"
                 },
               ],
             },
@@ -892,6 +897,13 @@ export const enSidebar = sidebar({
               icon: "fa-solid fa-object-group",
               prefix: "virtual-clusters/",
               link: "virtual-clusters/README.md",
+
+            },
+            {
+              text: "Dynamic Topic Aliases",
+              icon: "fa-solid fa-diagram-project",
+              prefix: "kafka-proxy-aws-cognito/",
+              link: "kafka-proxy-aws-cognito/README.md",
 
             },
             {
