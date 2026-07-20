@@ -20,8 +20,7 @@ This guide deploys that pattern as a Zilla Plus service on AWS ECS Fargate.
 - An Amazon ECR repository or another container repository
 - A subscription to the Zilla Plus [product on Amazon Marketplace](https://aws.amazon.com/marketplace/pp/prodview-lqfqftufwpttm)
 - An AWS Cognito user pool with a resource server (defining a custom scope) and one `client_credentials` app client per external client. See [Provision an AWS Cognito User Pool](/resources/aws/provision-aws-cognito-user-pool.md)
-- A Kafka cluster reachable from the ECS task, with `auto.create.topics.enable` disabled in production so each client's dedicated topic is provisioned deliberately, the same way each client's Cognito app client is
-- Credentials for whatever internal auth mechanism your cluster requires (e.g. SASL/SCRAM, `plain`, or mutual TLS), stored in AWS Secrets Manager if applicable
+- A OAuthBearer enabled Kafka cluster reachable from the ECS task, with `auto.create.topics.enable` disabled in production so each client's dedicated topic is provisioned deliberately, the same way each client's Cognito app client is
 - A TLS certificate for the external listener, stored in [AWS Secrets Manager](/reference/config/vaults/aws-secrets.md), read via the `aws-secrets` vault
 
 ## Subscribe via AWS Marketplace
@@ -313,7 +312,7 @@ Once the service has started with all tasks succeeding, you'll see the Zilla Plu
 
 ## Networking
 
-- Open port `9094` on the task's security group, not `7114`.
+- Open port `9094` on the task's security group.
 - The task needs outbound internet access (a public IP or a NAT gateway) to reach Cognito's public discovery and JWKS endpoints. `guard-aws-cognito` validates tokens against Cognito's public keys and doesn't need AWS credentials or IAM permissions to do so.
 - The task's security group needs to reach your Kafka cluster's broker ports.
 
