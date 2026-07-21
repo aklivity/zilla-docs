@@ -27,7 +27,7 @@ Zilla Plus is Aklivity's enterprise product for deploying and operating producti
 - New `aws-cognito` guard, validating AWS Cognito JWTs via OIDC discovery.
 - Kafka Proxy: SASL/OAUTHBEARER termination for external client connections, usable with any guard, including the new `aws-cognito` guard.
 - Kafka Proxy: per-client topic aliasing (`topics[].alias`), rewriting the internal topic name from a guard's established identity or attributes, with coverage across all supported Kafka APIs.
-- `zilla logs` command, for checking engine telemetry events.
+- `zilla logs` command, for checking engine telemetry log events.
 
 ### Fixed
 
