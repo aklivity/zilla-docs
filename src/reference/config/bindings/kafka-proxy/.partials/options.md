@@ -138,21 +138,38 @@ Authorization configuration for internal connections.
 
 #### credentials.mechanism
 
-> `enum` [ `plain`, `scram-sha-256`, `scram-sha-512` ]
+> `enum` [ `plain`, `scram-sha-256`, `scram-sha-512`, `oauthbearer` ]
 
 Authentication mechanism.
 
-#### credentials.username\*
+- `plain`, `scram-sha-256`, `scram-sha-512`: authenticates to the internal broker with the static `username`/`password` below.
+- `oauthbearer`: authenticates to the internal broker with a token built from the `credentials` template below, evaluated against the session an external guard already authorized. Lets Zilla present the external client's own credentials to the internal broker instead of a static service-account secret.
+
+#### credentials.username
 
 > `string`
 
-Username for authentication.
+Username for authentication. Required when `mechanism` is `plain`, `scram-sha-256`, or `scram-sha-512`.
 
-#### credentials.password\*
+#### credentials.password
 
 > `string`
 
-Password for authentication.
+Password for authentication. Required when `mechanism` is `plain`, `scram-sha-256`, or `scram-sha-512`.
+
+#### credentials.credentials
+
+> `string`
+
+Template used to build the bearer token presented to the internal broker. Required when `mechanism` is `oauthbearer`. Supports `${guarded['my_guard'].credentials}` to reference the raw credential string an external guard authorized the session with.
+
+```yaml
+internal:
+  authorization:
+    credentials:
+      mechanism: oauthbearer
+      credentials: "Bearer ${guarded['cognito0'].credentials}"
+```
 
 #### options.topics
 
