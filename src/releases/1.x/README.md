@@ -31,7 +31,6 @@ Zilla Plus is Aklivity's enterprise product for deploying and operating producti
 
 ### Fixed
 
-- ECS vCPU metering now aligns with the task's configured `Limits.CPU`.
 - Kafka client no longer rejects a cache fetch when the partition leader isn't known yet.
 - Several Kafka Proxy protocol-framing fixes, including cached response-length adjustment, varint padding for KIP-482 tagged fields, per-binding API version narrowing at decode time, and Fetch v12 framing when all records are rejected.
 
