@@ -95,6 +95,10 @@ bindings:
         host: b-#.<your-kafka-cluster-endpoint>
         default: <your-kafka-cluster-default-endpoint>
         port: <your-kafka-cluster-port>
+        authorization:
+          credentials:
+            mechanism: oauthbearer
+            credentials: "Bearer ${guarded['cognito0'].credentials}"
     routes:
       - when:
           - topic: messages
