@@ -145,6 +145,7 @@ Associated roles can be enforced during routing by only following routes `guarde
 | [`azure-ad`](./guards/azure-ad.md)       | Validates Azure Active Directory OAuth2 tokens. `[Plus]`                                |
 | [`aws-cognito`](./guards/aws-cognito.md) | Validates AWS Cognito OAuth2 access tokens. `[Plus]`                                    |
 | [`aws-lambda`](./guards/aws-lambda.md)   | Delegates authorization to an AWS Lambda function. `[Plus]`                             |
+| [`oauth`](./guards/oauth.md)             | Acquires OAuth 2.0 access tokens via client-credentials, jwt-bearer, token-exchange, or authorization-code grants. `[Plus]` |
 | [`identity`](./guards/identity.md)       | Pass-through guard; approves all requests. Used for testing or default routes. `[Plus]` |
 
 ### vaults
