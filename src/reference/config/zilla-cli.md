@@ -17,12 +17,11 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
   - [-v --verbose](#v-verbose)
   - [-w --write `<output>`](#w-write-output)
 - [zilla help](#zilla-help)
-- [zilla version](#zilla-version)
-- [zilla metrics](#zilla-metrics)
-  - [--namespace `<namespace>`](#namespace-namespace)
 - [zilla logs](#zilla-logs)
   - [--format `<format>`](#format-format)
   - [-f --follow](#f-follow)
+- [zilla metrics](#zilla-metrics)
+  - [--namespace `<namespace>`](#namespace-namespace)
 - [zilla start](#zilla-start)
   - [-c --config](#c-config)
   - [-e --exception-traces](#e-exception-traces)
@@ -32,6 +31,7 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
   - [-w --workers](#w-workers)
 - [zilla stop](#zilla-stop)
 - [zilla tune](#zilla-tune)
+- [zilla version](#zilla-version)
 
 ::::
 
@@ -105,54 +105,6 @@ Examples:
 ./zilla help start
 ```
 
-### zilla version
-
-The `zilla version` command prints the version information of Zilla.
-
-```bash
-zilla version
-```
-
-```output:no-line-numbers
-zilla version 0.9.85
-```
-
-### zilla metrics
-
-The `zilla metrics` command provides metrics for each binding in the configuration.
-
-```bash
-zilla metrics
-```
-
-Optionally specify a binding name to output metrics for that binding only.
-
-```bash
-zilla metrics [binding-name]
-```
-
-#### --namespace `<namespace>`
-
-Filters bindings by namespace
-
-Examples:
-
-```bash
-./zilla metrics echo_server
-```
-
-```output:no-line-numbers
-namespace    binding         metric                    value
-example      echo_server    stream.opens.received        24
-example      echo_server    stream.opens.sent            24
-example      echo_server    stream.closes.received       24
-example      echo_server    stream.closes.sent           24
-example      echo_server    stream.data.received         13
-example      echo_server    stream.data.sent             13
-example      echo_server    stream.errors.received        0
-example      echo_server    stream.errors.sent            0
-```
-
 ### zilla logs
 
 The `zilla logs` command shows event logs for a running Zilla runtime engine, attaching to the same engine directory as `zilla start`.
@@ -189,6 +141,42 @@ Keep printing new events as they arrive, after printing the current log, similar
 
 ```bash
 zilla logs -f
+```
+
+### zilla metrics
+
+The `zilla metrics` command provides metrics for each binding in the configuration.
+
+```bash
+zilla metrics
+```
+
+Optionally specify a binding name to output metrics for that binding only.
+
+```bash
+zilla metrics [binding-name]
+```
+
+#### --namespace `<namespace>`
+
+Filters bindings by namespace
+
+Examples:
+
+```bash
+./zilla metrics echo_server
+```
+
+```output:no-line-numbers
+namespace    binding         metric                    value
+example      echo_server    stream.opens.received        24
+example      echo_server    stream.opens.sent            24
+example      echo_server    stream.closes.received       24
+example      echo_server    stream.closes.sent           24
+example      echo_server    stream.data.received         13
+example      echo_server    stream.data.sent             13
+example      echo_server    stream.errors.received        0
+example      echo_server    stream.errors.sent            0
 ```
 
 ### zilla start
@@ -329,4 +317,16 @@ xxxx  example.echo
 ```output:no-line-numbers
 xxxx  example.tcp
 .x..  example.echo
+```
+
+### zilla version
+
+The `zilla version` command prints the version information of Zilla.
+
+```bash
+zilla version
+```
+
+```output:no-line-numbers
+zilla version 0.9.85
 ```
