@@ -9,7 +9,7 @@ options:
     specs:
       petstore:
         servers:
-          - url: http://localhost:9090
+          - http://localhost:9090
         catalog:
           my_catalog:
             subject: petstore
@@ -21,6 +21,32 @@ options:
 > `object` as map of named `object` properties
 
 The `specs` specific options.
+
+#### specs.servers\*
+
+> `array` of `string`
+
+Deployment-target URLs for the spec, independent of the servers declared in the spec document itself. At least one is required.
+
+```yaml
+specs:
+  petstore:
+    servers:
+      - http://backend.internal:9090
+```
+
+#### specs.security
+
+> `object` as map of named `string` properties, at most one entry
+
+Maps an OpenAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite, and to synthesize the matching credential-extraction pattern for the generated `http` binding from the scheme's own declared type — an `http`/`bearer` scheme extracts an `Authorization: Bearer {credentials}` header; an `apiKey` scheme extracts from whichever `header`, `query`, or `cookie` location and parameter name the scheme declares. No separate authorization configuration is needed.
+
+```yaml
+specs:
+  petstore:
+    security:
+      bearerAuth: my_jwt_guard
+```
 
 #### specs.catalog
 
@@ -40,76 +66,33 @@ Subject name used when storing the catalog artifact.
 
 Catalog artifact version to use.
 
-#### specs.servers
-
-> `array` of `object`
-
-The servers to match from the schema that are used when defining endpoints.
-
-#### servers[].url
-
-> `string` | Pattern: `^([a-zA-Z0-9\\\\.-]+)(:(\\\\{[a-zA-Z_]+\\\\}|[0-9]+))?$`
-
-The server url to match in openapi spec
-
-#### options.http
-
-> `object`
-
-The http specific options.
-
-#### http.authorization
+#### specs.overlay
 
 > `object` as map of named `object` properties
 
-Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
+Applies an [OpenAPI Overlay Specification](https://github.com/OAI/Overlay-Specification) document, stored as a catalog artifact, to the base spec document before it is used. A single overlay may be configured per spec.
 
 ```yaml
-authorization:
-  my_jwt_guard:
-    credentials:
-      headers:
-        authorization: Bearer {credentials}
+specs:
+  petstore:
+    catalog:
+      my_catalog:
+        subject: petstore
+        version: latest
+    overlay:
+      my_catalog:
+        subject: petstore-overlay
+        version: latest
 ```
 
-#### authorization.credentials\*
-
-> `object`
-
-Defines how to extract credentials from the HTTP request.
-
-#### credentials.cookies
-
-> `object` as map of named `string` properties
-
-Named cookie value pattern with `{credentials}`.
-
-#### credentials.headers
-
-> `object` as map of named `string` properties
-
-Named header value pattern with `{credentials}`, e.g. `"Bearer` `{credentials}"`.
-
-#### credentials.query\*
-
-> `object` as map of named `string` properties
-
-Named query parameter value pattern with `{credentials}`.
-
-#### options.tcp
-
-> `object`
-
-TCP options to connect to an external client.
-
-#### tcp.host
+#### overlay.subject\*
 
 > `string`
 
-Hostname or IP address.
+Subject name used when storing the overlay artifact.
 
-#### tcp.port
+#### overlay.version
 
-> `integer`, `string`, `array`
+> `string` | Default: `latest`
 
-Port number(s), including port number ranges.
+Overlay artifact version to use.

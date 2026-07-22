@@ -4,6 +4,17 @@
 
 Conditional `openapi-asyncapi` specific routes.
 
+```yaml
+routes:
+  - when:
+      - spec: my-openapi-spec
+        operation: createPets
+    exit: asyncapi_client
+    with:
+      spec: my-asyncapi-spec
+      operation: addPet
+```
+
 #### routes[].guarded
 
 > `object` as map of named `array` of `string`
@@ -24,17 +35,35 @@ routes:
 List of conditions to match this route when adapting `openapi` request-response streams to `asyncapi` streams.
 Read more: [When a route matches](/concepts/protocol/README.md#route-matches)
 
-#### when[].api-id
+#### when[].spec
 
 > `string`
 
-OpenAPI spec identifier that matches from the `openapi` binding request stream.
+OpenAPI spec label that matches the resolved specification for the `openapi` binding request stream.
 
-#### when[].operation-id
+#### when[].operation
 
 > `string`
 
-OpenAPI OperationId that can be mapped between OpenAPI and AsyncAPI spec
+OpenAPI operationId that matches from the `openapi` binding request stream.
+
+#### when[].tag
+
+> `string`
+
+Matches when the resolved OpenAPI operation declares this tag.
+
+#### when[].servers
+
+> `array` of `object`
+
+Matches when the resolved OpenAPI server for the request is one of these servers.
+
+#### servers[].url
+
+> `string`
+
+Server url to match.
 
 #### routes[].exit
 
@@ -45,7 +74,7 @@ Next binding when following this route.
 ```yaml
 routes:
   - when:
-    ...
+      ...
     exit: asyncapi_client
 ```
 
@@ -53,21 +82,33 @@ routes:
 
 > `object`
 
-Defines the route with the AsyncAPI spec identifier and OperationId.
+Defines the target AsyncAPI spec and operation to proxy this route into. Required on every route.
 
 ```yaml
 with:
-  api-id: my-asyncapi-spec
+  spec: my-asyncapi-spec
 ```
 
-#### with.api-id
+#### with.spec\*
 
 > `string`
 
-AsyncAPI spec identifier that the route exits with to the next binding.
+AsyncAPI spec label that the route exits with to the next binding.
 
-#### with.operation-id
+#### with.operation
 
 > `string`
 
-AsyncAPI OperationId that the route exits with to the next binding.
+AsyncAPI operationId that the route exits with to the next binding, either exactly or as a glob pattern, e.g. `list*`. Mutually exclusive with `with.tag`.
+
+#### with.tag
+
+> `string`
+
+Bulk-selects every AsyncAPI operation declaring this tag as the target of the route. Mutually exclusive with `with.operation`.
+
+```yaml
+with:
+  spec: my-asyncapi-spec
+  tag: pets
+```

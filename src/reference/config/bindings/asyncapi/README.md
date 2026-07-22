@@ -21,8 +21,8 @@ Defines a binding with `asyncapi` spec, with `server` or `proxy` or `client` beh
 
 > [Full config](./client.md)
 
-The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `http`, and `tls`, `tcp` bindings with client kind and adapts
-AsyncAPI streams to Kafka/MQTT/HTTP streams.
+The `client` kind `asyncapi` binding creates composite of `kafka` or `mqtt` or `http` or `sse`, and `tls`, `tcp` bindings with client kind and adapts
+AsyncAPI streams to Kafka/MQTT/HTTP/SSE streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->
@@ -32,7 +32,7 @@ AsyncAPI streams to Kafka/MQTT/HTTP streams.
 
 > [Full config](./proxy.md)
 
-The `proxy` kind `asyncapi` binding creates composite of `mqtt-kafka` binding with proxy kind mapping MQTT streams to Kafka streams.
+The `proxy` kind `asyncapi` binding creates composite of `http-kafka`, `sse-kafka`, or `mqtt-kafka` bindings with proxy kind mapping HTTP/SSE/MQTT streams to Kafka streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/proxy.yaml -->
@@ -42,7 +42,7 @@ The `proxy` kind `asyncapi` binding creates composite of `mqtt-kafka` binding wi
 
 > [Full config](./server.md)
 
-The `server` kind `asyncapi` binding creates composite of `tcp`, `tls`, and `mqtt` or `http` bindings with server kind and adapts MQTT/HTTP streams to AsyncAPI streams.
+The `server` kind `asyncapi` binding creates composite of `tcp`, `tls`, and `mqtt` or `http` or `sse` bindings with server kind and adapts MQTT/HTTP/SSE streams to AsyncAPI streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/server.yaml -->
