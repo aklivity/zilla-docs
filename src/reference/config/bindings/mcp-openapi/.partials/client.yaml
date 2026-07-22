@@ -1,0 +1,29 @@
+mcp_openapi_client:
+  type: mcp_openapi
+  kind: client
+  options:
+    specs:
+      github:
+        catalog:
+          my_catalog:
+            subject: github
+            version: latest
+        security:
+          bearerAuth: my_guard
+    tools:
+      create_pr:
+        description: Create a pull request to merge one branch into another.
+  routes:
+    - when:
+        - tool: create_pr
+      with:
+        spec: github
+        operation: create_pr
+    - when:
+        - resource: read_order
+      with:
+        spec: github
+        operation: read_order
+    - with:
+        spec: github
+        tag: issues
