@@ -18,8 +18,8 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
   - [-w --write `<output>`](#w-write-output)
 - [zilla help](#zilla-help)
 - [zilla logs](#zilla-logs)
-  - [--format `<format>`](#format-format)
   - [-f --follow](#f-follow)
+  - [--format `<format>`](#format-format)
 - [zilla metrics](#zilla-metrics)
   - [--namespace `<namespace>`](#namespace-namespace)
 - [zilla start](#zilla-start)
@@ -119,6 +119,16 @@ zilla logs
 engine:events [13/Jul/2026:23:32:46 +0000] [0000000000000000] engine.started Engine Started.
 ```
 
+#### -f --follow
+
+> `flag`
+
+Keep printing new events as they arrive, after printing the current log, similar to `docker logs -f`.
+
+```bash
+zilla logs -f
+```
+
 #### --format `<format>`
 
 > `string` | Default: `text`
@@ -131,16 +141,6 @@ zilla logs --format json
 
 ```output:no-line-numbers
 {"namespace":"engine:events","timestamp":1783985566587,"traceId":"0000000000000000","event":"engine.started","message":"Engine Started."}
-```
-
-#### -f --follow
-
-> `flag`
-
-Keep printing new events as they arrive, after printing the current log, similar to `docker logs -f`.
-
-```bash
-zilla logs -f
 ```
 
 ### zilla metrics
