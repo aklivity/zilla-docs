@@ -4,7 +4,7 @@ shortTitle: client
 
 # asyncapi client
 
-The asyncapi client binding creates composite of `kafka` or `mqtt` or `http`, and `tls`, `tcp` bindings with client kind and adapts AsyncAPI streams to Kafka/MQTT/HTTP streams.
+The asyncapi client binding creates composite of `kafka` or `mqtt` or `http` or `sse`, and `tls`, `tcp` bindings with client kind and adapts AsyncAPI streams to Kafka/MQTT/HTTP/SSE streams.
 
 ```yaml {3}
 <!-- @include: ./.partials/client.yaml -->
@@ -24,7 +24,7 @@ The `client` specific options.
 specs:
   http_api:
     servers:
-      - name: plain
+      - http://localhost:8080
     catalog:
       my_catalog:
         subject: petstore
@@ -33,137 +33,17 @@ specs:
 
 <!-- @include: ./.partials/options.md -->
 
-### options.kafka
-
-> `object`
-
-The `kafka` binding specific options.
-
-#### kafka.topics
-
-> `array` of `object`
-
-Topic configuration.
-
-<!-- @include: ../.partials/options-kafka-topics.md -->
-
-#### topics[].defaultOffset
-
-> `enum` [ `live`, `historical` ]
-
-Fetch offset to use for new consumers
-
-<!-- @include: ../.partials/options-kafka-topics-transforms.md -->
-
-#### kafka.sasl
-
-> `object`
-
-SASL credentials to use when connecting to `kafka` brokers.
-
-<!-- @include: ../.partials/options-kafka-sasl.md -->
-
-### options.mqtt-kafka
-
-> `object`
-
-The `mqtt-kafka` binding specific options.
-
-#### mqtt-kafka.channels
-
-> `object`
-
-AsyncAPI Kafka channels describing the necessary topics for the MQTT-Kafka mapping.
+For the `mqtt-kafka` mapping, the Kafka topic role of each `mqtt-kafka` channel (`sessions`, `messages`, `retained`) is declared directly in the AsyncAPI spec document via that channel's `x-zilla-mqtt-kafka` binding, rather than as a `zilla.yaml` option:
 
 ```yaml
-mqtt-kafka:
-  channels:
-    sessions: mqttSessions
-    retained: mqttRetained
-    messages: mqttMessages
+channels:
+  mqttSessions:
+    address: mqtt-sessions
+    x-zilla-mqtt-kafka:
+      role: sessions
 ```
 
-#### channels.sessions
-
-> `string`
-
-AsyncAPI Kafka sessions channel.
-
-```yaml
-sessions: mqttSessions
-```
-
-#### channels.retained
-
-> `string`
-
-AsyncAPI Kafka retained channel.
-
-```yaml
-retained: mqttRetained
-```
-
-#### channels.messages
-
-> `string`
-
-AsyncAPI Kafka messages channel.
-
-```yaml
-messages: mqttMessages
-```
-
-### options.http
-
-> `object`
-
-The HTTP specific options.
-
-#### http.authorization
-
-> `object` as map of named `object` properties
-
-Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
-
-```yaml
-authorization:
-  my_jwt_guard:
-    credentials:
-      headers:
-        authorization: Bearer {credentials}
-```
-
-<!-- @include: ../.partials/options-http-auth.md -->
-
-### options.mqtt
-
-> `object`
-
-The MQTT specific options.
-
-#### mqtt.authorization
-
-> `object` as map of named `object` properties
-
-Authorization by guard for the `HTTP/1.1` and `HTTP/2` protocols.
-
-```yaml
-authorization:
-  my_jwt_guard:
-    credentials:
-      headers:
-        authorization: Bearer {credentials}
-```
-
-<!-- @include: ../.partials/options-mqtt-auth.md -->
-
-#### options.tls
-
-> `object`
-
-The TLS specific options.
-
-<!-- @include: ../.partials/options-tls.md -->
+For each `https`/`mqtts` server, a `tls` binding is generated automatically, with keys, trust, signers, and SNI resolved from `vault` and ALPN computed automatically — no separate TLS options are configured on this binding.
 
 <!-- @include: ./.partials/routes.md -->
 <!-- @include: ../.partials/telemetry.md -->

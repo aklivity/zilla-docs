@@ -1,6 +1,42 @@
+---
+headerDepth: 1
+---
+
 # Zilla Plus 1.x
 
 Zilla Plus is Aklivity's enterprise product for deploying and operating production API and event streaming gateways. This page summarizes the notable additions, changes, and fixes in each 1.x release. It is not an exhaustive log of every merged pull request.
+
+---
+
+## 1.4.1
+
+**Release Date:** July 21, 2026
+
+### Added
+
+- Kafka Proxy: SASL/OAUTHBEARER support for `internal.authorization`, in addition to the existing `external.authorization` support.
+
+### Fixed
+
+- Kafka Proxy: Fetch responses now resolve the topic model by the external (aliased) topic name instead of the internal one.
+
+---
+
+## 1.4.0
+
+**Release Date:** July 20, 2026
+
+### Added
+
+- New `aws-cognito` guard, validating AWS Cognito JWTs via OIDC discovery.
+- Kafka Proxy: SASL/OAUTHBEARER termination for external client connections, usable with any guard, including the new `aws-cognito` guard.
+- Kafka Proxy: per-client topic aliasing (`topics[].alias`), rewriting the internal topic name from a guard's established identity or attributes, with coverage across all supported Kafka APIs.
+- `zilla logs` command, for checking engine telemetry log events.
+
+### Fixed
+
+- Kafka client no longer rejects a cache fetch when the partition leader isn't known yet.
+- Several Kafka Proxy protocol-framing fixes, including cached response-length adjustment, varint padding for KIP-482 tagged fields, per-binding API version narrowing at decode time, and Fetch v12 framing when all records are rejected.
 
 ---
 

@@ -14,13 +14,8 @@ The openapi client binding creates composite of `http`, `tls`, and `tcp` binding
 
 <!-- @include: ./.partials/options.md -->
 
-<!-- markdownlint-disable-next-line MD001 -->
-#### options.tls
-
-> `object`
-
-The `tls` specific options.
-
-<!-- @include: ../.partials/options-tls.md -->
 <!-- @include: ../.partials/vault.md -->
+
+For each `https` server, a `tls` binding is generated automatically, with keys, trust, signers, and SNI resolved from `vault` and ALPN computed automatically — no separate TLS options are configured on this binding.
+
 <!-- @include: ../.partials/telemetry.md -->

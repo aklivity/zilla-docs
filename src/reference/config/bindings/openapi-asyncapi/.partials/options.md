@@ -51,6 +51,50 @@ Subject name used when storing the catalog artifact.
 
 Catalog artifact version to use.
 
+#### openapi.security
+
+> `object` as map of named `string` properties, at most one entry
+
+Maps an OpenAPI `securitySchemes` name declared in the spec document to a guard defined elsewhere in the configuration. Used to automatically derive `guarded:` on the routes generated for the composite.
+
+```yaml
+specs:
+  openapi:
+    my-openapi-spec:
+      security:
+        bearerAuth: my_jwt_guard
+```
+
+#### openapi.overlay
+
+> `object` as map of named `object` properties
+
+Applies an [OpenAPI Overlay Specification](https://github.com/OAI/Overlay-Specification) document, stored as a catalog artifact, to the base OpenAPI spec document before it is used. A single overlay may be configured per spec.
+
+```yaml
+specs:
+  openapi:
+    my-openapi-spec:
+      overlay:
+        my_catalog:
+          subject: petstore-overlay
+          version: latest
+```
+
+<!-- markdownlint-disable MD024 -->
+#### overlay.subject\*
+
+> `string`
+
+Subject name used when storing the overlay artifact.
+
+#### overlay.version
+
+> `string` | Default: `latest`
+
+Overlay artifact version to use.
+<!-- markdownlint-enable MD024 -->
+
 #### specs.asyncapi\*
 
 > `object` as map of named `object` properties
@@ -75,4 +119,34 @@ Subject name used when storing the catalog artifact.
 > `string` | Default: `latest`
 
 Catalog artifact version to use.
+<!-- markdownlint-enable MD024 -->
+
+#### asyncapi.overlay
+
+> `object` as map of named `object` properties
+
+Applies an [OpenAPI Overlay Specification](https://github.com/OAI/Overlay-Specification) document, stored as a catalog artifact, to the base AsyncAPI spec document before it is used. A single overlay may be configured per spec.
+
+```yaml
+specs:
+  asyncapi:
+    my-asyncapi-spec:
+      overlay:
+        my_catalog:
+          subject: petstore-overlay
+          version: latest
+```
+
+<!-- markdownlint-disable MD024 -->
+#### overlay.subject\*
+
+> `string`
+
+Subject name used when storing the overlay artifact.
+
+#### overlay.version
+
+> `string` | Default: `latest`
+
+Overlay artifact version to use.
 <!-- markdownlint-enable MD024 -->

@@ -22,12 +22,6 @@ Topic name to match.
 
 Kafka API keys to match.
 
-#### routes[].with
-
-> `object`
-
-Properties applied when following this route.
-
 #### routes[].guarded
 
 > `object` as map of named `array` of `string`

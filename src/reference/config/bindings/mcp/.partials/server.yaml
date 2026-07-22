@@ -6,5 +6,5 @@ mcp_server:
       callback: auth/callback
     authorization:
       my_jwt_guard:
-        credentials: scope
+        credentials: "Bearer {credentials}"
   exit: mcp_client
