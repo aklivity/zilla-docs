@@ -138,14 +138,15 @@ Guards can be used by specific protocol bindings to enforce authorization requir
 
 Associated roles can be enforced during routing by only following routes `guarded` by specific role requirements when authorized. This implicitly supports falling through to lower privilege routes when `guarded` higher privilege routes are not authorized.
 
-| Type                                   | Purpose                                                                                 |
-|----------------------------------------|-----------------------------------------------------------------------------------------|
-| [`jwt`](./guards/jwt.md)               | Validates JWT bearer tokens against JWKS. Extracts roles for route authorization.       |
-| [`api-keys`](./guards/api-keys.md)     | Validates API keys against a static list or a store. `[Plus]`                           |
-| [`azure-ad`](./guards/azure-ad.md)     | Validates Azure Active Directory OAuth2 tokens. `[Plus]`                                |
-| [`aws-lambda`](./guards/aws-lambda.md) | Delegates authorization to an AWS Lambda function. `[Plus]`                             |
-| [`oauth`](./guards/oauth.md)           | Acquires OAuth 2.0 access tokens via client-credentials, jwt-bearer, token-exchange, or authorization-code grants. `[Plus]` |
-| [`identity`](./guards/identity.md)     | Pass-through guard; approves all requests. Used for testing or default routes. `[Plus]` |
+| Type                                     | Purpose                                                                                 |
+|------------------------------------------|-----------------------------------------------------------------------------------------|
+| [`jwt`](./guards/jwt.md)                 | Validates JWT bearer tokens against JWKS. Extracts roles for route authorization.       |
+| [`api-keys`](./guards/api-keys.md)       | Validates API keys against a static list or a store. `[Plus]`                           |
+| [`azure-ad`](./guards/azure-ad.md)       | Validates Azure Active Directory OAuth2 tokens. `[Plus]`                                |
+| [`aws-cognito`](./guards/aws-cognito.md) | Validates AWS Cognito OAuth2 access tokens. `[Plus]`                                    |
+| [`aws-lambda`](./guards/aws-lambda.md)   | Delegates authorization to an AWS Lambda function. `[Plus]`                             |
+| [`oauth`](./guards/oauth.md)             | Acquires OAuth 2.0 access tokens via client-credentials, jwt-bearer, token-exchange, or authorization-code grants. `[Plus]` |
+| [`identity`](./guards/identity.md)       | Pass-through guard; approves all requests. Used for testing or default routes. `[Plus]` |
 
 ### vaults
 
