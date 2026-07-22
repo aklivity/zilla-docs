@@ -70,6 +70,12 @@ Keystore type.
 
 Keystore password.
 
+#### keys.entries
+
+> `array` of `string`
+
+Aliases of the keystore entries to use. If not provided, all key entries in the keystore are used.
+
 #### options.trust
 
 > `object`
@@ -94,6 +100,12 @@ Keystore type.
 
 Keystore password.
 
+#### trust.entries
+
+> `array` of `string`
+
+Aliases of the keystore entries to use. If not provided, all trusted certificate entries in the keystore are used.
+
 #### options.signers
 
 > `object`
@@ -117,6 +129,12 @@ Keystore type.
 > `string`
 
 Keystore password.
+
+#### signers.entries
+
+> `array` of `string`
+
+Aliases of the keystore entries to use. If not provided, all trusted certificate entries in the keystore are used.
 
 #### options.revocation
 

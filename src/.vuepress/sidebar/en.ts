@@ -351,7 +351,7 @@ export const enSidebar = sidebar({
 
         },
         {
-          text: "Real-World Use Cases",
+          text: "Use Cases",
           icon: "fa-solid fa-lightbulb",
           link: "getting-started/use-cases.md",
 
@@ -608,6 +608,11 @@ export const enSidebar = sidebar({
                   text: "AWS Lambda",
                   icon: "fa-brands fa-aws",
                   link: "aws-lambda/README.md"
+                },
+                {
+                  text: "AWS Cognito",
+                  icon: "fa-brands fa-aws",
+                  link: "aws-cognito/README.md"
                 },
               ],
             },
@@ -895,6 +900,13 @@ export const enSidebar = sidebar({
 
             },
             {
+              text: "Dynamic Topic Aliases",
+              icon: "fa-solid fa-diagram-project",
+              prefix: "kafka-proxy-aws-cognito/",
+              link: "kafka-proxy-aws-cognito/README.md",
+
+            },
+            {
               text: "AWS ECS Fargate",
               icon: "fa-brands fa-aws",
               link: "zilla-plus-on-aws-ecs-fargate.md",
@@ -941,6 +953,18 @@ export const enSidebar = sidebar({
           icon: "fa-solid fa-building",
           link: "enterprise-support.md",
 
+        },
+      ],
+    },
+    {
+      text: "Releases",
+      prefix: "/releases/",
+      link: "/releases/README.md",
+      children: [
+        {
+          text: "1.x",
+          icon: "fa-solid fa-code-branch",
+          link: "1.x/README.md",
         },
       ],
     },

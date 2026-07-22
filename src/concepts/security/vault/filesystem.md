@@ -25,17 +25,21 @@ vaults:
 
 ## Configuration (\* required)
 
-| Property                 | Type                         | Description                |
-| ------------------------ | ---------------------------- | -------------------------- |
-| options.keys             | `object`                     | Private keys.              |
-| options.keys.store       | `string`                     | Relative path to keystore. |
-| options.keys.type        | `string` (default: `pkcs12`) | Keystore type.             |
-| options.keys.password    | `string`                     | Keystore password.         |
-| options.trust            | `object`                     | Trust certificates.        |
-| options.trust.store      | `string`                     | Relative path to keystore. |
-| options.trust.type       | `string` (default: `pkcs12`) | Keystore type.             |
-| options.trust.password   | `string`                     | Keystore password.         |
-| options.signers          | `object`                     | Signers certificates.      |
-| options.signers.store    | `string`                     | Relative path to keystore. |
-| options.signers.type     | `string` (default: `pkcs12`) | Keystore type.             |
-| options.signers.password | `string`                     | Keystore password.         |
+| Property                 | Type                         | Description                                                              |
+| ------------------------ | ---------------------------- | ------------------------------------------------------------------------ |
+| options.keys             | `object`                     | Private keys.                                                            |
+| options.keys.store       | `string`                     | Relative path to keystore.                                               |
+| options.keys.type        | `string` (default: `pkcs12`) | Keystore type.                                                           |
+| options.keys.password    | `string`                     | Keystore password.                                                       |
+| options.keys.entries     | `array` of `string`          | Aliases of the keystore entries to use, defaulting to all key entries.   |
+| options.trust            | `object`                     | Trust certificates.                                                      |
+| options.trust.store      | `string`                     | Relative path to keystore.                                               |
+| options.trust.type       | `string` (default: `pkcs12`) | Keystore type.                                                           |
+| options.trust.password   | `string`                     | Keystore password.                                                       |
+| options.trust.entries    | `array` of `string`          | Aliases of the keystore entries to use, defaulting to all trusted certificate entries. |
+| options.signers          | `object`                     | Signers certificates.                                                    |
+| options.signers.store    | `string`                     | Relative path to keystore.                                               |
+| options.signers.type     | `string` (default: `pkcs12`) | Keystore type.                                                           |
+| options.signers.password | `string`                     | Keystore password.                                                       |
+| options.signers.entries  | `array` of `string`          | Aliases of the keystore entries to use, defaulting to all trusted certificate entries. |
+| options.revocation       | `enum` [`crl`]               | Certificate revocation method.                                          |

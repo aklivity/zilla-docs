@@ -38,9 +38,51 @@ Certificate revocation method.
 
 #### options.aliases
 
-> `object` as map of named `string` properties
+> `object` as map of named `string` properties | Deprecated
 
-Map of alias names to AWS secret ARNs.
+Map of alias name to AWS Secrets Manager secret ARN, used to expose [`keys`](#options-keys), [`trust`](#options-trust), and [`signers`](#options-signers) when those options are not given. Cannot be combined with `keys`, `trust`, or `signers` — use those options instead.
+
+#### options.keys
+
+> `array` of `string`, or `object` as map of named `string` properties
+
+Amazon Resource Names (ARNs) of AWS Secrets Manager secrets to expose as private keys. Accepts either a list of ARNs or a map of alias name to ARN, so an alias can be referenced by name wherever an ARN would otherwise be required.
+
+```yaml
+options:
+  keys:
+    server-cert: arn:aws:secretsmanager:us-east-1:123456789012:secret:example.com-a1b2c3
+```
+
+Falls back to [`aliases`](#options-aliases) when omitted. When no explicit key reference is given, every configured key is resolved.
+
+#### options.trust
+
+> `array` of `string`, or `object` as map of named `string` properties
+
+Amazon Resource Names (ARNs) of AWS Secrets Manager secrets to trust as certificate authorities. Accepts either a list of ARNs or a map of alias name to ARN, so an alias can be referenced by name wherever an ARN would otherwise be required.
+
+```yaml
+options:
+  trust:
+    root-ca: arn:aws:secretsmanager:us-east-1:123456789012:secret:wildcard.example.com-a1b2c3
+```
+
+Falls back to [`aliases`](#options-aliases) when omitted. When no explicit trust reference is given, every configured trust entry is resolved.
+
+#### options.signers
+
+> `array` of `string`, or `object` as map of named `string` properties
+
+Amazon Resource Names (ARNs) of AWS Secrets Manager secrets to expose as signer keys. Accepts either a list of ARNs or a map of alias name to ARN, so an alias can be referenced by name wherever an ARN would otherwise be required.
+
+```yaml
+options:
+  signers:
+    env.example.com: arn:aws:secretsmanager:us-east-1:123456789012:secret:example.com-a1b2c3
+```
+
+Falls back to [`aliases`](#options-aliases) when omitted. When no explicit signer reference is given, every configured signer is resolved.
 
 #### options.tags
 

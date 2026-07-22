@@ -31,6 +31,9 @@ Kafka proxy endpoint used by external clients.
 external:
   host: kafka-#.external.net
   port: 9093
+  authorization:
+    cognito0:
+      mechanism: oauthbearer
 ```
 
 #### external.host\*
@@ -61,19 +64,35 @@ Radix used to encode the broker number in the external hostname pattern.
 
 > `object` as map of named `object` properties
 
-Authorization configuration for external connections.
-
-#### authorization.credentials\*
-
-> `object`
-
-Credentials configuration for authorization.
+Authorization configuration for external connections, keyed by guard name. Each named entry authenticates the external SASL handshake against that guard.
 
 #### authorization.mechanism
 
-> `enum` [ `plain` ]
+> `enum` [ `plain`, `oauthbearer` ]
 
 Authorization mechanism.
+
+- `plain`: extracts `authzid`/`authcid`/`passwd` from a SASL/PLAIN initial response and substitutes them into the `credentials` template before authorizing with the guard.
+- `oauthbearer`: parses an RFC 7628 SASL/OAUTHBEARER initial response and extracts the bearer token, substituting it into the `credentials` template before authorizing with the guard. On rejection, the client receives an RFC 7628 §3.7 error response instead of an immediate SASL failure.
+
+#### authorization.credentials
+
+> `string` | Default: `"Bearer {credentials}"` when `mechanism` is `oauthbearer`
+
+Template used to build the credentials string passed to the guard.
+
+- For `plain`, `{username}` and `{password}` are substituted from the SASL/PLAIN initial response's `authcid`/`passwd`. Required.
+- For `oauthbearer`, `{credentials}` is substituted from the extracted bearer token. Optional.
+
+```yaml
+external:
+  authorization:
+    test0:
+      mechanism: plain
+      credentials: "{username}:{password}"
+    cognito0:
+      mechanism: oauthbearer
+```
 
 #### options.internal\*
 
@@ -119,21 +138,38 @@ Authorization configuration for internal connections.
 
 #### credentials.mechanism
 
-> `enum` [ `plain`, `scram-sha-256`, `scram-sha-512` ]
+> `enum` [ `plain`, `scram-sha-256`, `scram-sha-512`, `oauthbearer` ]
 
 Authentication mechanism.
 
-#### credentials.username\*
+- `plain`, `scram-sha-256`, `scram-sha-512`: authenticates to the internal broker with the static `username`/`password` below.
+- `oauthbearer`: authenticates to the internal broker with a token built from the `credentials` template below, evaluated against the session an external guard already authorized. Lets Zilla present the external client's own credentials to the internal broker instead of a static service-account secret.
+
+#### credentials.username
 
 > `string`
 
-Username for authentication.
+Username for authentication. Required when `mechanism` is `plain`, `scram-sha-256`, or `scram-sha-512`.
 
-#### credentials.password\*
+#### credentials.password
 
 > `string`
 
-Password for authentication.
+Password for authentication. Required when `mechanism` is `plain`, `scram-sha-256`, or `scram-sha-512`.
+
+#### credentials.credentials
+
+> `string`
+
+Template used to build the bearer token presented to the internal broker. Required when `mechanism` is `oauthbearer`. Supports `${guarded['my_guard'].credentials}` to reference the raw credential string an external guard authorized the session with.
+
+```yaml
+internal:
+  authorization:
+    credentials:
+      mechanism: oauthbearer
+      credentials: "Bearer ${guarded['cognito0'].credentials}"
+```
 
 #### options.topics
 
@@ -145,7 +181,19 @@ Topic configuration list.
 
 > `string`
 
-Topic name.
+Topic name, as observed by the external client.
+
+#### topics[].alias
+
+> `string`
+
+Template for the internal topic name. Supports `${topic}` to reference the topic's own `name`, along with identity and attribute placeholders such as `${guarded['my_guard'].identity}` and `${guarded['my_guard'].attributes.my_attribute}`. When omitted, the existing rules apply, either cluster-id prefixed or match the external name.
+
+```yaml
+topics:
+  - name: messages
+    alias: "${topic}-${guarded['my_guard'].identity}"
+```
 
 #### topics[].key
 
