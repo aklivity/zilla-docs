@@ -16,6 +16,10 @@ Named events from Zilla that can be exported and logged.
 - [BINDING\_KAFKA\_API\_VERSION\_REJECTED](#binding-kafka-api-version-rejected)
 - [BINDING\_KAFKA\_AUTHORIZATION\_FAILED](#binding-kafka-authorization-failed)
 - [BINDING\_KAFKA\_CLUSTER\_AUTHORIZATION\_FAILED](#binding-kafka-cluster-authorization-failed)
+- [BINDING\_MCP\_AUTHORIZATION\_FAILED](#binding-mcp-authorization-failed)
+- [BINDING\_MCP\_ELICITATION\_TIMEOUT](#binding-mcp-elicitation-timeout)
+- [BINDING\_MCP\_SESSION\_CLOSED](#binding-mcp-session-closed)
+- [BINDING\_MCP\_SESSION\_ESTABLISHED](#binding-mcp-session-established)
 - [BINDING\_MQTT\_CLIENT\_CONNECTED](#binding-mqtt-client-connected)
 - [BINDING\_MQTT\_KAFKA\_NON\_COMPACT\_SESSIONS\_TOPIC](#binding-mqtt-kafka-non-compact-sessions-topic)
 - [BINDING\_TCP\_DNS\_FAILED](#binding-tcp-dns-failed)
@@ -72,6 +76,22 @@ An authorization failure happened in the http, mqtt or the kafka binding.
 ### BINDING_KAFKA_CLUSTER_AUTHORIZATION_FAILED
 
 A Kafka protocol API cluster authorization failed.
+
+### BINDING_MCP_AUTHORIZATION_FAILED
+
+An authorization failure happened in the [mcp](../bindings/mcp/README.md) binding.
+
+### BINDING_MCP_ELICITATION_TIMEOUT
+
+An MCP elicitation request timed out before the client completed it.
+
+### BINDING_MCP_SESSION_CLOSED
+
+An MCP session was closed.
+
+### BINDING_MCP_SESSION_ESTABLISHED
+
+An MCP session was established.
 
 ### BINDING_MQTT_CLIENT_CONNECTED
 
