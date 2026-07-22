@@ -17,12 +17,11 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
   - [-v --verbose](#v-verbose)
   - [-w --write `<output>`](#w-write-output)
 - [zilla help](#zilla-help)
-- [zilla version](#zilla-version)
+- [zilla logs](#zilla-logs)
+  - [-f --follow](#f-follow)
+  - [--format `<format>`](#format-format)
 - [zilla metrics](#zilla-metrics)
   - [--namespace `<namespace>`](#namespace-namespace)
-- [zilla logs](#zilla-logs)
-  - [--format `<format>`](#format-format)
-  - [-f --follow](#f-follow)
 - [zilla start](#zilla-start)
   - [-c --config](#c-config)
   - [-e --exception-traces](#e-exception-traces)
@@ -32,6 +31,7 @@ The Zilla Runtime command line interface uses the [Zilla Runtime Configuration](
   - [-w --workers](#w-workers)
 - [zilla stop](#zilla-stop)
 - [zilla tune](#zilla-tune)
+- [zilla version](#zilla-version)
 
 ::::
 
@@ -105,16 +105,42 @@ Examples:
 ./zilla help start
 ```
 
-### zilla version
+### zilla logs
 
-The `zilla version` command prints the version information of Zilla.
+The `zilla logs` command shows event logs for a running Zilla runtime engine, attaching to the same engine directory as `zilla start`.
+
+Without `-f --follow`, the command prints the current log and exits, making it usable as a one-shot readiness check, for example in a Docker `HEALTHCHECK`.
 
 ```bash
-zilla version
+zilla logs
 ```
 
 ```output:no-line-numbers
-zilla version 0.9.85
+engine:events [13/Jul/2026:23:32:46 +0000] [0000000000000000] engine.started Engine Started.
+```
+
+#### -f --follow
+
+> `flag`
+
+Keep printing new events as they arrive, after printing the current log, similar to `docker logs -f`.
+
+```bash
+zilla logs -f
+```
+
+#### --format `<format>`
+
+> `string` | Default: `text`
+
+Set the output format. Use `text` for human-readable output, or `json` for newline-delimited JSON suitable for piping to `jq`.
+
+```bash
+zilla logs --format json
+```
+
+```output:no-line-numbers
+{"namespace":"engine:events","timestamp":1783985566587,"traceId":"0000000000000000","event":"engine.started","message":"Engine Started."}
 ```
 
 ### zilla metrics
@@ -151,44 +177,6 @@ example      echo_server    stream.data.received         13
 example      echo_server    stream.data.sent             13
 example      echo_server    stream.errors.received        0
 example      echo_server    stream.errors.sent            0
-```
-
-### zilla logs
-
-The `zilla logs` command shows event logs for a running Zilla runtime engine, attaching to the same engine directory as `zilla start`.
-
-Without `-f --follow`, the command prints the current log and exits, making it usable as a one-shot readiness check, for example in a Docker `HEALTHCHECK`.
-
-```bash
-zilla logs
-```
-
-```output:no-line-numbers
-engine:events [13/Jul/2026:23:32:46 +0000] [0000000000000000] engine.started Engine Started.
-```
-
-#### --format `<format>`
-
-> `string` | Default: `text`
-
-Set the output format. Use `text` for human-readable output, or `json` for newline-delimited JSON suitable for piping to `jq`.
-
-```bash
-zilla logs --format json
-```
-
-```output:no-line-numbers
-{"namespace":"engine:events","timestamp":1783985566587,"traceId":"0000000000000000","event":"engine.started","message":"Engine Started."}
-```
-
-#### -f --follow
-
-> `flag`
-
-Keep printing new events as they arrive, after printing the current log, similar to `docker logs -f`.
-
-```bash
-zilla logs -f
 ```
 
 ### zilla start
@@ -329,4 +317,16 @@ xxxx  example.echo
 ```output:no-line-numbers
 xxxx  example.tcp
 .x..  example.echo
+```
+
+### zilla version
+
+The `zilla version` command prints the version information of Zilla.
+
+```bash
+zilla version
+```
+
+```output:no-line-numbers
+zilla version 0.9.85
 ```
