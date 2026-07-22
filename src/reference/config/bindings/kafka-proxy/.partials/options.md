@@ -33,9 +33,7 @@ external:
   port: 9093
   authorization:
     cognito0:
-      credentials:
-        mechanism: oauthbearer
-        token: "{credentials}"
+      mechanism: oauthbearer
 ```
 
 #### external.host\*
@@ -68,61 +66,32 @@ Radix used to encode the broker number in the external hostname pattern.
 
 Authorization configuration for external connections, keyed by guard name. Each named entry authenticates the external SASL handshake against that guard.
 
-```yaml
-external:
-  authorization:
-    test0:
-      mechanism: plain
-      pattern: "{username}:{password}"
-    cognito0:
-      credentials:
-        mechanism: oauthbearer
-        token: "{credentials}"
-```
-
 #### authorization.mechanism
 
-> `enum` [ `plain`, `scram-sha-256`, `scram-sha-512` ]
+> `enum` [ `plain`, `oauthbearer` ]
 
-Extracts `authzid`/`authcid`/`passwd` from a SASL/PLAIN or SASL/SCRAM initial response and substitutes them into the `pattern` template before authorizing with the guard. Required together with `pattern`; mutually exclusive with `credentials`.
+Authorization mechanism.
 
-#### authorization.pattern
-
-> `string`
-
-Template used to build the credentials string passed to the guard, substituting `{username}` and `{password}` from the SASL initial response's `authcid`/`passwd`.
-
-```yaml
-external:
-  authorization:
-    test0:
-      mechanism: plain
-      pattern: "{username}:{password}"
-```
+- `plain`: extracts `authzid`/`authcid`/`passwd` from a SASL/PLAIN initial response and substitutes them into the `credentials` template before authorizing with the guard.
+- `oauthbearer`: parses an RFC 7628 SASL/OAUTHBEARER initial response and extracts the bearer token, substituting it into the `credentials` template before authorizing with the guard. On rejection, the client receives an RFC 7628 §3.7 error response instead of an immediate SASL failure.
 
 #### authorization.credentials
 
-> `object`
+> `string` | Default: `"Bearer {credentials}"` when `mechanism` is `oauthbearer`
 
-Parses an RFC 7628 SASL/OAUTHBEARER initial response and extracts the bearer token before authorizing with the guard. On rejection, the client receives an RFC 7628 §3.7 error response instead of an immediate SASL failure. Mutually exclusive with `mechanism`/`pattern`.
+Template used to build the credentials string passed to the guard.
 
-#### credentials.mechanism\*
-
-> `const` `oauthbearer`
-
-#### credentials.token\*
-
-> `string`
-
-Kept for symmetry with `internal.authorization.credentials.token`; its value is not read. The bearer token is always the content following the `"Bearer "` prefix in the SASL/OAUTHBEARER initial response.
+- For `plain`, `{username}` and `{password}` are substituted from the SASL/PLAIN initial response's `authcid`/`passwd`. Required.
+- For `oauthbearer`, `{credentials}` is substituted from the extracted bearer token. Optional.
 
 ```yaml
 external:
   authorization:
+    test0:
+      mechanism: plain
+      credentials: "{username}:{password}"
     cognito0:
-      credentials:
-        mechanism: oauthbearer
-        token: "{credentials}"
+      mechanism: oauthbearer
 ```
 
 #### options.internal\*
@@ -163,59 +132,43 @@ Radix used to encode the broker number in the internal hostname pattern.
 
 #### internal.authorization
 
-> `object` as map of named `object` properties
+> `object`
 
-Authorization configuration for internal connections, keyed by guard name, structurally identical to `external.authorization`. The internal and external guard names may differ; when both reference the same guard, the credentials an external guard authorized the external SASL handshake with are reused to authenticate to the internal broker, instead of a static service-account secret.
-
-```yaml
-internal:
-  authorization:
-    cognito0:
-      credentials:
-        mechanism: oauthbearer
-        token: "{credentials}"
-    svc0:
-      credentials:
-        mechanism: plain
-        username: "{identity}"
-        password: "{credentials}"
-```
+Authorization configuration for internal connections.
 
 #### credentials.mechanism
 
-> `enum` [ `oauthbearer`, `plain`, `scram-sha-256`, `scram-sha-512` ]
+> `enum` [ `plain`, `scram-sha-256`, `scram-sha-512`, `oauthbearer` ]
 
-Authentication mechanism used against the internal broker.
+Authentication mechanism.
 
-- `oauthbearer`: builds the bearer token from `token`, evaluated against `guard.credentials(sessionId)` for the session the external side already authorized.
-- `plain`, `scram-sha-256`, `scram-sha-512`: builds the username from `username`, evaluated against `guard.identity(sessionId)`, and the password from `password`, evaluated against `guard.credentials(sessionId)`.
+- `plain`, `scram-sha-256`, `scram-sha-512`: authenticates to the internal broker with the static `username`/`password` below.
+- `oauthbearer`: authenticates to the internal broker with a token built from the `credentials` template below, evaluated against the session an external guard already authorized. Lets Zilla present the external client's own credentials to the internal broker instead of a static service-account secret.
 
-#### credentials.token
-
-> `string` | Default: `"{credentials}"` when `mechanism` is `oauthbearer`
-
-Template for the bearer token. When the value is exactly `{credentials}`, it is substituted with the guard's raw credential string for the session; any other literal value passes through unchanged with no guard interaction. Optional; omitting it entirely behaves as if set to `{credentials}`.
-
-#### credentials.username\*
+#### credentials.username
 
 > `string`
 
-Username for `plain`, `scram-sha-256`, or `scram-sha-512`. When the value is exactly `{identity}`, it is substituted with the guard's identity for the session; any other literal value passes through unchanged with no guard interaction. Required.
+Username for authentication. Required when `mechanism` is `plain`, `scram-sha-256`, or `scram-sha-512`.
 
-#### credentials.password\*
+#### credentials.password
 
 > `string`
 
-Password for `plain`, `scram-sha-256`, or `scram-sha-512`. When the value is exactly `{credentials}`, it is substituted with the guard's raw credential string for the session; any other literal value passes through unchanged with no guard interaction. Required.
+Password for authentication. Required when `mechanism` is `plain`, `scram-sha-256`, or `scram-sha-512`.
+
+#### credentials.credentials
+
+> `string`
+
+Template used to build the bearer token presented to the internal broker. Required when `mechanism` is `oauthbearer`. Supports `${guarded['my_guard'].credentials}` to reference the raw credential string an external guard authorized the session with.
 
 ```yaml
 internal:
   authorization:
-    svc0:
-      credentials:
-        mechanism: plain
-        username: "{identity}"
-        password: "{credentials}"
+    credentials:
+      mechanism: oauthbearer
+      credentials: "Bearer ${guarded['cognito0'].credentials}"
 ```
 
 #### options.topics
