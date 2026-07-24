@@ -8,6 +8,16 @@ Zilla Plus is Aklivity's enterprise product for deploying and operating producti
 
 ---
 
+## 1.4.2
+
+**Release Date:** July 24, 2026
+
+### Fixed
+
+- Modules using the default AWS credential chain now correctly declare a dependency on `aws-sts`, needed for IRSA.
+
+---
+
 ## 1.4.1
 
 **Release Date:** July 21, 2026
