@@ -21,16 +21,6 @@ options:
 
 Specifies the cluster id for virtual cluster configuration.
 
-#### options.clusters
-
-> `array` of `string`
-
-List of cluster id patterns matched against the virtual cluster configuration.
-
-::: warning Deprecated
-Use `cluster-id` instead.
-:::
-
 #### options.external\*
 
 > `object`
