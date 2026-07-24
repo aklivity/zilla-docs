@@ -167,6 +167,15 @@ Username for authentication. Required when `mechanism` is `plain`, `scram-sha-25
 
 Password for authentication. Required when `mechanism` is `plain`, `scram-sha-256`, or `scram-sha-512`.
 
+```yaml
+internal:
+  authorization:
+    credentials:
+      mechanism: plain
+      username: admin
+      password: admin-secret
+```
+
 #### credentials.credentials
 
 > `string`
