@@ -14,7 +14,7 @@ Zilla Plus is Aklivity's enterprise product for deploying and operating producti
 
 ### Fixed
 
-- Modules using the default AWS credential chain now correctly declare a dependency on `aws-sts`.
+- Modules using the default AWS credential chain now correctly declare a dependency on `aws-sts`, needed for IRSA.
 
 ---
 
