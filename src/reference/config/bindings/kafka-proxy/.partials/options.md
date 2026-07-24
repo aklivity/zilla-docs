@@ -162,8 +162,8 @@ internal:
   authorization:
     credentials:
       mechanism: plain
-      username: admin
-      password: admin-secret
+      username: ${{env.SASL_USERNAME}}
+      password: ${{env.SASL_PASSWORD}}
 ```
 
 #### credentials.credentials
