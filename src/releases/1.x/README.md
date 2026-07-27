@@ -8,6 +8,26 @@ Zilla Plus is Aklivity's enterprise product for deploying and operating producti
 
 ---
 
+## 1.5.0
+
+**Release Date:** July 25, 2026
+
+### Added
+
+- Multi-architecture support for the AWS Marketplace Docker image, now published for `linux/arm64` in addition to `linux/amd64`.
+
+---
+
+## 1.4.3
+
+**Release Date:** July 25, 2026
+
+### Added
+
+- Startup now logs `Detected vCPUs: N` on both ECS and EKS.
+
+---
+
 ## 1.4.2
 
 **Release Date:** July 24, 2026
