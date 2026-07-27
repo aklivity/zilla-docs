@@ -913,6 +913,12 @@ export const enSidebar = sidebar({
 
             },
             {
+              text: "AWS EKS",
+              icon: "fa-brands fa-aws",
+              link: "zilla-plus-on-aws-eks.md",
+
+            },
+            {
               text: "AWS AMI",
               icon: "fa-brands fa-aws",
               prefix: "zilla-plus-via-aws-ami/",

@@ -255,6 +255,18 @@ Create the AWS ECS Fargate Task that will be used to deploy Zilla Plus service.
   | `<aws_account_id>`            | AWS account ID for SSM Parameters                                                                       |
   | `<parameter_name>`            | The name of the Systems Manager Parameter that stores Zilla config.                                     |
 
+### AWS Marketplace vCPU-Based Metering
+
+Zilla Plus reports AWS Marketplace usage based on the vCPUs available to the running task.
+
+- Setting task-level `cpu` (as shown above) determines the vCPU count used for metering, rounded up to the nearest whole vCPU.
+- Leaving it unset makes the vCPU count the real ceiling on what the container can consume, the underlying Fargate task's core count.
+
+Fargate already requires task-level `cpu` and `memory` on every task definition, so no additional configuration is needed. On startup, Zilla Plus logs the vCPU count it detected:
+
+```text:no-line-numbers
+Detected vCPUs: 2
+```
 
 ## Create a Service from your AWS ECS Fargate Task
 
