@@ -125,6 +125,13 @@ export const enSidebar = sidebar({
           children: "structure",
         },
         {
+          text: "MCP-Kafka",
+          icon: "fa-solid fa-robot",
+          prefix: "mcp-kafka",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "MCP-OpenAPI",
           icon: "fa-solid fa-robot",
           prefix: "mcp-openapi",
