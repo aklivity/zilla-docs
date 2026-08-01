@@ -1,0 +1,13 @@
+mcp_schema_registry_client:
+  type: mcp-schema-registry
+  kind: client
+  options:
+    server: http://karapace-registry.examples.dev:8081
+  routes:
+    - when:
+        - tool: register_schema
+      guarded:
+        my_guard:
+          - kafka-sr:write
+    - when:
+        - tool: "*"
