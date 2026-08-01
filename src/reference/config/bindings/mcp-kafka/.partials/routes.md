@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `mcp_kafka` specific routes, matching by tool name and, for `produce` and `consume`, by topic. At least one route is required. Routes are evaluated in order; the first matching route wins.
+Conditional `mcp-kafka` specific routes, matching by tool name and, for `produce` and `consume`, by topic. At least one route is required. Routes are evaluated in order; the first matching route wins.
 
 ```yaml
 routes:

@@ -2,7 +2,7 @@
 
 > `object`
 
-The `mcp_openapi` specific options.
+The `mcp-openapi` specific options.
 
 ```yaml
 options:

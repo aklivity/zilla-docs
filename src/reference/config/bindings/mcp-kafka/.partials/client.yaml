@@ -1,5 +1,5 @@
 mcp_kafka_client:
-  type: mcp_kafka
+  type: mcp-kafka
   kind: client
   options:
     servers:

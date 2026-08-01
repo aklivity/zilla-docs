@@ -2,7 +2,7 @@
 
 > `object`
 
-The `mcp_http` specific options.
+The `mcp-http` specific options.
 
 ```yaml
 options:
