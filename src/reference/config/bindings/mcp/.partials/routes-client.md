@@ -8,11 +8,11 @@ Conditional `mcp` specific routes, resolved per matched tool, prompt, or resourc
 routes:
   - exit: net_client
     when:
-      - tools:
+      - tool:
           - get_weather
   - exit: net_client
     when:
-      - tools:
+      - tool:
           - get_status
     guarded:
       my_jwt_guard:
@@ -39,23 +39,23 @@ routes:
 List of conditions (any match) to match this route.
 Read more: [When a route matches](/concepts/protocol/README.md#route-matches)
 
-#### when[].tools
+#### when[].tool
 
-> `array` of `string`
+> `string` or `array` of `string`
 
-Glob patterns of tool names to match, where `*` matches any sequence of characters. When omitted, all tools are admitted.
+Glob patterns of tool names to match, where `*` matches any sequence of characters. A bare string is shorthand for a single-element array. When omitted, all tools are admitted.
 
-#### when[].prompts
+#### when[].prompt
 
-> `array` of `string`
+> `string` or `array` of `string`
 
-Glob patterns of prompt names to match, where `*` matches any sequence of characters. When omitted, all prompts are admitted.
+Glob patterns of prompt names to match, where `*` matches any sequence of characters. A bare string is shorthand for a single-element array. When omitted, all prompts are admitted.
 
-#### when[].resources
+#### when[].resource
 
-> `array` of `string`
+> `string` or `array` of `string`
 
-Glob patterns of resource URIs to match, where `*` matches any sequence of characters. When omitted, all resources are admitted.
+Glob patterns of resource URIs to match, where `*` matches any sequence of characters. A bare string is shorthand for a single-element array. When omitted, all resources are admitted.
 
 #### routes[].exit
 

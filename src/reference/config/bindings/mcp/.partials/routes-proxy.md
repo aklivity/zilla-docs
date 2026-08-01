@@ -30,23 +30,23 @@ Read more: [When a route matches](/concepts/protocol/README.md#route-matches)
 
 Toolkit name to match.
 
-#### when[].tools
+#### when[].tool
 
-> `array` of `string`
+> `string` or `array` of `string`
 
-Glob patterns of tool names to expose, where `*` matches any sequence of characters. Only tools whose name matches a pattern are routed. When omitted, all tools are admitted.
+Glob patterns of tool names to expose, where `*` matches any sequence of characters. Only tools whose name matches a pattern are routed. A bare string is shorthand for a single-element array. Presence of `tool` activates the tools capability for this condition; when none of `tool`, `prompt`, or `resource` are given, every capability is admitted.
 
-#### when[].prompts
+#### when[].prompt
 
-> `array` of `string`
+> `string` or `array` of `string`
 
-Glob patterns of prompt names to expose, where `*` matches any sequence of characters. Only prompts whose name matches a pattern are routed. When omitted, all prompts are admitted.
+Glob patterns of prompt names to expose, where `*` matches any sequence of characters. Only prompts whose name matches a pattern are routed. A bare string is shorthand for a single-element array. Presence of `prompt` activates the prompts capability for this condition.
 
-#### when[].resources
+#### when[].resource
 
-> `array` of `string`
+> `string` or `array` of `string`
 
-Glob patterns of resource URIs to expose, where `*` matches any sequence of characters. Only resources whose URI matches a pattern are routed. When omitted, all resources are admitted. Applies to both `resources/list` and `resources/templates/list`.
+Glob patterns of resource URIs to expose, where `*` matches any sequence of characters. Only resources whose URI matches a pattern are routed. A bare string is shorthand for a single-element array. Presence of `resource` activates the resources capability for this condition. Applies to both `resources/list` and `resources/templates/list`.
 
 #### routes[].with
 
@@ -77,7 +77,7 @@ routes:
   - exit: app1
     when:
       - toolkit: bluesky
-        tools:
+        tool:
           - post_*
     guarded:
       my_jwt_guard:
