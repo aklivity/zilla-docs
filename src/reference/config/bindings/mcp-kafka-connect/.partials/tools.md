@@ -1,4 +1,4 @@
-The `mcp-kafka-connect` client exposes a fixed set of intrinsic tools, derived from a bundled Kafka Connect REST API specification — there is no `options.tools` to author, and no upstream server or spec to select. Each tool's `inputSchema` validates `tools/call` `arguments` before Zilla dispatches the matching request to `options.server`; a tool with no fixed `outputSchema` still returns a result, either as `structuredContent` mirroring the raw upstream JSON response or as `content` text only.
+The `mcp-kafka-connect` client exposes a fixed set of intrinsic tools, derived from a bundled Kafka Connect REST API specification — there is no `options.tools` to author, and no upstream server or spec to select. Each tool's `inputSchema` validates `tools/call` `arguments` before Zilla dispatches the matching request to `options.server`. Every tool's `structuredContent` carries the upstream JSON response — validated and pruned to a declared `outputSchema` where one exists, or the raw body unchanged where none is declared — and `content` carries the tool's `summary` text, which may itself interpolate fields out of that same response via `${result.x}`.
 
 ### list_connectors
 
@@ -8,7 +8,7 @@ Lists the names of every connector on the worker.
 
 No arguments.
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response — an array of connector names — with no fixed property list.
 
 ### create_connector
 
@@ -21,7 +21,7 @@ Creates a new connector.
 | `name` | `string` | Yes | Connector name. |
 | `config` | `object` as map of named `string` | Yes | Connector configuration properties. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### describe_connector
 
@@ -33,7 +33,7 @@ Reads one connector's configuration and task list by name.
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to describe. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### delete_connector
 
@@ -45,7 +45,7 @@ Deletes a connector.
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to delete. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### describe_connector_config
 
@@ -71,7 +71,7 @@ Creates or updates a connector by setting its full configuration.
 | `connector.class` | `string` | Yes | Connector class to instantiate. |
 | `tasks.max` | `string` | Yes | Maximum number of tasks to run. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### validate_connector_config
 
@@ -85,7 +85,7 @@ Validates a connector configuration against a plugin's configuration definition,
 | `connector.class` | `string` | Yes | Connector class to validate. |
 | `tasks.max` | `string` | Yes | Maximum number of tasks to validate. |
 
-No `outputSchema` is declared; the result is a `content` text summary only, such as `Validated connector config with 0 errors`.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.error_count}`, such as `Validated connector config with 0 errors`.
 
 ### describe_connector_status
 
@@ -97,7 +97,7 @@ Reads a connector's current state and the state of each of its tasks.
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to check the status of. |
 
-No `outputSchema` is declared; the result is a `content` text summary only, such as `Connector my-connector is RUNNING`.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}` and `${result.connector.state}`, such as `Connector my-connector is RUNNING`.
 
 ### restart_connector
 
@@ -109,7 +109,7 @@ Restarts a connector.
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to restart. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### pause_connector
 
@@ -121,7 +121,7 @@ Pauses a connector and all of its tasks.
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to pause. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### resume_connector
 
@@ -133,7 +133,7 @@ Resumes a paused connector and all of its tasks.
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to resume. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### stop_connector
 
@@ -145,7 +145,7 @@ Stops a connector and shuts down all of its tasks, without deleting the connecto
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to stop. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
 ### list_connector_tasks
 
@@ -157,7 +157,7 @@ Lists every task belonging to a connector.
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector whose tasks to list. |
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list.
 
 ### restart_connector_task
 
@@ -197,7 +197,7 @@ Overwrites a connector's source or sink offsets. The connector must be stopped f
 | `offsets[].partition` | `object` | Yes | Source partition or sink topic-partition identifying the offset. |
 | `offsets[].offset` | `object` | Yes | New offset value for the identified partition. |
 
-No `outputSchema` is declared; the result is a `content` text summary only, interpolated from the upstream response, such as `${result.message}`.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.message}`.
 
 ### reset_connector_offsets
 
@@ -209,7 +209,7 @@ Resets a connector's source or sink offsets to their initial state. The connecto
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector whose offsets to reset. |
 
-No `outputSchema` is declared; the result is a `content` text summary only, interpolated from the upstream response, such as `${result.message}`.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.message}`.
 
 ### list_connector_plugins
 
@@ -219,4 +219,4 @@ Lists every connector plugin installed on the worker.
 
 No arguments.
 
-No `outputSchema` is declared; the result is a `content` text summary only.
+No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response — an array of installed plugins — with no fixed property list.
