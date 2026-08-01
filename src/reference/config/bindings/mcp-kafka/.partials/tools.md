@@ -1,4 +1,4 @@
-The `mcp_kafka` client exposes a fixed set of intrinsic tools — there is no `options.tools` to author, and no upstream server or spec to derive them from. Each tool's `inputSchema` validates `tools/call` `arguments` before Zilla dispatches the matching Kafka request; a tool with no declared `outputSchema` still returns a result, either as `structuredContent` or as `content` text only.
+The `mcp-kafka` client exposes a fixed set of intrinsic tools — there is no `options.tools` to author, and no upstream server or spec to derive them from. Each tool's `inputSchema` validates `tools/call` `arguments` before Zilla dispatches the matching Kafka request; a tool with no declared `outputSchema` still returns a result, either as `structuredContent` or as `content` text only.
 
 ### produce
 

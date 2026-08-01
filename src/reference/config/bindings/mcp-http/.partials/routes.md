@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `mcp_http` specific routes, resolving the upstream `http` request for a matched `tools/call` or `resources/read`.
+Conditional `mcp-http` specific routes, resolving the upstream `http` request for a matched `tools/call` or `resources/read`.
 
 ```yaml
 routes:

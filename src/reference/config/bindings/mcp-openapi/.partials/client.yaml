@@ -1,5 +1,5 @@
 mcp_openapi_client:
-  type: mcp_openapi
+  type: mcp-openapi
   kind: client
   options:
     specs:

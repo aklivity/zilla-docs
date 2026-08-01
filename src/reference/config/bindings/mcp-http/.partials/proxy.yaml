@@ -1,5 +1,5 @@
 mcp_http_proxy:
-  type: mcp_http
+  type: mcp-http
   kind: proxy
   options:
     authorization:

@@ -2,7 +2,7 @@
 
 > `array` of `object`
 
-Conditional `mcp_openapi` specific routes, compiling matched OpenAPI operations into the generated `mcp_http` proxy as MCP tools or resources. At least one route is required.
+Conditional `mcp-openapi` specific routes, compiling matched OpenAPI operations into the generated `mcp-http` proxy as MCP tools or resources. At least one route is required.
 
 A route either names a single operation explicitly, or bulk-selects many operations at once:
 
@@ -90,7 +90,7 @@ routes:
 
 > `object`
 
-Resolves the OpenAPI operation or operations compiled into the generated `mcp_http` proxy for this route.
+Resolves the OpenAPI operation or operations compiled into the generated `mcp-http` proxy for this route.
 
 ```yaml
 with:
