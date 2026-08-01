@@ -40,7 +40,7 @@ Tool name matched by `tools/call`. Omit to match every tool not already claimed 
 
 > `array` of `string`
 
-Topic name allow-list (exact names or `*` glob patterns) restricting this route to matching topics. Only enforced for [`produce`](./client.md#produce) and [`consume`](./client.md#consume), the only two tools that name a single topic as a routing key — every other tool either takes no topic or names one as a `tools/call` argument rather than a route match, so this list has no effect on them.
+Topic name allow-list (exact names or `*` glob patterns) restricting this route to matching topics. Only enforced for [`produce`](../client.md#produce) and [`consume`](../client.md#consume), the only two tools that name a single topic as a routing key — every other tool either takes no topic or names one as a `tools/call` argument rather than a route match, so this list has no effect on them.
 
 #### routes[].guarded
 
