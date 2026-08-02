@@ -2,6 +2,8 @@ The `mcp-schema-registry` client exposes a fixed set of intrinsic tools, derived
 
 ### list_subjects
 
+> Read-only, idempotent
+
 Lists every subject registered in the schema registry.
 
 No arguments.
@@ -9,6 +11,8 @@ No arguments.
 The result's `structuredContent` mirrors the raw upstream JSON response — an array of subject names.
 
 ### describe_subject
+
+> Read-only, idempotent
 
 Lists the schema version numbers registered for a subject.
 
@@ -19,6 +23,8 @@ Lists the schema version numbers registered for a subject.
 The result's `structuredContent` mirrors the raw upstream JSON response — an array of version numbers.
 
 ### register_schema
+
+> Not destructive, not idempotent
 
 Registers a new schema version under a subject.
 
@@ -32,6 +38,8 @@ The summary interpolates `${result.id}`, such as `Registered schema with id 1`.
 
 ### get_schema
 
+> Read-only, idempotent
+
 Retrieves a specific registered schema version for a subject.
 
 | Argument | Type | Required | Description |
@@ -43,6 +51,8 @@ The summary interpolates `${result.id}` and `${result.version}`, such as `Retrie
 
 ### delete_schema_version
 
+> Destructive, idempotent
+
 Deletes a specific registered schema version for a subject.
 
 | Argument | Type | Required | Description |
@@ -51,6 +61,8 @@ Deletes a specific registered schema version for a subject.
 | `version` | `string` | Yes | Schema version number, or `latest`. |
 
 ### delete_subject
+
+> Destructive, idempotent
 
 Deletes a subject and every schema version registered under it.
 
@@ -61,6 +73,8 @@ Deletes a subject and every schema version registered under it.
 The result's `structuredContent` mirrors the raw upstream JSON response — an array of the deleted subject's version numbers.
 
 ### check_compatibility
+
+> Read-only, idempotent
 
 Checks whether a schema is compatible with a specific already-registered version of a subject.
 
@@ -75,6 +89,8 @@ The summary interpolates `${result.is_compatible}`, such as `Compatibility check
 
 ### get_compatibility
 
+> Read-only, idempotent
+
 Reads the compatibility level configured for a subject.
 
 | Argument | Type | Required | Description |
@@ -84,6 +100,8 @@ Reads the compatibility level configured for a subject.
 The summary interpolates `${result.compatibilityLevel}`, such as `Compatibility level is FULL`.
 
 ### set_compatibility
+
+> Not destructive, idempotent
 
 Sets the compatibility level for a subject.
 
