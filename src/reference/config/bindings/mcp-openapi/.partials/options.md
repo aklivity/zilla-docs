@@ -26,6 +26,7 @@ options:
         bearerAuth: my_guard
   tools:
     create_pr:
+      title: Create Pull Request
       description: Create a pull request to merge one branch into another.
       summary: "Created pull request #${result.number}"
       input:
@@ -103,6 +104,26 @@ Specific version of the registered OpenAPI document.
 
 Catalog reference resolving an [OpenAPI Overlay](https://github.com/OAI/Overlay-Specification) document, applied to the OpenAPI document before it is parsed. Overlay actions can patch or extend the base document — for example, to add a `security` requirement or `servers` entry — without duplicating it. Uses the same shape as [`specs.catalog`](#specs-catalog).
 
+::: info The `x-zilla-mcp` operation extension
+An OpenAPI operation — whether authored directly in the base document or added by an `overlay` action — may carry an `x-zilla-mcp` object to supply MCP-specific metadata without an authored [`options.tools`](#options-tools) override:
+
+```yaml
+paths:
+  /pulls:
+    post:
+      operationId: create_pr
+      x-zilla-mcp:
+        title: Create Pull Request
+        description: Open a pull request from one branch into another.
+        annotations:
+          readOnlyHint: false
+          destructiveHint: false
+          idempotentHint: false
+```
+
+[`tools.title`](#tools-title), [`tools.description`](#tools-description), and each [`tools.annotations`](#tools-annotations) hint fall back to this extension before falling back further still. This is how [`mcp-kafka-connect`](../mcp-kafka-connect/client.md) and [`mcp-schema-registry`](../mcp-schema-registry/client.md) supply real tool titles, descriptions, and annotations for their bundled specs via an `overlay`, without editing the vendored OpenAPI document itself.
+:::
+
 #### specs.security
 
 > `object` as map of named `string`
@@ -115,11 +136,17 @@ Maps each OpenAPI `securityScheme` name declared by the specification to the nam
 
 Overrides for MCP tools generated from routed OpenAPI operations. The named key is the tool name — either an explicit route's [`when[].tool`](#when-tool), or the automatic name assigned to a bulk-selected operation (see [`routes`](#routes)).
 
+#### tools.title
+
+> `string`
+
+Tool title surfaced to MCP clients by `tools/list`, overriding the operation's `x-zilla-mcp.title` vendor extension (see above). OpenAPI operations have no native title field, so a tool without either an override or the extension has no title.
+
 #### tools.description
 
 > `string`
 
-Tool description surfaced to MCP clients by `tools/list`, overriding the OpenAPI operation's own `description`, which is itself the fallback before the operation id.
+Tool description surfaced to MCP clients by `tools/list`, overriding — in order — the operation's `x-zilla-mcp.description` vendor extension (see above), its own native `description`, and finally its operation id.
 
 #### tools.summary
 
@@ -171,6 +198,43 @@ Specific version of the registered schema.
 > `object`
 
 Model overriding the schema generated from the OpenAPI operation's success response, surfaced as the tool-call `structuredContent`. Uses the same shape as [`tools.input`](#tools-input).
+
+#### tools.annotations
+
+> `object`
+
+Behavior hints surfaced to MCP clients by `tools/list`, overriding the operation's `x-zilla-mcp.annotations` vendor extension (see above), itself the fallback before an HTTP-method-derived default. Each hint resolves independently — overriding one does not require overriding the others.
+
+```yaml
+annotations:
+  readOnlyHint: false
+  destructiveHint: false
+  idempotentHint: false
+```
+
+#### annotations.readOnlyHint
+
+> `boolean`
+
+Whether the tool only reads data without modifying any state. Defaults to `true` for a `GET` or `HEAD` operation, otherwise unset.
+
+#### annotations.destructiveHint
+
+> `boolean`
+
+Whether the tool may perform a destructive update. Defaults to `true` for a `DELETE` operation, otherwise unset.
+
+#### annotations.idempotentHint
+
+> `boolean`
+
+Whether calling the tool repeatedly with the same arguments has no additional effect beyond the first call. Defaults to `true` for a `PUT` or `DELETE` operation, otherwise unset.
+
+#### annotations.openWorldHint
+
+> `boolean` | Default: `false`
+
+Whether the tool interacts with an open-ended set of external entities, rather than a fixed, closed set. Always defaults to `false` unless overridden or supplied by the `x-zilla-mcp` extension.
 
 #### options.resources
 
