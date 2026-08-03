@@ -2,18 +2,18 @@
 
 > `array` of `object`
 
-Conditional `mcp-kafka` specific routes, matching by tool name and, for `produce` and `consume`, by topic. At least one route is required. Routes are evaluated in order; the first matching route wins.
+Conditional `mcp-kafka` specific routes, matching by tool name and, for `produce_message` and `consume_messages`, by topic. At least one route is required. Routes are evaluated in order; the first matching route wins.
 
 ```yaml
 routes:
   - when:
-      - tool: produce
+      - tool: produce_message
         topics: [ orders ]
     guarded:
       my_guard:
         - kafka:write
   - when:
-      - tool: consume
+      - tool: consume_messages
         topics: [ orders ]
 ```
 
@@ -40,7 +40,7 @@ Tool name matched by `tools/call`. Omit to match every tool not already claimed 
 
 > `array` of `string`
 
-Topic name allow-list (exact names or `*` glob patterns) restricting this route to matching topics. Only enforced for [`produce`](../client.md#produce) and [`consume`](../client.md#consume), the only two tools that name a single topic as a routing key — every other tool either takes no topic or names one as a `tools/call` argument rather than a route match, so this list has no effect on them.
+Topic name allow-list (exact names or `*` glob patterns) restricting this route to matching topics. Only enforced for [`produce_message`](../client.md#produce_message) and [`consume_messages`](../client.md#consume_messages), the only two tools that name a single topic as a routing key — every other tool either takes no topic or names one as a `tools/call` argument rather than a route match, so this list has no effect on them.
 
 #### routes[].guarded
 
