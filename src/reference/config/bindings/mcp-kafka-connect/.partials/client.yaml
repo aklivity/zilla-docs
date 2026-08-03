@@ -1,0 +1,22 @@
+mcp_kafka_connect_client:
+  type: mcp-kafka-connect
+  kind: client
+  options:
+    server: http://kafka-connect.examples.dev:8083
+  routes:
+    - when:
+        - tool: create_connector
+        - tool: delete_connector
+        - tool: update_connector_config
+        - tool: restart_connector
+        - tool: pause_connector
+        - tool: resume_connector
+        - tool: stop_connector
+        - tool: restart_connector_task
+        - tool: alter_connector_offsets
+        - tool: reset_connector_offsets
+      guarded:
+        my_guard:
+          - kafka-connect:admin
+    - when:
+        - tool: "*"

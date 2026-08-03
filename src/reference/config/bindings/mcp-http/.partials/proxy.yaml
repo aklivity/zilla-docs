@@ -1,5 +1,5 @@
 mcp_http_proxy:
-  type: mcp_http
+  type: mcp-http
   kind: proxy
   options:
     authorization:
@@ -36,16 +36,6 @@ mcp_http_proxy:
               my_catalog:
                 - subject: order_result
                   version: latest
-    prompts:
-      summarize:
-        description: Summarize a document about a topic
-        arguments:
-          - name: topic
-            description: The topic to summarize
-            required: true
-        messages:
-          - role: user
-            text: "Please summarize the document about ${args.topic}."
   routes:
     - when:
         - tool: create_pr

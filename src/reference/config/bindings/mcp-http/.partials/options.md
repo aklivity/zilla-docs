@@ -2,7 +2,7 @@
 
 > `object`
 
-The `mcp_http` specific options.
+The `mcp-http` specific options.
 
 ```yaml
 options:
@@ -40,23 +40,13 @@ options:
             my_catalog:
               - subject: order_result
                 version: latest
-  prompts:
-    summarize:
-      description: Summarize a document about a topic
-      arguments:
-        - name: topic
-          description: The topic to summarize
-          required: true
-      messages:
-        - role: user
-          text: "Please summarize the document about ${args.topic}."
 ```
 
 #### options.authorization
 
 > `object` as map of named `object`
 
-Guard credentials to inject into the upstream `http` request. The named key references a [guard](../../../guards/README.md) defined elsewhere in the configuration. At most one guard may be referenced.
+Guard credentials to inject into the upstream `http` request. The named key references a [`guard`](../../../../config/overview.md#guards) defined elsewhere in the configuration. At most one guard may be referenced.
 
 #### authorization.credentials
 
@@ -137,19 +127,19 @@ Converter validating and projecting the upstream `http` response, surfaced as th
 
 > `object` as map of named `object`
 
-MCP resources terminated by this binding and expanded into `http` requests. The named key is the resource name surfaced to MCP clients by `resources/list` and matched by `resources/read`.
+MCP resources terminated by this binding and expanded into `http` requests. The named key is the resource name surfaced to MCP clients by `resources/list` or `resources/templates/list`, and matched by `resources/read`.
 
 #### resources.uri\*
 
 > `string`
 
-Resource URI template surfaced by `resources/list`, with optional embedded capture names, such as `order://{orderId}`. Captured values are referenced from a route as `${params.x}`.
+Resource URI, with optional embedded capture names, such as `order://{orderId}`. A URI with no captures is a concrete resource surfaced by `resources/list`; a URI with one or more captures is a resource template surfaced by `resources/templates/list` instead. Captured values are referenced from a route as `${params.x}`.
 
 #### resources.description
 
 > `string`
 
-Resource description surfaced to MCP clients by `resources/list`.
+Resource description surfaced to MCP clients by `resources/list` or `resources/templates/list`.
 
 #### resources.mimeType
 
@@ -170,57 +160,3 @@ JSON schema converter for the resource.
 
 Converter validating and projecting the upstream `http` response, surfaced as the resource `contents`. Uses the same shape as [`schemas.input`](#schemas-input).
 <!-- markdownlint-enable MD024 -->
-
-#### options.prompts
-
-> `object` as map of named `object`
-
-MCP prompts served locally by this binding. The named key is the prompt name surfaced to MCP clients by `prompts/list` and matched by `prompts/get`. A `prompts/get` request renders the messages locally with no upstream `http` request.
-
-#### prompts.description
-
-> `string`
-
-Prompt description surfaced to MCP clients by `prompts/list`.
-
-#### prompts.arguments
-
-> `array` of `object`
-
-Arguments accepted by the prompt, surfaced to MCP clients by `prompts/list` and supplied on `prompts/get`.
-
-#### arguments[].name\*
-
-> `string`
-
-Argument name, referenced from a message template as `${args.name}`.
-
-#### arguments[].description
-
-> `string`
-
-Argument description surfaced to MCP clients.
-
-#### arguments[].required
-
-> `boolean` | Default: `false`
-
-Whether the argument must be supplied on `prompts/get`.
-
-#### prompts.messages\*
-
-> `array` of `object`
-
-Message templates rendered and returned by `prompts/get`.
-
-#### messages[].role\*
-
-> `enum` [ `user`, `assistant` ]
-
-Role of the rendered message.
-
-#### messages[].text\*
-
-> `string`
-
-Message text template. Supports `${args.x}` interpolation, where `x` references a prompt argument supplied on `prompts/get`.

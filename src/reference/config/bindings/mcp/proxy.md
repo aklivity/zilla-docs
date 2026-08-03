@@ -4,7 +4,7 @@ shortTitle: proxy
 
 # mcp proxy
 
-The mcp proxy binding routes inbound MCP requests to upstream MCP servers based on toolkit, capability, and per-route tool, prompt, and resource filters.
+The mcp proxy binding routes inbound MCP requests to upstream MCP servers based on toolkit and per-route tool, prompt, and resource filters.
 
 ```yaml {3}
 <!-- @include: ./.partials/proxy.yaml -->

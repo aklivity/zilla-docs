@@ -36,7 +36,7 @@ The `client` kind `mcp` binding forwards outbound MCP requests to the upstream M
 
 > [Full config](./proxy.md)
 
-The `proxy` kind `mcp` binding routes inbound MCP requests to upstream MCP servers based on toolkit, capability, and per-route tool, prompt, and resource filters.
+The `proxy` kind `mcp` binding routes inbound MCP requests to upstream MCP servers based on toolkit and per-route tool, prompt, and resource filters.
 
 ```yaml {3}
 <!-- @include: ./.partials/proxy.yaml -->
