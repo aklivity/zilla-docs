@@ -69,6 +69,6 @@ SASL token. Required when `mechanism` is `oauthbearer`; not allowed with any oth
 
 > `array` of `object`
 
-Per-topic key and value validation, applied to `produce` calls and to records read back by `consume`.
+Per-topic key and value validation, applied to `produce_message` calls and to records read back by `consume_messages`.
 
 <!-- @include: ../.partials/options-kafka-topics.md -->

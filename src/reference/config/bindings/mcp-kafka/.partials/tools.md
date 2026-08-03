@@ -1,6 +1,6 @@
 The `mcp-kafka` client exposes a fixed set of intrinsic tools — there is no `options.tools` to author, and no upstream server or spec to derive them from. Each tool's `inputSchema` validates `tools/call` `arguments` before Zilla dispatches the matching Kafka request; a tool with no declared `outputSchema` still returns a result, either as `structuredContent` or as `content` text only.
 
-### produce
+### produce_message
 
 > Not read-only, not idempotent
 
@@ -15,7 +15,7 @@ Appends one record to a topic.
 
 No `outputSchema` is declared; the result is a `content` text summary only.
 
-### consume
+### consume_messages
 
 > Read-only, idempotent
 

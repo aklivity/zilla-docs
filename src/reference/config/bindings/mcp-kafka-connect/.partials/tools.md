@@ -18,8 +18,8 @@ Creates a new connector.
 
 | Argument | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | Yes | Connector name. |
-| `config` | `object` as map of named `string` | Yes | Connector configuration properties. |
+| `name` | `string` | No | Connector name. |
+| `config` | `object` as map of named `string` | No | Connector configuration properties. |
 
 No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
@@ -68,8 +68,8 @@ Creates or updates a connector by setting its full configuration.
 | Argument | Type | Required | Description |
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector to configure. |
-| `connector.class` | `string` | Yes | Connector class to instantiate. |
-| `tasks.max` | `string` | Yes | Maximum number of tasks to run. |
+| `connector.class` | `string` | No | Connector class to instantiate. |
+| `tasks.max` | `string` | No | Maximum number of tasks to run. |
 
 No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.name}`.
 
@@ -82,8 +82,8 @@ Validates a connector configuration against a plugin's configuration definition,
 | Argument | Type | Required | Description |
 | --- | --- | --- | --- |
 | `pluginName` | `string` | Yes | Connector plugin to validate against. |
-| `connector.class` | `string` | Yes | Connector class to validate. |
-| `tasks.max` | `string` | Yes | Maximum number of tasks to validate. |
+| `connector.class` | `string` | No | Connector class to validate. |
+| `tasks.max` | `string` | No | Maximum number of tasks to validate. |
 
 No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.error_count}`, such as `Validated connector config with 0 errors`.
 
@@ -193,9 +193,9 @@ Overwrites a connector's source or sink offsets. The connector must be stopped f
 | Argument | Type | Required | Description |
 | --- | --- | --- | --- |
 | `connector` | `string` | Yes | Connector whose offsets to alter. |
-| `offsets` | `array` of `object` | Yes | Offsets to write. |
-| `offsets[].partition` | `object` | Yes | Source partition or sink topic-partition identifying the offset. |
-| `offsets[].offset` | `object` | Yes | New offset value for the identified partition. |
+| `offsets` | `array` of `object` | No | Offsets to write. |
+| `offsets[].partition` | `object` | No | Source partition or sink topic-partition identifying the offset. |
+| `offsets[].offset` | `object` | No | New offset value for the identified partition. |
 
 No fixed `outputSchema` is declared; the result's `structuredContent` mirrors the raw upstream JSON response, with no fixed property list. The summary interpolates `${result.message}`.
 

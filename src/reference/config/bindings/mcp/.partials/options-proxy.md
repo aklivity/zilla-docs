@@ -137,7 +137,7 @@ tools:
 
 > `enum` [ `none`, `all`, `explicit` ] | Default: `none`
 
-Which cached tools are eager. `none` marks every tool cold, `all` marks every tool eager, and `explicit` marks only tools matching [`match`](#eager-match) eager.
+Which cached tools are eager. `none` marks every tool eager (no partitioning is applied), `all` marks every tool cold, and `explicit` marks only tools matching [`match`](#eager-match) eager, leaving every other tool cold.
 
 #### eager.match
 

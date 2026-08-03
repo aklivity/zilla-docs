@@ -31,7 +31,7 @@ Registers a new schema version under a subject.
 | Argument | Type | Required | Description |
 | --- | --- | --- | --- |
 | `subject` | `string` | Yes | Subject to register the schema under. |
-| `schema` | `string` | Yes | Schema document to register. |
+| `schema` | `string` | No | Schema document to register. |
 | `schemaType` | `string` | No | Schema format, such as `AVRO`, `JSON`, or `PROTOBUF`. Defaults to `AVRO` when omitted. |
 
 The summary interpolates `${result.id}`, such as `Registered schema with id 1`.
@@ -82,7 +82,7 @@ Checks whether a schema is compatible with a specific already-registered version
 | --- | --- | --- | --- |
 | `subject` | `string` | Yes | Subject to check compatibility against. |
 | `version` | `string` | Yes | Schema version number, or `latest`, to check compatibility against. |
-| `schema` | `string` | Yes | Schema document to check. |
+| `schema` | `string` | No | Schema document to check. |
 | `schemaType` | `string` | No | Schema format, such as `AVRO`, `JSON`, or `PROTOBUF`. Defaults to `AVRO` when omitted. |
 
 The summary interpolates `${result.is_compatible}`, such as `Compatibility check result: true`.
@@ -108,6 +108,6 @@ Sets the compatibility level for a subject.
 | Argument | Type | Required | Description |
 | --- | --- | --- | --- |
 | `subject` | `string` | Yes | Subject to set the compatibility level of. |
-| `compatibility` | `string` | Yes | Compatibility level, such as `BACKWARD`, `FORWARD`, `FULL`, or `NONE`. |
+| `compatibility` | `string` | No | Compatibility level, such as `BACKWARD`, `FORWARD`, `FULL`, or `NONE`. |
 
 The summary interpolates `${result.compatibility}`, such as `Compatibility level set to FULL`.

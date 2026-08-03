@@ -69,6 +69,12 @@ HTTP request headers added to the upstream request, with values resolved from th
 
 MCP tools terminated by this binding and expanded into `http` requests. The named key is the tool name surfaced to MCP clients by `tools/list` and matched by `tools/call`.
 
+#### tools.title
+
+> `string`
+
+Tool title surfaced to MCP clients by `tools/list`. Unlike [`tools.description`](#tools-description), there is no fallback — a tool with no authored `title` has none.
+
 #### tools.description
 
 > `string`
@@ -122,6 +128,43 @@ Specific version of the registered schema.
 > `object`
 
 Converter validating and projecting the upstream `http` response, surfaced as the tool-call `structuredContent`. Uses the same shape as [`schemas.input`](#schemas-input).
+
+#### tools.annotations
+
+> `object`
+
+Behavior hints surfaced to MCP clients by `tools/list`. Unlike [`mcp-openapi`](../../mcp-openapi/README.md)'s `tools.annotations`, there is no HTTP-method-derived default — a hint left unset here is simply absent. Each hint resolves independently — overriding one does not require overriding the others.
+
+```yaml
+annotations:
+  readOnlyHint: false
+  destructiveHint: false
+  idempotentHint: false
+```
+
+#### annotations.readOnlyHint
+
+> `boolean`
+
+Whether the tool only reads data without modifying any state.
+
+#### annotations.destructiveHint
+
+> `boolean`
+
+Whether the tool may perform a destructive update.
+
+#### annotations.idempotentHint
+
+> `boolean`
+
+Whether calling the tool repeatedly with the same arguments has no additional effect beyond the first call.
+
+#### annotations.openWorldHint
+
+> `boolean`
+
+Whether the tool interacts with an open-ended set of external entities, rather than a fixed, closed set.
 
 #### options.resources
 

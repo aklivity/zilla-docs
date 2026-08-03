@@ -14,13 +14,13 @@ mcp_kafka_client:
         my_guard:
           - kafka:admin
     - when:
-        - tool: produce
+        - tool: produce_message
           topics: [ orders ]
       guarded:
         my_guard:
           - kafka:write
     - when:
-        - tool: consume
+        - tool: consume_messages
           topics: [ orders ]
     - when:
         - tool: describe_configs
