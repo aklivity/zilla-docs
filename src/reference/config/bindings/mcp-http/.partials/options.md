@@ -133,7 +133,7 @@ Converter validating and projecting the upstream `http` response, surfaced as th
 
 > `object`
 
-Behavior hints surfaced to MCP clients by `tools/list`. Unlike [`mcp-openapi`](../mcp-openapi/README.md)'s `tools.annotations`, there is no HTTP-method-derived default — a hint left unset here is simply absent. Each hint resolves independently — overriding one does not require overriding the others.
+Behavior hints surfaced to MCP clients by `tools/list`. Unlike [`mcp-openapi`](../../mcp-openapi/README.md)'s `tools.annotations`, there is no HTTP-method-derived default — a hint left unset here is simply absent. Each hint resolves independently — overriding one does not require overriding the others.
 
 ```yaml
 annotations:
