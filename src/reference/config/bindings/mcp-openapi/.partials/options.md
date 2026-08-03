@@ -121,7 +121,7 @@ paths:
           idempotentHint: false
 ```
 
-[`tools.title`](#tools-title), [`tools.description`](#tools-description), and each [`tools.annotations`](#tools-annotations) hint fall back to this extension before falling back further still. This is how [`mcp-kafka-connect`](../mcp-kafka-connect/client.md) and [`mcp-schema-registry`](../mcp-schema-registry/client.md) supply real tool titles, descriptions, and annotations for their bundled specs via an `overlay`, without editing the vendored OpenAPI document itself.
+[`tools.title`](#tools-title), [`tools.description`](#tools-description), and each [`tools.annotations`](#tools-annotations) hint fall back to this extension before falling back further still. This is how [`mcp-kafka-connect`](../../mcp-kafka-connect/client.md) and [`mcp-schema-registry`](../../mcp-schema-registry/client.md) supply real tool titles, descriptions, and annotations for their bundled specs via an `overlay`, without editing the vendored OpenAPI document itself.
 :::
 
 #### specs.security
@@ -246,7 +246,7 @@ Overrides for MCP resources generated from routed OpenAPI operations. The named 
 
 > `string`
 
-Resource description surfaced to MCP clients by `resources/list`, overriding the OpenAPI operation's own `description`, which is itself the fallback before the operation id.
+Resource description surfaced to MCP clients by `resources/list`. Unlike [`tools.description`](#tools-description), there is no fallback to the OpenAPI operation's own `description` or its operation id — a resource with no authored override here has no description.
 
 #### resources.mimeType
 

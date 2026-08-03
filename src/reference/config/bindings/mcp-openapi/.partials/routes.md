@@ -7,7 +7,7 @@ Conditional `mcp-openapi` specific routes, compiling matched OpenAPI operations 
 A route either names a single operation explicitly, or bulk-selects many operations at once:
 
 - **Explicit** — [`with.operation`](#with-operation) names one exact `operationId`. May pair with [`when[].tool`](#when-tool) or [`when[].resource`](#when-resource) to name and shape the generated MCP primitive.
-- **Bulk** — [`with.spec`](#with-spec) alone selects every operation in the spec, [`with.tag`](#with-tag) selects every operation carrying the named OpenAPI tag, or [`with.operation`](#with-operation) containing a `*` selects every operation whose id matches the glob pattern. Bulk-selected operations always become tools, never resources, and cannot be named with `when[].tool` or `when[].resource` — each is named automatically. [`when[].capability`](#when-capability) can still restrict a bulk route to only `tool` or only `resource`.
+- **Bulk** — [`with.spec`](#with-spec) alone selects every operation in the spec, [`with.tag`](#with-tag) selects every operation carrying the named OpenAPI tag, or [`with.operation`](#with-operation) containing a `*` selects every operation whose id matches the glob pattern. Bulk-selected operations always become tools, never resources, and cannot be named with `when[].tool` or `when[].resource` — each is named automatically.
 
 ```yaml
 routes:
@@ -70,21 +70,6 @@ Resource identifier matched by `resources/read`, naming the explicit OpenAPI ope
 ::: info Resource vs. resource template
 An operation whose OpenAPI path contains a `{param}` capture is surfaced as a resource template through `resources/templates/list`. Otherwise it is a concrete resource surfaced through `resources/list`, with any query parameters appended to its URI as an RFC 6570 `{?name1,name2}` suffix rather than disqualifying it from being concrete.
 :::
-
-#### when[].capability
-
-> `array` of `enum` [ `tool`, `resource` ]
-
-Restricts a bulk route to only the listed primitive kinds. An explicit route naming [`when[].tool`](#when-tool) or [`when[].resource`](#when-resource) is filtered accordingly whether or not `capability` is also listed.
-
-```yaml
-routes:
-  - when:
-      - capability: [ tool ]
-    with:
-      spec: github
-      tag: issues
-```
 
 #### routes[].with\*
 
